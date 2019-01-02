@@ -13,6 +13,13 @@
 		570D047821DCE3DA00E0DCFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D047021DCE3DA00E0DCFB /* Main.storyboard */; };
 		570D047921DCE3DA00E0DCFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D047421DCE3DA00E0DCFB /* ViewController.swift */; };
 		570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D047521DCE3DA00E0DCFB /* AppDelegate.swift */; };
+		570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D047E21DCED5600E0DCFB /* ApiService.swift */; };
+		570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D048021DCEF3800E0DCFB /* ApiServiceConfig.swift */; };
+		570D049721DCF20600E0DCFB /* ApiProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049621DCF20600E0DCFB /* ApiProfile.swift */; };
+		570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049B21DCFB6600E0DCFB /* ApiServiceDefault.swift */; };
+		570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */; };
+		570D04A121DD021E00E0DCFB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04A021DD021E00E0DCFB /* Errors.swift */; };
+		570D04A521DD087100E0DCFB /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04A421DD087100E0DCFB /* AppManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +30,14 @@
 		570D047421DCE3DA00E0DCFB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		570D047521DCE3DA00E0DCFB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		570D047B21DCE40200E0DCFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		570D047E21DCED5600E0DCFB /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		570D048021DCEF3800E0DCFB /* ApiServiceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceConfig.swift; sourceTree = "<group>"; };
+		570D049421DCEF6500E0DCFB /* ringoid copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ringoid copy-Info.plist"; path = "/Users/Victor/Desktop/Projects/Ringoid/client-ios/ringoid copy-Info.plist"; sourceTree = "<absolute>"; };
+		570D049621DCF20600E0DCFB /* ApiProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProfile.swift; sourceTree = "<group>"; };
+		570D049B21DCFB6600E0DCFB /* ApiServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceDefault.swift; sourceTree = "<group>"; };
+		570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceConfigStage.swift; sourceTree = "<group>"; };
+		570D04A021DD021E00E0DCFB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		570D04A421DD087100E0DCFB /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.release.xcconfig"; sourceTree = "<group>"; };
 		873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.debug.xcconfig"; sourceTree = "<group>"; };
 		9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ringoid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +64,7 @@
 				570D045821DCE32000E0DCFB /* Products */,
 				C06DF6A5A1156987FFA53DC0 /* Pods */,
 				72C1601F5934C71987A6D447 /* Frameworks */,
+				570D049421DCEF6500E0DCFB /* ringoid copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +89,9 @@
 		570D047221DCE3DA00E0DCFB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				570D049F21DD01FB00E0DCFB /* Helpers */,
+				570D047C21DCED1800E0DCFB /* Services */,
+				570D04A221DD084500E0DCFB /* Managers */,
 				570D047321DCE3DA00E0DCFB /* UI */,
 				570D047521DCE3DA00E0DCFB /* AppDelegate.swift */,
 			);
@@ -85,6 +104,58 @@
 				570D047421DCE3DA00E0DCFB /* ViewController.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		570D047C21DCED1800E0DCFB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				570D047D21DCED2F00E0DCFB /* Api */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		570D047D21DCED2F00E0DCFB /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				570D049521DCF1E700E0DCFB /* Entities */,
+				570D047E21DCED5600E0DCFB /* ApiService.swift */,
+				570D049B21DCFB6600E0DCFB /* ApiServiceDefault.swift */,
+				570D048021DCEF3800E0DCFB /* ApiServiceConfig.swift */,
+				570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		570D049521DCF1E700E0DCFB /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				570D049621DCF20600E0DCFB /* ApiProfile.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		570D049F21DD01FB00E0DCFB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				570D04A021DD021E00E0DCFB /* Errors.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		570D04A221DD084500E0DCFB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				570D04A321DD086500E0DCFB /* App */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		570D04A321DD086500E0DCFB /* App */ = {
+			isa = PBXGroup;
+			children = (
+				570D04A421DD087100E0DCFB /* AppManager.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		72C1601F5934C71987A6D447 /* Frameworks */ = {
@@ -232,8 +303,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
+				570D049721DCF20600E0DCFB /* ApiProfile.swift in Sources */,
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
 				570D047921DCE3DA00E0DCFB /* ViewController.swift in Sources */,
+				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
+				570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */,
+				570D04A521DD087100E0DCFB /* AppManager.swift in Sources */,
+				570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */,
+				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
