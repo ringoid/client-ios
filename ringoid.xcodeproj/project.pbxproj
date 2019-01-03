@@ -23,6 +23,9 @@
 		570D04AF21DDD34E00E0DCFB /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04AE21DDD34E00E0DCFB /* Auth.storyboard */; };
 		570D04B221DDE4E200E0DCFB /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B121DDE4E200E0DCFB /* ProfileManager.swift */; };
 		570D04B521DE1B2600E0DCFB /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B421DE1B2600E0DCFB /* AuthViewController.swift */; };
+		570D04B821DE2B6400E0DCFB /* XStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B721DE2B6400E0DCFB /* XStorageService.swift */; };
+		570D04BA21DE322200E0DCFB /* XStorageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B921DE322200E0DCFB /* XStorageObject.swift */; };
+		570D04BD21DE385E00E0DCFB /* DefaultStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04BC21DE385E00E0DCFB /* DefaultStorageService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		570D04AE21DDD34E00E0DCFB /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		570D04B121DDE4E200E0DCFB /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		570D04B421DE1B2600E0DCFB /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		570D04B721DE2B6400E0DCFB /* XStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XStorageService.swift; sourceTree = "<group>"; };
+		570D04B921DE322200E0DCFB /* XStorageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XStorageObject.swift; sourceTree = "<group>"; };
+		570D04BC21DE385E00E0DCFB /* DefaultStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStorageService.swift; sourceTree = "<group>"; };
 		727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.release.xcconfig"; sourceTree = "<group>"; };
 		873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.debug.xcconfig"; sourceTree = "<group>"; };
 		9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ringoid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +119,8 @@
 		570D047C21DCED1800E0DCFB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				570D04B621DE2B4F00E0DCFB /* XStorage */,
+				570D04BB21DE383800E0DCFB /* KeychainStorage */,
 				570D047D21DCED2F00E0DCFB /* Api */,
 			);
 			path = Services;
@@ -197,6 +205,23 @@
 			name = Auth;
 			path = Sources/Managers/Auth;
 			sourceTree = SOURCE_ROOT;
+		};
+		570D04B621DE2B4F00E0DCFB /* XStorage */ = {
+			isa = PBXGroup;
+			children = (
+				570D04B721DE2B6400E0DCFB /* XStorageService.swift */,
+				570D04B921DE322200E0DCFB /* XStorageObject.swift */,
+			);
+			path = XStorage;
+			sourceTree = "<group>";
+		};
+		570D04BB21DE383800E0DCFB /* KeychainStorage */ = {
+			isa = PBXGroup;
+			children = (
+				570D04BC21DE385E00E0DCFB /* DefaultStorageService.swift */,
+			);
+			path = KeychainStorage;
+			sourceTree = "<group>";
 		};
 		72C1601F5934C71987A6D447 /* Frameworks */ = {
 			isa = PBXGroup;
@@ -347,13 +372,16 @@
 				570D04B521DE1B2600E0DCFB /* AuthViewController.swift in Sources */,
 				570D04AD21DDD2A900E0DCFB /* RootViewController.swift in Sources */,
 				570D04B221DDE4E200E0DCFB /* ProfileManager.swift in Sources */,
+				570D04B821DE2B6400E0DCFB /* XStorageService.swift in Sources */,
 				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
 				570D049721DCF20600E0DCFB /* ApiProfile.swift in Sources */,
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
 				570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */,
+				570D04BD21DE385E00E0DCFB /* DefaultStorageService.swift in Sources */,
 				570D04A521DD087100E0DCFB /* AppManager.swift in Sources */,
 				570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */,
+				570D04BA21DE322200E0DCFB /* XStorageObject.swift in Sources */,
 				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
