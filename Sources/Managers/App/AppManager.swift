@@ -10,11 +10,26 @@ import UIKit
 
 class AppManager
 {
-    let apiService: ApiService
+    var apiService: ApiService!
     
-    init(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
-    {        
+    var profileManager: ProfileManager!
+    
+    func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
+    {
+        self.setupServices()
+        self.setupManagers()
+    }
+    
+    // MARK: -
+    
+    fileprivate func setupServices()
+    {
         let apiConfig = ApiServiceConfigStage()
         self.apiService = ApiServiceDefault(config: apiConfig)
+    }
+    
+    fileprivate func setupManagers()
+    {
+        self.profileManager = ProfileManager()
     }
 }

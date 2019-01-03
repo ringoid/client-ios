@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		214C73FCCE7E2C37DC05FC6C /* Pods_ringoid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */; };
 		570D047621DCE3DA00E0DCFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 570D046D21DCE3DA00E0DCFB /* Assets.xcassets */; };
-		570D047721DCE3DA00E0DCFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D046E21DCE3DA00E0DCFB /* LaunchScreen.storyboard */; };
-		570D047821DCE3DA00E0DCFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D047021DCE3DA00E0DCFB /* Main.storyboard */; };
-		570D047921DCE3DA00E0DCFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D047421DCE3DA00E0DCFB /* ViewController.swift */; };
 		570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D047521DCE3DA00E0DCFB /* AppDelegate.swift */; };
 		570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D047E21DCED5600E0DCFB /* ApiService.swift */; };
 		570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D048021DCEF3800E0DCFB /* ApiServiceConfig.swift */; };
@@ -20,24 +17,32 @@
 		570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */; };
 		570D04A121DD021E00E0DCFB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04A021DD021E00E0DCFB /* Errors.swift */; };
 		570D04A521DD087100E0DCFB /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04A421DD087100E0DCFB /* AppManager.swift */; };
+		570D04A921DDCF3200E0DCFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04A721DDCF3200E0DCFB /* LaunchScreen.storyboard */; };
+		570D04AA21DDCF3200E0DCFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04A821DDCF3200E0DCFB /* Main.storyboard */; };
+		570D04AD21DDD2A900E0DCFB /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04AC21DDD2A900E0DCFB /* RootViewController.swift */; };
+		570D04AF21DDD34E00E0DCFB /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04AE21DDD34E00E0DCFB /* Auth.storyboard */; };
+		570D04B221DDE4E200E0DCFB /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B121DDE4E200E0DCFB /* ProfileManager.swift */; };
+		570D04B521DE1B2600E0DCFB /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B421DE1B2600E0DCFB /* AuthViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		570D045721DCE32000E0DCFB /* ringoid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ringoid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		570D046D21DCE3DA00E0DCFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		570D046F21DCE3DA00E0DCFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		570D047121DCE3DA00E0DCFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		570D047421DCE3DA00E0DCFB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		570D047521DCE3DA00E0DCFB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		570D047B21DCE40200E0DCFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		570D047E21DCED5600E0DCFB /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		570D048021DCEF3800E0DCFB /* ApiServiceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceConfig.swift; sourceTree = "<group>"; };
-		570D049421DCEF6500E0DCFB /* ringoid copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ringoid copy-Info.plist"; path = "/Users/Victor/Desktop/Projects/Ringoid/client-ios/ringoid copy-Info.plist"; sourceTree = "<absolute>"; };
 		570D049621DCF20600E0DCFB /* ApiProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProfile.swift; sourceTree = "<group>"; };
 		570D049B21DCFB6600E0DCFB /* ApiServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceDefault.swift; sourceTree = "<group>"; };
 		570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceConfigStage.swift; sourceTree = "<group>"; };
 		570D04A021DD021E00E0DCFB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		570D04A421DD087100E0DCFB /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		570D04A721DDCF3200E0DCFB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		570D04A821DDCF3200E0DCFB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		570D04AC21DDD2A900E0DCFB /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		570D04AE21DDD34E00E0DCFB /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
+		570D04B121DDE4E200E0DCFB /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		570D04B421DE1B2600E0DCFB /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.release.xcconfig"; sourceTree = "<group>"; };
 		873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.debug.xcconfig"; sourceTree = "<group>"; };
 		9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ringoid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,7 +69,6 @@
 				570D045821DCE32000E0DCFB /* Products */,
 				C06DF6A5A1156987FFA53DC0 /* Pods */,
 				72C1601F5934C71987A6D447 /* Frameworks */,
-				570D049421DCEF6500E0DCFB /* ringoid copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,9 +83,8 @@
 		570D046C21DCE3DA00E0DCFB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				570D04A621DDCF3200E0DCFB /* Storyboards */,
 				570D046D21DCE3DA00E0DCFB /* Assets.xcassets */,
-				570D046E21DCE3DA00E0DCFB /* LaunchScreen.storyboard */,
-				570D047021DCE3DA00E0DCFB /* Main.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -101,7 +104,8 @@
 		570D047321DCE3DA00E0DCFB /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				570D047421DCE3DA00E0DCFB /* ViewController.swift */,
+				570D04B321DE1B1600E0DCFB /* Auth */,
+				570D04AB21DDD2A900E0DCFB /* Root */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -145,6 +149,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				570D04B021DDE41700E0DCFB /* Profile */,
 				570D04A321DD086500E0DCFB /* App */,
 			);
 			path = Managers;
@@ -157,6 +162,41 @@
 			);
 			path = App;
 			sourceTree = "<group>";
+		};
+		570D04A621DDCF3200E0DCFB /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				570D04A721DDCF3200E0DCFB /* LaunchScreen.storyboard */,
+				570D04A821DDCF3200E0DCFB /* Main.storyboard */,
+				570D04AE21DDD34E00E0DCFB /* Auth.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		570D04AB21DDD2A900E0DCFB /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				570D04AC21DDD2A900E0DCFB /* RootViewController.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		570D04B021DDE41700E0DCFB /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				570D04B121DDE4E200E0DCFB /* ProfileManager.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		570D04B321DE1B1600E0DCFB /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				570D04B421DE1B2600E0DCFB /* AuthViewController.swift */,
+			);
+			name = Auth;
+			path = Sources/Managers/Auth;
+			sourceTree = SOURCE_ROOT;
 		};
 		72C1601F5934C71987A6D447 /* Frameworks */ = {
 			isa = PBXGroup;
@@ -235,9 +275,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				570D047821DCE3DA00E0DCFB /* Main.storyboard in Resources */,
+				570D04AF21DDD34E00E0DCFB /* Auth.storyboard in Resources */,
+				570D04AA21DDCF3200E0DCFB /* Main.storyboard in Resources */,
 				570D047621DCE3DA00E0DCFB /* Assets.xcassets in Resources */,
-				570D047721DCE3DA00E0DCFB /* LaunchScreen.storyboard in Resources */,
+				570D04A921DDCF3200E0DCFB /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,10 +344,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				570D04B521DE1B2600E0DCFB /* AuthViewController.swift in Sources */,
+				570D04AD21DDD2A900E0DCFB /* RootViewController.swift in Sources */,
+				570D04B221DDE4E200E0DCFB /* ProfileManager.swift in Sources */,
 				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
 				570D049721DCF20600E0DCFB /* ApiProfile.swift in Sources */,
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
-				570D047921DCE3DA00E0DCFB /* ViewController.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
 				570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */,
 				570D04A521DD087100E0DCFB /* AppManager.swift in Sources */,
@@ -316,25 +359,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		570D046E21DCE3DA00E0DCFB /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				570D046F21DCE3DA00E0DCFB /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		570D047021DCE3DA00E0DCFB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				570D047121DCE3DA00E0DCFB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		570D046721DCE32200E0DCFB /* Debug */ = {
