@@ -29,6 +29,8 @@ class ApiServiceDefault: ApiService
         self.loadCredentials()
     }
     
+    // MARK: - Auth
+    
     func createProfile(year: Int, sex: Sex) -> Observable<Void>
     {
         let params: [String: Any] = [
@@ -43,26 +45,21 @@ class ApiServiceDefault: ApiService
         ]
         
         return self.request(.post, path: "create_profile", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<Void> in
-            guard let jsonDict = jsonObj as? [String: Any] else {
-                let error = createError("Create profile: wrong response format", code: 0)
-                
+            var jsonDict: [String: Any]? = nil
+            
+            do {
+                jsonDict = try self?.validateJsonResponse(jsonObj)
+            } catch {
                 return Observable<Void>.error(error)
             }
             
-            if let _ = jsonDict["errorCode"] as? String,
-                let errorMessage = jsonDict["errorMessage"] as? String {
-                let error = createError("External error: \(errorMessage)", code: 1)
-                
-                return Observable<Void>.error(error)
-            }
-            
-            guard let accessToken = jsonDict["accessToken"] as? String else {
+            guard let accessToken = jsonDict?["accessToken"] as? String else {
                 let error = createError("Create profile: no token in response", code: 2)
                 
                 return Observable<Void>.error(error)
             }
             
-            guard let customerId = jsonDict["customerId"] as? String else {
+            guard let customerId = jsonDict?["customerId"] as? String else {
                 let error = createError("Create profile: no customer id in response", code: 3)
                 
                 return Observable<Void>.error(error)
@@ -74,6 +71,38 @@ class ApiServiceDefault: ApiService
             
             return Observable.just(())
         }        
+    }
+    
+    // MARK: - Images
+    
+    func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiPhoto>
+    {
+        var params: [String: Any] = [
+            "extension": fileExtension,
+            "clientPhotoId": photoId
+        ]
+
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+
+        return self.request(.post, path: "image", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<ApiPhoto> in
+            var jsonDict: [String: Any]? = nil
+            
+            do {
+                jsonDict = try self?.validateJsonResponse(jsonObj)
+            } catch {
+                return Observable<ApiPhoto>.error(error)
+            }
+            
+            guard let photo = ApiPhoto.parse(jsonDict) else {
+                let error = createError("ApiService: wrong photo data format", code: 2)
+                
+                return Observable<ApiPhoto>.error(error)
+            }
+            
+            return Observable<ApiPhoto>.just(photo)
+        }
     }
     
     // MARK: - Basic
@@ -111,5 +140,21 @@ class ApiServiceDefault: ApiService
         self.storage.object("customer_id").subscribe(onNext: { [weak self] id in
             self?.customerId = id as? String
         }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func validateJsonResponse(_ json: Any) throws -> [String: Any]?
+    {
+        guard let jsonDict = json as? [String: Any] else {
+
+            throw createError("ApiService: wrong response format", code: 0)
+        }
+        
+        if let _ = jsonDict["errorCode"] as? String,
+            let errorMessage = jsonDict["errorMessage"] as? String {
+            
+            throw createError("External error: \(errorMessage)", code: 1)
+        }
+        
+        return jsonDict
     }
 }
