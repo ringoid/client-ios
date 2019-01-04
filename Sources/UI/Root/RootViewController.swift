@@ -29,7 +29,10 @@ class RootViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == SegueIds.auth, let vc = segue.destination as? AuthViewController {
-            
+            vc.input = AuthVMInput(
+                profileManager: self.appManager.profileManager,
+                apiService: self.appManager.apiService
+            )
         }
     }
     

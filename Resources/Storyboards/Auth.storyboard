@@ -18,20 +18,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Llt-OZ-yQX">
-                                <rect key="frame" x="169.5" y="323" width="36" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Year of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CBF-BB-eko">
+                                <rect key="frame" x="137.5" y="68" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="ubK-aP-dVc"/>
+                                </constraints>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qK4-L1-cz4">
+                                <rect key="frame" x="146.5" y="142" width="33" height="30"/>
+                                <state key="normal" title="Male"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCZ-rr-1ud">
+                                <rect key="frame" x="195.5" y="142" width="50" height="30"/>
+                                <state key="normal" title="Female"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L71-CG-7il">
+                                <rect key="frame" x="159" y="204" width="57" height="30"/>
+                                <state key="normal" title="Register"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Llt-OZ-yQX" firstAttribute="centerY" secondItem="PRy-JI-jqS" secondAttribute="centerY" id="3oX-2g-cv5"/>
-                            <constraint firstItem="Llt-OZ-yQX" firstAttribute="centerX" secondItem="PRy-JI-jqS" secondAttribute="centerX" id="wqz-1n-wU9"/>
+                            <constraint firstItem="CBF-BB-eko" firstAttribute="top" secondItem="jmW-Pn-Ilx" secondAttribute="top" constant="48" id="5ut-3j-yfo"/>
+                            <constraint firstItem="qK4-L1-cz4" firstAttribute="trailing" secondItem="PRy-JI-jqS" secondAttribute="centerX" constant="-8" id="YJC-RF-mRZ"/>
+                            <constraint firstItem="OCZ-rr-1ud" firstAttribute="leading" secondItem="PRy-JI-jqS" secondAttribute="centerX" constant="8" id="ew1-aG-f2b"/>
+                            <constraint firstItem="CBF-BB-eko" firstAttribute="centerX" secondItem="PRy-JI-jqS" secondAttribute="centerX" id="g2m-yG-NaT"/>
+                            <constraint firstItem="L71-CG-7il" firstAttribute="top" secondItem="qK4-L1-cz4" secondAttribute="bottom" constant="32" id="hPR-ko-cu8"/>
+                            <constraint firstItem="qK4-L1-cz4" firstAttribute="top" secondItem="CBF-BB-eko" secondAttribute="bottom" constant="44" id="k1l-Ei-WKt"/>
+                            <constraint firstItem="L71-CG-7il" firstAttribute="centerX" secondItem="PRy-JI-jqS" secondAttribute="centerX" id="uIQ-2N-gTT"/>
+                            <constraint firstItem="OCZ-rr-1ud" firstAttribute="top" secondItem="CBF-BB-eko" secondAttribute="bottom" constant="44" id="ubW-lU-KoV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jmW-Pn-Ilx"/>
                     </view>
+                    <connections>
+                        <outlet property="birthYearTextField" destination="CBF-BB-eko" id="Ouj-5a-f20"/>
+                        <outlet property="femaleBtn" destination="OCZ-rr-1ud" id="0eM-bB-TRF"/>
+                        <outlet property="maleBtn" destination="qK4-L1-cz4" id="QAH-Fb-k6g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pk-Yk-K8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

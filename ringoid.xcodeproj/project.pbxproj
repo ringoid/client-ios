@@ -26,6 +26,8 @@
 		570D04B821DE2B6400E0DCFB /* XStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B721DE2B6400E0DCFB /* XStorageService.swift */; };
 		570D04BA21DE322200E0DCFB /* XStorageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B921DE322200E0DCFB /* XStorageObject.swift */; };
 		570D04BD21DE385E00E0DCFB /* DefaultStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04BC21DE385E00E0DCFB /* DefaultStorageService.swift */; };
+		570D04BF21DE480D00E0DCFB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04BE21DE480D00E0DCFB /* AuthViewModel.swift */; };
+		570D04C121DF4E1F00E0DCFB /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C021DF4E1F00E0DCFB /* Alerts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		570D04B721DE2B6400E0DCFB /* XStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XStorageService.swift; sourceTree = "<group>"; };
 		570D04B921DE322200E0DCFB /* XStorageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XStorageObject.swift; sourceTree = "<group>"; };
 		570D04BC21DE385E00E0DCFB /* DefaultStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStorageService.swift; sourceTree = "<group>"; };
+		570D04BE21DE480D00E0DCFB /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		570D04C021DF4E1F00E0DCFB /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.release.xcconfig"; sourceTree = "<group>"; };
 		873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.debug.xcconfig"; sourceTree = "<group>"; };
 		9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ringoid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				570D04A021DD021E00E0DCFB /* Errors.swift */,
+				570D04C021DF4E1F00E0DCFB /* Alerts.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				570D04B421DE1B2600E0DCFB /* AuthViewController.swift */,
+				570D04BE21DE480D00E0DCFB /* AuthViewModel.swift */,
 			);
 			name = Auth;
 			path = Sources/Managers/Auth;
@@ -371,9 +377,11 @@
 			files = (
 				570D04B521DE1B2600E0DCFB /* AuthViewController.swift in Sources */,
 				570D04AD21DDD2A900E0DCFB /* RootViewController.swift in Sources */,
+				570D04C121DF4E1F00E0DCFB /* Alerts.swift in Sources */,
 				570D04B221DDE4E200E0DCFB /* ProfileManager.swift in Sources */,
 				570D04B821DE2B6400E0DCFB /* XStorageService.swift in Sources */,
 				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
+				570D04BF21DE480D00E0DCFB /* AuthViewModel.swift in Sources */,
 				570D049721DCF20600E0DCFB /* ApiProfile.swift in Sources */,
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,

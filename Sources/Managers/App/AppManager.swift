@@ -11,6 +11,7 @@ import UIKit
 class AppManager
 {
     var apiService: ApiService!
+    var defaultStorage: XStorageService!
     
     var profileManager: ProfileManager!
     
@@ -26,6 +27,7 @@ class AppManager
     {
         let apiConfig = ApiServiceConfigStage()
         self.apiService = ApiServiceDefault(config: apiConfig)
+        self.defaultStorage = DefaultStorageService()
     }
     
     fileprivate func setupManagers()
