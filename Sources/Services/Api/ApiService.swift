@@ -10,5 +10,5 @@ import RxSwift
 
 protocol ApiService
 {
-    func createProfile() -> Observable<ApiProfile>
+    func createProfile(year: Int, sex: Sex) -> Observable<ApiProfile>
 }

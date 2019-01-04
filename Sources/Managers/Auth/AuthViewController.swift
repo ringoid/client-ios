@@ -52,12 +52,12 @@ class AuthViewController: UIViewController
             return Int(text)
         }).bind(to: viewModel.birthYear).disposed(by: self.disposeBag)
         
-        self.maleBtn.rx.controlEvent(.touchUpInside).map({ _ -> Gender in
+        self.maleBtn.rx.controlEvent(.touchUpInside).map({ _ -> Sex in
             return .male
-        }).bind(to: viewModel.gender).disposed(by: self.disposeBag)
+        }).bind(to: viewModel.sex).disposed(by: self.disposeBag)
         
-        self.femaleBtn.rx.controlEvent(.touchUpInside).map({ _ -> Gender in
+        self.femaleBtn.rx.controlEvent(.touchUpInside).map({ _ -> Sex in
             return .female
-        }).bind(to: viewModel.gender).disposed(by: self.disposeBag)
+        }).bind(to: viewModel.sex).disposed(by: self.disposeBag)
     }
 }

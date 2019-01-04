@@ -10,10 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-enum Gender
+enum Sex: String
 {
-    case male
-    case female
+    case male = "male"
+    case female = "female"
 }
 
 struct AuthVMInput
@@ -24,7 +24,7 @@ struct AuthVMInput
 
 class AuthViewModel
 {
-    var gender: BehaviorRelay<Gender?> = BehaviorRelay(value: nil)
+    var sex: BehaviorRelay<Sex?> = BehaviorRelay(value: nil)
     var birthYear: BehaviorRelay<Int?> = BehaviorRelay(value: nil)
     
     let profileManager: ProfileManager
@@ -38,7 +38,16 @@ class AuthViewModel
     
     func register() -> Observable<Void>
     {
-        return Observable<Void>.just(())
-        //self.apiService.createProfile()
+        guard let year = self.birthYear.value, let sex = self.sex.value else {
+            let error = createError("Not all fields are set", code: 0)
+            
+            return Observable<Void>.error(error)
+        }
+        
+        return self.apiService.createProfile(year: year, sex: sex).flatMap { _ -> Observable<Void> in
+            
+            
+            return Observable<Void>.just(())
+        }
     }
 }

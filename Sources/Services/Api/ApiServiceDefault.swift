@@ -19,9 +19,20 @@ class ApiServiceDefault: ApiService
         self.config = config
     }
     
-    func createProfile() -> Observable<ApiProfile>
+    func createProfile(year: Int, sex: Sex) -> Observable<ApiProfile>
     {
-        return self.request(.post, path: "create_profile").json().flatMap { jsonObj -> Observable<ApiProfile> in
+        let params: [String: Any] = [
+            "yearOfBirth": year,
+            "sex": sex.rawValue,
+            "dtTC": Int(Date().timeIntervalSince1970),
+            "dtLA": Int(Date().timeIntervalSince1970),
+            "dtPN": Int(Date().timeIntervalSince1970),
+            "locale": "en",
+            "deviceModel": "iPhone",
+            "osVersion": "11.0"
+        ]
+        
+        return self.request(.post, path: "create_profile", jsonBody: params).json().flatMap { jsonObj -> Observable<ApiProfile> in
             guard let jsonDict = jsonObj as? [String: Any] else {
                 let error = createError("Create profile: wrong response format", code: 0)
                 
@@ -47,9 +58,11 @@ class ApiServiceDefault: ApiService
     
     // MARK: - Basic
     
-    func request(_ method: HTTPMethod, path: String) -> Observable<DataRequest>
+    func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any]) -> Observable<DataRequest>
     {
         let url = self.config.endpoint + "/" + path
-        return RxAlamofire.request(method, url)
+        return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
+            "x-ringoid-ios-buildnum": "100",
+            ])
     }
 }

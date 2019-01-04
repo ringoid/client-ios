@@ -12,5 +12,7 @@ func showError(_ error: Error, vc: UIViewController)
 {
     let description = (error as NSError).localizedDescription
     let alertVC = UIAlertController(title: "Error", message: description, preferredStyle: .alert)
+    alertVC.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+    
     vc.present(alertVC, animated: true, completion: nil)
 }
