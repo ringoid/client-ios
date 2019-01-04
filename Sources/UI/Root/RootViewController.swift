@@ -40,7 +40,7 @@ class RootViewController: UIViewController {
     
     fileprivate func handleAuthState()
     {
-        if self.appManager.profileManager.isAuthorized {
+        if self.appManager.apiService.isAuthorized {
             
         } else {
             self.performSegue(withIdentifier: SegueIds.auth, sender: nil)

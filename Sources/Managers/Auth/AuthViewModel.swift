@@ -44,10 +44,6 @@ class AuthViewModel
             return Observable<Void>.error(error)
         }
         
-        return self.apiService.createProfile(year: year, sex: sex).flatMap { _ -> Observable<Void> in
-            
-            
-            return Observable<Void>.just(())
-        }
+        return self.apiService.createProfile(year: year, sex: sex)
     }
 }

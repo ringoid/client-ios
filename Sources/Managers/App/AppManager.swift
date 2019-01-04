@@ -25,9 +25,10 @@ class AppManager
     
     fileprivate func setupServices()
     {
-        let apiConfig = ApiServiceConfigStage()
-        self.apiService = ApiServiceDefault(config: apiConfig)
         self.defaultStorage = DefaultStorageService()
+        
+        let apiConfig = ApiServiceConfigStage()
+        self.apiService = ApiServiceDefault(config: apiConfig, storage: self.defaultStorage)        
     }
     
     fileprivate func setupManagers()

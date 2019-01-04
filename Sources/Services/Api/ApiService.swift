@@ -10,5 +10,7 @@ import RxSwift
 
 protocol ApiService
 {
-    func createProfile(year: Int, sex: Sex) -> Observable<ApiProfile>
+    var isAuthorized: Bool { get }
+    
+    func createProfile(year: Int, sex: Sex) -> Observable<Void>
 }

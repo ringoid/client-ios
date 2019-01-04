@@ -12,7 +12,6 @@
 		570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D047521DCE3DA00E0DCFB /* AppDelegate.swift */; };
 		570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D047E21DCED5600E0DCFB /* ApiService.swift */; };
 		570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D048021DCEF3800E0DCFB /* ApiServiceConfig.swift */; };
-		570D049721DCF20600E0DCFB /* ApiProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049621DCF20600E0DCFB /* ApiProfile.swift */; };
 		570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049B21DCFB6600E0DCFB /* ApiServiceDefault.swift */; };
 		570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */; };
 		570D04A121DD021E00E0DCFB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04A021DD021E00E0DCFB /* Errors.swift */; };
@@ -37,7 +36,6 @@
 		570D047B21DCE40200E0DCFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		570D047E21DCED5600E0DCFB /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		570D048021DCEF3800E0DCFB /* ApiServiceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceConfig.swift; sourceTree = "<group>"; };
-		570D049621DCF20600E0DCFB /* ApiProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProfile.swift; sourceTree = "<group>"; };
 		570D049B21DCFB6600E0DCFB /* ApiServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceDefault.swift; sourceTree = "<group>"; };
 		570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceConfigStage.swift; sourceTree = "<group>"; };
 		570D04A021DD021E00E0DCFB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 		570D049521DCF1E700E0DCFB /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				570D049621DCF20600E0DCFB /* ApiProfile.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -382,7 +379,6 @@
 				570D04B821DE2B6400E0DCFB /* XStorageService.swift in Sources */,
 				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
 				570D04BF21DE480D00E0DCFB /* AuthViewModel.swift in Sources */,
-				570D049721DCF20600E0DCFB /* ApiProfile.swift in Sources */,
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
 				570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */,

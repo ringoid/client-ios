@@ -13,13 +13,23 @@ import Alamofire
 class ApiServiceDefault: ApiService
 {
     let config: ApiServiceConfig
+    let storage: XStorageService
     
-    init(config: ApiServiceConfig)
+    var isAuthorized: Bool { return self.accessToken != nil }
+    
+    fileprivate var accessToken: String?
+    fileprivate var customerId: String?
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
+    init(config: ApiServiceConfig, storage: XStorageService)
     {
         self.config = config
+        self.storage = storage
+        
+        self.loadCredentials()
     }
     
-    func createProfile(year: Int, sex: Sex) -> Observable<ApiProfile>
+    func createProfile(year: Int, sex: Sex) -> Observable<Void>
     {
         let params: [String: Any] = [
             "yearOfBirth": year,
@@ -32,27 +42,37 @@ class ApiServiceDefault: ApiService
             "osVersion": "11.0"
         ]
         
-        return self.request(.post, path: "create_profile", jsonBody: params).json().flatMap { jsonObj -> Observable<ApiProfile> in
+        return self.request(.post, path: "create_profile", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<Void> in
             guard let jsonDict = jsonObj as? [String: Any] else {
                 let error = createError("Create profile: wrong response format", code: 0)
                 
-                return Observable<ApiProfile>.error(error)
+                return Observable<Void>.error(error)
             }
             
             if let _ = jsonDict["errorCode"] as? String,
                 let errorMessage = jsonDict["errorMessage"] as? String {
                 let error = createError("External error: \(errorMessage)", code: 1)
                 
-                return Observable<ApiProfile>.error(error)
+                return Observable<Void>.error(error)
             }
             
-            guard let profile = ApiProfile.parse(jsonDict) else {
-                let error = createError("Create profile: wrong profile format", code: 0)
+            guard let accessToken = jsonDict["accessToken"] as? String else {
+                let error = createError("Create profile: no token in response", code: 2)
                 
-                return Observable<ApiProfile>.error(error)
+                return Observable<Void>.error(error)
             }
             
-            return Observable.just(profile)
+            guard let customerId = jsonDict["customerId"] as? String else {
+                let error = createError("Create profile: no customer id in response", code: 3)
+                
+                return Observable<Void>.error(error)
+            }
+            
+            self?.accessToken = accessToken
+            self?.customerId = customerId
+            self?.storeCredentials()
+            
+            return Observable.just(())
         }        
     }
     
@@ -64,5 +84,32 @@ class ApiServiceDefault: ApiService
         return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
             "x-ringoid-ios-buildnum": "100",
             ])
+    }
+    
+    // MARK: -
+    fileprivate func storeCredentials()
+    {
+        defer {
+            self.storage.sync()
+        }
+        
+        guard let token = self.accessToken else { return }
+        
+        self.storage.store(token, key: "access_token").asObservable().subscribe().disposed(by: self.disposeBag)
+        
+        guard let id = self.customerId else { return }
+        
+        self.storage.store(id, key: "customer_id").subscribe().disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func loadCredentials()
+    {
+        self.storage.object("access_token").subscribe(onNext: { [weak self] token in
+            self?.accessToken = token as? String
+        }).disposed(by: self.disposeBag)
+        
+        self.storage.object("customer_id").subscribe(onNext: { [weak self] id in
+            self?.customerId = id as? String
+        }).disposed(by: self.disposeBag)
     }
 }

@@ -10,5 +10,4 @@ import Foundation
 
 class ProfileManager
 {
-    var isAuthorized: Bool = false
 }
