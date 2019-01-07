@@ -21,13 +21,16 @@
 		570D04AD21DDD2A900E0DCFB /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04AC21DDD2A900E0DCFB /* RootViewController.swift */; };
 		570D04AF21DDD34E00E0DCFB /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04AE21DDD34E00E0DCFB /* Auth.storyboard */; };
 		570D04B221DDE4E200E0DCFB /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B121DDE4E200E0DCFB /* ProfileManager.swift */; };
-		570D04B521DE1B2600E0DCFB /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B421DE1B2600E0DCFB /* AuthViewController.swift */; };
 		570D04B821DE2B6400E0DCFB /* XStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B721DE2B6400E0DCFB /* XStorageService.swift */; };
 		570D04BA21DE322200E0DCFB /* XStorageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B921DE322200E0DCFB /* XStorageObject.swift */; };
 		570D04BD21DE385E00E0DCFB /* DefaultStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04BC21DE385E00E0DCFB /* DefaultStorageService.swift */; };
-		570D04BF21DE480D00E0DCFB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04BE21DE480D00E0DCFB /* AuthViewModel.swift */; };
 		570D04C121DF4E1F00E0DCFB /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C021DF4E1F00E0DCFB /* Alerts.swift */; };
 		570D04C321DFA4EF00E0DCFB /* ApiPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C221DFA4EF00E0DCFB /* ApiPhoto.swift */; };
+		570D04C621DFBD5A00E0DCFB /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C521DFBD5A00E0DCFB /* DBService.swift */; };
+		570D04CA21E32F4800E0DCFB /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C821E32F4800E0DCFB /* AuthViewController.swift */; };
+		570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C921E32F4800E0DCFB /* AuthViewModel.swift */; };
+		57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3521E3309300038798 /* NewFacesViewController.swift */; };
+		57585D3821E330B100038798 /* NewFaces.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D3721E330B100038798 /* NewFaces.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,13 +49,16 @@
 		570D04AC21DDD2A900E0DCFB /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		570D04AE21DDD34E00E0DCFB /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		570D04B121DDE4E200E0DCFB /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
-		570D04B421DE1B2600E0DCFB /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		570D04B721DE2B6400E0DCFB /* XStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XStorageService.swift; sourceTree = "<group>"; };
 		570D04B921DE322200E0DCFB /* XStorageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XStorageObject.swift; sourceTree = "<group>"; };
 		570D04BC21DE385E00E0DCFB /* DefaultStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStorageService.swift; sourceTree = "<group>"; };
-		570D04BE21DE480D00E0DCFB /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		570D04C021DF4E1F00E0DCFB /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		570D04C221DFA4EF00E0DCFB /* ApiPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPhoto.swift; sourceTree = "<group>"; };
+		570D04C521DFBD5A00E0DCFB /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
+		570D04C821E32F4800E0DCFB /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		570D04C921E32F4800E0DCFB /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
+		57585D3721E330B100038798 /* NewFaces.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewFaces.storyboard; sourceTree = "<group>"; };
 		727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.release.xcconfig"; sourceTree = "<group>"; };
 		873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.debug.xcconfig"; sourceTree = "<group>"; };
 		9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ringoid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,7 +120,8 @@
 		570D047321DCE3DA00E0DCFB /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				570D04B321DE1B1600E0DCFB /* Auth */,
+				57585D3421E3308300038798 /* NewFaces */,
+				570D04C721E32F4800E0DCFB /* Auth */,
 				570D04AB21DDD2A900E0DCFB /* Root */,
 			);
 			path = UI;
@@ -123,6 +130,7 @@
 		570D047C21DCED1800E0DCFB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				570D04C421DFBD2500E0DCFB /* DB */,
 				570D04B621DE2B4F00E0DCFB /* XStorage */,
 				570D04BB21DE383800E0DCFB /* KeychainStorage */,
 				570D047D21DCED2F00E0DCFB /* Api */,
@@ -182,6 +190,7 @@
 				570D04A721DDCF3200E0DCFB /* LaunchScreen.storyboard */,
 				570D04A821DDCF3200E0DCFB /* Main.storyboard */,
 				570D04AE21DDD34E00E0DCFB /* Auth.storyboard */,
+				57585D3721E330B100038798 /* NewFaces.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -202,16 +211,6 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		570D04B321DE1B1600E0DCFB /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				570D04B421DE1B2600E0DCFB /* AuthViewController.swift */,
-				570D04BE21DE480D00E0DCFB /* AuthViewModel.swift */,
-			);
-			name = Auth;
-			path = Sources/Managers/Auth;
-			sourceTree = SOURCE_ROOT;
-		};
 		570D04B621DE2B4F00E0DCFB /* XStorage */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +226,31 @@
 				570D04BC21DE385E00E0DCFB /* DefaultStorageService.swift */,
 			);
 			path = KeychainStorage;
+			sourceTree = "<group>";
+		};
+		570D04C421DFBD2500E0DCFB /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				570D04C521DFBD5A00E0DCFB /* DBService.swift */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
+		570D04C721E32F4800E0DCFB /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				570D04C821E32F4800E0DCFB /* AuthViewController.swift */,
+				570D04C921E32F4800E0DCFB /* AuthViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		57585D3421E3308300038798 /* NewFaces */ = {
+			isa = PBXGroup;
+			children = (
+				57585D3521E3309300038798 /* NewFacesViewController.swift */,
+			);
+			path = NewFaces;
 			sourceTree = "<group>";
 		};
 		72C1601F5934C71987A6D447 /* Frameworks */ = {
@@ -310,6 +334,7 @@
 				570D04AA21DDCF3200E0DCFB /* Main.storyboard in Resources */,
 				570D047621DCE3DA00E0DCFB /* Assets.xcassets in Resources */,
 				570D04A921DDCF3200E0DCFB /* LaunchScreen.storyboard in Resources */,
+				57585D3821E330B100038798 /* NewFaces.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,15 +400,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				570D04B521DE1B2600E0DCFB /* AuthViewController.swift in Sources */,
 				570D04AD21DDD2A900E0DCFB /* RootViewController.swift in Sources */,
 				570D04C121DF4E1F00E0DCFB /* Alerts.swift in Sources */,
+				57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */,
 				570D04B221DDE4E200E0DCFB /* ProfileManager.swift in Sources */,
 				570D04B821DE2B6400E0DCFB /* XStorageService.swift in Sources */,
+				570D04CA21E32F4800E0DCFB /* AuthViewController.swift in Sources */,
 				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
-				570D04BF21DE480D00E0DCFB /* AuthViewModel.swift in Sources */,
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
+				570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
+				570D04C621DFBD5A00E0DCFB /* DBService.swift in Sources */,
 				570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */,
 				570D04BD21DE385E00E0DCFB /* DefaultStorageService.swift in Sources */,
 				570D04A521DD087100E0DCFB /* AppManager.swift in Sources */,

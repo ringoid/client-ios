@@ -22,10 +22,20 @@
                     </view>
                     <connections>
                         <segue destination="cV6-nU-s6e" kind="show" identifier="auth_flow" animates="NO" id="WiD-aZ-esg"/>
+                        <segue destination="qna-Xy-pi0" kind="show" identifier="new_faces_flow" animates="NO" id="aUu-ly-1w5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="103" y="65"/>
+        </scene>
+        <!--NewFaces-->
+        <scene sceneID="svK-tH-riT">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NewFaces" id="qna-Xy-pi0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CtZ-Aa-KZ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="858" y="202"/>
         </scene>
         <!--Auth-->
         <scene sceneID="2XX-Ww-fUK">

@@ -7,10 +7,22 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
+fileprivate enum AppUIMode
+{
+    case unknown
+    case auth
+    case newfaces
+}
 
 class RootViewController: UIViewController {
 
     var appManager: AppManager!
+    
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var mode: AppUIMode = .unknown
     
     override func viewDidLoad()
     {
@@ -23,7 +35,7 @@ class RootViewController: UIViewController {
     {
         super.viewDidAppear(animated)
         
-        self.handleAuthState()
+        self.subscribeToAuthState()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -38,13 +50,42 @@ class RootViewController: UIViewController {
     
     // MARK: -
     
-    fileprivate func handleAuthState()
+    fileprivate func move(to: AppUIMode)
     {
-        if self.appManager.apiService.isAuthorized {
-            
-        } else {
-            self.performSegue(withIdentifier: SegueIds.auth, sender: nil)
+        guard to != self.mode else { return }
+        
+        defer {
+            self.mode = to
         }
+        
+        var segueId = ""
+        
+        switch to {
+        case .unknown: break
+        case .auth:
+            segueId = SegueIds.newFaces
+        case .newfaces:
+            segueId = SegueIds.auth
+        }
+        
+        if let presentedVC = self.presentedViewController {
+            presentedVC.dismiss(animated: false) {
+                self.performSegue(withIdentifier: segueId, sender: nil)
+            }
+        } else {
+            self.performSegue(withIdentifier: segueId, sender: nil)
+        }
+    }
+    
+    fileprivate func subscribeToAuthState()
+    {
+        self.appManager.apiService.isAuthorized.asObservable().subscribe ({ [weak self] event in
+            if event.element == true {
+                self?.move(to: .auth)
+            } else {
+                self?.move(to: .newfaces)
+            }
+        }).disposed(by: disposeBag)
     }
 }
 
@@ -53,6 +94,7 @@ extension RootViewController
     fileprivate struct SegueIds
     {
         static let auth = "auth_flow"
+        static let newFaces = "new_faces_flow"
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 import RxAlamofire
 import Alamofire
 
@@ -15,8 +16,8 @@ class ApiServiceDefault: ApiService
     let config: ApiServiceConfig
     let storage: XStorageService
     
-    var isAuthorized: Bool { return self.accessToken != nil }
-    
+    var isAuthorized: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+
     fileprivate var accessToken: String?
     fileprivate var customerId: String?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
@@ -125,6 +126,7 @@ class ApiServiceDefault: ApiService
         guard let token = self.accessToken else { return }
         
         self.storage.store(token, key: "access_token").asObservable().subscribe().disposed(by: self.disposeBag)
+        self.isAuthorized.accept(true)
         
         guard let id = self.customerId else { return }
         
@@ -135,6 +137,7 @@ class ApiServiceDefault: ApiService
     {
         self.storage.object("access_token").subscribe(onNext: { [weak self] token in
             self?.accessToken = token as? String
+            self?.isAuthorized.accept((token as? String) != nil)
         }).disposed(by: self.disposeBag)
         
         self.storage.object("customer_id").subscribe(onNext: { [weak self] id in

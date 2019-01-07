@@ -7,10 +7,11 @@
 //
 
 import RxSwift
+import RxCocoa
 
 protocol ApiService
 {
-    var isAuthorized: Bool { get }
+    var isAuthorized: BehaviorRelay<Bool> { get }
     
     func createProfile(year: Int, sex: Sex) -> Observable<Void>
     func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiPhoto>
