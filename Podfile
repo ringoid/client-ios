@@ -8,4 +8,5 @@ target 'ringoid' do
 	pod 'RxCocoa'
 	pod 'RxDataSources'
 	pod 'RxAlamofire'
+	pod 'Nuke'
 end

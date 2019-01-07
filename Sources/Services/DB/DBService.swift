@@ -18,4 +18,10 @@ class DBService
     {
         self.realm = try! Realm(configuration: .defaultConfiguration)
     }
+    
+    func fetchNewFaces() -> Observable<[NewFaceProfile]>
+    {
+        let profiles = self.realm.objects(NewFaceProfile.self)
+        return Observable.array(from: profiles)
+    }
 }
