@@ -2,30 +2,33 @@
 //  ApiPhoto.swift
 //  ringoid
 //
-//  Created by Victor Sukochev on 04/01/2019.
+//  Created by Victor Sukochev on 07/01/2019.
 //  Copyright © 2019 Ringoid. All rights reserved.
 //
 
 import Foundation
 
-struct ApiPhoto {
+enum PhotoResolution: String
+{
+    case small = "480x640"
+    case normal = "720x960"
+    case hd = "1080x1440"
+    case ultraHD = "1440x1920"
+}
+
+struct ApiPhoto
+{
     let url: String
-    let originId: String
-    let clientId: String
+    let id: String
 }
 
 extension ApiPhoto
 {
-    static func parse(_ dict: [String: Any]?) -> ApiPhoto?
+    static func parse(_ dict: [String: Any]) -> ApiPhoto?
     {
-        guard let url = dict?["uri"] as? String else { return nil }
-        guard let originId = dict?["originPhotoId"] as? String else { return nil }
-        guard let clientId = dict?["clientPhotoId"] as? String else { return nil }
+        guard let id = dict["photoId"] as? String else { return nil }
+        guard let url = dict["photoUri"] as? String else { return nil }
         
-        return ApiPhoto(
-            url: url,
-            originId: originId,
-            clientId: clientId
-        )
+        return ApiPhoto(url: url, id: id)
     }
 }

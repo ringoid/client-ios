@@ -14,5 +14,8 @@ protocol ApiService
     var isAuthorized: BehaviorRelay<Bool> { get }
     
     func createProfile(year: Int, sex: Sex) -> Observable<Void>
-    func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiPhoto>
+    
+    func getNewFaces(_ resolution: PhotoResolution) -> Observable<[ApiProfile]>
+    
+    func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhoto>
 }

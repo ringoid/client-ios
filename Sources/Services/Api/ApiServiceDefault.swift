@@ -51,32 +51,64 @@ class ApiServiceDefault: ApiService
             do {
                 jsonDict = try self?.validateJsonResponse(jsonObj)
             } catch {
-                return Observable<Void>.error(error)
+                return .error(error)
             }
             
             guard let accessToken = jsonDict?["accessToken"] as? String else {
                 let error = createError("Create profile: no token in response", code: 2)
                 
-                return Observable<Void>.error(error)
+                return .error(error)
             }
             
             guard let customerId = jsonDict?["customerId"] as? String else {
                 let error = createError("Create profile: no customer id in response", code: 3)
                 
-                return Observable<Void>.error(error)
+                return .error(error)
             }
             
             self?.accessToken = accessToken
             self?.customerId = customerId
             self?.storeCredentials()
             
-            return Observable.just(())
+            return .just(())
         }        
+    }
+    
+    // MARK: - Feeds
+    
+    func getNewFaces(_ resolution: PhotoResolution) -> Observable<[ApiProfile]>
+    {
+        var params: [String: Any] = [
+            "resolution": resolution.rawValue,
+            "limit": 20
+        ]
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        return self.request(.get, path: "get_new_faces", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<[ApiProfile]> in
+            var jsonDict: [String: Any]? = nil
+            
+            do {
+                jsonDict = try self?.validateJsonResponse(jsonObj)
+            } catch {
+                return .error(error)
+            }
+            
+            guard let profilesArray = jsonDict?["profiles"] as? [[String: Any]] else {
+                let error = createError("ApiService: wrong profiles data format", code: 3)
+                
+                return .error(error)
+            }
+            
+            return .just(profilesArray.compactMap({ ApiProfile.parse($0) }))
+        }
     }
     
     // MARK: - Images
     
-    func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiPhoto>
+    func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhoto>
     {
         var params: [String: Any] = [
             "extension": fileExtension,
@@ -87,22 +119,22 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
 
-        return self.request(.post, path: "image", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<ApiPhoto> in
+        return self.request(.post, path: "image", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<ApiUserPhoto> in
             var jsonDict: [String: Any]? = nil
             
             do {
                 jsonDict = try self?.validateJsonResponse(jsonObj)
             } catch {
-                return Observable<ApiPhoto>.error(error)
+                return .error(error)
             }
             
-            guard let photo = ApiPhoto.parse(jsonDict) else {
+            guard let photo = ApiUserPhoto.parse(jsonDict) else {
                 let error = createError("ApiService: wrong photo data format", code: 2)
                 
-                return Observable<ApiPhoto>.error(error)
+                return .error(error)
             }
             
-            return Observable<ApiPhoto>.just(photo)
+            return .just(photo)
         }
     }
     

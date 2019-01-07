@@ -25,12 +25,14 @@
 		570D04BA21DE322200E0DCFB /* XStorageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B921DE322200E0DCFB /* XStorageObject.swift */; };
 		570D04BD21DE385E00E0DCFB /* DefaultStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04BC21DE385E00E0DCFB /* DefaultStorageService.swift */; };
 		570D04C121DF4E1F00E0DCFB /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C021DF4E1F00E0DCFB /* Alerts.swift */; };
-		570D04C321DFA4EF00E0DCFB /* ApiPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C221DFA4EF00E0DCFB /* ApiPhoto.swift */; };
+		570D04C321DFA4EF00E0DCFB /* ApiUserPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C221DFA4EF00E0DCFB /* ApiUserPhoto.swift */; };
 		570D04C621DFBD5A00E0DCFB /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C521DFBD5A00E0DCFB /* DBService.swift */; };
 		570D04CA21E32F4800E0DCFB /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C821E32F4800E0DCFB /* AuthViewController.swift */; };
 		570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C921E32F4800E0DCFB /* AuthViewModel.swift */; };
 		57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3521E3309300038798 /* NewFacesViewController.swift */; };
 		57585D3821E330B100038798 /* NewFaces.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D3721E330B100038798 /* NewFaces.storyboard */; };
+		57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3921E3499E00038798 /* ApiPhoto.swift */; };
+		57585D3C21E34AFC00038798 /* ApiProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3B21E34AFC00038798 /* ApiProfile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,12 +55,14 @@
 		570D04B921DE322200E0DCFB /* XStorageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XStorageObject.swift; sourceTree = "<group>"; };
 		570D04BC21DE385E00E0DCFB /* DefaultStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultStorageService.swift; sourceTree = "<group>"; };
 		570D04C021DF4E1F00E0DCFB /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
-		570D04C221DFA4EF00E0DCFB /* ApiPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPhoto.swift; sourceTree = "<group>"; };
+		570D04C221DFA4EF00E0DCFB /* ApiUserPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUserPhoto.swift; sourceTree = "<group>"; };
 		570D04C521DFBD5A00E0DCFB /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		570D04C821E32F4800E0DCFB /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		570D04C921E32F4800E0DCFB /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
 		57585D3721E330B100038798 /* NewFaces.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewFaces.storyboard; sourceTree = "<group>"; };
+		57585D3921E3499E00038798 /* ApiPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPhoto.swift; sourceTree = "<group>"; };
+		57585D3B21E34AFC00038798 /* ApiProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProfile.swift; sourceTree = "<group>"; };
 		727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.release.xcconfig"; sourceTree = "<group>"; };
 		873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.debug.xcconfig"; sourceTree = "<group>"; };
 		9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ringoid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,7 +157,9 @@
 		570D049521DCF1E700E0DCFB /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				570D04C221DFA4EF00E0DCFB /* ApiPhoto.swift */,
+				570D04C221DFA4EF00E0DCFB /* ApiUserPhoto.swift */,
+				57585D3921E3499E00038798 /* ApiPhoto.swift */,
+				57585D3B21E34AFC00038798 /* ApiProfile.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -410,12 +416,14 @@
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
 				570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
+				57585D3C21E34AFC00038798 /* ApiProfile.swift in Sources */,
 				570D04C621DFBD5A00E0DCFB /* DBService.swift in Sources */,
 				570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */,
 				570D04BD21DE385E00E0DCFB /* DefaultStorageService.swift in Sources */,
 				570D04A521DD087100E0DCFB /* AppManager.swift in Sources */,
+				57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */,
 				570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */,
-				570D04C321DFA4EF00E0DCFB /* ApiPhoto.swift in Sources */,
+				570D04C321DFA4EF00E0DCFB /* ApiUserPhoto.swift in Sources */,
 				570D04BA21DE322200E0DCFB /* XStorageObject.swift in Sources */,
 				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,
 			);
