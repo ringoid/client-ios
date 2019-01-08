@@ -38,9 +38,11 @@
 		57585D4421E3558800038798 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D4321E3558800038798 /* Photo.swift */; };
 		57585D4621E3570B00038798 /* NewFaceProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D4521E3570B00038798 /* NewFaceProfile.swift */; };
 		57585D4921E35B8C00038798 /* NewFacesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D4821E35B8C00038798 /* NewFacesCell.swift */; };
-		57585D4C21E388EC00038798 /* UserProfilesPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D4B21E388EC00038798 /* UserProfilesPhotosViewController.swift */; };
+		57585D4C21E388EC00038798 /* UserProfilePhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D4B21E388EC00038798 /* UserProfilePhotosViewController.swift */; };
 		57585D4E21E3897800038798 /* UserPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D4D21E3897800038798 /* UserPhoto.swift */; };
 		57585D5021E45F1600038798 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D4F21E45F1600038798 /* UserProfile.storyboard */; };
+		57585D5221E4808500038798 /* UserProfilePhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D5121E4808500038798 /* UserProfilePhotosViewModel.swift */; };
+		57585D5421E48E3700038798 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D5321E48E3700038798 /* Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,9 +78,11 @@
 		57585D4321E3558800038798 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		57585D4521E3570B00038798 /* NewFaceProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceProfile.swift; sourceTree = "<group>"; };
 		57585D4821E35B8C00038798 /* NewFacesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesCell.swift; sourceTree = "<group>"; };
-		57585D4B21E388EC00038798 /* UserProfilesPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilesPhotosViewController.swift; sourceTree = "<group>"; };
+		57585D4B21E388EC00038798 /* UserProfilePhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotosViewController.swift; sourceTree = "<group>"; };
 		57585D4D21E3897800038798 /* UserPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPhoto.swift; sourceTree = "<group>"; };
 		57585D4F21E45F1600038798 /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
+		57585D5121E4808500038798 /* UserProfilePhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotosViewModel.swift; sourceTree = "<group>"; };
+		57585D5321E48E3700038798 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.release.xcconfig"; sourceTree = "<group>"; };
 		873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.debug.xcconfig"; sourceTree = "<group>"; };
 		9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ringoid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +190,7 @@
 			children = (
 				570D04A021DD021E00E0DCFB /* Errors.swift */,
 				570D04C021DF4E1F00E0DCFB /* Alerts.swift */,
+				57585D5321E48E3700038798 /* Image.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -310,7 +315,8 @@
 		57585D4A21E388DC00038798 /* UserProfilePhotos */ = {
 			isa = PBXGroup;
 			children = (
-				57585D4B21E388EC00038798 /* UserProfilesPhotosViewController.swift */,
+				57585D4B21E388EC00038798 /* UserProfilePhotosViewController.swift */,
+				57585D5121E4808500038798 /* UserProfilePhotosViewModel.swift */,
 			);
 			path = UserProfilePhotos;
 			sourceTree = "<group>";
@@ -469,6 +475,7 @@
 				570D04C121DF4E1F00E0DCFB /* Alerts.swift in Sources */,
 				57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */,
 				57585D3F21E354FA00038798 /* NewFacesManager.swift in Sources */,
+				57585D5421E48E3700038798 /* Image.swift in Sources */,
 				570D04B221DDE4E200E0DCFB /* UserProfileManager.swift in Sources */,
 				57585D4E21E3897800038798 /* UserPhoto.swift in Sources */,
 				570D04B821DE2B6400E0DCFB /* XStorageService.swift in Sources */,
@@ -478,7 +485,7 @@
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
 				570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
-				57585D4C21E388EC00038798 /* UserProfilesPhotosViewController.swift in Sources */,
+				57585D4C21E388EC00038798 /* UserProfilePhotosViewController.swift in Sources */,
 				57585D3C21E34AFC00038798 /* ApiProfile.swift in Sources */,
 				570D04C621DFBD5A00E0DCFB /* DBService.swift in Sources */,
 				570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */,
@@ -489,6 +496,7 @@
 				57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */,
 				570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */,
 				570D04C321DFA4EF00E0DCFB /* ApiUserPhoto.swift in Sources */,
+				57585D5221E4808500038798 /* UserProfilePhotosViewModel.swift in Sources */,
 				57585D4221E3555E00038798 /* Profile.swift in Sources */,
 				570D04BA21DE322200E0DCFB /* XStorageObject.swift in Sources */,
 				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,

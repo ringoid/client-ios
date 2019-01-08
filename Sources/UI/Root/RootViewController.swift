@@ -44,6 +44,10 @@ class RootViewController: UIViewController {
         if segue.identifier == SegueIds.auth, let vc = segue.destination as? AuthViewController {
             vc.input = AuthVMInput(apiService: self.appManager.apiService)
         }
+        
+        if segue.identifier == SegueIds.userProfile, let vc = segue.destination as? UserProfilePhotosViewController {
+            vc.input = UserProfilePhotosVCInput(profileManager: self.appManager.profileManager)
+        }
     }
     
     // MARK: -

@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--User Profiles Photos View Controller-->
+        <!--User Profile Photos View Controller-->
         <scene sceneID="Oa1-gr-Vmi">
             <objects>
-                <viewController id="aaf-t7-SOT" customClass="UserProfilesPhotosViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aaf-t7-SOT" customClass="UserProfilePhotosViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q5L-So-vMI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
