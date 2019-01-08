@@ -87,7 +87,7 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.request(.get, path: "feeds/get_new_faces", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<[ApiProfile]> in
+        return self.requestGET(path: "feeds/get_new_faces", params: params).json().flatMap { [weak self] jsonObj -> Observable<[ApiProfile]> in
             var jsonDict: [String: Any]? = nil
             
             do {
@@ -140,10 +140,18 @@ class ApiServiceDefault: ApiService
     
     // MARK: - Basic
     
-    func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any]) -> Observable<DataRequest>
+    fileprivate func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any]) -> Observable<DataRequest>
     {
         let url = self.config.endpoint + "/" + path
         return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
+            "x-ringoid-ios-buildnum": "100",
+            ])
+    }
+    
+    fileprivate func requestGET(path: String, params: [String: Any]) -> Observable<DataRequest>
+    {
+        let url = self.config.endpoint + "/" + path
+        return RxAlamofire.request(.get, url, parameters: params, headers: [
             "x-ringoid-ios-buildnum": "100",
             ])
     }
