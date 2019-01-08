@@ -48,6 +48,10 @@ class RootViewController: UIViewController {
         if segue.identifier == SegueIds.userProfile, let vc = segue.destination as? UserProfilePhotosViewController {
             vc.input = UserProfilePhotosVCInput(profileManager: self.appManager.profileManager)
         }
+        
+        if segue.identifier == SegueIds.newFaces, let vc = segue.destination as? NewFacesViewController {
+            vc.input = NewFacesVMInput(newFacesManager: self.appManager.newFacesManager)
+        }
     }
     
     // MARK: -

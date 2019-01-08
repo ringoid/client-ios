@@ -10,5 +10,21 @@ import UIKit
 
 class NewFacesViewController: UIViewController
 {
+    var input: NewFacesVMInput!
     
+    fileprivate var viewModel: NewFacesViewModel?
+    
+    override func viewDidLoad()
+    {
+        assert(self.input != nil)
+        
+        super.viewDidLoad()
+    }
+    
+    // MARK: -
+    
+    fileprivate func setupBindings()
+    {
+        self.viewModel = NewFacesViewModel(self.input)
+    }
 }

@@ -43,4 +43,17 @@ class DBService
             return Disposables.create()
         })
     }
+    
+    func add(_ objects: [Object]) -> Observable<Void>
+    {
+        return Observable<Void>.create({ [weak self] observer -> Disposable in
+            try? self?.realm.write {
+                self?.realm.add(objects)
+                observer.onNext(())
+                observer.onCompleted()
+            }
+            
+            return Disposables.create()
+        })
+    }
 }
