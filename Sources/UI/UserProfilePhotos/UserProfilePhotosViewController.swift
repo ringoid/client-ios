@@ -10,7 +10,7 @@ import UIKit
 import Photos
 import RxSwift
 
-class UserProfilePhotosViewController: UIViewController
+class UserProfilePhotosViewController: ThemeViewController
 {
     var input: UserProfilePhotosVCInput!
     

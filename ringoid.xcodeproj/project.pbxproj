@@ -49,6 +49,9 @@
 		57585D5E21E4BF1B00038798 /* UploaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D5D21E4BF1B00038798 /* UploaderService.swift */; };
 		57585D6021E4BF4900038798 /* UploaderServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D5F21E4BF4900038798 /* UploaderServiceDefault.swift */; };
 		57585D6421E4C73600038798 /* NewFacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D6321E4C73600038798 /* NewFacesViewModel.swift */; };
+		57585D6A21E4FF2400038798 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D6921E4FF2400038798 /* Colors.swift */; };
+		57585D7021E500FD00038798 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D6F21E500FD00038798 /* ThemeManager.swift */; };
+		57585D7221E5055D00038798 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D7121E5055D00038798 /* ThemeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +98,9 @@
 		57585D5D21E4BF1B00038798 /* UploaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploaderService.swift; sourceTree = "<group>"; };
 		57585D5F21E4BF4900038798 /* UploaderServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploaderServiceDefault.swift; sourceTree = "<group>"; };
 		57585D6321E4C73600038798 /* NewFacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewModel.swift; sourceTree = "<group>"; };
+		57585D6921E4FF2400038798 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		57585D6F21E500FD00038798 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		57585D7121E5055D00038798 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.release.xcconfig"; sourceTree = "<group>"; };
 		873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.debug.xcconfig"; sourceTree = "<group>"; };
 		9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ringoid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,6 +162,7 @@
 		570D047321DCE3DA00E0DCFB /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				57585D6521E4FEAB00038798 /* Common */,
 				57585D4A21E388DC00038798 /* UserProfilePhotos */,
 				57585D3421E3308300038798 /* NewFaces */,
 				570D04C721E32F4800E0DCFB /* Auth */,
@@ -212,6 +219,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				57585D6E21E500E800038798 /* Theme */,
 				57585D3D21E354E500038798 /* NewFaces */,
 				570D04B021DDE41700E0DCFB /* UserProfile */,
 				570D04A321DD086500E0DCFB /* App */,
@@ -353,6 +361,31 @@
 				57585D5F21E4BF4900038798 /* UploaderServiceDefault.swift */,
 			);
 			path = Uploader;
+			sourceTree = "<group>";
+		};
+		57585D6521E4FEAB00038798 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				57585D6621E4FEAB00038798 /* Themes */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		57585D6621E4FEAB00038798 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				57585D6921E4FF2400038798 /* Colors.swift */,
+				57585D7121E5055D00038798 /* ThemeViewController.swift */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		57585D6E21E500E800038798 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				57585D6F21E500FD00038798 /* ThemeManager.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		72C1601F5934C71987A6D447 /* Frameworks */ = {
@@ -519,6 +552,7 @@
 				57585D4921E35B8C00038798 /* NewFacesCell.swift in Sources */,
 				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
+				57585D7021E500FD00038798 /* ThemeManager.swift in Sources */,
 				570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
 				57585D4C21E388EC00038798 /* UserProfilePhotosViewController.swift in Sources */,
@@ -531,10 +565,12 @@
 				570D04A521DD087100E0DCFB /* AppManager.swift in Sources */,
 				57585D4421E3558800038798 /* Photo.swift in Sources */,
 				57585D5B21E4A0F100038798 /* FilePath.swift in Sources */,
+				57585D6A21E4FF2400038798 /* Colors.swift in Sources */,
 				57585D4621E3570B00038798 /* NewFaceProfile.swift in Sources */,
 				57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */,
 				57585D5721E4925600038798 /* FileService.swift in Sources */,
 				570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */,
+				57585D7221E5055D00038798 /* ThemeViewController.swift in Sources */,
 				570D04C321DFA4EF00E0DCFB /* ApiUserPhoto.swift in Sources */,
 				57585D5221E4808500038798 /* UserProfilePhotosViewModel.swift in Sources */,
 				57585D4221E3555E00038798 /* Profile.swift in Sources */,

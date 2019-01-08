@@ -40,5 +40,7 @@ class AppManager
     {
         self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader)
         self.newFacesManager = NewFacesManager(self.db, api: self.apiService)
+        
+        ThemeManager.shared.storageService = self.defaultStorage
     }
 }
