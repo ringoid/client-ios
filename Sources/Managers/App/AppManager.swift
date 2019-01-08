@@ -12,8 +12,10 @@ class AppManager
 {
     var apiService: ApiService!
     var defaultStorage: XStorageService!
+    var db: DBService!
     
-    var profileManager: ProfileManager!
+    var profileManager: UserProfileManager!
+    var newFacesManager: NewFacesManager!
     
     func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
@@ -26,6 +28,7 @@ class AppManager
     fileprivate func setupServices()
     {
         self.defaultStorage = DefaultStorageService()
+        self.db = DBService()
         
         let apiConfig = ApiServiceConfigStage()
         self.apiService = ApiServiceDefault(config: apiConfig, storage: self.defaultStorage)        
@@ -33,6 +36,7 @@ class AppManager
     
     fileprivate func setupManagers()
     {
-        self.profileManager = ProfileManager()
+        self.profileManager = UserProfileManager(self.db, api: self.apiService)
+        self.newFacesManager = NewFacesManager(self.db, api: self.apiService)
     }
 }

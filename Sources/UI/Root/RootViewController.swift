@@ -15,6 +15,7 @@ fileprivate enum AppUIMode
     case unknown
     case auth
     case newfaces
+    case userProfile
 }
 
 class RootViewController: UIViewController {
@@ -41,10 +42,7 @@ class RootViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == SegueIds.auth, let vc = segue.destination as? AuthViewController {
-            vc.input = AuthVMInput(
-                profileManager: self.appManager.profileManager,
-                apiService: self.appManager.apiService
-            )
+            vc.input = AuthVMInput(apiService: self.appManager.apiService)
         }
     }
     
@@ -63,9 +61,11 @@ class RootViewController: UIViewController {
         switch to {
         case .unknown: break
         case .auth:
-            segueId = SegueIds.newFaces
-        case .newfaces:
             segueId = SegueIds.auth
+        case .newfaces:
+            segueId = SegueIds.newFaces
+        case .userProfile:
+            segueId = SegueIds.userProfile
         }
         
         if let presentedVC = self.presentedViewController {
@@ -80,10 +80,14 @@ class RootViewController: UIViewController {
     fileprivate func subscribeToAuthState()
     {
         self.appManager.apiService.isAuthorized.asObservable().subscribe ({ [weak self] event in
-            if event.element == true {
+            if event.element != true {
                 self?.move(to: .auth)
             } else {
-                self?.move(to: .newfaces)
+                if self?.appManager.profileManager.photos.value.count == 0 {
+                    self?.move(to: .userProfile)
+                } else {
+                    self?.move(to: .newfaces)
+                }
             }
         }).disposed(by: disposeBag)
     }
@@ -95,6 +99,7 @@ extension RootViewController
     {
         static let auth = "auth_flow"
         static let newFaces = "new_faces_flow"
+        static let userProfile = "user_profile_flow"
     }
 }
 

@@ -18,7 +18,6 @@ enum Sex: String
 
 struct AuthVMInput
 {
-    let profileManager: ProfileManager
     let apiService: ApiService
 }
 
@@ -27,12 +26,10 @@ class AuthViewModel
     var sex: BehaviorRelay<Sex?> = BehaviorRelay(value: nil)
     var birthYear: BehaviorRelay<Int?> = BehaviorRelay(value: nil)
     
-    let profileManager: ProfileManager
     let apiService: ApiService
     
     init(_ input: AuthVMInput)
     {
-        self.profileManager = input.profileManager
         self.apiService = input.apiService
     }
     

@@ -23,6 +23,7 @@
                     <connections>
                         <segue destination="cV6-nU-s6e" kind="show" identifier="auth_flow" animates="NO" id="WiD-aZ-esg"/>
                         <segue destination="qna-Xy-pi0" kind="show" identifier="new_faces_flow" animates="NO" id="aUu-ly-1w5"/>
+                        <segue destination="6zL-Dg-c45" kind="show" identifier="user_profile_flow" animates="NO" id="0la-ES-UER"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -44,6 +45,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QrI-TT-w4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="706" y="-204"/>
+        </scene>
+        <!--UserProfile-->
+        <scene sceneID="GNJ-mu-gEy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserProfile" id="6zL-Dg-c45" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n2R-w1-QFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="801" y="4"/>
         </scene>
     </scenes>
 </document>

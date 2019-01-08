@@ -24,4 +24,10 @@ class DBService
         let profiles = self.realm.objects(NewFaceProfile.self)
         return Observable.array(from: profiles)
     }
+    
+    func fetchUserPhotos() -> Observable<[UserPhoto]>
+    {
+        let photos = self.realm.objects(UserPhoto.self)
+        return Observable.array(from: photos)
+    }
 }

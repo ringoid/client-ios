@@ -10,5 +10,17 @@ import RxSwift
 
 class NewFacesManager
 {
+    let db: DBService
+    let apiService: ApiService
     
+    init(_ db: DBService, api: ApiService)
+    {
+        self.db = db
+        self.apiService = api
+    }
+    
+    func add(_ url: URL)
+    {
+        
+    }
 }
