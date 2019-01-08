@@ -10,6 +10,11 @@ import UIKit
 
 class ThemeViewController: UIViewController
 {
+    override var preferredStatusBarStyle: UIStatusBarStyle
+    {
+        return ThemeManager.shared.theme == .dark ? .lightContent : .default
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()

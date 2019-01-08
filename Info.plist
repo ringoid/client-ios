@@ -41,5 +41,7 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>User profile photos</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 </dict>
 </plist>
