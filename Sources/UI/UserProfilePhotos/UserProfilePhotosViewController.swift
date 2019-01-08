@@ -8,12 +8,14 @@
 
 import UIKit
 import Photos
+import RxSwift
 
 class UserProfilePhotosViewController: UIViewController
 {
     var input: UserProfilePhotosVCInput!
     
     fileprivate var viewModel: UserProfilePhotosViewModel?
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     override func viewDidLoad()
     {
@@ -65,7 +67,13 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
         guard let cropRect = info[.cropRect] as? CGRect, let image = info[.originalImage] as? UIImage else { return }
         guard let croppedImage = image.crop(rect: cropRect) else { return }
         
-        self.viewModel?.add(croppedImage)
+        self.viewModel?.add(croppedImage).subscribe(onNext: ({ [weak self] in
+            self?.dismiss(animated: false, completion: nil)
+        }), onError: ({ [weak self] error in
+            guard let `self` = self else { return }
+            
+            showError(error, vc: self)
+        })).disposed(by: self.disposeBag)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)

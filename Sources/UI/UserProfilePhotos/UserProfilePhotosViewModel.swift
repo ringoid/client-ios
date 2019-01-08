@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import UIKit
 
 struct UserProfilePhotosVCInput
 {
@@ -22,8 +23,16 @@ class UserProfilePhotosViewModel
         self.input = input
     }
     
-    func add(_ photo: UIImage)
+    func add(_ photo: UIImage) -> Observable<Void>
     {
+        guard let data = photo.jpegData(compressionQuality: 1.0) else {
+            let error = createError("Can not convert photo to jpeg format", code: 0)
+            
+            return .error(error)
+        }
         
+        let path = FilePath.unique(.documents)
+        try? data.write(to: path.url())
+        return self.input.profileManager.addPhoto(path)
     }
 }

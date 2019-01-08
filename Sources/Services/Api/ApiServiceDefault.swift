@@ -45,7 +45,7 @@ class ApiServiceDefault: ApiService
             "osVersion": "11.0"
         ]
         
-        return self.request(.post, path: "create_profile", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<Void> in
+        return self.request(.post, path: "auth/create_profile", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<Void> in
             var jsonDict: [String: Any]? = nil
             
             do {
@@ -119,7 +119,7 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
 
-        return self.request(.post, path: "image", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<ApiUserPhoto> in
+        return self.request(.post, path: "image/get_presigned", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<ApiUserPhoto> in
             var jsonDict: [String: Any]? = nil
             
             do {

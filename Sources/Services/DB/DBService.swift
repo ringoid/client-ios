@@ -30,4 +30,17 @@ class DBService
         let photos = self.realm.objects(UserPhoto.self)
         return Observable.array(from: photos)
     }
+    
+    func add(_ object: Object) -> Observable<Void>
+    {
+        return Observable<Void>.create({ [weak self] observer -> Disposable in
+            try? self?.realm.write {
+                self?.realm.add(object)
+                observer.onNext(())
+                observer.onCompleted()
+            }
+            
+            return Disposables.create()
+        })
+    }
 }

@@ -11,6 +11,7 @@ import UIKit
 class AppManager
 {
     var apiService: ApiService!
+    var uploader: UploaderService!
     var defaultStorage: XStorageService!
     var db: DBService!
     
@@ -29,6 +30,7 @@ class AppManager
     {
         self.defaultStorage = DefaultStorageService()
         self.db = DBService()
+        self.uploader = UploaderServiceDefault()
         
         let apiConfig = ApiServiceConfigStage()
         self.apiService = ApiServiceDefault(config: apiConfig, storage: self.defaultStorage)        
@@ -36,7 +38,7 @@ class AppManager
     
     fileprivate func setupManagers()
     {
-        self.profileManager = UserProfileManager(self.db, api: self.apiService)
+        self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader)
         self.newFacesManager = NewFacesManager(self.db, api: self.apiService)
     }
 }

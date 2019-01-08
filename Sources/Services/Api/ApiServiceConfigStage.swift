@@ -10,5 +10,5 @@ import Foundation
 
 class ApiServiceConfigStage: ApiServiceConfig
 {
-    var endpoint: String = "https://stage.ringoidapp.com/auth"
+    var endpoint: String = "https://stage.ringoidapp.com"
 }
