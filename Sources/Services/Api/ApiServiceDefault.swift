@@ -87,7 +87,7 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.request(.get, path: "get_new_faces", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<[ApiProfile]> in
+        return self.request(.get, path: "feeds/get_new_faces", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<[ApiProfile]> in
             var jsonDict: [String: Any]? = nil
             
             do {

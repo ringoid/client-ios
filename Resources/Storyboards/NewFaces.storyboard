@@ -46,6 +46,9 @@
                                                 <constraint firstItem="JTi-rc-4hk" firstAttribute="leading" secondItem="mzS-Ei-i2k" secondAttribute="leading" id="pEx-e7-19L"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="photoView" destination="JTi-rc-4hk" id="Wn8-Ua-hks"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -61,6 +64,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dzb-Wx-JQu"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="Owz-cZ-1Sc" id="KNv-5u-zds"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="htw-q5-Nbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
