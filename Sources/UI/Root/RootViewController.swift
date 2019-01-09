@@ -14,7 +14,7 @@ fileprivate enum AppUIMode
 {
     case unknown
     case auth
-    case newfaces
+    case main
     case userProfile
 }
 
@@ -49,8 +49,8 @@ class RootViewController: ThemeViewController {
             vc.input = UserProfilePhotosVCInput(profileManager: self.appManager.profileManager)
         }
         
-        if segue.identifier == SegueIds.newFaces, let vc = segue.destination as? NewFacesViewController {
-            vc.input = NewFacesVMInput(newFacesManager: self.appManager.newFacesManager)
+        if segue.identifier == SegueIds.main, let vc = segue.destination as? MainViewController {
+            vc.input = MainVMInput(newFacesManager: self.appManager.newFacesManager)
         }
     }
     
@@ -70,8 +70,8 @@ class RootViewController: ThemeViewController {
         case .unknown: break
         case .auth:
             segueId = SegueIds.auth
-        case .newfaces:
-            segueId = SegueIds.newFaces
+        case .main:
+            segueId = SegueIds.main
         case .userProfile:
             segueId = SegueIds.userProfile
         }
@@ -94,7 +94,7 @@ class RootViewController: ThemeViewController {
                 if self?.appManager.profileManager.photos.value.count == 0 {
                     self?.move(to: .userProfile)
                 } else {
-                    self?.move(to: .newfaces)
+                    self?.move(to: .main)
                 }
             }
         }).disposed(by: disposeBag)
@@ -106,7 +106,7 @@ extension RootViewController
     fileprivate struct SegueIds
     {
         static let auth = "auth_flow"
-        static let newFaces = "new_faces_flow"
+        static let main = "main_flow"
         static let userProfile = "user_profile_flow"
     }
 }
