@@ -23,6 +23,7 @@ class AuthViewController: ThemeViewController
     @IBOutlet fileprivate weak var femaleBtn: UIButton!
     @IBOutlet fileprivate weak var birthYearContainerView: UIView!
     @IBOutlet fileprivate weak var birthYearTextField: UITextField!
+    @IBOutlet fileprivate weak var registerBtn: UIButton!
     
     override func viewDidLoad()
     {
@@ -32,6 +33,7 @@ class AuthViewController: ThemeViewController
         
         self.setupUI()
         self.setupBindings()
+        self.birthYearTextField.becomeFirstResponder()
     }
     
     @IBAction func onRegister()
@@ -42,19 +44,7 @@ class AuthViewController: ThemeViewController
             showError(error, vc: self)
         }).disposed(by: self.disposeBag)
     }
-    
-    @IBAction func onMaleSelected()
-    {
-        self.maleContainerView.layer.borderWidth = 1.0
-        self.femaleContainerView.layer.borderWidth = 0.0
-    }
-    
-    @IBAction func onFemaleSelected()
-    {
-        self.femaleContainerView.layer.borderWidth = 1.0
-        self.maleContainerView.layer.borderWidth = 0.0
-    }
-    
+        
     // MARK: -
     
     fileprivate func setupUI()
@@ -83,5 +73,38 @@ class AuthViewController: ThemeViewController
         self.femaleBtn.rx.controlEvent(.touchUpInside).map({ _ -> Sex in
             return .female
         }).bind(to: viewModel.sex).disposed(by: self.disposeBag)
+        
+        viewModel.sex.asObservable().subscribe(onNext: { [weak self] sex in
+            self?.updateRegistrationState()
+            self?.updateSexState(sex)
+        }).disposed(by: self.disposeBag)
+        
+        viewModel.birthYear.asObservable().subscribe(onNext: { [weak self] _ in
+            self?.updateRegistrationState()
+        }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func updateRegistrationState()
+    {
+        let isValidated = self.viewModel?.sex.value != nil &&
+        self.viewModel?.birthYear.value != nil
+        
+        self.registerBtn.alpha = isValidated ? 1.0 : 0.5
+        self.registerBtn.isEnabled = isValidated
+    }
+    
+    fileprivate func updateSexState(_ sex: Sex?)
+    {
+        guard let sex = sex else { return }
+        
+        switch sex {
+        case .male:
+            self.maleContainerView.layer.borderWidth = 1.0
+            self.femaleContainerView.layer.borderWidth = 0.0
+            break
+        case .female:
+            self.femaleContainerView.layer.borderWidth = 1.0
+            self.maleContainerView.layer.borderWidth = 0.0
+        }
     }
 }

@@ -80,9 +80,6 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FpE-Be-fZR">
                                         <rect key="frame" x="83.5" y="177" width="98" height="98"/>
-                                        <connections>
-                                            <action selector="onMaleSelected" destination="g3D-bb-6vc" eventType="touchUpInside" id="jzg-pQ-1Hi"/>
-                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39I-EI-ikh" userLabel="FemaleContainer">
                                         <rect key="frame" x="191.5" y="177" width="98" height="98"/>
@@ -114,9 +111,6 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFs-C8-vnJ">
                                         <rect key="frame" x="191.5" y="177" width="98" height="98"/>
-                                        <connections>
-                                            <action selector="onFemaleSelected" destination="g3D-bb-6vc" eventType="touchUpInside" id="iQk-cO-Pqg"/>
-                                        </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytv-xm-SNC">
                                         <rect key="frame" x="16" y="322" width="343" height="90"/>
@@ -129,7 +123,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-tw-Yjt">
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-tw-Yjt">
                                         <rect key="frame" x="16" y="428" width="343" height="45"/>
                                         <color key="backgroundColor" red="0.2627450980392157" green="0.5490196078431373" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -190,6 +184,7 @@
                         <outlet property="femaleContainerView" destination="39I-EI-ikh" id="FYo-6p-cCj"/>
                         <outlet property="maleBtn" destination="FpE-Be-fZR" id="aV6-hM-DB1"/>
                         <outlet property="maleContainerView" destination="bh1-NE-O5a" id="7Wx-5v-Vdv"/>
+                        <outlet property="registerBtn" destination="Qfe-tw-Yjt" id="MZc-q1-RJj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pk-Yk-K8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
