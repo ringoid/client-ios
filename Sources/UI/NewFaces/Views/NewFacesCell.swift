@@ -11,6 +11,7 @@ import Nuke
 class NewFacesCell: UITableViewCell
 {
     @IBOutlet weak var photoView: UIImageView!
+    @IBOutlet weak var pagesControlView: UIPageControl!
     
     var profile: Profile?
     {
@@ -21,7 +22,9 @@ class NewFacesCell: UITableViewCell
     
     fileprivate func update()
     {
-        guard let urlStr = profile?.photos.first?.url, let url = URL(string: urlStr) else {
+        self.pagesControlView.numberOfPages = self.profile?.photos.count ?? 1
+        
+        guard let urlStr = self.profile?.photos.first?.url, let url = URL(string: urlStr) else {
             self.photoView.image = nil
             
             return
