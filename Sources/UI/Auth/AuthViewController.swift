@@ -17,8 +17,11 @@ class AuthViewController: ThemeViewController
     fileprivate var viewModel: AuthViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
+    @IBOutlet fileprivate weak var maleContainerView: UIView!
+    @IBOutlet fileprivate weak var femaleContainerView: UIView!
     @IBOutlet fileprivate weak var maleBtn: UIButton!
     @IBOutlet fileprivate weak var femaleBtn: UIButton!
+    @IBOutlet fileprivate weak var birthYearContainerView: UIView!
     @IBOutlet fileprivate weak var birthYearTextField: UITextField!
     
     override func viewDidLoad()
@@ -27,6 +30,7 @@ class AuthViewController: ThemeViewController
         
         super.viewDidLoad()
         
+        self.setupUI()
         self.setupBindings()
     }
     
@@ -38,8 +42,28 @@ class AuthViewController: ThemeViewController
             showError(error, vc: self)
         }).disposed(by: self.disposeBag)
     }
-
+    
+    @IBAction func onMaleSelected()
+    {
+        self.maleContainerView.layer.borderWidth = 1.0
+        self.femaleContainerView.layer.borderWidth = 0.0
+    }
+    
+    @IBAction func onFemaleSelected()
+    {
+        self.femaleContainerView.layer.borderWidth = 1.0
+        self.maleContainerView.layer.borderWidth = 0.0
+    }
+    
     // MARK: -
+    
+    fileprivate func setupUI()
+    {
+        self.birthYearContainerView.layer.borderWidth = 1.0
+        self.birthYearContainerView.layer.borderColor = UIColor(red: 73.0 / 255.0, green: 73.0 / 255.0, blue: 73.0 / 255.0, alpha: 1.0).cgColor
+        self.maleContainerView.layer.borderColor = UIColor(red: 100.0 / 255.0, green: 170.0 / 255.0, blue: 9.0 / 255.0, alpha: 1.0).cgColor
+        self.femaleContainerView.layer.borderColor = UIColor(red: 100.0 / 255.0, green: 170.0 / 255.0, blue: 9.0 / 255.0, alpha: 1.0).cgColor
+    }
     
     fileprivate func setupBindings()
     {

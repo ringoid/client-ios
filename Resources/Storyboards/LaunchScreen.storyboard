@@ -17,7 +17,21 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_screen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Ue2-12-p5T">
+                                <rect key="frame" x="126" y="222" width="123" height="123"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_screen_title" translatesAutoresizingMaskIntoConstraints="NO" id="Yhb-Ma-lVF">
+                                <rect key="frame" x="135" y="370" width="105" height="32"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="0.082352941176470587" green="0.098039215686274508" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Yhb-Ma-lVF" firstAttribute="top" secondItem="Ue2-12-p5T" secondAttribute="bottom" constant="25" id="2Vh-VB-Q4k"/>
+                            <constraint firstItem="Yhb-Ma-lVF" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="QsC-79-4og"/>
+                            <constraint firstItem="Ue2-12-p5T" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XcW-C7-qEF"/>
+                            <constraint firstItem="Ue2-12-p5T" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-50" id="wbc-xe-vO5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -26,4 +40,8 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="launch_screen_logo" width="123" height="123"/>
+        <image name="launch_screen_title" width="105" height="32"/>
+    </resources>
 </document>
