@@ -17,7 +17,7 @@
 		570D04A121DD021E00E0DCFB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04A021DD021E00E0DCFB /* Errors.swift */; };
 		570D04A521DD087100E0DCFB /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04A421DD087100E0DCFB /* AppManager.swift */; };
 		570D04A921DDCF3200E0DCFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04A721DDCF3200E0DCFB /* LaunchScreen.storyboard */; };
-		570D04AA21DDCF3200E0DCFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04A821DDCF3200E0DCFB /* Main.storyboard */; };
+		570D04AA21DDCF3200E0DCFB /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04A821DDCF3200E0DCFB /* Root.storyboard */; };
 		570D04AD21DDD2A900E0DCFB /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04AC21DDD2A900E0DCFB /* RootViewController.swift */; };
 		570D04AF21DDD34E00E0DCFB /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04AE21DDD34E00E0DCFB /* Auth.storyboard */; };
 		570D04B221DDE4E200E0DCFB /* UserProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B121DDE4E200E0DCFB /* UserProfileManager.swift */; };
@@ -66,7 +66,7 @@
 		570D04A021DD021E00E0DCFB /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		570D04A421DD087100E0DCFB /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		570D04A721DDCF3200E0DCFB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		570D04A821DDCF3200E0DCFB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		570D04A821DDCF3200E0DCFB /* Root.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Root.storyboard; sourceTree = "<group>"; };
 		570D04AC21DDD2A900E0DCFB /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		570D04AE21DDD34E00E0DCFB /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		570D04B121DDE4E200E0DCFB /* UserProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileManager.swift; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				570D04A721DDCF3200E0DCFB /* LaunchScreen.storyboard */,
-				570D04A821DDCF3200E0DCFB /* Main.storyboard */,
+				570D04A821DDCF3200E0DCFB /* Root.storyboard */,
 				570D04AE21DDD34E00E0DCFB /* Auth.storyboard */,
 				57585D3721E330B100038798 /* NewFaces.storyboard */,
 				57585D4F21E45F1600038798 /* UserProfile.storyboard */,
@@ -466,7 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				570D04AF21DDD34E00E0DCFB /* Auth.storyboard in Resources */,
-				570D04AA21DDCF3200E0DCFB /* Main.storyboard in Resources */,
+				570D04AA21DDCF3200E0DCFB /* Root.storyboard in Resources */,
 				570D047621DCE3DA00E0DCFB /* Assets.xcassets in Resources */,
 				57585D5021E45F1600038798 /* UserProfile.storyboard in Resources */,
 				570D04A921DDCF3200E0DCFB /* LaunchScreen.storyboard in Resources */,
