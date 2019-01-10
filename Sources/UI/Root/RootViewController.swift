@@ -77,12 +77,14 @@ class RootViewController: ThemeViewController {
             segueId = SegueIds.userProfile
         }
         
-        if let presentedVC = self.presentedViewController {
-            presentedVC.dismiss(animated: false) {
+        DispatchQueue.main.async {
+            if let presentedVC = self.presentedViewController {
+                presentedVC.dismiss(animated: false) {
+                    self.performSegue(withIdentifier: segueId, sender: nil)
+                }
+            } else {
                 self.performSegue(withIdentifier: segueId, sender: nil)
             }
-        } else {
-            self.performSegue(withIdentifier: segueId, sender: nil)
         }
     }
     
@@ -108,8 +110,7 @@ class RootViewController: ThemeViewController {
             
             if event.element?.count == 0 {
                 self?.move(to: .userProfile)
-            } else
-            {
+            } else {
                 self?.move(to: .main)
             }
         }).disposed(by: disposeBag)
