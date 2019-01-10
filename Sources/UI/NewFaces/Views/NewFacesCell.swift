@@ -10,26 +10,5 @@ import Nuke
 
 class NewFacesCell: UITableViewCell
 {
-    @IBOutlet weak var photoView: UIImageView!
-    @IBOutlet weak var pagesControlView: UIPageControl!
-    
-    var profile: Profile?
-    {
-        didSet {
-            self.update()
-        }
-    }
-    
-    fileprivate func update()
-    {
-        self.pagesControlView.numberOfPages = self.profile?.photos.count ?? 1
-        
-        guard let urlStr = self.profile?.photos.first?.url, let url = URL(string: urlStr) else {
-            self.photoView.image = nil
-            
-            return
-        }
-        
-        Nuke.loadImage(with: url, into: self.photoView)
-    }
+    @IBOutlet weak var containerView: ContainerView!
 }

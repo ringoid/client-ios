@@ -38,7 +38,8 @@ class NewFacesViewController: ThemeViewController
     {
         self.viewModel = NewFacesViewModel(self.input)
         self.viewModel?.profiles.bind(to: self.tableView.rx.items(cellIdentifier: "new_faces_cell", cellType: NewFacesCell.self)) { (_, profile, cell) in
-            cell.profile = profile
+            let profileVC = NewFaceProfileViewController.create(profile)
+            cell.containerView.embed(profileVC, to: self)
         }.disposed(by: self.disposeBag)
     }
 }

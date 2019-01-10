@@ -56,6 +56,11 @@
 		57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC321E61BE400AAA29D /* MainViewController.swift */; };
 		57FB7BC821E629BE00AAA29D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */; };
 		57FB7BCA21E63D6800AAA29D /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC921E63D6800AAA29D /* MainViewModel.swift */; };
+		57FB7BCC21E73D3C00AAA29D /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BCB21E73D3C00AAA29D /* ContainerView.swift */; };
+		57FB7BCE21E74A3700AAA29D /* NewFaceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BCD21E74A3700AAA29D /* NewFaceProfileViewController.swift */; };
+		57FB7BD021E74AAC00AAA29D /* NewFaceProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BCF21E74AAC00AAA29D /* NewFaceProfileViewModel.swift */; };
+		57FB7BD321E74C3E00AAA29D /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BD221E74C3E00AAA29D /* Storyboards.swift */; };
+		57FB7BD521E7661200AAA29D /* NewFacePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BD421E7661200AAA29D /* NewFacePhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +114,11 @@
 		57FB7BC321E61BE400AAA29D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		57FB7BC921E63D6800AAA29D /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		57FB7BCB21E73D3C00AAA29D /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		57FB7BCD21E74A3700AAA29D /* NewFaceProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceProfileViewController.swift; sourceTree = "<group>"; };
+		57FB7BCF21E74AAC00AAA29D /* NewFaceProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceProfileViewModel.swift; sourceTree = "<group>"; };
+		57FB7BD221E74C3E00AAA29D /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
+		57FB7BD421E7661200AAA29D /* NewFacePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacePhotoViewController.swift; sourceTree = "<group>"; };
 		727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.release.xcconfig"; sourceTree = "<group>"; };
 		873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.debug.xcconfig"; sourceTree = "<group>"; };
 		9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ringoid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +180,7 @@
 		570D047321DCE3DA00E0DCFB /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				57FB7BD121E74C1000AAA29D /* Storyboards */,
 				57585D6521E4FEAB00038798 /* Common */,
 				57FB7BC221E61BC700AAA29D /* Main */,
 				57585D4A21E388DC00038798 /* UserProfilePhotos */,
@@ -314,6 +325,9 @@
 				57585D4721E35B6B00038798 /* Views */,
 				57585D3521E3309300038798 /* NewFacesViewController.swift */,
 				57585D6321E4C73600038798 /* NewFacesViewModel.swift */,
+				57FB7BCD21E74A3700AAA29D /* NewFaceProfileViewController.swift */,
+				57FB7BCF21E74AAC00AAA29D /* NewFaceProfileViewModel.swift */,
+				57FB7BD421E7661200AAA29D /* NewFacePhotoViewController.swift */,
 			);
 			path = NewFaces;
 			sourceTree = "<group>";
@@ -378,6 +392,7 @@
 			children = (
 				57585D6621E4FEAB00038798 /* Themes */,
 				57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */,
+				57FB7BCB21E73D3C00AAA29D /* ContainerView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -406,6 +421,14 @@
 				57FB7BC921E63D6800AAA29D /* MainViewModel.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		57FB7BD121E74C1000AAA29D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				57FB7BD221E74C3E00AAA29D /* Storyboards.swift */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		72C1601F5934C71987A6D447 /* Frameworks */ = {
@@ -561,9 +584,12 @@
 			files = (
 				570D04AD21DDD2A900E0DCFB /* RootViewController.swift in Sources */,
 				570D04C121DF4E1F00E0DCFB /* Alerts.swift in Sources */,
+				57FB7BCE21E74A3700AAA29D /* NewFaceProfileViewController.swift in Sources */,
 				57FB7BC821E629BE00AAA29D /* ContainerViewController.swift in Sources */,
+				57FB7BD521E7661200AAA29D /* NewFacePhotoViewController.swift in Sources */,
 				57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */,
 				57585D5E21E4BF1B00038798 /* UploaderService.swift in Sources */,
+				57FB7BD321E74C3E00AAA29D /* Storyboards.swift in Sources */,
 				57585D3F21E354FA00038798 /* NewFacesManager.swift in Sources */,
 				57585D5421E48E3700038798 /* Image.swift in Sources */,
 				570D04B221DDE4E200E0DCFB /* UserProfileManager.swift in Sources */,
@@ -572,6 +598,7 @@
 				57585D6021E4BF4900038798 /* UploaderServiceDefault.swift in Sources */,
 				570D04CA21E32F4800E0DCFB /* AuthViewController.swift in Sources */,
 				57585D4921E35B8C00038798 /* NewFacesCell.swift in Sources */,
+				57FB7BD021E74AAC00AAA29D /* NewFaceProfileViewModel.swift in Sources */,
 				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
 				57585D7021E500FD00038798 /* ThemeManager.swift in Sources */,
@@ -585,6 +612,7 @@
 				570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */,
 				570D04BD21DE385E00E0DCFB /* DefaultStorageService.swift in Sources */,
 				570D04A521DD087100E0DCFB /* AppManager.swift in Sources */,
+				57FB7BCC21E73D3C00AAA29D /* ContainerView.swift in Sources */,
 				57585D4421E3558800038798 /* Photo.swift in Sources */,
 				57585D5B21E4A0F100038798 /* FilePath.swift in Sources */,
 				57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */,
