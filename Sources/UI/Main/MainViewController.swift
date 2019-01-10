@@ -8,6 +8,12 @@
 
 import UIKit
 
+fileprivate enum SelectionState {
+    case search
+    case like
+    case profile
+}
+
 class MainViewController: ThemeViewController
 {
     var input: MainVMInput!
@@ -15,11 +21,16 @@ class MainViewController: ThemeViewController
     fileprivate var viewModel: MainViewModel?
     fileprivate var containerVC: ContainerViewController!
     
+    @IBOutlet fileprivate weak var searchBtn: UIButton!
+    @IBOutlet fileprivate weak var likeBtn: UIButton!
+    @IBOutlet fileprivate weak var profileBtn: UIButton!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         self.setupBindings()
+        self.select(.search)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -31,7 +42,45 @@ class MainViewController: ThemeViewController
         }
     }
     
+    @IBAction func onSearchSelected()
+    {
+        self.select(.search)
+    }
+    
+    @IBAction func onLikeSelected()
+    {
+        self.select(.like)
+    }
+    
+    @IBAction func onProfileSelected()
+    {
+        self.select(.profile)
+    }
+    
     // MARK: -
+    
+    fileprivate func select(_ to: SelectionState)
+    {
+        switch to {
+        case .search:
+            self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            break
+            
+        case .like:
+            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            break
+            
+        case .profile:
+            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
+            break
+        }
+    }
     
     fileprivate func embedNewFaces()
     {

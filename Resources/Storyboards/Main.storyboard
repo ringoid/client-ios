@@ -36,6 +36,9 @@
                                                     <constraint firstAttribute="width" constant="44" id="MX5-8F-BtP"/>
                                                 </constraints>
                                                 <state key="normal" image="main_bar_search"/>
+                                                <connections>
+                                                    <action selector="onSearchSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="FlQ-YH-EPr"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLq-rW-238">
                                                 <rect key="frame" x="131.5" y="0.0" width="44" height="48"/>
@@ -43,6 +46,9 @@
                                                     <constraint firstAttribute="width" constant="44" id="lHe-1T-qrf"/>
                                                 </constraints>
                                                 <state key="normal" image="main_bar_like"/>
+                                                <connections>
+                                                    <action selector="onLikeSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="dsE-fb-a46"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cD4-SP-HxY">
                                                 <rect key="frame" x="263" y="0.0" width="44" height="48"/>
@@ -50,6 +56,9 @@
                                                     <constraint firstAttribute="width" constant="44" id="xqK-XW-JZi"/>
                                                 </constraints>
                                                 <state key="normal" image="main_bar_profile"/>
+                                                <connections>
+                                                    <action selector="onProfileSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="IE7-2N-Huk"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -78,6 +87,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PZo-jV-0xV"/>
                     </view>
+                    <connections>
+                        <outlet property="likeBtn" destination="uLq-rW-238" id="tPb-gd-o3B"/>
+                        <outlet property="profileBtn" destination="cD4-SP-HxY" id="8ZU-N8-BWV"/>
+                        <outlet property="searchBtn" destination="IC7-wg-nDT" id="pUU-Qa-2ZW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="To6-Gg-LLj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -88,9 +102,10 @@
             <objects>
                 <viewController id="hP9-lJ-Ep8" customClass="ContainerViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Kp-VL-Qge">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="O9P-Hg-jvP"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3G-HA-wgu" userLabel="First Responder" sceneMemberID="firstResponder"/>
