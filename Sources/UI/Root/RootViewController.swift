@@ -37,6 +37,7 @@ class RootViewController: ThemeViewController {
         super.viewDidAppear(animated)
         
         self.subscribeToAuthState()
+        self.subscribeToPhotosState()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -96,6 +97,20 @@ class RootViewController: ThemeViewController {
                 } else {
                     self?.move(to: .main)
                 }
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    fileprivate func subscribeToPhotosState()
+    {
+        self.appManager.profileManager.photos.asObservable().subscribe ({ [weak self] event in
+            guard self?.appManager.apiService.isAuthorized.value == true else { return }
+            
+            if event.element?.count == 0 {
+                self?.move(to: .userProfile)
+            } else
+            {
+                self?.move(to: .main)
             }
         }).disposed(by: disposeBag)
     }
