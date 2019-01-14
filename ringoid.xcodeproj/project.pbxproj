@@ -52,6 +52,8 @@
 		57585D6A21E4FF2400038798 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D6921E4FF2400038798 /* Colors.swift */; };
 		57585D7021E500FD00038798 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D6F21E500FD00038798 /* ThemeManager.swift */; };
 		57585D7221E5055D00038798 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D7121E5055D00038798 /* ThemeViewController.swift */; };
+		57B863BC21EC74BF00B9CC70 /* ApiLMMProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */; };
+		57B863BE21EC758200B9CC70 /* ApiMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BD21EC758200B9CC70 /* ApiMessage.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
 		57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC321E61BE400AAA29D /* MainViewController.swift */; };
 		57FB7BC821E629BE00AAA29D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */; };
@@ -110,6 +112,8 @@
 		57585D6921E4FF2400038798 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		57585D6F21E500FD00038798 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		57585D7121E5055D00038798 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
+		57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLMMProfile.swift; sourceTree = "<group>"; };
+		57B863BD21EC758200B9CC70 /* ApiMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMessage.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		57FB7BC321E61BE400AAA29D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 				570D04C221DFA4EF00E0DCFB /* ApiUserPhoto.swift */,
 				57585D3921E3499E00038798 /* ApiPhoto.swift */,
 				57585D3B21E34AFC00038798 /* ApiProfile.swift */,
+				57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */,
+				57B863BD21EC758200B9CC70 /* ApiMessage.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -609,6 +615,7 @@
 				57585D6421E4C73600038798 /* NewFacesViewModel.swift in Sources */,
 				57585D3C21E34AFC00038798 /* ApiProfile.swift in Sources */,
 				570D04C621DFBD5A00E0DCFB /* DBService.swift in Sources */,
+				57B863BC21EC74BF00B9CC70 /* ApiLMMProfile.swift in Sources */,
 				570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */,
 				570D04BD21DE385E00E0DCFB /* DefaultStorageService.swift in Sources */,
 				570D04A521DD087100E0DCFB /* AppManager.swift in Sources */,
@@ -623,6 +630,7 @@
 				570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */,
 				57585D7221E5055D00038798 /* ThemeViewController.swift in Sources */,
 				570D04C321DFA4EF00E0DCFB /* ApiUserPhoto.swift in Sources */,
+				57B863BE21EC758200B9CC70 /* ApiMessage.swift in Sources */,
 				57585D5221E4808500038798 /* UserProfilePhotosViewModel.swift in Sources */,
 				57585D4221E3555E00038798 /* Profile.swift in Sources */,
 				570D04BA21DE322200E0DCFB /* XStorageObject.swift in Sources */,

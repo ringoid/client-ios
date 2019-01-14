@@ -11,6 +11,8 @@ import RxCocoa
 import RxAlamofire
 import Alamofire
 
+typealias LMMResult = (likesYou: [ApiLMMProfile],  matches: [ApiLMMProfile], messages: [ApiLMMProfile])
+
 class ApiServiceDefault: ApiService
 {
     let config: ApiServiceConfig
@@ -75,6 +77,51 @@ class ApiServiceDefault: ApiService
     }
     
     // MARK: - Feeds
+    func getLMM(_ resolution: PhotoResolution, lastActionDate: Date) -> Observable<LMMResult>
+    {
+        var params: [String: Any] = [
+            "resolution": resolution.rawValue,
+            "lastActionTime": Int(lastActionDate.timeIntervalSince1970)
+        ]
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        return self.requestGET(path: "feeds/get_lmm", params: params).json().flatMap { [weak self] jsonObj -> Observable<LMMResult> in
+            var jsonDict: [String: Any]? = nil
+            
+            do {
+                jsonDict = try self?.validateJsonResponse(jsonObj)
+            } catch {
+                return .error(error)
+            }
+            
+            guard let likesYouArray = jsonDict?["likesYou"] as? [[String: Any]] else {
+                let error = createError("ApiService: wrong likesYou profiles data format", code: 4)
+                
+                return .error(error)
+            }
+            
+            guard let matchesArray = jsonDict?["matches"] as? [[String: Any]] else {
+                let error = createError("ApiService: wrong matches profiles data format", code: 5)
+                
+                return .error(error)
+            }
+            
+            guard let messagesArray = jsonDict?["messages"] as? [[String: Any]] else {
+                let error = createError("ApiService: wrong messages profiles data format", code: 6)
+                
+                return .error(error)
+            }
+            
+            return .just((
+                likesYou: likesYouArray.compactMap({ApiLMMProfile.lmmParse($0)}),
+                matches: matchesArray.compactMap({ApiLMMProfile.lmmParse($0)}),
+                messages: messagesArray.compactMap({ApiLMMProfile.lmmParse($0)})
+            ))
+        }
+    }
     
     func getNewFaces(_ resolution: PhotoResolution) -> Observable<[ApiProfile]>
     {

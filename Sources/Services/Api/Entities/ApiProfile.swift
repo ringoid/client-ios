@@ -8,10 +8,16 @@
 
 import Foundation
 
-struct ApiProfile
+class ApiProfile
 {
     let id: String
     let photos: [ApiPhoto]
+    
+    init(id: String, photos: [ApiPhoto])
+    {
+        self.id = id
+        self.photos = photos
+    }
 }
 
 extension ApiProfile
