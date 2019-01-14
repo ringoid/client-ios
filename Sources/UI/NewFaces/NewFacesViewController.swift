@@ -17,6 +17,7 @@ class NewFacesViewController: ThemeViewController
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     @IBOutlet fileprivate weak var tableView: UITableView!
+    fileprivate var refreshControl: UIRefreshControl!
     
     override func viewDidLoad()
     {
@@ -25,10 +26,18 @@ class NewFacesViewController: ThemeViewController
         super.viewDidLoad()
         
         self.setupBindings()
+        self.setupReloader()
+    }
+    
+    // MARK: - Actiongs
+    @objc func onReload()
+    {
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
             
             showError(error, vc: self)
+            }, onCompleted:{ [weak self] in
+                self?.refreshControl.endRefreshing()
         }).disposed(by: self.disposeBag)
     }
     
@@ -41,5 +50,12 @@ class NewFacesViewController: ThemeViewController
             let profileVC = NewFaceProfileViewController.create(profile)
             cell.containerView.embed(profileVC, to: self)
         }.disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func setupReloader()
+    {
+        self.refreshControl = UIRefreshControl()
+        self.tableView.addSubview(self.refreshControl)
+        self.refreshControl.addTarget(self, action: #selector(onReload), for: .valueChanged)
     }
 }
