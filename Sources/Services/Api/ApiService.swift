@@ -9,6 +9,8 @@
 import RxSwift
 import RxCocoa
 
+typealias ApiLMMResult = (likesYou: [ApiLMMProfile],  matches: [ApiLMMProfile], messages: [ApiLMMProfile])
+
 protocol ApiService
 {
     var isAuthorized: BehaviorRelay<Bool> { get }
@@ -16,6 +18,8 @@ protocol ApiService
     func createProfile(year: Int, sex: Sex) -> Observable<Void>
     
     func getNewFaces(_ resolution: PhotoResolution) -> Observable<[ApiProfile]>
+    
+    func getLMM(_ resolution: PhotoResolution, lastActionDate: Date) -> Observable<ApiLMMResult>
     
     func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhoto>
 }

@@ -19,17 +19,45 @@ class DBService
         self.realm = try! Realm(configuration: .defaultConfiguration)
     }
     
+    // MARK: - New Faces
     func fetchNewFaces() -> Observable<[NewFaceProfile]>
     {
         let profiles = self.realm.objects(NewFaceProfile.self)
         return Observable.array(from: profiles)
     }
     
+    // MARK: - LMM
+    
+    func fetchLikesYou() -> Observable<[LMMProfile]>
+    {
+        let predicate = NSPredicate(format: "type = %d", FeedType.likesYou.rawValue)
+        let profiles = self.realm.objects(LMMProfile.self).filter(predicate)
+        return Observable.array(from: profiles)
+    }
+    
+    func fetchMatches() -> Observable<[LMMProfile]>
+    {
+        let predicate = NSPredicate(format: "type = %d", FeedType.matches.rawValue)
+        let profiles = self.realm.objects(LMMProfile.self).filter(predicate)
+        return Observable.array(from: profiles)
+    }
+    
+    func fetchMessages() -> Observable<[LMMProfile]>
+    {
+        let predicate = NSPredicate(format: "type = %d", FeedType.messages.rawValue)
+        let profiles = self.realm.objects(LMMProfile.self).filter(predicate)
+        return Observable.array(from: profiles)
+    }
+    
+    // MARK: - User
+    
     func fetchUserPhotos() -> Observable<[UserPhoto]>
     {
         let photos = self.realm.objects(UserPhoto.self)
         return Observable.array(from: photos)
     }
+    
+    // MARK: - Common
     
     func add(_ object: Object) -> Observable<Void>
     {

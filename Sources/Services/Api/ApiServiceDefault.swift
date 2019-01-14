@@ -11,8 +11,6 @@ import RxCocoa
 import RxAlamofire
 import Alamofire
 
-typealias LMMResult = (likesYou: [ApiLMMProfile],  matches: [ApiLMMProfile], messages: [ApiLMMProfile])
-
 class ApiServiceDefault: ApiService
 {
     let config: ApiServiceConfig
@@ -77,7 +75,7 @@ class ApiServiceDefault: ApiService
     }
     
     // MARK: - Feeds
-    func getLMM(_ resolution: PhotoResolution, lastActionDate: Date) -> Observable<LMMResult>
+    func getLMM(_ resolution: PhotoResolution, lastActionDate: Date) -> Observable<ApiLMMResult>
     {
         var params: [String: Any] = [
             "resolution": resolution.rawValue,
@@ -88,7 +86,7 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.requestGET(path: "feeds/get_lmm", params: params).json().flatMap { [weak self] jsonObj -> Observable<LMMResult> in
+        return self.requestGET(path: "feeds/get_lmm", params: params).json().flatMap { [weak self] jsonObj -> Observable<ApiLMMResult> in
             var jsonDict: [String: Any]? = nil
             
             do {
