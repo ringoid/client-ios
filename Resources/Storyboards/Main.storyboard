@@ -41,13 +41,23 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLq-rW-238">
-                                                <rect key="frame" x="131.5" y="0.0" width="44" height="48"/>
+                                                <rect key="frame" x="87.5" y="0.0" width="44" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="44" id="lHe-1T-qrf"/>
                                                 </constraints>
                                                 <state key="normal" image="main_bar_like"/>
                                                 <connections>
                                                     <action selector="onLikeSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="dsE-fb-a46"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUa-ng-gGB">
+                                                <rect key="frame" x="175.5" y="0.0" width="44" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="gy2-SI-xxL"/>
+                                                </constraints>
+                                                <state key="normal" image="main_bar_messages"/>
+                                                <connections>
+                                                    <action selector="onMessagesSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="EqO-Pe-gjN"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cD4-SP-HxY">
@@ -89,6 +99,7 @@
                     </view>
                     <connections>
                         <outlet property="likeBtn" destination="uLq-rW-238" id="tPb-gd-o3B"/>
+                        <outlet property="messagesBtn" destination="vUa-ng-gGB" id="LTK-Vq-bsI"/>
                         <outlet property="profileBtn" destination="cD4-SP-HxY" id="8ZU-N8-BWV"/>
                         <outlet property="searchBtn" destination="IC7-wg-nDT" id="pUU-Qa-2ZW"/>
                     </connections>
@@ -102,7 +113,7 @@
             <objects>
                 <viewController id="hP9-lJ-Ep8" customClass="ContainerViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Kp-VL-Qge">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="O9P-Hg-jvP"/>
@@ -115,6 +126,7 @@
     </scenes>
     <resources>
         <image name="main_bar_like" width="23" height="22"/>
+        <image name="main_bar_messages" width="30" height="25"/>
         <image name="main_bar_profile" width="17" height="20"/>
         <image name="main_bar_search" width="20" height="20"/>
     </resources>

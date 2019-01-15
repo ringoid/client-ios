@@ -11,6 +11,7 @@ import UIKit
 fileprivate enum SelectionState {
     case search
     case like
+    case messages
     case profile
 }
 
@@ -23,6 +24,7 @@ class MainViewController: ThemeViewController
     
     @IBOutlet fileprivate weak var searchBtn: UIButton!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
+    @IBOutlet fileprivate weak var messagesBtn: UIButton!
     @IBOutlet fileprivate weak var profileBtn: UIButton!
     
     override func viewDidLoad()
@@ -51,6 +53,11 @@ class MainViewController: ThemeViewController
         self.select(.like)
     }
     
+    @IBAction func onMessagesSelected()
+    {
+        self.select(.messages)
+    }
+    
     @IBAction func onProfileSelected()
     {
         self.select(.profile)
@@ -64,6 +71,7 @@ class MainViewController: ThemeViewController
         case .search:
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedNewFaces()
             break
@@ -71,13 +79,22 @@ class MainViewController: ThemeViewController
         case .like:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
+            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedMainLMM()
+            break
+            
+        case .messages:
+            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.messagesBtn.setImage(UIImage(named: "main_bar_messages_selected"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             break
             
         case .profile:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
             break
         }
