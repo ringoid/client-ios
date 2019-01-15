@@ -15,6 +15,11 @@ class ThemeViewController: UIViewController
         return ThemeManager.shared.theme == .dark ? .lightContent : .default
     }
     
+    override var prefersStatusBarHidden: Bool
+    {
+        return true
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
