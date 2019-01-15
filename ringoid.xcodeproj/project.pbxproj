@@ -63,6 +63,9 @@
 		57B863CF21ECD98F00B9CC70 /* MainLMMCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863CE21ECD98F00B9CC70 /* MainLMMCell.swift */; };
 		57B863D121EDB16300B9CC70 /* MainLMMProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D021EDB16300B9CC70 /* MainLMMProfileViewController.swift */; };
 		57B863D321EDB18600B9CC70 /* MainLMMProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D221EDB18600B9CC70 /* MainLMMProfileViewModel.swift */; };
+		57B863D521EE16E700B9CC70 /* VerticalGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D421EE16E700B9CC70 /* VerticalGradientView.swift */; };
+		57B863D721EE179F00B9CC70 /* TouchThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D621EE179F00B9CC70 /* TouchThroughView.swift */; };
+		57B863D921EE18ED00B9CC70 /* DiagonalGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D821EE18ED00B9CC70 /* DiagonalGradientView.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
 		57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC321E61BE400AAA29D /* MainViewController.swift */; };
 		57FB7BC821E629BE00AAA29D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */; };
@@ -132,6 +135,9 @@
 		57B863CE21ECD98F00B9CC70 /* MainLMMCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMCell.swift; sourceTree = "<group>"; };
 		57B863D021EDB16300B9CC70 /* MainLMMProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMProfileViewController.swift; sourceTree = "<group>"; };
 		57B863D221EDB18600B9CC70 /* MainLMMProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMProfileViewModel.swift; sourceTree = "<group>"; };
+		57B863D421EE16E700B9CC70 /* VerticalGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalGradientView.swift; sourceTree = "<group>"; };
+		57B863D621EE179F00B9CC70 /* TouchThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchThroughView.swift; sourceTree = "<group>"; };
+		57B863D821EE18ED00B9CC70 /* DiagonalGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagonalGradientView.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		57FB7BC321E61BE400AAA29D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -422,6 +428,9 @@
 				57585D6621E4FEAB00038798 /* Themes */,
 				57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */,
 				57FB7BCB21E73D3C00AAA29D /* ContainerView.swift */,
+				57B863D421EE16E700B9CC70 /* VerticalGradientView.swift */,
+				57B863D621EE179F00B9CC70 /* TouchThroughView.swift */,
+				57B863D821EE18ED00B9CC70 /* DiagonalGradientView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -651,6 +660,8 @@
 				57B863D321EDB18600B9CC70 /* MainLMMProfileViewModel.swift in Sources */,
 				57FB7BD321E74C3E00AAA29D /* Storyboards.swift in Sources */,
 				57585D3F21E354FA00038798 /* NewFacesManager.swift in Sources */,
+				57B863D521EE16E700B9CC70 /* VerticalGradientView.swift in Sources */,
+				57B863D721EE179F00B9CC70 /* TouchThroughView.swift in Sources */,
 				57585D5421E48E3700038798 /* Image.swift in Sources */,
 				570D04B221DDE4E200E0DCFB /* UserProfileManager.swift in Sources */,
 				57585D4E21E3897800038798 /* UserPhoto.swift in Sources */,
@@ -667,6 +678,7 @@
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
 				57585D4C21E388EC00038798 /* UserProfilePhotosViewController.swift in Sources */,
 				57B863D121EDB16300B9CC70 /* MainLMMProfileViewController.swift in Sources */,
+				57B863D921EE18ED00B9CC70 /* DiagonalGradientView.swift in Sources */,
 				57585D5921E4928600038798 /* FileServiceDefault.swift in Sources */,
 				57585D6421E4C73600038798 /* NewFacesViewModel.swift in Sources */,
 				57585D3C21E34AFC00038798 /* ApiProfile.swift in Sources */,
