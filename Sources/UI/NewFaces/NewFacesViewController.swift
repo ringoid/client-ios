@@ -29,7 +29,7 @@ class NewFacesViewController: ThemeViewController
         self.setupReloader()
     }
     
-    // MARK: - Actiongs
+    // MARK: - Actions
     @objc func onReload()
     {
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in

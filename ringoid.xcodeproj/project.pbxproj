@@ -57,6 +57,12 @@
 		57B863C021ECB93200B9CC70 /* LMMProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BF21ECB93200B9CC70 /* LMMProfile.swift */; };
 		57B863C221ECB94800B9CC70 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863C121ECB94800B9CC70 /* Message.swift */; };
 		57B863C521ECC34C00B9CC70 /* LMMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863C421ECC34C00B9CC70 /* LMMManager.swift */; };
+		57B863C821ECD17B00B9CC70 /* MainLMMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863C721ECD17B00B9CC70 /* MainLMMViewController.swift */; };
+		57B863CA21ECD1DC00B9CC70 /* MainLMMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863C921ECD1DC00B9CC70 /* MainLMMViewModel.swift */; };
+		57B863CC21ECD32100B9CC70 /* MainLMM.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B863CB21ECD32100B9CC70 /* MainLMM.storyboard */; };
+		57B863CF21ECD98F00B9CC70 /* MainLMMCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863CE21ECD98F00B9CC70 /* MainLMMCell.swift */; };
+		57B863D121EDB16300B9CC70 /* MainLMMProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D021EDB16300B9CC70 /* MainLMMProfileViewController.swift */; };
+		57B863D321EDB18600B9CC70 /* MainLMMProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D221EDB18600B9CC70 /* MainLMMProfileViewModel.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
 		57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC321E61BE400AAA29D /* MainViewController.swift */; };
 		57FB7BC821E629BE00AAA29D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */; };
@@ -120,6 +126,12 @@
 		57B863BF21ECB93200B9CC70 /* LMMProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMMProfile.swift; sourceTree = "<group>"; };
 		57B863C121ECB94800B9CC70 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		57B863C421ECC34C00B9CC70 /* LMMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMMManager.swift; sourceTree = "<group>"; };
+		57B863C721ECD17B00B9CC70 /* MainLMMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMViewController.swift; sourceTree = "<group>"; };
+		57B863C921ECD1DC00B9CC70 /* MainLMMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMViewModel.swift; sourceTree = "<group>"; };
+		57B863CB21ECD32100B9CC70 /* MainLMM.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainLMM.storyboard; sourceTree = "<group>"; };
+		57B863CE21ECD98F00B9CC70 /* MainLMMCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMCell.swift; sourceTree = "<group>"; };
+		57B863D021EDB16300B9CC70 /* MainLMMProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMProfileViewController.swift; sourceTree = "<group>"; };
+		57B863D221EDB18600B9CC70 /* MainLMMProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMProfileViewModel.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		57FB7BC321E61BE400AAA29D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +204,7 @@
 			children = (
 				57FB7BD121E74C1000AAA29D /* Storyboards */,
 				57585D6521E4FEAB00038798 /* Common */,
+				57B863C621ECD15F00B9CC70 /* MainLMM */,
 				57FB7BC221E61BC700AAA29D /* Main */,
 				57585D4A21E388DC00038798 /* UserProfilePhotos */,
 				57585D3421E3308300038798 /* NewFaces */,
@@ -277,6 +290,7 @@
 				57585D3721E330B100038798 /* NewFaces.storyboard */,
 				57585D4F21E45F1600038798 /* UserProfile.storyboard */,
 				57FB7BC021E61B8000AAA29D /* Main.storyboard */,
+				57B863CB21ECD32100B9CC70 /* MainLMM.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -437,6 +451,26 @@
 			path = LMM;
 			sourceTree = "<group>";
 		};
+		57B863C621ECD15F00B9CC70 /* MainLMM */ = {
+			isa = PBXGroup;
+			children = (
+				57B863CD21ECD88F00B9CC70 /* Views */,
+				57B863C721ECD17B00B9CC70 /* MainLMMViewController.swift */,
+				57B863C921ECD1DC00B9CC70 /* MainLMMViewModel.swift */,
+				57B863D021EDB16300B9CC70 /* MainLMMProfileViewController.swift */,
+				57B863D221EDB18600B9CC70 /* MainLMMProfileViewModel.swift */,
+			);
+			path = MainLMM;
+			sourceTree = "<group>";
+		};
+		57B863CD21ECD88F00B9CC70 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				57B863CE21ECD98F00B9CC70 /* MainLMMCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		57FB7BC221E61BC700AAA29D /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +569,7 @@
 				570D04AF21DDD34E00E0DCFB /* Auth.storyboard in Resources */,
 				570D04AA21DDCF3200E0DCFB /* Root.storyboard in Resources */,
 				570D047621DCE3DA00E0DCFB /* Assets.xcassets in Resources */,
+				57B863CC21ECD32100B9CC70 /* MainLMM.storyboard in Resources */,
 				57585D5021E45F1600038798 /* UserProfile.storyboard in Resources */,
 				570D04A921DDCF3200E0DCFB /* LaunchScreen.storyboard in Resources */,
 				57585D3821E330B100038798 /* NewFaces.storyboard in Resources */,
@@ -613,6 +648,7 @@
 				57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */,
 				57585D5E21E4BF1B00038798 /* UploaderService.swift in Sources */,
 				57B863C221ECB94800B9CC70 /* Message.swift in Sources */,
+				57B863D321EDB18600B9CC70 /* MainLMMProfileViewModel.swift in Sources */,
 				57FB7BD321E74C3E00AAA29D /* Storyboards.swift in Sources */,
 				57585D3F21E354FA00038798 /* NewFacesManager.swift in Sources */,
 				57585D5421E48E3700038798 /* Image.swift in Sources */,
@@ -630,6 +666,7 @@
 				570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
 				57585D4C21E388EC00038798 /* UserProfilePhotosViewController.swift in Sources */,
+				57B863D121EDB16300B9CC70 /* MainLMMProfileViewController.swift in Sources */,
 				57585D5921E4928600038798 /* FileServiceDefault.swift in Sources */,
 				57585D6421E4C73600038798 /* NewFacesViewModel.swift in Sources */,
 				57585D3C21E34AFC00038798 /* ApiProfile.swift in Sources */,
@@ -640,6 +677,7 @@
 				570D04A521DD087100E0DCFB /* AppManager.swift in Sources */,
 				57FB7BCC21E73D3C00AAA29D /* ContainerView.swift in Sources */,
 				57585D4421E3558800038798 /* Photo.swift in Sources */,
+				57B863CF21ECD98F00B9CC70 /* MainLMMCell.swift in Sources */,
 				57585D5B21E4A0F100038798 /* FilePath.swift in Sources */,
 				57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */,
 				57585D6A21E4FF2400038798 /* Colors.swift in Sources */,
@@ -648,11 +686,13 @@
 				57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */,
 				57585D5721E4925600038798 /* FileService.swift in Sources */,
 				570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */,
+				57B863CA21ECD1DC00B9CC70 /* MainLMMViewModel.swift in Sources */,
 				57585D7221E5055D00038798 /* ThemeViewController.swift in Sources */,
 				570D04C321DFA4EF00E0DCFB /* ApiUserPhoto.swift in Sources */,
 				57B863BE21EC758200B9CC70 /* ApiMessage.swift in Sources */,
 				57585D5221E4808500038798 /* UserProfilePhotosViewModel.swift in Sources */,
 				57585D4221E3555E00038798 /* Profile.swift in Sources */,
+				57B863C821ECD17B00B9CC70 /* MainLMMViewController.swift in Sources */,
 				570D04BA21DE322200E0DCFB /* XStorageObject.swift in Sources */,
 				57FB7BCA21E63D6800AAA29D /* MainViewModel.swift in Sources */,
 				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,

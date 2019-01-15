@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5Bt-Xu-MH5">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MainLMM View Controller-->
+        <scene sceneID="sja-MF-CcL">
+            <objects>
+                <viewController id="5Bt-Xu-MH5" customClass="MainLMMViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aDZ-sn-yKR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="358" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kbx-tQ-FPO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="main_llm_cell" id="Way-Aw-DVV" customClass="MainLMMCell" customModule="ringoid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="358"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Way-Aw-DVV" id="M06-Hj-Ah5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="357.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BzW-Ph-VcE" customClass="ContainerView" customModule="ringoid" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="357.5"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="BzW-Ph-VcE" firstAttribute="leading" secondItem="M06-Hj-Ah5" secondAttribute="leading" id="8IJ-as-QDX"/>
+                                                <constraint firstAttribute="bottom" secondItem="BzW-Ph-VcE" secondAttribute="bottom" id="Jqm-pR-by8"/>
+                                                <constraint firstItem="BzW-Ph-VcE" firstAttribute="top" secondItem="M06-Hj-Ah5" secondAttribute="top" id="LUT-8z-a1Z"/>
+                                                <constraint firstAttribute="trailing" secondItem="BzW-Ph-VcE" secondAttribute="trailing" id="qzo-3k-7ZH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="containerView" destination="BzW-Ph-VcE" id="HhF-bp-oER"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kbx-tQ-FPO" firstAttribute="top" secondItem="aDZ-sn-yKR" secondAttribute="top" id="3Jo-e4-nRS"/>
+                            <constraint firstAttribute="bottom" secondItem="kbx-tQ-FPO" secondAttribute="bottom" id="8jo-ly-7Yp"/>
+                            <constraint firstItem="kbx-tQ-FPO" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="leading" id="fH6-My-2G0"/>
+                            <constraint firstAttribute="trailing" secondItem="kbx-tQ-FPO" secondAttribute="trailing" id="wLB-ID-jOj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DRO-WM-fEC"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="kbx-tQ-FPO" id="Gw2-gy-S9q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fIe-ZE-Buy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="102" y="107"/>
+        </scene>
+        <!--MainLMM Profile View Controller-->
+        <scene sceneID="v7N-6P-XpP">
+            <objects>
+                <viewController storyboardIdentifier="lmm_profile" id="Nf7-hc-eWV" customClass="MainLMMProfileViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ekE-T8-wuA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aaP-rq-Yo0">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="gqb-l2-0Wt" kind="embed" identifier="embed_pages" id="ztS-ZW-J5g"/>
+                                </connections>
+                            </containerView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="mPS-Ki-Bpa">
+                                <rect key="frame" x="33" y="37" width="39" height="8"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="qeS-kI-LaX"/>
+                                </constraints>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
+                            <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
+                            <constraint firstItem="mPS-Ki-Bpa" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="topMargin" constant="17" id="OMt-DE-Crh"/>
+                            <constraint firstItem="mPS-Ki-Bpa" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leadingMargin" constant="17" id="SGF-af-fD4"/>
+                            <constraint firstItem="aaP-rq-Yo0" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="gA6-9y-Jou"/>
+                            <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dlp-dl-iCM"/>
+                    </view>
+                    <connections>
+                        <outlet property="pageControl" destination="mPS-Ki-Bpa" id="nuR-eb-yLf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HZT-PD-qcS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="940" y="107"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="e1K-ro-ncM">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="gqb-l2-0Wt" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="snq-x3-VTJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1740" y="115"/>
+        </scene>
+    </scenes>
+</document>

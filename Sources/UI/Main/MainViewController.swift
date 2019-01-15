@@ -38,7 +38,6 @@ class MainViewController: ThemeViewController
         if segue.identifier == "embed_container"
         {
             self.containerVC = segue.destination as? ContainerViewController
-            self.embedNewFaces()
         }
     }
     
@@ -66,12 +65,14 @@ class MainViewController: ThemeViewController
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.embedNewFaces()
             break
             
         case .like:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.embedMainLMM()
             break
             
         case .profile:
@@ -87,6 +88,15 @@ class MainViewController: ThemeViewController
         let storyboard = UIStoryboard(name: "NewFaces", bundle: nil)
         guard let vc = storyboard.instantiateInitialViewController() as? NewFacesViewController else { return }
         vc.input = NewFacesVMInput(newFacesManager: self.input.newFacesManager)
+        
+        self.containerVC.embed(vc)
+    }
+    
+    fileprivate func embedMainLMM()
+    {
+        let storyboard = UIStoryboard(name: "MainLMM", bundle: nil)
+        guard let vc = storyboard.instantiateInitialViewController() as? MainLMMViewController else { return }
+        vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager)
         
         self.containerVC.embed(vc)
     }

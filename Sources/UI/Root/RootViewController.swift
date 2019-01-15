@@ -51,7 +51,10 @@ class RootViewController: ThemeViewController {
         }
         
         if segue.identifier == SegueIds.main, let vc = segue.destination as? MainViewController {
-            vc.input = MainVMInput(newFacesManager: self.appManager.newFacesManager)
+            vc.input = MainVMInput(
+                newFacesManager: self.appManager.newFacesManager,
+                lmmManager: self.appManager.lmmManager
+            )
         }
     }
     

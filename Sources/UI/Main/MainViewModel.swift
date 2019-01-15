@@ -11,6 +11,7 @@ import Foundation
 struct MainVMInput
 {
     let newFacesManager: NewFacesManager
+    let lmmManager: LMMManager
 }
 
 class MainViewModel

@@ -16,4 +16,9 @@ class Storyboards
     {
         return UIStoryboard(name: "NewFaces", bundle: nil)
     }
+    
+    static func mainLMM() -> UIStoryboard
+    {
+        return UIStoryboard(name: "MainLMM", bundle: nil)
+    }
 }
