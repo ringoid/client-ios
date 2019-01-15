@@ -73,6 +73,7 @@
 		57B863E421EE30E300B9CC70 /* UnlikeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863E321EE30E300B9CC70 /* UnlikeAction.swift */; };
 		57B863E621EE312800B9CC70 /* MessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863E521EE312800B9CC70 /* MessageAction.swift */; };
 		57B863E821EE315F00B9CC70 /* OpenChatAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863E721EE315F00B9CC70 /* OpenChatAction.swift */; };
+		57B863EB21EE33D200B9CC70 /* ActionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863EA21EE33D200B9CC70 /* ActionsManager.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
 		57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC321E61BE400AAA29D /* MainViewController.swift */; };
 		57FB7BC821E629BE00AAA29D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */; };
@@ -152,6 +153,7 @@
 		57B863E321EE30E300B9CC70 /* UnlikeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlikeAction.swift; sourceTree = "<group>"; };
 		57B863E521EE312800B9CC70 /* MessageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAction.swift; sourceTree = "<group>"; };
 		57B863E721EE315F00B9CC70 /* OpenChatAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChatAction.swift; sourceTree = "<group>"; };
+		57B863EA21EE33D200B9CC70 /* ActionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsManager.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		57FB7BC321E61BE400AAA29D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				57B863E921EE339C00B9CC70 /* Actions */,
 				57B863C321ECC33500B9CC70 /* LMM */,
 				57585D6E21E500E800038798 /* Theme */,
 				57585D3D21E354E500038798 /* NewFaces */,
@@ -505,6 +508,14 @@
 				57B863E321EE30E300B9CC70 /* UnlikeAction.swift */,
 				57B863E521EE312800B9CC70 /* MessageAction.swift */,
 				57B863E721EE315F00B9CC70 /* OpenChatAction.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		57B863E921EE339C00B9CC70 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				57B863EA21EE33D200B9CC70 /* ActionsManager.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -743,6 +754,7 @@
 				57B863C821ECD17B00B9CC70 /* MainLMMViewController.swift in Sources */,
 				570D04BA21DE322200E0DCFB /* XStorageObject.swift in Sources */,
 				57FB7BCA21E63D6800AAA29D /* MainViewModel.swift in Sources */,
+				57B863EB21EE33D200B9CC70 /* ActionsManager.swift in Sources */,
 				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

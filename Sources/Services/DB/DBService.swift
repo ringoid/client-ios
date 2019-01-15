@@ -57,6 +57,14 @@ class DBService
         return Observable.array(from: photos)
     }
     
+    // MARK: - Actions
+    
+    func fetchActions() -> Observable<[Action]>
+    {
+        let actions = self.realm.objects(Action.self)
+        return Observable.array(from: actions)
+    }
+    
     // MARK: - Common
     
     func add(_ object: Object) -> Observable<Void>
@@ -77,6 +85,19 @@ class DBService
         return Observable<Void>.create({ [weak self] observer -> Disposable in
             try? self?.realm.write {
                 self?.realm.add(objects)
+                observer.onNext(())
+                observer.onCompleted()
+            }
+            
+            return Disposables.create()
+        })
+    }
+    
+    func delete(_ objects: [Object]) -> Observable<Void>
+    {
+        return Observable<Void>.create({ [weak self] observer -> Disposable in
+            try? self?.realm.write {
+                self?.realm.delete(objects)
                 observer.onNext(())
                 observer.onCompleted()
             }
