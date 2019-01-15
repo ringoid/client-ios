@@ -82,6 +82,14 @@
                                     <segue destination="gqb-l2-0Wt" kind="embed" identifier="embed_pages" id="ztS-ZW-J5g"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGR-yG-LEW">
+                                <rect key="frame" x="299" y="0.0" width="76" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="96L-r9-tgI"/>
+                                    <constraint firstAttribute="width" constant="76" id="u4U-5Y-OGC"/>
+                                </constraints>
+                                <state key="normal" image="feed_options"/>
+                            </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="mPS-Ki-Bpa">
                                 <rect key="frame" x="33" y="37" width="39" height="8"/>
                                 <constraints>
@@ -91,10 +99,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lGR-yG-LEW" secondAttribute="trailing" id="3dD-ad-k8o"/>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
                             <constraint firstItem="mPS-Ki-Bpa" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="topMargin" constant="17" id="OMt-DE-Crh"/>
                             <constraint firstItem="mPS-Ki-Bpa" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leadingMargin" constant="17" id="SGF-af-fD4"/>
+                            <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="XAG-qi-5bb"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="gA6-9y-Jou"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
                         </constraints>
@@ -117,4 +127,7 @@
             <point key="canvasLocation" x="1740" y="115"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="feed_options" width="32" height="12"/>
+    </resources>
 </document>
