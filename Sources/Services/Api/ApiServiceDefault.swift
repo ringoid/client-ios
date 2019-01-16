@@ -184,6 +184,31 @@ class ApiServiceDefault: ApiService
         }
     }
     
+    // MARK: - Actions
+    
+    func sendActions(_ actions: [ApiAction]) -> Observable<Void>
+    {
+        var params: [String: Any] = [
+            "actions": actions.map({ $0.json() })
+        ]
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        return self.request(.post, path: "actions/actions", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<Void> in
+            var jsonDict: [String: Any]? = nil
+            
+            do {
+                jsonDict = try self?.validateJsonResponse(jsonObj)
+            } catch {
+                return .error(error)
+            }
+            
+            return .just(())
+        }
+    }
+    
     // MARK: - Basic
     
     fileprivate func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any]) -> Observable<DataRequest>

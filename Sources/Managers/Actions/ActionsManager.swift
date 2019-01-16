@@ -82,7 +82,70 @@ class ActionsManager
         self.db.fetchActions().subscribe(onNext: { [weak self] actions in
             guard let `self` = self else { return }
             
-            print("actions: \(actions.count)")
+            self.apiService.sendActions(actions.compactMap({ $0.apiAction() }))
+                .subscribe(onNext: { [weak self] in
+                    guard let `self` = self else { return }
+                    
+                    self.db.delete(actions).subscribe().disposed(by: self.disposeBag)
+                }).disposed(by: self.disposeBag)
+            
         }).disposed(by: self.disposeBag)
+    }
+}
+
+extension Action {
+    func apiAction() -> ApiAction?
+    {
+        guard let type = ActionType(rawValue: self.type) else { return nil }
+        
+        var apiAction: ApiAction?
+        
+        
+        switch type {
+        case .like:
+            let likeAction = ApiLikeAction()
+            likeAction.likeCount = self.likeData() ?? 0
+            apiAction = likeAction
+            break
+            
+        case .view:
+            let viewAction = ApiViewAction()
+            let data = self.viewData()
+            viewAction.viewCount = data?.viewCount ?? 0
+            viewAction.viewTimeSec = data?.viewTimeSec ?? 0
+            apiAction = viewAction
+            break
+            
+        case .block:
+            let blockAction = ApiBlockAction()
+            blockAction.blockReasonNum = self.blockData() ?? 0
+            apiAction = blockAction
+            break
+            
+        case .unlike:
+            apiAction = ApiUnlikeAction()
+            
+        case .message:
+            let messageAction = ApiMessageAction()
+            messageAction.text = self.messageData() ?? ""
+            apiAction = messageAction
+            break
+            
+        case .openChat:
+            let openChatAction = ApiOpenChatAction()
+            let data = self.openChatData()
+            openChatAction.openChatCount = data?.openChatCount ?? 0
+            openChatAction.openChatTimeSec = data?.openChatTimeSec ?? 0
+            apiAction = openChatAction
+            break
+        }
+
+        apiAction?.sourceFeed = self.sourceFeed
+        apiAction?.actionType = self.type
+        apiAction?.targetPhotoId = self.targetPhotoId
+        apiAction?.targetUserId = self.targetUserId
+        apiAction?.actionTime = Int(self.actionTime.timeIntervalSince1970)
+        
+        return apiAction
     }
 }

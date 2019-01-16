@@ -68,6 +68,13 @@
 		57B863D921EE18ED00B9CC70 /* DiagonalGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D821EE18ED00B9CC70 /* DiagonalGradientView.swift */; };
 		57B863EB21EE33D200B9CC70 /* ActionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863EA21EE33D200B9CC70 /* ActionsManager.swift */; };
 		57B863ED21EF448100B9CC70 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863EC21EF448100B9CC70 /* Action.swift */; };
+		57B863F021EF5A0000B9CC70 /* ApiAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863EF21EF5A0000B9CC70 /* ApiAction.swift */; };
+		57B863F221EF5AFB00B9CC70 /* ApiLikeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F121EF5AFB00B9CC70 /* ApiLikeAction.swift */; };
+		57B863F421EF5BCD00B9CC70 /* ApiViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F321EF5BCD00B9CC70 /* ApiViewAction.swift */; };
+		57B863F621EF5C4900B9CC70 /* ApiBlockAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F521EF5C4900B9CC70 /* ApiBlockAction.swift */; };
+		57B863F821EF5CF100B9CC70 /* ApiUnlikeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F721EF5CF100B9CC70 /* ApiUnlikeAction.swift */; };
+		57B863FA21EF5D2A00B9CC70 /* ApiMessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F921EF5D2A00B9CC70 /* ApiMessageAction.swift */; };
+		57B863FC21EF5DDF00B9CC70 /* ApiOpenChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863FB21EF5DDF00B9CC70 /* ApiOpenChat.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
 		57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC321E61BE400AAA29D /* MainViewController.swift */; };
 		57FB7BC821E629BE00AAA29D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */; };
@@ -142,6 +149,13 @@
 		57B863D821EE18ED00B9CC70 /* DiagonalGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagonalGradientView.swift; sourceTree = "<group>"; };
 		57B863EA21EE33D200B9CC70 /* ActionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsManager.swift; sourceTree = "<group>"; };
 		57B863EC21EF448100B9CC70 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		57B863EF21EF5A0000B9CC70 /* ApiAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiAction.swift; sourceTree = "<group>"; };
+		57B863F121EF5AFB00B9CC70 /* ApiLikeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLikeAction.swift; sourceTree = "<group>"; };
+		57B863F321EF5BCD00B9CC70 /* ApiViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiViewAction.swift; sourceTree = "<group>"; };
+		57B863F521EF5C4900B9CC70 /* ApiBlockAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiBlockAction.swift; sourceTree = "<group>"; };
+		57B863F721EF5CF100B9CC70 /* ApiUnlikeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUnlikeAction.swift; sourceTree = "<group>"; };
+		57B863F921EF5D2A00B9CC70 /* ApiMessageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMessageAction.swift; sourceTree = "<group>"; };
+		57B863FB21EF5DDF00B9CC70 /* ApiOpenChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiOpenChat.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		57FB7BC321E61BE400AAA29D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +266,7 @@
 		570D049521DCF1E700E0DCFB /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				57B863EE21EF59DF00B9CC70 /* Actions */,
 				570D04C221DFA4EF00E0DCFB /* ApiUserPhoto.swift */,
 				57585D3921E3499E00038798 /* ApiPhoto.swift */,
 				57585D3B21E34AFC00038798 /* ApiProfile.swift */,
@@ -494,6 +509,20 @@
 			path = Actions;
 			sourceTree = "<group>";
 		};
+		57B863EE21EF59DF00B9CC70 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				57B863EF21EF5A0000B9CC70 /* ApiAction.swift */,
+				57B863F121EF5AFB00B9CC70 /* ApiLikeAction.swift */,
+				57B863F321EF5BCD00B9CC70 /* ApiViewAction.swift */,
+				57B863F521EF5C4900B9CC70 /* ApiBlockAction.swift */,
+				57B863F721EF5CF100B9CC70 /* ApiUnlikeAction.swift */,
+				57B863F921EF5D2A00B9CC70 /* ApiMessageAction.swift */,
+				57B863FB21EF5DDF00B9CC70 /* ApiOpenChat.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
 		57FB7BC221E61BC700AAA29D /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -664,8 +693,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				570D04AD21DDD2A900E0DCFB /* RootViewController.swift in Sources */,
+				57B863F421EF5BCD00B9CC70 /* ApiViewAction.swift in Sources */,
 				570D04C121DF4E1F00E0DCFB /* Alerts.swift in Sources */,
 				57FB7BCE21E74A3700AAA29D /* NewFaceProfileViewController.swift in Sources */,
+				57B863F821EF5CF100B9CC70 /* ApiUnlikeAction.swift in Sources */,
 				57FB7BC821E629BE00AAA29D /* ContainerViewController.swift in Sources */,
 				57FB7BD521E7661200AAA29D /* NewFacePhotoViewController.swift in Sources */,
 				57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */,
@@ -689,12 +720,16 @@
 				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
 				57585D7021E500FD00038798 /* ThemeManager.swift in Sources */,
+				57B863FA21EF5D2A00B9CC70 /* ApiMessageAction.swift in Sources */,
 				570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
 				57585D4C21E388EC00038798 /* UserProfilePhotosViewController.swift in Sources */,
 				57B863D121EDB16300B9CC70 /* MainLMMProfileViewController.swift in Sources */,
+				57B863F221EF5AFB00B9CC70 /* ApiLikeAction.swift in Sources */,
+				57B863F021EF5A0000B9CC70 /* ApiAction.swift in Sources */,
 				57B863D921EE18ED00B9CC70 /* DiagonalGradientView.swift in Sources */,
 				57585D5921E4928600038798 /* FileServiceDefault.swift in Sources */,
+				57B863F621EF5C4900B9CC70 /* ApiBlockAction.swift in Sources */,
 				57585D6421E4C73600038798 /* NewFacesViewModel.swift in Sources */,
 				57585D3C21E34AFC00038798 /* ApiProfile.swift in Sources */,
 				570D04C621DFBD5A00E0DCFB /* DBService.swift in Sources */,
@@ -705,6 +740,7 @@
 				57FB7BCC21E73D3C00AAA29D /* ContainerView.swift in Sources */,
 				57585D4421E3558800038798 /* Photo.swift in Sources */,
 				57B863CF21ECD98F00B9CC70 /* MainLMMCell.swift in Sources */,
+				57B863FC21EF5DDF00B9CC70 /* ApiOpenChat.swift in Sources */,
 				57585D5B21E4A0F100038798 /* FilePath.swift in Sources */,
 				57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */,
 				57585D6A21E4FF2400038798 /* Colors.swift in Sources */,
