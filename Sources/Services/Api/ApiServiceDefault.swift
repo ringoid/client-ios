@@ -75,11 +75,11 @@ class ApiServiceDefault: ApiService
     }
     
     // MARK: - Feeds
-    func getLMM(_ resolution: PhotoResolution, lastActionDate: Date) -> Observable<ApiLMMResult>
+    func getLMM(_ resolution: PhotoResolution, lastActionDate: Date?) -> Observable<ApiLMMResult>
     {
         var params: [String: Any] = [
             "resolution": resolution.rawValue,
-            "lastActionTime": 0//Int(lastActionDate.timeIntervalSince1970)
+            "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970)
         ]
         
         if let accessToken = self.accessToken {
@@ -121,11 +121,11 @@ class ApiServiceDefault: ApiService
         }
     }
     
-    func getNewFaces(_ resolution: PhotoResolution, lastActionDate: Date) -> Observable<[ApiProfile]>
+    func getNewFaces(_ resolution: PhotoResolution, lastActionDate: Date?) -> Observable<[ApiProfile]>
     {
         var params: [String: Any] = [
             "resolution": resolution.rawValue,
-            "lastActionTime": 0,//Int(lastActionDate.timeIntervalSince1970),
+            "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970),
             "limit": 20
         ]
         
@@ -186,7 +186,7 @@ class ApiServiceDefault: ApiService
     
     // MARK: - Actions
     
-    func sendActions(_ actions: [ApiAction]) -> Observable<Void>
+    func sendActions(_ actions: [ApiAction]) -> Observable<Date>
     {
         var params: [String: Any] = [
             "actions": actions.map({ $0.json() })
@@ -196,7 +196,7 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.request(.post, path: "actions/actions", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<Void> in
+        return self.request(.post, path: "actions/actions", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<Date> in
             var jsonDict: [String: Any]? = nil
             
             do {
@@ -205,7 +205,15 @@ class ApiServiceDefault: ApiService
                 return .error(error)
             }
             
-            return .just(())
+            guard let lastActionTime = jsonDict?["lastActionTime"] as? Int else {
+                let error = createError("ApiService: no lastActionTime field provided", code: 7)
+                
+                return .error(error)
+            }
+            
+            let date = Date(timeIntervalSince1970: TimeInterval(lastActionTime))
+            
+            return .just(date)
         }
     }
     

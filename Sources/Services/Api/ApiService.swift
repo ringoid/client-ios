@@ -17,11 +17,11 @@ protocol ApiService
     
     func createProfile(year: Int, sex: Sex) -> Observable<Void>
     
-    func getNewFaces(_ resolution: PhotoResolution, lastActionDate: Date) -> Observable<[ApiProfile]>
+    func getNewFaces(_ resolution: PhotoResolution, lastActionDate: Date?) -> Observable<[ApiProfile]>
     
-    func getLMM(_ resolution: PhotoResolution, lastActionDate: Date) -> Observable<ApiLMMResult>
+    func getLMM(_ resolution: PhotoResolution, lastActionDate: Date?) -> Observable<ApiLMMResult>
     
     func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhoto>
     
-    func sendActions(_ actions: [ApiAction]) -> Observable<Void>
+    func sendActions(_ actions: [ApiAction]) -> Observable<Date>
 }

@@ -20,9 +20,10 @@ enum FeedAction
 
 class ActionsManager
 {
-    let db: DBService
-    let apiService: ApiService
+    var lastActionDate: Date?
     
+    fileprivate let db: DBService
+    fileprivate let apiService: ApiService
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     init(_ db: DBService, api: ApiService)
@@ -83,9 +84,10 @@ class ActionsManager
             guard let `self` = self else { return }
             
             self.apiService.sendActions(actions.compactMap({ $0.apiAction() }))
-                .subscribe(onNext: { [weak self] in
+                .subscribe(onNext: { [weak self] date in
                     guard let `self` = self else { return }
                     
+                    self.lastActionDate = date
                     self.db.delete(actions).subscribe().disposed(by: self.disposeBag)
                 }).disposed(by: self.disposeBag)
             

@@ -42,8 +42,8 @@ class AppManager
     {
         self.actionsManager = ActionsManager(self.db, api: self.apiService)
         self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader)
-        self.newFacesManager = NewFacesManager(self.db, api: self.apiService)
-        self.lmmManager = LMMManager(self.db, api: self.apiService)
+        self.newFacesManager = NewFacesManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
+        self.lmmManager = LMMManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
         
         ThemeManager.shared.storageService = self.defaultStorage
     }
