@@ -49,8 +49,10 @@ class NewFacesViewController: ThemeViewController
     fileprivate func setupBindings()
     {
         self.viewModel = NewFacesViewModel(self.input)
-        self.viewModel?.profiles.bind(to: self.tableView.rx.items(cellIdentifier: "new_faces_cell", cellType: NewFacesCell.self)) { (_, profile, cell) in
-            let profileVC = NewFaceProfileViewController.create(profile)
+        self.viewModel?.profiles.bind(to: self.tableView.rx.items(cellIdentifier: "new_faces_cell", cellType: NewFacesCell.self)) { [weak self] (_, profile, cell) in
+            guard let `self` = self else { return }
+            
+            let profileVC = NewFaceProfileViewController.create(profile, actionsManager: self.input.actionsManager)
             cell.containerView.embed(profileVC, to: self)
         }.disposed(by: self.disposeBag)
     }

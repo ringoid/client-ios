@@ -15,6 +15,7 @@ class AppManager
     var defaultStorage: XStorageService!
     var db: DBService!
     
+    var actionsManager: ActionsManager!
     var profileManager: UserProfileManager!
     var newFacesManager: NewFacesManager!
     var lmmManager: LMMManager!
@@ -39,6 +40,7 @@ class AppManager
     
     fileprivate func setupManagers()
     {
+        self.actionsManager = ActionsManager(self.db, api: self.apiService)
         self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader)
         self.newFacesManager = NewFacesManager(self.db, api: self.apiService)
         self.lmmManager = LMMManager(self.db, api: self.apiService)

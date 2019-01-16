@@ -104,7 +104,7 @@ class MainViewController: ThemeViewController
     {
         let storyboard = UIStoryboard(name: "NewFaces", bundle: nil)
         guard let vc = storyboard.instantiateInitialViewController() as? NewFacesViewController else { return }
-        vc.input = NewFacesVMInput(newFacesManager: self.input.newFacesManager)
+        vc.input = NewFacesVMInput(newFacesManager: self.input.newFacesManager, actionsManager: self.input.actionsManager)
         
         self.containerVC.embed(vc)
     }

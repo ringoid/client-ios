@@ -79,7 +79,7 @@ class ApiServiceDefault: ApiService
     {
         var params: [String: Any] = [
             "resolution": resolution.rawValue,
-            "lastActionTime": Int(lastActionDate.timeIntervalSince1970)
+            "lastActionTime": 0//Int(lastActionDate.timeIntervalSince1970)
         ]
         
         if let accessToken = self.accessToken {
@@ -121,10 +121,11 @@ class ApiServiceDefault: ApiService
         }
     }
     
-    func getNewFaces(_ resolution: PhotoResolution) -> Observable<[ApiProfile]>
+    func getNewFaces(_ resolution: PhotoResolution, lastActionDate: Date) -> Observable<[ApiProfile]>
     {
         var params: [String: Any] = [
             "resolution": resolution.rawValue,
+            "lastActionTime": 0,//Int(lastActionDate.timeIntervalSince1970),
             "limit": 20
         ]
         

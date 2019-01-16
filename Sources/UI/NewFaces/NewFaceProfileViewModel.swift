@@ -11,6 +11,7 @@ import Foundation
 struct NewFaceProfileVMInput
 {
     let profile: NewFaceProfile
+    let actionsManager: ActionsManager
 }
 
 class NewFaceProfileViewModel

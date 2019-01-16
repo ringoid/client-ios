@@ -15,6 +15,7 @@ class NewFacesManager
     let apiService: ApiService
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var lastActionDate: Date?
     
     var profiles: BehaviorRelay<[NewFaceProfile]> = BehaviorRelay<[NewFaceProfile]>(value: [])
     
@@ -28,7 +29,10 @@ class NewFacesManager
     
     func refresh() -> Observable<Void>
     {
-        return self.apiService.getNewFaces(.small).flatMap({ [weak self] profiles -> Observable<Void> in
+        let date = self.lastActionDate ?? Date()
+        self.lastActionDate = Date()
+        
+        return self.apiService.getNewFaces(.small, lastActionDate: date).flatMap({ [weak self] profiles -> Observable<Void> in
             
             let localProfiles = profiles.map({ profile -> NewFaceProfile in
                 let localPhotos = profile.photos.map({ photo -> Photo in

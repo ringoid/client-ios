@@ -13,6 +13,7 @@ import RxCocoa
 struct NewFacesVMInput
 {
     let newFacesManager: NewFacesManager
+    let actionsManager: ActionsManager
 }
 
 class NewFacesViewModel

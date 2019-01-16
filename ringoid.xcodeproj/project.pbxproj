@@ -66,14 +66,8 @@
 		57B863D521EE16E700B9CC70 /* VerticalGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D421EE16E700B9CC70 /* VerticalGradientView.swift */; };
 		57B863D721EE179F00B9CC70 /* TouchThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D621EE179F00B9CC70 /* TouchThroughView.swift */; };
 		57B863D921EE18ED00B9CC70 /* DiagonalGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D821EE18ED00B9CC70 /* DiagonalGradientView.swift */; };
-		57B863DC21EE28F400B9CC70 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863DB21EE28F400B9CC70 /* Action.swift */; };
-		57B863DE21EE2E9500B9CC70 /* LikeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863DD21EE2E9500B9CC70 /* LikeAction.swift */; };
-		57B863E021EE306D00B9CC70 /* ViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863DF21EE306D00B9CC70 /* ViewAction.swift */; };
-		57B863E221EE30AC00B9CC70 /* BlockAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863E121EE30AC00B9CC70 /* BlockAction.swift */; };
-		57B863E421EE30E300B9CC70 /* UnlikeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863E321EE30E300B9CC70 /* UnlikeAction.swift */; };
-		57B863E621EE312800B9CC70 /* MessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863E521EE312800B9CC70 /* MessageAction.swift */; };
-		57B863E821EE315F00B9CC70 /* OpenChatAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863E721EE315F00B9CC70 /* OpenChatAction.swift */; };
 		57B863EB21EE33D200B9CC70 /* ActionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863EA21EE33D200B9CC70 /* ActionsManager.swift */; };
+		57B863ED21EF448100B9CC70 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863EC21EF448100B9CC70 /* Action.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
 		57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC321E61BE400AAA29D /* MainViewController.swift */; };
 		57FB7BC821E629BE00AAA29D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */; };
@@ -146,14 +140,8 @@
 		57B863D421EE16E700B9CC70 /* VerticalGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalGradientView.swift; sourceTree = "<group>"; };
 		57B863D621EE179F00B9CC70 /* TouchThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchThroughView.swift; sourceTree = "<group>"; };
 		57B863D821EE18ED00B9CC70 /* DiagonalGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagonalGradientView.swift; sourceTree = "<group>"; };
-		57B863DB21EE28F400B9CC70 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
-		57B863DD21EE2E9500B9CC70 /* LikeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeAction.swift; sourceTree = "<group>"; };
-		57B863DF21EE306D00B9CC70 /* ViewAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAction.swift; sourceTree = "<group>"; };
-		57B863E121EE30AC00B9CC70 /* BlockAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockAction.swift; sourceTree = "<group>"; };
-		57B863E321EE30E300B9CC70 /* UnlikeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlikeAction.swift; sourceTree = "<group>"; };
-		57B863E521EE312800B9CC70 /* MessageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAction.swift; sourceTree = "<group>"; };
-		57B863E721EE315F00B9CC70 /* OpenChatAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenChatAction.swift; sourceTree = "<group>"; };
 		57B863EA21EE33D200B9CC70 /* ActionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsManager.swift; sourceTree = "<group>"; };
+		57B863EC21EF448100B9CC70 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		57FB7BC321E61BE400AAA29D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -393,7 +381,7 @@
 		57585D4021E3553F00038798 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				57B863DA21EE28A000B9CC70 /* Actions */,
+				57B863EC21EF448100B9CC70 /* Action.swift */,
 				57585D4121E3555E00038798 /* Profile.swift */,
 				57585D4321E3558800038798 /* Photo.swift */,
 				57585D4521E3570B00038798 /* NewFaceProfile.swift */,
@@ -496,20 +484,6 @@
 				57B863CE21ECD98F00B9CC70 /* MainLMMCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		57B863DA21EE28A000B9CC70 /* Actions */ = {
-			isa = PBXGroup;
-			children = (
-				57B863DB21EE28F400B9CC70 /* Action.swift */,
-				57B863DD21EE2E9500B9CC70 /* LikeAction.swift */,
-				57B863DF21EE306D00B9CC70 /* ViewAction.swift */,
-				57B863E121EE30AC00B9CC70 /* BlockAction.swift */,
-				57B863E321EE30E300B9CC70 /* UnlikeAction.swift */,
-				57B863E521EE312800B9CC70 /* MessageAction.swift */,
-				57B863E721EE315F00B9CC70 /* OpenChatAction.swift */,
-			);
-			path = Actions;
 			sourceTree = "<group>";
 		};
 		57B863E921EE339C00B9CC70 /* Actions */ = {
@@ -695,15 +669,14 @@
 				57FB7BC821E629BE00AAA29D /* ContainerViewController.swift in Sources */,
 				57FB7BD521E7661200AAA29D /* NewFacePhotoViewController.swift in Sources */,
 				57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */,
-				57B863E621EE312800B9CC70 /* MessageAction.swift in Sources */,
 				57585D5E21E4BF1B00038798 /* UploaderService.swift in Sources */,
 				57B863C221ECB94800B9CC70 /* Message.swift in Sources */,
+				57B863ED21EF448100B9CC70 /* Action.swift in Sources */,
 				57B863D321EDB18600B9CC70 /* MainLMMProfileViewModel.swift in Sources */,
 				57FB7BD321E74C3E00AAA29D /* Storyboards.swift in Sources */,
 				57585D3F21E354FA00038798 /* NewFacesManager.swift in Sources */,
 				57B863D521EE16E700B9CC70 /* VerticalGradientView.swift in Sources */,
 				57B863D721EE179F00B9CC70 /* TouchThroughView.swift in Sources */,
-				57B863DC21EE28F400B9CC70 /* Action.swift in Sources */,
 				57585D5421E48E3700038798 /* Image.swift in Sources */,
 				570D04B221DDE4E200E0DCFB /* UserProfileManager.swift in Sources */,
 				57585D4E21E3897800038798 /* UserPhoto.swift in Sources */,
@@ -714,9 +687,7 @@
 				57FB7BD021E74AAC00AAA29D /* NewFaceProfileViewModel.swift in Sources */,
 				57B863C021ECB93200B9CC70 /* LMMProfile.swift in Sources */,
 				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
-				57B863E221EE30AC00B9CC70 /* BlockAction.swift in Sources */,
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
-				57B863DE21EE2E9500B9CC70 /* LikeAction.swift in Sources */,
 				57585D7021E500FD00038798 /* ThemeManager.swift in Sources */,
 				570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
@@ -741,14 +712,11 @@
 				57B863C521ECC34C00B9CC70 /* LMMManager.swift in Sources */,
 				57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */,
 				57585D5721E4925600038798 /* FileService.swift in Sources */,
-				57B863E421EE30E300B9CC70 /* UnlikeAction.swift in Sources */,
 				570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */,
 				57B863CA21ECD1DC00B9CC70 /* MainLMMViewModel.swift in Sources */,
 				57585D7221E5055D00038798 /* ThemeViewController.swift in Sources */,
 				570D04C321DFA4EF00E0DCFB /* ApiUserPhoto.swift in Sources */,
-				57B863E021EE306D00B9CC70 /* ViewAction.swift in Sources */,
 				57B863BE21EC758200B9CC70 /* ApiMessage.swift in Sources */,
-				57B863E821EE315F00B9CC70 /* OpenChatAction.swift in Sources */,
 				57585D5221E4808500038798 /* UserProfilePhotosViewModel.swift in Sources */,
 				57585D4221E3555E00038798 /* Profile.swift in Sources */,
 				57B863C821ECD17B00B9CC70 /* MainLMMViewController.swift in Sources */,

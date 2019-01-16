@@ -52,6 +52,7 @@ class RootViewController: ThemeViewController {
         
         if segue.identifier == SegueIds.main, let vc = segue.destination as? MainViewController {
             vc.input = MainVMInput(
+                actionsManager: self.appManager.actionsManager,
                 newFacesManager: self.appManager.newFacesManager,
                 lmmManager: self.appManager.lmmManager
             )
@@ -63,11 +64,9 @@ class RootViewController: ThemeViewController {
     fileprivate func move(to: AppUIMode)
     {
         guard to != self.mode else { return }
-        
-        defer {
-            self.mode = to
-        }
-        
+
+        self.mode = to
+
         var segueId = ""
         
         switch to {

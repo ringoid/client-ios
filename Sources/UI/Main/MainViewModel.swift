@@ -10,6 +10,7 @@ import Foundation
 
 struct MainVMInput
 {
+    let actionsManager: ActionsManager
     let newFacesManager: NewFacesManager
     let lmmManager: LMMManager
 }

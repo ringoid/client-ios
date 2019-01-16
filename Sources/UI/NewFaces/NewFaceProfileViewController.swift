@@ -14,15 +14,16 @@ class NewFaceProfileViewController: UIViewController
     
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
+    fileprivate var currentIndex: Int = 0
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     
-    static func create(_ profile: NewFaceProfile) -> NewFaceProfileViewController
+    static func create(_ profile: NewFaceProfile, actionsManager: ActionsManager) -> NewFaceProfileViewController
     {
         let storyboard = Storyboards.newFaces()
         
         let vc = storyboard.instantiateViewController(withIdentifier: "new_face_profile") as! NewFaceProfileViewController
-        vc.input = NewFaceProfileVMInput(profile: profile)
+        vc.input = NewFaceProfileVMInput(profile: profile, actionsManager: actionsManager)
         
         return vc
     }
@@ -53,6 +54,16 @@ class NewFaceProfileViewController: UIViewController
             self.pagesVC?.dataSource = self
         }
     }
+    
+    // MARK: - Actions
+    
+    @IBAction func onLike()
+    {
+        self.input.actionsManager.add(.like(likeCount: 1),
+                                      profile: self.input.profile,
+                                      photo: self.input.profile.photos[self.currentIndex],
+                                      source: .newFaces)
+    }
 }
 
 extension NewFaceProfileViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource
@@ -82,6 +93,7 @@ extension NewFaceProfileViewController: UIPageViewControllerDelegate, UIPageView
         guard finished, completed else { return }
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
+        self.currentIndex = index
         self.pageControl.currentPage = index
     }
 }
