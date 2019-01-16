@@ -33,11 +33,10 @@ class LMMManager
     
     func refresh() -> Observable<Void>
     {
-        if self.lastActionDate == nil {
-            self.lastActionDate = Date()
-        }
+        let date = self.lastActionDate ?? Date()
+        self.lastActionDate = Date()
         
-        return self.apiService.getLMM(.small, lastActionDate: self.lastActionDate!).flatMap({ [weak self] result -> Observable<Void> in
+        return self.apiService.getLMM(.small, lastActionDate: date).flatMap({ [weak self] result -> Observable<Void> in
             
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)
             let matches = createProfiles(result.matches, type: .matches)
