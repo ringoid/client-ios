@@ -25,6 +25,8 @@ class NewFacesViewController: ThemeViewController
         
         super.viewDidLoad()
         
+        self.tableView.tableHeaderView = nil
+        
         self.setupBindings()
         self.setupReloader()
     }

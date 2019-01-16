@@ -19,17 +19,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFd-I1-dCK">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
                                     <segue destination="hP9-lJ-Ep8" kind="embed" identifier="embed_container" id="mtd-Aw-7vH"/>
                                 </connections>
                             </containerView>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8b-9J-Vw4" userLabel="BottomBarView" customClass="VerticalGradientView" customModule="ringoid" customModuleProvider="target">
+                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8b-9J-Vw4" userLabel="BottomBarView" customClass="VerticalGradientView" customModule="ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="595" width="375" height="72"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" white="0.0" alpha="0.74609375" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="topColor">
                                         <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -95,9 +95,9 @@
                             <constraint firstAttribute="bottom" secondItem="E8b-9J-Vw4" secondAttribute="bottom" id="U9q-bB-TTW"/>
                             <constraint firstItem="ZFd-I1-dCK" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="ZhW-CE-RaR"/>
                             <constraint firstAttribute="trailing" secondItem="E8b-9J-Vw4" secondAttribute="trailing" id="hcZ-sj-eTO"/>
-                            <constraint firstItem="ZFd-I1-dCK" firstAttribute="top" secondItem="PZo-jV-0xV" secondAttribute="top" id="iua-RK-ta1"/>
                             <constraint firstItem="PZo-jV-0xV" firstAttribute="bottom" secondItem="E8b-9J-Vw4" secondAttribute="top" constant="72" id="jS5-2i-i9y"/>
                             <constraint firstAttribute="trailing" secondItem="QYd-HC-afs" secondAttribute="trailing" constant="40" id="uDB-st-wc8"/>
+                            <constraint firstItem="ZFd-I1-dCK" firstAttribute="top" secondItem="GM2-8q-nY9" secondAttribute="top" id="yMd-wt-oZo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PZo-jV-0xV"/>
                     </view>
@@ -117,7 +117,7 @@
             <objects>
                 <viewController id="hP9-lJ-Ep8" customClass="ContainerViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Kp-VL-Qge">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="O9P-Hg-jvP"/>
