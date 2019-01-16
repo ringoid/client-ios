@@ -79,7 +79,7 @@ class ApiServiceDefault: ApiService
     {
         var params: [String: Any] = [
             "resolution": resolution.rawValue,
-            "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970)
+            "lastActionTime": 0//lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970)
         ]
         
         if let accessToken = self.accessToken {

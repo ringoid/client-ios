@@ -33,7 +33,11 @@ class UserProfileManager
         return self.apiService.getPresignedImageUrl(path.filename, fileExtension: "jpg").flatMap({ apiPhoto -> Observable<Void> in
             
             if let url = URL(string: apiPhoto.url) {
-                _ = self.uploader.upload(path.url(), to: url)
+                self.uploader.upload(path.url(), to: url).subscribe(onNext: {
+                    print("Photo successfuly uploaded")
+                }, onError: { error in
+                    print("ERROR: \(error)")
+                }).disposed(by: self.disposeBag)
             }
             
             let photo = UserPhoto()
