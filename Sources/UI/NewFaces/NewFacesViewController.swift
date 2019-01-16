@@ -26,6 +26,7 @@ class NewFacesViewController: ThemeViewController
         super.viewDidLoad()
         
         self.tableView.tableHeaderView = nil
+        self.tableView.rowHeight = UIScreen.main.bounds.height * 3.0 / 4.0
         
         self.setupBindings()
         self.setupReloader()
