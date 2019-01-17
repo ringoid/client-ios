@@ -9,16 +9,30 @@
 
 import RxSwift
 import RxAlamofire
+import Alamofire
 
 class UploaderServiceDefault: UploaderService
 {
-    func upload(_ from: URL, to: URL) -> Observable<Void>
+    fileprivate let disposeBag = DisposeBag()
+    
+    func upload(_ data: Data, to: URL) -> Observable<Void>
     {
-        let request = URLRequest(url: to)
-        
-        return RxAlamofire.upload(from, urlRequest: request).map({_ -> Void in return () })
-        //return RxAlamofire.upload(from, urlRequest: request).subscribe(onError: { error in
-        //    print("Image uploading error: \(error)")
-        //}).
+        return Observable<Void>.create({ [weak self] observer -> Disposable in
+            Alamofire.upload(data, to: to, method: .put, headers: nil).responseData { response in
+                defer {
+                    observer.onCompleted()
+                }
+                
+                if let error = response.error {
+                    observer.onError(error)
+                    
+                    return
+                }
+                
+                observer.onNext(())
+            }
+
+            return Disposables.create()
+        })
     }
 }

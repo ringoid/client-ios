@@ -31,12 +31,12 @@ class UserProfileManager
         }).disposed(by: self.disposeBag)
     }
     
-    func addPhoto(_ path: FilePath) -> Observable<Void>
+    func addPhoto(_ data: Data, filename: String) -> Observable<Void>
     {
-        return self.apiService.getPresignedImageUrl(path.filename, fileExtension: "jpg").flatMap({ apiPhoto -> Observable<Void> in
+        return self.apiService.getPresignedImageUrl(filename, fileExtension: "jpg").flatMap({ apiPhoto -> Observable<Void> in
             
             if let url = URL(string: apiPhoto.url) {
-                self.uploader.upload(path.url(), to: url).subscribe(onNext: {
+                self.uploader.upload(data, to: url).subscribe(onNext: {
                     print("Photo successfuly uploaded")
                 }, onError: { error in
                     print("ERROR: \(error)")
@@ -45,7 +45,7 @@ class UserProfileManager
             
             let photo = UserPhoto()
             photo.id = apiPhoto.originId
-            photo.url = path.url().absoluteString
+            photo.url = apiPhoto.url
             return self.db.add(photo)
         })
     }

@@ -30,14 +30,12 @@ class UserProfilePhotosViewModel
     
     func add(_ photo: UIImage) -> Observable<Void>
     {
-        guard let data = photo.jpegData(compressionQuality: 1.0) else {
+        guard let data = photo.jpegData(compressionQuality: 0.9) else {
             let error = createError("Can not convert photo to jpeg format", code: 0)
             
             return .error(error)
         }
         
-        let path = FilePath.unique(.documents)
-        try? data.write(to: path.url())
-        return self.input.profileManager.addPhoto(path)
+        return self.input.profileManager.addPhoto(data, filename: UUID().uuidString)
     }
 }
