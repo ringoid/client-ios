@@ -217,6 +217,38 @@ class ApiServiceDefault: ApiService
         }
     }
     
+    // MARK: - User profile
+    
+    func getUserOwnPhotos(_ resolution: PhotoResolution) -> Observable<[ApiPhoto]>
+    {
+        var params: [String: Any] = [
+            "resolution": resolution.rawValue
+        ]
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        return self.requestGET(path: "image/get_own_photos", params: params).json().flatMap { [weak self] jsonObj -> Observable<[ApiPhoto]> in
+            var jsonDict: [String: Any]? = nil
+            
+            do {
+                jsonDict = try self?.validateJsonResponse(jsonObj)
+            } catch {
+                return .error(error)
+            }
+            
+            guard let photosArray = jsonDict?["photos"] as? [[String: Any]] else {
+                let error = createError("ApiService: wrong photos data format", code: 9)
+                
+                return .error(error)
+            }
+            
+            return .just(photosArray.compactMap({ ApiPhoto.parse($0) }))
+        }
+    }
+    
+    
     // MARK: - Basic
     
     fileprivate func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any]) -> Observable<DataRequest>

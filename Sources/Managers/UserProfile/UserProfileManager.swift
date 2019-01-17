@@ -26,6 +26,9 @@ class UserProfileManager
         self.uploader = uploader
         
         self.db.fetchUserPhotos().bind(to: self.photos).disposed(by: self.disposeBag)
+        self.apiService.getUserOwnPhotos(.small).subscribe(onNext:{ photos in
+            print("Uploaded photos: \(photos.count)")
+        }).disposed(by: self.disposeBag)
     }
     
     func addPhoto(_ path: FilePath) -> Observable<Void>

@@ -24,4 +24,6 @@ protocol ApiService
     func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhoto>
     
     func sendActions(_ actions: [ApiAction]) -> Observable<Date>
+    
+    func getUserOwnPhotos(_ resolution: PhotoResolution) -> Observable<[ApiPhoto]>
 }
