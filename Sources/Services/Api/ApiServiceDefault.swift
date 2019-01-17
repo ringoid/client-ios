@@ -79,7 +79,7 @@ class ApiServiceDefault: ApiService
     {
         var params: [String: Any] = [
             "resolution": resolution.rawValue,
-            "lastActionTime": 0//lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970)
+            "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970 * 1000.0)
         ]
         
         if let accessToken = self.accessToken {
@@ -125,7 +125,7 @@ class ApiServiceDefault: ApiService
     {
         var params: [String: Any] = [
             "resolution": resolution.rawValue,
-            "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970),
+            "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970 * 1000.0),
             "limit": 20
         ]
         
@@ -211,7 +211,7 @@ class ApiServiceDefault: ApiService
                 return .error(error)
             }
             
-            let date = Date(timeIntervalSince1970: TimeInterval(lastActionTime))
+            let date = Date(timeIntervalSince1970: TimeInterval(lastActionTime) / 1000.0)
             
             return .just(date)
         }
