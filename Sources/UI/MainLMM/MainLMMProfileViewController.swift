@@ -19,8 +19,7 @@ class MainLMMProfileViewController: UIViewController
     
     static func create(_ profile: LMMProfile) -> MainLMMProfileViewController
     {
-        let storyboard = Storyboards.newFaces()
-        
+        let storyboard = Storyboards.mainLMM()
         let vc = storyboard.instantiateViewController(withIdentifier: "lmm_profile") as! MainLMMProfileViewController
         vc.input = MainLMMProfileVMInput(profile: profile)
         

@@ -75,7 +75,7 @@ extension Action
     {
         guard self.type == ActionType.view.rawValue else { return }
         
-        self.extraData = try? JSONSerialization.data(withJSONObject: ["viewCount": viewCount, "viewCount": viewCount])
+        self.extraData = try? JSONSerialization.data(withJSONObject: ["viewCount": viewCount, "viewTimeSec": viewCount])
     }
 }
 

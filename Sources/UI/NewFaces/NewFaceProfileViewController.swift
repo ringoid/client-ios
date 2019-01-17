@@ -59,7 +59,7 @@ class NewFaceProfileViewController: UIViewController
     
     @IBAction func onLike()
     {
-        self.input.actionsManager.add(.like(likeCount: 1),
+        self.input.actionsManager.add([.view(viewCount: 1, viewTimeSec: 1), .like(likeCount: 1)],
                                       profile: self.input.profile,
                                       photo: self.input.profile.photos[self.currentIndex],
                                       source: .newFaces)
