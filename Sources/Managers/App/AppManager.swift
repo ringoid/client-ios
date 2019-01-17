@@ -10,6 +10,7 @@ import UIKit
 
 class AppManager
 {
+    var fileService: FileService!
     var apiService: ApiService!
     var uploader: UploaderService!
     var defaultStorage: XStorageService!
@@ -30,6 +31,7 @@ class AppManager
     
     fileprivate func setupServices()
     {
+        self.fileService = FileServiceDefault()
         self.defaultStorage = DefaultStorageService()
         self.db = DBService()
         self.uploader = UploaderServiceDefault()

@@ -82,6 +82,7 @@ class ActionsManager
     {
         self.db.fetchActions().subscribe(onNext: { [weak self] actions in
             guard let `self` = self else { return }
+            guard !actions.isEmpty else { return }
             
             self.apiService.sendActions(actions.compactMap({ $0.apiAction() }))
                 .subscribe(onNext: { [weak self] date in

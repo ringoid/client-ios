@@ -16,19 +16,21 @@ class UserProfilePhotosViewController: ThemeViewController
     
     fileprivate var viewModel: UserProfilePhotosViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var pickerVC: UIViewController?
     
     override func viewDidLoad()
     {
         assert(input != nil)
         
         super.viewDidLoad()
+        
+        self.setupBindings()
     }
     
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
         
-        self.setupBindings()
         self.pickPhotoIfNeeded()
     }
     
@@ -53,6 +55,11 @@ class UserProfilePhotosViewController: ThemeViewController
     fileprivate func setupBindings()
     {
         self.viewModel = UserProfilePhotosViewModel(self.input)
+        self.viewModel?.photos.asObservable().subscribe(onNext:{ [weak self] photos in
+            guard photos.count != 0 else { return }
+            
+            self?.pickerVC?.dismiss(animated: true, completion: nil)
+        }).disposed(by: self.disposeBag)
     }
 }
 
@@ -60,9 +67,9 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
 {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
     {
-        defer {
-            picker.dismiss(animated: true, completion: nil)
-        }
+//        defer {
+//            picker.dismiss(animated: true, completion: nil)
+//        }
         
         guard let cropRect = info[.cropRect] as? CGRect, let image = info[.originalImage] as? UIImage else { return }
         guard let croppedImage = image.crop(rect: cropRect) else { return }

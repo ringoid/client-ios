@@ -8,7 +8,16 @@
 
 import Foundation
 
-class FileServiceDefault
+class FileServiceDefault: FileService
 {
+    fileprivate let fm = FileManager.default
     
+    init()
+    {
+        let documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/fileservice/"
+        if !fm.fileExists(atPath: documentsDirectoryPath)
+        {
+            try? fm.createDirectory(atPath: documentsDirectoryPath, withIntermediateDirectories: false, attributes: nil)
+        }
+    }
 }

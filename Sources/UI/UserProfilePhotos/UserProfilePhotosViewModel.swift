@@ -7,7 +7,7 @@
 //
 
 import RxSwift
-import UIKit
+import RxCocoa
 
 struct UserProfilePhotosVCInput
 {
@@ -17,6 +17,11 @@ struct UserProfilePhotosVCInput
 class UserProfilePhotosViewModel
 {
     let input: UserProfilePhotosVCInput
+    
+    var photos: BehaviorRelay<[UserPhoto]>
+    {
+        return self.input.profileManager.photos
+    }
     
     init(_ input: UserProfilePhotosVCInput)
     {

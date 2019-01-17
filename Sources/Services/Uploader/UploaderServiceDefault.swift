@@ -15,8 +15,10 @@ class UploaderServiceDefault: UploaderService
     func upload(_ from: URL, to: URL) -> Observable<Void>
     {
         let request = URLRequest(url: to)
-        return RxAlamofire.upload(from, urlRequest: request).flatMap { _ -> Observable<Void> in
-            return .just(())
-        }
+        
+        return RxAlamofire.upload(from, urlRequest: request).map({_ -> Void in return () })
+        //return RxAlamofire.upload(from, urlRequest: request).subscribe(onError: { error in
+        //    print("Image uploading error: \(error)")
+        //}).
     }
 }
