@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5Bt-Xu-MH5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7TG-Gv-7GI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,6 +10,65 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--MainLMM Container View Controller-->
+        <scene sceneID="z9F-BM-hJV">
+            <objects>
+                <viewController id="7TG-Gv-7GI" customClass="MainLMMContainerViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gwy-Hy-mww">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7W-C2-Y21">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <connections>
+                                    <segue destination="5Bt-Xu-MH5" kind="embed" identifier="embed_lmm" id="758-j3-FOe"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1R-St-pNy">
+                                <rect key="frame" x="102.5" y="29" width="75" height="33"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <state key="normal" title="Likes You">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onLikesYouSelected" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="7qb-H6-eax"/>
+                                    <action selector="onLikesYouSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="FNb-tC-1cH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6H-GQ-xYk">
+                                <rect key="frame" x="197.5" y="29" width="68" height="33"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <state key="normal" title="Matches">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onMatchesSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="ONu-bD-Af9"/>
+                                    <action selector="onMatchesSelected" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="VCa-MI-zar"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Y1R-St-pNy" firstAttribute="top" secondItem="TLI-oN-FKy" secondAttribute="top" constant="9" id="4Jm-zW-Cp6"/>
+                            <constraint firstItem="t6H-GQ-xYk" firstAttribute="leading" secondItem="Gwy-Hy-mww" secondAttribute="centerX" constant="10" id="4dn-Ay-dbg"/>
+                            <constraint firstItem="R7W-C2-Y21" firstAttribute="leading" secondItem="Gwy-Hy-mww" secondAttribute="leading" id="Tna-hD-fT4"/>
+                            <constraint firstItem="R7W-C2-Y21" firstAttribute="top" secondItem="Gwy-Hy-mww" secondAttribute="top" id="Z71-Cu-EnI"/>
+                            <constraint firstAttribute="bottom" secondItem="R7W-C2-Y21" secondAttribute="bottom" id="lka-iJ-3Tj"/>
+                            <constraint firstItem="t6H-GQ-xYk" firstAttribute="top" secondItem="TLI-oN-FKy" secondAttribute="top" constant="9" id="mKd-ik-rvU"/>
+                            <constraint firstItem="Y1R-St-pNy" firstAttribute="trailing" secondItem="Gwy-Hy-mww" secondAttribute="centerX" constant="-10" id="udj-Jf-xmw"/>
+                            <constraint firstAttribute="trailing" secondItem="R7W-C2-Y21" secondAttribute="trailing" id="vza-It-2es"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="TLI-oN-FKy"/>
+                    </view>
+                    <connections>
+                        <outlet property="likeYouBtn" destination="Y1R-St-pNy" id="Dtl-TH-ZOd"/>
+                        <outlet property="matchesBtn" destination="t6H-GQ-xYk" id="TUl-ED-bSc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6BI-HA-c0t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-687" y="107"/>
+        </scene>
         <!--MainLMM View Controller-->
         <scene sceneID="sja-MF-CcL">
             <objects>
@@ -49,36 +108,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1R-St-pNy">
-                                <rect key="frame" x="102.5" y="29" width="75" height="33"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <state key="normal" title="Likes You">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="onLikesYouSelected" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="7qb-H6-eax"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6H-GQ-xYk">
-                                <rect key="frame" x="197.5" y="29" width="68" height="33"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <state key="normal" title="Matches">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="onMatchesSelected" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="VCa-MI-zar"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="t6H-GQ-xYk" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="centerX" constant="10" id="1Ix-rW-hqY"/>
                             <constraint firstItem="kbx-tQ-FPO" firstAttribute="top" secondItem="aDZ-sn-yKR" secondAttribute="top" id="3Jo-e4-nRS"/>
                             <constraint firstAttribute="bottom" secondItem="kbx-tQ-FPO" secondAttribute="bottom" id="8jo-ly-7Yp"/>
-                            <constraint firstItem="t6H-GQ-xYk" firstAttribute="top" secondItem="DRO-WM-fEC" secondAttribute="top" constant="9" id="SNV-lA-Nug"/>
-                            <constraint firstItem="Y1R-St-pNy" firstAttribute="trailing" secondItem="aDZ-sn-yKR" secondAttribute="centerX" constant="-10" id="dqN-aT-8XE"/>
                             <constraint firstItem="kbx-tQ-FPO" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="leading" id="fH6-My-2G0"/>
-                            <constraint firstItem="Y1R-St-pNy" firstAttribute="top" secondItem="DRO-WM-fEC" secondAttribute="top" constant="9" id="qcL-tK-Qi5"/>
                             <constraint firstAttribute="trailing" secondItem="kbx-tQ-FPO" secondAttribute="trailing" id="wLB-ID-jOj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DRO-WM-fEC"/>

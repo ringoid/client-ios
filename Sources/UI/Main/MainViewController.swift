@@ -112,7 +112,7 @@ class MainViewController: ThemeViewController
     fileprivate func embedMainLMM()
     {
         let storyboard = UIStoryboard(name: "MainLMM", bundle: nil)
-        guard let vc = storyboard.instantiateInitialViewController() as? MainLMMViewController else { return }
+        guard let vc = storyboard.instantiateInitialViewController() as? MainLMMContainerViewController else { return }
         vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager)
         
         self.containerVC.embed(vc)

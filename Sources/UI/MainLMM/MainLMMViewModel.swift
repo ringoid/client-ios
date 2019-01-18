@@ -19,6 +19,7 @@ class MainLMMViewModel
     let lmmManager: LMMManager
     var likesYou: BehaviorRelay<[LMMProfile]> { return self.lmmManager.likesYou }
     var matches: BehaviorRelay<[LMMProfile]> { return self.lmmManager.matches }
+    var messages: BehaviorRelay<[LMMProfile]> { return self.lmmManager.messages }
     
     init(_ input: MainLMMVMInput)
     {
