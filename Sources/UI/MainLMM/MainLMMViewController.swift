@@ -20,13 +20,6 @@ class MainLMMViewController: ThemeViewController
 {
     var input: MainLMMVMInput!
     var type: BehaviorRelay<LMMType> = BehaviorRelay<LMMType>(value: .likesYou)
-//    {
-//        didSet {
-//            guard oldValue.value != type.value else { return }
-//
-//            self.toggle(type.value)
-//        }
-//    }
     
     fileprivate var viewModel: MainLMMViewModel?
     fileprivate var feedDisposeBag: DisposeBag = DisposeBag()
@@ -46,7 +39,6 @@ class MainLMMViewController: ThemeViewController
         
         self.setupBindings()
         self.setupReloader()
-        self.reload()
     }
     
     @objc func onReload()
@@ -59,8 +51,7 @@ class MainLMMViewController: ThemeViewController
     fileprivate func setupBindings()
     {
         self.viewModel = MainLMMViewModel(self.input)
-        //self.setupLikesYouBindings()
-        
+
         self.type.asObservable().subscribe(onNext:{ [weak self] type in
             self?.toggle(type)
         }).disposed(by: self.disposeBag)

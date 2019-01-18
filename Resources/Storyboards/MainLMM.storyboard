@@ -72,7 +72,7 @@
         <!--MainLMM View Controller-->
         <scene sceneID="sja-MF-CcL">
             <objects>
-                <viewController id="5Bt-Xu-MH5" customClass="MainLMMViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main_lmm_vc" id="5Bt-Xu-MH5" customClass="MainLMMViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aDZ-sn-yKR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

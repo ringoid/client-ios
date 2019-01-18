@@ -89,6 +89,7 @@ class MainViewController: ThemeViewController
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.messagesBtn.setImage(UIImage(named: "main_bar_messages_selected"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.embedMessages()
             break
             
         case .profile:
@@ -114,6 +115,16 @@ class MainViewController: ThemeViewController
         let storyboard = UIStoryboard(name: "MainLMM", bundle: nil)
         guard let vc = storyboard.instantiateInitialViewController() as? MainLMMContainerViewController else { return }
         vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager)
+        
+        self.containerVC.embed(vc)
+    }
+    
+    fileprivate func embedMessages()
+    {
+        let storyboard = UIStoryboard(name: "MainLMM", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "main_lmm_vc") as? MainLMMViewController else { return }
+        vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager)
+        vc.type.accept(.messages)
         
         self.containerVC.embed(vc)
     }
