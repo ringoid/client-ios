@@ -49,12 +49,36 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1R-St-pNy">
+                                <rect key="frame" x="102.5" y="29" width="75" height="33"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <state key="normal" title="Likes You">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onLikesYouSelected" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="7qb-H6-eax"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6H-GQ-xYk">
+                                <rect key="frame" x="197.5" y="29" width="68" height="33"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <state key="normal" title="Matches">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onMatchesSelected" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="VCa-MI-zar"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="t6H-GQ-xYk" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="centerX" constant="10" id="1Ix-rW-hqY"/>
                             <constraint firstItem="kbx-tQ-FPO" firstAttribute="top" secondItem="aDZ-sn-yKR" secondAttribute="top" id="3Jo-e4-nRS"/>
                             <constraint firstAttribute="bottom" secondItem="kbx-tQ-FPO" secondAttribute="bottom" id="8jo-ly-7Yp"/>
+                            <constraint firstItem="t6H-GQ-xYk" firstAttribute="top" secondItem="DRO-WM-fEC" secondAttribute="top" constant="9" id="SNV-lA-Nug"/>
+                            <constraint firstItem="Y1R-St-pNy" firstAttribute="trailing" secondItem="aDZ-sn-yKR" secondAttribute="centerX" constant="-10" id="dqN-aT-8XE"/>
                             <constraint firstItem="kbx-tQ-FPO" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="leading" id="fH6-My-2G0"/>
+                            <constraint firstItem="Y1R-St-pNy" firstAttribute="top" secondItem="DRO-WM-fEC" secondAttribute="top" constant="9" id="qcL-tK-Qi5"/>
                             <constraint firstAttribute="trailing" secondItem="kbx-tQ-FPO" secondAttribute="trailing" id="wLB-ID-jOj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DRO-WM-fEC"/>
@@ -139,7 +163,7 @@
         <!--Page View Controller-->
         <scene sceneID="e1K-ro-ncM">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="gqb-l2-0Wt" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="gqb-l2-0Wt" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="snq-x3-VTJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1740" y="115"/>

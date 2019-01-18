@@ -14,9 +14,10 @@ class MainLMMViewController: ThemeViewController
     var input: MainLMMVMInput!
     
     fileprivate var viewModel: MainLMMViewModel?
-    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var disposeBag: DisposeBag = DisposeBag()
     
     @IBOutlet fileprivate weak var tableView: UITableView!
+    fileprivate var refreshControl: UIRefreshControl!
     
     override func viewDidLoad()
     {
@@ -28,6 +29,7 @@ class MainLMMViewController: ThemeViewController
         self.tableView.rowHeight = UIScreen.main.bounds.height * 3.0 / 4.0
         
         self.setupBindings()
+        self.setupReloader()
         self.reload()
     }
     
@@ -38,9 +40,14 @@ class MainLMMViewController: ThemeViewController
         self.setupLikesYouBindings()
     }
     
-    @IBAction func onMatches()
+    @IBAction func onMatchesSelected()
     {
         self.setupMatchesBindings()
+    }
+    
+    @objc func onReload()
+    {
+        self.reload()
     }
     
     // MARK: -
@@ -53,6 +60,7 @@ class MainLMMViewController: ThemeViewController
     
     fileprivate func setupLikesYouBindings()
     {
+        self.disposeBag = DisposeBag()
         self.viewModel?.likesYou.bind(to: self.tableView.rx.items(cellIdentifier: "main_llm_cell", cellType: MainLMMCell.self)) { (_, profile, cell) in
             let profileVC = MainLMMProfileViewController.create(profile)
             cell.containerView.embed(profileVC, to: self)
@@ -61,10 +69,18 @@ class MainLMMViewController: ThemeViewController
     
     fileprivate func setupMatchesBindings()
     {
+        self.disposeBag = DisposeBag()
         self.viewModel?.matches.bind(to: self.tableView.rx.items(cellIdentifier: "main_llm_cell", cellType: MainLMMCell.self)) { (_, profile, cell) in
             let profileVC = MainLMMProfileViewController.create(profile)
             cell.containerView.embed(profileVC, to: self)
             }.disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func setupReloader()
+    {
+        self.refreshControl = UIRefreshControl()
+        self.tableView.addSubview(self.refreshControl)
+        self.refreshControl.addTarget(self, action: #selector(onReload), for: .valueChanged)
     }
     
     fileprivate func reload()
@@ -73,6 +89,8 @@ class MainLMMViewController: ThemeViewController
             guard let `self` = self else { return }
             
             showError(error, vc: self)
+            }, onCompleted:{ [weak self] in
+                self?.refreshControl.endRefreshing()
         }).disposed(by: self.disposeBag)
     }
 }
