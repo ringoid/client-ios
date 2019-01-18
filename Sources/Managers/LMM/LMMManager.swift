@@ -40,6 +40,8 @@ class LMMManager
             let matches = createProfiles(result.matches, type: .matches)
             let messages = createProfiles(result.messages, type: .messages)
             
+            self!.db.resetLMM().subscribe().disposed(by: self!.disposeBag)
+            
             return self!.db.add(localLikesYou + matches + messages)
         })       
     }

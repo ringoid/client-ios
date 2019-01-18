@@ -105,4 +105,18 @@ class DBService
             return Disposables.create()
         })
     }
+    
+    // MARK: - Resets
+    
+    func resetLMM() -> Observable<Void>
+    {
+        let profiles = self.realm.objects(LMMProfile.self)
+        return self.delete(Array(profiles))
+    }
+    
+    func resetNewFaces() -> Observable<Void>
+    {
+        let profiles = self.realm.objects(NewFaceProfile.self)
+        return self.delete(Array(profiles))
+    }
 }
