@@ -48,6 +48,9 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="m48-Io-6eu" id="3pU-qm-TBT"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -97,13 +100,6 @@
                                 </constraints>
                                 <state key="normal" image="feed_options"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knM-Af-lv3">
-                                <rect key="frame" x="319" y="139" width="36" height="33"/>
-                                <state key="normal" image="feed_like"/>
-                                <connections>
-                                    <action selector="onLike" destination="gBk-mi-2xQ" eventType="touchUpInside" id="nfL-wO-h5V"/>
-                                </connections>
-                            </button>
                             <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jC-bO-SnE" customClass="VerticalGradientView" customModule="ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -130,8 +126,6 @@
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
                             <constraint firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" id="hMK-Ge-ajI"/>
-                            <constraint firstItem="knM-Af-lv3" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="139" id="jVA-1H-iBy"/>
-                            <constraint firstItem="knM-Af-lv3" firstAttribute="centerX" secondItem="X1t-jW-NWk" secondAttribute="centerX" id="lH9-3o-VlL"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="ms1-Iv-Xza"/>
                             <constraint firstItem="BxI-1L-kXF" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="17" id="rJi-uN-WJL"/>
                             <constraint firstAttribute="trailing" secondItem="Jbu-JW-RgU" secondAttribute="trailing" id="x67-KR-aFy"/>
@@ -157,21 +151,44 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fil-jT-HLM">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="666"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_like" translatesAutoresizingMaskIntoConstraints="NO" id="YZg-Jn-Bp9">
+                                <rect key="frame" x="316" y="139" width="36" height="33"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4Q-m8-YTj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="fil-jT-HLM" firstAttribute="leading" secondItem="tGN-Za-agr" secondAttribute="leading" id="6Vm-Bo-Ge8"/>
+                            <constraint firstItem="C4Q-m8-YTj" firstAttribute="leading" secondItem="tGN-Za-agr" secondAttribute="leading" id="A7n-yT-icv"/>
                             <constraint firstItem="fil-jT-HLM" firstAttribute="top" secondItem="tGN-Za-agr" secondAttribute="top" id="B67-78-WwJ"/>
                             <constraint firstAttribute="trailing" secondItem="fil-jT-HLM" secondAttribute="trailing" id="GU7-M1-HC8"/>
+                            <constraint firstItem="YZg-Jn-Bp9" firstAttribute="top" secondItem="tGN-Za-agr" secondAttribute="top" constant="139" id="KW9-zD-cP0"/>
+                            <constraint firstItem="C4Q-m8-YTj" firstAttribute="top" secondItem="tGN-Za-agr" secondAttribute="top" id="LHL-O2-6Ts"/>
+                            <constraint firstAttribute="trailing" secondItem="YZg-Jn-Bp9" secondAttribute="trailing" constant="23" id="Lph-Ls-p1N"/>
                             <constraint firstAttribute="bottom" secondItem="fil-jT-HLM" secondAttribute="bottom" constant="1" id="jVt-jF-y8y"/>
+                            <constraint firstAttribute="bottom" secondItem="C4Q-m8-YTj" secondAttribute="bottom" id="nyI-gn-UcO"/>
+                            <constraint firstAttribute="trailing" secondItem="C4Q-m8-YTj" secondAttribute="trailing" id="xS0-un-9rn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e0X-eZ-7mp"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="gMH-LG-MIb" appends="YES" id="yLg-f1-ZbO"/>
+                        </connections>
                     </view>
                     <connections>
+                        <outlet property="likeView" destination="YZg-Jn-Bp9" id="sIH-M9-Ud0"/>
                         <outlet property="photoView" destination="fil-jT-HLM" id="sdS-da-hJd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hn8-Xt-EOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="gMH-LG-MIb">
+                    <connections>
+                        <action selector="onLike" destination="CPb-Zo-KOu" id="SxK-it-g2h"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="789" y="832"/>
         </scene>

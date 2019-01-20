@@ -26,7 +26,7 @@ enum SourceFeedType: String
     case messages = "messages"
 }
 
-class Action: Object
+class Action: DBServiceObject
 {
     @objc dynamic var type: String!
     @objc dynamic var actionTime: Date!

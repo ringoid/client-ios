@@ -8,9 +8,12 @@
 
 import UIKit
 import Nuke
+import RxSwift
+import RxCocoa
 
 class NewFacePhotoViewController: UIViewController
 {
+    var input: NewFaceProfileVMInput?
     var photo: Photo?
     {
         didSet {
@@ -18,7 +21,10 @@ class NewFacePhotoViewController: UIViewController
         }
     }
     
-    @IBOutlet fileprivate weak var photoView: UIImageView?
+    fileprivate var dispatchBag: DisposeBag = DisposeBag()
+    
+    @IBOutlet fileprivate weak var photoView: UIImageView!
+    @IBOutlet fileprivate weak var likeView: UIImageView!
     
     static func create() -> NewFacePhotoViewController
     {
@@ -30,7 +36,24 @@ class NewFacePhotoViewController: UIViewController
     {
         super.viewDidLoad()
         
+        self.updateBindings()
         self.update()
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func  onLike()
+    {
+        guard let input = self.input, let photo = self.photo else { return }
+        
+        try? self.photo?.realm?.write({ [weak self] in
+            self?.photo?.isLiked = true
+        })
+        
+        input.actionsManager.add([.view(viewCount: 1, viewTimeSec: 1), .like(likeCount: 1)],
+                                      profile: input.profile,
+                                      photo: photo,
+                                      source: .newFaces)
     }
     
     // MARK: -
@@ -45,5 +68,15 @@ class NewFacePhotoViewController: UIViewController
         }
         
         Nuke.loadImage(with: url, into: photoView)
+    }
+    
+    fileprivate func updateBindings()
+    {
+        self.dispatchBag = DisposeBag()
+        
+        self.photo?.rx.observe(Photo.self, "isLiked").subscribe(onNext: { [weak self] _ in
+            let imgName = self?.photo?.isLiked == true ? "feed_like_selected" : "feed_like"
+            self?.likeView?.image = UIImage(named: imgName)
+        }).disposed(by: self.dispatchBag)
     }
 }

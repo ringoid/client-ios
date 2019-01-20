@@ -8,8 +8,8 @@
 
 import RealmSwift
 
-class Profile: Object
+class Profile: DBServiceObject
 {
-    @objc dynamic var id: String!   
+    @objc dynamic var id: String!
     let photos: List<Photo> = List<Photo>()
 }

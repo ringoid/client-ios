@@ -37,6 +37,7 @@ class NewFaceProfileViewController: UIViewController
         self.pageControl.numberOfPages = self.input.profile.photos.count
         self.photosVCs = self.input.profile.photos.map({ photo in
             let vc = NewFacePhotoViewController.create()
+            vc.input = self.input
             vc.photo = photo
             
             return vc

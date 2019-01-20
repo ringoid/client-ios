@@ -15,6 +15,7 @@ class NewFacesViewController: ThemeViewController
     
     fileprivate var viewModel: NewFacesViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var isUpdated: Bool = true
     
     @IBOutlet fileprivate weak var tableView: UITableView!
     fileprivate var refreshControl: UIRefreshControl!
@@ -49,12 +50,13 @@ class NewFacesViewController: ThemeViewController
     fileprivate func setupBindings()
     {
         self.viewModel = NewFacesViewModel(self.input)
-        self.viewModel?.profiles.bind(to: self.tableView.rx.items(cellIdentifier: "new_faces_cell", cellType: NewFacesCell.self)) { [weak self] (_, profile, cell) in
+        self.viewModel?.profiles.asObservable().subscribe(onNext: { [weak self] _ in
             guard let `self` = self else { return }
-            
-            let profileVC = NewFaceProfileViewController.create(profile, actionsManager: self.input.actionsManager)
-            cell.containerView.embed(profileVC, to: self)
-        }.disposed(by: self.disposeBag)
+            guard self.isUpdated else { return }
+
+            self.isUpdated = false
+            self.tableView.reloadData()
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func setupReloader()
@@ -62,5 +64,29 @@ class NewFacesViewController: ThemeViewController
         self.refreshControl = UIRefreshControl()
         self.tableView.addSubview(self.refreshControl)
         self.refreshControl.addTarget(self, action: #selector(onReload), for: .valueChanged)
+    }
+}
+
+extension NewFacesViewController: UITableViewDataSource
+{
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return self.viewModel?.profiles.value.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "new_faces_cell") as! NewFacesCell
+        if let profile = self.viewModel?.profiles.value[indexPath.row] {
+            let profileVC = NewFaceProfileViewController.create(profile, actionsManager: self.input.actionsManager)
+            cell.containerView.embed(profileVC, to: self)
+        }
+        
+        return cell
     }
 }

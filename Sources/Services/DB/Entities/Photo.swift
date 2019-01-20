@@ -8,8 +8,9 @@
 
 import RealmSwift
 
-class Photo: Object
+class Photo: DBServiceObject
 {
     @objc dynamic var id: String!
     @objc dynamic var url: String!
+    @objc dynamic var isLiked: Bool = false
 }

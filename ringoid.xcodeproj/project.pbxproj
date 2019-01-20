@@ -76,6 +76,7 @@
 		57B863FA21EF5D2A00B9CC70 /* ApiMessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F921EF5D2A00B9CC70 /* ApiMessageAction.swift */; };
 		57B863FC21EF5DDF00B9CC70 /* ApiOpenChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863FB21EF5DDF00B9CC70 /* ApiOpenChat.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
+		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
 		57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC321E61BE400AAA29D /* MainViewController.swift */; };
 		57FB7BC821E629BE00AAA29D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */; };
@@ -158,6 +159,7 @@
 		57B863F921EF5D2A00B9CC70 /* ApiMessageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMessageAction.swift; sourceTree = "<group>"; };
 		57B863FB21EF5DDF00B9CC70 /* ApiOpenChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiOpenChat.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
+		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		57FB7BC321E61BE400AAA29D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				57585D4D21E3897800038798 /* UserPhoto.swift */,
 				57B863BF21ECB93200B9CC70 /* LMMProfile.swift */,
 				57B863C121ECB94800B9CC70 /* Message.swift */,
+				57F98DB521F4A23600A09876 /* DBServiceObject.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				570D04A521DD087100E0DCFB /* AppManager.swift in Sources */,
 				57FB7BCC21E73D3C00AAA29D /* ContainerView.swift in Sources */,
 				57585D4421E3558800038798 /* Photo.swift in Sources */,
+				57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */,
 				57B863CF21ECD98F00B9CC70 /* MainLMMCell.swift in Sources */,
 				57B863FC21EF5DDF00B9CC70 /* ApiOpenChat.swift in Sources */,
 				57585D5B21E4A0F100038798 /* FilePath.swift in Sources */,

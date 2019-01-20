@@ -23,6 +23,7 @@ class DBService
     func fetchNewFaces() -> Observable<[NewFaceProfile]>
     {
         let profiles = self.realm.objects(NewFaceProfile.self)
+        
         return Observable.array(from: profiles)
     }
     
@@ -32,6 +33,7 @@ class DBService
     {
         let predicate = NSPredicate(format: "type = %d", FeedType.likesYou.rawValue)
         let profiles = self.realm.objects(LMMProfile.self).filter(predicate)
+        
         return Observable.array(from: profiles)
     }
     
@@ -39,6 +41,7 @@ class DBService
     {
         let predicate = NSPredicate(format: "type = %d", FeedType.matches.rawValue)
         let profiles = self.realm.objects(LMMProfile.self).filter(predicate)
+        
         return Observable.array(from: profiles)
     }
     
@@ -46,6 +49,7 @@ class DBService
     {
         let predicate = NSPredicate(format: "type = %d", FeedType.messages.rawValue)
         let profiles = self.realm.objects(LMMProfile.self).filter(predicate)
+        
         return Observable.array(from: profiles)
     }
     
@@ -54,6 +58,7 @@ class DBService
     func fetchUserPhotos() -> Observable<[UserPhoto]>
     {
         let photos = self.realm.objects(UserPhoto.self)
+        
         return Observable.array(from: photos)
     }
     
@@ -62,6 +67,7 @@ class DBService
     func fetchActions() -> Observable<[Action]>
     {
         let actions = self.realm.objects(Action.self)
+        
         return Observable.array(from: actions)
     }
     
