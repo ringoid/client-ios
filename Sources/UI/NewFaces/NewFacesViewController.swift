@@ -118,5 +118,5 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
             }, onCompleted: { [weak self] in
                 self?.viewModel?.finishFetching()
         }).disposed(by: self.disposeBag)
-    }  
+    }
 }
