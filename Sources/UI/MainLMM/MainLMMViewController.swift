@@ -126,7 +126,7 @@ extension MainLMMViewController: UITableViewDataSource
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "main_llm_cell") as! MainLMMCell
         if let profile = self.profiles()?.value[indexPath.row] {
-            let profileVC = MainLMMProfileViewController.create(profile, actionsManager: self.input.actionsManager)
+            let profileVC = MainLMMProfileViewController.create(profile, feedType: self.type.value, actionsManager: self.input.actionsManager)
             cell.containerView.embed(profileVC, to: self)
         }
         

@@ -18,11 +18,11 @@ class MainLMMProfileViewController: UIViewController
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     
-    static func create(_ profile: LMMProfile, actionsManager: ActionsManager) -> MainLMMProfileViewController
+    static func create(_ profile: LMMProfile, feedType: LMMType, actionsManager: ActionsManager) -> MainLMMProfileViewController
     {
         let storyboard = Storyboards.mainLMM()
         let vc = storyboard.instantiateViewController(withIdentifier: "lmm_profile") as! MainLMMProfileViewController
-        vc.input = MainLMMProfileVMInput(profile: profile, actionsManager: actionsManager)
+        vc.input = MainLMMProfileVMInput(profile: profile, feedType: feedType, actionsManager: actionsManager)
         
         return vc
     }
@@ -36,6 +36,7 @@ class MainLMMProfileViewController: UIViewController
         self.pageControl.numberOfPages = self.input.profile.photos.count
         self.photosVCs = self.input.profile.photos.map({ photo in
             let vc = NewFacePhotoViewController.create()
+            vc.isLikesAvailable = self.input.feedType == .likesYou
             vc.photo = photo
             vc.input = NewFaceProfileVMInput(profile: self.input.profile, actionsManager: self.input.actionsManager)
             

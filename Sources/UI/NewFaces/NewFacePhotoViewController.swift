@@ -21,6 +21,8 @@ class NewFacePhotoViewController: UIViewController
         }
     }
     
+    var isLikesAvailable: Bool = true
+    
     fileprivate var dispatchBag: DisposeBag = DisposeBag()
     
     @IBOutlet fileprivate weak var photoView: UIImageView!
@@ -36,6 +38,8 @@ class NewFacePhotoViewController: UIViewController
     {
         super.viewDidLoad()
         
+        self.likeView.isHidden = !self.isLikesAvailable
+        
         self.updateBindings()
         self.update()
     }
@@ -44,6 +48,7 @@ class NewFacePhotoViewController: UIViewController
     
     @IBAction func  onLike()
     {
+        guard self.isLikesAvailable else { return }
         guard let input = self.input, let photo = self.photo else { return }
         
         try? self.photo?.realm?.write({ [weak self] in
