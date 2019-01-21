@@ -23,7 +23,7 @@ class NewFaceProfileViewController: UIViewController
         let storyboard = Storyboards.newFaces()
         
         let vc = storyboard.instantiateViewController(withIdentifier: "new_face_profile") as! NewFaceProfileViewController
-        vc.input = NewFaceProfileVMInput(profile: profile, actionsManager: actionsManager)
+        vc.input = NewFaceProfileVMInput(profile: profile, actionsManager: actionsManager, sourceType: .newFaces)
         
         return vc
     }

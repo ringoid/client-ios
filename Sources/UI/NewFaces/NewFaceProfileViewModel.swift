@@ -12,6 +12,7 @@ struct NewFaceProfileVMInput
 {
     let profile: Profile
     let actionsManager: ActionsManager
+    let sourceType: SourceFeedType
 }
 
 class NewFaceProfileViewModel

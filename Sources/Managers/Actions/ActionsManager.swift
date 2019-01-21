@@ -25,6 +25,7 @@ class ActionsManager
     fileprivate let db: DBService
     fileprivate let apiService: ApiService
     fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var viewActionsMap: [String: Date] = [:]
     
     init(_ db: DBService, api: ApiService)
     {
@@ -46,11 +47,33 @@ class ActionsManager
         self.db.add(createdActions).subscribe().disposed(by: self.disposeBag)
     }
     
+    func likeActionProtected(_ profile: Profile, photo: Photo, source: SourceFeedType)
+    {
+        self.stopViewAction(profile, photo: photo, sourceType: source)
+        self.add(.like(likeCount: 1), profile: profile, photo: photo, source: source)
+        self.startViewAction(profile, photo: photo)
+    }
+    
+    func startViewAction(_ profile: Profile, photo: Photo)
+    {
+        self.viewActionsMap[photo.id] = Date()
+    }
+    
+    func stopViewAction(_ profile: Profile, photo: Photo, sourceType: SourceFeedType)
+    {
+        guard let date = self.viewActionsMap[photo.id] else { return }
+        
+        self.viewActionsMap.removeValue(forKey: photo.id)
+        
+        let interval = Date().timeIntervalSince(date)
+        self.add(FeedAction.view(viewCount: 1, viewTimeSec: Int(interval)), profile: profile, photo: photo, source: sourceType)
+    }
+    
     // MARK: -
     
     fileprivate func subscribeForActions()
     {
-        self.db.fetchActions().subscribe(onNext: { [weak self] actions in
+        self.db.fetchActions().throttle(2.0, scheduler: MainScheduler.instance).subscribe(onNext: { [weak self] actions in
             guard let `self` = self else { return }
             guard !actions.isEmpty else { return }
             
@@ -72,7 +95,6 @@ extension Action {
         guard let type = ActionType(rawValue: self.type) else { return nil }
         
         var apiAction: ApiAction?
-        
         
         switch type {
         case .like:

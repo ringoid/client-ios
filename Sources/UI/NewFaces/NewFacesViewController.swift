@@ -93,6 +93,19 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
-        //guard let totalCount = self.viewModel?.profiles.value.count, totalCount - indexPath.row
+        guard let isFetching = self.viewModel?.isFetching, !isFetching else { return }
+        guard let totalCount = self.viewModel?.profiles.value.count, totalCount - indexPath.row <= 5 else { return }
+        
+        print("fetching next page")
+        self.isUpdated = true
+        self.viewModel?.fetchNext().subscribe(onError: { [weak self] error in
+            guard let `self` = self else { return }
+            
+            showError(error, vc: self)
+            }, onCompleted: { [weak self] in
+                self?.viewModel?.finishFetching()
+        }).disposed(by: self.disposeBag)
     }
+    
+    
 }

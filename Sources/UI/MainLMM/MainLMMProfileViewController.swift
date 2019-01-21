@@ -41,9 +41,8 @@ class MainLMMProfileViewController: UIViewController
         self.pageControl.numberOfPages = self.input.profile.photos.count
         self.photosVCs = self.input.profile.photos.map({ photo in
             let vc = NewFacePhotoViewController.create()
-            vc.isLikesAvailable = self.input.feedType == .likesYou
             vc.photo = photo
-            vc.input = NewFaceProfileVMInput(profile: self.input.profile, actionsManager: self.input.actionsManager)
+            vc.input = NewFaceProfileVMInput(profile: self.input.profile, actionsManager: self.input.actionsManager, sourceType: self.input.feedType.sourceType())
             
             return vc
         })
@@ -59,21 +58,6 @@ class MainLMMProfileViewController: UIViewController
             self.pagesVC?.delegate = self
             self.pagesVC?.dataSource = self
         }
-    }
-    
-    // MARK: - Actions
-    
-    @IBAction func onLike()
-    {
-        let photo = self.input.profile.photos[self.currentIndex]
-        
-        guard !photo.isLiked else { return }
-        
-        self.input.actionsManager.add(
-            [.view(viewCount: 1, viewTimeSec: 1), .like(likeCount: 1)],
-            profile: self.input.profile,
-            photo: self.input.profile.photos[self.currentIndex],
-            source: .newFaces)
     }
 }
 

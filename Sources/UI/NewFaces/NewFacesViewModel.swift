@@ -19,10 +19,9 @@ struct NewFacesVMInput
 class NewFacesViewModel
 {
     var profiles: BehaviorRelay<[NewFaceProfile]> { return self.newFacesManager.profiles }
+    var isFetching: Bool = false
     
     let newFacesManager: NewFacesManager
-    
-    fileprivate var isFetching: Bool = false
     
     init(_ input: NewFacesVMInput)
     {
@@ -34,10 +33,20 @@ class NewFacesViewModel
         return self.newFacesManager.refresh()
     }
     
-//    func fetchNext() -> Observable<Void>
-//    {
-//        guard !self.isFetching else {
-//            let error = createError("New faces fetching in already in progress", type: .hidden)
-//        }
-//    }
+    func fetchNext() -> Observable<Void>
+    {
+        guard !self.isFetching else {
+            let error = createError("New faces fetching in already in progress", type: .hidden)
+            
+            return .error(error)
+        }
+        
+        self.isFetching = true
+        return self.newFacesManager.fetch()
+    }
+    
+    func finishFetching()
+    {
+        self.isFetching = false
+    }
 }

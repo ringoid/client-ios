@@ -170,7 +170,7 @@
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Wc-Ed-6t2">
                                 <rect key="frame" x="315" y="138" width="36" height="35"/>
-                                <state key="normal" image="feed_messages"/>
+                                <state key="normal" image="feed_messages_empty"/>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="mPS-Ki-Bpa">
                                 <rect key="frame" x="33" y="37" width="39" height="8"/>
@@ -215,7 +215,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="feed_messages" width="36" height="35"/>
+        <image name="feed_messages_empty" width="36" height="35"/>
         <image name="feed_options" width="32" height="12"/>
     </resources>
 </document>
