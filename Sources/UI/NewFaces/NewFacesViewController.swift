@@ -16,6 +16,7 @@ class NewFacesViewController: ThemeViewController
     fileprivate var viewModel: NewFacesViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var isUpdated: Bool = true
+    fileprivate var lastItemsCount: Int = 0
     
     @IBOutlet fileprivate weak var tableView: UITableView!
     fileprivate var refreshControl: UIRefreshControl!
@@ -56,7 +57,7 @@ class NewFacesViewController: ThemeViewController
             guard self.isUpdated else { return }
 
             self.isUpdated = false
-            self.tableView.reloadData()
+            self.updateFeed()
         }).disposed(by: self.disposeBag)
     }
     
@@ -65,6 +66,20 @@ class NewFacesViewController: ThemeViewController
         self.refreshControl = UIRefreshControl()
         self.tableView.addSubview(self.refreshControl)
         self.refreshControl.addTarget(self, action: #selector(onReload), for: .valueChanged)
+    }
+    
+    fileprivate func updateFeed()
+    {
+        guard let totalCount = self.viewModel?.profiles.value.count, totalCount > self.lastItemsCount else { return }
+        
+        if self.lastItemsCount == 0 {
+            self.tableView.reloadData()
+            
+            return
+        }
+        
+        self.tableView.insertRows(at: (self.lastItemsCount..<totalCount).map({ IndexPath(row: $0, section: 0) }), with: .none)
+        self.lastItemsCount = totalCount
     }
 }
 
