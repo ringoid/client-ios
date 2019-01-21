@@ -14,14 +14,15 @@ class MainLMMProfileViewController: UIViewController
     
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
+    fileprivate var currentIndex: Int = 0
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     
-    static func create(_ profile: LMMProfile) -> MainLMMProfileViewController
+    static func create(_ profile: LMMProfile, actionsManager: ActionsManager) -> MainLMMProfileViewController
     {
         let storyboard = Storyboards.mainLMM()
         let vc = storyboard.instantiateViewController(withIdentifier: "lmm_profile") as! MainLMMProfileViewController
-        vc.input = MainLMMProfileVMInput(profile: profile)
+        vc.input = MainLMMProfileVMInput(profile: profile, actionsManager: actionsManager)
         
         return vc
     }
@@ -36,6 +37,7 @@ class MainLMMProfileViewController: UIViewController
         self.photosVCs = self.input.profile.photos.map({ photo in
             let vc = NewFacePhotoViewController.create()
             vc.photo = photo
+            vc.input = NewFaceProfileVMInput(profile: self.input.profile, actionsManager: self.input.actionsManager)
             
             return vc
         })
@@ -51,6 +53,21 @@ class MainLMMProfileViewController: UIViewController
             self.pagesVC?.delegate = self
             self.pagesVC?.dataSource = self
         }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func onLike()
+    {
+        let photo = self.input.profile.photos[self.currentIndex]
+        
+        guard !photo.isLiked else { return }
+        
+        self.input.actionsManager.add(
+            [.view(viewCount: 1, viewTimeSec: 1), .like(likeCount: 1)],
+            profile: self.input.profile,
+            photo: self.input.profile.photos[self.currentIndex],
+            source: .newFaces)
     }
 }
 
@@ -81,6 +98,7 @@ extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageView
         guard finished, completed else { return }
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
+        self.currentIndex = index
         self.pageControl.currentPage = index
     }
 }

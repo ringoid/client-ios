@@ -11,6 +11,7 @@ import Foundation
 struct MainLMMProfileVMInput
 {
     let profile: LMMProfile
+    let actionsManager: ActionsManager
 }
 
 class MainLMMProfileViewModel

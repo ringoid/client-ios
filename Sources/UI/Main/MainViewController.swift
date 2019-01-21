@@ -114,7 +114,7 @@ class MainViewController: ThemeViewController
     {
         let storyboard = UIStoryboard(name: "MainLMM", bundle: nil)
         guard let vc = storyboard.instantiateInitialViewController() as? MainLMMContainerViewController else { return }
-        vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager)
+        vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager, actionsManager: self.input.actionsManager)
         
         self.containerVC.embed(vc)
     }
@@ -123,7 +123,7 @@ class MainViewController: ThemeViewController
     {
         let storyboard = UIStoryboard(name: "MainLMM", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "main_lmm_vc") as? MainLMMViewController else { return }
-        vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager)
+        vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager, actionsManager: self.input.actionsManager)
         vc.type.accept(.messages)
         
         self.containerVC.embed(vc)

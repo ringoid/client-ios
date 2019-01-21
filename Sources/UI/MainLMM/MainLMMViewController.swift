@@ -24,6 +24,7 @@ class MainLMMViewController: ThemeViewController
     fileprivate var viewModel: MainLMMViewModel?
     fileprivate var feedDisposeBag: DisposeBag = DisposeBag()
     fileprivate var disposeBag: DisposeBag = DisposeBag()
+    fileprivate var isUpdated: Bool = true
     
     @IBOutlet fileprivate weak var tableView: UITableView!
     fileprivate var refreshControl: UIRefreshControl!
@@ -57,31 +58,17 @@ class MainLMMViewController: ThemeViewController
         }).disposed(by: self.disposeBag)
     }
     
-    fileprivate func setupLikesYouBindings()
+    fileprivate func updateBindings()
     {
         self.feedDisposeBag = DisposeBag()
-        self.viewModel?.likesYou.bind(to: self.tableView.rx.items(cellIdentifier: "main_llm_cell", cellType: MainLMMCell.self)) { (_, profile, cell) in
-            let profileVC = MainLMMProfileViewController.create(profile)
-            cell.containerView.embed(profileVC, to: self)
-            }.disposed(by: self.feedDisposeBag)
-    }
-    
-    fileprivate func setupMatchesBindings()
-    {
-        self.feedDisposeBag = DisposeBag()
-        self.viewModel?.matches.bind(to: self.tableView.rx.items(cellIdentifier: "main_llm_cell", cellType: MainLMMCell.self)) { (_, profile, cell) in
-            let profileVC = MainLMMProfileViewController.create(profile)
-            cell.containerView.embed(profileVC, to: self)
-            }.disposed(by: self.feedDisposeBag)
-    }
-    
-    fileprivate func setupMessagesBindings()
-    {
-        self.feedDisposeBag = DisposeBag()
-        self.viewModel?.messages.bind(to: self.tableView.rx.items(cellIdentifier: "main_llm_cell", cellType: MainLMMCell.self)) { (_, profile, cell) in
-            let profileVC = MainLMMProfileViewController.create(profile)
-            cell.containerView.embed(profileVC, to: self)
-            }.disposed(by: self.feedDisposeBag)
+        self.isUpdated = true
+        self.profiles()?.asObservable().subscribe(onNext: { [weak self] _ in
+            guard let `self` = self else { return }
+            guard self.isUpdated else { return }
+            
+            self.isUpdated = self.profiles()?.value.count == 0
+            self.tableView.reloadData()
+        }).disposed(by: self.feedDisposeBag)
     }
     
     fileprivate func setupReloader()
@@ -93,6 +80,7 @@ class MainLMMViewController: ThemeViewController
     
     fileprivate func reload()
     {
+        self.isUpdated = true
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
             
@@ -104,19 +92,44 @@ class MainLMMViewController: ThemeViewController
     
     fileprivate func toggle(_ type: LMMType)
     {
-        switch type {
-        case .likesYou:
-            self.setupLikesYouBindings()
-            break
-            
-        case .matches:
-            self.setupMatchesBindings()
-            break
-        
-        case .messages:
-            self.setupMessagesBindings()
-            break
-        }
+        self.updateBindings()
     }
     
+    fileprivate func profiles() -> BehaviorRelay<[LMMProfile]>?
+    {
+        switch self.type.value {
+        case .likesYou:
+            return self.viewModel?.likesYou
+            
+        case .matches:
+            return self.viewModel?.matches
+            
+        case .messages:
+            return self.viewModel?.messages
+        }
+    }
+}
+
+extension MainLMMViewController: UITableViewDataSource
+{
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return self.profiles()?.value.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "main_llm_cell") as! MainLMMCell
+        if let profile = self.profiles()?.value[indexPath.row] {
+            let profileVC = MainLMMProfileViewController.create(profile, actionsManager: self.input.actionsManager)
+            cell.containerView.embed(profileVC, to: self)
+        }
+        
+        return cell
+    }
 }

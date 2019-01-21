@@ -36,6 +36,7 @@ class NewFacesViewController: ThemeViewController
     // MARK: - Actions
     @objc func onReload()
     {
+        self.isUpdated = true
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
             

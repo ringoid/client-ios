@@ -10,7 +10,7 @@ import Foundation
 
 struct NewFaceProfileVMInput
 {
-    let profile: NewFaceProfile
+    let profile: Profile
     let actionsManager: ActionsManager
 }
 

@@ -12,6 +12,7 @@ import RxCocoa
 struct MainLMMVMInput
 {
     let lmmManager: LMMManager
+    let actionsManager: ActionsManager
 }
 
 class MainLMMViewModel
