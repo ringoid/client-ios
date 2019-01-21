@@ -15,7 +15,6 @@ class NewFacesViewController: ThemeViewController
     
     fileprivate var viewModel: NewFacesViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
-    fileprivate var isUpdated: Bool = true
     fileprivate var lastItemsCount: Int = 0
     
     @IBOutlet fileprivate weak var tableView: UITableView!
@@ -37,7 +36,6 @@ class NewFacesViewController: ThemeViewController
     // MARK: - Actions
     @objc func onReload()
     {
-        self.isUpdated = true
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
             
@@ -54,9 +52,7 @@ class NewFacesViewController: ThemeViewController
         self.viewModel = NewFacesViewModel(self.input)
         self.viewModel?.profiles.asObservable().subscribe(onNext: { [weak self] _ in
             guard let `self` = self else { return }
-            guard self.isUpdated else { return }
-
-            self.isUpdated = false
+            
             self.updateFeed()
         }).disposed(by: self.disposeBag)
     }
@@ -72,6 +68,10 @@ class NewFacesViewController: ThemeViewController
     {
         guard let totalCount = self.viewModel?.profiles.value.count, totalCount > self.lastItemsCount else { return }
         
+        defer {
+            self.lastItemsCount = totalCount
+        }
+
         if self.lastItemsCount == 0 {
             self.tableView.reloadData()
             
@@ -79,7 +79,6 @@ class NewFacesViewController: ThemeViewController
         }
         
         self.tableView.insertRows(at: (self.lastItemsCount..<totalCount).map({ IndexPath(row: $0, section: 0) }), with: .none)
-        self.lastItemsCount = totalCount
     }
 }
 
@@ -112,7 +111,6 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
         guard let totalCount = self.viewModel?.profiles.value.count, totalCount - indexPath.row <= 5 else { return }
         
         print("fetching next page")
-        self.isUpdated = true
         self.viewModel?.fetchNext().subscribe(onError: { [weak self] error in
             guard let `self` = self else { return }
             

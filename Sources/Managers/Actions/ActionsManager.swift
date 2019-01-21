@@ -73,7 +73,7 @@ class ActionsManager
     
     fileprivate func subscribeForActions()
     {
-        self.db.fetchActions().throttle(2.0, scheduler: MainScheduler.instance).subscribe(onNext: { [weak self] actions in
+        self.db.fetchActions().throttle(4.0, scheduler: MainScheduler.instance).subscribe(onNext: { [weak self] actions in
             guard let `self` = self else { return }
             guard !actions.isEmpty else { return }
             
