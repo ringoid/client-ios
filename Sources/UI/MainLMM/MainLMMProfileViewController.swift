@@ -17,6 +17,7 @@ class MainLMMProfileViewController: UIViewController
     fileprivate var currentIndex: Int = 0
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
+    @IBOutlet fileprivate weak var messageBtn: UIButton!
     
     static func create(_ profile: LMMProfile, feedType: LMMType, actionsManager: ActionsManager) -> MainLMMProfileViewController
     {
@@ -32,6 +33,10 @@ class MainLMMProfileViewController: UIViewController
         assert(self.input != nil)
         
         super.viewDidLoad()
+        
+        let messageImageName = self.input.profile.messages.count == 0 ? "feed_messages_empty" : "feed_messages"
+        self.messageBtn.setImage(UIImage(named: messageImageName), for: .normal)
+        self.messageBtn.isHidden = self.input.feedType == .likesYou
         
         self.pageControl.numberOfPages = self.input.profile.photos.count
         self.photosVCs = self.input.profile.photos.map({ photo in
