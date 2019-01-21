@@ -51,11 +51,18 @@ class NewFacePhotoViewController: UIViewController
         guard self.isLikesAvailable else { return }
         guard let input = self.input, let photo = self.photo else { return }
         
+        var events: [FeedAction] = [.view(viewCount: 1, viewTimeSec: 1)]
+        if photo.isLiked {
+            events.append(.unlike)
+        } else {
+            events.append(.like(likeCount: 1))
+        }
+        
         try? self.photo?.realm?.write({ [weak self] in
-            self?.photo?.isLiked = true
+            self?.photo?.isLiked = !photo.isLiked
         })
         
-        input.actionsManager.add([.view(viewCount: 1, viewTimeSec: 1), .like(likeCount: 1)],
+        input.actionsManager.add(events,
                                       profile: input.profile,
                                       photo: photo,
                                       source: .newFaces)
