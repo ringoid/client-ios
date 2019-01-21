@@ -30,6 +30,12 @@ class NewFacesManager
     
     func refresh() -> Observable<Void>
     {
+        self.db.resetNewFaces().subscribe().disposed(by: self.disposeBag)
+        return self.fetch()
+    }
+    
+    func fetch() -> Observable<Void>
+    {
         return self.apiService.getNewFaces(.small, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] profiles -> Observable<Void> in
             
             let localProfiles = profiles.map({ profile -> NewFaceProfile in

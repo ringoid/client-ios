@@ -20,7 +20,7 @@ class DefaultStorageService: XStorageService
     func object(_ key: String) -> Observable<XStorageObject>
     {
         guard let storageObject = UserDefaults.standard.value(forKey: key), let object = String.create(storageObject) else {
-            let error = createError("Object not stored", code: 0)
+            let error = createError("Object not stored", type: .hidden)
             
             return Observable<XStorageObject>.error(error)
         }

@@ -8,7 +8,13 @@
 
 import Foundation
 
-func createError(_ description: String, code: Int) -> Error
+enum ErrorType: Int
 {
-    return NSError(domain: "com.ringoid.ringoid", code: code, userInfo: [NSLocalizedDescriptionKey: description])
+    case hidden = 0
+    case visible = 1
+}
+
+func createError(_ description: String, type: ErrorType) -> Error
+{
+    return NSError(domain: "com.ringoid.ringoid", code: type.rawValue, userInfo: [NSLocalizedDescriptionKey: description])
 }

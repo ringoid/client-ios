@@ -36,7 +36,7 @@ class AuthViewModel
     func register() -> Observable<Void>
     {
         guard let year = self.birthYear.value, let sex = self.sex.value else {
-            let error = createError("Not all fields are set", code: 0)
+            let error = createError("Not all fields are set", type: .visible)
             
             return Observable<Void>.error(error)
         }

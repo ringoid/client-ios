@@ -68,7 +68,7 @@ class NewFacesViewController: ThemeViewController
     }
 }
 
-extension NewFacesViewController: UITableViewDataSource
+extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
 {
     func numberOfSections(in tableView: UITableView) -> Int
     {
@@ -89,5 +89,10 @@ extension NewFacesViewController: UITableViewDataSource
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
+    {
+        //guard let totalCount = self.viewModel?.profiles.value.count, totalCount - indexPath.row
     }
 }

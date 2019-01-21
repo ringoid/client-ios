@@ -55,13 +55,13 @@ class ApiServiceDefault: ApiService
             }
             
             guard let accessToken = jsonDict?["accessToken"] as? String else {
-                let error = createError("Create profile: no token in response", code: 2)
+                let error = createError("Create profile: no token in response", type: .hidden)
                 
                 return .error(error)
             }
             
             guard let customerId = jsonDict?["customerId"] as? String else {
-                let error = createError("Create profile: no customer id in response", code: 3)
+                let error = createError("Create profile: no customer id in response", type: .hidden)
                 
                 return .error(error)
             }
@@ -96,19 +96,19 @@ class ApiServiceDefault: ApiService
             }
             
             guard let likesYouArray = jsonDict?["likesYou"] as? [[String: Any]] else {
-                let error = createError("ApiService: wrong likesYou profiles data format", code: 4)
+                let error = createError("ApiService: wrong likesYou profiles data format", type: .hidden)
                 
                 return .error(error)
             }
             
             guard let matchesArray = jsonDict?["matches"] as? [[String: Any]] else {
-                let error = createError("ApiService: wrong matches profiles data format", code: 5)
+                let error = createError("ApiService: wrong matches profiles data format", type: .hidden)
                 
                 return .error(error)
             }
             
             guard let messagesArray = jsonDict?["messages"] as? [[String: Any]] else {
-                let error = createError("ApiService: wrong messages profiles data format", code: 6)
+                let error = createError("ApiService: wrong messages profiles data format", type: .hidden)
                 
                 return .error(error)
             }
@@ -143,7 +143,7 @@ class ApiServiceDefault: ApiService
             }
             
             guard let profilesArray = jsonDict?["profiles"] as? [[String: Any]] else {
-                let error = createError("ApiService: wrong profiles data format", code: 3)
+                let error = createError("ApiService: wrong profiles data format", type: .hidden)
                 
                 return .error(error)
             }
@@ -175,7 +175,7 @@ class ApiServiceDefault: ApiService
             }
             
             guard let photo = ApiUserPhoto.parse(jsonDict) else {
-                let error = createError("ApiService: wrong photo data format", code: 2)
+                let error = createError("ApiService: wrong photo data format", type: .hidden)
                 
                 return .error(error)
             }
@@ -206,7 +206,7 @@ class ApiServiceDefault: ApiService
             }
             
             guard let lastActionTime = jsonDict?["lastActionTime"] as? Int else {
-                let error = createError("ApiService: no lastActionTime field provided", code: 7)
+                let error = createError("ApiService: no lastActionTime field provided", type: .hidden)
                 
                 return .error(error)
             }
@@ -239,7 +239,7 @@ class ApiServiceDefault: ApiService
             }
             
             guard let photosArray = jsonDict?["photos"] as? [[String: Any]] else {
-                let error = createError("ApiService: wrong photos data format", code: 9)
+                let error = createError("ApiService: wrong photos data format", type: .hidden)
                 
                 return .error(error)
             }
@@ -300,13 +300,13 @@ class ApiServiceDefault: ApiService
     {
         guard let jsonDict = json as? [String: Any] else {
 
-            throw createError("ApiService: wrong response format", code: 0)
+            throw createError("ApiService: wrong response format", type: .visible)
         }
         
         if let _ = jsonDict["errorCode"] as? String,
             let errorMessage = jsonDict["errorMessage"] as? String {
             
-            throw createError("External error: \(errorMessage)", code: 1)
+            throw createError("External error: \(errorMessage)", type: .visible)
         }
         
         return jsonDict
