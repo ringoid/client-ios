@@ -25,7 +25,7 @@
                                     <rect key="frame" x="0.0" y="359" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="KgT-Hg-Q7I">
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="KgT-Hg-Q7I">
                                             <rect key="frame" x="177.5" y="12" width="20" height="20"/>
                                         </activityIndicatorView>
                                     </subviews>
@@ -79,6 +79,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
+                        <outlet property="loadingActivityView" destination="KgT-Hg-Q7I" id="CyZ-bm-dO6"/>
                         <outlet property="tableView" destination="Owz-cZ-1Sc" id="KNv-5u-zds"/>
                     </connections>
                 </viewController>

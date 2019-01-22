@@ -18,6 +18,7 @@ class NewFacesViewController: ThemeViewController
     fileprivate var lastItemsCount: Int = 0
     
     @IBOutlet fileprivate weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var loadingActivityView: UIActivityIndicatorView!
     fileprivate var refreshControl: UIRefreshControl!
     
     override func viewDidLoad()
@@ -74,6 +75,7 @@ class NewFacesViewController: ThemeViewController
 
         if self.lastItemsCount == 0 {
             self.tableView.reloadData()
+            self.loadingActivityView.startAnimating()
             
             return
         }
