@@ -38,7 +38,7 @@ class NewFacesManager
     {
         return self.apiService.getNewFaces(.small, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] profiles -> Observable<Void> in
             
-            let localProfiles = profiles.map({ profile -> NewFaceProfile in
+            let localProfiles = self!.filterExisting(profiles).map({ profile -> NewFaceProfile in
                 let localPhotos = profile.photos.map({ photo -> Photo in
                     let localPhoto = Photo()
                     localPhoto.id = photo.id
@@ -55,6 +55,19 @@ class NewFacesManager
             })
             
             return self!.db.add(localProfiles)
+        })
+    }
+    
+    // MARK: -
+    
+    fileprivate func filterExisting(_ incomingProfiles: [ApiProfile]) -> [ApiProfile]
+    {
+        return incomingProfiles.filter({ incomingProfile in
+            for localProfile in self.profiles.value {
+                if localProfile.id == incomingProfile.id { return false}
+            }
+            
+            return true
         })
     }
 }
