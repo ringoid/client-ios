@@ -27,12 +27,20 @@
                                     <segue destination="CpO-jA-Va0" kind="embed" identifier="embed_pages" id="IHX-uG-jQo"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32r-W0-czT">
+                                <rect key="frame" x="320" y="273" width="28" height="36"/>
+                                <state key="normal" image="profile_delete_photo"/>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3C-Zv-Ixf">
                                 <rect key="frame" x="318" y="460" width="34" height="34"/>
                                 <state key="normal" image="profile_photo_add"/>
                                 <connections>
                                     <action selector="addPhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="63R-hS-DlC"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ze-nT-pEZ">
+                                <rect key="frame" x="322" y="46" width="30" height="30"/>
+                                <state key="normal" image="profile_settings"/>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="gyn-28-5bi">
                                 <rect key="frame" x="17" y="38" width="0.0" height="8"/>
@@ -43,7 +51,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="0Ze-nT-pEZ" firstAttribute="top" secondItem="Fle-z7-knz" secondAttribute="top" constant="26" id="FRj-bw-ASZ"/>
                             <constraint firstItem="gyn-28-5bi" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" constant="18" id="G7V-WC-jCi"/>
+                            <constraint firstItem="32r-W0-czT" firstAttribute="top" secondItem="Fle-z7-knz" secondAttribute="top" constant="253" id="Hln-nY-Gge"/>
+                            <constraint firstAttribute="trailing" secondItem="32r-W0-czT" secondAttribute="trailing" constant="27" id="IyC-nP-7NA"/>
+                            <constraint firstAttribute="trailing" secondItem="0Ze-nT-pEZ" secondAttribute="trailing" constant="23" id="U4Y-k4-tb8"/>
                             <constraint firstItem="Fle-z7-knz" firstAttribute="bottom" secondItem="R3C-Zv-Ixf" secondAttribute="bottom" constant="26" id="XdK-B1-1oJ"/>
                             <constraint firstAttribute="trailing" secondItem="Fle-z7-knz" secondAttribute="trailing" id="cUz-F0-US5"/>
                             <constraint firstItem="Fle-z7-knz" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="gOa-aF-aBp"/>
@@ -100,6 +112,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="profile_delete_photo" width="28" height="36"/>
         <image name="profile_photo_add" width="34" height="34"/>
+        <image name="profile_settings" width="30" height="30"/>
     </resources>
 </document>
