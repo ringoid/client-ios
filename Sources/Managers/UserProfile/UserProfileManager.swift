@@ -45,7 +45,7 @@ class UserProfileManager
             
             let photo = UserPhoto()
             photo.id = apiPhoto.originId
-            photo.url = self.storeTemporary(data).absoluteString
+            photo.setFilepath(self.storeTemporary(data))                
             
             return self.db.add(photo)
         })
@@ -53,11 +53,11 @@ class UserProfileManager
     
     // MARK: -
     
-    fileprivate func storeTemporary(_ data: Data) -> URL
+    fileprivate func storeTemporary(_ data: Data) -> FilePath
     {
-        let path = FilePath.unique(.temporary)
+        let path = FilePath.unique(.documents)
         try? data.write(to: path.url())
         
-        return path.url()
+        return path
     }
 }

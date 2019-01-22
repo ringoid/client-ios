@@ -8,7 +8,7 @@
 
 import UIKit
 
-fileprivate enum SelectionState {
+enum SelectionState {
     case search
     case like
     case messages
@@ -18,6 +18,7 @@ fileprivate enum SelectionState {
 class MainViewController: ThemeViewController
 {
     var input: MainVMInput!
+    var defaultState: SelectionState = .search
     
     fileprivate var viewModel: MainViewModel?
     fileprivate var containerVC: ContainerViewController!
@@ -32,7 +33,7 @@ class MainViewController: ThemeViewController
         super.viewDidLoad()
         
         self.setupBindings()
-        self.select(.search)
+        self.select(self.defaultState)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)

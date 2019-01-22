@@ -30,7 +30,6 @@ class UserProfilePhotosViewController: ThemeViewController
         super.viewDidLoad()
         
         self.setupBindings()
-        self.setupPages()
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -53,6 +52,11 @@ class UserProfilePhotosViewController: ThemeViewController
     {
         guard self.input.profileManager.photos.value.count == 0 else { return }
         
+        self.pickPhoto()
+    }
+    
+    fileprivate func pickPhoto()
+    {
         PHPhotoLibrary.requestAuthorization { status in
             guard status == .authorized else { return }
         }
@@ -65,21 +69,27 @@ class UserProfilePhotosViewController: ThemeViewController
         self.present(vc, animated: true, completion: nil)
     }
     
+    @IBAction func addPhoto()
+    {
+        self.pickPhoto()
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
     {
         self.viewModel = UserProfilePhotosViewModel(self.input)
-        self.viewModel?.photos.asObservable().subscribe(onNext:{ [weak self] photos in
-            guard photos.count != 0 else { return }
+        self.viewModel?.photos.asObservable().subscribe(onNext: { [weak self] photos in
+            guard let `self` = self else { return }
             
-            self?.pickerVC?.dismiss(animated: true, completion: nil)
+            self.updatePages(startIndex: photos.count - 1)
         }).disposed(by: self.disposeBag)
     }
     
-    fileprivate func setupPages()
+    fileprivate func updatePages(startIndex: Int)
     {
         guard let photos = self.viewModel?.photos.value else { return }
+        guard startIndex >= 0, startIndex < photos.count else { return }
         
         self.pageControl.numberOfPages = photos.count
         self.photosVCs = photos.map({ photo in
@@ -89,8 +99,11 @@ class UserProfilePhotosViewController: ThemeViewController
             return vc
         })
         
-        guard let vc = self.photosVCs.first else { return }
-        self.pagesVC?.setViewControllers([vc], direction: .forward, animated: false, completion: nil)
+        let vc = self.photosVCs[startIndex]
+        let direction: UIPageViewController.NavigationDirection = (photos.count - 1) == startIndex ? .reverse : .forward
+        self.pagesVC?.setViewControllers([vc], direction: direction, animated: false, completion: nil)
+        self.currentIndex = startIndex
+        self.pageControl.currentPage = startIndex
     }
 }
 
@@ -102,12 +115,14 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
         guard let croppedImage = image.crop(rect: cropRect) else { return }
         
         self.viewModel?.add(croppedImage).subscribe(onNext: ({ [weak self] in
-            self?.dismiss(animated: false, completion: nil)
+            
         }), onError: ({ [weak self] error in
             guard let `self` = self else { return }
             
             showError(error, vc: self)
         })).disposed(by: self.disposeBag)
+        
+        picker.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)

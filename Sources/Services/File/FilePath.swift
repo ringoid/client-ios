@@ -8,11 +8,12 @@
 
 import Foundation
 
-enum FileType
+enum FileType: Int
 {
-    case temporary
-    case documents
-    case cache
+    case url = 0
+    case temporary = 1
+    case documents = 2
+    case cache = 3
 }
 
 struct FilePath
@@ -21,28 +22,24 @@ struct FilePath
     let type: FileType
 }
 
-let temporaryDirectoryPath = NSTemporaryDirectory() + "/fileservice/"
-let cacheDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/fileservice/"
-let documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/fileservice/"
+let temporaryDirectoryPath = NSTemporaryDirectory() + "fileservice/"
+let cacheDirectoryPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!.path + "/fileservice/"
+let documentsDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last!.path + "/fileservice/"
 
 extension FilePath
 {
     func url() -> URL
     {
-        var path: String = ""
-        
         switch self.type {
+        case .url:
+            return URL(string: self.filename)!
         case .documents:
-            path = documentsDirectoryPath
+            return URL(fileURLWithPath: documentsDirectoryPath + self.filename)
         case .temporary:
-            path = temporaryDirectoryPath
+            return URL(fileURLWithPath: temporaryDirectoryPath + self.filename)
         case .cache:
-            path = cacheDirectoryPath
+            return URL(fileURLWithPath: cacheDirectoryPath + self.filename)
         }
-        
-        path += self.filename
-        
-        return URL(fileURLWithPath: path)
     }
 }
 

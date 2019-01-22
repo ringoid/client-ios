@@ -24,6 +24,7 @@ class RootViewController: ThemeViewController {
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var mode: AppUIMode = .unknown
+    fileprivate var mainUIState: SelectionState = .search
     
     override func viewDidLoad()
     {
@@ -57,6 +58,7 @@ class RootViewController: ThemeViewController {
                 lmmManager: self.appManager.lmmManager,
                 profileManager: self.appManager.profileManager
             )
+            vc.defaultState = self.mainUIState
         }
     }
     
@@ -77,7 +79,9 @@ class RootViewController: ThemeViewController {
         case .main:
             segueId = SegueIds.main
         case .userProfile:
-            segueId = SegueIds.userProfile
+            segueId = SegueIds.main
+            self.mainUIState = .profile
+            break
         }
         
         DispatchQueue.main.async {

@@ -53,7 +53,8 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         let localPhotos = profile.photos.map({ photo -> Photo in
             let localPhoto = Photo()
             localPhoto.id = photo.id
-            localPhoto.url = photo.url
+            localPhoto.path = photo.url
+            localPhoto.pathType = FileType.url.rawValue
             
             return localPhoto
         })

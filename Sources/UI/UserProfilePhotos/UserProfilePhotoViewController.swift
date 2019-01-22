@@ -36,7 +36,7 @@ class UserProfilePhotoViewController: UIViewController
     fileprivate func update()
     {
         guard let photoView = self.photoView else { return }
-        guard let urlStr = self.photo?.url, let url = URL(string: urlStr) else {
+        guard let url = self.photo?.filepath().url() else {
             photoView.image = nil
             
             return

@@ -42,7 +42,7 @@ class NewFacesManager
                 let localPhotos = profile.photos.map({ photo -> Photo in
                     let localPhoto = Photo()
                     localPhoto.id = photo.id
-                    localPhoto.url = photo.url
+                    localPhoto.setFilepath(FilePath(filename: photo.url, type: .url))
                     
                     return localPhoto
                 })
