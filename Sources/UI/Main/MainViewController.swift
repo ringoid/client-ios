@@ -97,13 +97,14 @@ class MainViewController: ThemeViewController
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
+            self.embedUserProfile()
             break
         }
     }
     
     fileprivate func embedNewFaces()
     {
-        let storyboard = UIStoryboard(name: "NewFaces", bundle: nil)
+        let storyboard = Storyboards.newFaces()
         guard let vc = storyboard.instantiateInitialViewController() as? NewFacesViewController else { return }
         vc.input = NewFacesVMInput(newFacesManager: self.input.newFacesManager, actionsManager: self.input.actionsManager)
         
@@ -112,7 +113,7 @@ class MainViewController: ThemeViewController
     
     fileprivate func embedMainLMM()
     {
-        let storyboard = UIStoryboard(name: "MainLMM", bundle: nil)
+        let storyboard = Storyboards.mainLMM()
         guard let vc = storyboard.instantiateInitialViewController() as? MainLMMContainerViewController else { return }
         vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager, actionsManager: self.input.actionsManager)
         
@@ -121,10 +122,19 @@ class MainViewController: ThemeViewController
     
     fileprivate func embedMessages()
     {
-        let storyboard = UIStoryboard(name: "MainLMM", bundle: nil)
+        let storyboard = Storyboards.mainLMM()
         guard let vc = storyboard.instantiateViewController(withIdentifier: "main_lmm_vc") as? MainLMMViewController else { return }
         vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager, actionsManager: self.input.actionsManager)
         vc.type.accept(.messages)
+        
+        self.containerVC.embed(vc)
+    }
+    
+    fileprivate func embedUserProfile()
+    {
+        let storyboard = Storyboards.userProfile()
+        guard let vc = storyboard.instantiateInitialViewController() as? UserProfilePhotosViewController else { return }
+        vc.input = UserProfilePhotosVCInput(profileManager: self.input.profileManager)
         
         self.containerVC.embed(vc)
     }

@@ -21,4 +21,9 @@ class Storyboards
     {
         return UIStoryboard(name: "MainLMM", bundle: nil)
     }
+    
+    static func userProfile() -> UIStoryboard
+    {
+        return UIStoryboard(name: "UserProfile", bundle: nil)
+    }
 }

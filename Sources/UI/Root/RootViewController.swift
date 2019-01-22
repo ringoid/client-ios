@@ -54,7 +54,8 @@ class RootViewController: ThemeViewController {
             vc.input = MainVMInput(
                 actionsManager: self.appManager.actionsManager,
                 newFacesManager: self.appManager.newFacesManager,
-                lmmManager: self.appManager.lmmManager
+                lmmManager: self.appManager.lmmManager,
+                profileManager: self.appManager.profileManager
             )
         }
     }

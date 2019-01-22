@@ -13,6 +13,7 @@ struct MainVMInput
     let actionsManager: ActionsManager
     let newFacesManager: NewFacesManager
     let lmmManager: LMMManager
+    let profileManager: UserProfileManager
 }
 
 class MainViewModel

@@ -21,9 +21,9 @@ struct FilePath
     let type: FileType
 }
 
-fileprivate let temporaryDirectoryPath = NSTemporaryDirectory() + "/fileservice/"
-fileprivate let cacheDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/fileservice/"
-fileprivate let documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/fileservice/"
+let temporaryDirectoryPath = NSTemporaryDirectory() + "/fileservice/"
+let cacheDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/fileservice/"
+let documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/fileservice/"
 
 extension FilePath
 {

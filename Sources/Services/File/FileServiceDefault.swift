@@ -14,10 +14,26 @@ class FileServiceDefault: FileService
     
     init()
     {
-        let documentsDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/fileservice/"
+        self.checkSubdirectories()
+    }
+    
+    // MARK: -
+    
+    fileprivate func checkSubdirectories()
+    {
         if !fm.fileExists(atPath: documentsDirectoryPath)
         {
             try? fm.createDirectory(atPath: documentsDirectoryPath, withIntermediateDirectories: false, attributes: nil)
+        }
+        
+        if !fm.fileExists(atPath: temporaryDirectoryPath)
+        {
+            try? fm.createDirectory(atPath: temporaryDirectoryPath, withIntermediateDirectories: false, attributes: nil)
+        }
+        
+        if !fm.fileExists(atPath: cacheDirectoryPath)
+        {
+            try? fm.createDirectory(atPath: cacheDirectoryPath, withIntermediateDirectories: false, attributes: nil)
         }
     }
 }
