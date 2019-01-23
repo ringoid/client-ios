@@ -6,6 +6,7 @@
 //  Copyright © 2019 Ringoid. All rights reserved.
 //
 
+import UIKit
 import Nuke
 import RxSwift
 import RxCocoa

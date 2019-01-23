@@ -79,9 +79,7 @@ class UserProfilePhotosViewController: ThemeViewController
     
     @IBAction func deletePhoto()
     {
-        guard let photo = self.viewModel?.photos.value[self.currentIndex] else { return }
-        
-        self.input.profileManager.deletePhoto(photo)
+        self.showDeletionAlert()
     }
     
     // MARK: -
@@ -115,6 +113,19 @@ class UserProfilePhotosViewController: ThemeViewController
         self.currentIndex = startIndex
         self.pageControl.currentPage = startIndex
         self.deleteBtn.isHidden = photos.count == 0
+    }
+    
+    fileprivate func showDeletionAlert()
+    {
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertVC.addAction(UIAlertAction(title: "Delete Photo", style: .destructive, handler: ({ _ in
+            guard let photo = self.viewModel?.photos.value[self.currentIndex] else { return }
+            
+            self.input.profileManager.deletePhoto(photo)
+        })))
+        alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
 
