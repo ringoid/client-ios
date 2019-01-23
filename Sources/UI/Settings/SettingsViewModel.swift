@@ -11,21 +11,11 @@ import RxCocoa
 
 class SettingsViewModel
 {
-    var theme: BehaviorRelay<ColorTheme> = BehaviorRelay<ColorTheme>(value: ThemeManager.shared.theme)
+    var theme: BehaviorRelay<ColorTheme> {
+        return ThemeManager.shared.theme
+    }
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init()
-    {
-        self.setupBindings()
-    }
-    
-    // MARK: -
-    
-    fileprivate func setupBindings()
-    {
-        self.theme.asObservable().subscribe(onNext:{ value in
-            ThemeManager.shared.theme = value
-        }).disposed(by: self.disposeBag)
-    }
+    init() {}
 }

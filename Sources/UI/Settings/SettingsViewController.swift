@@ -67,6 +67,7 @@ class SettingsViewController: ThemeViewController
     
     fileprivate func setupThemeBindings()
     {
+        self.themeSwitch?.setOn(self.viewModel?.theme.value == .dark, animated: false)
         self.themeSwitch?.rx.value.subscribe(onNext: { [weak self] value in
             self?.viewModel?.theme.accept(value ? .dark : .light)
         }).disposed(by: self.disposeBag)

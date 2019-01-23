@@ -6,7 +6,8 @@
 //  Copyright © 2019 Ringoid. All rights reserved.
 //
 
-import Foundation
+import RxSwift
+import RxCocoa
 
 enum ColorTheme: String
 {
@@ -19,22 +20,33 @@ class ThemeManager
     var storageService: XStorageService?
     {
         didSet {
-            _ = self.storageService?.object("theme_key").subscribe(onNext:{ value in
+            self.storageService?.object("theme_key").subscribe(onNext:{ value in
                 guard let themeValue = value as? String else { return }
                 
-                self.theme = ColorTheme(rawValue: themeValue) ?? .dark
-            })
+                self.theme.accept(ColorTheme(rawValue: themeValue) ?? .dark)
+            }).disposed(by: self.disposeBag)
         }
     }
     
-    var theme: ColorTheme = .dark
-    {
-        didSet {
-            _ = self.storageService?.store(self.theme.rawValue, key: "theme_key")
-        }
-    }
-    
+    let theme: BehaviorRelay<ColorTheme> = BehaviorRelay<ColorTheme>(value: .dark)
+
     static let shared = ThemeManager()
     
-    private init() {}
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
+    private init()
+    {
+        self.setupBindings()
+    }
+    
+    // MARK: -
+    
+    fileprivate func setupBindings()
+    {
+        self.theme.asObservable().subscribe(onNext: { [weak self] value in
+            guard let `self` = self else { return }
+            
+            self.storageService?.store(value.rawValue, key: "theme_key").subscribe().disposed(by: self.disposeBag)
+        }).disposed(by: self.disposeBag)
+    }
 }
