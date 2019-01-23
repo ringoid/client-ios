@@ -86,13 +86,9 @@ class RootViewController: ThemeViewController {
         }
         
         DispatchQueue.main.async {
-            if let presentedVC = self.presentedViewController {
-                presentedVC.dismiss(animated: false) {
-                    self.performSegue(withIdentifier: segueId, sender: nil)
-                }
-            } else {
+            self.dismissPresentedVC({
                 self.performSegue(withIdentifier: segueId, sender: nil)
-            }
+            })
         }
     }
     
@@ -122,6 +118,19 @@ class RootViewController: ThemeViewController {
                 self?.move(to: .main)
             }
         }).disposed(by: disposeBag)
+    }
+    
+    fileprivate func dismissPresentedVC(_ completion: (()->())?)
+    {
+        guard let presentedVC = self.presentedViewController else {
+            completion?()
+            
+            return
+        }
+        
+        presentedVC.dismiss(animated: false) { [weak self] in
+            self?.dismissPresentedVC(completion)
+        }
     }
 }
 

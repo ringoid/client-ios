@@ -89,7 +89,7 @@ class ApiServiceDefault: ApiService
                 return .error(error)
             }
             
-            self?.logout()
+            self?.clearCredentials()
             
             return .just(())
         }
