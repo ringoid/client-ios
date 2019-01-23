@@ -27,6 +27,8 @@ fileprivate enum SettinsOptionType: Int
 
 class SettingsViewController: ThemeViewController
 {
+    var input: SettingsVMInput!
+    
     fileprivate let options = [
         SettingsOption(cellIdentifier: "theme_cell", height: 42.0),
         SettingsOption(cellIdentifier: "language_cell", height: 42.0),
@@ -45,6 +47,8 @@ class SettingsViewController: ThemeViewController
     
     override func viewDidLoad()
     {
+        assert(input != nil )
+        
         super.viewDidLoad()
         
         self.setupBindigs()
@@ -62,7 +66,7 @@ class SettingsViewController: ThemeViewController
     
     fileprivate func setupBindigs()
     {
-        self.viewModel = SettingsViewModel()
+        self.viewModel = SettingsViewModel(self.input)
     }
     
     fileprivate func setupThemeBindings()
@@ -71,6 +75,17 @@ class SettingsViewController: ThemeViewController
         self.themeSwitch?.rx.value.subscribe(onNext: { [weak self] value in
             self?.viewModel?.theme.accept(value ? .dark : .light)
         }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func showLogoutAlert()
+    {
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertVC.addAction(UIAlertAction(title: "Delete Profile", style: .destructive, handler: ({ _ in
+            self.viewModel?.logout()
+        })))
+        alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
 
@@ -111,5 +126,20 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         let option = self.options[indexPath.row]
         
         return option.height
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        guard let option = SettinsOptionType(rawValue: indexPath.row) else { return }
+        
+        switch option {
+        case .theme: return
+        case .language: return
+        case .legal: return
+        case .support: return
+        case .delete:
+            self.showLogoutAlert()
+            break
+        }
     }
 }

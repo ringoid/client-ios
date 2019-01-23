@@ -12,6 +12,7 @@ import RxCocoa
 struct UserProfilePhotosVCInput
 {
     let profileManager: UserProfileManager
+    let settingsManager: SettingsManager
 }
 
 class UserProfilePhotosViewModel

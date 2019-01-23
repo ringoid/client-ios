@@ -57,6 +57,7 @@
 		579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
 		579CD7B321F890A300C3AEE3 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B221F890A300C3AEE3 /* SettingsViewModel.swift */; };
 		579CD7B621F8947000C3AEE3 /* SettingsThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B521F8947000C3AEE3 /* SettingsThemeCell.swift */; };
+		579CD7BC21F8C4D800C3AEE3 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7BB21F8C4D800C3AEE3 /* SettingsManager.swift */; };
 		57B863BC21EC74BF00B9CC70 /* ApiLMMProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */; };
 		57B863BE21EC758200B9CC70 /* ApiMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BD21EC758200B9CC70 /* ApiMessage.swift */; };
 		57B863C021ECB93200B9CC70 /* LMMProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BF21ECB93200B9CC70 /* LMMProfile.swift */; };
@@ -145,6 +146,7 @@
 		579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		579CD7B221F890A300C3AEE3 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		579CD7B521F8947000C3AEE3 /* SettingsThemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsThemeCell.swift; sourceTree = "<group>"; };
+		579CD7BB21F8C4D800C3AEE3 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLMMProfile.swift; sourceTree = "<group>"; };
 		57B863BD21EC758200B9CC70 /* ApiMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMessage.swift; sourceTree = "<group>"; };
 		57B863BF21ECB93200B9CC70 /* LMMProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMMProfile.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				579CD7BA21F8C1B700C3AEE3 /* Settings */,
 				57B863E921EE339C00B9CC70 /* Actions */,
 				57B863C321ECC33500B9CC70 /* LMM */,
 				57585D6E21E500E800038798 /* Theme */,
@@ -507,6 +510,14 @@
 				579CD7B521F8947000C3AEE3 /* SettingsThemeCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		579CD7BA21F8C1B700C3AEE3 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				579CD7BB21F8C4D800C3AEE3 /* SettingsManager.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		57B863C321ECC33500B9CC70 /* LMM */ = {
@@ -801,6 +812,7 @@
 				57B863C821ECD17B00B9CC70 /* MainLMMViewController.swift in Sources */,
 				570D04BA21DE322200E0DCFB /* XStorageObject.swift in Sources */,
 				57FB7BCA21E63D6800AAA29D /* MainViewModel.swift in Sources */,
+				579CD7BC21F8C4D800C3AEE3 /* SettingsManager.swift in Sources */,
 				57B863EB21EE33D200B9CC70 /* ActionsManager.swift in Sources */,
 				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,
 				579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */,

@@ -9,13 +9,26 @@
 import RxSwift
 import RxCocoa
 
+struct SettingsVMInput
+{
+    let settingsManager: SettingsManager
+}
+
 class SettingsViewModel
 {
     var theme: BehaviorRelay<ColorTheme> {
         return ThemeManager.shared.theme
     }
     
-    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate let settingsManger: SettingsManager
     
-    init() {}
+    init(_ input: SettingsVMInput)
+    {
+        self.settingsManger = input.settingsManager
+    }
+    
+    func logout()
+    {
+        self.settingsManger.logout()
+    }
 }

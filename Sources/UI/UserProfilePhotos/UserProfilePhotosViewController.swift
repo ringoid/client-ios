@@ -47,6 +47,11 @@ class UserProfilePhotosViewController: ThemeViewController
             self.pagesVC?.delegate = self
             self.pagesVC?.dataSource = self
         }
+        
+        if segue.identifier == "settings_vc",
+            let vc = (segue.destination as? UINavigationController)?.viewControllers.first as? SettingsViewController {
+            vc.input = SettingsVMInput(settingsManager: self.input.settingsManager)
+        }
     }
     
     fileprivate func pickPhotoIfNeeded()

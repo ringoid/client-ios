@@ -12,6 +12,7 @@ protocol XStorageService
 {
     func store(_ object: XStorageObject, key: String) -> Observable<Void>
     func object(_ key: String) -> Observable<XStorageObject>
+    func remove(_ key: String) -> Observable<Void>
     
     func sync()
 }

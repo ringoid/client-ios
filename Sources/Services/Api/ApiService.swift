@@ -16,6 +16,7 @@ protocol ApiService
     var isAuthorized: BehaviorRelay<Bool> { get }
     
     func createProfile(year: Int, sex: Sex) -> Observable<Void>
+    func logout() -> Observable<Void>
     
     func getNewFaces(_ resolution: PhotoResolution, lastActionDate: Date?) -> Observable<[ApiProfile]>
     

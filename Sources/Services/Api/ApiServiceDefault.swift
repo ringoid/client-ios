@@ -74,6 +74,27 @@ class ApiServiceDefault: ApiService
         }        
     }
     
+    func logout() -> Observable<Void>
+    {
+        var params: [String: Any] = [:]
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        return self.request(.post, path: "auth/delete", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<Void> in
+            do {
+                _ = try self?.validateJsonResponse(jsonObj)
+            } catch {
+                return .error(error)
+            }
+            
+            self?.logout()
+            
+            return .just(())
+        }
+    }
+    
     // MARK: - Feeds
     func getLMM(_ resolution: PhotoResolution, lastActionDate: Date?) -> Observable<ApiLMMResult>
     {
@@ -314,6 +335,13 @@ class ApiServiceDefault: ApiService
         self.storage.object("customer_id").subscribe(onNext: { [weak self] id in
             self?.customerId = id as? String
         }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func clearCredentials()
+    {
+        self.storage.remove("access_token").subscribe().disposed(by: self.disposeBag)
+        self.storage.remove("customer_id").subscribe().disposed(by: self.disposeBag)
+        self.isAuthorized.accept(false)
     }
     
     fileprivate func validateJsonResponse(_ json: Any) throws -> [String: Any]?

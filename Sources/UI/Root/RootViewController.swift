@@ -48,7 +48,7 @@ class RootViewController: ThemeViewController {
         }
         
         if segue.identifier == SegueIds.userProfile, let vc = segue.destination as? UserProfilePhotosViewController {
-            vc.input = UserProfilePhotosVCInput(profileManager: self.appManager.profileManager)
+            vc.input = UserProfilePhotosVCInput(profileManager: self.appManager.profileManager, settingsManager: self.appManager.settingsMananger)
         }
         
         if segue.identifier == SegueIds.main, let vc = segue.destination as? MainViewController {
@@ -56,7 +56,8 @@ class RootViewController: ThemeViewController {
                 actionsManager: self.appManager.actionsManager,
                 newFacesManager: self.appManager.newFacesManager,
                 lmmManager: self.appManager.lmmManager,
-                profileManager: self.appManager.profileManager
+                profileManager: self.appManager.profileManager,
+                settingsManager: self.appManager.settingsMananger
             )
             vc.defaultState = self.mainUIState
         }
