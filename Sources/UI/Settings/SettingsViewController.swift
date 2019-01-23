@@ -7,11 +7,22 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 fileprivate struct SettingsOption
 {
     let cellIdentifier: String
     let height: CGFloat
+}
+
+fileprivate enum SettinsOptionType: Int
+{
+    case theme = 0
+    case language = 1
+    case legal = 2
+    case support = 3
+    case delete = 4
 }
 
 class SettingsViewController: ThemeViewController
@@ -24,12 +35,19 @@ class SettingsViewController: ThemeViewController
         SettingsOption(cellIdentifier: "delete_cell", height: 82.0)
     ]
     
+    fileprivate var viewModel: SettingsViewModel?
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
     @IBOutlet fileprivate weak var tableView: UITableView!
+    
+    // Options controls
+    fileprivate weak var themeSwitch: UISwitch?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
+        self.setupBindigs()
         self.tableView.reloadData()
     }
     
@@ -38,6 +56,20 @@ class SettingsViewController: ThemeViewController
     @IBAction func onBack()
     {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: -
+    
+    fileprivate func setupBindigs()
+    {
+        self.viewModel = SettingsViewModel()
+    }
+    
+    fileprivate func setupThemeBindings()
+    {
+        self.themeSwitch?.rx.value.subscribe(onNext: { [weak self] value in
+            self?.viewModel?.theme.accept(value ? .dark : .light)
+        }).disposed(by: self.disposeBag)
     }
 }
 
@@ -57,6 +89,18 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
     {
         let option = self.options[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: option.cellIdentifier)!
+        
+        switch SettinsOptionType(rawValue: indexPath.row)! {
+        case .theme:
+            self.themeSwitch = (cell as? SettingsThemeCell)?.themeSwitch
+            self.setupThemeBindings()
+            break
+            
+        case .language: break
+        case .legal: break
+        case .support: break
+        case .delete: break
+        }
         
         return cell
     }
