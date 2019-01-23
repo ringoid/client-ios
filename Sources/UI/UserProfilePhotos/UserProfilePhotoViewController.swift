@@ -7,6 +7,8 @@
 //
 
 import Nuke
+import RxSwift
+import RxCocoa
 
 class UserProfilePhotoViewController: UIViewController
 {
@@ -22,13 +24,18 @@ class UserProfilePhotoViewController: UIViewController
         return Storyboards.userProfile().instantiateViewController(withIdentifier: "user_profile_photo_vc") as! UserProfilePhotoViewController
     }
     
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
     @IBOutlet fileprivate weak var photoView: UIImageView?
+    @IBOutlet fileprivate weak var likeView: UIView?
+    @IBOutlet fileprivate weak var likeLabel: UILabel?
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         self.update()
+        self.updateBindings()
     }
     
     // MARK: -
@@ -43,5 +50,21 @@ class UserProfilePhotoViewController: UIViewController
         }
         
         Nuke.loadImage(with: url, into: photoView)
+    }
+    
+    fileprivate func updateBindings()
+    {
+        self.photo?.rx.observe(UserPhoto.self, "likes").subscribe(onNext: { [weak self] _ in
+            guard let photo = self?.photo else {
+                self?.likeView?.isHidden = true
+                self?.likeLabel?.isHidden = true
+                
+                return
+            }
+            
+            self?.likeLabel?.text = "\(photo.likes)"
+            self?.likeView?.isHidden = photo.likes == 0
+            self?.likeLabel?.isHidden = photo.likes == 0
+        }).disposed(by: self.disposeBag)
     }
 }
