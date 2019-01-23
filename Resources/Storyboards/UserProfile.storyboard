@@ -44,6 +44,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ze-nT-pEZ">
                                 <rect key="frame" x="322" y="46" width="30" height="30"/>
                                 <state key="normal" image="profile_settings"/>
+                                <connections>
+                                    <segue destination="yQa-yl-S9g" kind="show" id="Emm-PL-Vpz"/>
+                                </connections>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="gyn-28-5bi">
                                 <rect key="frame" x="17" y="38" width="0.0" height="8"/>
@@ -76,6 +79,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8C-Tc-6v7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="57" y="66"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="W2M-U6-eCU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Settings" id="yQa-yl-S9g" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ilL-3d-G5h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="607" y="-461"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="khy-Gj-Sd6">

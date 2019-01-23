@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="i4T-DQ-OzO">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Settings View Controller-->
+        <scene sceneID="2Qq-42-NRg">
+            <objects>
+                <viewController id="i4T-DQ-OzO" customClass="SettingsViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UCV-Qs-tQ4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0Q-C9-CeS">
+                                <rect key="frame" x="2" y="29" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="9aO-Uk-69V"/>
+                                    <constraint firstAttribute="height" constant="44" id="Jpc-Dy-Dx5"/>
+                                </constraints>
+                                <state key="normal" image="common_back"/>
+                                <connections>
+                                    <action selector="onBack" destination="i4T-DQ-OzO" eventType="touchUpInside" id="dtc-TD-5mL"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihd-7u-bXc">
+                                <rect key="frame" x="155" y="40.5" width="65.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="H0Q-C9-CeS" firstAttribute="top" secondItem="geN-kH-ucB" secondAttribute="top" constant="9" id="8h2-tN-TZL"/>
+                            <constraint firstItem="ihd-7u-bXc" firstAttribute="centerY" secondItem="H0Q-C9-CeS" secondAttribute="centerY" id="Cie-fA-fu7"/>
+                            <constraint firstItem="ihd-7u-bXc" firstAttribute="centerX" secondItem="UCV-Qs-tQ4" secondAttribute="centerX" id="HGc-3j-DYa"/>
+                            <constraint firstItem="H0Q-C9-CeS" firstAttribute="leading" secondItem="UCV-Qs-tQ4" secondAttribute="leading" constant="2" id="LQw-pa-4LQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="geN-kH-ucB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KcZ-XM-9uV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-65" y="94"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="common_back" width="11" height="20"/>
+    </resources>
+</document>
