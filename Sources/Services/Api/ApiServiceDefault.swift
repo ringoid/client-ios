@@ -248,6 +248,26 @@ class ApiServiceDefault: ApiService
         }
     }
     
+    func deletePhoto(_ photoId: String) -> Observable<Void>
+    {
+        var params: [String: Any] = [
+            "photoId": photoId
+        ]
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        return self.request(.post, path: "image/delete_photo", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<Void> in
+            do {
+                _ = try self?.validateJsonResponse(jsonObj)
+            } catch {
+                return .error(error)
+            }
+            
+            return .just(())
+        }
+    }
     
     // MARK: - Basic
     

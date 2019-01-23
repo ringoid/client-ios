@@ -10,5 +10,5 @@ import RealmSwift
 
 class UserPhoto: Photo
 {
-    
+    @objc dynamic var likes: Int = 0
 }

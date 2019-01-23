@@ -27,9 +27,12 @@
                                     <segue destination="CpO-jA-Va0" kind="embed" identifier="embed_pages" id="IHX-uG-jQo"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32r-W0-czT">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32r-W0-czT">
                                 <rect key="frame" x="320" y="273" width="28" height="36"/>
                                 <state key="normal" image="profile_delete_photo"/>
+                                <connections>
+                                    <action selector="deletePhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="KYt-hL-B7c"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3C-Zv-Ixf">
                                 <rect key="frame" x="318" y="460" width="34" height="34"/>
@@ -66,6 +69,7 @@
                         <viewLayoutGuide key="safeArea" id="Yc6-CF-qSL"/>
                     </view>
                     <connections>
+                        <outlet property="deleteBtn" destination="32r-W0-czT" id="qDq-QL-d5e"/>
                         <outlet property="pageControl" destination="gyn-28-5bi" id="KYH-ae-ET6"/>
                     </connections>
                 </viewController>

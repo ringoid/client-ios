@@ -43,7 +43,7 @@ class AppManager
     fileprivate func setupManagers()
     {
         self.actionsManager = ActionsManager(self.db, api: self.apiService)
-        self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader)
+        self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader, fileService: self.fileService)
         self.newFacesManager = NewFacesManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
         self.lmmManager = LMMManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
         

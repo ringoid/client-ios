@@ -12,6 +12,7 @@ struct ApiUserPhoto {
     let url: String
     let originId: String
     let clientId: String
+    
 }
 
 extension ApiUserPhoto

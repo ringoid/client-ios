@@ -14,20 +14,22 @@ class UserProfileManager
     let db: DBService
     let apiService: ApiService
     let uploader: UploaderService
+    let fileService: FileService
     
     var photos: BehaviorRelay<[UserPhoto]> = BehaviorRelay<[UserPhoto]>(value: [])
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(_ db: DBService, api: ApiService, uploader: UploaderService)
+    init(_ db: DBService, api: ApiService, uploader: UploaderService, fileService: FileService)
     {
         self.db = db
         self.apiService = api
         self.uploader = uploader
+        self.fileService = fileService
         
         self.db.fetchUserPhotos().bind(to: self.photos).disposed(by: self.disposeBag)
-        self.apiService.getUserOwnPhotos(.small).subscribe(onNext:{ photos in
-            print("Uploaded photos: \(photos.count)")
+        self.apiService.getUserOwnPhotos(.small).subscribe(onNext: { [weak self] photos in
+            self?.merge(photos)
         }).disposed(by: self.disposeBag)
     }
     
@@ -45,10 +47,22 @@ class UserProfileManager
             
             let photo = UserPhoto()
             photo.id = apiPhoto.originId
-            photo.setFilepath(self.storeTemporary(data))                
+            photo.setFilepath(self.storeTemporary(data))
             
             return self.db.add(photo)
         })
+    }
+    
+    func deletePhoto(_ photo: UserPhoto)
+    {
+        let path = photo.filepath()
+        let id = photo.id!
+        
+        self.db.delete([photo]).subscribe(onNext: { [weak self] _ in
+            self?.fileService.rm(path)
+        }).disposed(by: self.disposeBag)
+        
+        self.apiService.deletePhoto(id).subscribe().disposed(by: self.disposeBag)
     }
     
     // MARK: -
@@ -59,5 +73,18 @@ class UserProfileManager
         try? data.write(to: path.url())
         
         return path
+    }
+    
+    fileprivate func merge(_ incoming: [ApiPhoto])
+    {
+        incoming.forEach({ remoteApiPhoto in
+            self.photos.value.forEach { localPhoto in
+                if remoteApiPhoto.id == localPhoto.id {
+                    try? localPhoto.realm?.write {
+                        localPhoto.likes = remoteApiPhoto.likes
+                    }
+                }
+            }
+        })
     }
 }

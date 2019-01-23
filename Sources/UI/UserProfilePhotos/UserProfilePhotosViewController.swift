@@ -22,6 +22,7 @@ class UserProfilePhotosViewController: ThemeViewController
     fileprivate var currentIndex: Int = 0
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
+    @IBOutlet fileprivate weak var deleteBtn: UIButton!
     
     override func viewDidLoad()
     {
@@ -69,9 +70,18 @@ class UserProfilePhotosViewController: ThemeViewController
         self.present(vc, animated: true, completion: nil)
     }
     
+    // MARK: - Actions
+    
     @IBAction func addPhoto()
     {
         self.pickPhoto()
+    }
+    
+    @IBAction func deletePhoto()
+    {
+        guard let photo = self.viewModel?.photos.value[self.currentIndex] else { return }
+        
+        self.input.profileManager.deletePhoto(photo)
     }
     
     // MARK: -
@@ -104,6 +114,7 @@ class UserProfilePhotosViewController: ThemeViewController
         self.pagesVC?.setViewControllers([vc], direction: direction, animated: false, completion: nil)
         self.currentIndex = startIndex
         self.pageControl.currentPage = startIndex
+        self.deleteBtn.isHidden = photos.count == 0
     }
 }
 

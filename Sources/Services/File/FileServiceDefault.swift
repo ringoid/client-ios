@@ -17,6 +17,13 @@ class FileServiceDefault: FileService
         self.checkSubdirectories()
     }
     
+    func rm(_ path: FilePath)
+    {
+        guard path.type != .url else { return }
+        
+        try? self.fm.removeItem(at: path.url())
+    }
+    
     // MARK: -
     
     fileprivate func checkSubdirectories()
