@@ -11,15 +11,17 @@ import UIKit
 fileprivate struct SettingsOption
 {
     let cellIdentifier: String
+    let height: CGFloat
 }
 
 class SettingsViewController: ThemeViewController
 {
     fileprivate let options = [
-        SettingsOption(cellIdentifier: "theme_cell"),
-        SettingsOption(cellIdentifier: "language_cell"),
-        SettingsOption(cellIdentifier: "legal_cell"),
-        SettingsOption(cellIdentifier: "support_cell")
+        SettingsOption(cellIdentifier: "theme_cell", height: 42.0),
+        SettingsOption(cellIdentifier: "language_cell", height: 42.0),
+        SettingsOption(cellIdentifier: "legal_cell", height: 42.0),
+        SettingsOption(cellIdentifier: "support_cell", height: 42.0),
+        SettingsOption(cellIdentifier: "delete_cell", height: 82.0)
     ]
     
     @IBOutlet fileprivate weak var tableView: UITableView!
@@ -57,5 +59,12 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         let cell = tableView.dequeueReusableCell(withIdentifier: option.cellIdentifier)!
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        let option = self.options[indexPath.row]
+        
+        return option.height
     }
 }
