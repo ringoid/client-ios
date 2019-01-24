@@ -68,22 +68,35 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kqb-Gc-IsO">
-                                                    <rect key="frame" x="0.0" y="8" width="240" height="42"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="42" id="H3o-Ej-0g6"/>
-                                                        <constraint firstAttribute="width" constant="240" id="ldI-k6-CaJ"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="0.0" y="6.5" width="245" height="45"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello!" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOn-Rh-5Bc">
+                                                    <rect key="frame" x="17" y="18.5" width="211" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="9NX-jN-XKG"/>
+                                                        <constraint firstAttribute="width" constant="211" id="jdl-ZM-eYR"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="Kqb-Gc-IsO" firstAttribute="centerY" secondItem="dbc-Rm-vHS" secondAttribute="centerY" id="p2Q-Ne-PWt"/>
-                                                <constraint firstItem="Kqb-Gc-IsO" firstAttribute="leading" secondItem="dbc-Rm-vHS" secondAttribute="leading" id="pOH-se-j0t"/>
+                                                <constraint firstItem="gOn-Rh-5Bc" firstAttribute="centerY" secondItem="dbc-Rm-vHS" secondAttribute="centerY" id="Eeu-EO-fNN"/>
+                                                <constraint firstItem="gOn-Rh-5Bc" firstAttribute="bottom" secondItem="Kqb-Gc-IsO" secondAttribute="bottom" constant="-12" id="Hbe-40-5Cr"/>
+                                                <constraint firstItem="gOn-Rh-5Bc" firstAttribute="trailing" secondItem="Kqb-Gc-IsO" secondAttribute="trailing" constant="-17" id="NA8-mW-4D9"/>
+                                                <constraint firstItem="gOn-Rh-5Bc" firstAttribute="top" secondItem="Kqb-Gc-IsO" secondAttribute="top" constant="12" id="UWt-51-y0v"/>
+                                                <constraint firstItem="gOn-Rh-5Bc" firstAttribute="leading" secondItem="Kqb-Gc-IsO" secondAttribute="leading" constant="17" id="gxy-r5-HES"/>
+                                                <constraint firstItem="gOn-Rh-5Bc" firstAttribute="leading" secondItem="dbc-Rm-vHS" secondAttribute="leading" constant="17" id="kUA-sT-79d"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="bubbleImageView" destination="Kqb-Gc-IsO" id="y2u-Dx-Apl"/>
+                                            <outlet property="contentLabel" destination="gOn-Rh-5Bc" id="Czo-41-SWQ"/>
+                                            <outlet property="labelHeightConstraint" destination="9NX-jN-XKG" id="Xuu-Tq-WOU"/>
+                                            <outlet property="labelWidthConstraint" destination="jdl-ZM-eYR" id="kfk-bi-JF8"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chat_right_cell" id="VI3-se-jdX" customClass="ChatRightCell" customModule="ringoid" customModuleProvider="target">

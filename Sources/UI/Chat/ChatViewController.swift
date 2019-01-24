@@ -72,8 +72,15 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate
         let identifier = message.wasYouSender ? "chat_right_cell" : "chat_left_cell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ChatBaseCell else { return UITableViewCell() }
         
-        cell.textLabel?.text = message.text
+        cell.message = message
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        guard let message = self.viewModel?.messages.value[indexPath.row] else { return 0.0 }
+        
+        return ChatBaseCell.height(message.text)
     }
 }
