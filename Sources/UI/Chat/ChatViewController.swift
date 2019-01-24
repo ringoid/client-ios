@@ -17,7 +17,9 @@ class ChatViewController: UIViewController
     fileprivate var viewModel: ChatViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    @IBOutlet fileprivate var tableView: UITableView!
+    @IBOutlet fileprivate weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var messageTextView: UITextView!
+    @IBOutlet fileprivate weak var inputBottomConstraint: NSLayoutConstraint!
     
     static func create() -> ChatViewController
     {
@@ -32,13 +34,23 @@ class ChatViewController: UIViewController
         
         super.viewDidLoad()
         
+        KeyboardListener.shared.delegate = self
+        
         self.setupBindings()
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        self.messageTextView.becomeFirstResponder()
     }
     
     // MARK: - Actions
     
     @IBAction func onClose()
     {
+        self.messageTextView.resignFirstResponder()
         self.input.onClose?()
     }
     
@@ -82,5 +94,17 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate
         guard let message = self.viewModel?.messages.value[indexPath.row] else { return 0.0 }
         
         return ChatBaseCell.height(message.text)
+    }
+}
+
+extension ChatViewController: KeyboardListenerDelegate
+{
+    func keyboardListener(_ listener: KeyboardListener, animationFor keyboardHeight: CGFloat) -> (() -> ())?
+    {
+        self.inputBottomConstraint.constant = keyboardHeight
+        
+        return { [weak self] in
+            self?.view.layoutSubviews()
+        }
     }
 }

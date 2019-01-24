@@ -34,7 +34,6 @@
                                     <constraint firstItem="ukA-g1-heh" firstAttribute="leading" secondItem="cjc-8j-yFq" secondAttribute="leading" id="FrS-o5-Tfb"/>
                                     <constraint firstItem="ukA-g1-heh" firstAttribute="top" secondItem="cjc-8j-yFq" secondAttribute="top" id="GAs-r2-Vn1"/>
                                     <constraint firstAttribute="trailing" secondItem="ukA-g1-heh" secondAttribute="trailing" id="K1o-tf-xt3"/>
-                                    <constraint firstAttribute="height" constant="40" id="Rqh-8d-srw"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
@@ -45,6 +44,24 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPj-U6-bjV">
+                                <rect key="frame" x="334" y="627" width="41" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Car-CU-AJo"/>
+                                    <constraint firstAttribute="width" constant="41" id="KC0-O4-vyI"/>
+                                </constraints>
+                                <state key="normal" image="chat_send"/>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHy-pP-KSv">
+                                <rect key="frame" x="16" y="627" width="302" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Wjg-rX-7Lb"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gu8-Zv-Egg">
                                 <rect key="frame" x="2" y="22" width="44" height="44"/>
                                 <constraints>
@@ -150,16 +167,24 @@
                             <constraint firstAttribute="trailing" secondItem="cjc-8j-yFq" secondAttribute="trailing" id="3rS-UO-aDa"/>
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="top" secondItem="H3p-mh-W6s" secondAttribute="bottom" id="5EY-Ux-4bF"/>
                             <constraint firstItem="Gu8-Zv-Egg" firstAttribute="top" secondItem="b2c-7o-Xv8" secondAttribute="top" constant="2" id="KsU-Gp-tph"/>
+                            <constraint firstItem="qPj-U6-bjV" firstAttribute="leading" secondItem="FHy-pP-KSv" secondAttribute="trailing" constant="16" id="LvF-KT-ih6"/>
                             <constraint firstItem="H3p-mh-W6s" firstAttribute="top" secondItem="Gu8-Zv-Egg" secondAttribute="bottom" constant="2" id="Qxk-8v-ury"/>
+                            <constraint firstItem="FHy-pP-KSv" firstAttribute="height" secondItem="cjc-8j-yFq" secondAttribute="height" id="WzV-LV-1kM"/>
+                            <constraint firstItem="qPj-U6-bjV" firstAttribute="centerY" secondItem="cjc-8j-yFq" secondAttribute="centerY" id="Zyu-Db-K5b"/>
+                            <constraint firstItem="cjc-8j-yFq" firstAttribute="centerY" secondItem="FHy-pP-KSv" secondAttribute="centerY" id="aWE-YM-4XF"/>
                             <constraint firstItem="H3p-mh-W6s" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" constant="16" id="aci-Wx-0fT"/>
+                            <constraint firstItem="FHy-pP-KSv" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" constant="16" id="ce5-Yz-IGk"/>
                             <constraint firstItem="Gu8-Zv-Egg" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" constant="2" id="dkE-yI-QpT"/>
+                            <constraint firstItem="cjc-8j-yFq" firstAttribute="trailing" secondItem="qPj-U6-bjV" secondAttribute="trailing" id="iZx-Xs-XS7"/>
                             <constraint firstAttribute="trailing" secondItem="H3p-mh-W6s" secondAttribute="trailing" constant="16" id="kFu-OV-Myh"/>
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" id="v0j-UO-ASI"/>
-                            <constraint firstAttribute="bottom" secondItem="cjc-8j-yFq" secondAttribute="bottom" id="wfc-o3-Tec"/>
+                            <constraint firstAttribute="bottom" secondItem="cjc-8j-yFq" secondAttribute="bottom" id="wfc-o3-Tec" userLabel="InputBottom"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b2c-7o-Xv8"/>
                     </view>
                     <connections>
+                        <outlet property="inputBottomConstraint" destination="wfc-o3-Tec" id="cNo-PT-KqS"/>
+                        <outlet property="messageTextView" destination="FHy-pP-KSv" id="aLs-qn-RyH"/>
                         <outlet property="tableView" destination="H3p-mh-W6s" id="AZR-2p-pDt"/>
                     </connections>
                 </viewController>
@@ -170,5 +195,6 @@
     </scenes>
     <resources>
         <image name="chat_close" width="26" height="26"/>
+        <image name="chat_send" width="25" height="22"/>
     </resources>
 </document>
