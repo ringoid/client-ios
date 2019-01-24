@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import MessageUI
 
 fileprivate struct SettingsOption
 {
@@ -87,6 +88,17 @@ class SettingsViewController: ThemeViewController
         
         self.present(alertVC, animated: true, completion: nil)
     }
+    
+    fileprivate func showSupportUI()
+    {
+        guard MFMailComposeViewController.canSendMail() else { return }
+        
+        let vc = MFMailComposeViewController()
+        vc.setToRecipients(["support@ringoid.com"])
+        vc.mailComposeDelegate = self
+        
+        self.present(vc, animated: true, completion: nil)
+    }
 }
 
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
@@ -136,10 +148,21 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         case .theme: return
         case .language: return
         case .legal: return
-        case .support: return
+        case .support:
+            self.showSupportUI()
+            break
+            
         case .delete:
             self.showLogoutAlert()
             break
         }
+    }
+}
+
+extension SettingsViewController: MFMailComposeViewControllerDelegate
+{
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
+    {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
