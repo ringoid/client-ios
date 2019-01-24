@@ -125,4 +125,11 @@ class DBService
         let profiles = self.realm.objects(NewFaceProfile.self)
         return self.delete(Array(profiles))
     }
+    
+    func reset()
+    {
+        try? self.realm.write {
+            self.realm.deleteAll()
+        }
+    }
 }

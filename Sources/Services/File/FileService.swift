@@ -11,4 +11,6 @@ import Foundation
 protocol FileService
 {
     func rm(_ path: FilePath)
+    
+    func reset()
 }

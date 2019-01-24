@@ -52,7 +52,7 @@ class AppManager
         self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader, fileService: self.fileService)
         self.newFacesManager = NewFacesManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
         self.lmmManager = LMMManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
-        self.settingsMananger = SettingsManager(db: self.db, api: self.apiService)
+        self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService)
         
         ThemeManager.shared.storageService = self.defaultStorage
     }

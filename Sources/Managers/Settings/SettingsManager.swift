@@ -11,18 +11,30 @@ import RxSwift
 class SettingsManager
 {
     let db: DBService
-    let apiService: ApiService
+    let api: ApiService
+    let fs: FileService
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(db: DBService, api: ApiService)
+    init(db: DBService, api: ApiService, fs: FileService)
     {
         self.db = db
-        self.apiService = api
+        self.api = api
+        self.fs = fs
     }
     
     func logout()
     {
-        self.apiService.logout().subscribe().disposed(by: self.disposeBag)
+        self.api.logout().subscribe(onNext: { [weak self] _ in
+            self?.reset()
+        }).disposed(by: self.disposeBag)
+    }
+    
+    // MARK: -
+    
+    fileprivate func reset()
+    {
+        self.db.reset()
+        self.fs.reset()
     }
 }

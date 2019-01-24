@@ -24,6 +24,15 @@ class FileServiceDefault: FileService
         try? self.fm.removeItem(at: path.url())
     }
     
+    func reset()
+    {
+        try? self.fm.removeItem(at: URL(fileURLWithPath: temporaryDirectoryPath))
+        try? self.fm.removeItem(at: URL(fileURLWithPath: documentsDirectoryPath))
+        try? self.fm.removeItem(at: URL(fileURLWithPath: cacheDirectoryPath))
+    
+        self.checkSubdirectories()
+    }
+    
     // MARK: -
     
     fileprivate func checkSubdirectories()
