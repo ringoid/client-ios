@@ -26,4 +26,9 @@ class Storyboards
     {
         return UIStoryboard(name: "UserProfile", bundle: nil)
     }
+    
+    static func chat() -> UIStoryboard
+    {
+        return UIStoryboard(name: "Chat", bundle: nil)
+    }
 }

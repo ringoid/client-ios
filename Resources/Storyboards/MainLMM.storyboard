@@ -171,6 +171,9 @@
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Wc-Ed-6t2">
                                 <rect key="frame" x="315" y="138" width="36" height="35"/>
                                 <state key="normal" image="feed_messages_empty"/>
+                                <connections>
+                                    <action selector="onChatSelected" destination="Nf7-hc-eWV" eventType="touchUpInside" id="d62-YA-ePo"/>
+                                </connections>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="mPS-Ki-Bpa">
                                 <rect key="frame" x="33" y="37" width="0.0" height="8"/>
@@ -178,12 +181,18 @@
                                     <constraint firstAttribute="height" constant="8" id="qeS-kI-LaX"/>
                                 </constraints>
                             </pageControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5dO-vh-57S" customClass="ContainerView" customModule="ringoid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="667" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="2Wc-Ed-6t2" secondAttribute="trailing" constant="24" id="1l4-B6-3jE"/>
+                            <constraint firstItem="5dO-vh-57S" firstAttribute="height" secondItem="ekE-T8-wuA" secondAttribute="height" id="2aZ-NY-Hoe"/>
                             <constraint firstAttribute="trailing" secondItem="lGR-yG-LEW" secondAttribute="trailing" id="3dD-ad-k8o"/>
                             <constraint firstItem="OWQ-dc-NR9" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="Cbe-SI-EXr"/>
+                            <constraint firstItem="5dO-vh-57S" firstAttribute="width" secondItem="ekE-T8-wuA" secondAttribute="width" id="DYh-UN-dzn"/>
                             <constraint firstItem="OWQ-dc-NR9" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="Jh2-Xt-krz"/>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
@@ -192,11 +201,15 @@
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="138" id="UE3-94-yVQ"/>
                             <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="XAG-qi-5bb"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="gA6-9y-Jou"/>
+                            <constraint firstItem="5dO-vh-57S" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="bottom" id="nZ3-pK-QPS" userLabel="ChatTop"/>
+                            <constraint firstItem="5dO-vh-57S" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="oFg-Pf-YsI"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dlp-dl-iCM"/>
                     </view>
                     <connections>
+                        <outlet property="chatConstraint" destination="nZ3-pK-QPS" id="PDe-Nl-rUT"/>
+                        <outlet property="chatContainerView" destination="5dO-vh-57S" id="j94-nx-ydz"/>
                         <outlet property="messageBtn" destination="2Wc-Ed-6t2" id="CMh-0H-xuQ"/>
                         <outlet property="pageControl" destination="mPS-Ki-Bpa" id="nuR-eb-yLf"/>
                     </connections>

@@ -18,6 +18,8 @@ class MainLMMProfileViewController: UIViewController
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var messageBtn: UIButton!
+    @IBOutlet fileprivate weak var chatContainerView: ContainerView!
+    @IBOutlet fileprivate weak var chatConstraint: NSLayoutConstraint!
     
     static func create(_ profile: LMMProfile, feedType: LMMType, actionsManager: ActionsManager) -> MainLMMProfileViewController
     {
@@ -58,6 +60,43 @@ class MainLMMProfileViewController: UIViewController
             self.pagesVC?.delegate = self
             self.pagesVC?.dataSource = self
         }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func onChatSelected()
+    {
+        self.showChat()
+    }
+    
+    // MARK: -
+    
+    fileprivate func showChat()
+    {
+        let vc = ChatViewController.create()
+        vc.input = ChatVMInput(profile: self.input.profile, actionsManager: self.input.actionsManager, onClose: { [weak self] in
+            self?.hideChat()
+        })
+        
+        self.chatContainerView.embed(vc, to: self)
+        self.chatConstraint.constant = -self.view.bounds.height
+        
+        UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
+            self.view.layoutSubviews()
+        }).startAnimation()
+    }
+    
+    fileprivate func hideChat()
+    {
+        self.chatConstraint.constant = 0.0
+        
+        let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
+            self.view.layoutSubviews()
+        })
+        animator.addCompletion({ _ in
+            self.chatContainerView.remove()
+        })
+        animator.startAnimation()
     }
 }
 

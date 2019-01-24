@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7Sb-wa-NBj">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Chat View Controller-->
+        <scene sceneID="dIG-lQ-Sqh">
+            <objects>
+                <viewController id="7Sb-wa-NBj" customClass="ChatViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H5L-B8-AIS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cjc-8j-yFq" userLabel="BottomBarView" customClass="VerticalGradientView" customModule="ringoid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <subviews>
+                                    <view alpha="0.31000000238418579" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ukA-g1-heh">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="pkx-hE-w7c"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ukA-g1-heh" firstAttribute="leading" secondItem="cjc-8j-yFq" secondAttribute="leading" id="FrS-o5-Tfb"/>
+                                    <constraint firstItem="ukA-g1-heh" firstAttribute="top" secondItem="cjc-8j-yFq" secondAttribute="top" id="GAs-r2-Vn1"/>
+                                    <constraint firstAttribute="trailing" secondItem="ukA-g1-heh" secondAttribute="trailing" id="K1o-tf-xt3"/>
+                                    <constraint firstAttribute="height" constant="40" id="Rqh-8d-srw"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                        <color key="value" white="0.0" alpha="0.74609375" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gu8-Zv-Egg">
+                                <rect key="frame" x="2" y="22" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="0WU-rR-IKU"/>
+                                    <constraint firstAttribute="width" constant="44" id="bph-7x-TdX"/>
+                                </constraints>
+                                <state key="normal" image="chat_close"/>
+                                <connections>
+                                    <action selector="onClose" destination="7Sb-wa-NBj" eventType="touchUpInside" id="Yr3-rM-d48"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H3p-mh-W6s">
+                                <rect key="frame" x="16" y="68" width="343" height="559"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="cjc-8j-yFq" secondAttribute="trailing" id="3rS-UO-aDa"/>
+                            <constraint firstItem="cjc-8j-yFq" firstAttribute="top" secondItem="H3p-mh-W6s" secondAttribute="bottom" id="5EY-Ux-4bF"/>
+                            <constraint firstItem="Gu8-Zv-Egg" firstAttribute="top" secondItem="b2c-7o-Xv8" secondAttribute="top" constant="2" id="KsU-Gp-tph"/>
+                            <constraint firstItem="H3p-mh-W6s" firstAttribute="top" secondItem="Gu8-Zv-Egg" secondAttribute="bottom" constant="2" id="Qxk-8v-ury"/>
+                            <constraint firstItem="H3p-mh-W6s" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" constant="16" id="aci-Wx-0fT"/>
+                            <constraint firstItem="Gu8-Zv-Egg" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" constant="2" id="dkE-yI-QpT"/>
+                            <constraint firstAttribute="trailing" secondItem="H3p-mh-W6s" secondAttribute="trailing" constant="16" id="kFu-OV-Myh"/>
+                            <constraint firstItem="cjc-8j-yFq" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" id="v0j-UO-ASI"/>
+                            <constraint firstAttribute="bottom" secondItem="cjc-8j-yFq" secondAttribute="bottom" id="wfc-o3-Tec"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="b2c-7o-Xv8"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TBJ-Cm-bUE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-119.2" y="90.404797601199405"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chat_close" width="26" height="26"/>
+    </resources>
+</document>

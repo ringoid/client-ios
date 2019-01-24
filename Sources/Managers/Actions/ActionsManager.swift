@@ -61,6 +61,7 @@ class ActionsManager
     
     func stopViewAction(_ profile: Profile, photo: Photo, sourceType: SourceFeedType)
     {
+        guard !profile.isInvalidated else { return }
         guard let date = self.viewActionsMap[photo.id] else { return }
         
         self.viewActionsMap.removeValue(forKey: photo.id)

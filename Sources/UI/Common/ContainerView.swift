@@ -14,8 +14,7 @@ class ContainerView: UIView
     
     func embed(_ vc: UIViewController, to: UIViewController)
     {
-        self.containedVC?.view.removeFromSuperview()
-        self.containedVC?.removeFromParent()
+        self.remove()
         
         to.addChild(vc)
         
@@ -28,5 +27,11 @@ class ContainerView: UIView
         vc.view.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         
         self.containedVC = vc
+    }
+    
+    func remove()
+    {
+        self.containedVC?.view.removeFromSuperview()
+        self.containedVC?.removeFromParent()
     }
 }
