@@ -83,6 +83,8 @@ class MainLMMProfileViewController: UIViewController
         self.chatContainerView.embed(vc, to: self)
         self.chatConstraint.constant = -self.view.bounds.height
         
+        self.pageControl.isHidden = true
+        self.messageBtn.isHidden = true
         self.onSelected?()
         UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
             self.view.layoutSubviews()
@@ -98,6 +100,8 @@ class MainLMMProfileViewController: UIViewController
         })
         animator.addCompletion({ _ in
             self.chatContainerView.remove()
+            self.pageControl.isHidden = false
+            self.messageBtn.isHidden = false
         })
         animator.startAnimation()
     }

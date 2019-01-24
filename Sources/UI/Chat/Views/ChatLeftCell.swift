@@ -10,5 +10,21 @@ import UIKit
 
 class ChatLeftCell: ChatBaseCell
 {
+    @IBOutlet fileprivate weak var bubbleImageView: UIImageView!
     
+    override func awakeFromNib()
+    {
+        super.awakeFromNib()
+        
+        self.setupContent()
+    }
+    
+    // MARK: -
+    
+    fileprivate func setupContent()
+    {
+        let capInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+        let backgroundImage = UIImage(named: "chat_bubble_left")?.resizableImage(withCapInsets: capInsets)
+        self.bubbleImageView.image = backgroundImage
+    }
 }

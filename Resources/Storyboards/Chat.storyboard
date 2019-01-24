@@ -14,7 +14,7 @@
         <scene sceneID="dIG-lQ-Sqh">
             <objects>
                 <viewController id="7Sb-wa-NBj" customClass="ChatViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="H5L-B8-AIS">
+                    <view key="view" contentMode="scaleToFill" id="H5L-B8-AIS" customClass="TouchThroughView" customModule="ringoid" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -66,7 +66,25 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KE6-Sh-3nk" id="dbc-Rm-vHS">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kqb-Gc-IsO">
+                                                    <rect key="frame" x="0.0" y="8" width="240" height="42"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="42" id="H3o-Ej-0g6"/>
+                                                        <constraint firstAttribute="width" constant="240" id="ldI-k6-CaJ"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="Kqb-Gc-IsO" firstAttribute="centerY" secondItem="dbc-Rm-vHS" secondAttribute="centerY" id="p2Q-Ne-PWt"/>
+                                                <constraint firstItem="Kqb-Gc-IsO" firstAttribute="leading" secondItem="dbc-Rm-vHS" secondAttribute="leading" id="pOH-se-j0t"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="bubbleImageView" destination="Kqb-Gc-IsO" id="y2u-Dx-Apl"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chat_right_cell" id="VI3-se-jdX" customClass="ChatRightCell" customModule="ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="86" width="343" height="58"/>
@@ -74,7 +92,9 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VI3-se-jdX" id="1Ap-Pe-mKr">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
