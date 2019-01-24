@@ -35,8 +35,10 @@ class MainLMMViewController: ThemeViewController
         
         super.viewDidLoad()
         
+        let cellHeight = UIScreen.main.bounds.height * 3.0 / 4.0
         self.tableView.tableHeaderView = nil
-        self.tableView.rowHeight = UIScreen.main.bounds.height * 3.0 / 4.0
+        self.tableView.rowHeight = cellHeight
+        self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: UIScreen.main.bounds.height - cellHeight, right: 0.0)
         
         self.setupBindings()
         self.setupReloader()
@@ -127,6 +129,10 @@ extension MainLMMViewController: UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "main_llm_cell") as! MainLMMCell
         if let profile = self.profiles()?.value[indexPath.row] {
             let profileVC = MainLMMProfileViewController.create(profile, feedType: self.type.value, actionsManager: self.input.actionsManager)
+            profileVC.onSelected = { [weak self] in
+                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            }
+            
             cell.containerView.embed(profileVC, to: self)
         }
         

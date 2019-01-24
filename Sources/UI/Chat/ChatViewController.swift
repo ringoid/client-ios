@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ChatViewController: UIViewController
 {
     var input: ChatVMInput!
     
     fileprivate var viewModel: ChatViewModel?
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
+    @IBOutlet fileprivate var tableView: UITableView!
     
     static func create() -> ChatViewController
     {
@@ -42,5 +47,33 @@ class ChatViewController: UIViewController
     fileprivate func setupBindings()
     {
         self.viewModel = ChatViewModel(self.input)
+        
+        self.viewModel?.messages.asObservable().subscribe(onNext: { [weak self] _ in
+            self?.tableView.reloadData()
+        }).disposed(by: self.disposeBag)
+    }
+}
+
+extension ChatViewController: UITableViewDataSource, UITableViewDelegate
+{
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return self.viewModel?.messages.value.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        guard let message = self.viewModel?.messages.value[indexPath.row] else { return UITableViewCell() }
+        let identifier = message.wasYouSender ? "chat_right_cell" : "chat_left_cell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ChatBaseCell else { return UITableViewCell() }
+        
+        cell.textLabel?.text = message.text
+        
+        return cell
     }
 }

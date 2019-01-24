@@ -12,6 +12,8 @@ class MainLMMProfileViewController: UIViewController
 {
     var input: MainLMMProfileVMInput!
     
+    var onSelected: ( ()->() )?
+    
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
     fileprivate var currentIndex: Int = 0
@@ -81,6 +83,7 @@ class MainLMMProfileViewController: UIViewController
         self.chatContainerView.embed(vc, to: self)
         self.chatConstraint.constant = -self.view.bounds.height
         
+        self.onSelected?()
         UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
             self.view.layoutSubviews()
         }).startAnimation()
