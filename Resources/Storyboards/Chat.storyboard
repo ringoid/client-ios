@@ -14,7 +14,7 @@
         <scene sceneID="dIG-lQ-Sqh">
             <objects>
                 <viewController id="7Sb-wa-NBj" customClass="ChatViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="H5L-B8-AIS" customClass="TouchThroughView" customModule="ringoid" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="H5L-B8-AIS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -99,15 +99,44 @@
                                             <outlet property="labelWidthConstraint" destination="jdl-ZM-eYR" id="kfk-bi-JF8"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chat_right_cell" id="VI3-se-jdX" customClass="ChatRightCell" customModule="ringoid" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chat_right_cell" id="LnI-UU-UqA" customClass="ChatRightCell" customModule="ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="86" width="343" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VI3-se-jdX" id="1Ap-Pe-mKr">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LnI-UU-UqA" id="rD1-Kd-xHb">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iPA-GY-O3g">
+                                                    <rect key="frame" x="91" y="6.5" width="237" height="45"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello!" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9f-eP-Rf0">
+                                                    <rect key="frame" x="108" y="18.5" width="211" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="rCF-jL-9DE"/>
+                                                        <constraint firstAttribute="width" constant="211" id="rkU-gj-Vel"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="p9f-eP-Rf0" firstAttribute="bottom" secondItem="iPA-GY-O3g" secondAttribute="bottom" constant="-12" id="8L9-c5-xEG"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="p9f-eP-Rf0" secondAttribute="trailing" constant="9" id="8iC-90-II3"/>
+                                                <constraint firstItem="p9f-eP-Rf0" firstAttribute="top" secondItem="iPA-GY-O3g" secondAttribute="top" constant="12" id="AXu-fT-xNw"/>
+                                                <constraint firstItem="p9f-eP-Rf0" firstAttribute="centerY" secondItem="rD1-Kd-xHb" secondAttribute="centerY" id="HBS-HX-vhV"/>
+                                                <constraint firstItem="p9f-eP-Rf0" firstAttribute="leading" secondItem="iPA-GY-O3g" secondAttribute="leading" constant="17" id="h6d-vC-LKL"/>
+                                                <constraint firstItem="p9f-eP-Rf0" firstAttribute="trailing" secondItem="iPA-GY-O3g" secondAttribute="trailing" constant="-9" id="hdM-0w-jdP"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="bubbleImageView" destination="iPA-GY-O3g" id="ae4-AD-OIi"/>
+                                            <outlet property="contentLabel" destination="p9f-eP-Rf0" id="IBF-YL-w1T"/>
+                                            <outlet property="labelHeightConstraint" destination="rCF-jL-9DE" id="y9z-tE-pvA"/>
+                                            <outlet property="labelWidthConstraint" destination="rkU-gj-Vel" id="FyI-7P-7wY"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
