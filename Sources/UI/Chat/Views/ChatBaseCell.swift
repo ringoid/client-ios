@@ -29,12 +29,19 @@ class ChatBaseCell: UITableViewCell
         return contentSize(text).height + 4.0 + 24.0 + 14.0
     }
     
+    override func awakeFromNib()
+    {
+        super.awakeFromNib()
+        
+        self.transform = CGAffineTransform(rotationAngle: .pi)
+    }
+    
     // MARK: -
     
     fileprivate func update()
     {
         let size = contentSize(self.message?.text ?? "")
-        self.labelWidthConstraint.constant = size.width + 4.0
+        self.labelWidthConstraint.constant = size.width + 2.0
         self.labelHeightConstraint.constant = size.height + 4.0
         self.layoutSubviews()
         self.contentLabel.text = self.message?.text
