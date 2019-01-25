@@ -12,7 +12,8 @@ import RxCocoa
 struct ChatVMInput
 {
     let profile: LMMProfile
-    let actionsManager: ActionsManager
+    let chatManager: ChatManager
+    let source: SourceFeedType
     let onClose: (()->())?
 }
 
@@ -29,6 +30,11 @@ class ChatViewModel
         self.input = input
         
         self.setupBindings()
+    }
+    
+    func send(_ text: String)
+    {
+        self.input.chatManager.send(text, profile: self.input.profile, source: self.input.source)
     }
     
     // MARK: -

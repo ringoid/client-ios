@@ -116,7 +116,7 @@ class MainViewController: ThemeViewController
     {
         let storyboard = Storyboards.mainLMM()
         guard let vc = storyboard.instantiateInitialViewController() as? MainLMMContainerViewController else { return }
-        vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager, actionsManager: self.input.actionsManager)
+        vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager, actionsManager: self.input.actionsManager, chatManager: self.input.chatManager)
         
         self.containerVC.embed(vc)
     }
@@ -125,7 +125,7 @@ class MainViewController: ThemeViewController
     {
         let storyboard = Storyboards.mainLMM()
         guard let vc = storyboard.instantiateViewController(withIdentifier: "main_lmm_vc") as? MainLMMViewController else { return }
-        vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager, actionsManager: self.input.actionsManager)
+        vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager, actionsManager: self.input.actionsManager, chatManager: self.input.chatManager)
         vc.type.accept(.messages)
         
         self.containerVC.embed(vc)

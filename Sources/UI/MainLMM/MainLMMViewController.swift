@@ -116,7 +116,7 @@ class MainLMMViewController: ThemeViewController
     fileprivate func showChat(_ profile: LMMProfile, indexPath: IndexPath, profileVC: MainLMMProfileViewController?)
     {
         let vc = ChatViewController.create()
-        vc.input = ChatVMInput(profile: profile, actionsManager: self.input.actionsManager, onClose: { [weak self] in
+        vc.input = ChatVMInput(profile: profile, chatManager: self.input.chatManager, source: .messages, onClose: { [weak self] in
             self?.hideChat(profileVC)
         })
         

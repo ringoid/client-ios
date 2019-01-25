@@ -15,6 +15,7 @@ struct MainVMInput
     let lmmManager: LMMManager
     let profileManager: UserProfileManager
     let settingsManager: SettingsManager
+    let chatManager: ChatManager
 }
 
 class MainViewModel

@@ -57,7 +57,8 @@ class RootViewController: ThemeViewController {
                 newFacesManager: self.appManager.newFacesManager,
                 lmmManager: self.appManager.lmmManager,
                 profileManager: self.appManager.profileManager,
-                settingsManager: self.appManager.settingsMananger
+                settingsManager: self.appManager.settingsMananger,
+                chatManager: self.appManager.chatManager
             )
             vc.defaultState = self.mainUIState
         }

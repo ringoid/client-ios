@@ -20,6 +20,7 @@ class AppManager
     var profileManager: UserProfileManager!
     var newFacesManager: NewFacesManager!
     var lmmManager: LMMManager!
+    var chatManager: ChatManager!
     var settingsMananger: SettingsManager!
     
     func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
@@ -52,6 +53,7 @@ class AppManager
         self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader, fileService: self.fileService)
         self.newFacesManager = NewFacesManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
         self.lmmManager = LMMManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
+        self.chatManager = ChatManager(self.db, actionsManager: self.actionsManager)
         self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService)
         
         ThemeManager.shared.storageService = self.defaultStorage

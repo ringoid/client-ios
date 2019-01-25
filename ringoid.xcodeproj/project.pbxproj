@@ -65,6 +65,7 @@
 		579CD7C821F9D4F700C3AEE3 /* ChatRightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7C721F9D4F700C3AEE3 /* ChatRightCell.swift */; };
 		579CD7CA21F9DB8B00C3AEE3 /* ChatBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7C921F9DB8B00C3AEE3 /* ChatBaseCell.swift */; };
 		579CD7CC21FA094600C3AEE3 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7CB21FA094600C3AEE3 /* KeyboardListener.swift */; };
+		579CD7CF21FAE2D100C3AEE3 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7CE21FAE2D000C3AEE3 /* ChatManager.swift */; };
 		57B863BC21EC74BF00B9CC70 /* ApiLMMProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */; };
 		57B863BE21EC758200B9CC70 /* ApiMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BD21EC758200B9CC70 /* ApiMessage.swift */; };
 		57B863C021ECB93200B9CC70 /* LMMProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BF21ECB93200B9CC70 /* LMMProfile.swift */; };
@@ -161,6 +162,7 @@
 		579CD7C721F9D4F700C3AEE3 /* ChatRightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRightCell.swift; sourceTree = "<group>"; };
 		579CD7C921F9DB8B00C3AEE3 /* ChatBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBaseCell.swift; sourceTree = "<group>"; };
 		579CD7CB21FA094600C3AEE3 /* KeyboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
+		579CD7CE21FAE2D000C3AEE3 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLMMProfile.swift; sourceTree = "<group>"; };
 		57B863BD21EC758200B9CC70 /* ApiMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMessage.swift; sourceTree = "<group>"; };
 		57B863BF21ECB93200B9CC70 /* LMMProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LMMProfile.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				579CD7CD21FAE2B800C3AEE3 /* Chat */,
 				579CD7BA21F8C1B700C3AEE3 /* Settings */,
 				57B863E921EE339C00B9CC70 /* Actions */,
 				57B863C321ECC33500B9CC70 /* LMM */,
@@ -555,6 +558,14 @@
 				579CD7C921F9DB8B00C3AEE3 /* ChatBaseCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		579CD7CD21FAE2B800C3AEE3 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				579CD7CE21FAE2D000C3AEE3 /* ChatManager.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		57B863C321ECC33500B9CC70 /* LMM */ = {
@@ -858,6 +869,7 @@
 				57FB7BCA21E63D6800AAA29D /* MainViewModel.swift in Sources */,
 				579CD7BC21F8C4D800C3AEE3 /* SettingsManager.swift in Sources */,
 				57B863EB21EE33D200B9CC70 /* ActionsManager.swift in Sources */,
+				579CD7CF21FAE2D100C3AEE3 /* ChatManager.swift in Sources */,
 				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,
 				579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */,
 			);

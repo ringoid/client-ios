@@ -13,6 +13,7 @@ struct MainLMMVMInput
 {
     let lmmManager: LMMManager
     let actionsManager: ActionsManager
+    let chatManager: ChatManager
 }
 
 class MainLMMViewModel
