@@ -12,6 +12,7 @@ import RxCocoa
 struct UserProfilePhotosVCInput
 {
     let profileManager: UserProfileManager
+    let lmmManager: LMMManager
     let settingsManager: SettingsManager
 }
 
@@ -38,5 +39,12 @@ class UserProfilePhotosViewModel
         }
         
         return self.input.profileManager.addPhoto(data, filename: UUID().uuidString)
+    }
+    
+    func refresh() -> Observable<Void>
+    {
+        return self.input.profileManager.refresh().flatMap({ [weak self] _ -> Observable<Void> in
+            return self!.input.lmmManager.refresh()
+        })
     }
 }

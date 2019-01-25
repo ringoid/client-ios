@@ -135,7 +135,11 @@ class MainViewController: ThemeViewController
     {
         let storyboard = Storyboards.userProfile()
         guard let vc = storyboard.instantiateInitialViewController() as? UserProfilePhotosViewController else { return }
-        vc.input = UserProfilePhotosVCInput(profileManager: self.input.profileManager, settingsManager: self.input.settingsManager)
+        vc.input = UserProfilePhotosVCInput(
+            profileManager: self.input.profileManager,
+            lmmManager: self.input.lmmManager,
+            settingsManager: self.input.settingsManager
+        )
         
         self.containerVC.embed(vc)
     }

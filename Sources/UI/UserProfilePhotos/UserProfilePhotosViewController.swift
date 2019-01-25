@@ -23,6 +23,8 @@ class UserProfilePhotosViewController: ThemeViewController
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var deleteBtn: UIButton!
+    @IBOutlet fileprivate weak var containerTableView: UITableView!
+    fileprivate var refreshControl: UIRefreshControl!
     
     override func viewDidLoad()
     {
@@ -30,7 +32,9 @@ class UserProfilePhotosViewController: ThemeViewController
         
         super.viewDidLoad()
         
+        self.containerTableView.reloadData()
         self.setupBindings()
+        self.setupReloader()
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -42,12 +46,6 @@ class UserProfilePhotosViewController: ThemeViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if segue.identifier == "embed_pages" {
-            self.pagesVC = segue.destination as? UIPageViewController
-            self.pagesVC?.delegate = self
-            self.pagesVC?.dataSource = self
-        }
-        
         if segue.identifier == "settings_vc",
             let vc = (segue.destination as? UINavigationController)?.viewControllers.first as? SettingsViewController {
             vc.input = SettingsVMInput(settingsManager: self.input.settingsManager)
@@ -87,6 +85,11 @@ class UserProfilePhotosViewController: ThemeViewController
         self.showDeletionAlert()
     }
     
+    @objc func onReload()
+    {
+        self.reload()
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
@@ -97,6 +100,13 @@ class UserProfilePhotosViewController: ThemeViewController
             
             self.updatePages(startIndex: photos.count - 1)
         }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func setupReloader()
+    {
+        self.refreshControl = UIRefreshControl()
+        self.containerTableView.addSubview(self.refreshControl)
+        self.refreshControl.addTarget(self, action: #selector(onReload), for: .valueChanged)
     }
     
     fileprivate func updatePages(startIndex: Int)
@@ -131,6 +141,17 @@ class UserProfilePhotosViewController: ThemeViewController
         alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func reload()
+    {
+        self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
+            guard let `self` = self else { return }
+            
+            showError(error, vc: self)
+            }, onCompleted:{ [weak self] in
+                self?.refreshControl.endRefreshing()
+        }).disposed(by: self.disposeBag)
     }
 }
 
@@ -187,5 +208,39 @@ extension UserProfilePhotosViewController: UIPageViewControllerDelegate, UIPageV
         
         self.currentIndex = index
         self.pageControl.currentPage = index
+    }
+}
+
+extension UserProfilePhotosViewController: UITableViewDataSource, UITableViewDelegate
+{
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return self.containerTableView.bounds.width / 3.0 * 4.0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "container_cell") as! UserProfileContainerCell
+        
+        let storyboard = Storyboards.userProfile()
+        let vc = storyboard.instantiateViewController(withIdentifier: "pages_vc") as! UIPageViewController
+        vc.delegate = self
+        vc.dataSource = self
+        self.pagesVC = vc
+        
+        cell.containerView.embed(vc, to: self)
+        self.updatePages(startIndex: self.currentIndex)
+        
+        return cell
     }
 }

@@ -18,17 +18,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fle-z7-knz">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="GhS-rk-bVb">
                                 <rect key="frame" x="0.0" y="20" width="375" height="500"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Fle-z7-knz" secondAttribute="height" multiplier="3:4" id="wk5-X1-Afn"/>
+                                    <constraint firstAttribute="width" secondItem="GhS-rk-bVb" secondAttribute="height" multiplier="3:4" id="Pph-65-thA"/>
                                 </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="container_cell" id="X1L-aE-hdx" customClass="UserProfileContainerCell" customModule="ringoid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X1L-aE-hdx" id="sJ1-66-Vow">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XdB-e9-WUk" customClass="ContainerView" customModule="ringoid" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="XdB-e9-WUk" firstAttribute="leading" secondItem="sJ1-66-Vow" secondAttribute="leading" id="Flr-Il-1KQ"/>
+                                                <constraint firstItem="XdB-e9-WUk" firstAttribute="top" secondItem="sJ1-66-Vow" secondAttribute="top" id="cQU-dH-vbm"/>
+                                                <constraint firstAttribute="bottom" secondItem="XdB-e9-WUk" secondAttribute="bottom" id="hYP-Gj-9Et"/>
+                                                <constraint firstAttribute="trailing" secondItem="XdB-e9-WUk" secondAttribute="trailing" id="ilC-8x-ern"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="containerView" destination="XdB-e9-WUk" id="mpe-dH-VPy"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <segue destination="CpO-jA-Va0" kind="embed" identifier="embed_pages" id="IHX-uG-jQo"/>
+                                    <outlet property="dataSource" destination="aaf-t7-SOT" id="QF4-U4-466"/>
+                                    <outlet property="delegate" destination="aaf-t7-SOT" id="gev-Qx-7GI"/>
                                 </connections>
-                            </containerView>
+                            </tableView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32r-W0-czT">
-                                <rect key="frame" x="320" y="273" width="28" height="36"/>
+                                <rect key="frame" x="320" y="267" width="28" height="36"/>
                                 <state key="normal" image="profile_delete_photo"/>
                                 <connections>
                                     <action selector="deletePhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="KYt-hL-B7c"/>
@@ -57,21 +86,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="0Ze-nT-pEZ" firstAttribute="top" secondItem="Fle-z7-knz" secondAttribute="top" constant="26" id="FRj-bw-ASZ"/>
+                            <constraint firstItem="32r-W0-czT" firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" constant="-217" id="8Ol-36-tvL"/>
                             <constraint firstItem="gyn-28-5bi" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" constant="18" id="G7V-WC-jCi"/>
-                            <constraint firstItem="32r-W0-czT" firstAttribute="top" secondItem="Fle-z7-knz" secondAttribute="top" constant="253" id="Hln-nY-Gge"/>
                             <constraint firstAttribute="trailing" secondItem="32r-W0-czT" secondAttribute="trailing" constant="27" id="IyC-nP-7NA"/>
+                            <constraint firstItem="GhS-rk-bVb" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="J5p-mc-dZY"/>
+                            <constraint firstAttribute="trailing" secondItem="GhS-rk-bVb" secondAttribute="trailing" id="MAW-HJ-rQf"/>
+                            <constraint firstItem="GhS-rk-bVb" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="Q1a-Y0-U7m"/>
                             <constraint firstAttribute="trailing" secondItem="0Ze-nT-pEZ" secondAttribute="trailing" constant="23" id="U4Y-k4-tb8"/>
-                            <constraint firstItem="Fle-z7-knz" firstAttribute="bottom" secondItem="R3C-Zv-Ixf" secondAttribute="bottom" constant="26" id="XdK-B1-1oJ"/>
-                            <constraint firstAttribute="trailing" secondItem="Fle-z7-knz" secondAttribute="trailing" id="cUz-F0-US5"/>
-                            <constraint firstItem="Fle-z7-knz" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="gOa-aF-aBp"/>
+                            <constraint firstItem="R3C-Zv-Ixf" firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" constant="-26" id="ggR-U5-ZuF"/>
+                            <constraint firstItem="0Ze-nT-pEZ" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="26" id="l9A-yQ-mB5"/>
                             <constraint firstAttribute="trailing" secondItem="R3C-Zv-Ixf" secondAttribute="trailing" constant="23" id="pnS-T9-dnY"/>
                             <constraint firstItem="gyn-28-5bi" firstAttribute="leading" secondItem="Yc6-CF-qSL" secondAttribute="leading" constant="17" id="xWB-fQ-bnr"/>
-                            <constraint firstItem="Fle-z7-knz" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="xuH-1s-l3C"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Yc6-CF-qSL"/>
                     </view>
                     <connections>
+                        <outlet property="containerTableView" destination="GhS-rk-bVb" id="o6E-fd-3zd"/>
                         <outlet property="deleteBtn" destination="32r-W0-czT" id="qDq-QL-d5e"/>
                         <outlet property="pageControl" destination="gyn-28-5bi" id="KYH-ae-ET6"/>
                     </connections>
@@ -91,7 +121,7 @@
         <!--Page View Controller-->
         <scene sceneID="khy-Gj-Sd6">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="CpO-jA-Va0" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="pages_vc" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="CpO-jA-Va0" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3mj-YZ-ER7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="796" y="65"/>
