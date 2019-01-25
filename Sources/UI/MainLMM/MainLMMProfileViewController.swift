@@ -12,7 +12,7 @@ class MainLMMProfileViewController: UIViewController
 {
     var input: MainLMMProfileVMInput!
     
-    var onSelected: ( ()->() )?
+    var onChatShow: ((LMMProfile, MainLMMProfileViewController?) -> ())?
     
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
@@ -20,8 +20,6 @@ class MainLMMProfileViewController: UIViewController
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var messageBtn: UIButton!
-    @IBOutlet fileprivate weak var chatContainerView: ContainerView!
-    @IBOutlet fileprivate weak var chatConstraint: NSLayoutConstraint!
     
     static func create(_ profile: LMMProfile, feedType: LMMType, actionsManager: ActionsManager) -> MainLMMProfileViewController
     {
@@ -64,46 +62,24 @@ class MainLMMProfileViewController: UIViewController
         }
     }
     
+    func showControls()
+    {
+        self.pageControl.isHidden = false
+        self.messageBtn.isHidden = false
+    }
+    
+    func hideControls()
+    {
+        self.pageControl.isHidden = true
+        self.messageBtn.isHidden = true
+    }
+    
     // MARK: - Actions
     
     @IBAction func onChatSelected()
     {
-        self.showChat()
-    }
-    
-    // MARK: -
-    
-    fileprivate func showChat()
-    {
-        let vc = ChatViewController.create()
-        vc.input = ChatVMInput(profile: self.input.profile, actionsManager: self.input.actionsManager, onClose: { [weak self] in
-            self?.hideChat()
-        })
-        
-        self.chatContainerView.embed(vc, to: self)
-        self.chatConstraint.constant = -self.view.bounds.height
-        
-        self.pageControl.isHidden = true
-        self.messageBtn.isHidden = true
-        self.onSelected?()
-        UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
-            self.view.layoutSubviews()
-        }).startAnimation()
-    }
-    
-    fileprivate func hideChat()
-    {
-        self.chatConstraint.constant = 0.0
-        
-        let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
-            self.view.layoutSubviews()
-        })
-        animator.addCompletion({ _ in
-            self.chatContainerView.remove()
-            self.pageControl.isHidden = false
-            self.messageBtn.isHidden = false
-        })
-        animator.startAnimation()
+        weak var weakSelf = self
+        self.onChatShow?(self.input.profile, weakSelf)
     }
 }
 

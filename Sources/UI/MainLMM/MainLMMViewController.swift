@@ -26,6 +26,8 @@ class MainLMMViewController: ThemeViewController
     fileprivate var disposeBag: DisposeBag = DisposeBag()
     fileprivate var isUpdated: Bool = true
     
+    @IBOutlet fileprivate weak var chatContainerView: ContainerView!
+    @IBOutlet fileprivate weak var chatConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var tableView: UITableView!
     fileprivate var refreshControl: UIRefreshControl!
     
@@ -110,6 +112,38 @@ class MainLMMViewController: ThemeViewController
             return self.viewModel?.messages
         }
     }
+    
+    fileprivate func showChat(_ profile: LMMProfile, indexPath: IndexPath, profileVC: MainLMMProfileViewController?)
+    {
+        let vc = ChatViewController.create()
+        vc.input = ChatVMInput(profile: profile, actionsManager: self.input.actionsManager, onClose: { [weak self] in
+            self?.hideChat(profileVC)
+        })
+        
+        self.chatContainerView.embed(vc, to: self)
+        self.chatConstraint.constant = -self.view.bounds.height
+        
+        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        profileVC?.hideControls()
+        
+        UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
+            self.view.layoutSubviews()
+        }).startAnimation()
+    }
+    
+    fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?)
+    {
+        self.chatConstraint.constant = 0.0
+        
+        let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
+            self.view.layoutSubviews()
+        })
+        animator.addCompletion({ _ in
+            profileVC?.showControls()
+            self.chatContainerView.remove()
+        })
+        animator.startAnimation()
+    }
 }
 
 extension MainLMMViewController: UITableViewDataSource
@@ -129,8 +163,8 @@ extension MainLMMViewController: UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "main_llm_cell") as! MainLMMCell
         if let profile = self.profiles()?.value[indexPath.row] {
             let profileVC = MainLMMProfileViewController.create(profile, feedType: self.type.value, actionsManager: self.input.actionsManager)
-            profileVC.onSelected = { [weak self] in
-                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            profileVC.onChatShow = { [weak self] profile, vc in
+                self?.showChat(profile, indexPath: indexPath, profileVC: profileVC)
             }
             
             cell.containerView.embed(profileVC, to: self)

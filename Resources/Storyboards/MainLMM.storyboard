@@ -31,7 +31,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="onLikesYouSelected" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="7qb-H6-eax"/>
                                     <action selector="onLikesYouSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="FNb-tC-1cH"/>
                                 </connections>
                             </button>
@@ -43,7 +42,6 @@
                                 </state>
                                 <connections>
                                     <action selector="onMatchesSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="ONu-bD-Af9"/>
-                                    <action selector="onMatchesSelected" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="VCa-MI-zar"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -111,17 +109,27 @@
                                     <outlet property="dataSource" destination="5Bt-Xu-MH5" id="gVE-RV-F7O"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ey6-2A-Ohd" customClass="ContainerView" customModule="ringoid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="667" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kbx-tQ-FPO" firstAttribute="top" secondItem="aDZ-sn-yKR" secondAttribute="top" id="3Jo-e4-nRS"/>
                             <constraint firstAttribute="bottom" secondItem="kbx-tQ-FPO" secondAttribute="bottom" id="8jo-ly-7Yp"/>
+                            <constraint firstItem="Ey6-2A-Ohd" firstAttribute="top" secondItem="aDZ-sn-yKR" secondAttribute="bottom" id="AQR-MD-OQf" userLabel="ContainerTop"/>
+                            <constraint firstItem="Ey6-2A-Ohd" firstAttribute="width" secondItem="aDZ-sn-yKR" secondAttribute="width" id="SnP-35-77U"/>
+                            <constraint firstItem="Ey6-2A-Ohd" firstAttribute="centerX" secondItem="aDZ-sn-yKR" secondAttribute="centerX" id="Sur-Ou-Efl"/>
                             <constraint firstItem="kbx-tQ-FPO" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="leading" id="fH6-My-2G0"/>
+                            <constraint firstItem="Ey6-2A-Ohd" firstAttribute="height" secondItem="aDZ-sn-yKR" secondAttribute="height" id="nub-ba-i2l"/>
                             <constraint firstAttribute="trailing" secondItem="kbx-tQ-FPO" secondAttribute="trailing" id="wLB-ID-jOj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DRO-WM-fEC"/>
                     </view>
                     <connections>
+                        <outlet property="chatConstraint" destination="AQR-MD-OQf" id="5bC-40-qMs"/>
+                        <outlet property="chatContainerView" destination="Ey6-2A-Ohd" id="Fd7-eT-6cV"/>
                         <outlet property="tableView" destination="kbx-tQ-FPO" id="Gw2-gy-S9q"/>
                     </connections>
                 </viewController>
@@ -181,18 +189,12 @@
                                     <constraint firstAttribute="height" constant="8" id="qeS-kI-LaX"/>
                                 </constraints>
                             </pageControl>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5dO-vh-57S" customClass="ContainerView" customModule="ringoid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="667" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="2Wc-Ed-6t2" secondAttribute="trailing" constant="24" id="1l4-B6-3jE"/>
-                            <constraint firstItem="5dO-vh-57S" firstAttribute="height" secondItem="ekE-T8-wuA" secondAttribute="height" id="2aZ-NY-Hoe"/>
                             <constraint firstAttribute="trailing" secondItem="lGR-yG-LEW" secondAttribute="trailing" id="3dD-ad-k8o"/>
                             <constraint firstItem="OWQ-dc-NR9" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="Cbe-SI-EXr"/>
-                            <constraint firstItem="5dO-vh-57S" firstAttribute="width" secondItem="ekE-T8-wuA" secondAttribute="width" id="DYh-UN-dzn"/>
                             <constraint firstItem="OWQ-dc-NR9" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="Jh2-Xt-krz"/>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
@@ -201,15 +203,11 @@
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="138" id="UE3-94-yVQ"/>
                             <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="XAG-qi-5bb"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="gA6-9y-Jou"/>
-                            <constraint firstItem="5dO-vh-57S" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="bottom" id="nZ3-pK-QPS" userLabel="ChatTop"/>
-                            <constraint firstItem="5dO-vh-57S" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="oFg-Pf-YsI"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dlp-dl-iCM"/>
                     </view>
                     <connections>
-                        <outlet property="chatConstraint" destination="nZ3-pK-QPS" id="PDe-Nl-rUT"/>
-                        <outlet property="chatContainerView" destination="5dO-vh-57S" id="j94-nx-ydz"/>
                         <outlet property="messageBtn" destination="2Wc-Ed-6t2" id="CMh-0H-xuQ"/>
                         <outlet property="pageControl" destination="mPS-Ki-Bpa" id="nuR-eb-yLf"/>
                     </connections>
