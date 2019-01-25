@@ -20,6 +20,7 @@ class ChatViewController: UIViewController
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var messageTextView: UITextView!
     @IBOutlet fileprivate weak var inputBottomConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var inputHeightConstraint: NSLayoutConstraint!
     
     static func create() -> ChatViewController
     {
@@ -74,6 +75,20 @@ class ChatViewController: UIViewController
             self?.tableView.reloadData()
         }).disposed(by: self.disposeBag)
     }
+    
+    fileprivate func textSize(_ text: String) -> CGSize
+    {
+        guard let font = self.messageTextView.font else { return .zero }
+        let currentSize = self.messageTextView.bounds.size
+        let maxWidth = currentSize.width - 18.0
+
+        return (text as NSString).boundingRect(
+            with: CGSize(width: maxWidth, height: 200.0),
+            options: .usesLineFragmentOrigin,
+            attributes: [NSAttributedString.Key.font: font],
+            context: nil
+            ).size
+    }
 }
 
 extension ChatViewController: UITableViewDataSource, UITableViewDelegate
@@ -116,5 +131,27 @@ extension ChatViewController: KeyboardListenerDelegate
         return { [weak self] in
             self?.view.layoutSubviews()
         }
+    }
+}
+
+extension ChatViewController: UITextViewDelegate
+{
+    func textViewDidChange(_ textView: UITextView)
+    {
+        guard let text = textView.text else { return }
+        guard text.count != 0 else {
+            self.inputHeightConstraint.constant = 40.0
+            self.view.layoutSubviews()
+            
+            return
+        }
+        
+        let currentHeight = tableView.bounds.size.height
+        let height = self.textSize(text).height + 22.0
+        
+        guard abs(currentHeight - height) > 1.0 else { return }
+        
+        self.inputHeightConstraint.constant = height
+        self.view.layoutSubviews()
     }
 }

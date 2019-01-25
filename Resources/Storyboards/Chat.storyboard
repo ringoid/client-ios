@@ -64,6 +64,9 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" keyboardAppearance="alert"/>
+                                <connections>
+                                    <outlet property="delegate" destination="7Sb-wa-NBj" id="D4a-BL-0h2"/>
+                                </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gu8-Zv-Egg">
                                 <rect key="frame" x="2" y="22" width="44" height="44"/>
@@ -187,6 +190,7 @@
                     </view>
                     <connections>
                         <outlet property="inputBottomConstraint" destination="wfc-o3-Tec" id="cNo-PT-KqS"/>
+                        <outlet property="inputHeightConstraint" destination="Wjg-rX-7Lb" id="19f-jC-htu"/>
                         <outlet property="messageTextView" destination="FHy-pP-KSv" id="aLs-qn-RyH"/>
                         <outlet property="tableView" destination="H3p-mh-W6s" id="AZR-2p-pDt"/>
                     </connections>
