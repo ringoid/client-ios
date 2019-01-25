@@ -25,12 +25,15 @@ class NewFacesManager
         self.apiService = api
         self.actionsManager = actionsManager
         
+        self.purge()
+        
         self.db.fetchNewFaces().bind(to: self.profiles).disposed(by: self.disposeBag)
     }
     
     func refresh() -> Observable<Void>
     {
-        self.db.resetNewFaces().subscribe().disposed(by: self.disposeBag)
+        self.purge()
+        
         return self.fetch()
     }
     
@@ -56,6 +59,11 @@ class NewFacesManager
             
             return self!.db.add(localProfiles)
         })
+    }
+    
+    func purge()
+    {
+        self.db.resetNewFaces().subscribe().disposed(by: self.disposeBag)
     }
     
     // MARK: -

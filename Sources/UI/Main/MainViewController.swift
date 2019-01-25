@@ -68,6 +68,8 @@ class MainViewController: ThemeViewController
     
     fileprivate func select(_ to: SelectionState)
     {
+        self.viewModel?.purgeNewFaces()
+        
         switch to {
         case .search:
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)

@@ -26,4 +26,9 @@ class MainViewModel
     {
         self.input = input
     }
+    
+    func purgeNewFaces()
+    {
+        self.input.newFacesManager.purge()
+    }
 }
