@@ -12,6 +12,7 @@ import RxCocoa
 struct ChatVMInput
 {
     let profile: LMMProfile
+    let photo: Photo
     let chatManager: ChatManager
     let source: SourceFeedType
     let onClose: (()->())?
@@ -34,7 +35,11 @@ class ChatViewModel
     
     func send(_ text: String)
     {
-        self.input.chatManager.send(text, profile: self.input.profile, source: self.input.source)
+        self.input.chatManager.send(text,
+                                    profile: self.input.profile,
+                                    photo: self.input.photo,
+                                    source: self.input.source
+        )
     }
     
     // MARK: -

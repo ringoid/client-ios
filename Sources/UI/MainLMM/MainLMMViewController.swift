@@ -25,6 +25,7 @@ class MainLMMViewController: ThemeViewController
     fileprivate var feedDisposeBag: DisposeBag = DisposeBag()
     fileprivate var disposeBag: DisposeBag = DisposeBag()
     fileprivate var isUpdated: Bool = true
+    fileprivate var chatStartDate: Date? = nil
     
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
     @IBOutlet fileprivate weak var chatConstraint: NSLayoutConstraint!
@@ -113,11 +114,13 @@ class MainLMMViewController: ThemeViewController
         }
     }
     
-    fileprivate func showChat(_ profile: LMMProfile, indexPath: IndexPath, profileVC: MainLMMProfileViewController?)
+    fileprivate func showChat(_ profile: LMMProfile, photo: Photo, indexPath: IndexPath, profileVC: MainLMMProfileViewController?)
     {
+        self.chatStartDate = Date()
+        
         let vc = ChatViewController.create()
-        vc.input = ChatVMInput(profile: profile, chatManager: self.input.chatManager, source: .messages, onClose: { [weak self] in
-            self?.hideChat(profileVC)
+        vc.input = ChatVMInput(profile: profile, photo: photo, chatManager: self.input.chatManager, source: .messages, onClose: { [weak self] in
+            self?.hideChat(profileVC, profile: profile, photo: photo)
         })
         
         self.chatContainerView.embed(vc, to: self)
@@ -131,8 +134,15 @@ class MainLMMViewController: ThemeViewController
         }).startAnimation()
     }
     
-    fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?)
+    fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?, profile: LMMProfile, photo: Photo)
     {
+        if let startDate = self.chatStartDate {
+            let interval = Int(Date().timeIntervalSince(startDate))
+            self.chatStartDate = nil
+            
+            self.input.actionsManager.add(.openChat(openChatCount: 1, openChatTimeSec: interval), profile: profile, photo: photo, source: self.type.value.sourceType())
+        }
+        
         self.chatConstraint.constant = 0.0
         
         let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
@@ -163,8 +173,8 @@ extension MainLMMViewController: UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "main_llm_cell") as! MainLMMCell
         if let profile = self.profiles()?.value[indexPath.row] {
             let profileVC = MainLMMProfileViewController.create(profile, feedType: self.type.value, actionsManager: self.input.actionsManager)
-            profileVC.onChatShow = { [weak self] profile, vc in
-                self?.showChat(profile, indexPath: indexPath, profileVC: profileVC)
+            profileVC.onChatShow = { [weak self] profile, photo, vc in
+                self?.showChat(profile, photo: photo, indexPath: indexPath, profileVC: profileVC)
             }
             
             cell.containerView.embed(profileVC, to: self)

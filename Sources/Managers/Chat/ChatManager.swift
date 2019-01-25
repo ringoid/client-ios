@@ -20,7 +20,7 @@ class ChatManager
         self.actionsManager = actionsManager
     }
     
-    func send(_ text: String, profile: LMMProfile, source: SourceFeedType)
+    func send(_ text: String, profile: LMMProfile, photo: Photo, source: SourceFeedType)
     {
         let message = Message()
         message.text = text
@@ -30,6 +30,6 @@ class ChatManager
             profile.messages.append(message)
         })
         
-        self.actionsManager.add(.message(text: text), profile: profile, photo: profile.photos.first!, source: source)
+        self.actionsManager.add(.message(text: text), profile: profile, photo: photo, source: source)
     }
 }

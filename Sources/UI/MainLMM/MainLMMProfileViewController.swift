@@ -12,7 +12,7 @@ class MainLMMProfileViewController: UIViewController
 {
     var input: MainLMMProfileVMInput!
     
-    var onChatShow: ((LMMProfile, MainLMMProfileViewController?) -> ())?
+    var onChatShow: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
     
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
@@ -79,7 +79,8 @@ class MainLMMProfileViewController: UIViewController
     @IBAction func onChatSelected()
     {
         weak var weakSelf = self
-        self.onChatShow?(self.input.profile, weakSelf)
+        let profile = self.input.profile
+        self.onChatShow?(profile, profile.photos[self.currentIndex], weakSelf)
     }
 }
 
