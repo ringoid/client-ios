@@ -26,7 +26,9 @@ class ChatManager
         message.text = text
         message.wasYouSender = true
 
-        profile.messages.append(message)
+        try? profile.realm?.write({
+            profile.messages.append(message)
+        })
         
         self.actionsManager.add(.message(text: text), profile: profile, photo: profile.photos.first!, source: source)
     }

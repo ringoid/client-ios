@@ -34,7 +34,7 @@ class ChatBaseCell: UITableViewCell
     fileprivate func update()
     {
         let size = contentSize(self.message?.text ?? "")
-        self.labelWidthConstraint.constant = size.width
+        self.labelWidthConstraint.constant = size.width + 4.0
         self.labelHeightConstraint.constant = size.height + 4.0
         self.layoutSubviews()
         self.contentLabel.text = self.message?.text

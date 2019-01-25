@@ -51,6 +51,9 @@
                                     <constraint firstAttribute="width" constant="41" id="KC0-O4-vyI"/>
                                 </constraints>
                                 <state key="normal" image="chat_send"/>
+                                <connections>
+                                    <action selector="onSend" destination="7Sb-wa-NBj" eventType="touchUpInside" id="O92-Ne-7mq"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHy-pP-KSv">
                                 <rect key="frame" x="16" y="627" width="302" height="40"/>

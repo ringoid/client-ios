@@ -54,6 +54,14 @@ class ChatViewController: UIViewController
         self.input.onClose?()
     }
     
+    @IBAction func onSend()
+    {
+        guard let text = self.messageTextView.text else { return }
+        
+        self.viewModel?.send(text)
+        self.messageTextView.text = ""
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
