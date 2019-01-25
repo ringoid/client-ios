@@ -28,9 +28,7 @@ class UserProfileManager
         self.fileService = fileService
         
         self.db.fetchUserPhotos().bind(to: self.photos).disposed(by: self.disposeBag)
-        self.apiService.getUserOwnPhotos(.small).subscribe(onNext: { [weak self] photos in
-            self?.merge(photos)
-        }).disposed(by: self.disposeBag)
+        self.refresh().subscribe().disposed(by: self.disposeBag)
     }
     
     func addPhoto(_ data: Data, filename: String) -> Observable<Void>
@@ -63,6 +61,15 @@ class UserProfileManager
         }).disposed(by: self.disposeBag)
         
         self.apiService.deletePhoto(id).subscribe().disposed(by: self.disposeBag)
+    }
+    
+    func refresh() -> Observable<Void>
+    {
+        return self.apiService.getUserOwnPhotos(.small).flatMap({ [weak self] photos -> Observable<Void> in
+            self?.merge(photos)
+            
+            return .just(())
+        })
     }
     
     // MARK: -
