@@ -23,7 +23,7 @@ class NewFaceProfileViewController: UIViewController
         let storyboard = Storyboards.newFaces()
         
         let vc = storyboard.instantiateViewController(withIdentifier: "new_face_profile") as! NewFaceProfileViewController
-        vc.input = NewFaceProfileVMInput(profile: profile, actionsManager: actionsManager, sourceType: .newFaces)
+        vc.input = NewFaceProfileVMInput(profile: profile.actionInstance(), actionsManager: actionsManager, sourceType: .newFaces)
         
         return vc
     }
@@ -33,6 +33,8 @@ class NewFaceProfileViewController: UIViewController
         assert(self.input != nil)
         
         super.viewDidLoad()
+        
+        guard !self.input.profile.isInvalidated else { return }
         
         self.pageControl.numberOfPages = self.input.profile.photos.count
         self.photosVCs = self.input.profile.photos.map({ photo in
@@ -60,10 +62,11 @@ class NewFaceProfileViewController: UIViewController
     
     @IBAction func onLike()
     {
-        self.input.actionsManager.add([.view(viewCount: 1, viewTimeSec: 1), .like(likeCount: 1)],
-                                      profile: self.input.profile,
-                                      photo: self.input.profile.photos[self.currentIndex],
-                                      source: .newFaces)
+        self.input.actionsManager.add(
+            [.view(viewCount: 1, viewTimeSec: 1), .like(likeCount: 1)],
+            profile: self.input.profile.actionInstance(),
+            photo: self.input.profile.photos[self.currentIndex].actionInstance(),
+            source: .newFaces)
     }
 }
 

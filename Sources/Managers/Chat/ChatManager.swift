@@ -30,6 +30,11 @@ class ChatManager
             profile.messages.append(message)
         })
         
-        self.actionsManager.add(.message(text: text), profile: profile, photo: photo, source: source)
+        self.actionsManager.add(
+            .message(text: text),
+            profile: profile.actionInstance(),
+            photo: photo.actionInstance(),
+            source: source
+        )
     }
 }

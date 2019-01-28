@@ -44,7 +44,7 @@ class MainLMMProfileViewController: UIViewController
         self.photosVCs = self.input.profile.photos.map({ photo in
             let vc = NewFacePhotoViewController.create()
             vc.photo = photo
-            vc.input = NewFaceProfileVMInput(profile: self.input.profile, actionsManager: self.input.actionsManager, sourceType: self.input.feedType.sourceType())
+            vc.input = NewFaceProfileVMInput(profile: self.input.profile.actionInstance(), actionsManager: self.input.actionsManager, sourceType: self.input.feedType.sourceType())
             
             return vc
         })

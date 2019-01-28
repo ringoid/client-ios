@@ -30,10 +30,11 @@ class Action: DBServiceObject
 {
     @objc dynamic var type: String!
     @objc dynamic var actionTime: Date!
-    @objc dynamic var targetPhotoId: String!
-    @objc dynamic var targetUserId: String!
     @objc dynamic var sourceFeed: String!
     @objc dynamic var extraData: Data?
+    
+    @objc dynamic var profile: ActionProfile? = nil
+    @objc dynamic var photo: ActionPhoto? = nil
 }
 
 // MARK: - Like

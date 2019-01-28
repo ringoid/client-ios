@@ -99,7 +99,10 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "new_faces_cell") as! NewFacesCell
-        if let profile = self.viewModel?.profiles.value[indexPath.row] {
+        
+        guard let count = self.viewModel?.profiles.value.count, indexPath.row < count else { return cell }
+        
+        if let profile = self.viewModel?.profiles.value[indexPath.row], !profile.isInvalidated {
             let profileVC = NewFaceProfileViewController.create(profile, actionsManager: self.input.actionsManager)
             cell.containerView.embed(profileVC, to: self)
         }

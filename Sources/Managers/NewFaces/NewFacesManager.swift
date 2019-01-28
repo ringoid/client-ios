@@ -72,6 +72,7 @@ class NewFacesManager
     {
         return incomingProfiles.filter({ incomingProfile in
             for localProfile in self.profiles.value {
+                if localProfile.isInvalidated { continue }
                 if localProfile.id == incomingProfile.id { return false}
             }
             

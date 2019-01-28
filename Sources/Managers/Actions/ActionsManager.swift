@@ -35,31 +35,31 @@ class ActionsManager
         self.subscribeForActions()
     }
     
-    func add(_ action: FeedAction, profile: Profile, photo: Photo, source: SourceFeedType)
+    func add(_ action: FeedAction, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         let createdAction = action.model(profile: profile, photo: photo, source: source)
-        self.db.add(createdAction).subscribe().disposed(by: self.disposeBag)
+        self.db.add([createdAction]).subscribe().disposed(by: self.disposeBag)
     }
     
-    func add(_ actions: [FeedAction], profile: Profile, photo: Photo, source: SourceFeedType)
+    func add(_ actions: [FeedAction], profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         let createdActions = actions.map({ $0.model(profile: profile, photo: photo, source: source) })
         self.db.add(createdActions).subscribe().disposed(by: self.disposeBag)
     }
     
-    func likeActionProtected(_ profile: Profile, photo: Photo, source: SourceFeedType)
+    func likeActionProtected(_ profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         self.stopViewAction(profile, photo: photo, sourceType: source)
         self.add(.like(likeCount: 1), profile: profile, photo: photo, source: source)
         self.startViewAction(profile, photo: photo)
     }
     
-    func startViewAction(_ profile: Profile, photo: Photo)
+    func startViewAction(_ profile: ActionProfile, photo: ActionPhoto)
     {
         self.viewActionsMap[photo.id] = Date()
     }
     
-    func stopViewAction(_ profile: Profile, photo: Photo, sourceType: SourceFeedType)
+    func stopViewAction(_ profile: ActionProfile, photo: ActionPhoto, sourceType: SourceFeedType)
     {
         guard !profile.isInvalidated else { return }
         guard let date = self.viewActionsMap[photo.id] else { return }
@@ -138,8 +138,8 @@ extension Action {
 
         apiAction?.sourceFeed = self.sourceFeed
         apiAction?.actionType = self.type
-        apiAction?.targetPhotoId = self.targetPhotoId
-        apiAction?.targetUserId = self.targetUserId
+        apiAction?.targetPhotoId = self.photo?.id ?? ""
+        apiAction?.targetUserId = self.profile?.id ?? ""
         apiAction?.actionTime = Int(self.actionTime.timeIntervalSince1970)
         
         return apiAction
@@ -148,13 +148,13 @@ extension Action {
 
 extension FeedAction
 {
-    func model(profile: Profile, photo: Photo, source: SourceFeedType) -> Action
+    func model(profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType) -> Action
     {
         let createdAction = Action()
         createdAction.actionTime = Date()
         createdAction.sourceFeed = source.rawValue
-        createdAction.targetUserId = profile.id
-        createdAction.targetPhotoId = photo.id
+        createdAction.profile = profile
+        createdAction.photo = photo
         
         switch self {
         case .like(let likeCount):
