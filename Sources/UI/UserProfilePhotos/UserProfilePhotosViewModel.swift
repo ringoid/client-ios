@@ -28,7 +28,7 @@ class UserProfilePhotosViewModel
     
     var isFirstTime: BehaviorRelay<Bool>
     {
-        return self.input.settingsManager.isFirstTime
+        return self.input.settingsManager.isFirstTimePhoto
     }
     
     init(_ input: UserProfilePhotosVCInput)

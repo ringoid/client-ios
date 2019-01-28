@@ -16,7 +16,7 @@ class SettingsManager
     let fs: FileService
     let storage: XStorageService
     
-    let isFirstTime: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    let isFirstTimePhoto: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
@@ -42,23 +42,24 @@ class SettingsManager
     
     fileprivate func reset()
     {
+        self.isFirstTimePhoto.accept(true)
         self.db.reset()
         self.fs.reset()
     }
     
     fileprivate func loadSettings()
     {
-        self.isFirstTime.accept(true)
+        self.isFirstTimePhoto.accept(true)
         self.storage.object("is_first_time").subscribe(onNext:{ [weak self] obj in
             guard let state = Bool.create(obj) else { return }
             
-            self?.isFirstTime.accept(state)
+            self?.isFirstTimePhoto.accept(state)
         }).disposed(by: self.disposeBag)
     }
     
     fileprivate func setupBindings()
     {
-        self.isFirstTime.asObservable().subscribe(onNext: { [weak self] state in
+        self.isFirstTimePhoto.asObservable().subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
             
             self.storage.store(state, key: "is_first_time").subscribe().disposed(by: self.disposeBag)
