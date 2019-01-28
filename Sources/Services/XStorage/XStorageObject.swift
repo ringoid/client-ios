@@ -28,3 +28,18 @@ extension String: XStorageObject
         return from as? String
     }
 }
+
+// MARK: - Bool
+
+extension Bool: XStorageObject
+{
+    func storableObject() -> Any
+    {
+        return self ? "true" : "false"
+    }
+    
+    static func create(_ from: Any) -> Bool?
+    {
+        return (from as? String) == "true"
+    }
+}

@@ -13,6 +13,7 @@ import RxSwift
 class UserProfilePhotosViewController: ThemeViewController
 {
     var input: UserProfilePhotosVCInput!
+    var autopickEnabled: Bool = false
     
     fileprivate var viewModel: UserProfilePhotosViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
@@ -55,7 +56,9 @@ class UserProfilePhotosViewController: ThemeViewController
     
     fileprivate func pickPhotoIfNeeded()
     {
-        guard self.input.profileManager.photos.value.count == 0 else { return }
+        guard self.input.profileManager.photos.value.count == 0, self.viewModel?.isFirstTime.value == true else { return }
+        
+        self.viewModel?.isFirstTime.accept(false)
         
         self.pickPhoto()
     }
@@ -145,6 +148,22 @@ class UserProfilePhotosViewController: ThemeViewController
         self.present(alertVC, animated: true, completion: nil)
     }
     
+    fileprivate func showOptionsAlert()
+    {
+        let alertVC = UIAlertController(title: "What do you want to do next?", message: nil, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "Discover users nearby", style: .default, handler: ({ _ in
+ 
+        })))
+        
+        alertVC.addAction(UIAlertAction(title: "Add another photo", style: .default, handler: ({ [weak self] _ in
+            self?.pickPhoto()
+        })))
+        
+        alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
     fileprivate func reload()
     {
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
@@ -163,9 +182,14 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
     {
         guard let cropRect = info[.cropRect] as? CGRect, let image = info[.originalImage] as? UIImage else { return }
         guard let croppedImage = image.crop(rect: cropRect) else { return }
+        let prevCount = self.viewModel?.photos.value.count
         
         self.viewModel?.add(croppedImage).subscribe(onNext: ({ [weak self] in
+            guard prevCount == 0 else { return }
             
+            DispatchQueue.main.async {
+                self?.showOptionsAlert()
+            }
         }), onError: ({ [weak self] error in
             guard let `self` = self else { return }
             

@@ -54,7 +54,7 @@ class AppManager
         self.newFacesManager = NewFacesManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
         self.lmmManager = LMMManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
         self.chatManager = ChatManager(self.db, actionsManager: self.actionsManager)
-        self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService)
+        self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage)
         
         ThemeManager.shared.storageService = self.defaultStorage
     }
