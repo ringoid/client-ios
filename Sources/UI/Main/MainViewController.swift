@@ -112,7 +112,12 @@ class MainViewController: ThemeViewController
     {
         let storyboard = Storyboards.newFaces()
         guard let vc = storyboard.instantiateInitialViewController() as? NewFacesViewController else { return }
-        vc.input = NewFacesVMInput(newFacesManager: self.input.newFacesManager, actionsManager: self.input.actionsManager)
+        vc.input = NewFacesVMInput(
+            newFacesManager: self.input.newFacesManager,
+            actionsManager: self.input.actionsManager,
+            profileManager: self.input.profileManager,
+            navigationManager: self.input.navigationManager
+        )
         
         self.containerVC.embed(vc)
     }

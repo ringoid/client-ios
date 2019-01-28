@@ -14,18 +14,28 @@ struct NewFacesVMInput
 {
     let newFacesManager: NewFacesManager
     let actionsManager: ActionsManager
+    let profileManager: UserProfileManager
+    let navigationManager: NavigationManager
 }
 
 class NewFacesViewModel
 {
     var profiles: BehaviorRelay<[NewFaceProfile]> { return self.newFacesManager.profiles }
     var isFetching: Bool = false
+    var isPhotosAdded: Bool
+    {
+        return !self.profileManager.photos.value.isEmpty
+    }
     
     let newFacesManager: NewFacesManager
+    let profileManager: UserProfileManager
+    let navigationManager: NavigationManager
     
     init(_ input: NewFacesVMInput)
     {
         self.newFacesManager = input.newFacesManager
+        self.profileManager = input.profileManager
+        self.navigationManager = input.navigationManager
     }
     
     func refresh() -> Observable<Void>
@@ -48,5 +58,10 @@ class NewFacesViewModel
     func finishFetching()
     {
         self.isFetching = false
+    }
+    
+    func moveToProfile()
+    {
+        self.navigationManager.mainItem.accept(.profile)
     }
 }

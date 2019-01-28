@@ -38,6 +38,12 @@ class NewFacesViewController: ThemeViewController
     // MARK: - Actions
     @objc func onReload()
     {
+        if self.viewModel?.isPhotosAdded == false {
+            self.showAddPhotosOptions()
+            
+            return
+        }
+        
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
             
@@ -84,6 +90,22 @@ class NewFacesViewController: ThemeViewController
         }
         
         self.tableView.insertRows(at: (self.lastItemsCount..<totalCount).map({ IndexPath(row: $0, section: 0) }), with: .none)
+    }
+    
+    fileprivate func showAddPhotosOptions()
+    {
+        let alertVC = UIAlertController(
+            title: nil,
+            message: "Do you want to see who likes you, discover others, like and message them?",
+            preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "Add photo", style: .default, handler: { [weak self] _ in
+            self?.viewModel?.moveToProfile()
+        }))
+        alertVC.addAction(UIAlertAction(title: "Maybe later", style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: { [weak self] in
+            self?.refreshControl.endRefreshing()
+        })
     }
 }
 
