@@ -22,6 +22,7 @@ class AppManager
     var lmmManager: LMMManager!
     var chatManager: ChatManager!
     var settingsMananger: SettingsManager!
+    var navigationManager: NavigationManager!
     
     func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
@@ -55,6 +56,7 @@ class AppManager
         self.lmmManager = LMMManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
         self.chatManager = ChatManager(self.db, actionsManager: self.actionsManager)
         self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage)
+        self.navigationManager = NavigationManager()
         
         ThemeManager.shared.storageService = self.defaultStorage
     }

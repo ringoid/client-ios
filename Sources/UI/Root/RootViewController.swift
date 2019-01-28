@@ -51,7 +51,8 @@ class RootViewController: ThemeViewController {
             vc.input = UserProfilePhotosVCInput(
                 profileManager: self.appManager.profileManager,
                 lmmManager: self.appManager.lmmManager,
-                settingsManager: self.appManager.settingsMananger
+                settingsManager: self.appManager.settingsMananger,
+                navigationManager: self.appManager.navigationManager
             )
         }
         
@@ -62,7 +63,8 @@ class RootViewController: ThemeViewController {
                 lmmManager: self.appManager.lmmManager,
                 profileManager: self.appManager.profileManager,
                 settingsManager: self.appManager.settingsMananger,
-                chatManager: self.appManager.chatManager
+                chatManager: self.appManager.chatManager,
+                navigationManager: self.appManager.navigationManager
             )
             vc.defaultState = self.mainUIState
         }

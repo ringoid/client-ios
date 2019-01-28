@@ -14,6 +14,7 @@ struct UserProfilePhotosVCInput
     let profileManager: UserProfileManager
     let lmmManager: LMMManager
     let settingsManager: SettingsManager
+    let navigationManager: NavigationManager
 }
 
 class UserProfilePhotosViewModel
@@ -51,5 +52,10 @@ class UserProfilePhotosViewModel
         return self.input.profileManager.refresh().flatMap({ [weak self] _ -> Observable<Void> in
             return self!.input.lmmManager.refresh()
         })
+    }
+    
+    func moveToSearch()
+    {
+        self.input.navigationManager.mainItem.accept(.search)
     }
 }

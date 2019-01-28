@@ -16,6 +16,7 @@ struct MainVMInput
     let profileManager: UserProfileManager
     let settingsManager: SettingsManager
     let chatManager: ChatManager
+    let navigationManager: NavigationManager
 }
 
 class MainViewModel
@@ -30,5 +31,25 @@ class MainViewModel
     func purgeNewFaces()
     {
         self.input.newFacesManager.purge()
+    }
+    
+    func moveToSearch()
+    {
+        self.input.navigationManager.mainItem.accept(.search)
+    }
+    
+    func moveToLike()
+    {
+        self.input.navigationManager.mainItem.accept(.like)
+    }
+    
+    func moveToProfile()
+    {
+        self.input.navigationManager.mainItem.accept(.profile)
+    }
+    
+    func moveToMessages()
+    {
+        self.input.navigationManager.mainItem.accept(.messages)
     }
 }

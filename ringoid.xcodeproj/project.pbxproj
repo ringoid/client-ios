@@ -54,6 +54,7 @@
 		57585D7221E5055D00038798 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D7121E5055D00038798 /* ThemeViewController.swift */; };
 		576FC10821FEC9C400BA5ABE /* ActionPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10721FEC9C400BA5ABE /* ActionPhoto.swift */; };
 		576FC10A21FEC9FF00BA5ABE /* ActionProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10921FEC9FF00BA5ABE /* ActionProfile.swift */; };
+		576FC10D21FF33EA00BA5ABE /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10C21FF33EA00BA5ABE /* NavigationManager.swift */; };
 		579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */; };
 		579CD7AE21F8603500C3AEE3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7AD21F8603500C3AEE3 /* Settings.storyboard */; };
 		579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
@@ -154,6 +155,7 @@
 		57585D7121E5055D00038798 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		576FC10721FEC9C400BA5ABE /* ActionPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionPhoto.swift; sourceTree = "<group>"; };
 		576FC10921FEC9FF00BA5ABE /* ActionProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionProfile.swift; sourceTree = "<group>"; };
+		576FC10C21FF33EA00BA5ABE /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		579CD7AD21F8603500C3AEE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				576FC10B21FF30B400BA5ABE /* Navigation */,
 				579CD7CD21FAE2B800C3AEE3 /* Chat */,
 				579CD7BA21F8C1B700C3AEE3 /* Settings */,
 				57B863E921EE339C00B9CC70 /* Actions */,
@@ -521,6 +524,14 @@
 				57585D6F21E500FD00038798 /* ThemeManager.swift */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		576FC10B21FF30B400BA5ABE /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				576FC10C21FF33EA00BA5ABE /* NavigationManager.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 		579CD7AF21F8626900C3AEE3 /* Settings */ = {
@@ -846,6 +857,7 @@
 				570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */,
 				579CD7B621F8947000C3AEE3 /* SettingsThemeCell.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
+				576FC10D21FF33EA00BA5ABE /* NavigationManager.swift in Sources */,
 				57585D4C21E388EC00038798 /* UserProfilePhotosViewController.swift in Sources */,
 				57B863D121EDB16300B9CC70 /* MainLMMProfileViewController.swift in Sources */,
 				57B863F221EF5AFB00B9CC70 /* ApiLikeAction.swift in Sources */,

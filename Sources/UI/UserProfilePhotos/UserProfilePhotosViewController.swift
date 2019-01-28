@@ -151,8 +151,8 @@ class UserProfilePhotosViewController: ThemeViewController
     fileprivate func showOptionsAlert()
     {
         let alertVC = UIAlertController(title: "What do you want to do next?", message: nil, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "Discover users nearby", style: .default, handler: ({ _ in
- 
+        alertVC.addAction(UIAlertAction(title: "Discover users nearby", style: .default, handler: ({ [weak self] _ in
+            self?.viewModel?.moveToSearch()
         })))
         
         alertVC.addAction(UIAlertAction(title: "Add another photo", style: .default, handler: ({ [weak self] _ in

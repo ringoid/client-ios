@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 enum SelectionState {
     case search
@@ -22,6 +24,7 @@ class MainViewController: ThemeViewController
     
     fileprivate var viewModel: MainViewModel?
     fileprivate var containerVC: ContainerViewController!
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     @IBOutlet fileprivate weak var searchBtn: UIButton!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
@@ -46,22 +49,22 @@ class MainViewController: ThemeViewController
     
     @IBAction func onSearchSelected()
     {
-        self.select(.search)
+        self.viewModel?.moveToSearch()
     }
     
     @IBAction func onLikeSelected()
     {
-        self.select(.like)
+        self.viewModel?.moveToLike()
     }
     
     @IBAction func onMessagesSelected()
     {
-        self.select(.messages)
+        self.viewModel?.moveToMessages()
     }
     
     @IBAction func onProfileSelected()
     {
-        self.select(.profile)
+        self.viewModel?.moveToProfile()
     }
     
     // MARK: -
@@ -140,7 +143,8 @@ class MainViewController: ThemeViewController
         vc.input = UserProfilePhotosVCInput(
             profileManager: self.input.profileManager,
             lmmManager: self.input.lmmManager,
-            settingsManager: self.input.settingsManager
+            settingsManager: self.input.settingsManager,
+            navigationManager: self.input.navigationManager
         )
         
         self.containerVC.embed(vc)
@@ -149,5 +153,21 @@ class MainViewController: ThemeViewController
     fileprivate func setupBindings()
     {
         self.viewModel = MainViewModel(self.input)
+        self.viewModel?.input.navigationManager.mainItem.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] item in
+            self?.select(item.selectionState())
+        }).disposed(by: self.disposeBag)
+    }
+}
+
+extension MainNavigationItem
+{
+    func selectionState() -> SelectionState
+    {
+        switch self {
+        case .search: return .search
+        case .like: return .like
+        case .messages: return .messages
+        case .profile: return .profile
+        }
     }
 }
