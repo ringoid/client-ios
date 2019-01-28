@@ -49,7 +49,6 @@ class SettingsManager
     
     fileprivate func loadSettings()
     {
-        self.isFirstTimePhoto.accept(true)
         self.storage.object("is_first_time").subscribe(onNext:{ [weak self] obj in
             guard let state = Bool.create(obj) else { return }
             

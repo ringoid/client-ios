@@ -44,7 +44,10 @@ class RootViewController: ThemeViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == SegueIds.auth, let vc = segue.destination as? AuthViewController {
-            vc.input = AuthVMInput(apiService: self.appManager.apiService)
+            vc.input = AuthVMInput(
+                apiService: self.appManager.apiService,
+                settingsManager: self.appManager.settingsMananger
+            )
         }
         
         if segue.identifier == SegueIds.userProfile, let vc = segue.destination as? UserProfilePhotosViewController {

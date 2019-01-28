@@ -19,6 +19,7 @@ enum Sex: String
 struct AuthVMInput
 {
     let apiService: ApiService
+    let settingsManager: SettingsManager
 }
 
 class AuthViewModel
@@ -27,10 +28,12 @@ class AuthViewModel
     var birthYear: BehaviorRelay<Int?> = BehaviorRelay(value: nil)
     
     let apiService: ApiService
+    let settingsManager: SettingsManager
     
     init(_ input: AuthVMInput)
     {
         self.apiService = input.apiService
+        self.settingsManager = input.settingsManager
     }
     
     func register() -> Observable<Void>
@@ -42,5 +45,10 @@ class AuthViewModel
         }
         
         return self.apiService.createProfile(year: year, sex: sex)
+    }
+    
+    func enableFirstTimeFlow()
+    {
+        self.settingsManager.isFirstTimePhoto.accept(true)
     }
 }

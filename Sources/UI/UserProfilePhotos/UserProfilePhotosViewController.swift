@@ -58,8 +58,6 @@ class UserProfilePhotosViewController: ThemeViewController
     {
         guard self.input.profileManager.photos.value.count == 0, self.viewModel?.isFirstTime.value == true else { return }
         
-        self.viewModel?.isFirstTime.accept(false)
-        
         self.pickPhoto()
     }
     
@@ -182,6 +180,9 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
     {
         guard let cropRect = info[.cropRect] as? CGRect, let image = info[.originalImage] as? UIImage else { return }
         guard let croppedImage = image.crop(rect: cropRect) else { return }
+        
+        self.viewModel?.isFirstTime.accept(false)
+        
         let prevCount = self.viewModel?.photos.value.count
         
         self.viewModel?.add(croppedImage).subscribe(onNext: ({ [weak self] in
@@ -201,6 +202,7 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
+        self.viewModel?.isFirstTime.accept(false)
         picker.dismiss(animated: true, completion: nil)
     }
 }

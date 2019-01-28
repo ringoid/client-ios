@@ -34,6 +34,7 @@ class AuthViewController: ThemeViewController
         self.setupUI()
         self.setupBindings()
         self.birthYearTextField.becomeFirstResponder()
+        self.viewModel?.enableFirstTimeFlow()
     }
     
     @IBAction func onRegister()
