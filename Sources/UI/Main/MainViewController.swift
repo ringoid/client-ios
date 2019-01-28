@@ -35,8 +35,7 @@ class MainViewController: ThemeViewController
     {
         super.viewDidLoad()
         
-        self.setupBindings()
-        self.select(self.defaultState)
+        self.setupBindings()        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)

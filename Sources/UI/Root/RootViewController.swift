@@ -24,7 +24,7 @@ class RootViewController: ThemeViewController {
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var mode: AppUIMode = .unknown
-    fileprivate var mainUIState: SelectionState = .search
+    fileprivate var mainItem: MainNavigationItem = .search
     
     override func viewDidLoad()
     {
@@ -66,7 +66,8 @@ class RootViewController: ThemeViewController {
                 chatManager: self.appManager.chatManager,
                 navigationManager: self.appManager.navigationManager
             )
-            vc.defaultState = self.mainUIState
+            
+            self.appManager.navigationManager.mainItem.accept(self.mainItem)
         }
     }
     
@@ -88,7 +89,7 @@ class RootViewController: ThemeViewController {
             segueId = SegueIds.main
         case .userProfile:
             segueId = SegueIds.main
-            self.mainUIState = .profile
+            self.mainItem = .profile
             break
         }
         
