@@ -27,6 +27,7 @@ class MainLMMViewController: ThemeViewController
     fileprivate var isUpdated: Bool = true
     fileprivate var chatStartDate: Date? = nil
     
+    @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
     @IBOutlet fileprivate weak var chatConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var tableView: UITableView!
@@ -67,11 +68,13 @@ class MainLMMViewController: ThemeViewController
     {
         self.feedDisposeBag = DisposeBag()
         self.isUpdated = true
-        self.profiles()?.asObservable().subscribe(onNext: { [weak self] _ in
+        self.profiles()?.asObservable().subscribe(onNext: { [weak self] updatedProfiles in
             guard let `self` = self else { return }
             guard self.isUpdated else { return }
             
-            self.isUpdated = self.profiles()?.value.count == 0
+            self.isUpdated = updatedProfiles.count == 0
+            self.emptyFeedLabel.text = self.placeholderText()
+            self.emptyFeedLabel.isHidden = !updatedProfiles.isEmpty
             self.tableView.reloadData()
         }).disposed(by: self.feedDisposeBag)
     }
@@ -158,6 +161,15 @@ class MainLMMViewController: ThemeViewController
             self.chatContainerView.remove()
         })
         animator.startAnimation()
+    }
+    
+    fileprivate func placeholderText() -> String
+    {
+        switch self.type.value {
+        case .likesYou: return "Pull to refresh to\nsee who likes you"
+        case .matches: return "Pull to refresh to\nsee your matches"
+        case .messages: return "Pull to refresh to\nsee who messages you"
+        }
     }
 }
 
