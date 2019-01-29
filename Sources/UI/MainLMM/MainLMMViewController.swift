@@ -42,6 +42,7 @@ class MainLMMViewController: ThemeViewController
         let cellHeight = UIScreen.main.bounds.height * 3.0 / 4.0
         self.tableView.tableHeaderView = nil
         self.tableView.rowHeight = cellHeight
+        self.tableView.estimatedRowHeight = cellHeight
         self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: UIScreen.main.bounds.height - cellHeight, right: 0.0)
         
         self.setupBindings()
