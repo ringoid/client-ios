@@ -40,6 +40,7 @@ class ErrorsManager
         case .internalServerError: return
         case .invalidAccessTokenClientError:
             self.settings.reset()
+            self.api.reset()
             break
         case .tooOldAppVersionClientError: return
         }

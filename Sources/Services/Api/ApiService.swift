@@ -31,6 +31,7 @@ protocol ApiService
     
     func createProfile(year: Int, sex: Sex) -> Observable<Void>
     func logout() -> Observable<Void>
+    func reset()
     
     func getNewFaces(_ resolution: PhotoResolution, lastActionDate: Date?) -> Observable<[ApiProfile]>
     

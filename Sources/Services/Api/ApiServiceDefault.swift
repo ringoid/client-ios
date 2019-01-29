@@ -82,6 +82,11 @@ class ApiServiceDefault: ApiService
         }
     }
     
+    func reset()
+    {
+        self.clearCredentials()
+    }
+    
     // MARK: - Feeds
     func getLMM(_ resolution: PhotoResolution, lastActionDate: Date?) -> Observable<ApiLMMResult>
     {
