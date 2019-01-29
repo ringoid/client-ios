@@ -38,14 +38,14 @@ class SettingsManager
         }).disposed(by: self.disposeBag)
     }
     
-    // MARK: -
-    
-    fileprivate func reset()
+    func reset()
     {
         self.isFirstTimePhoto.accept(true)
         self.db.reset()
         self.fs.reset()
     }
+    
+    // MARK: -
     
     fileprivate func loadSettings()
     {

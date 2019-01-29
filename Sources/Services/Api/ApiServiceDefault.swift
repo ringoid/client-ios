@@ -17,6 +17,7 @@ class ApiServiceDefault: ApiService
     let storage: XStorageService
     
     var isAuthorized: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var error: BehaviorRelay<ApiError> = BehaviorRelay<ApiError>(value: ApiError(type: .unknown))
 
     fileprivate var accessToken: String?
     fileprivate var customerId: String?
@@ -351,8 +352,12 @@ class ApiServiceDefault: ApiService
             throw createError("ApiService: wrong response format", type: .visible)
         }
         
-        if let _ = jsonDict["errorCode"] as? String,
+        if let errorCode = jsonDict["errorCode"] as? String,
             let errorMessage = jsonDict["errorMessage"] as? String {
+            
+            if let apiErrorType = ApiErrorType(rawValue: errorCode) {
+                self.error.accept(ApiError(type: apiErrorType))
+            }
             
             throw createError("External error: \(errorMessage)", type: .visible)
         }

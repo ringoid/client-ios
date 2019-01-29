@@ -11,9 +11,23 @@ import RxCocoa
 
 typealias ApiLMMResult = (likesYou: [ApiLMMProfile],  matches: [ApiLMMProfile], messages: [ApiLMMProfile])
 
+enum ApiErrorType: String
+{
+    case unknown = "Unknown"
+    case internalServerError = "InternalServerError"
+    case invalidAccessTokenClientError = "InvalidAccessTokenClientError"
+    case tooOldAppVersionClientError = "TooOldAppVersionClientError"
+}
+
+struct ApiError
+{
+    let type: ApiErrorType
+}
+
 protocol ApiService
 {
     var isAuthorized: BehaviorRelay<Bool> { get }
+    var error: BehaviorRelay<ApiError> { get }
     
     func createProfile(year: Int, sex: Sex) -> Observable<Void>
     func logout() -> Observable<Void>

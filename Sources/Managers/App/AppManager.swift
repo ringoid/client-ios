@@ -23,6 +23,7 @@ class AppManager
     var chatManager: ChatManager!
     var settingsMananger: SettingsManager!
     var navigationManager: NavigationManager!
+    var errorsManager: ErrorsManager!
     
     func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
@@ -57,6 +58,7 @@ class AppManager
         self.chatManager = ChatManager(self.db, actionsManager: self.actionsManager)
         self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage)
         self.navigationManager = NavigationManager()
+        self.errorsManager = ErrorsManager(self.apiService, settings: self.settingsMananger)
         
         ThemeManager.shared.storageService = self.defaultStorage
     }

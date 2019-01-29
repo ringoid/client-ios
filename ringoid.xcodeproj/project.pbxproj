@@ -55,6 +55,7 @@
 		576FC10821FEC9C400BA5ABE /* ActionPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10721FEC9C400BA5ABE /* ActionPhoto.swift */; };
 		576FC10A21FEC9FF00BA5ABE /* ActionProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10921FEC9FF00BA5ABE /* ActionProfile.swift */; };
 		576FC10D21FF33EA00BA5ABE /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10C21FF33EA00BA5ABE /* NavigationManager.swift */; };
+		576FC11122001CD400BA5ABE /* ErrorsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC11022001CD400BA5ABE /* ErrorsManager.swift */; };
 		579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */; };
 		579CD7AE21F8603500C3AEE3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7AD21F8603500C3AEE3 /* Settings.storyboard */; };
 		579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
@@ -156,6 +157,7 @@
 		576FC10721FEC9C400BA5ABE /* ActionPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionPhoto.swift; sourceTree = "<group>"; };
 		576FC10921FEC9FF00BA5ABE /* ActionProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionProfile.swift; sourceTree = "<group>"; };
 		576FC10C21FF33EA00BA5ABE /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		576FC11022001CD400BA5ABE /* ErrorsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsManager.swift; sourceTree = "<group>"; };
 		579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		579CD7AD21F8603500C3AEE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				576FC10F22001C9000BA5ABE /* ErrorsManager */,
 				576FC10B21FF30B400BA5ABE /* Navigation */,
 				579CD7CD21FAE2B800C3AEE3 /* Chat */,
 				579CD7BA21F8C1B700C3AEE3 /* Settings */,
@@ -532,6 +535,14 @@
 				576FC10C21FF33EA00BA5ABE /* NavigationManager.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		576FC10F22001C9000BA5ABE /* ErrorsManager */ = {
+			isa = PBXGroup;
+			children = (
+				576FC11022001CD400BA5ABE /* ErrorsManager.swift */,
+			);
+			path = ErrorsManager;
 			sourceTree = "<group>";
 		};
 		579CD7AF21F8626900C3AEE3 /* Settings */ = {
@@ -902,6 +913,7 @@
 				579CD7BC21F8C4D800C3AEE3 /* SettingsManager.swift in Sources */,
 				57B863EB21EE33D200B9CC70 /* ActionsManager.swift in Sources */,
 				579CD7CF21FAE2D100C3AEE3 /* ChatManager.swift in Sources */,
+				576FC11122001CD400BA5ABE /* ErrorsManager.swift in Sources */,
 				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,
 				579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */,
 			);
