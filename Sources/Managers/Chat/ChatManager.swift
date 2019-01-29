@@ -36,5 +36,6 @@ class ChatManager
             photo: photo.actionInstance(),
             source: source
         )
+        self.actionsManager.commit()
     }
 }
