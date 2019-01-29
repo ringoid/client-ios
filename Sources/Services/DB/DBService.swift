@@ -61,18 +61,18 @@ class DBService
         
         return Observable.array(from: photos)
     }
-//    
+//
 //    // MARK: - Photos
-//    
+//
 //    func photo(_ id: String) -> Observable<Photo>
 //    {
 //        let predicate = NSPredicate(format: "id = %@", id)
 //        guard let photo = self.realm.objects(Photo.self).filter(predicate).first else {
 //            let error = createError("No new face profile found with id = \(id)", type: .hidden)
-//            
+//
 //            return .error(error)
 //        }
-//        
+//
 //        return .just(photo)
 //    }
 

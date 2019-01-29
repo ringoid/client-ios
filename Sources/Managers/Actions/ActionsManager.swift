@@ -26,25 +26,42 @@ class ActionsManager
     fileprivate let apiService: ApiService
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var viewActionsMap: [String: Date] = [:]
+    fileprivate var queue: [Action] = []
+    fileprivate var sendingActions: [Action] = []
+    fileprivate var triggerTimer: Timer?
+    
+    deinit
+    {
+        self.triggerTimer?.invalidate()
+        self.triggerTimer = nil
+    }
     
     init(_ db: DBService, api: ApiService)
     {
         self.db = db
         self.apiService = api
         
-        self.subscribeForActions()
+        self.inqueueStoredActions()
+        self.setupTimerTrigger()
     }
     
     func add(_ action: FeedAction, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         let createdAction = action.model(profile: profile, photo: photo, source: source)
         self.db.add([createdAction]).subscribe().disposed(by: self.disposeBag)
+        self.queue.append(createdAction)
     }
     
     func add(_ actions: [FeedAction], profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         let createdActions = actions.map({ $0.model(profile: profile, photo: photo, source: source) })
         self.db.add(createdActions).subscribe().disposed(by: self.disposeBag)
+        self.queue.append(contentsOf: createdActions)
+    }
+    
+    func commit()
+    {
+        self.sendQueue()
     }
     
     func likeActionProtected(_ profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
@@ -72,21 +89,47 @@ class ActionsManager
     
     // MARK: -
     
-    fileprivate func subscribeForActions()
+    func inqueueStoredActions()
     {
-        self.db.fetchActions().throttle(4.0, scheduler: MainScheduler.instance).subscribe(onNext: { [weak self] actions in
-            guard let `self` = self else { return }
-            guard !actions.isEmpty else { return }
-            
-            self.apiService.sendActions(actions.compactMap({ $0.apiAction() }))
-                .subscribe(onNext: { [weak self] date in
+        self.db.fetchActions().subscribe(onNext: { [weak self] actions in
+            self?.queue.append(contentsOf: actions)
+        }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func sendQueue()
+    {
+        guard self.sendingActions.isEmpty else { return }
+        guard !self.queue.isEmpty else { return }
+        
+        self.sendingActions.append(contentsOf: self.queue)
+        self.queue.removeAll()
+        
+        
+        self.apiService.sendActions(self.sendingActions.compactMap({ $0.apiAction() }))
+            .subscribe(onNext: { [weak self] date in
+                guard let `self` = self else { return }
+                
+                self.lastActionDate = date
+                self.db.delete(self.sendingActions).subscribe().disposed(by: self.disposeBag)
+                self.sendingActions.removeAll()
+                }, onError: { [weak self] _ in
                     guard let `self` = self else { return }
                     
-                    self.lastActionDate = date
-                    self.db.delete(actions).subscribe().disposed(by: self.disposeBag)
-                }).disposed(by: self.disposeBag)
-            
-        }).disposed(by: self.disposeBag)
+                    self.queue.insert(contentsOf: self.sendingActions, at: 0)
+                    self.sendingActions.removeAll()
+            }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func setupTimerTrigger()
+    {
+        self.triggerTimer?.invalidate()
+        self.triggerTimer = nil
+        
+        let timer = Timer(timeInterval: 5.0, repeats: true, block: { [weak self] _ in
+            self?.sendQueue()
+        })
+        self.triggerTimer = timer
+        RunLoop.main.add(timer, forMode: .default)
     }
 }
 
