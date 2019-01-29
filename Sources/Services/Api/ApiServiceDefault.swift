@@ -46,22 +46,14 @@ class ApiServiceDefault: ApiService
             "osVersion": "11.0"
         ]
         
-        return self.request(.post, path: "auth/create_profile", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<Void> in
-            var jsonDict: [String: Any]? = nil
-            
-            do {
-                jsonDict = try self?.validateJsonResponse(jsonObj)
-            } catch {
-                return .error(error)
-            }
-            
-            guard let accessToken = jsonDict?["accessToken"] as? String else {
+        return self.request(.post, path: "auth/create_profile", jsonBody: params).flatMap { [weak self] jsonDict -> Observable<Void> in
+            guard let accessToken = jsonDict["accessToken"] as? String else {
                 let error = createError("Create profile: no token in response", type: .hidden)
                 
                 return .error(error)
             }
             
-            guard let customerId = jsonDict?["customerId"] as? String else {
+            guard let customerId = jsonDict["customerId"] as? String else {
                 let error = createError("Create profile: no customer id in response", type: .hidden)
                 
                 return .error(error)
@@ -83,13 +75,7 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.request(.post, path: "auth/delete", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<Void> in
-            do {
-                _ = try self?.validateJsonResponse(jsonObj)
-            } catch {
-                return .error(error)
-            }
-            
+        return self.request(.post, path: "auth/delete", jsonBody: params).flatMap { [weak self] _ -> Observable<Void> in
             self?.clearCredentials()
             
             return .just(())
@@ -108,28 +94,20 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.requestGET(path: "feeds/get_lmm", params: params).json().flatMap { [weak self] jsonObj -> Observable<ApiLMMResult> in
-            var jsonDict: [String: Any]? = nil
-            
-            do {
-                jsonDict = try self?.validateJsonResponse(jsonObj)
-            } catch {
-                return .error(error)
-            }
-            
-            guard let likesYouArray = jsonDict?["likesYou"] as? [[String: Any]] else {
+        return self.requestGET(path: "feeds/get_lmm", params: params).flatMap { jsonDict -> Observable<ApiLMMResult> in
+            guard let likesYouArray = jsonDict["likesYou"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong likesYou profiles data format", type: .hidden)
                 
                 return .error(error)
             }
             
-            guard let matchesArray = jsonDict?["matches"] as? [[String: Any]] else {
+            guard let matchesArray = jsonDict["matches"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong matches profiles data format", type: .hidden)
                 
                 return .error(error)
             }
             
-            guard let messagesArray = jsonDict?["messages"] as? [[String: Any]] else {
+            guard let messagesArray = jsonDict["messages"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong messages profiles data format", type: .hidden)
                 
                 return .error(error)
@@ -155,16 +133,8 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.requestGET(path: "feeds/get_new_faces", params: params).json().flatMap { [weak self] jsonObj -> Observable<[ApiProfile]> in
-            var jsonDict: [String: Any]? = nil
-            
-            do {
-                jsonDict = try self?.validateJsonResponse(jsonObj)
-            } catch {
-                return .error(error)
-            }
-            
-            guard let profilesArray = jsonDict?["profiles"] as? [[String: Any]] else {
+        return self.requestGET(path: "feeds/get_new_faces", params: params).flatMap { jsonDict -> Observable<[ApiProfile]> in
+            guard let profilesArray = jsonDict["profiles"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong profiles data format", type: .hidden)
                 
                 return .error(error)
@@ -187,15 +157,7 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
 
-        return self.request(.post, path: "image/get_presigned", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<ApiUserPhoto> in
-            var jsonDict: [String: Any]? = nil
-            
-            do {
-                jsonDict = try self?.validateJsonResponse(jsonObj)
-            } catch {
-                return .error(error)
-            }
-            
+        return self.request(.post, path: "image/get_presigned", jsonBody: params).flatMap { jsonDict -> Observable<ApiUserPhoto> in
             guard let photo = ApiUserPhoto.parse(jsonDict) else {
                 let error = createError("ApiService: wrong photo data format", type: .hidden)
                 
@@ -218,16 +180,8 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.request(.post, path: "actions/actions", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<Date> in
-            var jsonDict: [String: Any]? = nil
-            
-            do {
-                jsonDict = try self?.validateJsonResponse(jsonObj)
-            } catch {
-                return .error(error)
-            }
-            
-            guard let lastActionTime = jsonDict?["lastActionTime"] as? Int else {
+        return self.request(.post, path: "actions/actions", jsonBody: params).flatMap { jsonDict -> Observable<Date> in
+            guard let lastActionTime = jsonDict["lastActionTime"] as? Int else {
                 let error = createError("ApiService: no lastActionTime field provided", type: .hidden)
                 
                 return .error(error)
@@ -251,16 +205,8 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.requestGET(path: "image/get_own_photos", params: params).json().flatMap { [weak self] jsonObj -> Observable<[ApiPhoto]> in
-            var jsonDict: [String: Any]? = nil
-            
-            do {
-                jsonDict = try self?.validateJsonResponse(jsonObj)
-            } catch {
-                return .error(error)
-            }
-            
-            guard let photosArray = jsonDict?["photos"] as? [[String: Any]] else {
+        return self.requestGET(path: "image/get_own_photos", params: params).flatMap { jsonDict -> Observable<[ApiPhoto]> in
+            guard let photosArray = jsonDict["photos"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong photos data format", type: .hidden)
                 
                 return .error(error)
@@ -280,33 +226,47 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.request(.post, path: "image/delete_photo", jsonBody: params).json().flatMap { [weak self] jsonObj -> Observable<Void> in
-            do {
-                _ = try self?.validateJsonResponse(jsonObj)
-            } catch {
-                return .error(error)
-            }
-            
+        return self.request(.post, path: "image/delete_photo", jsonBody: params).flatMap { _ -> Observable<Void> in
             return .just(())
         }
     }
     
     // MARK: - Basic
     
-    fileprivate func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any]) -> Observable<DataRequest>
+    fileprivate func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any]) -> Observable<[String: Any]>
     {
         let url = self.config.endpoint + "/" + path
         return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
             "x-ringoid-ios-buildnum": "100",
-            ])
+            ]).json().flatMap({ [weak self] obj -> Observable<[String: Any]> in
+                var jsonDict: [String: Any] = [:]
+                
+                do {
+                    jsonDict = try self?.validateJsonResponse(obj) ?? [:]
+                } catch {
+                    return .error(error)
+                }
+                
+                return .just(jsonDict)
+            })
     }
     
-    fileprivate func requestGET(path: String, params: [String: Any]) -> Observable<DataRequest>
+    fileprivate func requestGET(path: String, params: [String: Any]) -> Observable<[String: Any]>
     {
         let url = self.config.endpoint + "/" + path
         return RxAlamofire.request(.get, url, parameters: params, headers: [
             "x-ringoid-ios-buildnum": "100",
-            ])
+            ]).json().flatMap({ [weak self] obj -> Observable<[String: Any]> in
+                var jsonDict: [String: Any] = [:]
+                
+                do {
+                    jsonDict = try self?.validateJsonResponse(obj) ?? [:]
+                } catch {
+                    return .error(error)
+                }
+                
+                return .just(jsonDict)
+            })
     }
     
     // MARK: -
