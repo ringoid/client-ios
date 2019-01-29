@@ -140,7 +140,7 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
         guard let isFetching = self.viewModel?.isFetching, !isFetching else { return }
-        guard let totalCount = self.viewModel?.profiles.value.count, totalCount - indexPath.row <= 5 else { return }
+        guard let totalCount = self.viewModel?.profiles.value.count, totalCount > 5, totalCount - indexPath.row <= 5 else { return }
 
         print("fetching next page")
         self.viewModel?.fetchNext().subscribe(onError: { [weak self] error in

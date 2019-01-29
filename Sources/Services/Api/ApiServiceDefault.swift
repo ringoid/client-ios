@@ -270,6 +270,7 @@ class ApiServiceDefault: ApiService
     }
     
     // MARK: -
+    
     fileprivate func storeCredentials()
     {
         defer {
@@ -308,7 +309,6 @@ class ApiServiceDefault: ApiService
     fileprivate func validateJsonResponse(_ json: Any) throws -> [String: Any]?
     {
         guard let jsonDict = json as? [String: Any] else {
-
             throw createError("ApiService: wrong response format", type: .visible)
         }
         
@@ -319,7 +319,7 @@ class ApiServiceDefault: ApiService
                 self.error.accept(ApiError(type: apiErrorType))
             }
             
-            throw createError("External error: \(errorMessage)", type: .visible)
+            throw createError("API error: \(errorMessage)", type: .api)
         }
         
         return jsonDict

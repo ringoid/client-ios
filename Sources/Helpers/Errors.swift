@@ -12,6 +12,7 @@ enum ErrorType: Int
 {
     case hidden = 0
     case visible = 1
+    case api = 2
 }
 
 func createError(_ description: String, type: ErrorType) -> Error
