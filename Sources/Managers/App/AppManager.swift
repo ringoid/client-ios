@@ -56,7 +56,7 @@ class AppManager
         self.newFacesManager = NewFacesManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
         self.lmmManager = LMMManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
         self.chatManager = ChatManager(self.db, actionsManager: self.actionsManager)
-        self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage)
+        self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, actions: self.actionsManager)
         self.navigationManager = NavigationManager()
         self.errorsManager = ErrorsManager(self.apiService, settings: self.settingsMananger)
         

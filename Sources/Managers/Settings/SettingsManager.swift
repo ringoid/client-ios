@@ -15,17 +15,19 @@ class SettingsManager
     let api: ApiService
     let fs: FileService
     let storage: XStorageService
+    let actions: ActionsManager
     
     let isFirstTimePhoto: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService)
+    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager)
     {
         self.db = db
         self.api = api
         self.fs = fs
         self.storage = storage
+        self.actions = actions
         
         self.loadSettings()
         self.setupBindings()
@@ -43,6 +45,7 @@ class SettingsManager
         self.isFirstTimePhoto.accept(true)
         self.db.reset()
         self.fs.reset()
+        self.actions.lastActionDate = nil
     }
     
     // MARK: -
