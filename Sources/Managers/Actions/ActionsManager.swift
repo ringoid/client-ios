@@ -48,15 +48,17 @@ class ActionsManager
     func add(_ action: FeedAction, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         let createdAction = action.model(profile: profile, photo: photo, source: source)
-        self.db.add([createdAction]).subscribe().disposed(by: self.disposeBag)
-        self.queue.append(createdAction)
+        self.db.add([createdAction]).subscribe(onNext: { [weak self] _ in
+            self?.queue.append(createdAction)
+        }).disposed(by: self.disposeBag)
     }
     
     func add(_ actions: [FeedAction], profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         let createdActions = actions.map({ $0.model(profile: profile, photo: photo, source: source) })
-        self.db.add(createdActions).subscribe().disposed(by: self.disposeBag)
-        self.queue.append(contentsOf: createdActions)
+        self.db.add(createdActions).subscribe(onNext: { [weak self] _ in
+            self?.queue.append(contentsOf: createdActions)
+        }).disposed(by: self.disposeBag)
     }
     
     func commit()
@@ -91,7 +93,7 @@ class ActionsManager
     
     func inqueueStoredActions()
     {
-        self.db.fetchActions().subscribe(onNext: { [weak self] actions in
+        self.db.fetchActions().take(1).subscribe(onNext: { [weak self] actions in
             self?.queue.append(contentsOf: actions)
         }).disposed(by: self.disposeBag)
     }
@@ -101,9 +103,11 @@ class ActionsManager
         guard self.sendingActions.isEmpty else { return }
         guard !self.queue.isEmpty else { return }
         
-        self.sendingActions.append(contentsOf: self.queue)
-        self.queue.removeAll()
+        let enqued = self.queue
+        self.queue.removeFirst(enqued.count)
+        self.sendingActions.append(contentsOf: enqued)
         
+        print("Sending events: \(self.sendingActions.count)")
         
         self.apiService.sendActions(self.sendingActions.compactMap({ $0.apiAction() }))
             .subscribe(onNext: { [weak self] date in
