@@ -28,6 +28,7 @@ class MainLMMContainerViewController: UIViewController
     @IBOutlet weak var likeYouBtn: UIButton!
     @IBOutlet weak var matchesBtn: UIButton!
     @IBOutlet weak var chatBtn: UIButton!
+    @IBOutlet weak var optionsContainer: UIView!
     
     override func viewDidLoad()
     {
@@ -42,7 +43,14 @@ class MainLMMContainerViewController: UIViewController
     {
         if segue.identifier == "embed_lmm", let vc = segue.destination as? MainLMMViewController {
             vc.input = self.input
-            self.lmmVC = vc            
+            vc.onChatShown = { [weak self] in
+                self?.optionsContainer.isHidden = true
+            }
+            vc.onChatHidden = { [weak self] in
+                self?.optionsContainer.isHidden = false
+            }
+            
+            self.lmmVC = vc
         }
     }
     

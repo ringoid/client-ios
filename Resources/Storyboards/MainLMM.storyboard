@@ -121,6 +121,7 @@
                         <outlet property="chatBtn" destination="30C-S0-bMA" id="fPe-k7-2sF"/>
                         <outlet property="likeYouBtn" destination="Y1R-St-pNy" id="Dtl-TH-ZOd"/>
                         <outlet property="matchesBtn" destination="t6H-GQ-xYk" id="TUl-ED-bSc"/>
+                        <outlet property="optionsContainer" destination="Ywr-Pj-xRP" id="7t7-9d-4A3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6BI-HA-c0t" userLabel="First Responder" sceneMemberID="firstResponder"/>

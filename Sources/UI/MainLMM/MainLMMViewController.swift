@@ -21,6 +21,9 @@ class MainLMMViewController: ThemeViewController
     var input: MainLMMVMInput!
     var type: BehaviorRelay<LMMType> = BehaviorRelay<LMMType>(value: .likesYou)
     
+    var onChatShown: (()->())?
+    var onChatHidden: (()->())?
+    
     fileprivate var viewModel: MainLMMViewModel?
     fileprivate var feedDisposeBag: DisposeBag = DisposeBag()
     fileprivate var disposeBag: DisposeBag = DisposeBag()
@@ -130,6 +133,7 @@ class MainLMMViewController: ThemeViewController
         self.chatContainerView.embed(vc, to: self)
         self.chatConstraint.constant = -self.view.bounds.height
         
+        self.onChatShown?()
         self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         profileVC?.hideControls()
         
@@ -160,6 +164,7 @@ class MainLMMViewController: ThemeViewController
         animator.addCompletion({ _ in
             profileVC?.showControls()
             self.chatContainerView.remove()
+            self.onChatHidden?()
         })
         animator.startAnimation()
     }
