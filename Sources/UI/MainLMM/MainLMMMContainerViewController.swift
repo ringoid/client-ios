@@ -16,7 +16,7 @@ fileprivate let unselectedColor = UIColor(
     red: 219.0 / 255.0,
     green: 219.0 / 255.0,
     blue: 219.0 / 255.0,
-    alpha: 0.35
+    alpha: 1.0
 )
 
 class MainLMMContainerViewController: UIViewController

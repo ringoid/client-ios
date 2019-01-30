@@ -38,5 +38,9 @@ class DiagonalGradientView: TouchThroughView
         super.layoutSubviews()
         
         self.gradientLayer.frame = self.bounds
+        
+        let ratio = self.bounds.width / self.bounds.height
+        self.gradientLayer.startPoint = CGPoint(x: 0.0, y: ratio > 1.0 ? 1.0 : ratio)
+        self.gradientLayer.endPoint = CGPoint(x: ratio > 1.0 ? ratio : 1.0, y: 0.0)
     }
 }
