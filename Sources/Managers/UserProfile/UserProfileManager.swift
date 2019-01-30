@@ -15,17 +15,19 @@ class UserProfileManager
     let apiService: ApiService
     let uploader: UploaderService
     let fileService: FileService
+    let deviceService: DeviceService
     
     var photos: BehaviorRelay<[UserPhoto]> = BehaviorRelay<[UserPhoto]>(value: [])
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(_ db: DBService, api: ApiService, uploader: UploaderService, fileService: FileService)
+    init(_ db: DBService, api: ApiService, uploader: UploaderService, fileService: FileService, device: DeviceService)
     {
         self.db = db
         self.apiService = api
         self.uploader = uploader
         self.fileService = fileService
+        self.deviceService = device
         
         self.db.fetchUserPhotos().bind(to: self.photos).disposed(by: self.disposeBag)
         self.refresh().subscribe().disposed(by: self.disposeBag)
@@ -65,7 +67,7 @@ class UserProfileManager
     
     func refresh() -> Observable<Void>
     {
-        return self.apiService.getUserOwnPhotos(.small).flatMap({ [weak self] photos -> Observable<Void> in
+        return self.apiService.getUserOwnPhotos(self.deviceService.photoResolution).flatMap({ [weak self] photos -> Observable<Void> in
             self?.merge(photos)
             
             return .just(())

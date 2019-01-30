@@ -33,12 +33,12 @@ protocol ApiService
     func logout() -> Observable<Void>
     func reset()
     
-    func getNewFaces(_ resolution: PhotoResolution, lastActionDate: Date?) -> Observable<[ApiProfile]>
+    func getNewFaces(_ resolution: String, lastActionDate: Date?) -> Observable<[ApiProfile]>
     
-    func getLMM(_ resolution: PhotoResolution, lastActionDate: Date?) -> Observable<ApiLMMResult>
+    func getLMM(_ resolution: String, lastActionDate: Date?) -> Observable<ApiLMMResult>
     
     func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhoto>
-    func getUserOwnPhotos(_ resolution: PhotoResolution) -> Observable<[ApiPhoto]>
+    func getUserOwnPhotos(_ resolution: String) -> Observable<[ApiPhoto]>
     func deletePhoto(_ photoId: String) -> Observable<Void>
     
     func sendActions(_ actions: [ApiAction]) -> Observable<Date>

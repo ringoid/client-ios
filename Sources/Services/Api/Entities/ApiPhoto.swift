@@ -8,14 +8,6 @@
 
 import Foundation
 
-enum PhotoResolution: String
-{
-    case small = "480x640"
-    case normal = "720x960"
-    case hd = "1080x1440"
-    case ultraHD = "1440x1920"
-}
-
 struct ApiPhoto
 {
     let url: String

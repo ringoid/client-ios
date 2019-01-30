@@ -13,16 +13,18 @@ class NewFacesManager
 {
     let db: DBService
     let apiService: ApiService
+    let deviceService: DeviceService
     let actionsManager: ActionsManager
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     var profiles: BehaviorRelay<[NewFaceProfile]> = BehaviorRelay<[NewFaceProfile]>(value: [])
     
-    init(_ db: DBService, api: ApiService, actionsManager: ActionsManager)
+    init(_ db: DBService, api: ApiService, device: DeviceService, actionsManager: ActionsManager)
     {
         self.db = db
         self.apiService = api
+        self.deviceService = device
         self.actionsManager = actionsManager
         
         self.purge()
@@ -39,7 +41,7 @@ class NewFacesManager
     
     func fetch() -> Observable<Void>
     {
-        return self.apiService.getNewFaces(.small, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] profiles -> Observable<Void> in
+        return self.apiService.getNewFaces(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] profiles -> Observable<Void> in
             
             let localProfiles = self!.filterExisting(profiles).map({ profile -> NewFaceProfile in
                 let localPhotos = profile.photos.map({ photo -> Photo in

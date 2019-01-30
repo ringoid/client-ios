@@ -10,6 +10,7 @@ import UIKit
 
 class AppManager
 {
+    var deviceService: DeviceService!
     var fileService: FileService!
     var apiService: ApiService!
     var uploader: UploaderService!
@@ -40,6 +41,7 @@ class AppManager
     
     fileprivate func setupServices()
     {
+        self.deviceService = DeviceServiceDefault()
         self.fileService = FileServiceDefault()
         self.defaultStorage = DefaultStorageService()
         self.db = DBService()
@@ -52,9 +54,9 @@ class AppManager
     fileprivate func setupManagers()
     {
         self.actionsManager = ActionsManager(self.db, api: self.apiService)
-        self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader, fileService: self.fileService)
-        self.newFacesManager = NewFacesManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
-        self.lmmManager = LMMManager(self.db, api: self.apiService, actionsManager: self.actionsManager)
+        self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader, fileService: self.fileService, device: self.deviceService)
+        self.newFacesManager = NewFacesManager(self.db, api: self.apiService, device: self.deviceService, actionsManager: self.actionsManager)
+        self.lmmManager = LMMManager(self.db, api: self.apiService, device: self.deviceService, actionsManager: self.actionsManager)
         self.chatManager = ChatManager(self.db, actionsManager: self.actionsManager)
         self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, actions: self.actionsManager)
         self.navigationManager = NavigationManager()

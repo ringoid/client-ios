@@ -14,6 +14,7 @@ class LMMManager
     let db: DBService
     let apiService: ApiService
     let actionsManager: ActionsManager
+    let deviceService: DeviceService
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
@@ -21,10 +22,11 @@ class LMMManager
     var matches: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     var messages: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     
-    init(_ db: DBService, api: ApiService, actionsManager: ActionsManager)
+    init(_ db: DBService, api: ApiService, device: DeviceService, actionsManager: ActionsManager)
     {
         self.db = db
         self.apiService = api
+        self.deviceService = device
         self.actionsManager = actionsManager
         
         self.db.fetchLikesYou().bind(to: self.likesYou).disposed(by: self.disposeBag)
@@ -34,7 +36,7 @@ class LMMManager
     
     func refresh() -> Observable<Void>
     {
-        return self.apiService.getLMM(.small, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] result -> Observable<Void> in
+        return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] result -> Observable<Void> in
             
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)
             let matches = createProfiles(result.matches, type: .matches)

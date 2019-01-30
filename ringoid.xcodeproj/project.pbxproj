@@ -56,6 +56,8 @@
 		576FC10A21FEC9FF00BA5ABE /* ActionProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10921FEC9FF00BA5ABE /* ActionProfile.swift */; };
 		576FC10D21FF33EA00BA5ABE /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10C21FF33EA00BA5ABE /* NavigationManager.swift */; };
 		576FC11122001CD400BA5ABE /* ErrorsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC11022001CD400BA5ABE /* ErrorsManager.swift */; };
+		576FC1142201876A00BA5ABE /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC1132201876A00BA5ABE /* DeviceService.swift */; };
+		576FC116220188AB00BA5ABE /* DeviceServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC115220188AB00BA5ABE /* DeviceServiceDefault.swift */; };
 		579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */; };
 		579CD7AE21F8603500C3AEE3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7AD21F8603500C3AEE3 /* Settings.storyboard */; };
 		579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
@@ -158,6 +160,8 @@
 		576FC10921FEC9FF00BA5ABE /* ActionProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionProfile.swift; sourceTree = "<group>"; };
 		576FC10C21FF33EA00BA5ABE /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		576FC11022001CD400BA5ABE /* ErrorsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsManager.swift; sourceTree = "<group>"; };
+		576FC1132201876A00BA5ABE /* DeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
+		576FC115220188AB00BA5ABE /* DeviceServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceServiceDefault.swift; sourceTree = "<group>"; };
 		579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		579CD7AD21F8603500C3AEE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 		570D047C21DCED1800E0DCFB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				576FC1122201875900BA5ABE /* Device */,
 				57585D5C21E4BEF900038798 /* Uploader */,
 				57585D5521E4921600038798 /* File */,
 				570D04C421DFBD2500E0DCFB /* DB */,
@@ -543,6 +548,15 @@
 				576FC11022001CD400BA5ABE /* ErrorsManager.swift */,
 			);
 			path = ErrorsManager;
+			sourceTree = "<group>";
+		};
+		576FC1122201875900BA5ABE /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				576FC1132201876A00BA5ABE /* DeviceService.swift */,
+				576FC115220188AB00BA5ABE /* DeviceServiceDefault.swift */,
+			);
+			path = Device;
 			sourceTree = "<group>";
 		};
 		579CD7AF21F8626900C3AEE3 /* Settings */ = {
@@ -840,10 +854,12 @@
 				57FB7BD521E7661200AAA29D /* NewFacePhotoViewController.swift in Sources */,
 				57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */,
 				57585D5E21E4BF1B00038798 /* UploaderService.swift in Sources */,
+				576FC116220188AB00BA5ABE /* DeviceServiceDefault.swift in Sources */,
 				57B863C221ECB94800B9CC70 /* Message.swift in Sources */,
 				57B863ED21EF448100B9CC70 /* Action.swift in Sources */,
 				57B863D321EDB18600B9CC70 /* MainLMMProfileViewModel.swift in Sources */,
 				57FB7BD321E74C3E00AAA29D /* Storyboards.swift in Sources */,
+				576FC1142201876A00BA5ABE /* DeviceService.swift in Sources */,
 				57585D3F21E354FA00038798 /* NewFacesManager.swift in Sources */,
 				57B863D521EE16E700B9CC70 /* VerticalGradientView.swift in Sources */,
 				57B863D721EE179F00B9CC70 /* TouchThroughView.swift in Sources */,

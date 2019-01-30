@@ -88,10 +88,10 @@ class ApiServiceDefault: ApiService
     }
     
     // MARK: - Feeds
-    func getLMM(_ resolution: PhotoResolution, lastActionDate: Date?) -> Observable<ApiLMMResult>
+    func getLMM(_ resolution: String, lastActionDate: Date?) -> Observable<ApiLMMResult>
     {
         var params: [String: Any] = [
-            "resolution": resolution.rawValue,
+            "resolution": resolution,
             "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970 * 1000.0)
         ]
         
@@ -126,10 +126,10 @@ class ApiServiceDefault: ApiService
         }
     }
     
-    func getNewFaces(_ resolution: PhotoResolution, lastActionDate: Date?) -> Observable<[ApiProfile]>
+    func getNewFaces(_ resolution: String, lastActionDate: Date?) -> Observable<[ApiProfile]>
     {
         var params: [String: Any] = [
-            "resolution": resolution.rawValue,
+            "resolution": resolution,
             "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970 * 1000.0),
             "limit": 20
         ]
@@ -200,10 +200,10 @@ class ApiServiceDefault: ApiService
     
     // MARK: - User profile
     
-    func getUserOwnPhotos(_ resolution: PhotoResolution) -> Observable<[ApiPhoto]>
+    func getUserOwnPhotos(_ resolution: String) -> Observable<[ApiPhoto]>
     {
         var params: [String: Any] = [
-            "resolution": resolution.rawValue
+            "resolution": resolution
         ]
         
         if let accessToken = self.accessToken {
