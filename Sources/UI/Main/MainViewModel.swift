@@ -47,9 +47,4 @@ class MainViewModel
     {
         self.input.navigationManager.mainItem.accept(.profile)
     }
-    
-    func moveToMessages()
-    {
-        self.input.navigationManager.mainItem.accept(.messages)
-    }
 }

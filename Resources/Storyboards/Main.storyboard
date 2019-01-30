@@ -51,40 +51,18 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="QYd-HC-afs">
-                                <rect key="frame" x="40" y="595" width="295" height="72"/>
+                                <rect key="frame" x="0.0" y="595" width="375" height="72"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IC7-wg-nDT">
-                                        <rect key="frame" x="0.0" y="0.0" width="44" height="72"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="MX5-8F-BtP"/>
-                                        </constraints>
-                                        <state key="normal" image="main_bar_search"/>
-                                        <connections>
-                                            <action selector="onSearchSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="FlQ-YH-EPr"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLq-rW-238">
-                                        <rect key="frame" x="83.5" y="0.0" width="44" height="72"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="lHe-1T-qrf"/>
-                                        </constraints>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLq-rW-238">
+                                        <rect key="frame" x="0.0" y="0.0" width="165.5" height="72"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="32" maxY="0.0"/>
                                         <state key="normal" image="main_bar_like"/>
                                         <connections>
                                             <action selector="onLikeSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="dsE-fb-a46"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUa-ng-gGB">
-                                        <rect key="frame" x="167.5" y="0.0" width="44" height="72"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="gy2-SI-xxL"/>
-                                        </constraints>
-                                        <state key="normal" image="main_bar_messages"/>
-                                        <connections>
-                                            <action selector="onMessagesSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="EqO-Pe-gjN"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cD4-SP-HxY">
-                                        <rect key="frame" x="251" y="0.0" width="44" height="72"/>
+                                        <rect key="frame" x="165.5" y="0.0" width="44" height="72"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="xqK-XW-JZi"/>
                                         </constraints>
@@ -93,15 +71,28 @@
                                             <action selector="onProfileSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="IE7-2N-Huk"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IC7-wg-nDT">
+                                        <rect key="frame" x="209.5" y="0.0" width="165.5" height="72"/>
+                                        <inset key="imageEdgeInsets" minX="32" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="main_bar_search"/>
+                                        <connections>
+                                            <action selector="onSearchSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="FlQ-YH-EPr"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="IC7-wg-nDT" firstAttribute="leading" secondItem="cD4-SP-HxY" secondAttribute="trailing" id="Nb7-sX-WhP"/>
+                                    <constraint firstAttribute="trailing" secondItem="IC7-wg-nDT" secondAttribute="trailing" id="QNy-hT-FMB"/>
+                                    <constraint firstItem="IC7-wg-nDT" firstAttribute="width" secondItem="uLq-rW-238" secondAttribute="width" id="TXh-BD-Ft6"/>
                                     <constraint firstAttribute="height" constant="72" id="baw-Xa-ORG"/>
+                                    <constraint firstItem="cD4-SP-HxY" firstAttribute="leading" secondItem="uLq-rW-238" secondAttribute="trailing" id="gIv-A7-NrX"/>
+                                    <constraint firstItem="uLq-rW-238" firstAttribute="leading" secondItem="QYd-HC-afs" secondAttribute="leading" id="yoB-OP-QvA"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="QYd-HC-afs" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" constant="40" id="Bqv-WG-NUp"/>
+                            <constraint firstItem="QYd-HC-afs" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="Bqv-WG-NUp"/>
                             <constraint firstAttribute="trailing" secondItem="ZFd-I1-dCK" secondAttribute="trailing" id="CEJ-uj-wFU"/>
                             <constraint firstItem="E8b-9J-Vw4" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="J9K-us-tve"/>
                             <constraint firstItem="E8b-9J-Vw4" firstAttribute="top" secondItem="QYd-HC-afs" secondAttribute="top" id="QfG-nh-WlO"/>
@@ -110,14 +101,13 @@
                             <constraint firstItem="ZFd-I1-dCK" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="ZhW-CE-RaR"/>
                             <constraint firstAttribute="trailing" secondItem="E8b-9J-Vw4" secondAttribute="trailing" id="hcZ-sj-eTO"/>
                             <constraint firstItem="PZo-jV-0xV" firstAttribute="bottom" secondItem="E8b-9J-Vw4" secondAttribute="top" constant="72" id="jS5-2i-i9y"/>
-                            <constraint firstAttribute="trailing" secondItem="QYd-HC-afs" secondAttribute="trailing" constant="40" id="uDB-st-wc8"/>
+                            <constraint firstAttribute="trailing" secondItem="QYd-HC-afs" secondAttribute="trailing" id="uDB-st-wc8"/>
                             <constraint firstItem="ZFd-I1-dCK" firstAttribute="top" secondItem="GM2-8q-nY9" secondAttribute="top" id="yMd-wt-oZo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PZo-jV-0xV"/>
                     </view>
                     <connections>
                         <outlet property="likeBtn" destination="uLq-rW-238" id="tPb-gd-o3B"/>
-                        <outlet property="messagesBtn" destination="vUa-ng-gGB" id="LTK-Vq-bsI"/>
                         <outlet property="profileBtn" destination="cD4-SP-HxY" id="8ZU-N8-BWV"/>
                         <outlet property="searchBtn" destination="IC7-wg-nDT" id="pUU-Qa-2ZW"/>
                     </connections>
@@ -144,8 +134,7 @@
     </scenes>
     <resources>
         <image name="main_bar_like" width="23" height="22"/>
-        <image name="main_bar_messages" width="30" height="25"/>
-        <image name="main_bar_profile" width="17" height="20"/>
-        <image name="main_bar_search" width="20" height="20"/>
+        <image name="main_bar_profile" width="23" height="26"/>
+        <image name="main_bar_search" width="25" height="26"/>
     </resources>
 </document>

@@ -24,9 +24,21 @@
                                     <segue destination="5Bt-Xu-MH5" kind="embed" identifier="embed_lmm" id="758-j3-FOe"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1R-St-pNy">
-                                <rect key="frame" x="102.5" y="29" width="75" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30C-S0-bMA">
+                                <rect key="frame" x="0.0" y="29" width="147.5" height="33"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                <state key="normal" title="Chat">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onChatSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="Of8-n5-Puc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1R-St-pNy">
+                                <rect key="frame" x="227.5" y="29" width="147.5" height="33"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Likes You">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -35,7 +47,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6H-GQ-xYk">
-                                <rect key="frame" x="197.5" y="29" width="68" height="33"/>
+                                <rect key="frame" x="147.5" y="29" width="80" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="bXK-SU-xmC"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <state key="normal" title="Matches">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,25 +62,30 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Y1R-St-pNy" firstAttribute="top" secondItem="TLI-oN-FKy" secondAttribute="top" constant="9" id="4Jm-zW-Cp6"/>
-                            <constraint firstItem="t6H-GQ-xYk" firstAttribute="leading" secondItem="Gwy-Hy-mww" secondAttribute="centerX" constant="10" id="4dn-Ay-dbg"/>
+                            <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerY" secondItem="30C-S0-bMA" secondAttribute="centerY" id="1Nl-yd-PL9"/>
+                            <constraint firstItem="Y1R-St-pNy" firstAttribute="centerY" secondItem="t6H-GQ-xYk" secondAttribute="centerY" id="3Tx-Gr-I9P"/>
+                            <constraint firstItem="t6H-GQ-xYk" firstAttribute="leading" secondItem="30C-S0-bMA" secondAttribute="trailing" id="93d-Bg-k4h"/>
+                            <constraint firstItem="Y1R-St-pNy" firstAttribute="leading" secondItem="t6H-GQ-xYk" secondAttribute="trailing" id="HJi-72-jTi"/>
                             <constraint firstItem="R7W-C2-Y21" firstAttribute="leading" secondItem="Gwy-Hy-mww" secondAttribute="leading" id="Tna-hD-fT4"/>
                             <constraint firstItem="R7W-C2-Y21" firstAttribute="top" secondItem="Gwy-Hy-mww" secondAttribute="top" id="Z71-Cu-EnI"/>
+                            <constraint firstAttribute="trailing" secondItem="Y1R-St-pNy" secondAttribute="trailing" id="bkN-FF-Ya8"/>
+                            <constraint firstItem="30C-S0-bMA" firstAttribute="leading" secondItem="Gwy-Hy-mww" secondAttribute="leading" id="byx-eR-8gM"/>
+                            <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerX" secondItem="Gwy-Hy-mww" secondAttribute="centerX" id="iEI-W5-sc7"/>
                             <constraint firstAttribute="bottom" secondItem="R7W-C2-Y21" secondAttribute="bottom" id="lka-iJ-3Tj"/>
                             <constraint firstItem="t6H-GQ-xYk" firstAttribute="top" secondItem="TLI-oN-FKy" secondAttribute="top" constant="9" id="mKd-ik-rvU"/>
-                            <constraint firstItem="Y1R-St-pNy" firstAttribute="trailing" secondItem="Gwy-Hy-mww" secondAttribute="centerX" constant="-10" id="udj-Jf-xmw"/>
                             <constraint firstAttribute="trailing" secondItem="R7W-C2-Y21" secondAttribute="trailing" id="vza-It-2es"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TLI-oN-FKy"/>
                     </view>
                     <connections>
+                        <outlet property="chatBtn" destination="30C-S0-bMA" id="fPe-k7-2sF"/>
                         <outlet property="likeYouBtn" destination="Y1R-St-pNy" id="Dtl-TH-ZOd"/>
                         <outlet property="matchesBtn" destination="t6H-GQ-xYk" id="TUl-ED-bSc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6BI-HA-c0t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-687" y="107"/>
+            <point key="canvasLocation" x="-687.20000000000005" y="106.59670164917542"/>
         </scene>
         <!--MainLMM View Controller-->
         <scene sceneID="sja-MF-CcL">

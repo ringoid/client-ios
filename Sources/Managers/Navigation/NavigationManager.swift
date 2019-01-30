@@ -13,7 +13,6 @@ enum MainNavigationItem
 {
     case search
     case like
-    case messages
     case profile
 }
 
