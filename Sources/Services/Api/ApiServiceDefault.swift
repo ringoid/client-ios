@@ -252,6 +252,11 @@ class ApiServiceDefault: ApiService
                     return .error(error)
                 }
                 
+                if let repeatAfter = jsonDict["repeatRequestAfterSec"] as? Int, repeatAfter >= 1 {
+                    print("repeating after \(repeatAfter)")
+                    return self!.request(method, path: path, jsonBody: jsonBody).delay(RxTimeInterval(repeatAfter), scheduler: MainScheduler.instance)
+                }
+                
                 return .just(jsonDict)
             })
     }
@@ -268,6 +273,11 @@ class ApiServiceDefault: ApiService
                     jsonDict = try self?.validateJsonResponse(obj) ?? [:]
                 } catch {
                     return .error(error)
+                }
+                
+                if let repeatAfter = jsonDict["repeatRequestAfterSec"] as? Int, repeatAfter >= 1 {
+                    print("repeating after \(repeatAfter)")
+                    return self!.requestGET(path: path, params: params).delay(RxTimeInterval(repeatAfter), scheduler: MainScheduler.instance)
                 }
                 
                 return .just(jsonDict)
