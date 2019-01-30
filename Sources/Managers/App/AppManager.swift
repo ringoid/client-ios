@@ -63,5 +63,6 @@ class AppManager
         self.errorsManager = ErrorsManager(self.apiService, settings: self.settingsMananger)
         
         ThemeManager.shared.storageService = self.defaultStorage
+        LocaleManager.shared.storage = self.defaultStorage
     }
 }
