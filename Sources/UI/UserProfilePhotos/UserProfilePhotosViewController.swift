@@ -21,6 +21,7 @@ class UserProfilePhotosViewController: ThemeViewController
     fileprivate weak var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
     fileprivate var currentIndex: Int = 0
+    fileprivate var currentPhotoId: String? = nil
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedView: UIView!
@@ -101,7 +102,7 @@ class UserProfilePhotosViewController: ThemeViewController
         self.viewModel?.photos.asObservable().subscribe(onNext: { [weak self] photos in
             guard let `self` = self else { return }
             
-            self.updatePages(startIndex: photos.count - 1)
+            self.updatePages()
         }).disposed(by: self.disposeBag)
     }
     
@@ -112,10 +113,19 @@ class UserProfilePhotosViewController: ThemeViewController
         self.refreshControl.addTarget(self, action: #selector(onReload), for: .valueChanged)
     }
     
-    fileprivate func updatePages(startIndex: Int)
+    fileprivate func updatePages()
     {
         guard let photos = self.viewModel?.photos.value else { return }
-        guard startIndex >= 0, startIndex < photos.count else { return }
+        
+        var startIndex = 0
+        if let id = self.currentPhotoId
+        {
+            for (index, photo) in photos.enumerated() {
+                if photo.id == id { startIndex = index }
+            }
+        } else {
+            self.currentPhotoId = photos.first?.id
+        }
         
         self.emptyFeedView.isHidden = !photos.isEmpty
         self.titleLabel.isHidden = !photos.isEmpty
@@ -127,12 +137,15 @@ class UserProfilePhotosViewController: ThemeViewController
             return vc
         })
         
-        let vc = self.photosVCs[startIndex]
-        let direction: UIPageViewController.NavigationDirection = (photos.count - 1) == startIndex ? .reverse : .forward
-        self.pagesVC?.setViewControllers([vc], direction: direction, animated: false, completion: nil)
+        if !photos.isEmpty {
+            let vc = self.photosVCs[startIndex]
+            let direction: UIPageViewController.NavigationDirection = (photos.count - 1) == startIndex ? .reverse : .forward
+            self.pagesVC?.setViewControllers([vc], direction: direction, animated: false, completion: nil)
+        }
+        
         self.currentIndex = startIndex
         self.pageControl.currentPage = startIndex
-        self.deleteBtn.isHidden = photos.count == 0
+        self.deleteBtn.isHidden = photos.isEmpty
     }
     
     fileprivate func showDeletionAlert()
@@ -187,7 +200,9 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
         
         let prevCount = self.viewModel?.photos.value.count
         
-        self.viewModel?.add(croppedImage).subscribe(onNext: ({ [weak self] in
+        self.viewModel?.add(croppedImage).subscribe(onNext: ({ [weak self] photo in
+            self?.currentPhotoId = photo.id
+            
             guard prevCount == 0 else { return }
             
             DispatchQueue.main.async {
@@ -237,6 +252,7 @@ extension UserProfilePhotosViewController: UIPageViewControllerDelegate, UIPageV
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
         self.currentIndex = index
+        self.currentPhotoId = self.viewModel?.photos.value[index].id
         self.pageControl.currentPage = index
     }
 }
@@ -269,7 +285,7 @@ extension UserProfilePhotosViewController: UITableViewDataSource, UITableViewDel
         self.pagesVC = vc
         
         cell.containerView.embed(vc, to: self)
-        self.updatePages(startIndex: self.currentIndex)
+        self.updatePages()
         
         return cell
     }

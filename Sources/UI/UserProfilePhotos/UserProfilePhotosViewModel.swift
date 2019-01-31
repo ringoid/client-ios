@@ -36,7 +36,7 @@ class UserProfilePhotosViewModel
         self.input = input
     }
     
-    func add(_ photo: UIImage) -> Observable<Void>
+    func add(_ photo: UIImage) -> Observable<UserPhoto>
     {
         guard let data = photo.jpegData(compressionQuality: 0.9) else {
             let error = createError("Can not convert photo to jpeg format", type: .hidden)

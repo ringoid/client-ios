@@ -33,9 +33,9 @@ class UserProfileManager
         self.refresh().subscribe().disposed(by: self.disposeBag)
     }
     
-    func addPhoto(_ data: Data, filename: String) -> Observable<Void>
+    func addPhoto(_ data: Data, filename: String) -> Observable<UserPhoto>
     {
-        return self.apiService.getPresignedImageUrl(filename, fileExtension: "jpg").flatMap({ apiPhoto -> Observable<Void> in
+        return self.apiService.getPresignedImageUrl(filename, fileExtension: "jpg").flatMap({ apiPhoto -> Observable<UserPhoto> in
             
             if let url = URL(string: apiPhoto.url) {
                 self.uploader.upload(data, to: url).subscribe(onNext: {
@@ -49,7 +49,9 @@ class UserProfileManager
             photo.id = apiPhoto.originId
             photo.setFilepath(self.storeTemporary(data))
             
-            return self.db.add(photo)
+            return self.db.add(photo).map({ _ -> UserPhoto in
+                return photo
+            })
         })
     }
     
