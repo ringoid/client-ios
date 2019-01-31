@@ -57,15 +57,10 @@ class UserProfilePhotoViewController: UIViewController
     {
         self.photo?.rx.observe(UserPhoto.self, "likes").subscribe(onNext: { [weak self] _ in
             guard let photo = self?.photo else {
-                self?.likeView?.isHidden = true
-                self?.likeLabel?.isHidden = true
-                
                 return
             }
             
             self?.likeLabel?.text = "\(photo.likes)"
-            self?.likeView?.isHidden = photo.likes == 0
-            self?.likeLabel?.isHidden = photo.likes == 0
         }).disposed(by: self.disposeBag)
     }
 }

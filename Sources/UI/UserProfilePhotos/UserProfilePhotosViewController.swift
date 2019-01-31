@@ -22,6 +22,7 @@ class UserProfilePhotosViewController: ThemeViewController
     fileprivate var photosVCs: [UIViewController] = []
     fileprivate var currentIndex: Int = 0
     
+    @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedView: UIView!
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var deleteBtn: UIButton!
@@ -117,6 +118,7 @@ class UserProfilePhotosViewController: ThemeViewController
         guard startIndex >= 0, startIndex < photos.count else { return }
         
         self.emptyFeedView.isHidden = !photos.isEmpty
+        self.titleLabel.isHidden = !photos.isEmpty
         self.pageControl.numberOfPages = photos.count
         self.photosVCs = photos.map({ photo in
             let vc = UserProfilePhotoViewController.create()

@@ -18,9 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c03-Vj-oKe">
-                                <rect key="frame" x="87.5" y="259.5" width="203" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJu-F3-4rH">
+                                <rect key="frame" x="18" y="43" width="90.5" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c03-Vj-oKe">
+                                <rect key="frame" x="86" y="314.5" width="203" height="38.5"/>
                                 <string key="text">Add your photo to
 see how many likes you get</string>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
@@ -95,6 +100,8 @@ see how many likes you get</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="c03-Vj-oKe" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="4hG-ZS-M4a"/>
+                            <constraint firstItem="UJu-F3-4rH" firstAttribute="leading" secondItem="Yc6-CF-qSL" secondAttribute="leading" constant="18" id="84h-sg-v7S"/>
                             <constraint firstItem="32r-W0-czT" firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" constant="-217" id="8Ol-36-tvL"/>
                             <constraint firstItem="gyn-28-5bi" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" constant="18" id="G7V-WC-jCi"/>
                             <constraint firstAttribute="trailing" secondItem="32r-W0-czT" secondAttribute="trailing" constant="27" id="IyC-nP-7NA"/>
@@ -103,6 +110,8 @@ see how many likes you get</string>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="Q1a-Y0-U7m"/>
                             <constraint firstAttribute="trailing" secondItem="0Ze-nT-pEZ" secondAttribute="trailing" constant="23" id="U4Y-k4-tb8"/>
                             <constraint firstItem="R3C-Zv-Ixf" firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" constant="-26" id="ggR-U5-ZuF"/>
+                            <constraint firstItem="c03-Vj-oKe" firstAttribute="centerY" secondItem="q5L-So-vMI" secondAttribute="centerY" id="h1K-ko-wtW"/>
+                            <constraint firstItem="0Ze-nT-pEZ" firstAttribute="centerY" secondItem="UJu-F3-4rH" secondAttribute="centerY" id="ibO-Xs-tpT"/>
                             <constraint firstItem="0Ze-nT-pEZ" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="26" id="l9A-yQ-mB5"/>
                             <constraint firstAttribute="trailing" secondItem="R3C-Zv-Ixf" secondAttribute="trailing" constant="23" id="pnS-T9-dnY"/>
                             <constraint firstItem="gyn-28-5bi" firstAttribute="leading" secondItem="Yc6-CF-qSL" secondAttribute="leading" constant="17" id="xWB-fQ-bnr"/>
@@ -114,6 +123,7 @@ see how many likes you get</string>
                         <outlet property="deleteBtn" destination="32r-W0-czT" id="qDq-QL-d5e"/>
                         <outlet property="emptyFeedView" destination="c03-Vj-oKe" id="0d8-h2-kLZ"/>
                         <outlet property="pageControl" destination="gyn-28-5bi" id="KYH-ae-ET6"/>
+                        <outlet property="titleLabel" destination="UJu-F3-4rH" id="DNT-SD-cx5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8C-Tc-6v7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -147,10 +157,10 @@ see how many likes you get</string>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EvB-7Q-pcw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_likes" translatesAutoresizingMaskIntoConstraints="NO" id="2ec-Dg-we7">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_likes" translatesAutoresizingMaskIntoConstraints="NO" id="2ec-Dg-we7">
                                 <rect key="frame" x="329" y="143" width="23" height="22"/>
                             </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mh-A3-a0C">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mh-A3-a0C">
                                 <rect key="frame" x="335.5" y="167" width="10" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
