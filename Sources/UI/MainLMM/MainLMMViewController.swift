@@ -257,10 +257,16 @@ extension MainLMMViewController: UITableViewDataSource
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "main_llm_cell") as! MainLMMCell
         if let profile = self.profiles()?.value[indexPath.row] {
-            let profileVC = MainLMMProfileViewController.create(profile, feedType: self.type.value, actionsManager: self.input.actionsManager)
+            let photoIndex: Int = self.feedsState[self.type.value]?.photos[indexPath.row] ?? 0
+            let profileVC = MainLMMProfileViewController.create(profile, feedType: self.type.value, actionsManager: self.input.actionsManager, initialIndex: photoIndex)
             profileVC.onChatShow = { [weak self] profile, photo, vc in
                 self?.showChat(profile, photo: photo, indexPath: indexPath, profileVC: profileVC)
             }
+            profileVC.currentIndex.asObservable().subscribe(onNext: { [weak self] index in
+                guard let `self` = self else { return }
+                
+                self.feedsState[self.type.value]?.photos[indexPath.row] = index
+            }).disposed(by: self.disposeBag)
             
             cell.containerView.embed(profileVC, to: self)
         }

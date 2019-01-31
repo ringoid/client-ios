@@ -13,6 +13,7 @@ struct MainLMMProfileVMInput
     let profile: LMMProfile
     let feedType: LMMType
     let actionsManager: ActionsManager
+    let initialIndex: Int
 }
 
 class MainLMMProfileViewModel

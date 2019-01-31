@@ -7,25 +7,27 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MainLMMProfileViewController: UIViewController
 {
     var input: MainLMMProfileVMInput!
     
+    var currentIndex: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     var onChatShow: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
     
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
-    fileprivate var currentIndex: Int = 0
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var messageBtn: UIButton!
     
-    static func create(_ profile: LMMProfile, feedType: LMMType, actionsManager: ActionsManager) -> MainLMMProfileViewController
+    static func create(_ profile: LMMProfile, feedType: LMMType, actionsManager: ActionsManager, initialIndex: Int) -> MainLMMProfileViewController
     {
         let storyboard = Storyboards.mainLMM()
         let vc = storyboard.instantiateViewController(withIdentifier: "lmm_profile") as! MainLMMProfileViewController
-        vc.input = MainLMMProfileVMInput(profile: profile, feedType: feedType, actionsManager: actionsManager)
+        vc.input = MainLMMProfileVMInput(profile: profile, feedType: feedType, actionsManager: actionsManager, initialIndex: initialIndex)
         
         return vc
     }
@@ -49,8 +51,13 @@ class MainLMMProfileViewController: UIViewController
             return vc
         })
         
-        guard let vc = self.photosVCs.first else { return }
+        let index = self.input.initialIndex
+        guard index < self.photosVCs.count else { return }
+        
+        let vc = self.photosVCs[index]
         self.pagesVC?.setViewControllers([vc], direction: .forward, animated: false, completion: nil)
+        self.pageControl.currentPage = index
+        self.currentIndex.accept(index)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -80,7 +87,7 @@ class MainLMMProfileViewController: UIViewController
     {
         weak var weakSelf = self
         let profile = self.input.profile
-        self.onChatShow?(profile, profile.photos[self.currentIndex], weakSelf)
+        self.onChatShow?(profile, profile.photos[self.currentIndex.value], weakSelf)
     }
 }
 
@@ -111,7 +118,7 @@ extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageView
         guard finished, completed else { return }
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
-        self.currentIndex = index
+        self.currentIndex.accept(index)
         self.pageControl.currentPage = index
     }
 }
