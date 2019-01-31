@@ -93,7 +93,7 @@ class DBService
         let objectsToAdd = self.filterBlocked(objects)
         return Observable<Void>.create({ [weak self] observer -> Disposable in
             try? self?.realm.write {
-                self?.realm.add(objects)
+                self?.realm.add(objectsToAdd)
                 observer.onNext(())
                 observer.onCompleted()
             }
