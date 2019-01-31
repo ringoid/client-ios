@@ -43,6 +43,7 @@ class MainLMMViewController: ThemeViewController
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
     @IBOutlet fileprivate weak var chatConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
+    @IBOutlet fileprivate weak var feedEndView: UIView!
     @IBOutlet fileprivate weak var tableView: UITableView!
     fileprivate var refreshControl: UIRefreshControl!
     
@@ -97,6 +98,7 @@ class MainLMMViewController: ThemeViewController
             self.isUpdated = updatedProfiles.count == 0
             self.emptyFeedLabel.text = self.placeholderText()
             self.emptyFeedLabel.isHidden = !updatedProfiles.isEmpty
+            self.feedEndView.isHidden = updatedProfiles.isEmpty
             
             let offset = self.feedsState[self.type.value]?.offset
             self.tableView.reloadData()

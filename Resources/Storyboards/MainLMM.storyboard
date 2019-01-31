@@ -144,9 +144,33 @@ see who likes you</string>
                                 <color key="textColor" red="0.56078431370000004" green="0.56078431370000004" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="358" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kbx-tQ-FPO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="358" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="kbx-tQ-FPO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="mBt-Er-aiS">
+                                    <rect key="frame" x="0.0" y="386" width="375" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P7m-Dj-IGu">
+                                            <rect key="frame" x="183.5" y="16" width="8" height="8"/>
+                                            <color key="backgroundColor" red="0.5607843137254902" green="0.5607843137254902" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="8" id="2ED-Nd-bve"/>
+                                                <constraint firstAttribute="height" constant="8" id="WDk-v4-9ZO"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="P7m-Dj-IGu" firstAttribute="centerX" secondItem="mBt-Er-aiS" secondAttribute="centerX" id="7dz-VV-xtf"/>
+                                        <constraint firstItem="P7m-Dj-IGu" firstAttribute="centerY" secondItem="mBt-Er-aiS" secondAttribute="centerY" id="HFa-uc-Sdk"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="main_llm_cell" id="Way-Aw-DVV" customClass="MainLMMCell" customModule="ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="358"/>
@@ -216,6 +240,7 @@ see who likes you</string>
                         <outlet property="chatConstraint" destination="AQR-MD-OQf" id="5bC-40-qMs"/>
                         <outlet property="chatContainerView" destination="Ey6-2A-Ohd" id="Fd7-eT-6cV"/>
                         <outlet property="emptyFeedLabel" destination="h51-ww-FZ6" id="BKR-9v-s1U"/>
+                        <outlet property="feedEndView" destination="P7m-Dj-IGu" id="1qf-sg-R6H"/>
                         <outlet property="scrollTopBtn" destination="Q8X-YU-toI" id="E1j-Er-aIg"/>
                         <outlet property="tableView" destination="kbx-tQ-FPO" id="Gw2-gy-S9q"/>
                     </connections>
