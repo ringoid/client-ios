@@ -17,7 +17,8 @@ class NewFacesViewController: ThemeViewController
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var lastItemsCount: Int = 0
     
-    @IBOutlet fileprivate weak var emptyFeedView: UIView!
+    @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var loadingActivityView: UIActivityIndicatorView!
     fileprivate var refreshControl: UIRefreshControl!
@@ -82,7 +83,8 @@ class NewFacesViewController: ThemeViewController
             self.lastItemsCount = totalCount
         }
 
-        self.emptyFeedView.isHidden = totalCount != 0
+        self.titleLabel.isHidden = totalCount != 0
+        self.emptyFeedLabel.isHidden = totalCount != 0
         
         if self.lastItemsCount == 0 {
             self.tableView.reloadData()

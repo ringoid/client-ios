@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJu-F3-4rH">
-                                <rect key="frame" x="18" y="43" width="90.5" height="36"/>
+                                <rect key="frame" x="18" y="57" width="90.5" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -109,9 +109,9 @@ see how many likes you get</string>
                             <constraint firstAttribute="trailing" secondItem="GhS-rk-bVb" secondAttribute="trailing" id="MAW-HJ-rQf"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="Q1a-Y0-U7m"/>
                             <constraint firstAttribute="trailing" secondItem="0Ze-nT-pEZ" secondAttribute="trailing" constant="23" id="U4Y-k4-tb8"/>
+                            <constraint firstItem="UJu-F3-4rH" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" constant="37" id="ZTo-iU-I0x"/>
                             <constraint firstItem="R3C-Zv-Ixf" firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" constant="-26" id="ggR-U5-ZuF"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerY" secondItem="q5L-So-vMI" secondAttribute="centerY" id="h1K-ko-wtW"/>
-                            <constraint firstItem="0Ze-nT-pEZ" firstAttribute="centerY" secondItem="UJu-F3-4rH" secondAttribute="centerY" id="ibO-Xs-tpT"/>
                             <constraint firstItem="0Ze-nT-pEZ" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="26" id="l9A-yQ-mB5"/>
                             <constraint firstAttribute="trailing" secondItem="R3C-Zv-Ixf" secondAttribute="trailing" constant="23" id="pnS-T9-dnY"/>
                             <constraint firstItem="gyn-28-5bi" firstAttribute="leading" secondItem="Yc6-CF-qSL" secondAttribute="leading" constant="17" id="xWB-fQ-bnr"/>

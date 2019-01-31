@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Je-db-FTU">
+                                <rect key="frame" x="18" y="57" width="116.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGR-G7-fOR">
                                 <rect key="frame" x="106" y="314.5" width="163.5" height="38.5"/>
                                 <string key="text">Pull to refresh to
@@ -82,16 +88,19 @@ discover users nearby</string>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="V4m-wZ-I6w"/>
                             <constraint firstAttribute="bottom" secondItem="Owz-cZ-1Sc" secondAttribute="bottom" id="WOb-4K-jM4"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="XVH-IB-ckJ"/>
+                            <constraint firstItem="4Je-db-FTU" firstAttribute="top" secondItem="Dzb-Wx-JQu" secondAttribute="top" constant="37" id="bKq-go-6VW"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="eOj-9V-78m"/>
                             <constraint firstAttribute="trailing" secondItem="Owz-cZ-1Sc" secondAttribute="trailing" id="sVe-sm-wMe"/>
+                            <constraint firstItem="4Je-db-FTU" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" constant="18" id="xmA-gD-zWl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dzb-Wx-JQu"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
-                        <outlet property="emptyFeedView" destination="CGR-G7-fOR" id="XRw-pv-Pes"/>
+                        <outlet property="emptyFeedLabel" destination="CGR-G7-fOR" id="XU1-zR-aiG"/>
                         <outlet property="loadingActivityView" destination="KgT-Hg-Q7I" id="CyZ-bm-dO6"/>
                         <outlet property="tableView" destination="Owz-cZ-1Sc" id="KNv-5u-zds"/>
+                        <outlet property="titleLabel" destination="4Je-db-FTU" id="iV1-Tj-RvH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="htw-q5-Nbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
