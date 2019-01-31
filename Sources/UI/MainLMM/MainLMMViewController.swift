@@ -9,11 +9,17 @@
 import RxSwift
 import RxCocoa
 
-enum LMMType
+enum LMMType: String
 {
-    case likesYou
-    case matches
-    case messages
+    case likesYou = "likesYou"
+    case matches = "matches"
+    case messages = "message"
+}
+
+fileprivate struct FeedState
+{
+    var offset: CGFloat = 0.0
+    var photos: [Int: Int] = [:]
 }
 
 class MainLMMViewController: ThemeViewController
@@ -31,6 +37,7 @@ class MainLMMViewController: ThemeViewController
     fileprivate var chatStartDate: Date? = nil
     fileprivate var prevScrollingOffset: CGFloat = 0.0
     fileprivate var isScrollTopVisible: Bool = false
+    fileprivate var feedsState: [LMMType: FeedState] = [:]
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
@@ -53,6 +60,7 @@ class MainLMMViewController: ThemeViewController
         
         self.setupBindings()
         self.setupReloader()
+        self.resetStates()
     }
     
     @objc func onReload()
@@ -89,7 +97,13 @@ class MainLMMViewController: ThemeViewController
             self.isUpdated = updatedProfiles.count == 0
             self.emptyFeedLabel.text = self.placeholderText()
             self.emptyFeedLabel.isHidden = !updatedProfiles.isEmpty
+            
+            let offset = self.feedsState[self.type.value]?.offset
             self.tableView.reloadData()
+            if let cachedOffset = offset {
+                self.tableView.layoutIfNeeded()
+                self.tableView.setContentOffset(CGPoint(x: 0.0, y: cachedOffset), animated: false)
+            }
         }).disposed(by: self.feedDisposeBag)
     }
     
@@ -108,6 +122,7 @@ class MainLMMViewController: ThemeViewController
             
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
+                self?.resetStates()
                 self?.refreshControl.endRefreshing()
         }).disposed(by: self.disposeBag)
     }
@@ -215,6 +230,15 @@ class MainLMMViewController: ThemeViewController
         
         animator.startAnimation()
     }
+    
+    fileprivate func resetStates()
+    {
+        self.feedsState = [
+            .likesYou: FeedState(offset: 0.0, photos: [:]),
+            .matches: FeedState(offset: 0.0, photos: [:]),
+            .messages: FeedState(offset: 0.0, photos: [:])
+        ]
+    }
 }
 
 extension MainLMMViewController: UITableViewDataSource
@@ -253,6 +277,7 @@ extension MainLMMViewController: UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     {
         let offset = scrollView.contentOffset.y
+        self.feedsState[self.type.value]?.offset = offset
         
         guard offset > topTrashhold else {
             self.hideScrollToTopOption()
