@@ -29,10 +29,13 @@ class MainLMMViewController: ThemeViewController
     fileprivate var disposeBag: DisposeBag = DisposeBag()
     fileprivate var isUpdated: Bool = true
     fileprivate var chatStartDate: Date? = nil
+    fileprivate var prevScrollingOffset: CGFloat = 0.0
+    fileprivate var isScrollTopVisible: Bool = false
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
     @IBOutlet fileprivate weak var chatConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
     @IBOutlet fileprivate weak var tableView: UITableView!
     fileprivate var refreshControl: UIRefreshControl!
     
@@ -55,6 +58,13 @@ class MainLMMViewController: ThemeViewController
     @objc func onReload()
     {
         self.reload()
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func onScrollTop()
+    {
+        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0) , at: .top, animated: true)
     }
     
     // MARK: -
@@ -177,6 +187,34 @@ class MainLMMViewController: ThemeViewController
         case .messages: return "Pull to refresh to\nsee who messages you"
         }
     }
+    
+    fileprivate func showScrollToTopOption()
+    {
+        guard !self.isScrollTopVisible else { return }
+        
+        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
+            self.scrollTopBtn.alpha = 1.0
+        }
+        animator.addCompletion { _ in
+            self.isScrollTopVisible = true
+        }
+        
+        animator.startAnimation()
+    }
+    
+    fileprivate func hideScrollToTopOption()
+    {
+        guard self.isScrollTopVisible else { return }
+        
+        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
+            self.scrollTopBtn.alpha = 0.0
+        }
+        animator.addCompletion { _ in
+            self.isScrollTopVisible = false
+        }
+        
+        animator.startAnimation()
+    }
 }
 
 extension MainLMMViewController: UITableViewDataSource
@@ -204,5 +242,37 @@ extension MainLMMViewController: UITableViewDataSource
         }
         
         return cell
+    }
+}
+
+fileprivate let topTrashhold: CGFloat = UIScreen.main.bounds.height
+fileprivate let midTrashhold: CGFloat = UIScreen.main.bounds.width / 3.0 * 4.0
+
+extension MainLMMViewController: UIScrollViewDelegate
+{
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    {
+        let offset = scrollView.contentOffset.y
+        
+        guard offset > topTrashhold else {
+            self.hideScrollToTopOption()
+            self.prevScrollingOffset = 0.0
+            
+            return
+        }
+        
+        if offset - self.prevScrollingOffset < -1.0 * midTrashhold {
+            self.showScrollToTopOption()
+            self.prevScrollingOffset = offset
+            
+            return
+        }
+        
+        if offset - self.prevScrollingOffset > midTrashhold {
+            self.hideScrollToTopOption()
+            self.prevScrollingOffset = offset
+            
+            return
+        }
     }
 }

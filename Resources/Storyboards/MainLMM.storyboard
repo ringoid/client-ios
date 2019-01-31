@@ -176,12 +176,24 @@ see who likes you</string>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="5Bt-Xu-MH5" id="gVE-RV-F7O"/>
+                                    <outlet property="delegate" destination="5Bt-Xu-MH5" id="ZU8-q5-eXy"/>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ey6-2A-Ohd" customClass="ContainerView" customModule="ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="667" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8X-YU-toI">
+                                <rect key="frame" x="16" y="567" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="QpB-J3-I7b"/>
+                                    <constraint firstAttribute="height" constant="44" id="eht-lI-j4g"/>
+                                </constraints>
+                                <state key="normal" image="feed_scroll_top"/>
+                                <connections>
+                                    <action selector="onScrollTop" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="58u-6c-Gm0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -191,7 +203,9 @@ see who likes you</string>
                             <constraint firstItem="h51-ww-FZ6" firstAttribute="centerX" secondItem="aDZ-sn-yKR" secondAttribute="centerX" id="NTq-DH-wWu"/>
                             <constraint firstItem="Ey6-2A-Ohd" firstAttribute="width" secondItem="aDZ-sn-yKR" secondAttribute="width" id="SnP-35-77U"/>
                             <constraint firstItem="Ey6-2A-Ohd" firstAttribute="centerX" secondItem="aDZ-sn-yKR" secondAttribute="centerX" id="Sur-Ou-Efl"/>
+                            <constraint firstItem="Q8X-YU-toI" firstAttribute="leading" secondItem="DRO-WM-fEC" secondAttribute="leading" constant="16" id="anz-kP-t7t"/>
                             <constraint firstItem="kbx-tQ-FPO" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="leading" id="fH6-My-2G0"/>
+                            <constraint firstItem="DRO-WM-fEC" firstAttribute="bottom" secondItem="Q8X-YU-toI" secondAttribute="bottom" constant="56" id="hFO-hJ-lIq"/>
                             <constraint firstItem="h51-ww-FZ6" firstAttribute="centerY" secondItem="aDZ-sn-yKR" secondAttribute="centerY" id="lgG-BI-cWQ"/>
                             <constraint firstItem="Ey6-2A-Ohd" firstAttribute="height" secondItem="aDZ-sn-yKR" secondAttribute="height" id="nub-ba-i2l"/>
                             <constraint firstAttribute="trailing" secondItem="kbx-tQ-FPO" secondAttribute="trailing" id="wLB-ID-jOj"/>
@@ -202,6 +216,7 @@ see who likes you</string>
                         <outlet property="chatConstraint" destination="AQR-MD-OQf" id="5bC-40-qMs"/>
                         <outlet property="chatContainerView" destination="Ey6-2A-Ohd" id="Fd7-eT-6cV"/>
                         <outlet property="emptyFeedLabel" destination="h51-ww-FZ6" id="BKR-9v-s1U"/>
+                        <outlet property="scrollTopBtn" destination="Q8X-YU-toI" id="E1j-Er-aIg"/>
                         <outlet property="tableView" destination="kbx-tQ-FPO" id="Gw2-gy-S9q"/>
                     </connections>
                 </viewController>
@@ -300,5 +315,6 @@ see who likes you</string>
     <resources>
         <image name="feed_messages_empty" width="36" height="35"/>
         <image name="feed_options" width="32" height="12"/>
+        <image name="feed_scroll_top" width="30" height="30"/>
     </resources>
 </document>

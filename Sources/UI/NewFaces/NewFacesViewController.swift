@@ -15,7 +15,7 @@ class NewFacesViewController: ThemeViewController
     
     fileprivate var viewModel: NewFacesViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
-    fileprivate var lastItemsCount: Int = 0
+    fileprivate var lastItemsCount: Int = 0    
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
