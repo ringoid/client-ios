@@ -64,7 +64,7 @@ class MainLMMViewController: ThemeViewController
     
     @IBAction func onScrollTop()
     {
-        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0) , at: .top, animated: true)
+        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0) , at: .top, animated: false)
     }
     
     // MARK: -
@@ -245,7 +245,7 @@ extension MainLMMViewController: UITableViewDataSource
     }
 }
 
-fileprivate let topTrashhold: CGFloat = UIScreen.main.bounds.height
+fileprivate let topTrashhold: CGFloat = UIScreen.main.bounds.height  / 3.0 * 4.0
 fileprivate let midTrashhold: CGFloat = UIScreen.main.bounds.width / 3.0 * 4.0
 
 extension MainLMMViewController: UIScrollViewDelegate
