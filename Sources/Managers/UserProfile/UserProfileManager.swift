@@ -16,19 +16,23 @@ class UserProfileManager
     let uploader: UploaderService
     let fileService: FileService
     let deviceService: DeviceService
+    let storage: XStorageService
     
     var photos: BehaviorRelay<[UserPhoto]> = BehaviorRelay<[UserPhoto]>(value: [])
+    var lastPhotoId: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(_ db: DBService, api: ApiService, uploader: UploaderService, fileService: FileService, device: DeviceService)
+    init(_ db: DBService, api: ApiService, uploader: UploaderService, fileService: FileService, device: DeviceService, storage: XStorageService)
     {
         self.db = db
         self.apiService = api
         self.uploader = uploader
         self.fileService = fileService
         self.deviceService = device
+        self.storage = storage
         
+        self.setupBindings()
         self.db.fetchUserPhotos().bind(to: self.photos).disposed(by: self.disposeBag)
         self.refresh().subscribe().disposed(by: self.disposeBag)
     }
@@ -77,6 +81,31 @@ class UserProfileManager
     }
     
     // MARK: -
+    
+    fileprivate let photoKey: String = "profile_last_photo_id"
+    
+    fileprivate func setupBindings()
+    {
+        self.storage.object(self.photoKey).subscribe(onNext: { [weak self] obj in
+            self?.lastPhotoId.accept(String.create(obj))
+            self?.setupLastPhotoBinding()
+        }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func setupLastPhotoBinding()
+    {
+        self.lastPhotoId.asObservable().subscribe(onNext: { [weak self] id in
+            guard let `self` = self else { return }
+            guard let photoId = id else {
+                self.storage.remove(self.photoKey).subscribe().disposed(by: self.disposeBag)
+                
+                return
+            }
+            
+            self.storage.store(photoId, key: self.photoKey).subscribe().disposed(by: self.disposeBag)
+            
+        }).disposed(by: self.disposeBag)
+    }
     
     fileprivate func storeTemporary(_ data: Data) -> FilePath
     {

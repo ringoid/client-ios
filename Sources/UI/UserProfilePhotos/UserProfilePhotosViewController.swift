@@ -21,7 +21,6 @@ class UserProfilePhotosViewController: ThemeViewController
     fileprivate weak var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
     fileprivate var currentIndex: Int = 0
-    fileprivate var currentPhotoId: String? = nil
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedView: UIView!
@@ -118,13 +117,13 @@ class UserProfilePhotosViewController: ThemeViewController
         guard let photos = self.viewModel?.photos.value else { return }
         
         var startIndex = 0
-        if let id = self.currentPhotoId
+        if let id = self.viewModel?.lastPhotoId.value
         {
             for (index, photo) in photos.enumerated() {
                 if photo.id == id { startIndex = index }
             }
         } else {
-            self.currentPhotoId = photos.first?.id
+            self.viewModel?.lastPhotoId.accept(photos.first?.id)
         }
         
         self.emptyFeedView.isHidden = !photos.isEmpty
@@ -201,7 +200,7 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
         let prevCount = self.viewModel?.photos.value.count
         
         self.viewModel?.add(croppedImage).subscribe(onNext: ({ [weak self] photo in
-            self?.currentPhotoId = photo.id
+            self?.viewModel?.lastPhotoId.accept(photo.id)
             
             guard prevCount == 0 else { return }
             
@@ -252,7 +251,7 @@ extension UserProfilePhotosViewController: UIPageViewControllerDelegate, UIPageV
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
         self.currentIndex = index
-        self.currentPhotoId = self.viewModel?.photos.value[index].id
+        self.viewModel?.lastPhotoId.accept(self.viewModel?.photos.value[index].id)
         self.pageControl.currentPage = index
     }
 }
