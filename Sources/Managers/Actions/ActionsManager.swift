@@ -8,11 +8,16 @@
 
 import RxSwift
 
+enum BlockReason: Int
+{
+    case unknown = 0
+}
+
 enum FeedAction
 {
     case like(likeCount: Int)
     case view(viewCount: Int, viewTimeSec: Int)
-    case block(blockReasonNum: Int)
+    case block(reason: BlockReason)
     case unlike
     case message(text: String)
     case openChat(openChatCount: Int, openChatTimeSec: Int)
@@ -70,6 +75,13 @@ class ActionsManager
     {
         self.stopViewAction(profile, photo: photo, sourceType: source)
         self.add(.like(likeCount: 1), profile: profile, photo: photo, source: source)
+        self.startViewAction(profile, photo: photo)
+    }
+    
+    func stopActionProtected(_ reason: BlockReason, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
+    {
+        self.stopViewAction(profile, photo: photo, sourceType: source)
+        self.add(.block(reason: reason), profile: profile, photo: photo, source: source)
         self.startViewAction(profile, photo: photo)
     }
     
@@ -214,9 +226,9 @@ extension FeedAction
             createdAction.setViewData(viewCount: viewCount, viewTimeSec: viewTimeSec)
             break
             
-        case .block(let blockReasonNum):
+        case .block(let reason):
             createdAction.type = ActionType.block.rawValue
-            createdAction.setBlockData(blockReasonNum)
+            createdAction.setBlockData(reason.rawValue)
             break
             
         case .unlike:

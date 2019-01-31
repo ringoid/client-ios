@@ -60,6 +60,7 @@
 		576FC116220188AB00BA5ABE /* DeviceServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC115220188AB00BA5ABE /* DeviceServiceDefault.swift */; };
 		576FC1192201E0EF00BA5ABE /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC1182201E0EE00BA5ABE /* LocaleManager.swift */; };
 		576FC11D2201EBC400BA5ABE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 576FC11F2201EBC400BA5ABE /* Localizable.strings */; };
+		576FC12222032D7E00BA5ABE /* BlockedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC12122032D7E00BA5ABE /* BlockedProfile.swift */; };
 		579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */; };
 		579CD7AE21F8603500C3AEE3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7AD21F8603500C3AEE3 /* Settings.storyboard */; };
 		579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
@@ -167,6 +168,7 @@
 		576FC1182201E0EE00BA5ABE /* LocaleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleManager.swift; sourceTree = "<group>"; };
 		576FC11E2201EBC400BA5ABE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		576FC1202201ECD200BA5ABE /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		576FC12122032D7E00BA5ABE /* BlockedProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedProfile.swift; sourceTree = "<group>"; };
 		579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		579CD7AD21F8603500C3AEE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 				57B863BF21ECB93200B9CC70 /* LMMProfile.swift */,
 				57B863C121ECB94800B9CC70 /* Message.swift */,
 				57F98DB521F4A23600A09876 /* DBServiceObject.swift */,
+				576FC12122032D7E00BA5ABE /* BlockedProfile.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -894,6 +897,7 @@
 				57585D4E21E3897800038798 /* UserPhoto.swift in Sources */,
 				570D04B821DE2B6400E0DCFB /* XStorageService.swift in Sources */,
 				57585D6021E4BF4900038798 /* UploaderServiceDefault.swift in Sources */,
+				576FC12222032D7E00BA5ABE /* BlockedProfile.swift in Sources */,
 				570D04CA21E32F4800E0DCFB /* AuthViewController.swift in Sources */,
 				57585D4921E35B8C00038798 /* NewFacesCell.swift in Sources */,
 				57FB7BD021E74AAC00AAA29D /* NewFaceProfileViewModel.swift in Sources */,

@@ -13,6 +13,7 @@ import RxSwift
 class DBService
 {
     fileprivate let realm: Realm
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     init()
     {
@@ -52,6 +53,15 @@ class DBService
         
         return Observable.array(from: profiles)
     }
+    
+    func blockProfile(_ id: String)
+    {
+        let blockedProfile = BlockedProfile()
+        blockedProfile.id = id
+        self.add(blockedProfile).subscribe(onNext: { [weak self] _ in
+            self?.removeProfiles(id)
+        }).disposed(by: self.disposeBag)
+    }
 
     // MARK: - User
     
@@ -61,21 +71,6 @@ class DBService
         
         return Observable.array(from: photos)
     }
-//
-//    // MARK: - Photos
-//
-//    func photo(_ id: String) -> Observable<Photo>
-//    {
-//        let predicate = NSPredicate(format: "id = %@", id)
-//        guard let photo = self.realm.objects(Photo.self).filter(predicate).first else {
-//            let error = createError("No new face profile found with id = \(id)", type: .hidden)
-//
-//            return .error(error)
-//        }
-//
-//        return .just(photo)
-//    }
-
     
     // MARK: - Actions
     
@@ -90,19 +85,12 @@ class DBService
     
     func add(_ object: Object) -> Observable<Void>
     {
-        return Observable<Void>.create({ [weak self] observer -> Disposable in
-            try? self?.realm.write {
-                self?.realm.add(object)
-                observer.onNext(())
-                observer.onCompleted()
-            }
-            
-            return Disposables.create()
-        })
+        return self.add([object])
     }
     
     func add(_ objects: [Object]) -> Observable<Void>
     {
+        let objectsToAdd = self.filterBlocked(objects)
         return Observable<Void>.create({ [weak self] observer -> Disposable in
             try? self?.realm.write {
                 self?.realm.add(objects)
@@ -146,5 +134,32 @@ class DBService
         try? self.realm.write {
             self.realm.deleteAll()
         }
+    }
+    
+    // MARK: -
+    fileprivate func removeProfiles(_ id: String)
+    {
+        var objectsToRemove: [Object] = []
+        let predicate = NSPredicate(format: "id = %@", id)
+        objectsToRemove.append(contentsOf: Array(self.realm.objects(NewFaceProfile.self).filter(predicate)))
+        objectsToRemove.append(contentsOf: Array(self.realm.objects(LMMProfile.self).filter(predicate)))
+        try? self.realm.write {
+            self.realm.delete(objectsToRemove)
+        }
+    }
+    
+    fileprivate func filterBlocked(_ objects: [Object]) -> [Object]
+    {
+        let blockedIds = self.realm.objects(BlockedProfile.self).map({ $0.id })
+        
+        return objects.filter({ object in
+            guard let profile = object as? Profile else { return true }
+            
+            for blockedId in blockedIds {
+                if profile.id == blockedId { return false }
+            }
+            
+            return true
+        })
     }
 }
