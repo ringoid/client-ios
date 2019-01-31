@@ -15,12 +15,13 @@ class NewFacesViewController: ThemeViewController
     
     fileprivate var viewModel: NewFacesViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
-    fileprivate var lastItemsCount: Int = 0    
+    fileprivate var lastItemsCount: Int = 0
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var loadingActivityView: UIActivityIndicatorView!
+    @IBOutlet fileprivate weak var feedEndLabel: UILabel!
     fileprivate var refreshControl: UIRefreshControl!
     
     override func viewDidLoad()
@@ -33,6 +34,7 @@ class NewFacesViewController: ThemeViewController
         let rowHeight = UIScreen.main.bounds.height * 3.0 / 4.0
         self.tableView.rowHeight = rowHeight
         self.tableView.estimatedRowHeight = rowHeight
+        self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: UIScreen.main.bounds.height - rowHeight, right: 0.0)
         
         self.setupBindings()
         self.setupReloader()
@@ -83,12 +85,13 @@ class NewFacesViewController: ThemeViewController
             self.lastItemsCount = totalCount
         }
 
-        self.titleLabel.isHidden = totalCount != 0
-        self.emptyFeedLabel.isHidden = totalCount != 0
+        let isEmpty = totalCount == 0
+        self.titleLabel.isHidden = !isEmpty
+        self.emptyFeedLabel.isHidden = !isEmpty
+        self.feedEndLabel.isHidden = isEmpty
         
         if self.lastItemsCount == 0 {
             self.tableView.reloadData()
-            self.loadingActivityView.startAnimating()
             
             return
         }
@@ -145,12 +148,16 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
         guard let totalCount = self.viewModel?.profiles.value.count, totalCount > 5, totalCount - indexPath.row <= 5 else { return }
 
         print("fetching next page")
+        self.loadingActivityView.startAnimating()
+        self.feedEndLabel.isHidden = true
         self.viewModel?.fetchNext().subscribe(onError: { [weak self] error in
             guard let `self` = self else { return }
 
             showError(error, vc: self)
             }, onCompleted: { [weak self] in
                 self?.viewModel?.finishFetching()
+                self?.loadingActivityView.stopAnimating()
+                self?.feedEndLabel.isHidden = false
         }).disposed(by: self.disposeBag)
     }
 }
