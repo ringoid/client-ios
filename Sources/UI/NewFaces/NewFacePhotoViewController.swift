@@ -103,7 +103,7 @@ class NewFacePhotoViewController: UIViewController
             self?.photo?.isLiked = !photo.isLiked
         })
     }
-    
+        
     // MARK: -
     
     fileprivate func update()

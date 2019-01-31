@@ -144,6 +144,9 @@ discover users nearby</string>
                                     <constraint firstAttribute="width" constant="76" id="R9H-dW-1yd"/>
                                 </constraints>
                                 <state key="normal" image="feed_options"/>
+                                <connections>
+                                    <action selector="onBlock" destination="gBk-mi-2xQ" eventType="touchUpInside" id="zg5-YE-ePs"/>
+                                </connections>
                             </button>
                             <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jC-bO-SnE" customClass="VerticalGradientView" customModule="ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>

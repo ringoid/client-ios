@@ -23,4 +23,22 @@ class NewFaceProfileViewModel
     {
         self.input = input
     }
+    
+    func like(at photoIndex: Int)
+    {
+        self.input.actionsManager.add(
+            [.view(viewCount: 1, viewTimeSec: 1), .like(likeCount: 1)],
+            profile: self.input.profile.actionInstance(),
+            photo: self.input.profile.photos[photoIndex].actionInstance(),
+            source: .newFaces)
+    }
+    
+    func block(at photoIndex: Int)
+    {
+        self.input.actionsManager.blockActionProtected(
+            .unknown,
+            profile: self.input.profile.actionInstance(),
+            photo: self.input.profile.photos[photoIndex].actionInstance(),
+            source: .newFaces)
+    }
 }

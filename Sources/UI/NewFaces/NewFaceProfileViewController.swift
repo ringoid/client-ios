@@ -12,6 +12,7 @@ class NewFaceProfileViewController: UIViewController
 {
     var input: NewFaceProfileVMInput!
     
+    fileprivate var viewModel: NewFaceProfileViewModel?
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
     fileprivate var currentIndex: Int = 0
@@ -33,6 +34,10 @@ class NewFaceProfileViewController: UIViewController
         assert(self.input != nil)
         
         super.viewDidLoad()
+        
+        self.viewModel = NewFaceProfileViewModel(self.input)
+        
+        // TODO: Move all logic inside view model
         
         guard !self.input.profile.isInvalidated else { return }
         
@@ -62,11 +67,18 @@ class NewFaceProfileViewController: UIViewController
     
     @IBAction func onLike()
     {
-        self.input.actionsManager.add(
-            [.view(viewCount: 1, viewTimeSec: 1), .like(likeCount: 1)],
-            profile: self.input.profile.actionInstance(),
-            photo: self.input.profile.photos[self.currentIndex].actionInstance(),
-            source: .newFaces)
+        self.viewModel?.like(at: self.currentIndex)
+    }
+    
+    @IBAction func onBlock()
+    {
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertVC.addAction(UIAlertAction(title: "Block", style: .default, handler: { _ in
+            self.viewModel?.block(at: self.currentIndex)
+        }))
+        alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
 

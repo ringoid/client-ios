@@ -79,7 +79,7 @@ class NewFacesViewController: ThemeViewController
     
     fileprivate func updateFeed()
     {
-        guard let totalCount = self.viewModel?.profiles.value.count, totalCount > self.lastItemsCount else { return }
+        guard let totalCount = self.viewModel?.profiles.value.count else { return }
         
         defer {
             self.lastItemsCount = totalCount
@@ -90,7 +90,7 @@ class NewFacesViewController: ThemeViewController
         self.emptyFeedLabel.isHidden = !isEmpty
         self.feedEndLabel.isHidden = isEmpty
         
-        if self.lastItemsCount == 0 {
+        if self.lastItemsCount == 0 || totalCount < self.lastItemsCount{
             self.tableView.reloadData()
             
             return
