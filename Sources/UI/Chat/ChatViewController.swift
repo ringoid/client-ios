@@ -49,6 +49,20 @@ class ChatViewController: UIViewController
         self.messageTextView.becomeFirstResponder()
     }
     
+    override func viewDidLayoutSubviews()
+    {
+        super.viewDidLayoutSubviews()
+        
+        let width: CGFloat = 76.0
+        let height: CGFloat = 56.0
+        (self.view as? TouchThroughAreaView)?.area = CGRect(
+            x: self.view.bounds.width - width,
+            y: self.view.safeAreaInsets.top,
+            width: width,
+            height: height
+        )
+    }
+    
     // MARK: - Actions
     
     @IBAction func onClose()

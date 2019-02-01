@@ -91,11 +91,17 @@ class DBService
     func add(_ objects: [Object]) -> Observable<Void>
     {
         let objectsToAdd = self.filterBlocked(objects)
-        return Observable<Void>.create({ [weak self] observer -> Disposable in
-            try? self?.realm.write {
-                self?.realm.add(objectsToAdd)
+        return Observable<Void>.create({ observer -> Disposable in                       
+            if self.realm.isInWriteTransaction {
+                self.realm.add(objectsToAdd)
                 observer.onNext(())
                 observer.onCompleted()
+            } else {
+                try? self.realm.write {
+                    self.realm.add(objectsToAdd)
+                    observer.onNext(())
+                    observer.onCompleted()
+                }
             }
             
             return Disposables.create()

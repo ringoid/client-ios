@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContainerView: UIView
+class ContainerView: TouchThroughView
 {
     var containedVC: UIViewController?
     

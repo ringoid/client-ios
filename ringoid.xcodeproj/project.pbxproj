@@ -61,6 +61,8 @@
 		576FC1192201E0EF00BA5ABE /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC1182201E0EE00BA5ABE /* LocaleManager.swift */; };
 		576FC11D2201EBC400BA5ABE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 576FC11F2201EBC400BA5ABE /* Localizable.strings */; };
 		576FC12222032D7E00BA5ABE /* BlockedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC12122032D7E00BA5ABE /* BlockedProfile.swift */; };
+		576FC12422047E6500BA5ABE /* TouchThroughAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC12322047E6400BA5ABE /* TouchThroughAreaView.swift */; };
+		576FC126220486A100BA5ABE /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC125220486A100BA5ABE /* Types.swift */; };
 		579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */; };
 		579CD7AE21F8603500C3AEE3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7AD21F8603500C3AEE3 /* Settings.storyboard */; };
 		579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
@@ -168,6 +170,8 @@
 		576FC1182201E0EE00BA5ABE /* LocaleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleManager.swift; sourceTree = "<group>"; };
 		576FC11E2201EBC400BA5ABE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		576FC12122032D7E00BA5ABE /* BlockedProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedProfile.swift; sourceTree = "<group>"; };
+		576FC12322047E6400BA5ABE /* TouchThroughAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchThroughAreaView.swift; sourceTree = "<group>"; };
+		576FC125220486A100BA5ABE /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		579CD7AD21F8603500C3AEE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -339,6 +343,7 @@
 				570D04C021DF4E1F00E0DCFB /* Alerts.swift */,
 				57585D5321E48E3700038798 /* Image.swift */,
 				579CD7CB21FA094600C3AEE3 /* KeyboardListener.swift */,
+				576FC125220486A100BA5ABE /* Types.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -521,6 +526,7 @@
 				57FB7BCB21E73D3C00AAA29D /* ContainerView.swift */,
 				57B863D421EE16E700B9CC70 /* VerticalGradientView.swift */,
 				57B863D621EE179F00B9CC70 /* TouchThroughView.swift */,
+				576FC12322047E6400BA5ABE /* TouchThroughAreaView.swift */,
 				57B863D821EE18ED00B9CC70 /* DiagonalGradientView.swift */,
 			);
 			path = Common;
@@ -872,6 +878,7 @@
 				570D04AD21DDD2A900E0DCFB /* RootViewController.swift in Sources */,
 				57B863F421EF5BCD00B9CC70 /* ApiViewAction.swift in Sources */,
 				570D04C121DF4E1F00E0DCFB /* Alerts.swift in Sources */,
+				576FC126220486A100BA5ABE /* Types.swift in Sources */,
 				57FB7BCE21E74A3700AAA29D /* NewFaceProfileViewController.swift in Sources */,
 				579CD7C821F9D4F700C3AEE3 /* ChatRightCell.swift in Sources */,
 				57B863F821EF5CF100B9CC70 /* ApiUnlikeAction.swift in Sources */,
@@ -890,6 +897,7 @@
 				57B863D521EE16E700B9CC70 /* VerticalGradientView.swift in Sources */,
 				57B863D721EE179F00B9CC70 /* TouchThroughView.swift in Sources */,
 				57585D5421E48E3700038798 /* Image.swift in Sources */,
+				576FC12422047E6500BA5ABE /* TouchThroughAreaView.swift in Sources */,
 				570D04B221DDE4E200E0DCFB /* UserProfileManager.swift in Sources */,
 				579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */,
 				57585D4E21E3897800038798 /* UserPhoto.swift in Sources */,

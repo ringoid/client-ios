@@ -16,6 +16,7 @@ class MainLMMProfileViewController: UIViewController
     
     var currentIndex: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     var onChatShow: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
+    var onChatHide: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
     
     fileprivate var viewModel: MainLMMProfileViewModel?
     fileprivate var pagesVC: UIPageViewController?
@@ -101,6 +102,9 @@ class MainLMMProfileViewController: UIViewController
     
     @IBAction func onBlock()
     {
+        weak var weakSelf = self
+        let profile = self.input.profile
+        self.onChatHide?(profile, profile.photos[self.currentIndex.value], weakSelf)
         self.showBlockOptions()
     }
     
