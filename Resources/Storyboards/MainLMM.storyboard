@@ -286,6 +286,9 @@ see who likes you</string>
                                     <constraint firstAttribute="width" constant="76" id="u4U-5Y-OGC"/>
                                 </constraints>
                                 <state key="normal" image="feed_options"/>
+                                <connections>
+                                    <action selector="onBlock" destination="Nf7-hc-eWV" eventType="touchUpInside" id="IY0-9P-tsM"/>
+                                </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Wc-Ed-6t2">
                                 <rect key="frame" x="315" y="138" width="36" height="35"/>

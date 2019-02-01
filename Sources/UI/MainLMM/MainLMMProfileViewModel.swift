@@ -24,4 +24,22 @@ class MainLMMProfileViewModel
     {
         self.input = input
     }
+    
+    func like(at photoIndex: Int)
+    {
+        self.input.actionsManager.add(
+            [.view(viewCount: 1, viewTimeSec: 1), .like(likeCount: 1)],
+            profile: self.input.profile.actionInstance(),
+            photo: self.input.profile.photos[photoIndex].actionInstance(),
+            source: self.input.feedType.sourceType())
+    }
+    
+    func block(at photoIndex: Int, reason: BlockReason)
+    {
+        self.input.actionsManager.blockActionProtected(
+            reason,
+            profile: self.input.profile.actionInstance(),
+            photo: self.input.profile.photos[photoIndex].actionInstance(),
+            source: self.input.feedType.sourceType())
+    }
 }

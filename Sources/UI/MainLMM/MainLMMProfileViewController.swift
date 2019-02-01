@@ -17,6 +17,7 @@ class MainLMMProfileViewController: UIViewController
     var currentIndex: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     var onChatShow: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
     
+    fileprivate var viewModel: MainLMMProfileViewModel?
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
     
@@ -37,6 +38,9 @@ class MainLMMProfileViewController: UIViewController
         assert(self.input != nil)
         
         super.viewDidLoad()
+        
+        // TODO: Move logic inside view model
+        self.viewModel = MainLMMProfileViewModel(self.input)
         
         let messageImageName = self.input.profile.messages.count == 0 ? "feed_messages_empty" : "feed_messages"
         self.messageBtn.setImage(UIImage(named: messageImageName), for: .normal)
@@ -88,6 +92,49 @@ class MainLMMProfileViewController: UIViewController
         weak var weakSelf = self
         let profile = self.input.profile
         self.onChatShow?(profile, profile.photos[self.currentIndex.value], weakSelf)
+    }
+    
+    @IBAction func onLike()
+    {
+        self.viewModel?.like(at: self.currentIndex.value)
+    }
+    
+    @IBAction func onBlock()
+    {
+        self.showBlockOptions()
+    }
+    
+    // MARK: -
+    
+    fileprivate func showBlockOptions()
+    {
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertVC.addAction(UIAlertAction(title: "BLOCK_OPTION".localized(), style: .default, handler: { _ in
+            self.viewModel?.block(at: self.currentIndex.value, reason: BlockReason(rawValue: 0)!)
+        }))
+        alertVC.addAction(UIAlertAction(title: "BLOCK_REPORT_OPTION".localized(), style: .default, handler: { _ in
+            self.showBlockReasonOptions()
+        }))
+        alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func showBlockReasonOptions()
+    {
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        for i in 0..<BlockReason.count() {
+            guard let reason = BlockReason(rawValue: i) else { continue }
+            
+            alertVC.addAction(UIAlertAction(title: reason.title(), style: .default) { _ in
+                self.viewModel?.block(at: self.currentIndex.value, reason: reason)
+            })
+        }
+        
+        alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
 
