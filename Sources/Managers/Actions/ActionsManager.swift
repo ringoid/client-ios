@@ -34,6 +34,7 @@ class ActionsManager
     
     fileprivate let db: DBService
     fileprivate let apiService: ApiService
+    fileprivate let fs: FileService
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var viewActionsMap: [String: Date] = [:]
     fileprivate var queue: [Action] = []
@@ -46,10 +47,11 @@ class ActionsManager
         self.triggerTimer = nil
     }
     
-    init(_ db: DBService, api: ApiService)
+    init(_ db: DBService, api: ApiService, fs: FileService)
     {
         self.db = db
         self.apiService = api
+        self.fs = fs
         
         self.inqueueStoredActions()
         self.setupTimerTrigger()
@@ -85,6 +87,7 @@ class ActionsManager
     
     func blockActionProtected(_ reason: BlockReason, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
+        self.clearProfileResources(profile)
         self.db.blockProfile(profile.id)
         self.stopViewAction(profile, photo: photo, sourceType: source)
         self.add(.block(reason: reason), profile: profile, photo: photo, source: source)
@@ -152,6 +155,13 @@ class ActionsManager
         })
         self.triggerTimer = timer
         RunLoop.main.add(timer, forMode: .default)
+    }
+    
+    fileprivate func clearProfileResources(_ profile: Profile)
+    {
+        profile.photos.forEach{ photo in
+            self.fs.rm(photo.filepath())
+        }
     }
 }
 

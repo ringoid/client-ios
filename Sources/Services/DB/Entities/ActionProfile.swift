@@ -21,8 +21,12 @@ extension Profile
         actionProfile.id = self.id
         actionProfile.photos.append(objectsIn: self.photos)
         
-        try? self.realm?.write { [weak self] in
-            self?.realm?.add(actionProfile)
+        if self.realm?.isInWriteTransaction == true {
+            self.realm?.add(actionProfile)
+        } else {
+            try? self.realm?.write { [weak self] in
+                self?.realm?.add(actionProfile)
+            }
         }
         
         return actionProfile
