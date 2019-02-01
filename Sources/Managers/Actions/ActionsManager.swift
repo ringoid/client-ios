@@ -10,12 +10,13 @@ import RxSwift
 
 enum BlockReason: Int
 {
-    case inappropriate = 0
-    case stolen = 1
-    case spam = 2
-    case criminal = 3
-    case underaged = 4
-    case harrasment = 5
+    case block = 0
+    case inappropriate = 10
+    case stolen = 20
+    case spam = 30
+    case criminal = 40
+    case underaged = 50
+    case harrasment = 60
 }
 
 enum FeedAction
@@ -268,9 +269,9 @@ extension FeedAction
 
 extension BlockReason
 {
-    static func count() -> Int
+    static func reportResons() -> [BlockReason]
     {
-        return 6
+        return [.inappropriate, .stolen, .spam, .criminal, .underaged, .harrasment]
     }
     
     func title() -> String
@@ -282,6 +283,7 @@ extension BlockReason
         case .criminal: return "BLOCK_REASON_CRIMINAL".localized()
         case .underaged: return "BLOCK_REASON_UNDERAGED".localized()
         case .harrasment: return "BLOCK_REASON_HARRASMENT".localized()
+        default: return ""
         }
     }
 }

@@ -95,9 +95,7 @@ class NewFaceProfileViewController: UIViewController
     {
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        for i in 0..<BlockReason.count() {
-            guard let reason = BlockReason(rawValue: i) else { continue }
-            
+        for reason in BlockReason.reportResons() {
             alertVC.addAction(UIAlertAction(title: reason.title(), style: .default) { _ in
                 self.viewModel?.block(at: self.currentIndex, reason: reason)
             })
