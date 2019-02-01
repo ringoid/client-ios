@@ -167,7 +167,6 @@
 		576FC115220188AB00BA5ABE /* DeviceServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceServiceDefault.swift; sourceTree = "<group>"; };
 		576FC1182201E0EE00BA5ABE /* LocaleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleManager.swift; sourceTree = "<group>"; };
 		576FC11E2201EBC400BA5ABE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		576FC1202201ECD200BA5ABE /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		576FC12122032D7E00BA5ABE /* BlockedProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedProfile.swift; sourceTree = "<group>"; };
 		579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		579CD7AD21F8603500C3AEE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
@@ -776,7 +775,6 @@
 			knownRegions = (
 				en,
 				Base,
-				uk,
 			);
 			mainGroup = 570D044E21DCE32000E0DCFB;
 			productRefGroup = 570D045821DCE32000E0DCFB /* Products */;
@@ -972,7 +970,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				576FC11E2201EBC400BA5ABE /* en */,
-				576FC1202201ECD200BA5ABE /* uk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

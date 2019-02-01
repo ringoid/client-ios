@@ -72,11 +72,38 @@ class NewFaceProfileViewController: UIViewController
     
     @IBAction func onBlock()
     {
+        self.showBlockOptions()
+    }
+    
+    // MARK: -
+    
+    fileprivate func showBlockOptions()
+    {
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertVC.addAction(UIAlertAction(title: "Block", style: .default, handler: { _ in
-            self.viewModel?.block(at: self.currentIndex)
+        alertVC.addAction(UIAlertAction(title: "BLOCK_OPTION".localized(), style: .default, handler: { _ in
+            self.viewModel?.block(at: self.currentIndex, reason: BlockReason(rawValue: 0)!)
         }))
-        alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "BLOCK_REPORT_OPTION".localized(), style: .default, handler: { _ in
+            self.showBlockReasonOptions()
+        }))
+        alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func showBlockReasonOptions()
+    {
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        for i in 0..<BlockReason.count() {
+            guard let reason = BlockReason(rawValue: i) else { continue }
+            
+            alertVC.addAction(UIAlertAction(title: reason.title(), style: .default) { _ in
+                self.viewModel?.block(at: self.currentIndex, reason: reason)
+            })
+        }
+        
+        alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
     }

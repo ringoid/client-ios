@@ -10,7 +10,12 @@ import RxSwift
 
 enum BlockReason: Int
 {
-    case unknown = 0
+    case inappropriate = 0
+    case stolen = 1
+    case spam = 2
+    case criminal = 3
+    case underaged = 4
+    case harrasment = 5
 }
 
 enum FeedAction
@@ -248,5 +253,25 @@ extension FeedAction
         }
         
         return createdAction
+    }
+}
+
+extension BlockReason
+{
+    static func count() -> Int
+    {
+        return 6
+    }
+    
+    func title() -> String
+    {
+        switch self {
+        case .inappropriate: return "BLOCK_REASON_INAPPROPRIATE".localized()
+        case .stolen: return "BLOCK_REASON_STOLEN".localized()
+        case .spam: return "BLOCK_REASON_SPAM".localized()
+        case .criminal: return "BLOCK_REASON_CRIMINAL".localized()
+        case .underaged: return "BLOCK_REASON_UNDERAGED".localized()
+        case .harrasment: return "BLOCK_REASON_HARRASMENT".localized()
+        }
     }
 }

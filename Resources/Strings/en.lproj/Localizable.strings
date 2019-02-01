@@ -6,3 +6,13 @@
   Copyright © 2019 Ringoid. All rights reserved.
 */
 
+"BLOCK_REASON_INAPPROPRIATE" = "Inappropriate content";
+"BLOCK_REASON_STOLEN" = "Stolen photos, Copyright Infringment";
+"BLOCK_REASON_SPAM" = "Spam, Advertising, Commercial Activity";
+"BLOCK_REASON_CRIMINAL" = "Human or sex trafficking, Criminal activity";
+"BLOCK_REASON_UNDERAGED" = "Underage users, Child exploitation";
+"BLOCK_REASON_HARRASMENT" = "Harassment or threats, Abuse";
+
+"BLOCK_OPTION" = "Block";
+"BLOCK_REPORT_OPTION" = "Report & Block";
+"CANCEL_OPTION" = "Cancel";

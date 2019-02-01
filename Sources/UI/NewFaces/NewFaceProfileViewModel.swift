@@ -33,10 +33,10 @@ class NewFaceProfileViewModel
             source: .newFaces)
     }
     
-    func block(at photoIndex: Int)
+    func block(at photoIndex: Int, reason: BlockReason)
     {
         self.input.actionsManager.blockActionProtected(
-            .unknown,
+            reason,
             profile: self.input.profile.actionInstance(),
             photo: self.input.profile.photos[photoIndex].actionInstance(),
             source: .newFaces)
