@@ -117,9 +117,13 @@ class UserProfileManager
     
     fileprivate func merge(_ incoming: [ApiPhoto])
     {
+        let underlineCharacterSet = CharacterSet(charactersIn: "_")
         incoming.forEach({ remoteApiPhoto in
+            guard let remoteId = remoteApiPhoto.id.components(separatedBy: underlineCharacterSet).last else { return }
+            
             self.photos.value.forEach { localPhoto in
-                if remoteApiPhoto.id == localPhoto.id {
+                guard let localId = localPhoto.id.components(separatedBy: underlineCharacterSet).last else { return }
+                if  remoteId == localId {
                     try? localPhoto.realm?.write {
                         localPhoto.likes = remoteApiPhoto.likes
                     }
