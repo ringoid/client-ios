@@ -38,6 +38,19 @@
                                             <action selector="onChatSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="Of8-n5-Puc"/>
                                         </connections>
                                     </button>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ef-im-3ec">
+                                        <rect key="frame" x="135.5" y="23" width="6" height="6"/>
+                                        <color key="backgroundColor" red="1" green="0.011764705882352941" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="6" id="5HQ-hA-Fjg"/>
+                                            <constraint firstAttribute="width" constant="6" id="9ch-bM-NrC"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VWc-0L-YS8" userLabel="SeparatorView">
                                         <rect key="frame" x="146.5" y="33" width="1" height="7"/>
                                         <color key="backgroundColor" red="0.50588235294117645" green="0.50980392156862742" blue="0.52156862745098043" alpha="0.5" colorSpace="calibratedRGB"/>
@@ -82,11 +95,13 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Y1R-St-pNy" firstAttribute="centerY" secondItem="t6H-GQ-xYk" secondAttribute="centerY" id="0KR-h9-nPk"/>
+                                    <constraint firstItem="1ef-im-3ec" firstAttribute="top" secondItem="30C-S0-bMA" secondAttribute="top" constant="3" id="6jh-xb-5fj"/>
                                     <constraint firstItem="VWc-0L-YS8" firstAttribute="leading" secondItem="30C-S0-bMA" secondAttribute="trailing" id="8Qs-5L-FWy"/>
                                     <constraint firstAttribute="trailing" secondItem="Y1R-St-pNy" secondAttribute="trailing" id="FY6-l5-egK"/>
                                     <constraint firstItem="P5a-bc-Su9" firstAttribute="centerY" secondItem="t6H-GQ-xYk" secondAttribute="centerY" id="Hch-jM-om6"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerY" secondItem="VWc-0L-YS8" secondAttribute="centerY" id="IIq-eu-nbI"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerX" secondItem="Ywr-Pj-xRP" secondAttribute="centerX" id="KRt-C6-PGQ"/>
+                                    <constraint firstItem="1ef-im-3ec" firstAttribute="trailing" secondItem="30C-S0-bMA" secondAttribute="trailing" constant="-5" id="PbZ-wn-vqG"/>
                                     <constraint firstAttribute="bottom" secondItem="t6H-GQ-xYk" secondAttribute="bottom" id="Vfn-Br-crt"/>
                                     <constraint firstItem="30C-S0-bMA" firstAttribute="leading" secondItem="Ywr-Pj-xRP" secondAttribute="leading" id="ZOb-mr-uXJ"/>
                                     <constraint firstItem="Y1R-St-pNy" firstAttribute="leading" secondItem="t6H-GQ-xYk" secondAttribute="trailing" id="Zwg-1Q-IhN"/>
@@ -119,6 +134,7 @@
                     </view>
                     <connections>
                         <outlet property="chatBtn" destination="30C-S0-bMA" id="fPe-k7-2sF"/>
+                        <outlet property="chatIndicatorView" destination="1ef-im-3ec" id="Wnu-iJ-6CH"/>
                         <outlet property="likeYouBtn" destination="Y1R-St-pNy" id="Dtl-TH-ZOd"/>
                         <outlet property="matchesBtn" destination="t6H-GQ-xYk" id="TUl-ED-bSc"/>
                         <outlet property="optionsContainer" destination="Ywr-Pj-xRP" id="7t7-9d-4A3"/>

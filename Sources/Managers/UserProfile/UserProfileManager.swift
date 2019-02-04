@@ -62,14 +62,15 @@ class UserProfileManager
     
     func deletePhoto(_ photo: UserPhoto)
     {
+        let photoId = photo.id ?? photo.originPhotoId
         let path = photo.filepath()
-        let id = photo.id!
-        
         self.db.delete([photo]).subscribe(onNext: { [weak self] _ in
             self?.fileService.rm(path)
         }).disposed(by: self.disposeBag)
-        
-        self.apiService.deletePhoto(id).subscribe().disposed(by: self.disposeBag)
+                
+        if let id = photoId {
+            self.apiService.deletePhoto(id).subscribe().disposed(by: self.disposeBag)
+        }
     }
     
     func refresh() -> Observable<Void>

@@ -28,6 +28,7 @@ class MainLMMContainerViewController: UIViewController
     @IBOutlet weak var likeYouBtn: UIButton!
     @IBOutlet weak var matchesBtn: UIButton!
     @IBOutlet weak var chatBtn: UIButton!
+    @IBOutlet weak var chatIndicatorView: UIView!
     @IBOutlet weak var optionsContainer: UIView!
     
     override func viewDidLoad()

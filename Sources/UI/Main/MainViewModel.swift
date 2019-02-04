@@ -6,7 +6,8 @@
 //  Copyright © 2019 Ringoid. All rights reserved.
 //
 
-import Foundation
+import RxSwift
+import RxCocoa
 
 struct MainVMInput
 {
@@ -22,6 +23,21 @@ struct MainVMInput
 class MainViewModel
 {
     let input: MainVMInput
+    
+    var availablePhotosCount: Observable<Int>
+    {
+        return self.input.profileManager.photos.asObservable().map { photos -> Int in
+            var count = 0
+            
+            photos.forEach({ photo in
+                guard !photo.isBlocked else { return }
+                
+                count += 1
+            })
+            
+            return count
+        }
+    }
     
     init(_ input: MainVMInput)
     {

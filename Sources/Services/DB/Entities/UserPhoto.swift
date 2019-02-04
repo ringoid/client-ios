@@ -10,8 +10,8 @@ import RealmSwift
 
 class UserPhoto: DBServiceObject
 {
-    @objc dynamic var id: String!
-    @objc dynamic var originPhotoId: String!
+    @objc dynamic var id: String?
+    @objc dynamic var originPhotoId: String?
     @objc dynamic var clientPhotoId: String!
     @objc dynamic var path: String!
     @objc dynamic var pathType: Int = 0

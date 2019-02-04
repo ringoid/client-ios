@@ -28,6 +28,7 @@ class MainViewController: ThemeViewController
     @IBOutlet fileprivate weak var searchBtn: UIButton!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
     @IBOutlet fileprivate weak var profileBtn: UIButton!
+    @IBOutlet fileprivate weak var profileIndicatorView: UIView!
     
     override func viewDidLoad()
     {
@@ -131,6 +132,10 @@ class MainViewController: ThemeViewController
         self.viewModel = MainViewModel(self.input)
         self.viewModel?.input.navigationManager.mainItem.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] item in
             self?.select(item.selectionState())
+        }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.availablePhotosCount.subscribe(onNext: { [weak self] count in
+            self?.profileIndicatorView.isHidden = count != 0
         }).disposed(by: self.disposeBag)
     }
 }
