@@ -50,7 +50,8 @@ class UserProfileManager
             }
             
             let photo = UserPhoto()
-            photo.id = apiPhoto.originId
+            photo.originPhotoId = apiPhoto.originId
+            photo.clientPhotoId = apiPhoto.clientId
             photo.setFilepath(self.storeTemporary(data))
             
             return self.db.add(photo).map({ _ -> UserPhoto in
@@ -115,17 +116,18 @@ class UserProfileManager
         return path
     }
     
-    fileprivate func merge(_ incoming: [ApiPhoto])
+    fileprivate func merge(_ incoming: [ApiUserPhoto])
     {
-        let underlineCharacterSet = CharacterSet(charactersIn: "_")
         incoming.forEach({ remoteApiPhoto in
-            guard let remoteId = remoteApiPhoto.id.components(separatedBy: underlineCharacterSet).last else { return }
-            
+            let remoteId = remoteApiPhoto.originPhotoId
             self.photos.value.forEach { localPhoto in
-                guard let localId = localPhoto.id.components(separatedBy: underlineCharacterSet).last else { return }
+                guard let localId = localPhoto.originPhotoId else { return }
+
                 if  remoteId == localId {
                     try? localPhoto.realm?.write {
                         localPhoto.likes = remoteApiPhoto.likes
+                        localPhoto.isBlocked = remoteApiPhoto.isBlocked
+                        localPhoto.id = remoteApiPhoto.id
                     }
                 }
             }

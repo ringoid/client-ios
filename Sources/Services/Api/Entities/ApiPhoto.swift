@@ -12,7 +12,6 @@ struct ApiPhoto
 {
     let url: String
     let id: String
-    let likes: Int
 }
 
 extension ApiPhoto
@@ -21,9 +20,7 @@ extension ApiPhoto
     {
         guard let id = dict["photoId"] as? String else { return nil }
         guard let url = dict["photoUri"] as? String else { return nil }
-        
-        let likes: Int = (dict["likes"] as? Int) ?? 0
-                
-        return ApiPhoto(url: url, id: id, likes: likes)
+
+        return ApiPhoto(url: url, id: id)
     }
 }

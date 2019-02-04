@@ -151,7 +151,7 @@ class ApiServiceDefault: ApiService
     
     // MARK: - Images
     
-    func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhoto>
+    func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhotoPlaceholder>
     {
         var params: [String: Any] = [
             "extension": fileExtension,
@@ -162,8 +162,8 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
 
-        return self.request(.post, path: "image/get_presigned", jsonBody: params).flatMap { jsonDict -> Observable<ApiUserPhoto> in
-            guard let photo = ApiUserPhoto.parse(jsonDict) else {
+        return self.request(.post, path: "image/get_presigned", jsonBody: params).flatMap { jsonDict -> Observable<ApiUserPhotoPlaceholder> in
+            guard let photo = ApiUserPhotoPlaceholder.parse(jsonDict) else {
                 let error = createError("ApiService: wrong photo data format", type: .hidden)
                 
                 return .error(error)
@@ -200,7 +200,7 @@ class ApiServiceDefault: ApiService
     
     // MARK: - User profile
     
-    func getUserOwnPhotos(_ resolution: String) -> Observable<[ApiPhoto]>
+    func getUserOwnPhotos(_ resolution: String) -> Observable<[ApiUserPhoto]>
     {
         var params: [String: Any] = [
             "resolution": resolution
@@ -210,14 +210,14 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.requestGET(path: "image/get_own_photos", params: params).flatMap { jsonDict -> Observable<[ApiPhoto]> in
+        return self.requestGET(path: "image/get_own_photos", params: params).flatMap { jsonDict -> Observable<[ApiUserPhoto]> in
             guard let photosArray = jsonDict["photos"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong photos data format", type: .hidden)
                 
                 return .error(error)
             }
             
-            return .just(photosArray.compactMap({ ApiPhoto.parse($0) }))
+            return .just(photosArray.compactMap({ ApiUserPhoto.parse($0) }))
         }
     }
     

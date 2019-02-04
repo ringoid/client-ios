@@ -37,8 +37,8 @@ protocol ApiService
     
     func getLMM(_ resolution: String, lastActionDate: Date?) -> Observable<ApiLMMResult>
     
-    func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhoto>
-    func getUserOwnPhotos(_ resolution: String) -> Observable<[ApiPhoto]>
+    func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhotoPlaceholder>
+    func getUserOwnPhotos(_ resolution: String) -> Observable<[ApiUserPhoto]>
     func deletePhoto(_ photoId: String) -> Observable<Void>
     
     func sendActions(_ actions: [ApiAction]) -> Observable<Date>
