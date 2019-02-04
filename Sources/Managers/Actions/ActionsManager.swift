@@ -93,6 +93,7 @@ class ActionsManager
         self.stopViewAction(profile, photo: photo, sourceType: source)
         self.add(.block(reason: reason), profile: profile, photo: photo, source: source)
         self.startViewAction(profile, photo: photo)
+        self.commit()
     }
     
     func startViewAction(_ profile: ActionProfile, photo: ActionPhoto)
