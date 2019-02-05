@@ -39,30 +39,41 @@ class UserProfileManager
     
     func addPhoto(_ data: Data, filename: String) -> Observable<UserPhoto>
     {
-        return self.apiService.getPresignedImageUrl(filename, fileExtension: "jpg").flatMap({ apiPhoto -> Observable<UserPhoto> in
+        // Storing local data
+        let photo = UserPhoto()
+        photo.clientId = filename
+        photo.setFilepath(self.storeTemporary(data))
+        
+        // Requesting remote url
+        self.apiService.getPresignedImageUrl(filename, fileExtension: "jpg").subscribe(onNext: { [weak self] apiPhotoPlaceholder in
             
-            if let url = URL(string: apiPhoto.url) {
-                self.uploader.upload(data, to: url).subscribe(onNext: {
+            // Starting data upload
+            if let url = URL(string: apiPhotoPlaceholder.url) {
+                self!.uploader.upload(data, to: url).subscribe(onNext: {
                     print("Photo successfuly uploaded")
                 }, onError: { error in
                     print("ERROR: \(error)")
-                }).disposed(by: self.disposeBag)
+                }).disposed(by: self!.disposeBag)
             }
             
-            let photo = UserPhoto()
-            photo.originPhotoId = apiPhoto.originId
-            photo.clientPhotoId = apiPhoto.clientId
-            photo.setFilepath(self.storeTemporary(data))
-            
-            return self.db.add(photo).map({ _ -> UserPhoto in
-                return photo
-            })
+            // Updating origin id
+            self!.db.fetchUserPhoto(filename).subscribe(onNext: { photo in
+                guard let photo = photo else { return }
+                photo.write({ obj in
+                    (obj as? UserPhoto)?.originId = apiPhotoPlaceholder.originId
+                })
+                
+            }).disposed(by: self!.disposeBag)
+        }).disposed(by: self.disposeBag)
+        
+        return self.db.add(photo).map({ _ -> UserPhoto in
+            return photo
         })
     }
     
     func deletePhoto(_ photo: UserPhoto)
     {
-        let photoId = photo.id ?? photo.originPhotoId
+        let photoId = photo.id ?? photo.originId
         let path = photo.filepath()
         self.db.delete([photo]).subscribe(onNext: { [weak self] _ in
             self?.fileService.rm(path)
@@ -122,7 +133,7 @@ class UserProfileManager
         incoming.forEach({ remoteApiPhoto in
             let remoteId = remoteApiPhoto.originPhotoId
             self.photos.value.forEach { localPhoto in
-                guard let localId = localPhoto.originPhotoId else { return }
+                guard let localId = localPhoto.originId else { return }
 
                 if  remoteId == localId {
                     try? localPhoto.realm?.write {

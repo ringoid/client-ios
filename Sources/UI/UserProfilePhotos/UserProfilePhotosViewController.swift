@@ -21,6 +21,7 @@ class UserProfilePhotosViewController: ThemeViewController
     fileprivate weak var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
     fileprivate var currentIndex: Int = 0
+    fileprivate var lastClientPhotoId: String? = nil
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedView: UIView!
@@ -120,7 +121,11 @@ class UserProfilePhotosViewController: ThemeViewController
         if let id = self.viewModel?.lastPhotoId.value
         {
             for (index, photo) in photos.enumerated() {
-                if photo.id == id { startIndex = index }
+                if photo.originId == id { startIndex = index }
+            }
+        } else if let clientId = self.lastClientPhotoId {
+            for (index, photo) in photos.enumerated() {
+                if photo.clientId == clientId { startIndex = index }
             }
         } else {
             self.viewModel?.lastPhotoId.accept(photos.first?.id)
@@ -200,7 +205,8 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
         let prevCount = self.viewModel?.photos.value.count
         
         self.viewModel?.add(croppedImage).subscribe(onNext: ({ [weak self] photo in
-            self?.viewModel?.lastPhotoId.accept(photo.id)
+            self?.viewModel?.lastPhotoId.accept(nil)
+            self?.lastClientPhotoId = photo.clientId
             
             guard prevCount == 0 else { return }
             
@@ -251,7 +257,7 @@ extension UserProfilePhotosViewController: UIPageViewControllerDelegate, UIPageV
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
         self.currentIndex = index
-        self.viewModel?.lastPhotoId.accept(self.viewModel?.photos.value[index].id)
+        self.viewModel?.lastPhotoId.accept(self.viewModel?.photos.value[index].originId)
         self.pageControl.currentPage = index
     }
 }
@@ -270,7 +276,7 @@ extension UserProfilePhotosViewController: UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return self.containerTableView.bounds.width / 3.0 * 4.0
+        return self.containerTableView.bounds.height / 3.0 * 4.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

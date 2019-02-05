@@ -10,10 +10,17 @@ import RealmSwift
 
 class DBServiceObject: Object
 {
-    func write(_ writeBlock: (()->())?)
+    func write(_ writeBlock: ((Object?) -> ())?)
     {
-        try? self.realm?.write {
-            writeBlock?()
+        guard let realm = self.realm else { return }
+        
+        weak var weakSelf = self
+        if realm.isInWriteTransaction {
+            writeBlock?(weakSelf)
+        } else {
+            try? realm.write {
+                writeBlock?(weakSelf)
+            }
         }
     }
 }

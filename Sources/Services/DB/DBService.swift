@@ -72,6 +72,14 @@ class DBService
         return Observable.array(from: photos)
     }
     
+    func fetchUserPhoto(_ clientId: String) -> Observable<UserPhoto?>
+    {
+        let predicate = NSPredicate(format: "clientId = %@", clientId)
+        let photo = self.realm.objects(UserPhoto.self).filter(predicate).first
+        
+        return .just(photo)
+    }
+    
     // MARK: - Actions
     
     func fetchActions() -> Observable<[Action]>
