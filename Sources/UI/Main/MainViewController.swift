@@ -29,6 +29,7 @@ class MainViewController: ThemeViewController
     @IBOutlet fileprivate weak var likeBtn: UIButton!
     @IBOutlet fileprivate weak var profileBtn: UIButton!
     @IBOutlet fileprivate weak var profileIndicatorView: UIView!
+    @IBOutlet fileprivate weak var lmmNotSeenIndicatorView: UIView!
     
     override func viewDidLoad()
     {
@@ -137,6 +138,11 @@ class MainViewController: ThemeViewController
         self.viewModel?.availablePhotosCount.subscribe(onNext: { [weak self] count in
             self?.profileIndicatorView.isHidden = count != 0
         }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.isNotSeenProfilesAvailable.asObservable().subscribe(onNext: { [weak self] state in
+            self?.lmmNotSeenIndicatorView.isHidden = !state
+        }).disposed(by: self.disposeBag)
+        
     }
 }
 
