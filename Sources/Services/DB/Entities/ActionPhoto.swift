@@ -24,8 +24,12 @@ extension Photo
         actionPhoto.pathType = self.pathType
         actionPhoto.isLiked = self.isLiked
         
-        try? self.realm?.write { [weak self] in
-            self?.realm?.add(actionPhoto)
+        if self.realm?.isInWriteTransaction == true {
+            self.realm?.add(actionPhoto)
+        } else {            
+            try? self.realm?.write { [weak self] in
+                self?.realm?.add(actionPhoto)
+            }
         }
         
         return actionPhoto

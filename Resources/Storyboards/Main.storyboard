@@ -89,13 +89,9 @@
                                     <constraint firstItem="uLq-rW-238" firstAttribute="leading" secondItem="QYd-HC-afs" secondAttribute="leading" id="yoB-OP-QvA"/>
                                 </constraints>
                             </stackView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WgY-Bd-4Qd">
-                                <rect key="frame" x="196.5" y="619" width="2" height="10"/>
-                                <color key="backgroundColor" red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="2" id="Whi-iT-1Dj"/>
-                                    <constraint firstAttribute="height" constant="10" id="WkD-Gl-Rbq"/>
-                                </constraints>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_bar_no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="WgY-Bd-4Qd">
+                                <rect key="frame" x="195.5" y="619" width="3" height="10"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -145,6 +141,7 @@
     </scenes>
     <resources>
         <image name="main_bar_like" width="23" height="22"/>
+        <image name="main_bar_no_photo" width="3" height="10"/>
         <image name="main_bar_profile" width="23" height="26"/>
         <image name="main_bar_search" width="25" height="26"/>
     </resources>
