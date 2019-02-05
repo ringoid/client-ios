@@ -271,7 +271,7 @@ extension UserProfilePhotosViewController: UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return self.containerTableView.bounds.height / 3.0 * 4.0
+        return self.containerTableView.bounds.height / 4.0 * 3.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

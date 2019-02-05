@@ -282,8 +282,8 @@ extension MainLMMViewController: UITableViewDataSource
     }
 }
 
-fileprivate let topTrashhold: CGFloat = UIScreen.main.bounds.height  / 3.0 * 4.0
-fileprivate let midTrashhold: CGFloat = UIScreen.main.bounds.width / 3.0 * 4.0
+fileprivate let topTrashhold: CGFloat = UIScreen.main.bounds.height  / 4.0 * 3.0
+fileprivate let midTrashhold: CGFloat = UIScreen.main.bounds.width / 4.0 * 3.0
 
 extension MainLMMViewController: UIScrollViewDelegate
 {
