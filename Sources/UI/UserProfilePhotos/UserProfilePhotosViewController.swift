@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Photos
 import RxSwift
 
 class UserProfilePhotosViewController: ThemeViewController
@@ -65,10 +64,6 @@ class UserProfilePhotosViewController: ThemeViewController
     
     fileprivate func pickPhoto()
     {
-        PHPhotoLibrary.requestAuthorization { status in
-            guard status == .authorized else { return }
-        }
-        
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
         vc.allowsEditing = true
