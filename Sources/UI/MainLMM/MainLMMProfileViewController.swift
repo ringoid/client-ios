@@ -43,8 +43,7 @@ class MainLMMProfileViewController: UIViewController
         // TODO: Move logic inside view model
         self.viewModel = MainLMMProfileViewModel(self.input)
         
-        let messageImageName = self.input.profile.messages.count == 0 ? "feed_messages_empty" : "feed_messages"
-        self.messageBtn.setImage(UIImage(named: messageImageName), for: .normal)
+        self.messageBtn.setImage(UIImage(named: self.input.profile.state.iconName()), for: .normal)
         self.messageBtn.isHidden = self.input.feedType == .likesYou
         
         self.pageControl.numberOfPages = self.input.profile.photos.count
@@ -76,6 +75,7 @@ class MainLMMProfileViewController: UIViewController
     
     func showControls()
     {
+        self.messageBtn.setImage(UIImage(named: self.input.profile.state.iconName()), for: .normal)
         self.pageControl.isHidden = false
         self.messageBtn.isHidden = false
     }
@@ -169,5 +169,18 @@ extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageView
         
         self.currentIndex.accept(index)
         self.pageControl.currentPage = index
+    }
+}
+
+extension MessagingState
+{
+    func iconName() -> String
+    {
+        switch self {
+        case .empty: return "feed_messages_empty"
+        case .incomingOnly: return "feed_messages"
+        case .chatRead: return "feed_chat_read"
+        case .chatUnread: return "feed_chat_unread"
+        }
     }
 }

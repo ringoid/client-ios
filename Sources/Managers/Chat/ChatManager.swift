@@ -26,10 +26,12 @@ class ChatManager
         message.text = text
         message.wasYouSender = true
 
-        try? profile.realm?.write({
-            profile.messages.append(message)
-        })
-        
+        profile.write { obj in
+            let lmmProfile = obj as? LMMProfile
+            lmmProfile?.messages.append(message)
+            lmmProfile?.notSeen = false
+        }
+
         self.actionsManager.add(
             .message(text: text),
             profile: profile.actionInstance(),
