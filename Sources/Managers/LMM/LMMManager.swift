@@ -22,6 +22,30 @@ class LMMManager
     var matches: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     var messages: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     
+    var notSeenLikesYouCount: Observable<Int>
+    {
+        return self.likesYou.asObservable().map { profiles -> Int in
+            var notSeenCount: Int = 0
+            profiles.forEach({ profile in
+                if profile.notSeen { notSeenCount += 1 }
+            })
+            
+            return notSeenCount
+        }
+    }
+    
+    var notSeenMatchesCount: Observable<Int>
+    {
+        return self.matches.asObservable().map { profiles -> Int in
+            var notSeenCount: Int = 0
+            profiles.forEach({ profile in
+                if profile.notSeen { notSeenCount += 1 }
+            })
+            
+            return notSeenCount
+        }
+    }
+    
     init(_ db: DBService, api: ApiService, device: DeviceService, actionsManager: ActionsManager)
     {
         self.db = db

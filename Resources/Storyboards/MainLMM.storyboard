@@ -38,19 +38,6 @@
                                             <action selector="onChatSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="Of8-n5-Puc"/>
                                         </connections>
                                     </button>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ef-im-3ec">
-                                        <rect key="frame" x="135.5" y="23" width="6" height="6"/>
-                                        <color key="backgroundColor" red="1" green="0.011764705882352941" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="6" id="5HQ-hA-Fjg"/>
-                                            <constraint firstAttribute="width" constant="6" id="9ch-bM-NrC"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VWc-0L-YS8" userLabel="SeparatorView">
                                         <rect key="frame" x="146.5" y="33" width="1" height="7"/>
                                         <color key="backgroundColor" red="0.50588235294117645" green="0.50980392156862742" blue="0.52156862745098043" alpha="0.5" colorSpace="calibratedRGB"/>
@@ -91,23 +78,66 @@
                                             <action selector="onLikesYouSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="FNb-tC-1cH"/>
                                         </connections>
                                     </button>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ef-im-3ec">
+                                        <rect key="frame" x="135.5" y="23" width="6" height="6"/>
+                                        <color key="backgroundColor" red="1" green="0.011764705882352941" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="6" id="5HQ-hA-Fjg"/>
+                                            <constraint firstAttribute="width" constant="6" id="9ch-bM-NrC"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QY6-GC-5lz">
+                                        <rect key="frame" x="221.5" y="23" width="6" height="6"/>
+                                        <color key="backgroundColor" red="1" green="0.01176470588" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="6" id="bDC-sr-p78"/>
+                                            <constraint firstAttribute="width" constant="6" id="k0D-k0-wu9"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82V-db-bgk">
+                                        <rect key="frame" x="312.5" y="23" width="6" height="6"/>
+                                        <color key="backgroundColor" red="1" green="0.01176470588" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="6" id="0xH-3e-iuq"/>
+                                            <constraint firstAttribute="width" constant="6" id="FNK-qZ-fi2"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Y1R-St-pNy" firstAttribute="centerY" secondItem="t6H-GQ-xYk" secondAttribute="centerY" id="0KR-h9-nPk"/>
                                     <constraint firstItem="1ef-im-3ec" firstAttribute="top" secondItem="30C-S0-bMA" secondAttribute="top" constant="3" id="6jh-xb-5fj"/>
                                     <constraint firstItem="VWc-0L-YS8" firstAttribute="leading" secondItem="30C-S0-bMA" secondAttribute="trailing" id="8Qs-5L-FWy"/>
+                                    <constraint firstItem="QY6-GC-5lz" firstAttribute="trailing" secondItem="t6H-GQ-xYk" secondAttribute="trailing" id="AfB-tx-yh5"/>
                                     <constraint firstAttribute="trailing" secondItem="Y1R-St-pNy" secondAttribute="trailing" id="FY6-l5-egK"/>
                                     <constraint firstItem="P5a-bc-Su9" firstAttribute="centerY" secondItem="t6H-GQ-xYk" secondAttribute="centerY" id="Hch-jM-om6"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerY" secondItem="VWc-0L-YS8" secondAttribute="centerY" id="IIq-eu-nbI"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerX" secondItem="Ywr-Pj-xRP" secondAttribute="centerX" id="KRt-C6-PGQ"/>
+                                    <constraint firstItem="QY6-GC-5lz" firstAttribute="centerY" secondItem="1ef-im-3ec" secondAttribute="centerY" id="MEy-bx-pMl"/>
                                     <constraint firstItem="1ef-im-3ec" firstAttribute="trailing" secondItem="30C-S0-bMA" secondAttribute="trailing" constant="-5" id="PbZ-wn-vqG"/>
                                     <constraint firstAttribute="bottom" secondItem="t6H-GQ-xYk" secondAttribute="bottom" id="Vfn-Br-crt"/>
                                     <constraint firstItem="30C-S0-bMA" firstAttribute="leading" secondItem="Ywr-Pj-xRP" secondAttribute="leading" id="ZOb-mr-uXJ"/>
                                     <constraint firstItem="Y1R-St-pNy" firstAttribute="leading" secondItem="t6H-GQ-xYk" secondAttribute="trailing" id="Zwg-1Q-IhN"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerY" secondItem="30C-S0-bMA" secondAttribute="centerY" id="eBn-Oa-T8H"/>
                                     <constraint firstItem="P5a-bc-Su9" firstAttribute="leading" secondItem="t6H-GQ-xYk" secondAttribute="trailing" id="pIi-HL-G3z"/>
+                                    <constraint firstItem="82V-db-bgk" firstAttribute="leading" secondItem="Y1R-St-pNy" secondAttribute="leading" constant="85" id="rgj-Cw-iLZ"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="leading" secondItem="VWc-0L-YS8" secondAttribute="trailing" id="rsb-PC-rfS"/>
+                                    <constraint firstItem="82V-db-bgk" firstAttribute="centerY" secondItem="1ef-im-3ec" secondAttribute="centerY" id="xjl-hW-g2k"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="topColor">
@@ -136,7 +166,9 @@
                         <outlet property="chatBtn" destination="30C-S0-bMA" id="fPe-k7-2sF"/>
                         <outlet property="chatIndicatorView" destination="1ef-im-3ec" id="Wnu-iJ-6CH"/>
                         <outlet property="likeYouBtn" destination="Y1R-St-pNy" id="Dtl-TH-ZOd"/>
+                        <outlet property="likesYouIndicatorView" destination="82V-db-bgk" id="f1s-bo-8kh"/>
                         <outlet property="matchesBtn" destination="t6H-GQ-xYk" id="TUl-ED-bSc"/>
+                        <outlet property="matchesIndicatorView" destination="QY6-GC-5lz" id="WV5-Hz-7pf"/>
                         <outlet property="optionsContainer" destination="Ywr-Pj-xRP" id="7t7-9d-4A3"/>
                     </connections>
                 </viewController>

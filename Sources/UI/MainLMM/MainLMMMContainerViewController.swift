@@ -24,11 +24,14 @@ class MainLMMContainerViewController: UIViewController
     var input: MainLMMVMInput!
     
     fileprivate var lmmVC: MainLMMViewController?
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     @IBOutlet weak var likeYouBtn: UIButton!
     @IBOutlet weak var matchesBtn: UIButton!
     @IBOutlet weak var chatBtn: UIButton!
     @IBOutlet weak var chatIndicatorView: UIView!
+    @IBOutlet weak var matchesIndicatorView: UIView!
+    @IBOutlet weak var likesYouIndicatorView: UIView!
     @IBOutlet weak var optionsContainer: UIView!
     
     override func viewDidLoad()
@@ -38,6 +41,7 @@ class MainLMMContainerViewController: UIViewController
         super.viewDidLoad()
         
         self.toggle(.likesYou)
+        self.setupBindings()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -73,6 +77,17 @@ class MainLMMContainerViewController: UIViewController
     }
     
     // MARK: -
+    
+    fileprivate func setupBindings()
+    {
+        self.input.lmmManager.notSeenLikesYouCount.subscribe(onNext: { [weak self] count in
+            self?.likesYouIndicatorView.isHidden = count == 0
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.notSeenMatchesCount.subscribe(onNext: { [weak self] count in
+            self?.matchesIndicatorView.isHidden = count == 0
+        }).disposed(by: self.disposeBag)
+    }
     
     fileprivate func toggle(_ type: LMMType)
     {
