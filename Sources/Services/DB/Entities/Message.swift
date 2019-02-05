@@ -9,7 +9,7 @@
 import RealmSwift
 
 class Message: DBServiceObject
-{
+{    
     @objc dynamic var wasYouSender: Bool = false
     @objc dynamic var text: String!
 }

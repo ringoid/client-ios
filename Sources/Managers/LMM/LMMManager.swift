@@ -46,6 +46,18 @@ class LMMManager
         }
     }
     
+    var notSeenMessagesCount: Observable<Int>
+    {
+        return self.messages.asObservable().map { profiles -> Int in
+            var notSeenCount: Int = 0
+            profiles.forEach({ profile in
+                if profile.notSeen { notSeenCount += 1 }
+            })
+            
+            return notSeenCount
+        }
+    }
+    
     init(_ db: DBService, api: ApiService, device: DeviceService, actionsManager: ActionsManager)
     {
         self.db = db
@@ -65,6 +77,14 @@ class LMMManager
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)
             let matches = createProfiles(result.matches, type: .matches)
             let messages = createProfiles(result.messages, type: .messages)
+            
+            self?.messages.value.forEach { localProfile in
+                messages.forEach({ remoteProfile in
+                    if localProfile.id == remoteProfile.id {
+                        remoteProfile.notSeen = localProfile.messages.count != remoteProfile.messages.count
+                    }
+                })
+            }
             
             self!.db.resetLMM().subscribe().disposed(by: self!.disposeBag)
             

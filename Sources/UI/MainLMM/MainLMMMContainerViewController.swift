@@ -87,6 +87,10 @@ class MainLMMContainerViewController: UIViewController
         self.input.lmmManager.notSeenMatchesCount.subscribe(onNext: { [weak self] count in
             self?.matchesIndicatorView.isHidden = count == 0
         }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.notSeenMessagesCount.subscribe(onNext: { [weak self] count in
+            self?.chatIndicatorView.isHidden = count == 0
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func toggle(_ type: LMMType)

@@ -24,3 +24,30 @@ class LMMProfile: Profile
     
     let messages: List<Message> = List<Message>()
 }
+
+enum MessagingState
+{
+    case empty
+    case incomingOnly
+    case chatUnread
+    case chatRead
+}
+
+extension LMMProfile
+{
+    var state: MessagingState
+    {
+        guard !self.messages.isEmpty else { return .empty }
+
+        var isSentByMe: Bool = false
+        self.messages.forEach({ message in
+            if message.wasYouSender {  isSentByMe = true }
+        })
+        
+        if isSentByMe {
+            return self.notSeen ? .chatUnread : .chatRead
+        }
+        
+        return .incomingOnly
+    }
+}
