@@ -23,7 +23,7 @@ class DBService
     // MARK: - New Faces
     func fetchNewFaces() -> Observable<[NewFaceProfile]>
     {
-        let profiles = self.realm.objects(NewFaceProfile.self)
+        let profiles = self.realm.objects(NewFaceProfile.self).sorted(byKeyPath: "id")
         
         return Observable.array(from: profiles)
     }
@@ -33,7 +33,7 @@ class DBService
     func fetchLikesYou() -> Observable<[LMMProfile]>
     {
         let predicate = NSPredicate(format: "type = %d", FeedType.likesYou.rawValue)
-        let profiles = self.realm.objects(LMMProfile.self).filter(predicate)
+        let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "id")
         
         return Observable.array(from: profiles)
     }
@@ -41,7 +41,7 @@ class DBService
     func fetchMatches() -> Observable<[LMMProfile]>
     {
         let predicate = NSPredicate(format: "type = %d", FeedType.matches.rawValue)
-        let profiles = self.realm.objects(LMMProfile.self).filter(predicate)
+        let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "id")
         
         return Observable.array(from: profiles)
     }
@@ -49,7 +49,7 @@ class DBService
     func fetchMessages() -> Observable<[LMMProfile]>
     {
         let predicate = NSPredicate(format: "type = %d", FeedType.messages.rawValue)
-        let profiles = self.realm.objects(LMMProfile.self).filter(predicate)
+        let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "id")
         
         return Observable.array(from: profiles)
     }
