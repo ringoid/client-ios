@@ -70,10 +70,10 @@ class SettingsViewController: ThemeViewController
     fileprivate func showLogoutAlert()
     {
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertVC.addAction(UIAlertAction(title: "Delete Profile", style: .destructive, handler: ({ _ in
+        alertVC.addAction(UIAlertAction(title: "SETTINGS_DELETE_ACCOUNT".localized(), style: .default, handler: ({ _ in
             self.viewModel?.logout()
         })))
-        alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
     }

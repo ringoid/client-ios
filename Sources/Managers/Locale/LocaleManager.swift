@@ -70,6 +70,16 @@ class LocaleManager
     }
 }
 
+extension Language
+{
+    func title() -> String
+    {
+        switch self {
+        case .english: return "English"
+        }
+    }
+}
+
 extension String
 {
     func localized() -> String
