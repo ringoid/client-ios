@@ -157,9 +157,7 @@ class DBService
         let predicate = NSPredicate(format: "id = %@", id)
         objectsToRemove.append(contentsOf: Array(self.realm.objects(NewFaceProfile.self).filter(predicate)))
         objectsToRemove.append(contentsOf: Array(self.realm.objects(LMMProfile.self).filter(predicate)))
-        //try? self.realm.write {
-            self.realm.delete(objectsToRemove)
-        //}
+        self.realm.delete(objectsToRemove)        
     }
     
     fileprivate func filterBlocked(_ objects: [Object]) -> [Object]

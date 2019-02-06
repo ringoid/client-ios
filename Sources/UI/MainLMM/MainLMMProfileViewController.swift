@@ -17,6 +17,7 @@ class MainLMMProfileViewController: UIViewController
     var currentIndex: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     var onChatShow: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
     var onChatHide: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
+    var onBlockOptionsWillShow: (() -> ())?
     
     fileprivate var viewModel: MainLMMProfileViewModel?
     fileprivate var pagesVC: UIPageViewController?
@@ -112,6 +113,8 @@ class MainLMMProfileViewController: UIViewController
     
     fileprivate func showBlockOptions()
     {
+        onBlockOptionsWillShow?()
+        
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "BLOCK_OPTION".localized(), style: .default, handler: { _ in
             self.viewModel?.block(at: self.currentIndex.value, reason: BlockReason(rawValue: 0)!)
@@ -126,6 +129,8 @@ class MainLMMProfileViewController: UIViewController
     
     fileprivate func showBlockReasonOptions()
     {
+        onBlockOptionsWillShow?()
+        
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         for reason in BlockReason.reportResons() {            

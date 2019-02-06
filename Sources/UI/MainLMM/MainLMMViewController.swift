@@ -38,6 +38,7 @@ class MainLMMViewController: ThemeViewController
     fileprivate var prevScrollingOffset: CGFloat = 0.0
     fileprivate var isScrollTopVisible: Bool = false
     fileprivate var feedsState: [LMMType: FeedState] = [:]
+    fileprivate var lastFeedIds: [String] = []
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
@@ -91,21 +92,8 @@ class MainLMMViewController: ThemeViewController
     {
         self.feedDisposeBag = DisposeBag()
         self.isUpdated = true
-        self.profiles()?.asObservable().subscribe(onNext: { [weak self] updatedProfiles in
-            guard let `self` = self else { return }
-            guard self.isUpdated else { return }
-            
-            self.isUpdated = updatedProfiles.count == 0
-            self.emptyFeedLabel.text = self.placeholderText()
-            self.emptyFeedLabel.isHidden = !updatedProfiles.isEmpty
-            self.feedEndView.isHidden = updatedProfiles.isEmpty
-            
-            let offset = self.feedsState[self.type.value]?.offset
-            self.tableView.reloadData()
-            if let cachedOffset = offset {
-                self.tableView.layoutIfNeeded()
-                self.tableView.setContentOffset(CGPoint(x: 0.0, y: cachedOffset), animated: false)
-            }
+        self.profiles()?.asObservable().subscribe(onNext: { [weak self] _ in
+            self?.updateFeed()
         }).disposed(by: self.feedDisposeBag)
     }
     
@@ -145,6 +133,59 @@ class MainLMMViewController: ThemeViewController
             
         case .messages:
             return self.viewModel?.messages
+        }
+    }
+    
+    fileprivate func updateFeed()
+    {
+        guard self.isUpdated else { return }
+        guard let updatedProfiles = self.profiles()?.value else { return }
+        
+        defer {
+            self.lastFeedIds = updatedProfiles.map { $0.id }
+        }
+        
+        let totalCount = updatedProfiles.count
+        self.isUpdated = totalCount == 0
+        self.emptyFeedLabel.text = self.placeholderText()
+        self.emptyFeedLabel.isHidden = !updatedProfiles.isEmpty
+        self.feedEndView.isHidden = updatedProfiles.isEmpty
+        
+        // Checking for blocking scenario
+        if totalCount == self.lastFeedIds.count - 1 {
+            var diffCount: Int = 0
+            var diffIndex: Int = 0
+            
+            for i in 0..<totalCount {
+                let profile = updatedProfiles[i]
+                if profile.isInvalidated { break } // Deprecated profiles
+                
+                if profile.id != self.lastFeedIds[i] {
+                    diffIndex = i
+                    diffCount += 1
+                }
+            }
+            
+            // Blocking scenario confirmed
+            if diffCount == 1 {
+                self.tableView.deleteRows(at: [IndexPath(row: diffIndex, section: 0)], with: .top)
+                
+                return
+            } else if diffCount == 0 { // Last profile should be removed
+                self.tableView.deleteRows(at: [IndexPath(row: totalCount - 1, section: 0)], with: .top)
+                
+                return
+            }
+            
+            // Returning to default scenario
+        }
+        
+        // Default scenario - reloading and applying stored offset
+        let offset = self.feedsState[self.type.value]?.offset
+        self.tableView.reloadData()
+        if let cachedOffset = offset {
+            self.tableView.layoutIfNeeded()
+            self.tableView.setContentOffset(CGPoint(x: 0.0, y: cachedOffset), animated: false)
         }
     }
     
@@ -267,6 +308,9 @@ extension MainLMMViewController: UITableViewDataSource
             profileVC.onChatHide = { [weak self] profile, photo, vc in
                 self?.hideChat(profileVC, profile: profile, photo: photo)
                 self?.isUpdated = true // for blocked profile update
+            }
+            profileVC.onBlockOptionsWillShow = { [weak self, weak cell] in
+                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
             }
             
             profileVC.currentIndex.asObservable().subscribe(onNext: { [weak self] index in

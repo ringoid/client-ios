@@ -82,7 +82,7 @@ class NewFacesViewController: ThemeViewController
         guard let profiles = self.viewModel?.profiles.value else { return }
         
         defer {
-            self.lastFeedIds = self.viewModel?.profiles.value.map({ $0.id }) ?? []
+            self.lastFeedIds = profiles.map({ $0.id })
         }
 
         let totalCount = profiles.count
