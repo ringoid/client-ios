@@ -36,7 +36,7 @@ see how many likes you get</string>
                                 <rect key="frame" x="0.0" y="20" width="375" height="500"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="GhS-rk-bVb" secondAttribute="height" multiplier="3:4" id="Pph-65-thA"/>
+                                    <constraint firstAttribute="height" constant="500" id="qh3-Cf-W29"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="container_cell" id="X1L-aE-hdx" customClass="UserProfileContainerCell" customModule="ringoid" customModuleProvider="target">
@@ -120,6 +120,7 @@ see how many likes you get</string>
                     </view>
                     <connections>
                         <outlet property="containerTableView" destination="GhS-rk-bVb" id="o6E-fd-3zd"/>
+                        <outlet property="containerTableViewHeightConstraint" destination="qh3-Cf-W29" id="2nL-lg-1sI"/>
                         <outlet property="deleteBtn" destination="32r-W0-czT" id="qDq-QL-d5e"/>
                         <outlet property="emptyFeedView" destination="c03-Vj-oKe" id="0d8-h2-kLZ"/>
                         <outlet property="pageControl" destination="gyn-28-5bi" id="KYH-ae-ET6"/>

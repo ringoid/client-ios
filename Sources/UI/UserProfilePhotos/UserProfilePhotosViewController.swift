@@ -27,6 +27,7 @@ class UserProfilePhotosViewController: ThemeViewController
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var deleteBtn: UIButton!
     @IBOutlet fileprivate weak var containerTableView: UITableView!
+    @IBOutlet fileprivate weak var containerTableViewHeightConstraint: NSLayoutConstraint!
     fileprivate var refreshControl: UIRefreshControl!
     
     override func viewDidLoad()
@@ -35,7 +36,11 @@ class UserProfilePhotosViewController: ThemeViewController
         
         super.viewDidLoad()
         
+        let height = UIScreen.main.bounds.height / 4.0 * 3.0
+        self.containerTableView.rowHeight = height
+        self.containerTableViewHeightConstraint.constant = height
         self.containerTableView.reloadData()
+        
         self.setupBindings()
         self.setupReloader()
     }
@@ -267,11 +272,6 @@ extension UserProfilePhotosViewController: UITableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return 1
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
-    {
-        return self.containerTableView.bounds.height / 4.0 * 3.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
