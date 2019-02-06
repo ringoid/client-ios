@@ -15,7 +15,7 @@ class NewFacesViewController: ThemeViewController
     
     fileprivate var viewModel: NewFacesViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
-    fileprivate var lastItemsCount: Int = 0
+    fileprivate var lastFeedIds: [String] = []
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
@@ -79,24 +79,51 @@ class NewFacesViewController: ThemeViewController
     
     fileprivate func updateFeed()
     {
-        guard let totalCount = self.viewModel?.profiles.value.count else { return }
+        guard let profiles = self.viewModel?.profiles.value else { return }
         
         defer {
-            self.lastItemsCount = totalCount
+            self.lastFeedIds = self.viewModel?.profiles.value.map({ $0.id }) ?? []
         }
 
+        let totalCount = profiles.count
         let isEmpty = totalCount == 0
         self.titleLabel.isHidden = !isEmpty
         self.emptyFeedLabel.isHidden = !isEmpty
         self.feedEndLabel.isHidden = isEmpty
         
-        if self.lastItemsCount == 0 || totalCount < self.lastItemsCount{
+        let lastItemsCount = self.lastFeedIds.count
+        
+        // No items or several items removal case
+        if lastItemsCount == 0 || totalCount < (lastItemsCount - 1) {
             self.tableView.reloadData()
             
             return
         }
         
-        self.tableView.insertRows(at: (self.lastItemsCount..<totalCount).map({ IndexPath(row: $0, section: 0) }), with: .none)
+        // Single item removal - blocking case
+        if totalCount == lastItemsCount - 1 {
+            for i in 0..<totalCount {
+                let profile = profiles[i]
+                
+                // Check for deprecated state
+                guard !profile.isInvalidated else { self.tableView.reloadData(); return }
+                
+                // Found diff - playing animation
+                if profile.id != self.lastFeedIds[i] {
+                    self.tableView.deleteRows(at: [IndexPath(row: i, section: 0)], with: .top)
+                    
+                    return
+                }
+            }
+            
+            // Diff should be last item
+            self.tableView.deleteRows(at: [IndexPath(row: totalCount - 1, section: 0)], with: .top)
+            
+            return
+        }
+        
+        // Paging case
+        self.tableView.insertRows(at: (lastItemsCount..<totalCount).map({ IndexPath(row: $0, section: 0) }), with: .none)
     }
     
     fileprivate func showAddPhotosOptions()
