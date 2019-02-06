@@ -26,7 +26,7 @@ fileprivate enum SettinsOptionType: Int
     case delete = 4
 }
 
-class SettingsViewController: ThemeViewController
+class SettingsViewController: BaseViewController
 {
     var input: SettingsVMInput!
     

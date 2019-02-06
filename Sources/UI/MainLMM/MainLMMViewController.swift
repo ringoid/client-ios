@@ -22,7 +22,7 @@ fileprivate struct FeedState
     var photos: [Int: Int] = [:]
 }
 
-class MainLMMViewController: ThemeViewController
+class MainLMMViewController: BaseViewController
 {
     var input: MainLMMVMInput!
     var type: BehaviorRelay<LMMType> = BehaviorRelay<LMMType>(value: .likesYou)

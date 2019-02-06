@@ -18,7 +18,7 @@ fileprivate enum AppUIMode
     case userProfile
 }
 
-class RootViewController: ThemeViewController {
+class RootViewController: BaseViewController {
 
     var appManager: AppManager!
     

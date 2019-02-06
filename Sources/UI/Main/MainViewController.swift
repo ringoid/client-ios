@@ -16,7 +16,7 @@ enum SelectionState {
     case profile
 }
 
-class MainViewController: ThemeViewController
+class MainViewController: BaseViewController
 {
     var input: MainVMInput!
     var defaultState: SelectionState = .like

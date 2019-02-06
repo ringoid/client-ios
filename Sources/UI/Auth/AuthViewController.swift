@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class AuthViewController: ThemeViewController
+class AuthViewController: BaseViewController
 {
     var input: AuthVMInput!
     

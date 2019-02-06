@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class UserProfilePhotosViewController: ThemeViewController
+class UserProfilePhotosViewController: BaseViewController
 {
     var input: UserProfilePhotosVCInput!
     var autopickEnabled: Bool = false

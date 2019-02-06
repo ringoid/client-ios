@@ -1,5 +1,5 @@
 //
-//  ThemeViewController.swift
+//  BaseViewController.swift
 //  ringoid
 //
 //  Created by Victor Sukochev on 08/01/2019.
@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-class ThemeViewController: UIViewController
+class BaseViewController: UIViewController
 {
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
@@ -32,12 +32,18 @@ class ThemeViewController: UIViewController
         
     }
     
+    func updateTheme()
+    {
+        
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
     {
         ThemeManager.shared.theme.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             self?.view.backgroundColor = BackgroundColor().uiColor()
+            self?.updateTheme()
         }).disposed(by: self.disposeBag)
         
         LocaleManager.shared.language.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in

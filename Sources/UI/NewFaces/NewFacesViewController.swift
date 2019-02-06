@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class NewFacesViewController: ThemeViewController
+class NewFacesViewController: BaseViewController
 {
     var input: NewFacesVMInput!
     
