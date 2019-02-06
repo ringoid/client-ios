@@ -164,6 +164,10 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
         if let profile = self.viewModel?.profiles.value[indexPath.row], !profile.isInvalidated {
             let profileVC = NewFaceProfileViewController.create(profile, actionsManager: self.input.actionsManager)
             cell.containerView.embed(profileVC, to: self)
+            
+            profileVC.onBlockOptionsWillShow = { [weak self] in
+                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            }
         }
         
         return cell

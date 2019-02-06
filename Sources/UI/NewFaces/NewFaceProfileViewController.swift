@@ -12,6 +12,8 @@ class NewFaceProfileViewController: UIViewController
 {
     var input: NewFaceProfileVMInput!
     
+    var onBlockOptionsWillShow: (() -> ())?
+    
     fileprivate var viewModel: NewFaceProfileViewModel?
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
@@ -79,6 +81,8 @@ class NewFaceProfileViewController: UIViewController
     
     fileprivate func showBlockOptions()
     {
+        onBlockOptionsWillShow?()
+        
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "BLOCK_OPTION".localized(), style: .default, handler: { _ in
             self.viewModel?.block(at: self.currentIndex, reason: BlockReason(rawValue: 0)!)
@@ -93,6 +97,8 @@ class NewFaceProfileViewController: UIViewController
     
     fileprivate func showBlockReasonOptions()
     {
+        onBlockOptionsWillShow?()
+        
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         for reason in BlockReason.reportResons() {
