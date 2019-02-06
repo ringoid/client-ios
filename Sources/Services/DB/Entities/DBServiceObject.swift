@@ -10,6 +10,8 @@ import RealmSwift
 
 class DBServiceObject: Object
 {
+    @objc dynamic var orderPosition: Int = 0
+    
     func write(_ writeBlock: ((Object?) -> ())?)
     {
         guard let realm = self.realm else { return }

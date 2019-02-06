@@ -14,6 +14,7 @@ class DBService
 {
     fileprivate let realm: Realm
     fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var currentOrderPosition: Int = 0
     
     init()
     {
@@ -23,7 +24,7 @@ class DBService
     // MARK: - New Faces
     func fetchNewFaces() -> Observable<[NewFaceProfile]>
     {
-        let profiles = self.realm.objects(NewFaceProfile.self).sorted(byKeyPath: "id")
+        let profiles = self.realm.objects(NewFaceProfile.self).sorted(byKeyPath: "orderPosition")
         
         return Observable.array(from: profiles)
     }
@@ -33,7 +34,7 @@ class DBService
     func fetchLikesYou() -> Observable<[LMMProfile]>
     {
         let predicate = NSPredicate(format: "type = %d", FeedType.likesYou.rawValue)
-        let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "id")
+        let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition")
         
         return Observable.array(from: profiles)
     }
@@ -41,7 +42,7 @@ class DBService
     func fetchMatches() -> Observable<[LMMProfile]>
     {
         let predicate = NSPredicate(format: "type = %d", FeedType.matches.rawValue)
-        let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "id")
+        let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition")
         
         return Observable.array(from: profiles)
     }
@@ -49,7 +50,7 @@ class DBService
     func fetchMessages() -> Observable<[LMMProfile]>
     {
         let predicate = NSPredicate(format: "type = %d", FeedType.messages.rawValue)
-        let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "id")
+        let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition")
         
         return Observable.array(from: profiles)
     }
@@ -67,7 +68,7 @@ class DBService
     
     func fetchUserPhotos() -> Observable<[UserPhoto]>
     {
-        let photos = self.realm.objects(UserPhoto.self)
+        let photos = self.realm.objects(UserPhoto.self).sorted(byKeyPath: "orderPosition")
         
         return Observable.array(from: photos)
     }
@@ -91,14 +92,20 @@ class DBService
     
     // MARK: - Common
     
-    func add(_ object: Object) -> Observable<Void>
+    func add(_ object: DBServiceObject) -> Observable<Void>
     {
         return self.add([object])
     }
     
-    func add(_ objects: [Object]) -> Observable<Void>
+    func add(_ objects: [DBServiceObject]) -> Observable<Void>
     {
+        objects.forEach { object in
+            object.orderPosition = self.currentOrderPosition
+            self.currentOrderPosition += 1
+        }
+        
         let objectsToAdd = self.filterBlocked(objects)
+
         return Observable<Void>.create({ observer -> Disposable in                       
             if self.realm.isInWriteTransaction {
                 self.realm.add(objectsToAdd)
@@ -160,7 +167,7 @@ class DBService
         self.realm.delete(objectsToRemove)        
     }
     
-    fileprivate func filterBlocked(_ objects: [Object]) -> [Object]
+    fileprivate func filterBlocked(_ objects: [DBServiceObject]) -> [DBServiceObject]
     {
         let blockedIds = self.realm.objects(BlockedProfile.self).map({ $0.id })
         

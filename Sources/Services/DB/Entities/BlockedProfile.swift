@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-class BlockedProfile: Object
+class BlockedProfile: DBServiceObject
 {
     @objc dynamic var id: String!
 }
