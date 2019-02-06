@@ -16,10 +16,6 @@ struct SettingsVMInput
 
 class SettingsViewModel
 {
-    var theme: BehaviorRelay<ColorTheme> {
-        return ThemeManager.shared.theme
-    }
-    
     fileprivate let settingsManger: SettingsManager
     
     init(_ input: SettingsVMInput)

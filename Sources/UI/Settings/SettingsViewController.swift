@@ -43,9 +43,6 @@ class SettingsViewController: ThemeViewController
     
     @IBOutlet fileprivate weak var tableView: UITableView!
     
-    // Options controls
-    fileprivate weak var themeSwitch: UISwitch?
-    
     override func viewDidLoad()
     {
         assert(input != nil )
@@ -68,14 +65,6 @@ class SettingsViewController: ThemeViewController
     fileprivate func setupBindigs()
     {
         self.viewModel = SettingsViewModel(self.input)
-    }
-    
-    fileprivate func setupThemeBindings()
-    {
-        self.themeSwitch?.setOn(self.viewModel?.theme.value == .dark, animated: false)
-        self.themeSwitch?.rx.value.subscribe(onNext: { [weak self] value in
-            self?.viewModel?.theme.accept(value ? .dark : .light)
-        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func showLogoutAlert()
@@ -117,19 +106,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
     {
         let option = self.options[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: option.cellIdentifier)!
-        
-        switch SettinsOptionType(rawValue: indexPath.row)! {
-        case .theme:
-            self.themeSwitch = (cell as? SettingsThemeCell)?.themeSwitch
-            self.setupThemeBindings()
-            break
-            
-        case .language: break
-        case .legal: break
-        case .support: break
-        case .delete: break
-        }
-        
+
         return cell
     }
     

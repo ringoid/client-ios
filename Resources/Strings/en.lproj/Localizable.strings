@@ -18,3 +18,6 @@
 "CANCEL_OPTION" = "Cancel";
 
 "FEED_PULL_TO_REFRESH" = "Pull to refresh";
+
+"THEME_NIGHT_MODE" = "Night mode";
+"THEME_DAY_MODE" = "Dat mode";

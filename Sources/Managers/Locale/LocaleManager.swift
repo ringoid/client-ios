@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 enum Language: String
 {
@@ -19,6 +20,7 @@ class LocaleManager
 {
     static let shared = LocaleManager()
     
+    let language: BehaviorRelay<Language> = BehaviorRelay<Language>(value: .english)
     var storage: XStorageService?
     {
         didSet {
@@ -27,33 +29,38 @@ class LocaleManager
     }
     
     fileprivate var bundle: Bundle!
-    fileprivate var language: Language = .english
-    {
-        didSet {
-            self.loadBundle(self.language)
-        }
-    }
-    
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    private init(){}
-    
-    func setLanguageManually(_ lang: Language)
+    private init()
     {
-        self.language = lang
-        self.storage?.store(lang.rawValue, key: "custom_locale").subscribe().disposed(by: self.disposeBag)
+        self.setupBindings()
     }
     
     // MARK: -
+    
+    fileprivate func setupBindings()
+    {
+        self.language.asObservable().subscribe(onNext: { [weak self] lang in
+            self?.storeLanguage(lang)
+            self?.loadBundle(lang)
+        }).disposed(by: self.disposeBag)
+    }
     
     fileprivate func loadCustomLocaleIfNeeded()
     {
         self.storage?.object("custom_locale").subscribe(
             onNext: { [weak self] obj in
-                self?.language = Language(rawValue: String.create(obj)!) ?? .english
-            }        , onError: { [weak self] _ in
-                self?.language = Language(rawValue: NSLocale.preferredLanguages.first!) ?? .english
-            }).disposed(by: self.disposeBag)
+                let lang = Language(rawValue: String.create(obj)!) ?? .english
+                self?.language.accept(lang)
+            }, onError: { [weak self] _ in
+                let lang = Language(rawValue: NSLocale.preferredLanguages.first!) ?? .english
+                self?.language.accept(lang)
+        }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func storeLanguage(_ lang: Language)
+    {
+        self.storage?.store(lang.rawValue, key: "custom_locale").subscribe().disposed(by: self.disposeBag)
     }
     
     fileprivate func loadBundle(_ lang: Language)

@@ -52,10 +52,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="42" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="GQG-aY-LJu">
-                                <rect key="frame" x="0.0" y="82" width="375" height="248"/>
+                                <rect key="frame" x="0.0" y="82" width="375" height="210"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="248" id="cOW-Rh-If5"/>
+                                    <constraint firstAttribute="height" constant="210" id="cOW-Rh-If5"/>
                                 </constraints>
                                 <color key="separatorColor" red="0.80392156862745101" green="0.80784313725490198" blue="0.82745098039215681" alpha="0.13219713184931506" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="18" maxY="0.0"/>
@@ -70,8 +70,8 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_moon" translatesAutoresizingMaskIntoConstraints="NO" id="y0b-3h-Neo">
                                                     <rect key="frame" x="19" y="13.5" width="15" height="15"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifQ-eu-9ot">
-                                                    <rect key="frame" x="48" y="13" width="73" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Night mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifQ-eu-9ot">
+                                                    <rect key="frame" x="48" y="13" width="70" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -91,6 +91,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="themeLabel" destination="ifQ-eu-9ot" id="ggk-W0-Qw2"/>
                                             <outlet property="themeSwitch" destination="QGw-1Z-Chp" id="vXg-tc-83v"/>
                                         </connections>
                                     </tableViewCell>
@@ -165,18 +166,18 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="delete_cell" rowHeight="120" id="o96-ct-5e4">
-                                        <rect key="frame" x="0.0" y="169" width="375" height="120"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="delete_cell" id="o96-ct-5e4">
+                                        <rect key="frame" x="0.0" y="169" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o96-ct-5e4" id="dAZ-Bt-t5N">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_delete_account" translatesAutoresizingMaskIntoConstraints="NO" id="1wy-G5-eaq">
                                                     <rect key="frame" x="19" y="15" width="11" height="15"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQT-Jc-7yY">
-                                                    <rect key="frame" x="48" y="14" width="92" height="14"/>
+                                                    <rect key="frame" x="48" y="15.5" width="92" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="k0f-lg-wjr"/>
                                                     </constraints>
@@ -184,22 +185,11 @@
                                                     <color key="textColor" red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you don't use Ringoid for more than 16 days, your account will be automatically deleted." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQT-ad-CTA">
-                                                    <rect key="frame" x="48" y="33" width="283" height="21.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="283" id="mwl-eW-248"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                                    <color key="textColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="wQT-Jc-7yY" firstAttribute="top" secondItem="dAZ-Bt-t5N" secondAttribute="top" constant="14" id="MEs-2R-RFI"/>
                                                 <constraint firstItem="1wy-G5-eaq" firstAttribute="top" secondItem="dAZ-Bt-t5N" secondAttribute="top" constant="15" id="Rlv-LI-hPA"/>
                                                 <constraint firstItem="1wy-G5-eaq" firstAttribute="leading" secondItem="dAZ-Bt-t5N" secondAttribute="leading" constant="19" id="ZGV-ZS-DI6"/>
-                                                <constraint firstItem="sQT-ad-CTA" firstAttribute="leading" secondItem="wQT-Jc-7yY" secondAttribute="leading" id="d2I-Gd-CGl"/>
-                                                <constraint firstItem="sQT-ad-CTA" firstAttribute="top" secondItem="wQT-Jc-7yY" secondAttribute="bottom" constant="5" id="gLx-rU-tjo"/>
+                                                <constraint firstItem="wQT-Jc-7yY" firstAttribute="centerY" secondItem="1wy-G5-eaq" secondAttribute="centerY" id="i1J-LK-b21"/>
                                                 <constraint firstItem="wQT-Jc-7yY" firstAttribute="leading" secondItem="1wy-G5-eaq" secondAttribute="trailing" constant="18" id="u7m-6u-mm4"/>
                                             </constraints>
                                         </tableViewCellContentView>
