@@ -16,3 +16,5 @@
 "BLOCK_OPTION" = "Block";
 "BLOCK_REPORT_OPTION" = "Report & Block";
 "CANCEL_OPTION" = "Cancel";
+
+"FEED_PULL_TO_REFRESH" = "Pull to refresh";

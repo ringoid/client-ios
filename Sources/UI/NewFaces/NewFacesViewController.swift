@@ -30,6 +30,8 @@ class NewFacesViewController: ThemeViewController
         
         super.viewDidLoad()
         
+        self.emptyFeedLabel.text = "FEED_PULL_TO_REFRESH".localized()
+        
         self.tableView.tableHeaderView = nil
         let rowHeight = UIScreen.main.bounds.height * 3.0 / 4.0
         self.tableView.rowHeight = rowHeight
@@ -94,7 +96,7 @@ class NewFacesViewController: ThemeViewController
         let lastItemsCount = self.lastFeedIds.count
         
         // No items or several items removal case
-        if lastItemsCount == 0 || totalCount < (lastItemsCount - 1) {
+        if lastItemsCount <= 1 || totalCount < (lastItemsCount - 1) {
             self.tableView.reloadData()
             
             return

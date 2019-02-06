@@ -152,7 +152,7 @@ class MainLMMViewController: ThemeViewController
         self.feedEndView.isHidden = updatedProfiles.isEmpty
         
         // Checking for blocking scenario
-        if totalCount == self.lastFeedIds.count - 1 {
+        if totalCount == self.lastFeedIds.count - 1, self.lastFeedIds.count > 1 {
             var diffCount: Int = 0
             var diffIndex: Int = 0
             
@@ -239,11 +239,7 @@ class MainLMMViewController: ThemeViewController
     
     fileprivate func placeholderText() -> String
     {
-        switch self.type.value {
-        case .likesYou: return "Pull to refresh to\nsee who likes you"
-        case .matches: return "Pull to refresh to\nsee your matches"
-        case .messages: return "Pull to refresh to\nsee who messages you"
-        }
+        return "FEED_PULL_TO_REFRESH".localized()
     }
     
     fileprivate func showScrollToTopOption()
