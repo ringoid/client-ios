@@ -19,6 +19,7 @@ class DBService
     init()
     {
         self.realm = try! Realm(configuration: .defaultConfiguration)
+        self.currentOrderPosition = UserDefaults.standard.integer(forKey: "db_service_order_position_key") ?? 0
     }
     
     // MARK: - New Faces
@@ -104,6 +105,9 @@ class DBService
             self.currentOrderPosition += 1
         }
         
+        UserDefaults.standard.set(self.currentOrderPosition, forKey: "db_service_order_position_key")
+        UserDefaults.standard.synchronize()
+        
         let objectsToAdd = self.filterBlocked(objects)
 
         return Observable<Void>.create({ observer -> Disposable in                       
@@ -155,6 +159,10 @@ class DBService
         try? self.realm.write {
             self.realm.deleteAll()
         }
+        
+        self.currentOrderPosition = 0
+        UserDefaults.standard.removeObject(forKey: "db_service_order_position_key")
+        UserDefaults.standard.synchronize()
     }
     
     // MARK: -
