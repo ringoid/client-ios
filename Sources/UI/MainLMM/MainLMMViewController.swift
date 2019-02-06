@@ -172,7 +172,7 @@ class MainLMMViewController: ThemeViewController
                 
                 return
             } else if diffCount == 0 { // Last profile should be removed
-                self.tableView.deleteRows(at: [IndexPath(row: totalCount - 1, section: 0)], with: .top)
+                self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
                 
                 return
             }
@@ -310,7 +310,10 @@ extension MainLMMViewController: UITableViewDataSource
                 self?.isUpdated = true // for blocked profile update
             }
             profileVC.onBlockOptionsWillShow = { [weak self, weak cell] in
-                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                guard let `cell` = cell else { return }
+                guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
+                
+                self?.tableView.scrollToRow(at: cellIndexPath, at: .top, animated: true)
             }
             
             profileVC.currentIndex.asObservable().subscribe(onNext: { [weak self] index in

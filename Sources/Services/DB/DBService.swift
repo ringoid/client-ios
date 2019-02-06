@@ -19,7 +19,7 @@ class DBService
     init()
     {
         self.realm = try! Realm(configuration: .defaultConfiguration)
-        self.currentOrderPosition = UserDefaults.standard.integer(forKey: "db_service_order_position_key") ?? 0
+        self.currentOrderPosition = UserDefaults.standard.integer(forKey: "db_service_order_position_key")
     }
     
     // MARK: - New Faces

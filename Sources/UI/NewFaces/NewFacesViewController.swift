@@ -117,13 +117,15 @@ class NewFacesViewController: ThemeViewController
             }
             
             // Diff should be last item
-            self.tableView.deleteRows(at: [IndexPath(row: totalCount - 1, section: 0)], with: .top)
+            self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
             
             return
         }
         
         // Paging case
-        self.tableView.insertRows(at: (lastItemsCount..<totalCount).map({ IndexPath(row: $0, section: 0) }), with: .none)
+        let pageRange = lastItemsCount..<totalCount
+        self.lastFeedIds.append(contentsOf: profiles[pageRange].map({ $0.id }))
+        self.tableView.insertRows(at: pageRange.map({ IndexPath(row: $0, section: 0) }), with: .none)
     }
     
     fileprivate func showAddPhotosOptions()
@@ -165,8 +167,11 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
             let profileVC = NewFaceProfileViewController.create(profile, actionsManager: self.input.actionsManager)
             cell.containerView.embed(profileVC, to: self)
             
-            profileVC.onBlockOptionsWillShow = { [weak self] in
-                self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            profileVC.onBlockOptionsWillShow = { [weak self, weak cell] in
+                guard let `cell` = cell else { return }
+                guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
+                
+                self?.tableView.scrollToRow(at: cellIndexPath, at: .top, animated: true)
             }
         }
         
