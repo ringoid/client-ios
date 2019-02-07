@@ -20,6 +20,7 @@ class NewFaceProfileViewController: UIViewController
     fileprivate var currentIndex: Int = 0
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
+    @IBOutlet fileprivate weak var optionsBtn: UIButton!
     
     static func create(_ profile: NewFaceProfile, actionsManager: ActionsManager) -> NewFaceProfileViewController
     {
@@ -81,35 +82,55 @@ class NewFaceProfileViewController: UIViewController
     
     fileprivate func showBlockOptions()
     {
+        self.hideControls()
         onBlockOptionsWillShow?()
         
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "BLOCK_OPTION".localized(), style: .default, handler: { _ in
+            self.showControls()
             self.viewModel?.block(at: self.currentIndex, reason: BlockReason(rawValue: 0)!)
         }))
         alertVC.addAction(UIAlertAction(title: "BLOCK_REPORT_OPTION".localized(), style: .default, handler: { _ in
             self.showBlockReasonOptions()
         }))
-        alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: { _ in
+            self.showControls()
+        }))
         
         self.present(alertVC, animated: true, completion: nil)
     }
     
     fileprivate func showBlockReasonOptions()
     {
+        self.hideControls()
         onBlockOptionsWillShow?()
         
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         for reason in BlockReason.reportResons() {
             alertVC.addAction(UIAlertAction(title: reason.title(), style: .default) { _ in
+                self.showControls()
                 self.viewModel?.block(at: self.currentIndex, reason: reason)
             })
         }
         
-        alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: { _ in
+            self.showControls()
+        }))
         
         self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func showControls()
+    {
+        self.pageControl.isHidden = false
+        self.optionsBtn.isHidden = false
+    }
+    
+    fileprivate func hideControls()
+    {
+        self.pageControl.isHidden = true
+        self.optionsBtn.isHidden = true
     }
 }
 

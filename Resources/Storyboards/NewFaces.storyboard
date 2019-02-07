@@ -181,6 +181,7 @@ discover users nearby</string>
                         <viewLayoutGuide key="safeArea" id="QNT-if-MPg"/>
                     </view>
                     <connections>
+                        <outlet property="optionsBtn" destination="X1t-jW-NWk" id="LoZ-fG-SZb"/>
                         <outlet property="pageControl" destination="BxI-1L-kXF" id="Eyb-XU-wgc"/>
                     </connections>
                 </viewController>
