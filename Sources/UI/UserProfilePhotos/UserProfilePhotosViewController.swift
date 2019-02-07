@@ -27,6 +27,8 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var emptyFeedView: UIView!
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var deleteBtn: UIButton!
+    @IBOutlet fileprivate weak var optionsBtn: UIButton!
+    @IBOutlet fileprivate weak var addBtn: UIButton!
     @IBOutlet fileprivate weak var containerTableView: UITableView!
     @IBOutlet fileprivate weak var containerTableViewHeightConstraint: NSLayoutConstraint!
     
@@ -151,12 +153,17 @@ class UserProfilePhotosViewController: BaseViewController
     {
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "Delete Photo", style: .destructive, handler: ({ _ in
+            self.showControls()
+            
             guard let photo = self.viewModel?.photos.value[self.currentIndex] else { return }
             
             self.input.profileManager.deletePhoto(photo)
         })))
-        alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            self.showControls()
+        }))
         
+        self.hideControls()
         self.present(alertVC, animated: true, completion: nil)
     }
     
@@ -186,6 +193,22 @@ class UserProfilePhotosViewController: BaseViewController
                 self?.containerTableView.headRefreshControl.endRefreshing()
 
         }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func showControls()
+    {
+        self.pageControl.isHidden = false
+        self.deleteBtn.isHidden = false
+        self.optionsBtn.isHidden = false
+        self.addBtn.isHidden = false
+    }
+    
+    fileprivate func hideControls()
+    {
+        self.pageControl.isHidden = true
+        self.deleteBtn.isHidden = true
+        self.optionsBtn.isHidden = true
+        self.addBtn.isHidden = true
     }
 }
 
