@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import KafkaRefresh
 
 enum LMMType: String
 {
@@ -46,7 +47,6 @@ class MainLMMViewController: BaseViewController
     @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
     @IBOutlet fileprivate weak var feedEndView: UIView!
     @IBOutlet fileprivate weak var tableView: UITableView!
-    fileprivate var refreshControl: UIRefreshControl!
     
     override func viewDidLoad()
     {
@@ -63,11 +63,6 @@ class MainLMMViewController: BaseViewController
         self.setupBindings()
         self.setupReloader()
         self.resetStates()
-    }
-    
-    @objc func onReload()
-    {
-        self.reload()
     }
     
     // MARK: - Actions
@@ -99,9 +94,13 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func setupReloader()
     {
-        self.refreshControl = UIRefreshControl()
-        self.tableView.addSubview(self.refreshControl)
-        self.refreshControl.addTarget(self, action: #selector(onReload), for: .valueChanged)
+        self.tableView.bindHeadRefreshHandler({ [weak self] in
+            self?.reload()
+            }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
+        
+        self.tableView.bindFootRefreshHandler({ [weak self] in
+            self?.reload()
+            }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
     }
     
     fileprivate func reload()
@@ -113,7 +112,8 @@ class MainLMMViewController: BaseViewController
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
                 self?.resetStates()
-                self?.refreshControl.endRefreshing()
+                self?.tableView.headRefreshControl.endRefreshing()
+                self?.tableView.footRefreshControl.endRefreshing()
         }).disposed(by: self.disposeBag)
     }
     

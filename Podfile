@@ -9,4 +9,5 @@ target 'ringoid' do
 	pod 'RxDataSources'
 	pod 'RxAlamofire'
 	pod 'Nuke'
+	pod 'KafkaRefresh'
 end

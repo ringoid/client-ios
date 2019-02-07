@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import KafkaRefresh
 
 class UserProfilePhotosViewController: BaseViewController
 {
@@ -28,7 +29,6 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var deleteBtn: UIButton!
     @IBOutlet fileprivate weak var containerTableView: UITableView!
     @IBOutlet fileprivate weak var containerTableViewHeightConstraint: NSLayoutConstraint!
-    fileprivate var refreshControl: UIRefreshControl!
     
     override func viewDidLoad()
     {
@@ -89,11 +89,6 @@ class UserProfilePhotosViewController: BaseViewController
         self.showDeletionAlert()
     }
     
-    @objc func onReload()
-    {
-        self.reload()
-    }
-    
     // MARK: -
     
     fileprivate func setupBindings()
@@ -108,9 +103,9 @@ class UserProfilePhotosViewController: BaseViewController
     
     fileprivate func setupReloader()
     {
-        self.refreshControl = UIRefreshControl()
-        self.containerTableView.addSubview(self.refreshControl)
-        self.refreshControl.addTarget(self, action: #selector(onReload), for: .valueChanged)
+        self.containerTableView.bindHeadRefreshHandler({ [weak self] in
+            self?.reload()
+            }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
     }
     
     fileprivate func updatePages()
@@ -188,7 +183,8 @@ class UserProfilePhotosViewController: BaseViewController
             
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
-                self?.refreshControl.endRefreshing()
+                self?.containerTableView.headRefreshControl.endRefreshing()
+
         }).disposed(by: self.disposeBag)
     }
 }

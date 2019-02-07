@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import KafkaRefresh
 
 class NewFacesViewController: BaseViewController
 {
@@ -22,7 +23,6 @@ class NewFacesViewController: BaseViewController
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var loadingActivityView: UIActivityIndicatorView!
     @IBOutlet fileprivate weak var feedEndLabel: UILabel!
-    fileprivate var refreshControl: UIRefreshControl!
     
     override func viewDidLoad()
     {
@@ -43,7 +43,7 @@ class NewFacesViewController: BaseViewController
     }
     
     // MARK: - Actions
-    @objc func onReload()
+    func onReload()
     {
         if self.viewModel?.isPhotosAdded == false {
             self.showAddPhotosOptions()
@@ -56,7 +56,7 @@ class NewFacesViewController: BaseViewController
             
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
-                self?.refreshControl.endRefreshing()
+                self?.tableView.headRefreshControl.endRefreshing()
         }).disposed(by: self.disposeBag)
     }
     
@@ -74,9 +74,9 @@ class NewFacesViewController: BaseViewController
     
     fileprivate func setupReloader()
     {
-        self.refreshControl = UIRefreshControl()
-        self.tableView.addSubview(self.refreshControl)
-        self.refreshControl.addTarget(self, action: #selector(onReload), for: .valueChanged)
+        self.tableView.bindHeadRefreshHandler({ [weak self] in
+            self?.onReload()
+            }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
     }
     
     fileprivate func updateFeed()
@@ -142,7 +142,7 @@ class NewFacesViewController: BaseViewController
         alertVC.addAction(UIAlertAction(title: "Maybe later", style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: { [weak self] in
-            self?.refreshControl.endRefreshing()
+            self?.tableView.headRefreshControl.endRefreshing()
         })
     }
 }
