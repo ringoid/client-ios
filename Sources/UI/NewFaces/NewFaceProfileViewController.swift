@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class NewFaceProfileViewController: UIViewController
 {
@@ -14,6 +16,7 @@ class NewFaceProfileViewController: UIViewController
     
     var onBlockOptionsWillShow: (() -> ())?
     
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var viewModel: NewFaceProfileViewModel?
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
@@ -38,8 +41,7 @@ class NewFaceProfileViewController: UIViewController
         
         super.viewDidLoad()
         
-        self.viewModel = NewFaceProfileViewModel(self.input)
-        
+        self.setupBindings()
         // TODO: Move all logic inside view model
         
         guard !self.input.profile.isInvalidated else { return }
@@ -80,21 +82,34 @@ class NewFaceProfileViewController: UIViewController
     
     // MARK: -
     
+    fileprivate func setupBindings()
+    {
+        self.viewModel = NewFaceProfileViewModel(self.input)
+        
+        UIManager.shared.mainControlsVisible.asObservable().subscribe(onNext: { [weak self] state in
+            if state {
+                self?.showControls()
+            } else {
+                self?.hideControls()
+            }
+        }).disposed(by: self.disposeBag)
+    }
+    
     fileprivate func showBlockOptions()
     {
-        self.hideControls()
+        UIManager.shared.mainControlsVisible.accept(false)
         onBlockOptionsWillShow?()
         
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "BLOCK_OPTION".localized(), style: .default, handler: { _ in
-            self.showControls()
+            UIManager.shared.mainControlsVisible.accept(true)
             self.viewModel?.block(at: self.currentIndex, reason: BlockReason(rawValue: 0)!)
         }))
         alertVC.addAction(UIAlertAction(title: "BLOCK_REPORT_OPTION".localized(), style: .default, handler: { _ in
             self.showBlockReasonOptions()
         }))
         alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: { _ in
-            self.showControls()
+            UIManager.shared.mainControlsVisible.accept(true)
         }))
         
         self.present(alertVC, animated: true, completion: nil)
@@ -102,20 +117,19 @@ class NewFaceProfileViewController: UIViewController
     
     fileprivate func showBlockReasonOptions()
     {
-        self.hideControls()
         onBlockOptionsWillShow?()
         
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         for reason in BlockReason.reportResons() {
             alertVC.addAction(UIAlertAction(title: reason.title(), style: .default) { _ in
-                self.showControls()
+                UIManager.shared.mainControlsVisible.accept(true)
                 self.viewModel?.block(at: self.currentIndex, reason: reason)
             })
         }
         
         alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: { _ in
-            self.showControls()
+            UIManager.shared.mainControlsVisible.accept(true)
         }))
         
         self.present(alertVC, animated: true, completion: nil)
