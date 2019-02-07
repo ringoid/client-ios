@@ -58,7 +58,12 @@ class MainLMMViewController: BaseViewController
         self.tableView.tableHeaderView = nil
         self.tableView.rowHeight = cellHeight
         self.tableView.estimatedRowHeight = cellHeight
-        self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: UIScreen.main.bounds.height - cellHeight, right: 0.0)
+        self.tableView.contentInset = UIEdgeInsets(
+            top: self.view.safeAreaInsets.top + 44.0,
+            left: 0.0,
+            bottom: UIScreen.main.bounds.height - cellHeight,
+            right: 0.0
+        )
         
         self.setupBindings()
         self.setupReloader()
@@ -68,8 +73,8 @@ class MainLMMViewController: BaseViewController
     // MARK: - Actions
     
     @IBAction func onScrollTop()
-    {
-        self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0) , at: .top, animated: false)
+    {        
+        self.tableView.setContentOffset(.zero, animated: false)
     }
     
     // MARK: -
@@ -202,7 +207,7 @@ class MainLMMViewController: BaseViewController
         self.chatConstraint.constant = -self.view.bounds.height
         
         self.onChatShown?()
-        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        self.scrollTop(to: indexPath.row)
         profileVC?.hideNotChatControls()
         
         UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
@@ -278,6 +283,12 @@ class MainLMMViewController: BaseViewController
             .messages: FeedState(offset: 0.0, photos: [:])
         ]
     }
+    
+    fileprivate func scrollTop(to index: Int)
+    {
+        let height = UIScreen.main.bounds.width * AppConfig.photoRatio
+        self.tableView.setContentOffset(CGPoint(x: 0.0, y: CGFloat(index) * height), animated: true)
+    }
 }
 
 extension MainLMMViewController: UITableViewDataSource
@@ -309,7 +320,7 @@ extension MainLMMViewController: UITableViewDataSource
                 guard let `cell` = cell else { return }
                 guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
                 
-                self?.tableView.scrollToRow(at: cellIndexPath, at: .top, animated: true)
+                self?.scrollTop(to: indexPath.row)
             }
             
             profileVC.currentIndex.asObservable().subscribe(onNext: { [weak self] index in
