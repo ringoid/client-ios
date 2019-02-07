@@ -73,7 +73,7 @@ class MainLMMViewController: BaseViewController
     // MARK: - Actions
     
     @IBAction func onScrollTop()
-    {        
+    {
         self.tableView.setContentOffset(.zero, animated: false)
     }
     
@@ -320,7 +320,7 @@ extension MainLMMViewController: UITableViewDataSource
                 guard let `cell` = cell else { return }
                 guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
                 
-                self?.scrollTop(to: indexPath.row)
+                self?.scrollTop(to: cellIndexPath.row)
             }
             
             profileVC.currentIndex.asObservable().subscribe(onNext: { [weak self] index in
