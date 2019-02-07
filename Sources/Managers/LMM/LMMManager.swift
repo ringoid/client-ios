@@ -72,6 +72,8 @@ class LMMManager
     
     func refresh() -> Observable<Void>
     {
+        self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
+        
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] result -> Observable<Void> in
             
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)
@@ -85,8 +87,6 @@ class LMMManager
                     }
                 })
             }
-            
-            self!.db.resetLMM().subscribe().disposed(by: self!.disposeBag)
             
             return self!.db.add(localLikesYou + matches + messages)
         })       

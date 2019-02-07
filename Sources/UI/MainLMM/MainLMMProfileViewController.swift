@@ -44,6 +44,8 @@ class MainLMMProfileViewController: UIViewController
         // TODO: Move logic inside view model
         self.viewModel = MainLMMProfileViewModel(self.input)
         
+        guard !self.input.profile.isInvalidated else { return }
+        
         self.messageBtn.setImage(UIImage(named: self.input.profile.state.iconName()), for: .normal)
         self.messageBtn.isHidden = self.input.feedType == .likesYou
         
