@@ -9,6 +9,20 @@
 import RxSwift
 import RxCocoa
 
+fileprivate struct ChatProfileCache
+{
+    let id: String
+    let messagesCount: Int
+    
+    static func create(_ profile: LMMProfile) -> ChatProfileCache
+    {
+        return ChatProfileCache(
+            id: profile.id,
+            messagesCount: profile.messages.count
+        )
+    }
+}
+
 class LMMManager
 {
     let db: DBService
@@ -72,6 +86,7 @@ class LMMManager
     
     func refresh() -> Observable<Void>
     {
+        let chatCache = self.messages.value.map({ ChatProfileCache.create($0) })
         self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
         
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] result -> Observable<Void> in
@@ -80,10 +95,10 @@ class LMMManager
             let matches = createProfiles(result.matches, type: .matches)
             let messages = createProfiles(result.messages, type: .messages)
             
-            self?.messages.value.forEach { localProfile in
+            chatCache.forEach { localChatProfile in
                 messages.forEach({ remoteProfile in
-                    if localProfile.id == remoteProfile.id {
-                        remoteProfile.notSeen = localProfile.messages.count != remoteProfile.messages.count
+                    if localChatProfile.id == remoteProfile.id {
+                        remoteProfile.notSeen = localChatProfile.messagesCount != remoteProfile.messages.count
                     }
                 })
             }
