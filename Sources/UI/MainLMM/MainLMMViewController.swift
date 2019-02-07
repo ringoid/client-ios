@@ -203,7 +203,7 @@ class MainLMMViewController: BaseViewController
         
         self.onChatShown?()
         self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-        profileVC?.hideControls()
+        profileVC?.hideNotChatControls()
         
         UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
             self.view.layoutSubviews()
@@ -230,7 +230,7 @@ class MainLMMViewController: BaseViewController
             self.view.layoutSubviews()
         })
         animator.addCompletion({ _ in
-            profileVC?.showControls()
+            profileVC?.showNotChatControls()
             self.chatContainerView.remove()
             self.onChatHidden?()
         })

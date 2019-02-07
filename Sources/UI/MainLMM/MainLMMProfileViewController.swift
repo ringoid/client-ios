@@ -19,12 +19,14 @@ class MainLMMProfileViewController: UIViewController
     var onChatHide: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
     var onBlockOptionsWillShow: (() -> ())?
     
+    fileprivate let diposeBag: DisposeBag = DisposeBag()
     fileprivate var viewModel: MainLMMProfileViewModel?
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var messageBtn: UIButton!
+    @IBOutlet fileprivate weak var optionsBtn: UIButton!
     
     static func create(_ profile: LMMProfile, feedType: LMMType, actionsManager: ActionsManager, initialIndex: Int) -> MainLMMProfileViewController
     {
@@ -42,7 +44,7 @@ class MainLMMProfileViewController: UIViewController
         super.viewDidLoad()
         
         // TODO: Move logic inside view model
-        self.viewModel = MainLMMProfileViewModel(self.input)
+        self.setupBindings()
         
         guard !self.input.profile.isInvalidated else { return }
         
@@ -76,14 +78,14 @@ class MainLMMProfileViewController: UIViewController
         }
     }
     
-    func showControls()
+    func showNotChatControls()
     {
         self.messageBtn.setImage(UIImage(named: self.input.profile.state.iconName()), for: .normal)
         self.pageControl.isHidden = false
         self.messageBtn.isHidden = false
     }
     
-    func hideControls()
+    func hideNotChatControls()
     {
         self.pageControl.isHidden = true
         self.messageBtn.isHidden = true
@@ -112,6 +114,21 @@ class MainLMMProfileViewController: UIViewController
     }
     
     // MARK: -
+    
+    fileprivate func setupBindings()
+    {
+        self.viewModel = MainLMMProfileViewModel(self.input)
+        
+        UIManager.shared.mainControlsVisible.asObservable().subscribe(onNext: { [weak self] state in
+            let alpha: CGFloat = state ? 1.0 : 0.0
+            
+            UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
+                self?.pageControl.alpha = alpha
+                self?.messageBtn.alpha = alpha
+                self?.optionsBtn.alpha = alpha
+            }).startAnimation()
+        }).disposed(by: self.diposeBag)
+    }
     
     fileprivate func showBlockOptions()
     {

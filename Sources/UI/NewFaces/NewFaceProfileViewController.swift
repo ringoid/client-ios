@@ -86,12 +86,13 @@ class NewFaceProfileViewController: UIViewController
     {
         self.viewModel = NewFaceProfileViewModel(self.input)
         
-        UIManager.shared.mainControlsVisible.asObservable().subscribe(onNext: { [weak self] state in
-            if state {
-                self?.showControls()
-            } else {
-                self?.hideControls()
-            }
+        UIManager.shared.mainControlsVisible.asObservable().subscribe(onNext: { [weak self] state in            
+            let alpha: CGFloat = state ? 1.0 : 0.0
+            
+            UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
+                self?.pageControl.alpha = alpha
+                self?.optionsBtn.alpha = alpha
+            }).startAnimation()
         }).disposed(by: self.disposeBag)
     }
     
@@ -133,18 +134,6 @@ class NewFaceProfileViewController: UIViewController
         }))
         
         self.present(alertVC, animated: true, completion: nil)
-    }
-    
-    fileprivate func showControls()
-    {
-        self.pageControl.isHidden = false
-        self.optionsBtn.isHidden = false
-    }
-    
-    fileprivate func hideControls()
-    {
-        self.pageControl.isHidden = true
-        self.optionsBtn.isHidden = true
     }
 }
 
