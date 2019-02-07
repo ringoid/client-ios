@@ -33,7 +33,7 @@ class NewFacesViewController: BaseViewController
         self.emptyFeedLabel.text = "FEED_PULL_TO_REFRESH".localized()
         
         self.tableView.tableHeaderView = nil
-        let rowHeight = UIScreen.main.bounds.height * 3.0 / 4.0
+        let rowHeight = UIScreen.main.bounds.width * AppConfig.photoRatio
         self.tableView.rowHeight = rowHeight
         self.tableView.estimatedRowHeight = rowHeight
         self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: UIScreen.main.bounds.height - rowHeight, right: 0.0)

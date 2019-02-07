@@ -54,7 +54,7 @@ class MainLMMViewController: BaseViewController
         
         super.viewDidLoad()
         
-        let cellHeight = UIScreen.main.bounds.height * 3.0 / 4.0
+        let cellHeight = UIScreen.main.bounds.width * AppConfig.photoRatio
         self.tableView.tableHeaderView = nil
         self.tableView.rowHeight = cellHeight
         self.tableView.estimatedRowHeight = cellHeight
@@ -325,8 +325,8 @@ extension MainLMMViewController: UITableViewDataSource
     }
 }
 
-fileprivate let topTrashhold: CGFloat = UIScreen.main.bounds.height  / 4.0 * 3.0
-fileprivate let midTrashhold: CGFloat = UIScreen.main.bounds.width / 4.0 * 3.0
+fileprivate let topTrashhold: CGFloat = UIScreen.main.bounds.width * AppConfig.photoRatio
+fileprivate let midTrashhold: CGFloat = UIScreen.main.bounds.width * AppConfig.photoRatio
 
 extension MainLMMViewController: UIScrollViewDelegate
 {

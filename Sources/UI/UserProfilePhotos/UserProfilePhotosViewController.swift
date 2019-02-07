@@ -36,7 +36,7 @@ class UserProfilePhotosViewController: BaseViewController
         
         super.viewDidLoad()
         
-        let height = UIScreen.main.bounds.height / 4.0 * 3.0
+        let height = UIScreen.main.bounds.width * AppConfig.photoRatio
         self.containerTableView.rowHeight = height
         self.containerTableViewHeightConstraint.constant = height
         self.containerTableView.reloadData()

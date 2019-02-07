@@ -23,19 +23,15 @@ class DeviceServiceDefault: DeviceService
     
     var photoResolution: String
     {
-        var diff = Int.max
-        var closeResolution: String = self.resolutions.values.first!
         let displayWidth: Int = Int(UIScreen.main.bounds.width * UIScreen.main.nativeScale)
         
-        for (_, resolution) in self.resolutions.enumerated()
+        for resolutionWidth in self.resolutions.keys.sorted(by:{ $0 > $1 })
         {
-            let currentDiff = abs(resolution.key - displayWidth)
-            if currentDiff < diff {
-                diff = currentDiff
-                closeResolution = resolution.value
+            if displayWidth >= resolutionWidth {
+                return self.resolutions[resolutionWidth]!
             }
         }
         
-        return closeResolution
+        return self.resolutions.values.first!
     }
 }
