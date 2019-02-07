@@ -79,15 +79,13 @@ class LMMManager
         self.deviceService = device
         self.actionsManager = actionsManager
         
-        self.db.fetchLikesYou().bind(to: self.likesYou).disposed(by: self.disposeBag)
-        self.db.fetchMatches().bind(to: self.matches).disposed(by: self.disposeBag)
-        self.db.fetchMessages().bind(to: self.messages).disposed(by: self.disposeBag)
+        self.setupBindings()
     }
     
     func refresh() -> Observable<Void>
     {
         let chatCache = self.messages.value.map({ ChatProfileCache.create($0) })
-        self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
+        self.purge()
         
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] result -> Observable<Void> in
             
@@ -105,6 +103,24 @@ class LMMManager
             
             return self!.db.add(localLikesYou + matches + messages)
         })       
+    }
+    
+    fileprivate func setupBindings()
+    {
+        self.db.fetchLikesYou().bind(to: self.likesYou).disposed(by: self.disposeBag)
+        self.db.fetchMatches().bind(to: self.matches).disposed(by: self.disposeBag)
+        self.db.fetchMessages().bind(to: self.messages).disposed(by: self.disposeBag)
+        
+        self.db.fetchUserPhotos().subscribe(onNext:{ [weak self] photos in
+            guard photos.count == 0 else { return }
+            
+            self?.purge()
+        }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func purge()
+    {
+        self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
     }
 }
 
