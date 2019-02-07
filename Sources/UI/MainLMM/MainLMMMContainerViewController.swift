@@ -98,6 +98,12 @@ class MainLMMContainerViewController: BaseViewController
         self.input.lmmManager.notSeenMessagesCount.subscribe(onNext: { [weak self] count in
             self?.chatIndicatorView.isHidden = count == 0
         }).disposed(by: self.disposeBag)
+        
+        UIManager.shared.mainControlsVisible.asObservable().subscribe(onNext: { [weak self] state in
+            UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
+                self?.optionsContainer.alpha = state ? 1.0 : 0.0
+            }).startAnimation()
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func toggle(_ type: LMMType)
