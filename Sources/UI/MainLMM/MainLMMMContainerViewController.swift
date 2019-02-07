@@ -19,7 +19,7 @@ fileprivate let unselectedColor = UIColor(
     alpha: 1.0
 )
 
-class MainLMMContainerViewController: UIViewController
+class MainLMMContainerViewController: BaseViewController
 {
     var input: MainLMMVMInput!
     
@@ -42,6 +42,13 @@ class MainLMMContainerViewController: UIViewController
         
         self.toggle(.likesYou)
         self.setupBindings()
+    }
+    
+    override func updateLocale()
+    {
+        self.chatBtn.setTitle("LMM_HEADER_CHATS_OPTION".localized(), for: .normal)
+        self.likeYouBtn.setTitle("LMM_HEADER_LIKES_OPTION".localized(), for: .normal)
+        self.matchesBtn.setTitle("LMM_HEADER_MATCHES_OPTION".localized(), for: .normal)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
