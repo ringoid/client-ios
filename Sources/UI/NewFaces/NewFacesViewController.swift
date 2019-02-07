@@ -134,12 +134,12 @@ class NewFacesViewController: BaseViewController
     {
         let alertVC = UIAlertController(
             title: nil,
-            message: "Do you want to see who likes you, discover others, like and message them?",
+            message: "NEW_FACES_NO_PHOTO_ALERT_MESSAGE".localized(),
             preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "Add photo", style: .default, handler: { [weak self] _ in
+        alertVC.addAction(UIAlertAction(title: "NEW_FACES_NO_PHOTO_ALERT_ADD".localized(), style: .default, handler: { [weak self] _ in
             self?.viewModel?.moveToProfile()
         }))
-        alertVC.addAction(UIAlertAction(title: "Maybe later", style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "NEW_FACES_NO_PHOTO_ALERT_CANCEL".localized(), style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: { [weak self] in
             self?.tableView.headRefreshControl.endRefreshing()
