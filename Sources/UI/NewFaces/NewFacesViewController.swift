@@ -42,6 +42,11 @@ class NewFacesViewController: BaseViewController
         self.setupReloader()
     }
     
+    override func updateLocale()
+    {
+        self.emptyFeedLabel.text = "NEW_FACES_NO_NEW_ITEMS".localized()
+    }
+    
     // MARK: - Actions
     func onReload()
     {
