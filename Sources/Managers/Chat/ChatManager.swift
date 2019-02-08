@@ -20,7 +20,7 @@ class ChatManager
         self.actionsManager = actionsManager
     }
     
-    func send(_ text: String, profile: LMMProfile, photo: Photo, source: SourceFeedType)
+    func send(_ text: String, profile: LMMProfile, photo: Photo, source: SourceFeedType) -> Observable<Void>
     {
         let message = Message()
         message.text = text
@@ -38,6 +38,7 @@ class ChatManager
             photo: photo.actionInstance(),
             source: source
         )
-        self.actionsManager.commit()
+        
+        return self.actionsManager.commit()
     }
 }

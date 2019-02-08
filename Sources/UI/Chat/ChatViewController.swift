@@ -83,7 +83,10 @@ class ChatViewController: UIViewController
         
         let shouldCloseAutomatically = self.viewModel?.messages.value.count == 0
         
-        self.viewModel?.send(text)
+        self.viewModel?.send(text).subscribe(onNext: { [weak self ] _ in
+            // hide toast
+        }).disposed(by: self.disposeBag)
+        
         self.messageTextView.text = ""
         
         guard !shouldCloseAutomatically else {

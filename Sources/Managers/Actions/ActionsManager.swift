@@ -74,9 +74,9 @@ class ActionsManager
         }).disposed(by: self.disposeBag)
     }
     
-    func commit()
+    func commit() -> Observable<Void>
     {
-        self.sendQueue()
+        return self.sendQueue()
     }
     
     func likeActionProtected(_ profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
@@ -93,7 +93,7 @@ class ActionsManager
         self.stopViewAction(profile, photo: photo, sourceType: source)
         self.add(.block(reason: reason), profile: profile, photo: photo, source: source)
         self.startViewAction(profile, photo: photo)
-        self.commit()
+        self.commit().subscribe().disposed(by: self.disposeBag)
     }
     
     func startViewAction(_ profile: ActionProfile, photo: ActionPhoto)
@@ -121,10 +121,10 @@ class ActionsManager
         }).disposed(by: self.disposeBag)
     }
     
-    fileprivate func sendQueue()
+    fileprivate func sendQueue() -> Observable<Void>
     {
-        guard self.sendingActions.isEmpty else { return }
-        guard !self.queue.isEmpty else { return }
+        guard self.sendingActions.isEmpty else { return .just(()) }
+        guard !self.queue.isEmpty else { return .just(()) }
         
         let enqued = self.queue
         self.queue.removeFirst(enqued.count)
@@ -132,8 +132,8 @@ class ActionsManager
         
         print("Sending events: \(self.sendingActions.count)")
         
-        self.apiService.sendActions(self.sendingActions.compactMap({ $0.apiAction() }))
-            .subscribe(onNext: { [weak self] date in
+        return self.apiService.sendActions(self.sendingActions.compactMap({ $0.apiAction() }))
+            .do(onNext: { [weak self] date in
                 guard let `self` = self else { return }
                 
                 self.lastActionDate = date
@@ -144,7 +144,7 @@ class ActionsManager
                     
                     self.queue.insert(contentsOf: self.sendingActions, at: 0)
                     self.sendingActions.removeAll()
-            }).disposed(by: self.disposeBag)
+            }).map({ _ -> Void in return () })
     }
     
     fileprivate func setupTimerTrigger()
@@ -153,7 +153,9 @@ class ActionsManager
         self.triggerTimer = nil
         
         let timer = Timer(timeInterval: 5.0, repeats: true, block: { [weak self] _ in
-            self?.sendQueue()
+            guard let `self` = self else { return }
+            
+            self.sendQueue().subscribe().disposed(by: self.disposeBag)
         })
         self.triggerTimer = timer
         RunLoop.main.add(timer, forMode: .default)

@@ -33,9 +33,9 @@ class ChatViewModel
         self.setupBindings()
     }
     
-    func send(_ text: String)
+    func send(_ text: String) -> Observable<Void>
     {
-        self.input.chatManager.send(text,
+        return self.input.chatManager.send(text,
                                     profile: self.input.profile,
                                     photo: self.input.photo,
                                     source: self.input.source
