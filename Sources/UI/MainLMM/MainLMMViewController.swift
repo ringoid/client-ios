@@ -31,6 +31,13 @@ class MainLMMViewController: BaseViewController
     var onChatShown: (()->())?
     var onChatHidden: (()->())?
     
+    fileprivate static var feedsState: [LMMType: FeedState] = [
+        .likesYou: FeedState(),
+        .matches: FeedState(),
+        .messages: FeedState()
+    ]
+    fileprivate var isDragged: Bool = false
+    
     fileprivate var viewModel: MainLMMViewModel?
     fileprivate var feedDisposeBag: DisposeBag = DisposeBag()
     fileprivate var disposeBag: DisposeBag = DisposeBag()
@@ -38,7 +45,6 @@ class MainLMMViewController: BaseViewController
     fileprivate var chatStartDate: Date? = nil
     fileprivate var prevScrollingOffset: CGFloat = 0.0
     fileprivate var isScrollTopVisible: Bool = false
-    fileprivate var feedsState: [LMMType: FeedState] = [:]
     fileprivate var lastFeedIds: [String] = []
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
@@ -64,10 +70,9 @@ class MainLMMViewController: BaseViewController
             bottom: UIScreen.main.bounds.height - cellHeight,
             right: 0.0
         )
-        
+
         self.setupBindings()
         self.setupReloader()
-        self.resetStates()
     }
     
     override func updateTheme()
@@ -191,7 +196,7 @@ class MainLMMViewController: BaseViewController
         }
         
         // Default scenario - reloading and applying stored offset
-        let offset = self.feedsState[self.type.value]?.offset
+        let offset = MainLMMViewController.feedsState[self.type.value]?.offset
         self.tableView.reloadData()
         if let cachedOffset = offset {
             self.tableView.layoutIfNeeded()
@@ -282,7 +287,7 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func resetStates()
     {
-        self.feedsState = [
+        MainLMMViewController.feedsState = [
             .likesYou: FeedState(offset: 0.0, photos: [:]),
             .matches: FeedState(offset: 0.0, photos: [:]),
             .messages: FeedState(offset: 0.0, photos: [:])
@@ -312,7 +317,7 @@ extension MainLMMViewController: UITableViewDataSource
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "main_llm_cell") as! MainLMMCell
         if let profile = self.profiles()?.value[indexPath.row] {
-            let photoIndex: Int = self.feedsState[self.type.value]?.photos[indexPath.row] ?? 0
+            let photoIndex: Int = MainLMMViewController.feedsState[self.type.value]?.photos[indexPath.row] ?? 0
             let profileVC = MainLMMProfileViewController.create(profile, feedType: self.type.value, actionsManager: self.input.actionsManager, initialIndex: photoIndex)
             profileVC.onChatShow = { [weak self] profile, photo, vc in
                 self?.showChat(profile, photo: photo, indexPath: indexPath, profileVC: vc)
@@ -331,7 +336,7 @@ extension MainLMMViewController: UITableViewDataSource
             profileVC.currentIndex.asObservable().subscribe(onNext: { [weak self] index in
                 guard let `self` = self else { return }
                 
-                self.feedsState[self.type.value]?.photos[indexPath.row] = index
+                MainLMMViewController.feedsState[self.type.value]?.photos[indexPath.row] = index
             }).disposed(by: self.disposeBag)
             
             cell.containerView.embed(profileVC, to: self)
@@ -346,10 +351,23 @@ fileprivate let midTrashhold: CGFloat = UIScreen.main.bounds.width * AppConfig.p
 
 extension MainLMMViewController: UIScrollViewDelegate
 {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
+    {
+        self.isDragged = true
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
+    {
+        self.isDragged = false
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     {
         let offset = scrollView.contentOffset.y
-        self.feedsState[self.type.value]?.offset = offset
+        
+        if self.isDragged {
+            MainLMMViewController.feedsState[self.type.value]?.offset = offset
+        }
         
         guard offset > topTrashhold else {
             self.hideScrollToTopOption()
