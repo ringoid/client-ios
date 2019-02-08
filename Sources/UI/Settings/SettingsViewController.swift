@@ -53,6 +53,11 @@ class SettingsViewController: BaseViewController
         self.tableView.reloadData()
     }
     
+    override func updateTheme()
+    {
+        self.view.backgroundColor = BackgroundColor().uiColor()
+    }
+    
     // MARK: - Actions
     
     @IBAction func onBack()

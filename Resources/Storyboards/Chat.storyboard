@@ -74,6 +74,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="58" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H3p-mh-W6s">
                                 <rect key="frame" x="16" y="68" width="343" height="559"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chat_left_cell" id="KE6-Sh-3nk" customClass="ChatLeftCell" customModule="ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="58"/>
@@ -157,6 +158,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="7Sb-wa-NBj" id="EZa-ua-0CW"/>
                                     <outlet property="delegate" destination="7Sb-wa-NBj" id="wpy-ac-naw"/>
+                                    <outletCollection property="gestureRecognizers" destination="q49-r4-Pck" appends="YES" id="f1s-I0-c0V"/>
                                 </connections>
                             </tableView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J21-mx-HH3">
@@ -207,6 +209,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBJ-Cm-bUE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="q49-r4-Pck">
+                    <connections>
+                        <action selector="onClose" destination="7Sb-wa-NBj" id="hdb-Hr-H11"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-119.2" y="90.404797601199405"/>
         </scene>

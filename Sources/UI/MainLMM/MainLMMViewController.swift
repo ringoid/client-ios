@@ -70,6 +70,11 @@ class MainLMMViewController: BaseViewController
         self.resetStates()
     }
     
+    override func updateTheme()
+    {
+        self.view.backgroundColor = BackgroundColor().uiColor()
+    }
+    
     // MARK: - Actions
     
     @IBAction func onScrollTop()

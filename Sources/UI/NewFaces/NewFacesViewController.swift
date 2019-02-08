@@ -42,6 +42,11 @@ class NewFacesViewController: BaseViewController
         self.setupReloader()
     }
     
+    override func updateTheme()
+    {
+        self.view.backgroundColor = BackgroundColor().uiColor()
+    }
+    
     override func updateLocale()
     {
         self.emptyFeedLabel.text = "NEW_FACES_NO_NEW_ITEMS".localized()

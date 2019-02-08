@@ -62,6 +62,11 @@ class UserProfilePhotosViewController: BaseViewController
         }
     }
     
+    override func updateTheme()
+    {
+        self.view.backgroundColor = BackgroundColor().uiColor()
+    }
+    
     fileprivate func pickPhotoIfNeeded()
     {
         guard self.input.profileManager.photos.value.count == 0, self.viewModel?.isFirstTime.value == true else { return }

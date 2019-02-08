@@ -41,8 +41,7 @@ class BaseViewController: UIViewController
     
     fileprivate func setupBindings()
     {
-        ThemeManager.shared.theme.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
-            self?.view.backgroundColor = BackgroundColor().uiColor()
+        ThemeManager.shared.theme.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in            
             self?.updateTheme()
         }).disposed(by: self.disposeBag)
         
