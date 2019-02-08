@@ -168,4 +168,23 @@ extension ChatViewController: UITextViewDelegate
         self.inputHeightConstraint.constant = height
         self.view.layoutSubviews()
     }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
+    {
+        guard text != "" else { return true } // always allowing backspaces
+        
+        let contentText = textView.text as NSString
+        contentText.replacingCharacters(in: range, with: text)
+        
+        let font = textView.font!
+        var linesCount = Int(self.textSize(contentText as String).height / font.lineHeight)
+        
+        // Special case for range length equal zero
+        if text == "\n"
+        {
+            linesCount += 1
+        }
+
+        return (contentText.length <= 1000) && (linesCount <= 4)
+    }
 }
