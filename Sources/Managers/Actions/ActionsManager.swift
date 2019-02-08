@@ -74,9 +74,9 @@ class ActionsManager
         }).disposed(by: self.disposeBag)
     }
     
-    func commit() -> Observable<Void>
+    func commit()
     {
-        return self.sendQueue()
+        self.sendQueue().subscribe().disposed(by: self.disposeBag)
     }
     
     func likeActionProtected(_ profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
@@ -93,7 +93,7 @@ class ActionsManager
         self.stopViewAction(profile, photo: photo, sourceType: source)
         self.add(.block(reason: reason), profile: profile, photo: photo, source: source)
         self.startViewAction(profile, photo: photo)
-        self.commit().subscribe().disposed(by: self.disposeBag)
+        self.commit()
     }
     
     func startViewAction(_ profile: ActionProfile, photo: ActionPhoto)
