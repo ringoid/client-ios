@@ -75,11 +75,18 @@ class ChatViewController: UIViewController
     {
         guard let text = self.messageTextView.text else { return }
         
+        let shouldCloseAutomatically = self.viewModel?.messages.value.count == 0
+        
         self.viewModel?.send(text)
         self.messageTextView.text = ""
         
-        self.inputHeightConstraint.constant = 40.0
+        guard !shouldCloseAutomatically else {
+            self.onClose()
+            
+            return
+        }
         
+        self.inputHeightConstraint.constant = 40.0
         self.view.layoutSubviews()
     }
     
