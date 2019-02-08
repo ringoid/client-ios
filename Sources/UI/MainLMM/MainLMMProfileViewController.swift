@@ -49,7 +49,6 @@ class MainLMMProfileViewController: UIViewController
         guard !self.input.profile.isInvalidated else { return }
         
         self.messageBtn.setImage(UIImage(named: self.input.profile.state.iconName()), for: .normal)
-        self.messageBtn.isHidden = self.input.feedType == .likesYou
         
         self.pageControl.numberOfPages = self.input.profile.photos.count
         self.photosVCs = self.input.profile.photos.map({ photo in
@@ -100,11 +99,6 @@ class MainLMMProfileViewController: UIViewController
         self.onChatShow?(profile, profile.photos[self.currentIndex.value], weakSelf)
     }
     
-    @IBAction func onLike()
-    {
-        self.viewModel?.like(at: self.currentIndex.value)
-    }
-    
     @IBAction func onBlock()
     {
         weak var weakSelf = self
@@ -127,6 +121,10 @@ class MainLMMProfileViewController: UIViewController
                 self?.messageBtn.alpha = alpha
                 self?.optionsBtn.alpha = alpha
             }).startAnimation()
+        }).disposed(by: self.diposeBag)
+        
+        self.viewModel?.isMessaingAvailable.asObservable().subscribe(onNext: { [weak self] state in
+            self?.messageBtn.isHidden = !state
         }).disposed(by: self.diposeBag)
     }
     

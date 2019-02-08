@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 struct MainLMMProfileVMInput
 {
@@ -20,9 +22,15 @@ class MainLMMProfileViewModel
 {
     let input: MainLMMProfileVMInput
     
+    let isMessaingAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
     init(_ input: MainLMMProfileVMInput)
     {
         self.input = input
+        
+        self.setupBindings()
     }
     
     func like(at photoIndex: Int)
@@ -41,5 +49,43 @@ class MainLMMProfileViewModel
             profile: self.input.profile.actionInstance(),
             photo: self.input.profile.photos[photoIndex].actionInstance(),
             source: self.input.feedType.sourceType())
+    }
+    
+    // MARK: -
+
+    fileprivate func setupBindings()
+    {
+        self.input.profile.photos.forEach ({ photo in
+            photo.rx.observe(Photo.self, "isLiked").subscribe(onNext: { [weak self] _ in
+                self?.updateMessagingState()
+            }).disposed(by: self.disposeBag)
+        })
+    }
+    
+    fileprivate func updateMessagingState()
+    {
+        let currentValue = self.isMessaingAvailable.value
+        
+        if self.input.feedType != .likesYou {
+            if !currentValue {
+                self.isMessaingAvailable.accept(true)
+            }
+            
+            return
+        }
+        
+        for photo in self.input.profile.photos {
+            if photo.isLiked {
+                if !currentValue {
+                    self.isMessaingAvailable.accept(true)
+                }
+                
+                return
+            }
+        }
+        
+        if currentValue {
+            self.isMessaingAvailable.accept(false)
+        }
     }
 }

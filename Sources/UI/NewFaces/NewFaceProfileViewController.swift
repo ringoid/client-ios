@@ -69,12 +69,7 @@ class NewFaceProfileViewController: UIViewController
     }
     
     // MARK: - Actions
-    
-    @IBAction func onLike()
-    {
-        self.viewModel?.like(at: self.currentIndex)
-    }
-    
+        
     @IBAction func onBlock()
     {
         self.showBlockOptions()
@@ -86,7 +81,7 @@ class NewFaceProfileViewController: UIViewController
     {
         self.viewModel = NewFaceProfileViewModel(self.input)
         
-        UIManager.shared.mainControlsVisible.asObservable().subscribe(onNext: { [weak self] state in            
+        UIManager.shared.mainControlsVisible.asObservable().subscribe(onNext: { [weak self] state in
             let alpha: CGFloat = state ? 1.0 : 0.0
             
             UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
