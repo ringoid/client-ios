@@ -77,6 +77,10 @@ class ChatViewController: UIViewController
         
         self.viewModel?.send(text)
         self.messageTextView.text = ""
+        
+        self.inputHeightConstraint.constant = 40.0
+        
+        self.view.layoutSubviews()
     }
     
     // MARK: -
