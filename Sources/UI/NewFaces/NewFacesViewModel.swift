@@ -30,16 +30,20 @@ class NewFacesViewModel
     let newFacesManager: NewFacesManager
     let profileManager: UserProfileManager
     let navigationManager: NavigationManager
+    let actionsManager: ActionsManager
     
     init(_ input: NewFacesVMInput)
     {
         self.newFacesManager = input.newFacesManager
         self.profileManager = input.profileManager
         self.navigationManager = input.navigationManager
+        self.actionsManager = input.actionsManager
     }
     
     func refresh() -> Observable<Void>
     {
+        self.actionsManager.commit()
+        
         return self.newFacesManager.refresh()
     }
     

@@ -21,6 +21,7 @@ class MainLMMViewModel
 {
     let lmmManager: LMMManager
     let profileManager: UserProfileManager
+    let actionsManager: ActionsManager
     var likesYou: BehaviorRelay<[LMMProfile]> { return self.lmmManager.likesYou }
     var matches: BehaviorRelay<[LMMProfile]> { return self.lmmManager.matches }
     var messages: BehaviorRelay<[LMMProfile]> { return self.lmmManager.messages }
@@ -29,10 +30,13 @@ class MainLMMViewModel
     {
         self.lmmManager = input.lmmManager
         self.profileManager = input.profileManager
+        self.actionsManager = input.actionsManager
     }
     
     func refresh() -> Observable<Void>
     {
+        self.actionsManager.commit()
+        
         return self.lmmManager.refresh().flatMap({ [weak self] _ -> Observable<Void> in
             return self!.profileManager.refresh()
         })
