@@ -27,6 +27,7 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var messageBtn: UIButton!
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
+    @IBOutlet fileprivate weak var messageBtnTopConstraint: NSLayoutConstraint!
     
     static func create(_ profile: LMMProfile, feedType: LMMType, actionsManager: ActionsManager, initialIndex: Int) -> MainLMMProfileViewController
     {
@@ -48,6 +49,7 @@ class MainLMMProfileViewController: UIViewController
         
         guard !self.input.profile.isInvalidated else { return }
         
+        self.updateMessageBtnOffset()
         self.messageBtn.setImage(UIImage(named: self.input.profile.state.iconName()), for: .normal)
         
         self.pageControl.numberOfPages = self.input.profile.photos.count
@@ -166,6 +168,11 @@ class MainLMMProfileViewController: UIViewController
         }))
         
         self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func updateMessageBtnOffset()
+    {
+        self.messageBtnTopConstraint.constant = self.input.feedType != .likesYou ? 138.0 : 228.0
     }
 }
 

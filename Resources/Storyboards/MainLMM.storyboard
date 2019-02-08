@@ -362,7 +362,7 @@ see who likes you</string>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
                             <constraint firstItem="mPS-Ki-Bpa" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="topMargin" constant="17" id="OMt-DE-Crh"/>
                             <constraint firstItem="mPS-Ki-Bpa" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leadingMargin" constant="17" id="SGF-af-fD4"/>
-                            <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="138" id="UE3-94-yVQ"/>
+                            <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="138" id="UE3-94-yVQ" userLabel="MessageTopOffset"/>
                             <constraint firstAttribute="trailing" secondItem="OWQ-dc-NR9" secondAttribute="trailing" id="Wcg-X3-5ye"/>
                             <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="XAG-qi-5bb"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="gA6-9y-Jou"/>
@@ -372,6 +372,7 @@ see who likes you</string>
                     </view>
                     <connections>
                         <outlet property="messageBtn" destination="2Wc-Ed-6t2" id="CMh-0H-xuQ"/>
+                        <outlet property="messageBtnTopConstraint" destination="UE3-94-yVQ" id="626-7A-0v6"/>
                         <outlet property="optionsBtn" destination="lGR-yG-LEW" id="Yk6-ZA-bUI"/>
                         <outlet property="pageControl" destination="mPS-Ki-Bpa" id="nuR-eb-yLf"/>
                     </connections>
