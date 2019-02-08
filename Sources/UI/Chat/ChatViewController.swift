@@ -17,6 +17,8 @@ class ChatViewController: UIViewController
     fileprivate var viewModel: ChatViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
+    fileprivate static var messagesCache: [String: String] = [:]
+    
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var messageTextView: UITextView!
     @IBOutlet fileprivate weak var inputBottomConstraint: NSLayoutConstraint!
@@ -38,6 +40,8 @@ class ChatViewController: UIViewController
         KeyboardListener.shared.delegate = self
         
         self.tableView.transform = CGAffineTransform(rotationAngle: -.pi)
+        
+        self.messageTextView.text = ChatViewController.messagesCache[self.input.profile.id]
         
         self.setupBindings()
     }
@@ -67,13 +71,15 @@ class ChatViewController: UIViewController
     
     @IBAction func onClose()
     {
+        ChatViewController.messagesCache[self.input.profile.id] = self.messageTextView.text
+        
         self.messageTextView.resignFirstResponder()
         self.input.onClose?()
     }
     
     @IBAction func onSend()
     {
-        guard let text = self.messageTextView.text else { return }
+        guard let text = self.messageTextView.text, text.count > 0 else { return }
         
         let shouldCloseAutomatically = self.viewModel?.messages.value.count == 0
         
