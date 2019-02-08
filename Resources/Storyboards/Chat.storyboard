@@ -159,6 +159,22 @@
                                     <outlet property="delegate" destination="7Sb-wa-NBj" id="wpy-ac-naw"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J21-mx-HH3">
+                                <rect key="frame" x="139.5" y="555" width="96" height="32"/>
+                                <color key="backgroundColor" red="0.2627450980392157" green="0.5490196078431373" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="96" id="BBt-Fu-0Eh"/>
+                                    <constraint firstAttribute="height" constant="32" id="tA2-hG-Piu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -175,6 +191,8 @@
                             <constraint firstItem="Gu8-Zv-Egg" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" constant="2" id="dkE-yI-QpT"/>
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="trailing" secondItem="qPj-U6-bjV" secondAttribute="trailing" id="iZx-Xs-XS7"/>
                             <constraint firstAttribute="trailing" secondItem="H3p-mh-W6s" secondAttribute="trailing" constant="16" id="kFu-OV-Myh"/>
+                            <constraint firstItem="J21-mx-HH3" firstAttribute="centerX" secondItem="H5L-B8-AIS" secondAttribute="centerX" id="tHa-CC-drI"/>
+                            <constraint firstItem="cjc-8j-yFq" firstAttribute="top" secondItem="J21-mx-HH3" secondAttribute="bottom" constant="40" id="tMz-I1-AQ1"/>
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" id="v0j-UO-ASI"/>
                             <constraint firstAttribute="bottom" secondItem="cjc-8j-yFq" secondAttribute="bottom" id="wfc-o3-Tec" userLabel="InputBottom"/>
                         </constraints>
@@ -185,6 +203,7 @@
                         <outlet property="inputHeightConstraint" destination="Wjg-rX-7Lb" id="19f-jC-htu"/>
                         <outlet property="messageTextView" destination="FHy-pP-KSv" id="aLs-qn-RyH"/>
                         <outlet property="tableView" destination="H3p-mh-W6s" id="AZR-2p-pDt"/>
+                        <outlet property="toastLabel" destination="J21-mx-HH3" id="22c-8x-sm7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBJ-Cm-bUE" userLabel="First Responder" sceneMemberID="firstResponder"/>
