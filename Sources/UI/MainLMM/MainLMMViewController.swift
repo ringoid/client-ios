@@ -350,7 +350,7 @@ extension MainLMMViewController: UITableViewDataSource
     }
 }
 
-fileprivate let topTrashhold: CGFloat = UIScreen.main.bounds.width * AppConfig.photoRatio
+fileprivate let topTrashhold: CGFloat = 0.0
 fileprivate let midTrashhold: CGFloat = UIScreen.main.bounds.width * AppConfig.photoRatio
 
 extension MainLMMViewController: UIScrollViewDelegate
