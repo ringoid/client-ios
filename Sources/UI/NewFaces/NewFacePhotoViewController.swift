@@ -86,10 +86,10 @@ class NewFacePhotoViewController: UIViewController
         guard let input = self.input, let photo = self.photo else { return }
         
         if photo.isLiked {
-            input.actionsManager.add([.unlike],
-                                     profile: input.profile.actionInstance(),
-                                     photo: photo.actionInstance(),
-                                     source: .newFaces
+            input.actionsManager.unlikeActionProtected(
+                input.profile.actionInstance(),
+                photo: photo.actionInstance(),
+                source: input.sourceType
             )
         } else {
             input.actionsManager.likeActionProtected(

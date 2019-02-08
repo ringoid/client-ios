@@ -86,6 +86,13 @@ class ActionsManager
         self.startViewAction(profile, photo: photo)
     }
     
+    func unlikeActionProtected(_ profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
+    {
+        self.stopViewAction(profile, photo: photo, sourceType: source)
+        self.add(.unlike, profile: profile, photo: photo, source: source)
+        self.startViewAction(profile, photo: photo)
+    }
+    
     func blockActionProtected(_ reason: BlockReason, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         self.clearProfileResources(profile)
@@ -94,6 +101,13 @@ class ActionsManager
         self.add(.block(reason: reason), profile: profile, photo: photo, source: source)
         self.startViewAction(profile, photo: photo)
         self.commit()
+    }
+    
+    func openChatActionProtected(_ count: Int, timeSec: Int,  profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
+    {
+        self.stopViewAction(profile, photo: photo, sourceType: source)
+        self.add(.openChat(openChatCount: count, openChatTimeSec: timeSec), profile: profile, photo: photo, source: source)
+        self.startViewAction(profile, photo: photo)
     }
     
     func startViewAction(_ profile: ActionProfile, photo: ActionPhoto)

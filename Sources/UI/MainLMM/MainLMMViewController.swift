@@ -230,13 +230,14 @@ class MainLMMViewController: BaseViewController
         if let startDate = self.chatStartDate {
             let interval = Int(Date().timeIntervalSince(startDate))
             self.chatStartDate = nil
-            
-            self.input.actionsManager.add(
-                .openChat(openChatCount: 1, openChatTimeSec: interval),
+
+            self.input.actionsManager.openChatActionProtected(
+                1,
+                timeSec: interval,
                 profile: profile.actionInstance(),
                 photo: photo.actionInstance(),
                 source: self.type.value.sourceType()
-            )
+            )            
         }
         
         self.chatConstraint.constant = 0.0
