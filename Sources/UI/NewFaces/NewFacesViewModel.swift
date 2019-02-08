@@ -42,9 +42,10 @@ class NewFacesViewModel
     
     func refresh() -> Observable<Void>
     {
-        self.actionsManager.commit()
-        
-        return self.newFacesManager.refresh()
+        self.actionsManager.finishViewActions(for: self.profiles.value, source: .newFaces)
+        return self.actionsManager.sendQueue().flatMap({ _ -> Observable<Void> in
+            return self.newFacesManager.refresh()
+        })
     }
     
     func fetchNext() -> Observable<Void>

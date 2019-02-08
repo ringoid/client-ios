@@ -121,6 +121,9 @@ class MainLMMViewController: BaseViewController
     fileprivate func reload()
     {
         self.isUpdated = true
+        
+        // TODO: move "finishViewActions" logic inside view model
+        self.input.actionsManager.finishViewActions(for: self.profiles()?.value ?? [], source: self.type.value.sourceType())
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
             

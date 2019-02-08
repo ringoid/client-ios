@@ -79,6 +79,20 @@ class ActionsManager
         self.sendQueue().subscribe().disposed(by: self.disposeBag)
     }
     
+    func finishViewActions(for profiles: [Profile], source: SourceFeedType)
+    {
+        profiles.forEach { profile in
+            guard !profile.isInvalidated else { return }
+            
+            profile.photos.forEach { photo in
+                guard !photo.isInvalidated else { return }
+                guard let _ = self.viewActionsMap[photo.id] else { return }
+                
+                self.stopViewAction(profile.actionInstance(), photo: photo.actionInstance(), sourceType: source)
+            }
+        }
+    }
+    
     func likeActionProtected(_ profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         self.stopViewAction(profile, photo: photo, sourceType: source)
@@ -126,8 +140,6 @@ class ActionsManager
         self.add(FeedAction.view(viewCount: 1, viewTimeSec: Int(interval)), profile: profile, photo: photo, source: sourceType)
     }
     
-    // MARK: -
-    
     func inqueueStoredActions()
     {
         self.db.fetchActions().take(1).subscribe(onNext: { [weak self] actions in
@@ -135,7 +147,7 @@ class ActionsManager
         }).disposed(by: self.disposeBag)
     }
     
-    fileprivate func sendQueue() -> Observable<Void>
+    func sendQueue() -> Observable<Void>
     {
         guard self.sendingActions.isEmpty else { return .just(()) }
         guard !self.queue.isEmpty else { return .just(()) }
@@ -160,6 +172,8 @@ class ActionsManager
                     self.sendingActions.removeAll()
             }).map({ _ -> Void in return () })
     }
+    
+    // MARK: -
     
     fileprivate func setupTimerTrigger()
     {

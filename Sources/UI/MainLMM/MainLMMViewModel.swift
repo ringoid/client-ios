@@ -34,7 +34,7 @@ class MainLMMViewModel
     }
     
     func refresh() -> Observable<Void>
-    {
+    {        
         self.actionsManager.commit()
         
         return self.lmmManager.refresh().flatMap({ [weak self] _ -> Observable<Void> in
