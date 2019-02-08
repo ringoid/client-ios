@@ -23,6 +23,8 @@ class MainLMMContainerViewController: BaseViewController
 {
     var input: MainLMMVMInput!
     
+    fileprivate static var feedTypeCache: LMMType = .likesYou
+    
     fileprivate var lmmVC: MainLMMViewController?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
@@ -40,7 +42,7 @@ class MainLMMContainerViewController: BaseViewController
         
         super.viewDidLoad()
         
-        self.toggle(.likesYou)
+        self.toggle(MainLMMContainerViewController.feedTypeCache)
         self.setupBindings()
     }
     
@@ -108,6 +110,8 @@ class MainLMMContainerViewController: BaseViewController
     
     fileprivate func toggle(_ type: LMMType)
     {
+        MainLMMContainerViewController.feedTypeCache = type
+        
         switch type {
         case .likesYou:
             self.likeYouBtn.setTitleColor(selectedColor, for: .normal)
