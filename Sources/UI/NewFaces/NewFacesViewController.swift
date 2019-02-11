@@ -69,6 +69,7 @@ class NewFacesViewController: BaseViewController
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
                 self?.tableView.headRefreshControl.endRefreshing()
+                self?.tableView.footRefreshControl.endRefreshing()
         }).disposed(by: self.disposeBag)
     }
     
@@ -88,7 +89,11 @@ class NewFacesViewController: BaseViewController
     {
         self.tableView.bindHeadRefreshHandler({ [weak self] in
             self?.onReload()
-            }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
+        }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
+        
+        self.tableView.bindFootRefreshHandler({ [weak self] in
+            self?.onReload()
+        }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
     }
     
     fileprivate func updateFeed()
@@ -155,6 +160,7 @@ class NewFacesViewController: BaseViewController
         
         self.present(alertVC, animated: true, completion: { [weak self] in
             self?.tableView.headRefreshControl.endRefreshing()
+            self?.tableView.footRefreshControl.endRefreshing()
         })
     }
 }

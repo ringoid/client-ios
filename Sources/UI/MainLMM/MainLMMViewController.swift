@@ -124,10 +124,6 @@ class MainLMMViewController: BaseViewController
         self.tableView.bindHeadRefreshHandler({ [weak self] in
             self?.reload()
             }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
-        
-        self.tableView.bindFootRefreshHandler({ [weak self] in
-            self?.reload()
-            }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
     }
     
     fileprivate func reload()
@@ -142,8 +138,7 @@ class MainLMMViewController: BaseViewController
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
                 self?.resetStates()
-                self?.tableView.headRefreshControl.endRefreshing()
-                self?.tableView.footRefreshControl.endRefreshing()
+                self?.tableView.headRefreshControl.endRefreshing()                
         }).disposed(by: self.disposeBag)
     }
     
