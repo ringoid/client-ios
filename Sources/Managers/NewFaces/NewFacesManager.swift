@@ -65,6 +65,7 @@ class NewFacesManager
     
     func purge()
     {
+        print("New faces: PURGE")
         self.db.resetNewFaces().subscribe().disposed(by: self.disposeBag)
     }
     

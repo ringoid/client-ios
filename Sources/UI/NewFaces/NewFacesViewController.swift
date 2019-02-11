@@ -17,6 +17,7 @@ class NewFacesViewController: BaseViewController
     fileprivate var viewModel: NewFacesViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var lastFeedIds: [String] = []
+    fileprivate var lastFetchCount: Int = -1
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
@@ -61,6 +62,7 @@ class NewFacesViewController: BaseViewController
             return
         }
         
+        self.lastFetchCount = -1
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
             
@@ -133,7 +135,7 @@ class NewFacesViewController: BaseViewController
             
             return
         }
-        
+
         // Paging case
         let pageRange = lastItemsCount..<totalCount
         self.lastFeedIds.append(contentsOf: profiles[pageRange].map({ $0.id }))
@@ -192,16 +194,24 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
+        print("index: \(indexPath.row) total: \(self.viewModel!.profiles.value.count)")
         guard let isFetching = self.viewModel?.isFetching, !isFetching else { return }
-        guard let totalCount = self.viewModel?.profiles.value.count, totalCount > 5, totalCount - indexPath.row <= 5 else { return }
+        guard
+            let totalCount = self.viewModel?.profiles.value.count,
+            totalCount != self.lastFetchCount,
+            (totalCount - indexPath.row) <= 5
+            else { return }
 
         print("fetching next page")
         self.loadingActivityView.startAnimating()
         self.feedEndLabel.isHidden = true
-        self.viewModel?.fetchNext().subscribe(onError: { [weak self] error in
-            guard let `self` = self else { return }
-
-            showError(error, vc: self)
+        self.viewModel?.fetchNext().subscribe(
+            onNext: { [weak self] _ in
+                self?.lastFetchCount = totalCount
+            }, onError: { [weak self] error in
+                guard let `self` = self else { return }
+                
+                showError(error, vc: self)
             }, onCompleted: { [weak self] in
                 self?.viewModel?.finishFetching()
                 self?.loadingActivityView.stopAnimating()
