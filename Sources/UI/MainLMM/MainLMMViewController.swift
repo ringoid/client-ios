@@ -94,7 +94,9 @@ class MainLMMViewController: BaseViewController
     
     @IBAction func onScrollTop()
     {
-        self.tableView.setContentOffset(.zero, animated: false)
+        self.hideScrollToTopOption()
+        let topOffset = self.view.safeAreaInsets.top + self.tableView.contentInset.top
+        self.tableView.setContentOffset(CGPoint(x: 0.0, y: -topOffset), animated: false)
     }
     
     // MARK: -
@@ -379,10 +381,10 @@ extension MainLMMViewController: UIScrollViewDelegate
     {
         let offset = scrollView.contentOffset.y
         
-        if self.isDragged {
-            MainLMMViewController.feedsState[self.type.value]?.offset = offset
-        }
+        guard self.isDragged else { return }
         
+        MainLMMViewController.feedsState[self.type.value]?.offset = offset
+                
         guard offset > topTrashhold else {
             self.hideScrollToTopOption()
             self.prevScrollingOffset = 0.0
