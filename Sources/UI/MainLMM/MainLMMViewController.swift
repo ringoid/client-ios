@@ -80,6 +80,16 @@ class MainLMMViewController: BaseViewController
         self.view.backgroundColor = BackgroundColor().uiColor()
     }
     
+    override func viewDidLayoutSubviews()
+    {
+        super.viewDidLayoutSubviews()
+     
+        // Applying offset after view size is set
+        
+        self.isUpdated = true
+        self.updateFeed()
+    }
+    
     // MARK: - Actions
     
     @IBAction func onScrollTop()
