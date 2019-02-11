@@ -37,6 +37,11 @@ class AuthViewController: BaseViewController
         self.viewModel?.enableFirstTimeFlow()
     }
     
+    override func updateTheme()
+    {
+        self.view.backgroundColor = BackgroundColor().uiColor()
+    }
+    
     @IBAction func onRegister()
     {
         self.viewModel?.register().subscribe(onError: { [weak self] error in

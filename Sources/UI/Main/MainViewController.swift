@@ -38,6 +38,11 @@ class MainViewController: BaseViewController
         self.setupBindings()        
     }
     
+    override func updateTheme()
+    {
+        self.view.backgroundColor = BackgroundColor().uiColor()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "embed_container"
