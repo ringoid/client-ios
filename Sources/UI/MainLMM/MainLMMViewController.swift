@@ -80,12 +80,15 @@ class MainLMMViewController: BaseViewController
         self.view.backgroundColor = BackgroundColor().uiColor()
     }
     
+    fileprivate var isInitialLayout: Bool = true    
     override func viewDidLayoutSubviews()
     {
         super.viewDidLayoutSubviews()
      
         // Applying offset after view size is set
+        guard isInitialLayout else { return }
         
+        self.isInitialLayout = false
         self.isUpdated = true
         self.updateFeed()
     }
@@ -308,7 +311,9 @@ class MainLMMViewController: BaseViewController
     fileprivate func scrollTop(to index: Int)
     {
         let height = UIScreen.main.bounds.width * AppConfig.photoRatio
-        self.tableView.setContentOffset(CGPoint(x: 0.0, y: CGFloat(index) * height), animated: true)
+        let topOffset = self.view.safeAreaInsets.top
+
+        self.tableView.setContentOffset(CGPoint(x: 0.0, y: CGFloat(index) * height - topOffset), animated: true)
     }
 }
 
@@ -330,8 +335,11 @@ extension MainLMMViewController: UITableViewDataSource
         if let profile = self.profiles()?.value[indexPath.row] {
             let photoIndex: Int = MainLMMViewController.feedsState[self.type.value]?.photos[indexPath.row] ?? 0
             let profileVC = MainLMMProfileViewController.create(profile, feedType: self.type.value, actionsManager: self.input.actionsManager, initialIndex: photoIndex)
-            profileVC.onChatShow = { [weak self] profile, photo, vc in
-                self?.showChat(profile, photo: photo, indexPath: indexPath, profileVC: vc)
+            profileVC.onChatShow = { [weak self, weak cell] profile, photo, vc in
+                guard let `cell` = cell else { return }
+                guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
+                
+                self?.showChat(profile, photo: photo, indexPath: cellIndexPath, profileVC: vc)
             }
             profileVC.onChatHide = { [weak self] profile, photo, vc in
                 self?.hideChat(profileVC, profile: profile, photo: photo)
