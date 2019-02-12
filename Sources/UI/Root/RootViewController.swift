@@ -38,7 +38,11 @@ class RootViewController: BaseViewController {
         super.viewDidAppear(animated)
         
         self.subscribeToAuthState()
-        self.subscribeToPhotosState()
+    }
+    
+    override func updateTheme()
+    {
+        self.view.backgroundColor = BackgroundColor().uiColor()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -114,19 +118,6 @@ class RootViewController: BaseViewController {
                 } else {
                     self?.move(to: .main)
                 }
-            }
-        }).disposed(by: disposeBag)
-    }
-    
-    fileprivate func subscribeToPhotosState()
-    {
-        self.appManager.profileManager.photos.asObservable().subscribe ({ [weak self] event in
-            guard self?.appManager.apiService.isAuthorized.value == true else { return }
-            
-            if event.element?.count == 0 {
-                self?.move(to: .userProfile)
-            } else {
-                self?.move(to: .main)
             }
         }).disposed(by: disposeBag)
     }

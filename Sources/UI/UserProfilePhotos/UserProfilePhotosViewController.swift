@@ -147,6 +147,8 @@ class UserProfilePhotosViewController: BaseViewController
             let vc = self.photosVCs[startIndex]
             let direction: UIPageViewController.NavigationDirection = (photos.count - 1) == startIndex ? .reverse : .forward
             self.pagesVC?.setViewControllers([vc], direction: direction, animated: false, completion: nil)
+        } else {
+            self.pagesVC?.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
         }
         
         self.currentIndex = startIndex
