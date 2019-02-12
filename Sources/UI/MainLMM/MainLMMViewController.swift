@@ -131,6 +131,12 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func reload()
     {
+        if self.viewModel?.isPhotosAdded == false {
+            self.showAddPhotosOptions()
+            
+            return
+        }
+        
         self.isUpdated = true
         
         UIView.animate(withDuration: 0.095) {
@@ -321,6 +327,22 @@ class MainLMMViewController: BaseViewController
         let topOffset = self.view.safeAreaInsets.top
 
         self.tableView.setContentOffset(CGPoint(x: 0.0, y: CGFloat(index) * height - topOffset), animated: true)
+    }
+    
+    fileprivate func showAddPhotosOptions()
+    {
+        let alertVC = UIAlertController(
+            title: nil,
+            message: "NEW_FACES_NO_PHOTO_ALERT_MESSAGE".localized(),
+            preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "NEW_FACES_NO_PHOTO_ALERT_ADD".localized(), style: .default, handler: { [weak self] _ in
+            self?.viewModel?.moveToProfile()
+        }))
+        alertVC.addAction(UIAlertAction(title: "NEW_FACES_NO_PHOTO_ALERT_CANCEL".localized(), style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: { [weak self] in
+            self?.tableView.headRefreshControl.endRefreshing()            
+        })
     }
 }
 

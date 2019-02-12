@@ -15,6 +15,7 @@ struct MainLMMVMInput
     let actionsManager: ActionsManager
     let chatManager: ChatManager
     let profileManager: UserProfileManager
+    let navigationManager: NavigationManager
 }
 
 class MainLMMViewModel
@@ -22,15 +23,23 @@ class MainLMMViewModel
     let lmmManager: LMMManager
     let profileManager: UserProfileManager
     let actionsManager: ActionsManager
+    let navigationManager: NavigationManager
+    
     var likesYou: BehaviorRelay<[LMMProfile]> { return self.lmmManager.likesYou }
     var matches: BehaviorRelay<[LMMProfile]> { return self.lmmManager.matches }
     var messages: BehaviorRelay<[LMMProfile]> { return self.lmmManager.messages }
+    
+    var isPhotosAdded: Bool
+    {
+        return !self.profileManager.photos.value.isEmpty
+    }
     
     init(_ input: MainLMMVMInput)
     {
         self.lmmManager = input.lmmManager
         self.profileManager = input.profileManager
         self.actionsManager = input.actionsManager
+        self.navigationManager = input.navigationManager
     }
     
     func refresh() -> Observable<Void>
@@ -40,5 +49,10 @@ class MainLMMViewModel
         return self.lmmManager.refresh().flatMap({ [weak self] _ -> Observable<Void> in
             return self!.profileManager.refresh()
         })
+    }
+    
+    func moveToProfile()
+    {
+        self.navigationManager.mainItem.accept(.profile)
     }
 }

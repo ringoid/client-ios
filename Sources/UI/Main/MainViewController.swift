@@ -114,7 +114,13 @@ class MainViewController: BaseViewController
     {
         let storyboard = Storyboards.mainLMM()
         guard let vc = storyboard.instantiateInitialViewController() as? MainLMMContainerViewController else { return }
-        vc.input = MainLMMVMInput(lmmManager: self.input.lmmManager, actionsManager: self.input.actionsManager, chatManager: self.input.chatManager, profileManager: self.input.profileManager)
+        vc.input = MainLMMVMInput(
+            lmmManager: self.input.lmmManager,
+            actionsManager: self.input.actionsManager,
+            chatManager: self.input.chatManager,
+            profileManager: self.input.profileManager,
+            navigationManager: self.input.navigationManager
+        )
         
         self.containerVC.embed(vc)
     }
