@@ -157,14 +157,14 @@ class UserProfilePhotosViewController: BaseViewController
     fileprivate func showDeletionAlert()
     {
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertVC.addAction(UIAlertAction(title: "Delete Photo", style: .destructive, handler: ({ _ in
+        alertVC.addAction(UIAlertAction(title: "PROFILE_DELETE_PHOTO".localized(), style: .destructive, handler: ({ _ in
             self.showControls()
             
             guard let photo = self.viewModel?.photos.value[self.currentIndex] else { return }
             
             self.input.profileManager.deletePhoto(photo)
         })))
-        alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+        alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: { _ in
             self.showControls()
         }))
         
@@ -174,16 +174,15 @@ class UserProfilePhotosViewController: BaseViewController
     
     fileprivate func showOptionsAlert()
     {
-        let alertVC = UIAlertController(title: "What do you want to do next?", message: nil, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "Discover users nearby", style: .default, handler: ({ [weak self] _ in
+        let alertVC = UIAlertController(title: "PROFILE_ADD_ALERT_TITLE".localized(), message: nil, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "PROFILE_ADD_PHOTO".localized(), style: .default, handler: ({ [weak self] _ in
+            self?.pickPhoto()
+        })))
+        alertVC.addAction(UIAlertAction(title: "PROFILE_DISCOVER_USERS".localized(), style: .default, handler: ({ [weak self] _ in
             self?.viewModel?.moveToSearch()
         })))
         
-        alertVC.addAction(UIAlertAction(title: "Add another photo", style: .default, handler: ({ [weak self] _ in
-            self?.pickPhoto()
-        })))
-        
-        alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "CLOSE_OPTION".localized(), style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
     }
@@ -223,16 +222,14 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
     {
         guard let cropRect = info[.cropRect] as? CGRect, let image = info[.originalImage] as? UIImage else { return }
         guard let croppedImage = image.crop(rect: cropRect) else { return }
-        
-        self.viewModel?.isFirstTime.accept(false)
-        
-        let prevCount = self.viewModel?.photos.value.count
-        
+
         self.viewModel?.add(croppedImage).subscribe(onNext: ({ [weak self] photo in
             self?.viewModel?.lastPhotoId.accept(nil)
             self?.lastClientPhotoId = photo.clientId
             
-            guard prevCount == 0 else { return }
+            guard self?.viewModel?.isFirstTime.value == true else { return }
+            
+            self?.viewModel?.isFirstTime.accept(false)
             
             DispatchQueue.main.async {
                 self?.showOptionsAlert()

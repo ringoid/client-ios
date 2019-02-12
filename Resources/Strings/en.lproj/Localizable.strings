@@ -8,6 +8,7 @@
 
 "CANCEL_OPTION" = "Cancel";
 "DELETE_OPTION" = "Delete";
+"CLOSE_OPTION" = "Close";
 
 "BLOCK_REASON_INAPPROPRIATE" = "Inappropriate content";
 "BLOCK_REASON_STOLEN" = "Stolen photos, Copyright Infringment";
@@ -40,3 +41,8 @@
 "NEW_FACES_NO_NEW_ITEMS" = "No one new around";
 
 "CHAT_MESSAGE_SENT" = "Sent";
+
+"PROFILE_DELETE_PHOTO" = "Delete Photo";
+"PROFILE_DISCOVER_USERS" = "Discover users nearby";
+"PROFILE_ADD_PHOTO" = "Add another photo";
+"PROFILE_ADD_ALERT_TITLE" = "What do you want to do next?";
