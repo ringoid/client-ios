@@ -81,31 +81,39 @@ class NewFaceProfileViewController: UIViewController
     {
         self.viewModel = NewFaceProfileViewModel(self.input)
         
-        UIManager.shared.mainControlsVisible.asObservable().subscribe(onNext: { [weak self] state in
-            let alpha: CGFloat = state ? 1.0 : 0.0
+        UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
+            let alpha: CGFloat = state ? 0.0 : 1.0
             
             UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
                 self?.pageControl.alpha = alpha
                 self?.optionsBtn.alpha = alpha
             }).startAnimation()
         }).disposed(by: self.disposeBag)
+        
+        UIManager.shared.chatModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
+            let alpha: CGFloat = state ? 0.0 : 1.0
+            
+            UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
+                self?.pageControl.alpha = alpha
+            }).startAnimation()
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func showBlockOptions()
     {
-        UIManager.shared.mainControlsVisible.accept(false)
+        UIManager.shared.blockModeEnabled.accept(true)
         onBlockOptionsWillShow?()
         
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "BLOCK_OPTION".localized(), style: .default, handler: { _ in
-            UIManager.shared.mainControlsVisible.accept(true)
+            UIManager.shared.blockModeEnabled.accept(false)
             self.viewModel?.block(at: self.currentIndex, reason: BlockReason(rawValue: 0)!)
         }))
         alertVC.addAction(UIAlertAction(title: "BLOCK_REPORT_OPTION".localized(), style: .default, handler: { _ in
             self.showBlockReasonOptions()
         }))
         alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: { _ in
-            UIManager.shared.mainControlsVisible.accept(true)
+            UIManager.shared.blockModeEnabled.accept(false)
         }))
         
         self.present(alertVC, animated: true, completion: nil)
@@ -119,13 +127,13 @@ class NewFaceProfileViewController: UIViewController
         
         for reason in BlockReason.reportResons() {
             alertVC.addAction(UIAlertAction(title: reason.title(), style: .default) { _ in
-                UIManager.shared.mainControlsVisible.accept(true)
+                UIManager.shared.blockModeEnabled.accept(false)
                 self.viewModel?.block(at: self.currentIndex, reason: reason)
             })
         }
         
         alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: { _ in
-            UIManager.shared.mainControlsVisible.accept(true)
+            UIManager.shared.blockModeEnabled.accept(false)
         }))
         
         self.present(alertVC, animated: true, completion: nil)

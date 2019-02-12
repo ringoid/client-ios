@@ -127,8 +127,16 @@ class NewFacePhotoViewController: UIViewController
             self?.likeView?.image = UIImage(named: imgName)
         }).disposed(by: self.disposeBag)
         
-        UIManager.shared.mainControlsVisible.asObservable().subscribe(onNext: { [weak self] state in
-            let alpha: CGFloat = state ? 1.0 : 0.0
+        UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
+            let alpha: CGFloat = state ? 0.0 : 1.0
+            
+            UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
+                self?.likeView.alpha = alpha
+            }).startAnimation()
+        }).disposed(by: self.disposeBag)
+        
+        UIManager.shared.chatModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
+            let alpha: CGFloat = state ? 0.0 : 1.0
             
             UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
                 self?.likeView.alpha = alpha

@@ -57,12 +57,12 @@ class MainLMMContainerViewController: BaseViewController
     {
         if segue.identifier == "embed_lmm", let vc = segue.destination as? MainLMMViewController {
             vc.input = self.input
-            vc.onChatShown = { [weak self] in
-                self?.optionsContainer.isHidden = true
-            }
-            vc.onChatHidden = { [weak self] in
-                self?.optionsContainer.isHidden = false
-            }
+//            vc.onChatShown = { [weak self] in
+//                self?.optionsContainer.isHidden = true
+//            }
+//            vc.onChatHidden = { [weak self] in
+//                self?.optionsContainer.isHidden = false
+//            }
             
             self.lmmVC = vc
         }
@@ -101,9 +101,15 @@ class MainLMMContainerViewController: BaseViewController
             self?.chatIndicatorView.isHidden = count == 0
         }).disposed(by: self.disposeBag)
         
-        UIManager.shared.mainControlsVisible.asObservable().subscribe(onNext: { [weak self] state in
+        UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
-                self?.optionsContainer.alpha = state ? 1.0 : 0.0
+                self?.optionsContainer.alpha = state ? 0.0 : 1.0
+            }).startAnimation()
+        }).disposed(by: self.disposeBag)
+        
+        UIManager.shared.chatModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
+            UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
+                self?.optionsContainer.alpha = state ? 0.0 : 1.0
             }).startAnimation()
         }).disposed(by: self.disposeBag)
     }

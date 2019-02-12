@@ -82,14 +82,12 @@ class MainLMMProfileViewController: UIViewController
     func showNotChatControls()
     {
         self.messageBtn.setImage(UIImage(named: self.input.profile.state.iconName()), for: .normal)
-        self.pageControl.isHidden = false
-        self.messageBtn.isHidden = false
+        UIManager.shared.chatModeEnabled.accept(false)
     }
     
     func hideNotChatControls()
     {
-        self.pageControl.isHidden = true
-        self.messageBtn.isHidden = true
+        UIManager.shared.chatModeEnabled.accept(true)
     }
     
     // MARK: - Actions
@@ -115,13 +113,22 @@ class MainLMMProfileViewController: UIViewController
     {
         self.viewModel = MainLMMProfileViewModel(self.input)
         
-        UIManager.shared.mainControlsVisible.asObservable().subscribe(onNext: { [weak self] state in
-            let alpha: CGFloat = state ? 1.0 : 0.0
+        UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
+            let alpha: CGFloat = state ? 0.0 : 1.0
             
             UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
                 self?.pageControl.alpha = alpha
                 self?.messageBtn.alpha = alpha
                 self?.optionsBtn.alpha = alpha
+            }).startAnimation()
+        }).disposed(by: self.diposeBag)
+        
+        UIManager.shared.chatModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
+            let alpha: CGFloat = state ? 0.0 : 1.0
+            
+            UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
+                self?.pageControl.alpha = alpha
+                self?.messageBtn.alpha = alpha
             }).startAnimation()
         }).disposed(by: self.diposeBag)
         
@@ -132,19 +139,19 @@ class MainLMMProfileViewController: UIViewController
     
     fileprivate func showBlockOptions()
     {
-        UIManager.shared.mainControlsVisible.accept(false)
+        UIManager.shared.blockModeEnabled.accept(true)
         onBlockOptionsWillShow?()
         
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "BLOCK_OPTION".localized(), style: .default, handler: { _ in
-            UIManager.shared.mainControlsVisible.accept(true)
+            UIManager.shared.blockModeEnabled.accept(false)
             self.viewModel?.block(at: self.currentIndex.value, reason: BlockReason(rawValue: 0)!)
         }))
         alertVC.addAction(UIAlertAction(title: "BLOCK_REPORT_OPTION".localized(), style: .default, handler: { _ in
             self.showBlockReasonOptions()
         }))
         alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: { _ in
-            UIManager.shared.mainControlsVisible.accept(true)
+            UIManager.shared.blockModeEnabled.accept(false)
         }))
         
         self.present(alertVC, animated: true, completion: nil)
@@ -158,13 +165,13 @@ class MainLMMProfileViewController: UIViewController
         
         for reason in BlockReason.reportResons() {            
             alertVC.addAction(UIAlertAction(title: reason.title(), style: .default) { _ in
-                UIManager.shared.mainControlsVisible.accept(true)
+                UIManager.shared.blockModeEnabled.accept(false)
                 self.viewModel?.block(at: self.currentIndex.value, reason: reason)
             })
         }
         
         alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: { _ in
-            UIManager.shared.mainControlsVisible.accept(true)
+            UIManager.shared.blockModeEnabled.accept(false)
         }))
         
         self.present(alertVC, animated: true, completion: nil)

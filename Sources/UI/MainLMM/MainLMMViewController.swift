@@ -27,10 +27,7 @@ class MainLMMViewController: BaseViewController
 {
     var input: MainLMMVMInput!
     var type: BehaviorRelay<LMMType> = BehaviorRelay<LMMType>(value: .likesYou)
-    
-    var onChatShown: (()->())?
-    var onChatHidden: (()->())?
-    
+
     fileprivate static var feedsState: [LMMType: FeedState] = [
         .likesYou: FeedState(),
         .matches: FeedState(),
@@ -70,6 +67,9 @@ class MainLMMViewController: BaseViewController
             bottom: UIScreen.main.bounds.height - cellHeight,
             right: 0.0
         )
+        
+        UIManager.shared.blockModeEnabled.accept(false)
+        UIManager.shared.chatModeEnabled.accept(false)
 
         self.setupBindings()
         self.setupReloader()
@@ -229,7 +229,6 @@ class MainLMMViewController: BaseViewController
         self.chatContainerView.embed(vc, to: self)
         self.chatConstraint.constant = -self.view.bounds.height
         
-        self.onChatShown?()
         self.scrollTop(to: indexPath.row)
         profileVC?.hideNotChatControls()
         
@@ -253,15 +252,15 @@ class MainLMMViewController: BaseViewController
             )            
         }
         
+        profileVC?.showNotChatControls()
+        
         self.chatConstraint.constant = 0.0
         
         let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
             self.view.layoutSubviews()
         })
         animator.addCompletion({ _ in
-            profileVC?.showNotChatControls()
             self.chatContainerView.remove()
-            self.onChatHidden?()
         })
         animator.startAnimation()
     }

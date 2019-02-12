@@ -11,7 +11,8 @@ import RxCocoa
 
 class UIManager
 {
-    let mainControlsVisible: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
+    let blockModeEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    let chatModeEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     static let shared = UIManager()
     
