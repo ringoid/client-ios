@@ -28,7 +28,7 @@ class LMMProfile: Profile
 enum MessagingState
 {
     case empty
-    case incomingOnly
+    case outcomingOnly
     case chatUnread
     case chatRead
 }
@@ -39,15 +39,15 @@ extension LMMProfile
     {
         guard !self.messages.isEmpty else { return .empty }
 
-        var isSentByMe: Bool = false
+        var isSentByNotMe: Bool = false
         self.messages.forEach({ message in
-            if message.wasYouSender {  isSentByMe = true }
+            if !message.wasYouSender {  isSentByNotMe = true }
         })
         
-        if isSentByMe {
+        if isSentByNotMe {
             return self.notSeen ? .chatUnread : .chatRead
         }
         
-        return .incomingOnly
+        return .outcomingOnly
     }
 }
