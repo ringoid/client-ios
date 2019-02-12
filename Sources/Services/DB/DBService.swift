@@ -130,12 +130,20 @@ class DBService
     func delete(_ objects: [Object]) -> Observable<Void>
     {
         return Observable<Void>.create({ [weak self] observer -> Disposable in
-            try? self?.realm.write {
-                self?.realm.delete(objects)
+            guard let `self` = self else { return Disposables.create() }
+            
+            if self.realm.isInWriteTransaction {
+                self.realm.delete(objects)
                 observer.onNext(())
                 observer.onCompleted()
+            } else {
+                try? self.realm.write {
+                    self.realm.delete(objects)
+                    observer.onNext(())
+                    observer.onCompleted()
+                }
             }
-            
+
             return Disposables.create()
         })
     }

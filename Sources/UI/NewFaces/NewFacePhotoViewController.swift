@@ -24,7 +24,7 @@ class NewFacePhotoViewController: UIViewController
     
     fileprivate var actionProfile: ActionProfile?
     fileprivate var actionPhoto: ActionPhoto?
-    fileprivate var dispatchBag: DisposeBag = DisposeBag()
+    fileprivate var disposeBag: DisposeBag = DisposeBag()
     
     @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var likeView: UIImageView!
@@ -120,12 +120,20 @@ class NewFacePhotoViewController: UIViewController
     
     fileprivate func updateBindings()
     {
-        self.dispatchBag = DisposeBag()
+        self.disposeBag = DisposeBag()
         
         self.photo?.rx.observe(Photo.self, "isLiked").subscribe(onNext: { [weak self] _ in
             let imgName = self?.photo?.isLiked == true ? "feed_like_selected" : "feed_like"
             self?.likeView?.image = UIImage(named: imgName)
-        }).disposed(by: self.dispatchBag)
+        }).disposed(by: self.disposeBag)
+        
+        UIManager.shared.mainControlsVisible.asObservable().subscribe(onNext: { [weak self] state in
+            let alpha: CGFloat = state ? 1.0 : 0.0
+            
+            UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
+                self?.likeView.alpha = alpha
+            }).startAnimation()
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func isLikesAvailable() -> Bool
