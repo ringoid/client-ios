@@ -86,7 +86,9 @@ class ChatViewController: BaseViewController
     
     @IBAction func onSend()
     {
-        guard let text = self.messageTextView.text, text.count > 0 else { return }
+        let text = self.messageTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard text.count > 0 else { return }
         
         let shouldCloseAutomatically = self.viewModel?.messages.value.count == 0
         
@@ -201,9 +203,14 @@ extension ChatViewController: UITextViewDelegate
             return
         }
         
+        let font = textView.font!
         let currentHeight = tableView.bounds.size.height
-        let height = self.textSize(text).height + 22.0
+        let textHeight = self.textSize(text).height
         
+        guard Int(textHeight / font.lineHeight) <= 4 else { return }
+        
+        let height = textHeight + 22.0
+
         guard abs(currentHeight - height) > 1.0 else { return }
         
         self.inputHeightConstraint.constant = height
@@ -217,15 +224,6 @@ extension ChatViewController: UITextViewDelegate
         let contentText = textView.text as NSString
         contentText.replacingCharacters(in: range, with: text)
         
-        let font = textView.font!
-        var linesCount = Int(self.textSize(contentText as String).height / font.lineHeight)
-        
-        // Special case for range length equal zero
-        if text == "\n"
-        {
-            linesCount += 1
-        }
-
-        return (contentText.length <= 1000) && (linesCount <= 4)
+        return contentText.length <= 1000
     }
 }
