@@ -163,7 +163,7 @@
                             </tableView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J21-mx-HH3">
                                 <rect key="frame" x="139.5" y="555" width="96" height="32"/>
-                                <color key="backgroundColor" red="0.2627450980392157" green="0.5490196078431373" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="BBt-Fu-0Eh"/>
                                     <constraint firstAttribute="height" constant="32" id="tA2-hG-Piu"/>
