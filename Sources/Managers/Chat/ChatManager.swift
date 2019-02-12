@@ -41,4 +41,11 @@ class ChatManager
         
         self.actionsManager.commit()
     }
+    
+    func markAsRead(_ profile: LMMProfile)
+    {
+        profile.write { [weak profile] _ in
+            profile?.notSeen = false
+        }
+    }
 }

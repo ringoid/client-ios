@@ -77,6 +77,7 @@ class ChatViewController: BaseViewController
     
     @IBAction func onClose()
     {
+        self.viewModel?.markAsRead()
         ChatViewController.messagesCache[self.input.profile.id] = self.messageTextView.text
         
         self.messageTextView.resignFirstResponder()

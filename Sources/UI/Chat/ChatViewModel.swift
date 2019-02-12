@@ -42,6 +42,11 @@ class ChatViewModel
         )
     }
     
+    func markAsRead()
+    {
+        self.input.chatManager.markAsRead(self.input.profile)
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
