@@ -62,6 +62,10 @@ class NewFacesViewController: BaseViewController
             return
         }
         
+        UIView.animate(withDuration: 0.095) {
+            self.emptyFeedLabel.alpha = 0.0
+        }
+        
         self.lastFetchCount = -1
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
@@ -70,6 +74,10 @@ class NewFacesViewController: BaseViewController
             }, onCompleted:{ [weak self] in
                 self?.tableView.headRefreshControl.endRefreshing()
                 self?.tableView.footRefreshControl.endRefreshing()
+                
+                UIView.animate(withDuration: 0.095) {
+                    self?.emptyFeedLabel.alpha = 1.0
+                }
         }).disposed(by: self.disposeBag)
     }
     

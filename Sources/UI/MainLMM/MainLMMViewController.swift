@@ -133,6 +133,10 @@ class MainLMMViewController: BaseViewController
     {
         self.isUpdated = true
         
+        UIView.animate(withDuration: 0.095) {
+            self.emptyFeedLabel.alpha = 0.0
+        }
+        
         // TODO: move "finishViewActions" logic inside view model
         self.input.actionsManager.finishViewActions(for: self.profiles()?.value ?? [], source: self.type.value.sourceType())
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
@@ -141,7 +145,11 @@ class MainLMMViewController: BaseViewController
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
                 self?.resetStates()
-                self?.tableView.headRefreshControl.endRefreshing()                
+                self?.tableView.headRefreshControl.endRefreshing()
+                
+                UIView.animate(withDuration: 0.095) {
+                    self?.emptyFeedLabel.alpha = 1.0
+                }
         }).disposed(by: self.disposeBag)
     }
     
