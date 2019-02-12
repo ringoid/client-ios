@@ -65,6 +65,7 @@ class LMMManager
         return self.messages.asObservable().map { profiles -> Int in
             var notSeenCount: Int = 0
             profiles.forEach({ profile in
+                guard !profile.isInvalidated else { return }
                 if profile.notSeen { notSeenCount += 1 }
             })
             

@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.050000000000000003" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cjc-8j-yFq" userLabel="BottomBarView">
+                            <view alpha="0.14999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cjc-8j-yFq" userLabel="BottomBarView">
                                 <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                 <subviews>
                                     <view alpha="0.31000000238418579" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ukA-g1-heh">
@@ -186,9 +186,9 @@
                             <constraint firstItem="qPj-U6-bjV" firstAttribute="leading" secondItem="FHy-pP-KSv" secondAttribute="trailing" constant="16" id="LvF-KT-ih6"/>
                             <constraint firstItem="H3p-mh-W6s" firstAttribute="top" secondItem="Gu8-Zv-Egg" secondAttribute="bottom" constant="2" id="Qxk-8v-ury"/>
                             <constraint firstItem="FHy-pP-KSv" firstAttribute="height" secondItem="cjc-8j-yFq" secondAttribute="height" id="WzV-LV-1kM"/>
-                            <constraint firstItem="qPj-U6-bjV" firstAttribute="centerY" secondItem="cjc-8j-yFq" secondAttribute="centerY" id="Zyu-Db-K5b"/>
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="centerY" secondItem="FHy-pP-KSv" secondAttribute="centerY" id="aWE-YM-4XF"/>
                             <constraint firstItem="H3p-mh-W6s" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" constant="16" id="aci-Wx-0fT"/>
+                            <constraint firstItem="qPj-U6-bjV" firstAttribute="bottom" secondItem="cjc-8j-yFq" secondAttribute="bottom" id="cEO-Vx-F7u"/>
                             <constraint firstItem="FHy-pP-KSv" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" constant="16" id="ce5-Yz-IGk"/>
                             <constraint firstItem="Gu8-Zv-Egg" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" constant="2" id="dkE-yI-QpT"/>
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="trailing" secondItem="qPj-U6-bjV" secondAttribute="trailing" id="iZx-Xs-XS7"/>
