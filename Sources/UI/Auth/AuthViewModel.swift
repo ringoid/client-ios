@@ -51,4 +51,14 @@ class AuthViewModel
     {
         self.settingsManager.isFirstTimePhoto.accept(true)
     }
+    
+    func switchTheme()
+    {
+        let theme = ThemeManager.shared.theme.value
+        
+        switch theme {
+        case .dark: ThemeManager.shared.theme.accept(.light)
+        case .light: ThemeManager.shared.theme.accept(.dark)
+        }
+    }
 }

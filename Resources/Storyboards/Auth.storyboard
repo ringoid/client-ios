@@ -142,6 +142,13 @@
                                             <action selector="onRegister" destination="g3D-bb-6vc" eventType="touchUpInside" id="ZId-Nj-Rrh"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLp-TM-j8c">
+                                        <rect key="frame" x="310" y="44" width="49" height="36"/>
+                                        <state key="normal" image="auth_theme_btn_day"/>
+                                        <connections>
+                                            <action selector="onThemeChange" destination="g3D-bb-6vc" eventType="touchUpInside" id="5xd-OU-t1u"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -160,10 +167,12 @@
                                     <constraint firstItem="FpE-Be-fZR" firstAttribute="top" secondItem="bh1-NE-O5a" secondAttribute="top" id="SlL-EV-VyR"/>
                                     <constraint firstItem="cO2-Ma-bvu" firstAttribute="top" secondItem="mH3-OF-pyD" secondAttribute="topMargin" priority="500" constant="88" id="Xev-li-US2"/>
                                     <constraint firstItem="oFs-C8-vnJ" firstAttribute="bottom" secondItem="39I-EI-ikh" secondAttribute="bottom" id="fNC-ds-S3P"/>
+                                    <constraint firstAttribute="trailing" secondItem="zLp-TM-j8c" secondAttribute="trailing" constant="16" id="hCh-NT-bch"/>
                                     <constraint firstItem="ytv-xm-SNC" firstAttribute="top" secondItem="bh1-NE-O5a" secondAttribute="bottom" constant="47" id="hr2-tn-7MS"/>
                                     <constraint firstAttribute="centerX" secondItem="bh1-NE-O5a" secondAttribute="trailing" constant="6" id="kjT-H2-c81"/>
                                     <constraint firstAttribute="trailing" secondItem="Qfe-tw-Yjt" secondAttribute="trailing" constant="16" id="ols-aK-Uge"/>
                                     <constraint firstItem="FpE-Be-fZR" firstAttribute="bottom" secondItem="bh1-NE-O5a" secondAttribute="bottom" id="rcP-Kf-D5a"/>
+                                    <constraint firstItem="zLp-TM-j8c" firstAttribute="top" secondItem="mH3-OF-pyD" secondAttribute="topMargin" constant="16" id="tyL-wq-SgJ"/>
                                     <constraint firstAttribute="trailing" secondItem="ytv-xm-SNC" secondAttribute="trailing" constant="16" id="uYA-4G-ud3"/>
                                     <constraint firstItem="cO2-Ma-bvu" firstAttribute="centerX" secondItem="mH3-OF-pyD" secondAttribute="centerX" id="y87-lj-eHx"/>
                                 </constraints>
@@ -186,6 +195,7 @@
                         <outlet property="maleBtn" destination="FpE-Be-fZR" id="aV6-hM-DB1"/>
                         <outlet property="maleContainerView" destination="bh1-NE-O5a" id="7Wx-5v-Vdv"/>
                         <outlet property="registerBtn" destination="Qfe-tw-Yjt" id="MZc-q1-RJj"/>
+                        <outlet property="themeBtn" destination="zLp-TM-j8c" id="gZe-hg-dPb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pk-Yk-K8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -196,5 +206,6 @@
     <resources>
         <image name="auth_female_logo" width="36" height="50"/>
         <image name="auth_male_logo" width="34" height="50"/>
+        <image name="auth_theme_btn_day" width="49" height="36"/>
     </resources>
 </document>

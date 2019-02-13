@@ -24,6 +24,7 @@ class AuthViewController: BaseViewController
     @IBOutlet fileprivate weak var birthYearContainerView: UIView!
     @IBOutlet fileprivate weak var birthYearTextField: UITextField!
     @IBOutlet fileprivate weak var registerBtn: UIButton!
+    @IBOutlet fileprivate weak var themeBtn: UIButton!
     
     override func viewDidLoad()
     {
@@ -40,6 +41,9 @@ class AuthViewController: BaseViewController
     override func updateTheme()
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
+        
+        let themeImageName = ThemeManager.shared.theme.value == .dark ? "auth_theme_btn_night" : "auth_theme_btn_day"
+        self.themeBtn.setImage(UIImage(named: themeImageName), for: .normal)
     }
     
     @IBAction func onRegister()
@@ -49,6 +53,11 @@ class AuthViewController: BaseViewController
             
             showError(error, vc: self)
         }).disposed(by: self.disposeBag)
+    }
+    
+    @IBAction func onThemeChange()
+    {
+        self.viewModel?.switchTheme()
     }
         
     // MARK: -
