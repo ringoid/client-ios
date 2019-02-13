@@ -33,6 +33,11 @@ class AuthViewController: BaseViewController
         
         super.viewDidLoad()
         
+        let linkColor = UIColor(red: 73.0 / 255.0, green: 183.0 / 255.0, blue: 70.0 / 255.0, alpha: 1.0)
+        self.termsPolicyTextView.linkTextAttributes = [
+            .foregroundColor: linkColor
+        ]
+        
         self.setupUI()
         self.setupBindings()
         self.birthYearTextField.becomeFirstResponder()
@@ -51,20 +56,13 @@ class AuthViewController: BaseViewController
         self.birthYearTextField.keyboardAppearance = theme == .dark ? .dark : .light
         self.birthYearTextField.resignFirstResponder()
         self.birthYearTextField.becomeFirstResponder()
+        
+        self.updateTermsPolicy()
     }
     
     override func updateLocale()
     {
-        let attributedText = "AUTH_TERMS_AND_POLICY".localizedWithAttributes(mainStringAttributes: [:], markers: [
-            LocalizationAttributeMarker(marker: "$terms$", localizationKey: "AUTH_TERMS_OF_SERVICE", attributes: [
-                NSAttributedString.Key.link: AppConfig.termsUrl
-                ]),
-            LocalizationAttributeMarker(marker: "$policy$", localizationKey: "AUTH_PRIVACY_POLICY", attributes: [
-                NSAttributedString.Key.link: AppConfig.policyUrl
-                ]),
-            ])
-        
-        self.termsPolicyTextView.attributedText = attributedText
+        self.updateTermsPolicy()
     }
     
     @IBAction func onRegister()
@@ -142,6 +140,22 @@ class AuthViewController: BaseViewController
             self.femaleContainerView.layer.borderWidth = 1.0
             self.maleContainerView.layer.borderWidth = 0.0
         }
+    }
+    
+    fileprivate func updateTermsPolicy()
+    {
+        let attributedText = "AUTH_TERMS_AND_POLICY".localizedWithAttributes(mainStringAttributes: [.foregroundColor: SecondContentColor().uiColor()], markers: [
+            LocalizationAttributeMarker(marker: "$terms$", localizationKey: "AUTH_TERMS_OF_SERVICE", attributes: [
+                //.lin: linkColor,
+                .link: AppConfig.termsUrl
+                ]),
+            LocalizationAttributeMarker(marker: "$policy$", localizationKey: "AUTH_PRIVACY_POLICY", attributes: [
+                //.foregroundColor: linkColor,
+                .link: AppConfig.policyUrl
+                ]),
+            ])
+        
+        self.termsPolicyTextView.attributedText = attributedText
     }
 }
 
