@@ -68,6 +68,12 @@ class ChatViewController: BaseViewController
         )
     }
     
+    override func updateTheme()
+    {
+        let theme = ThemeManager.shared.theme.value
+        self.messageTextView.keyboardAppearance = theme == .dark ? .dark : .light
+    }
+    
     override func updateLocale()
     {
         self.toastLabel.text = "CHAT_MESSAGE_SENT".localized()
