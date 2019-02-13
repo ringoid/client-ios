@@ -42,8 +42,14 @@ class AuthViewController: BaseViewController
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
         
-        let themeImageName = ThemeManager.shared.theme.value == .dark ? "auth_theme_btn_night" : "auth_theme_btn_day"
+        let theme = ThemeManager.shared.theme.value
+        let themeImageName = theme == .dark ? "auth_theme_btn_night" : "auth_theme_btn_day"
         self.themeBtn.setImage(UIImage(named: themeImageName), for: .normal)
+        
+        self.birthYearTextField.textColor = ContentColor().uiColor()
+        self.birthYearTextField.keyboardAppearance = theme == .dark ? .dark : .light
+        self.birthYearTextField.resignFirstResponder()
+        self.birthYearTextField.becomeFirstResponder()
     }
     
     @IBAction func onRegister()
