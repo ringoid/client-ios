@@ -151,7 +151,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
             self.performSegue(withIdentifier: SegueIds.locale, sender: nil)
             break
             
-        case .legal: return
+        case .legal:
+            self.performSegue(withIdentifier: SegueIds.legal, sender: nil)
+            break
+            
         case .support:
             self.showSupportUI()
             break
