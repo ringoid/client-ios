@@ -33,6 +33,7 @@ class SettingsThemeCell: BaseTableViewCell
     override func updateTheme()
     {
         self.themeLabel.text = ThemeManager.shared.theme.value.title()
+        self.themeLabel.textColor = ContentColor().uiColor()
     }
     
     // MARK: -

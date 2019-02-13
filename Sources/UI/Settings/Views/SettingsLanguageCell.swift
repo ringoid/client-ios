@@ -20,7 +20,8 @@ class SettingsLanguageCell: BaseTableViewCell
     
     override func updateTheme()
     {
-        
+        self.titleLabel.textColor = ContentColor().uiColor()
+        self.languageLabel.textColor = ContentColor().uiColor()
     }
     
     override func updateLocale()

@@ -111,6 +111,7 @@
 		57BEB67B2213D7E6000BD768 /* SettingsLocaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67A2213D7E6000BD768 /* SettingsLocaleViewController.swift */; };
 		57BEB67D2213D806000BD768 /* SettingsLocaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */; };
 		57BEB67F2213F306000BD768 /* SettingsLocaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */; };
+		57BEB683221417C0000BD768 /* AppearanceManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB682221417C0000BD768 /* AppearanceManger.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -231,6 +232,7 @@
 		57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleViewModel.swift; sourceTree = "<group>"; };
 		57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleCell.swift; sourceTree = "<group>"; };
 		57BEB6802213FEA8000BD768 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		57BEB682221417C0000BD768 /* AppearanceManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceManger.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				57BEB681221417B3000BD768 /* Appearence */,
 				57386E49220C7A6D0000E5D9 /* UI */,
 				576FC1172201E00700BA5ABE /* Locale */,
 				576FC10F22001C9000BA5ABE /* ErrorsManager */,
@@ -742,6 +745,14 @@
 			path = Actions;
 			sourceTree = "<group>";
 		};
+		57BEB681221417B3000BD768 /* Appearence */ = {
+			isa = PBXGroup;
+			children = (
+				57BEB682221417C0000BD768 /* AppearanceManger.swift */,
+			);
+			path = Appearence;
+			sourceTree = "<group>";
+		};
 		57FB7BC221E61BC700AAA29D /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -1006,6 +1017,7 @@
 				57B863BE21EC758200B9CC70 /* ApiMessage.swift in Sources */,
 				57585D5221E4808500038798 /* UserProfilePhotosViewModel.swift in Sources */,
 				57585D4221E3555E00038798 /* Profile.swift in Sources */,
+				57BEB683221417C0000BD768 /* AppearanceManger.swift in Sources */,
 				57B863C821ECD17B00B9CC70 /* MainLMMViewController.swift in Sources */,
 				57BEB67D2213D806000BD768 /* SettingsLocaleViewModel.swift in Sources */,
 				576FC1192201E0EF00BA5ABE /* LocaleManager.swift in Sources */,

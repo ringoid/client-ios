@@ -56,7 +56,14 @@ class SettingsViewController: BaseViewController
     
     override func updateTheme()
     {
-        self.view.backgroundColor = BackgroundColor().uiColor()
+        let theme = ThemeManager.shared.theme.value
+        let darkThemeSeparatorColor = UIColor(red: 64.0 / 255.0, green: 64.0 / 255.0, blue: 64.0 / 255.0, alpha: 1.0)
+        
+        UIView.animate(withDuration: 0.1) {
+            self.tableView.separatorColor = (theme == .dark) ? darkThemeSeparatorColor : .lightGray
+            self.view.backgroundColor = BackgroundColor().uiColor()
+            self.titleLabel.textColor = ContentColor().uiColor()
+        }
     }
     
     override func updateLocale()

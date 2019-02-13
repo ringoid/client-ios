@@ -16,4 +16,9 @@ class SettingsLegalCell: BaseTableViewCell
     {
         self.legalLabel.text = "SETTINGS_LEGAL".localized()
     }
+    
+    override func updateTheme()
+    {
+        self.legalLabel.textColor = ContentColor().uiColor()
+    }
 }
