@@ -88,4 +88,28 @@ extension String
     {
         return NSLocalizedString(self, tableName: nil, bundle: LocaleManager.shared.bundle, value: "", comment: "")
     }
+    
+    func localizedWithAttributes(mainStringAttributes: [NSAttributedString.Key: Any], markers: [LocalizationAttributeMarker]) -> NSAttributedString
+    {
+        let localizedString = self.localized()
+        let result = NSMutableAttributedString(string: localizedString)
+        result.addAttributes(mainStringAttributes, range: NSRange(location: 0, length: localizedString.count - 1))
+        
+        markers.forEach { (marker) in
+            let range = (result.string as NSString).range(of: marker.marker)
+            guard range.length > 0 else { return }
+            
+            let replacement = NSAttributedString(string: marker.localizationKey.localized(), attributes: marker.attributes)
+            result.replaceCharacters(in: range, with: replacement)
+        }
+        
+        return result
+    }
+}
+
+struct LocalizationAttributeMarker
+{
+    let marker: String
+    let localizationKey: String
+    let attributes: [NSAttributedString.Key: Any]
 }

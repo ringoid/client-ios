@@ -112,16 +112,26 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFs-C8-vnJ">
                                         <rect key="frame" x="191.5" y="169" width="98" height="98"/>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytv-xm-SNC">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytv-xm-SNC">
                                         <rect key="frame" x="16" y="314" width="343" height="90"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="aVS-su-Of8"/>
                                         </constraints>
-                                        <string key="text">By tapping the button below, you confirm that you have read, understood, consent and agree to Ringoid's Terms of Service and Privacy Policy, and that you are of legal age and adult, as defined by the country or state from where you access Ringoid.</string>
-                                        <color key="textColor" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">By tapping the button below, you confirm that you have read, understood, consent and agree to Ringoid's Terms of Service and Privacy Policy, and that you are of legal age and adult, as defined by the country or state from where you access Ringoid.</string>
+                                                <attributes>
+                                                    <color key="NSColor" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" metaFont="system"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="g3D-bb-6vc" id="6XC-1k-Exa"/>
+                                        </connections>
                                     </textView>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-tw-Yjt">
                                         <rect key="frame" x="16" y="412" width="343" height="45"/>
@@ -195,6 +205,7 @@
                         <outlet property="maleBtn" destination="FpE-Be-fZR" id="aV6-hM-DB1"/>
                         <outlet property="maleContainerView" destination="bh1-NE-O5a" id="7Wx-5v-Vdv"/>
                         <outlet property="registerBtn" destination="Qfe-tw-Yjt" id="MZc-q1-RJj"/>
+                        <outlet property="termsPolicyTextView" destination="ytv-xm-SNC" id="QH6-vG-azm"/>
                         <outlet property="themeBtn" destination="zLp-TM-j8c" id="gZe-hg-dPb"/>
                     </connections>
                 </viewController>

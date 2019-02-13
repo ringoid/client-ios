@@ -7,8 +7,14 @@
 //
 
 import CoreGraphics
+import Foundation
 
 class AppConfig
 {
     static let photoRatio: CGFloat = 4.0 / 3.0
+    
+    // MARK: - URLs
+    
+    static let termsUrl: URL = URL(string: "http://ringoid.com/terms.html")!
+    static let policyUrl: URL = URL(string: "http://ringoid.com/privacy.html")!
 }

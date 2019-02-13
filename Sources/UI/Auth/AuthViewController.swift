@@ -25,6 +25,7 @@ class AuthViewController: BaseViewController
     @IBOutlet fileprivate weak var birthYearTextField: UITextField!
     @IBOutlet fileprivate weak var registerBtn: UIButton!
     @IBOutlet fileprivate weak var themeBtn: UIButton!
+    @IBOutlet fileprivate weak var termsPolicyTextView: UITextView!
     
     override func viewDidLoad()
     {
@@ -50,6 +51,20 @@ class AuthViewController: BaseViewController
         self.birthYearTextField.keyboardAppearance = theme == .dark ? .dark : .light
         self.birthYearTextField.resignFirstResponder()
         self.birthYearTextField.becomeFirstResponder()
+    }
+    
+    override func updateLocale()
+    {
+        let attributedText = "AUTH_TERMS_AND_POLICY".localizedWithAttributes(mainStringAttributes: [:], markers: [
+            LocalizationAttributeMarker(marker: "$terms$", localizationKey: "AUTH_TERMS_OF_SERVICE", attributes: [
+                NSAttributedString.Key.link: AppConfig.termsUrl
+                ]),
+            LocalizationAttributeMarker(marker: "$policy$", localizationKey: "AUTH_PRIVACY_POLICY", attributes: [
+                NSAttributedString.Key.link: AppConfig.policyUrl
+                ]),
+            ])
+        
+        self.termsPolicyTextView.attributedText = attributedText
     }
     
     @IBAction func onRegister()
@@ -127,5 +142,15 @@ class AuthViewController: BaseViewController
             self.femaleContainerView.layer.borderWidth = 1.0
             self.maleContainerView.layer.borderWidth = 0.0
         }
+    }
+}
+
+extension AuthViewController: UITextViewDelegate
+{
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool
+    {
+        UIApplication.shared.open(URL, options: [:], completionHandler: nil)
+        
+        return false
     }
 }

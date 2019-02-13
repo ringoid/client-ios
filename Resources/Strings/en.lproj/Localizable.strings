@@ -10,6 +10,10 @@
 "DELETE_OPTION" = "Delete";
 "CLOSE_OPTION" = "Close";
 
+"AUTH_TERMS_AND_POLICY" = "By tapping the button below, you confirm that you have read, understood, consent and agree to Ringoid's $terms$ and $policy$, and that you are of legal age and adult, as defined by the country or state from where you access Ringoid.";
+"AUTH_TERMS_OF_SERVICE" = "Terms of Service";
+"AUTH_PRIVACY_POLICY" = "Privacy Policy";
+
 "BLOCK_REASON_INAPPROPRIATE" = "Inappropriate content";
 "BLOCK_REASON_STOLEN" = "Stolen photos, Copyright Infringment";
 "BLOCK_REASON_SPAM" = "Spam, Advertising, Commercial Activity";
