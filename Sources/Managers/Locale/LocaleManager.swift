@@ -13,6 +13,7 @@ import RxCocoa
 enum Language: String
 {
     case english = "en"
+    case russian = "ru"
 }
 
 
@@ -76,6 +77,7 @@ extension Language
     {
         switch self {
         case .english: return "English"
+        case .russian: return "Русский"
         }
     }
 }

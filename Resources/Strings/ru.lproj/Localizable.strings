@@ -1,0 +1,49 @@
+/* 
+  Localizable.strings
+  ringoid
+
+  Created by Victor Sukochev on 30/01/2019.
+  Copyright © 2019 Ringoid. All rights reserved.
+*/
+
+"CANCEL_OPTION" = "Отмена";
+"DELETE_OPTION" = "Удалить";
+"CLOSE_OPTION" = "Закрыть";
+
+"BLOCK_REASON_INAPPROPRIATE" = "Inappropriate content";
+"BLOCK_REASON_STOLEN" = "Stolen photos, Copyright Infringment";
+"BLOCK_REASON_SPAM" = "Spam, Advertising, Commercial Activity";
+"BLOCK_REASON_CRIMINAL" = "Human or sex trafficking, Criminal activity";
+"BLOCK_REASON_UNDERAGED" = "Underage users, Child exploitation";
+"BLOCK_REASON_HARRASMENT" = "Harassment or threats, Abuse";
+
+"BLOCK_OPTION" = "Заблокировать";
+"BLOCK_REPORT_OPTION" = "Report & Block";
+
+"FEED_PULL_TO_REFRESH" = "Pull to refresh";
+
+"THEME_NIGHT_MODE" = "Night mode";
+"THEME_DAY_MODE" = "Day mode";
+
+"SETTINGS_TITLE" = "Настройки";
+"SETTINGS_LANGUAGE" = "Язык";
+"SETTINGS_LEGAL" = "Legal";
+"SETTINGS_DELETE_ACCOUNT" = "Удалить Аккаунт";
+"SETTINGS_DELETE_ACCOUNT_ALERT_TITLE" = "Удалить Аккаунт?";
+"SETTINGS_DELETE_ACCOUNT_ALERT_MESSAGE" = "There is no undo.";
+
+"LMM_HEADER_CHATS_OPTION" = "Чаты";
+"LMM_HEADER_LIKES_OPTION" = "Вы Нравитесь";
+"LMM_HEADER_MATCHES_OPTION" = "Совпадения";
+
+"NEW_FACES_NO_PHOTO_ALERT_MESSAGE" = "Add your photo to see who likes you, like and message others.";
+"NEW_FACES_NO_PHOTO_ALERT_CANCEL" = "Не сейчас";
+"NEW_FACES_NO_PHOTO_ALERT_ADD" = "Добавить фото";
+"NEW_FACES_NO_NEW_ITEMS" = "No one new around";
+
+"CHAT_MESSAGE_SENT" = "Отправлено";
+
+"PROFILE_DELETE_PHOTO" = "Удалить Фото";
+"PROFILE_DISCOVER_USERS" = "Discover users nearby";
+"PROFILE_ADD_PHOTO" = "Add another photo";
+"PROFILE_ADD_ALERT_TITLE" = "What do you want to do next?";

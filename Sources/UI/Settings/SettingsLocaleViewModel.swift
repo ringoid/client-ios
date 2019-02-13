@@ -14,7 +14,8 @@ class SettingsLocaleViewModel
     var locales: [Language]
     {
         return [
-            .english
+            .english,
+            .russian
         ]
     }
     
