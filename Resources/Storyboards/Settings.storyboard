@@ -228,11 +228,101 @@
                     <navigationItem key="navigationItem" id="nlH-um-Pup"/>
                     <connections>
                         <outlet property="tableView" destination="GQG-aY-LJu" id="nHI-p3-a5i"/>
+                        <outlet property="titleLabel" destination="ihd-7u-bXc" id="uPr-ht-ZL5"/>
+                        <segue destination="eFf-2P-mkZ" kind="show" identifier="locale_vc" id="uk3-Jt-JNp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KcZ-XM-9uV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-217" y="92"/>
+        </scene>
+        <!--Settings Locale View Controller-->
+        <scene sceneID="VcB-UY-v4T">
+            <objects>
+                <viewController id="eFf-2P-mkZ" customClass="SettingsLocaleViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="807-fk-ZfG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hsD-cs-Xob">
+                                <rect key="frame" x="2" y="29" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="Ao7-1I-QL7"/>
+                                    <constraint firstAttribute="height" constant="44" id="ycn-Jw-UBg"/>
+                                </constraints>
+                                <state key="normal" image="common_back"/>
+                                <connections>
+                                    <action selector="onBack" destination="eFf-2P-mkZ" eventType="touchUpInside" id="aPi-K2-8BD"/>
+                                    <action selector="onBack" destination="i4T-DQ-OzO" eventType="touchUpInside" id="pCc-3p-af0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16O-dz-ocn">
+                                <rect key="frame" x="149" y="40.5" width="77.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="42" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="3xR-cP-tiD">
+                                <rect key="frame" x="0.0" y="82" width="375" height="585"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" red="0.80392156859999997" green="0.80784313730000001" blue="0.82745098039999998" alpha="0.13219713180000001" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="18" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="locale_cell" id="9t1-66-o45" customClass="SettingsLocaleCell" customModule="ringoid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="42"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9t1-66-o45" id="67V-RF-zvk">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="41.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofd-Y9-w55">
+                                                    <rect key="frame" x="18" y="13" width="33" height="16"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="Ofd-Y9-w55" firstAttribute="leading" secondItem="67V-RF-zvk" secondAttribute="leading" constant="18" id="9qj-ux-jpg"/>
+                                                <constraint firstItem="Ofd-Y9-w55" firstAttribute="centerY" secondItem="67V-RF-zvk" secondAttribute="centerY" id="Tc2-IH-NIA"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="Ofd-Y9-w55" id="3id-6L-ket"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="eFf-2P-mkZ" id="Eib-tD-uOc"/>
+                                    <outlet property="delegate" destination="eFf-2P-mkZ" id="g8R-TW-F88"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.28627450980392155" green="0.28627450980392155" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="16O-dz-ocn" firstAttribute="centerY" secondItem="hsD-cs-Xob" secondAttribute="centerY" id="9gf-I6-S2c"/>
+                            <constraint firstItem="hsD-cs-Xob" firstAttribute="leading" secondItem="807-fk-ZfG" secondAttribute="leading" constant="2" id="AkE-UA-4UH"/>
+                            <constraint firstAttribute="bottom" secondItem="3xR-cP-tiD" secondAttribute="bottom" id="DdJ-zV-6ig"/>
+                            <constraint firstItem="3xR-cP-tiD" firstAttribute="top" secondItem="hsD-cs-Xob" secondAttribute="bottom" constant="9" id="Hro-B5-5SA"/>
+                            <constraint firstItem="hsD-cs-Xob" firstAttribute="top" secondItem="0My-Dk-CWL" secondAttribute="top" constant="9" id="isn-or-0Ub"/>
+                            <constraint firstAttribute="trailing" secondItem="3xR-cP-tiD" secondAttribute="trailing" id="m9o-6O-O9C"/>
+                            <constraint firstItem="16O-dz-ocn" firstAttribute="centerX" secondItem="807-fk-ZfG" secondAttribute="centerX" id="nrR-aK-SEI"/>
+                            <constraint firstItem="3xR-cP-tiD" firstAttribute="leading" secondItem="807-fk-ZfG" secondAttribute="leading" id="qd9-53-Ucg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0My-Dk-CWL"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="3xR-cP-tiD" id="6Ob-NA-HLf"/>
+                        <outlet property="titleLabel" destination="16O-dz-ocn" id="gpO-Nb-ywI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KGc-1x-K2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="525.60000000000002" y="90.404797601199405"/>
         </scene>
     </scenes>
     <resources>

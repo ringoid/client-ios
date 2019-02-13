@@ -13,6 +13,16 @@ class SettingsLanguageCell: BaseTableViewCell
     @IBOutlet fileprivate weak var languageLabel: UILabel!
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     
+    override func awakeFromNib()
+    {
+        super.awakeFromNib()
+    }
+    
+    override func updateTheme()
+    {
+        
+    }
+    
     override func updateLocale()
     {
         self.titleLabel.text = "SETTINGS_LANGUAGE".localized()

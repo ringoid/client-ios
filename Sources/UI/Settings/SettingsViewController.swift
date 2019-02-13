@@ -41,6 +41,7 @@ class SettingsViewController: BaseViewController
     fileprivate var viewModel: SettingsViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
+    @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
     
     override func viewDidLoad()
@@ -56,6 +57,11 @@ class SettingsViewController: BaseViewController
     override func updateTheme()
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
+    }
+    
+    override func updateLocale()
+    {
+        self.titleLabel.text = "SETTINGS_TITLE".localized()
     }
     
     // MARK: - Actions
@@ -132,7 +138,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         
         switch option {
         case .theme: return
-        case .language: return
+        case .language:
+            self.performSegue(withIdentifier: SegueIds.locale, sender: nil)
+            break
+            
         case .legal: return
         case .support:
             self.showSupportUI()
@@ -150,5 +159,14 @@ extension SettingsViewController: MFMailComposeViewControllerDelegate
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
     {
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SettingsViewController
+{
+    fileprivate struct SegueIds
+    {
+        static let locale = "locale_vc"
+        static let legal = "legal_vc"
     }
 }

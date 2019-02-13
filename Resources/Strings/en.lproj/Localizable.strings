@@ -25,6 +25,7 @@
 "THEME_NIGHT_MODE" = "Night mode";
 "THEME_DAY_MODE" = "Day mode";
 
+"SETTINGS_TITLE" = "Settings";
 "SETTINGS_LANGUAGE" = "Language";
 "SETTINGS_LEGAL" = "Legal";
 "SETTINGS_DELETE_ACCOUNT" = "Delete Account";

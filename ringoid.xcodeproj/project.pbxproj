@@ -108,6 +108,9 @@
 		57B863F821EF5CF100B9CC70 /* ApiUnlikeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F721EF5CF100B9CC70 /* ApiUnlikeAction.swift */; };
 		57B863FA21EF5D2A00B9CC70 /* ApiMessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F921EF5D2A00B9CC70 /* ApiMessageAction.swift */; };
 		57B863FC21EF5DDF00B9CC70 /* ApiOpenChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863FB21EF5DDF00B9CC70 /* ApiOpenChat.swift */; };
+		57BEB67B2213D7E6000BD768 /* SettingsLocaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67A2213D7E6000BD768 /* SettingsLocaleViewController.swift */; };
+		57BEB67D2213D806000BD768 /* SettingsLocaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */; };
+		57BEB67F2213F306000BD768 /* SettingsLocaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -224,6 +227,9 @@
 		57B863F721EF5CF100B9CC70 /* ApiUnlikeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUnlikeAction.swift; sourceTree = "<group>"; };
 		57B863F921EF5D2A00B9CC70 /* ApiMessageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMessageAction.swift; sourceTree = "<group>"; };
 		57B863FB21EF5DDF00B9CC70 /* ApiOpenChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiOpenChat.swift; sourceTree = "<group>"; };
+		57BEB67A2213D7E6000BD768 /* SettingsLocaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleViewController.swift; sourceTree = "<group>"; };
+		57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleViewModel.swift; sourceTree = "<group>"; };
+		57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleCell.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -622,6 +628,8 @@
 				579CD7B421F8945C00C3AEE3 /* Views */,
 				579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */,
 				579CD7B221F890A300C3AEE3 /* SettingsViewModel.swift */,
+				57BEB67A2213D7E6000BD768 /* SettingsLocaleViewController.swift */,
+				57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -633,6 +641,7 @@
 				57386E41220B2FB20000E5D9 /* SettingsLanguageCell.swift */,
 				57386E43220B33120000E5D9 /* SettingsLegalCell.swift */,
 				57386E45220B33FE0000E5D9 /* SettingsDeleteCell.swift */,
+				57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -906,6 +915,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57BEB67F2213F306000BD768 /* SettingsLocaleCell.swift in Sources */,
 				570D04AD21DDD2A900E0DCFB /* RootViewController.swift in Sources */,
 				57B863F421EF5BCD00B9CC70 /* ApiViewAction.swift in Sources */,
 				570D04C121DF4E1F00E0DCFB /* Alerts.swift in Sources */,
@@ -941,6 +951,7 @@
 				57585D4921E35B8C00038798 /* NewFacesCell.swift in Sources */,
 				57FB7BD021E74AAC00AAA29D /* NewFaceProfileViewModel.swift in Sources */,
 				57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */,
+				57BEB67B2213D7E6000BD768 /* SettingsLocaleViewController.swift in Sources */,
 				579CD7C621F9D4E600C3AEE3 /* ChatLeftCell.swift in Sources */,
 				57B863C021ECB93200B9CC70 /* LMMProfile.swift in Sources */,
 				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
@@ -994,6 +1005,7 @@
 				57585D5221E4808500038798 /* UserProfilePhotosViewModel.swift in Sources */,
 				57585D4221E3555E00038798 /* Profile.swift in Sources */,
 				57B863C821ECD17B00B9CC70 /* MainLMMViewController.swift in Sources */,
+				57BEB67D2213D806000BD768 /* SettingsLocaleViewModel.swift in Sources */,
 				576FC1192201E0EF00BA5ABE /* LocaleManager.swift in Sources */,
 				570D04BA21DE322200E0DCFB /* XStorageObject.swift in Sources */,
 				57386E48220C2F6F0000E5D9 /* AppConfig.swift in Sources */,
