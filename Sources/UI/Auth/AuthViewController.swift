@@ -57,11 +57,13 @@ class AuthViewController: BaseViewController
         self.birthYearTextField.resignFirstResponder()
         self.birthYearTextField.becomeFirstResponder()
         
+        self.updatePlaceholder()
         self.updateTermsPolicy()
     }
     
     override func updateLocale()
     {
+        self.updatePlaceholder()
         self.updateTermsPolicy()
     }
     
@@ -142,15 +144,20 @@ class AuthViewController: BaseViewController
         }
     }
     
+    fileprivate func updatePlaceholder()
+    {
+        self.birthYearTextField.attributedPlaceholder = NSAttributedString(string: "AUTH_YOB".localized(), attributes: [
+            .foregroundColor: ContentColor().uiColor()
+            ])
+    }
+    
     fileprivate func updateTermsPolicy()
     {
         let attributedText = "AUTH_TERMS_AND_POLICY".localizedWithAttributes(mainStringAttributes: [.foregroundColor: SecondContentColor().uiColor()], markers: [
             LocalizationAttributeMarker(marker: "$terms$", localizationKey: "AUTH_TERMS_OF_SERVICE", attributes: [
-                //.lin: linkColor,
                 .link: AppConfig.termsUrl
                 ]),
             LocalizationAttributeMarker(marker: "$policy$", localizationKey: "AUTH_PRIVACY_POLICY", attributes: [
-                //.foregroundColor: linkColor,
                 .link: AppConfig.policyUrl
                 ]),
             ])
