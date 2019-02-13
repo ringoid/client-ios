@@ -68,8 +68,13 @@ extension SettingsLocaleViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "locale_cell") as! SettingsLocaleCell
-        cell.locale = self.viewModel?.locales[indexPath.row]
         
+        let locale = self.viewModel?.locales[indexPath.row]
+        let isSelected = LocaleManager.shared.language.value == locale
+        
+        cell.locale = locale
+        cell.accessoryType = isSelected ? .checkmark : .none
+                
         return cell
     }
     
