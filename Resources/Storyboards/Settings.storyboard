@@ -40,6 +40,7 @@
                                     <constraint firstAttribute="width" constant="44" id="9aO-Uk-69V"/>
                                     <constraint firstAttribute="height" constant="44" id="Jpc-Dy-Dx5"/>
                                 </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="common_back"/>
                                 <connections>
                                     <action selector="onBack" destination="i4T-DQ-OzO" eventType="touchUpInside" id="dtc-TD-5mL"/>
@@ -69,6 +70,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="settings_moon" translatesAutoresizingMaskIntoConstraints="NO" id="y0b-3h-Neo">
                                                     <rect key="frame" x="19" y="13.5" width="15" height="15"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Night mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifQ-eu-9ot">
                                                     <rect key="frame" x="48" y="13" width="70" height="16"/>
@@ -91,6 +93,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="themeIconView" destination="y0b-3h-Neo" id="Jpd-cw-9j9"/>
                                             <outlet property="themeLabel" destination="ifQ-eu-9ot" id="lFB-91-abR"/>
                                             <outlet property="themeSwitch" destination="QGw-1Z-Chp" id="vXg-tc-83v"/>
                                         </connections>
@@ -152,7 +155,7 @@
                                             <outlet property="legalLabel" destination="OLN-Qz-V7j" id="XYD-HC-yka"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="support_cell" id="8qe-T1-QBr">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="support_cell" id="8qe-T1-QBr" customClass="SettingsEmailCell" customModule="ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="127" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8qe-T1-QBr" id="1UN-Vy-TVk">
@@ -172,6 +175,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="t4y-47-34w" id="SmI-tx-dmc"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="delete_cell" id="o96-ct-5e4" customClass="SettingsDeleteCell" customModule="ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="169" width="375" height="42"/>
@@ -227,6 +233,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="nlH-um-Pup"/>
                     <connections>
+                        <outlet property="backBtn" destination="H0Q-C9-CeS" id="ON9-NQ-xb8"/>
                         <outlet property="tableView" destination="GQG-aY-LJu" id="nHI-p3-a5i"/>
                         <outlet property="titleLabel" destination="ihd-7u-bXc" id="uPr-ht-ZL5"/>
                         <segue destination="eFf-2P-mkZ" kind="show" identifier="locale_vc" id="uk3-Jt-JNp"/>
@@ -250,6 +257,7 @@
                                     <constraint firstAttribute="width" constant="44" id="Ao7-1I-QL7"/>
                                     <constraint firstAttribute="height" constant="44" id="ycn-Jw-UBg"/>
                                 </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="common_back"/>
                                 <connections>
                                     <action selector="onBack" destination="eFf-2P-mkZ" eventType="touchUpInside" id="aPi-K2-8BD"/>
@@ -345,6 +353,7 @@
                         <viewLayoutGuide key="safeArea" id="0My-Dk-CWL"/>
                     </view>
                     <connections>
+                        <outlet property="backBtn" destination="hsD-cs-Xob" id="GGy-Ny-6Hl"/>
                         <outlet property="footerView" destination="uFw-Cj-ENu" id="zx3-or-41N"/>
                         <outlet property="helpLabel" destination="26V-Zk-MkY" id="U02-Oz-6vt"/>
                         <outlet property="tableView" destination="3xR-cP-tiD" id="6Ob-NA-HLf"/>

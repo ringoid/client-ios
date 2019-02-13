@@ -20,5 +20,6 @@ class SettingsLegalCell: BaseTableViewCell
     override func updateTheme()
     {
         self.legalLabel.textColor = ContentColor().uiColor()
+        self.tintColor = ContentColor().uiColor()
     }
 }

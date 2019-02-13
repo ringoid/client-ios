@@ -43,6 +43,7 @@ class SettingsViewController: BaseViewController
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var backBtn: UIButton!
     
     override func viewDidLoad()
     {
@@ -63,6 +64,7 @@ class SettingsViewController: BaseViewController
             self.tableView.separatorColor = (theme == .dark) ? darkThemeSeparatorColor : .lightGray
             self.view.backgroundColor = BackgroundColor().uiColor()
             self.titleLabel.textColor = ContentColor().uiColor()
+            self.backBtn.tintColor = ContentColor().uiColor()
         }
     }
     

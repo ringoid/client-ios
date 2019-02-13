@@ -22,6 +22,7 @@ class SettingsLanguageCell: BaseTableViewCell
     {
         self.titleLabel.textColor = ContentColor().uiColor()
         self.languageLabel.textColor = ContentColor().uiColor()
+        self.tintColor = ContentColor().uiColor()
     }
     
     override func updateLocale()

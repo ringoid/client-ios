@@ -1,5 +1,5 @@
 //
-//  SettingsLocaleCell.swift
+//  SettingsEmailCell.swift
 //  ringoid
 //
 //  Created by Victor Sukochev on 13/02/2019.
@@ -8,15 +8,8 @@
 
 import UIKit
 
-class SettingsLocaleCell: BaseTableViewCell
+class SettingsEmailCell: BaseTableViewCell
 {
-    var locale: Language?
-    {
-        didSet {
-            self.titleLabel.text = locale?.title()
-        }
-    }
-    
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     
     override func updateTheme()
@@ -24,5 +17,4 @@ class SettingsLocaleCell: BaseTableViewCell
         self.titleLabel.textColor = ContentColor().uiColor()
         self.tintColor = ContentColor().uiColor()
     }
-    
 }

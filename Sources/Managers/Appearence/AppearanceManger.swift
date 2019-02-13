@@ -24,7 +24,8 @@ class AppearanceManger
     fileprivate func setupBindings()
     {
         ThemeManager.shared.theme.asObservable().subscribe(onNext: { [weak self] theme in
-            self?.updateTableViews(theme)
+            //self?.updateTableViews(theme)
+            //self?.updateButtons(theme)
         }).disposed(by: self.disposeBag)
     }
     
@@ -32,5 +33,10 @@ class AppearanceManger
     {
         let darkThemeSeparatorColor = UIColor(red: 64.0 / 255.0, green: 64.0 / 255.0, blue: 64.0 / 255.0, alpha: 1.0)
         UITableView.appearance().separatorColor = (theme == .dark) ? darkThemeSeparatorColor : .black
+    }
+    
+    fileprivate func updateButtons(_ theme: ColorTheme)
+    {
+        UIButton.appearance().tintColor = .purple
     }
 }

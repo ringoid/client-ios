@@ -16,6 +16,7 @@ class SettingsThemeCell: BaseTableViewCell
     
     @IBOutlet fileprivate weak var themeSwitch: UISwitch!
     @IBOutlet fileprivate weak var themeLabel: UILabel!
+    @IBOutlet fileprivate weak var themeIconView: UIImageView!
     
     override func awakeFromNib()
     {
@@ -27,13 +28,13 @@ class SettingsThemeCell: BaseTableViewCell
 
     override func updateLocale()
     {
-        self.themeLabel.text = ThemeManager.shared.theme.value.title()
+        self.themeLabel.text = "THEME_NIGHT_MODE".localized()
     }
     
     override func updateTheme()
     {
-        self.themeLabel.text = ThemeManager.shared.theme.value.title()
         self.themeLabel.textColor = ContentColor().uiColor()
+        self.themeIconView.tintColor = ContentColor().uiColor()
     }
     
     // MARK: -
@@ -43,16 +44,5 @@ class SettingsThemeCell: BaseTableViewCell
         self.themeSwitch.rx.value.subscribe(onNext: { value in
             ThemeManager.shared.theme.accept(value ? .dark : .light)
         }).disposed(by: self.disposeBag)
-    }
-}
-
-extension ColorTheme
-{
-    func title() -> String
-    {
-        switch self {
-        case .dark: return "THEME_NIGHT_MODE".localized()
-        case .light: return "THEME_DAY_MODE".localized()
-        }
     }
 }
