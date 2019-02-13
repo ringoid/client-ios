@@ -17,10 +17,14 @@ class SettingsLocaleViewController: BaseViewController
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var footerView: UIView!
+    @IBOutlet fileprivate weak var helpLabel: UILabel!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        self.tableView.tableFooterView = self.footerView
         
         self.setupBindings()
     }
@@ -33,6 +37,7 @@ class SettingsLocaleViewController: BaseViewController
     override func updateLocale()
     {
         self.titleLabel.text = "SETTINGS_LANGUAGE".localized()
+        self.helpLabel.attributedText = NSAttributedString(string: "SETTINGS_LOCALE_HELP_LOCALIZE".localized())
     }
     
     // MARK: - Actions
@@ -74,7 +79,7 @@ extension SettingsLocaleViewController: UITableViewDataSource, UITableViewDelega
         
         cell.locale = locale
         cell.accessoryType = isSelected ? .checkmark : .none
-                
+        
         return cell
     }
     

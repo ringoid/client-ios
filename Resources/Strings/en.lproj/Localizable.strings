@@ -31,6 +31,7 @@
 "SETTINGS_DELETE_ACCOUNT" = "Delete Account";
 "SETTINGS_DELETE_ACCOUNT_ALERT_TITLE" = "Delete Account?";
 "SETTINGS_DELETE_ACCOUNT_ALERT_MESSAGE" = "There is no undo.";
+"SETTINGS_LOCALE_HELP_LOCALIZE" = "If you want to help the community and localise Ringoid to your native language, please email support@ringoid.com";
 
 "LMM_HEADER_CHATS_OPTION" = "Chats";
 "LMM_HEADER_LIKES_OPTION" = "Likes You";

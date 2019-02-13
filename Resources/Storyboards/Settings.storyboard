@@ -262,11 +262,39 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="42" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="3xR-cP-tiD">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="42" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="3xR-cP-tiD">
                                 <rect key="frame" x="0.0" y="82" width="375" height="585"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.80392156859999997" green="0.80784313730000001" blue="0.82745098039999998" alpha="0.13219713180000001" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="18" maxY="0.0"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="uFw-Cj-ENu">
+                                    <rect key="frame" x="0.0" y="182.5" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26V-Zk-MkY">
+                                            <rect key="frame" x="14" y="-11" width="347" height="55"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="55" id="3I3-G8-Otx"/>
+                                            </constraints>
+                                            <attributedString key="attributedText">
+                                                <fragment content="If you want to help the community and localise Ringoid to your native language, please email support@ringoid.com">
+                                                    <attributes>
+                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="13" name=".SFNSText"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="26V-Zk-MkY" secondAttribute="trailing" constant="14" id="2SC-IO-4TE"/>
+                                        <constraint firstItem="26V-Zk-MkY" firstAttribute="leading" secondItem="uFw-Cj-ENu" secondAttribute="leading" constant="14" id="czd-LL-iXY"/>
+                                        <constraint firstAttribute="bottom" secondItem="26V-Zk-MkY" secondAttribute="bottom" id="jzx-73-LUh"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="locale_cell" id="9t1-66-o45" customClass="SettingsLocaleCell" customModule="ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="42"/>
@@ -317,6 +345,8 @@
                         <viewLayoutGuide key="safeArea" id="0My-Dk-CWL"/>
                     </view>
                     <connections>
+                        <outlet property="footerView" destination="uFw-Cj-ENu" id="zx3-or-41N"/>
+                        <outlet property="helpLabel" destination="26V-Zk-MkY" id="U02-Oz-6vt"/>
                         <outlet property="tableView" destination="3xR-cP-tiD" id="6Ob-NA-HLf"/>
                         <outlet property="titleLabel" destination="16O-dz-ocn" id="gpO-Nb-ywI"/>
                     </connections>
