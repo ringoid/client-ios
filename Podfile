@@ -10,4 +10,6 @@ target 'ringoid' do
 	pod 'RxAlamofire'
 	pod 'Nuke'
 	pod 'KafkaRefresh'
+	pod 'Fabric'
+	pod 'Crashlytics'
 end
