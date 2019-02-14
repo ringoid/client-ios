@@ -17,7 +17,7 @@ fileprivate struct SettingsOption
     let height: CGFloat
 }
 
-fileprivate enum SettinsOptionType: Int
+fileprivate enum SettingsOptionType: Int
 {
     case theme = 0
     case language = 1
@@ -94,10 +94,10 @@ class SettingsViewController: BaseViewController
             message: "SETTINGS_DELETE_ACCOUNT_ALERT_MESSAGE".localized(),
             preferredStyle: .alert
         )
-        alertVC.addAction(UIAlertAction(title: "DELETE_OPTION".localized(), style: .default, handler: ({ _ in
+        alertVC.addAction(UIAlertAction(title: "COMMON_DELETE".localized(), style: .default, handler: ({ _ in
             self.viewModel?.logout()
         })))
-        alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "COMMON_CANCEL".localized(), style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
     }
@@ -143,7 +143,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        guard let option = SettinsOptionType(rawValue: indexPath.row) else { return }
+        guard let option = SettingsOptionType(rawValue: indexPath.row) else { return }
         
         switch option {
         case .theme: return

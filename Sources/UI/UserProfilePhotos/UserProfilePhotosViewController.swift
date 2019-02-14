@@ -166,7 +166,7 @@ class UserProfilePhotosViewController: BaseViewController
             
             self.input.profileManager.deletePhoto(photo)
         })))
-        alertVC.addAction(UIAlertAction(title: "CANCEL_OPTION".localized(), style: .cancel, handler: { _ in
+        alertVC.addAction(UIAlertAction(title: "COMMON_CANCEL".localized(), style: .cancel, handler: { _ in
             self.showControls()
         }))
         
@@ -184,7 +184,7 @@ class UserProfilePhotosViewController: BaseViewController
             self?.viewModel?.moveToSearch()
         })))
         
-        alertVC.addAction(UIAlertAction(title: "CLOSE_OPTION".localized(), style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "COMMON_CLOSE".localized(), style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
     }

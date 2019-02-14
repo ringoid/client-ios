@@ -8,9 +8,24 @@
 
 import UIKit
 
+fileprivate struct SettingsLegalOption
+{
+    let cellIdentifier: String
+    let height: CGFloat
+}
+
+fileprivate enum SettingsLegalOptionType: Int
+{
+    case about = 0
+}
+
 class SettingsLegalViewController: BaseViewController
 {
     fileprivate var viewModel: SettingsLegalViewModel?
+    
+    fileprivate let options = [
+        SettingsLegalOption(cellIdentifier: "about_cell", height: 42.0),
+        ]
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
@@ -52,5 +67,40 @@ class SettingsLegalViewController: BaseViewController
     func setupBindings()
     {
         self.viewModel = SettingsLegalViewModel()
+    }
+}
+
+extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegate
+{
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return self.options.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let option = self.options[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: option.cellIdentifier)!
+        
+        if let type = SettingsLegalOptionType(rawValue: indexPath.row) {
+            switch type {
+            case .about:
+                (cell as? SettingsLegalAboutCell)?.buildText = self.viewModel?.build.value                
+            }
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        let option = self.options[indexPath.row]
+        
+        return option.height
     }
 }

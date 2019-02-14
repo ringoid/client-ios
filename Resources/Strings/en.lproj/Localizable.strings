@@ -6,9 +6,10 @@
   Copyright © 2019 Ringoid. All rights reserved.
 */
 
-"CANCEL_OPTION" = "Cancel";
-"DELETE_OPTION" = "Delete";
-"CLOSE_OPTION" = "Close";
+"COMMON_CANCEL" = "Cancel";
+"COMMON_DELETE" = "Delete";
+"COMMON_CLOSE" = "Close";
+"COMMON_ABOUT" = "About";
 
 "AUTH_TERMS_AND_POLICY" = "By tapping the button below, you confirm that you have read, understood, consent and agree to Ringoid's $terms$ and $policy$, and that you are of legal age and adult, as defined by the country or state from where you access Ringoid.";
 "AUTH_TERMS_OF_SERVICE" = "Terms of Service";
