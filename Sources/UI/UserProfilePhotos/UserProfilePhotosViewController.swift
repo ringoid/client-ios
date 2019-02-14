@@ -223,7 +223,15 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
     {
         guard let cropRect = info[.cropRect] as? CGRect, let image = info[.originalImage] as? UIImage else { return }
-        guard let croppedImage = image.crop(rect: cropRect) else { return }
+        
+        let width = cropRect.width / 4.0 * 3.0
+        let adjustedCropRect = CGRect(
+            x: cropRect.midX - width / 2.0,
+            y: cropRect.origin.y,
+            width: width,
+            height: cropRect.height
+        )
+        guard let croppedImage = image.crop(rect: adjustedCropRect) else { return }
 
         self.viewModel?.add(croppedImage).subscribe(onNext: ({ [weak self] photo in
             self?.viewModel?.lastPhotoId.accept(nil)
