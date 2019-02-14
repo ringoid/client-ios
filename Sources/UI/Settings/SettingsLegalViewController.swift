@@ -17,6 +17,7 @@ fileprivate struct SettingsLegalOption
 fileprivate enum SettingsLegalOptionType: Int
 {
     case about = 0
+    case privacy = 1
 }
 
 class SettingsLegalViewController: BaseViewController
@@ -25,6 +26,7 @@ class SettingsLegalViewController: BaseViewController
     
     fileprivate let options = [
         SettingsLegalOption(cellIdentifier: "about_cell", height: 42.0),
+        SettingsLegalOption(cellIdentifier: "policy_cell", height: 42.0),
         ]
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
@@ -90,7 +92,8 @@ extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegat
         if let type = SettingsLegalOptionType(rawValue: indexPath.row) {
             switch type {
             case .about:
-                (cell as? SettingsLegalAboutCell)?.buildText = self.viewModel?.build.value                
+                (cell as? SettingsLegalAboutCell)?.buildText = self.viewModel?.build.value
+            case .privacy: break
             }
         }
         
@@ -102,5 +105,17 @@ extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegat
         let option = self.options[indexPath.row]
         
         return option.height
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        guard let option = SettingsLegalOptionType(rawValue: indexPath.row) else { return }
+        
+        switch option {
+        case .about: break
+        case .privacy:
+            UIApplication.shared.open(AppConfig.policyUrl, options: [:], completionHandler: nil)
+            break
+        }
     }
 }

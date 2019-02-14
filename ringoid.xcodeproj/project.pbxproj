@@ -115,6 +115,7 @@
 		57EE64C1221478A600246B45 /* SettingsLegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64C0221478A600246B45 /* SettingsLegalViewController.swift */; };
 		57EE64C3221478EA00246B45 /* SettingsLegalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64C2221478EA00246B45 /* SettingsLegalViewModel.swift */; };
 		57EE64C722150FD600246B45 /* SettingsLegalAboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64C622150FD600246B45 /* SettingsLegalAboutCell.swift */; };
+		57EE64C922152AC400246B45 /* SettingsLegalPolicyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64C822152AC400246B45 /* SettingsLegalPolicyCell.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -239,6 +240,7 @@
 		57EE64C0221478A600246B45 /* SettingsLegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalViewController.swift; sourceTree = "<group>"; };
 		57EE64C2221478EA00246B45 /* SettingsLegalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalViewModel.swift; sourceTree = "<group>"; };
 		57EE64C622150FD600246B45 /* SettingsLegalAboutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalAboutCell.swift; sourceTree = "<group>"; };
+		57EE64C822152AC400246B45 /* SettingsLegalPolicyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalPolicyCell.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -655,6 +657,7 @@
 				57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */,
 				57EE64BE221435E100246B45 /* SettingsEmailCell.swift */,
 				57EE64C622150FD600246B45 /* SettingsLegalAboutCell.swift */,
+				57EE64C822152AC400246B45 /* SettingsLegalPolicyCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1035,6 +1038,7 @@
 				576FC11122001CD400BA5ABE /* ErrorsManager.swift in Sources */,
 				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,
 				579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */,
+				57EE64C922152AC400246B45 /* SettingsLegalPolicyCell.swift in Sources */,
 				57386E44220B33120000E5D9 /* SettingsLegalCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
