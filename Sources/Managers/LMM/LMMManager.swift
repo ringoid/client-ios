@@ -85,7 +85,7 @@ class LMMManager
     
     func refresh() -> Observable<Void>
     {
-        let chatCache = self.messages.value.map({ ChatProfileCache.create($0) })
+        let chatCache = self.messages.value.filter({ !$0.notSeen }).map({ ChatProfileCache.create($0) })
         self.purge()
         
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] result -> Observable<Void> in
@@ -94,12 +94,14 @@ class LMMManager
             let matches = createProfiles(result.matches, type: .matches)
             let messages = createProfiles(result.messages, type: .messages)
             
-            chatCache.forEach { localChatProfile in
-                messages.forEach({ remoteProfile in
+            messages.forEach { remoteProfile in
+                remoteProfile.notSeen = true
+                
+                chatCache.forEach { localChatProfile in
                     if localChatProfile.id == remoteProfile.id {
                         remoteProfile.notSeen = localChatProfile.messagesCount != remoteProfile.messages.count
                     }
-                })
+                }
             }
             
             return self!.db.add(localLikesYou + matches + messages)
