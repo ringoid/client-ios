@@ -152,6 +152,10 @@
                                             <action selector="onRegister" destination="g3D-bb-6vc" eventType="touchUpInside" id="ZId-Nj-Rrh"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="7xf-j8-IEa">
+                                        <rect key="frame" x="169" y="416" width="37" height="37"/>
+                                        <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLp-TM-j8c">
                                         <rect key="frame" x="310" y="44" width="49" height="36"/>
                                         <state key="normal" image="auth_theme_btn_day"/>
@@ -167,6 +171,7 @@
                                     <constraint firstItem="39I-EI-ikh" firstAttribute="top" secondItem="cO2-Ma-bvu" secondAttribute="bottom" constant="12" id="31p-bm-7QG"/>
                                     <constraint firstItem="FpE-Be-fZR" firstAttribute="leading" secondItem="bh1-NE-O5a" secondAttribute="leading" id="4Yf-fd-4qA"/>
                                     <constraint firstItem="Qfe-tw-Yjt" firstAttribute="leading" secondItem="mH3-OF-pyD" secondAttribute="leading" constant="16" id="5Rs-QK-hhm"/>
+                                    <constraint firstItem="Qfe-tw-Yjt" firstAttribute="centerX" secondItem="7xf-j8-IEa" secondAttribute="centerX" id="7eN-FE-pmR"/>
                                     <constraint firstItem="Qfe-tw-Yjt" firstAttribute="top" secondItem="ytv-xm-SNC" secondAttribute="bottom" constant="8" id="9Lf-wB-fPX"/>
                                     <constraint firstItem="39I-EI-ikh" firstAttribute="leading" secondItem="mH3-OF-pyD" secondAttribute="centerX" constant="4" id="A1W-G0-iBC"/>
                                     <constraint firstItem="FpE-Be-fZR" firstAttribute="trailing" secondItem="bh1-NE-O5a" secondAttribute="trailing" id="Dd6-Cd-bT3"/>
@@ -176,6 +181,7 @@
                                     <constraint firstItem="ytv-xm-SNC" firstAttribute="leading" secondItem="mH3-OF-pyD" secondAttribute="leading" constant="16" id="PTr-ZH-sos"/>
                                     <constraint firstItem="FpE-Be-fZR" firstAttribute="top" secondItem="bh1-NE-O5a" secondAttribute="top" id="SlL-EV-VyR"/>
                                     <constraint firstItem="cO2-Ma-bvu" firstAttribute="top" secondItem="mH3-OF-pyD" secondAttribute="topMargin" priority="500" constant="88" id="Xev-li-US2"/>
+                                    <constraint firstItem="Qfe-tw-Yjt" firstAttribute="centerY" secondItem="7xf-j8-IEa" secondAttribute="centerY" id="YDO-s2-Jaw"/>
                                     <constraint firstItem="oFs-C8-vnJ" firstAttribute="bottom" secondItem="39I-EI-ikh" secondAttribute="bottom" id="fNC-ds-S3P"/>
                                     <constraint firstAttribute="trailing" secondItem="zLp-TM-j8c" secondAttribute="trailing" constant="16" id="hCh-NT-bch"/>
                                     <constraint firstItem="ytv-xm-SNC" firstAttribute="top" secondItem="bh1-NE-O5a" secondAttribute="bottom" constant="47" id="hr2-tn-7MS"/>
@@ -198,6 +204,7 @@
                         <viewLayoutGuide key="safeArea" id="jmW-Pn-Ilx"/>
                     </view>
                     <connections>
+                        <outlet property="authActivityView" destination="7xf-j8-IEa" id="bNE-2m-5Cj"/>
                         <outlet property="birthYearContainerView" destination="cO2-Ma-bvu" id="Ihs-Wh-Kg6"/>
                         <outlet property="birthYearTextField" destination="CBF-BB-eko" id="Ouj-5a-f20"/>
                         <outlet property="femaleBtn" destination="oFs-C8-vnJ" id="BPc-8n-X3f"/>

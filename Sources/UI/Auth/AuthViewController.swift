@@ -26,12 +26,15 @@ class AuthViewController: BaseViewController
     @IBOutlet fileprivate weak var registerBtn: UIButton!
     @IBOutlet fileprivate weak var themeBtn: UIButton!
     @IBOutlet fileprivate weak var termsPolicyTextView: UITextView!
+    @IBOutlet fileprivate weak var authActivityView: UIActivityIndicatorView!
     
     override func viewDidLoad()
     {
         assert(self.input != nil)
         
         super.viewDidLoad()
+        
+        self.authActivityView.stopAnimating()
         
         let linkColor = UIColor(red: 73.0 / 255.0, green: 183.0 / 255.0, blue: 70.0 / 255.0, alpha: 1.0)
         self.termsPolicyTextView.linkTextAttributes = [
@@ -69,10 +72,16 @@ class AuthViewController: BaseViewController
     
     @IBAction func onRegister()
     {
-        self.viewModel?.register().subscribe(onError: { [weak self] error in
+        self.authActivityView.startAnimating()
+        self.registerBtn.isHidden = true
+        self.viewModel?.register().subscribe(
+            onError: { [weak self] error in
             guard let `self` = self else { return }
             
             showError(error, vc: self)
+            }, onCompleted: { [weak self] in
+                self?.authActivityView.stopAnimating()
+                self?.registerBtn.isHidden = false
         }).disposed(by: self.disposeBag)
     }
     
