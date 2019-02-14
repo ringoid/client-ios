@@ -123,10 +123,21 @@ class AuthViewController: BaseViewController
     fileprivate func updateRegistrationState()
     {
         let isValidated = self.viewModel?.sex.value != nil &&
-        self.viewModel?.birthYear.value != nil
+        self.validateBirthYear()
         
         self.registerBtn.alpha = isValidated ? 1.0 : 0.5
         self.registerBtn.isEnabled = isValidated
+    }
+    
+    fileprivate func validateBirthYear() -> Bool
+    {
+        guard let birthYear = self.viewModel?.birthYear.value else { return false }
+        
+        let calendar = Calendar.current
+        let currentYear = calendar.component(.year, from: Date())
+        let diff = currentYear - birthYear
+        
+        return diff >= 18 && diff <= 70
     }
     
     fileprivate func updateSexState(_ sex: Sex?)
@@ -147,7 +158,8 @@ class AuthViewController: BaseViewController
     fileprivate func updatePlaceholder()
     {
         self.birthYearTextField.attributedPlaceholder = NSAttributedString(string: "AUTH_YOB".localized(), attributes: [
-            .foregroundColor: ContentColor().uiColor()
+            .foregroundColor: ContentColor().uiColor(),
+            .font: UIFont.systemFont(ofSize: 17.0, weight: .light)
             ])
     }
     
