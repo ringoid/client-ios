@@ -36,19 +36,8 @@
                                     <constraint firstAttribute="trailing" secondItem="ukA-g1-heh" secondAttribute="trailing" id="K1o-tf-xt3"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPj-U6-bjV">
-                                <rect key="frame" x="334" y="627" width="41" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Car-CU-AJo"/>
-                                    <constraint firstAttribute="width" constant="41" id="KC0-O4-vyI"/>
-                                </constraints>
-                                <state key="normal" image="chat_send"/>
-                                <connections>
-                                    <action selector="onSend" destination="7Sb-wa-NBj" eventType="touchUpInside" id="O92-Ne-7mq"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHy-pP-KSv">
-                                <rect key="frame" x="16" y="627" width="302" height="40"/>
+                                <rect key="frame" x="16" y="627" width="303" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Wjg-rX-7Lb"/>
@@ -60,17 +49,6 @@
                                     <outlet property="delegate" destination="7Sb-wa-NBj" id="D4a-BL-0h2"/>
                                 </connections>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gu8-Zv-Egg">
-                                <rect key="frame" x="2" y="22" width="44" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="0WU-rR-IKU"/>
-                                    <constraint firstAttribute="width" constant="44" id="bph-7x-TdX"/>
-                                </constraints>
-                                <state key="normal" image="chat_close"/>
-                                <connections>
-                                    <action selector="onClose" destination="7Sb-wa-NBj" eventType="touchUpInside" id="Yr3-rM-d48"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="58" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H3p-mh-W6s">
                                 <rect key="frame" x="16" y="68" width="343" height="559"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -161,6 +139,29 @@
                                     <outletCollection property="gestureRecognizers" destination="q49-r4-Pck" appends="YES" id="f1s-I0-c0V"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPj-U6-bjV">
+                                <rect key="frame" x="319" y="587" width="56" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Car-CU-AJo"/>
+                                    <constraint firstAttribute="width" constant="56" id="KC0-O4-vyI"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="16" minY="40" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" image="chat_send"/>
+                                <connections>
+                                    <action selector="onSend" destination="7Sb-wa-NBj" eventType="touchUpInside" id="O92-Ne-7mq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gu8-Zv-Egg">
+                                <rect key="frame" x="2" y="22" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="0WU-rR-IKU"/>
+                                    <constraint firstAttribute="width" constant="44" id="bph-7x-TdX"/>
+                                </constraints>
+                                <state key="normal" image="chat_close"/>
+                                <connections>
+                                    <action selector="onClose" destination="7Sb-wa-NBj" eventType="touchUpInside" id="Yr3-rM-d48"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J21-mx-HH3">
                                 <rect key="frame" x="139.5" y="555" width="96" height="32"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -183,7 +184,7 @@
                             <constraint firstAttribute="trailing" secondItem="cjc-8j-yFq" secondAttribute="trailing" id="3rS-UO-aDa"/>
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="top" secondItem="H3p-mh-W6s" secondAttribute="bottom" id="5EY-Ux-4bF"/>
                             <constraint firstItem="Gu8-Zv-Egg" firstAttribute="top" secondItem="b2c-7o-Xv8" secondAttribute="top" constant="2" id="KsU-Gp-tph"/>
-                            <constraint firstItem="qPj-U6-bjV" firstAttribute="leading" secondItem="FHy-pP-KSv" secondAttribute="trailing" constant="16" id="LvF-KT-ih6"/>
+                            <constraint firstItem="qPj-U6-bjV" firstAttribute="leading" secondItem="FHy-pP-KSv" secondAttribute="trailing" id="LvF-KT-ih6"/>
                             <constraint firstItem="H3p-mh-W6s" firstAttribute="top" secondItem="Gu8-Zv-Egg" secondAttribute="bottom" constant="2" id="Qxk-8v-ury"/>
                             <constraint firstItem="FHy-pP-KSv" firstAttribute="height" secondItem="cjc-8j-yFq" secondAttribute="height" id="WzV-LV-1kM"/>
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="centerY" secondItem="FHy-pP-KSv" secondAttribute="centerY" id="aWE-YM-4XF"/>
