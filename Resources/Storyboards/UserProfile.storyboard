@@ -71,14 +71,14 @@ see how many likes you get</string>
                                 </connections>
                             </tableView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32r-W0-czT">
-                                <rect key="frame" x="320" y="267" width="28" height="36"/>
+                                <rect key="frame" x="323" y="267" width="28" height="36"/>
                                 <state key="normal" image="profile_delete_photo"/>
                                 <connections>
                                     <action selector="deletePhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="KYt-hL-B7c"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3C-Zv-Ixf">
-                                <rect key="frame" x="318" y="460" width="34" height="34"/>
+                                <rect key="frame" x="320" y="460" width="34" height="34"/>
                                 <state key="normal" image="profile_photo_add"/>
                                 <connections>
                                     <action selector="addPhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="63R-hS-DlC"/>
@@ -104,7 +104,6 @@ see how many likes you get</string>
                             <constraint firstItem="UJu-F3-4rH" firstAttribute="leading" secondItem="Yc6-CF-qSL" secondAttribute="leading" constant="18" id="84h-sg-v7S"/>
                             <constraint firstItem="32r-W0-czT" firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" constant="-217" id="8Ol-36-tvL"/>
                             <constraint firstItem="gyn-28-5bi" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" constant="18" id="G7V-WC-jCi"/>
-                            <constraint firstAttribute="trailing" secondItem="32r-W0-czT" secondAttribute="trailing" constant="27" id="IyC-nP-7NA"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="J5p-mc-dZY"/>
                             <constraint firstAttribute="trailing" secondItem="GhS-rk-bVb" secondAttribute="trailing" id="MAW-HJ-rQf"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="Q1a-Y0-U7m"/>
@@ -113,7 +112,8 @@ see how many likes you get</string>
                             <constraint firstItem="R3C-Zv-Ixf" firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" constant="-26" id="ggR-U5-ZuF"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerY" secondItem="q5L-So-vMI" secondAttribute="centerY" id="h1K-ko-wtW"/>
                             <constraint firstItem="0Ze-nT-pEZ" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="26" id="l9A-yQ-mB5"/>
-                            <constraint firstAttribute="trailing" secondItem="R3C-Zv-Ixf" secondAttribute="trailing" constant="23" id="pnS-T9-dnY"/>
+                            <constraint firstItem="R3C-Zv-Ixf" firstAttribute="centerX" secondItem="0Ze-nT-pEZ" secondAttribute="centerX" id="vb0-Fh-fhM"/>
+                            <constraint firstItem="32r-W0-czT" firstAttribute="centerX" secondItem="0Ze-nT-pEZ" secondAttribute="centerX" id="wIv-XJ-LqT"/>
                             <constraint firstItem="gyn-28-5bi" firstAttribute="leading" secondItem="Yc6-CF-qSL" secondAttribute="leading" constant="17" id="xWB-fQ-bnr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Yc6-CF-qSL"/>
@@ -160,25 +160,45 @@ see how many likes you get</string>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EvB-7Q-pcw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <view alpha="0.20000000298023224" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qm8-2C-8JX" customClass="VerticalGradientView" customModule="ringoid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="Uwh-pV-Agp"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_likes" translatesAutoresizingMaskIntoConstraints="NO" id="2ec-Dg-we7">
-                                <rect key="frame" x="329" y="143" width="23" height="22"/>
+                                <rect key="frame" x="319" y="143" width="36" height="33"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mh-A3-a0C">
-                                <rect key="frame" x="335.5" y="167" width="10" height="19.5"/>
+                                <rect key="frame" x="331.5" y="178" width="11.5" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="-1" height="0.0"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="2ec-Dg-we7" secondAttribute="trailing" constant="23" id="E2K-MW-N2f"/>
+                            <constraint firstAttribute="trailing" secondItem="2ec-Dg-we7" secondAttribute="trailing" constant="20" id="E2K-MW-N2f"/>
+                            <constraint firstItem="qm8-2C-8JX" firstAttribute="top" secondItem="9ej-Xx-5fe" secondAttribute="top" id="LMc-4A-xKt"/>
+                            <constraint firstItem="qm8-2C-8JX" firstAttribute="leading" secondItem="9ej-Xx-5fe" secondAttribute="leading" id="OGG-9w-dUA"/>
                             <constraint firstAttribute="trailing" secondItem="EvB-7Q-pcw" secondAttribute="trailing" id="PpM-4N-80m"/>
                             <constraint firstItem="3Mh-A3-a0C" firstAttribute="top" secondItem="2ec-Dg-we7" secondAttribute="bottom" constant="2" id="TrO-li-QYF"/>
                             <constraint firstItem="EvB-7Q-pcw" firstAttribute="top" secondItem="9ej-Xx-5fe" secondAttribute="top" id="V7m-RW-5Pm"/>
                             <constraint firstItem="2ec-Dg-we7" firstAttribute="top" secondItem="9ej-Xx-5fe" secondAttribute="top" constant="143" id="bzD-vW-21H"/>
                             <constraint firstAttribute="bottom" secondItem="EvB-7Q-pcw" secondAttribute="bottom" id="jGy-8B-eLC"/>
                             <constraint firstItem="EvB-7Q-pcw" firstAttribute="leading" secondItem="9ej-Xx-5fe" secondAttribute="leading" id="jw5-Cc-VCz"/>
+                            <constraint firstAttribute="trailing" secondItem="qm8-2C-8JX" secondAttribute="trailing" id="rGk-5s-gKc"/>
                             <constraint firstItem="3Mh-A3-a0C" firstAttribute="centerX" secondItem="2ec-Dg-we7" secondAttribute="centerX" id="s1n-4e-HQ5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Hf-TU-RL8"/>
@@ -196,7 +216,7 @@ see how many likes you get</string>
     </scenes>
     <resources>
         <image name="profile_delete_photo" width="28" height="36"/>
-        <image name="profile_likes" width="23" height="22"/>
+        <image name="profile_likes" width="36" height="33"/>
         <image name="profile_photo_add" width="34" height="34"/>
         <image name="profile_settings" width="30" height="30"/>
     </resources>
