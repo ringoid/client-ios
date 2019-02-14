@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 fileprivate struct SettingsLegalOption
 {
@@ -19,6 +20,8 @@ fileprivate enum SettingsLegalOptionType: Int
     case about = 0
     case privacy = 1
     case terms = 2
+    case licenses = 3
+    case email = 4
 }
 
 class SettingsLegalViewController: BaseViewController
@@ -29,6 +32,8 @@ class SettingsLegalViewController: BaseViewController
         SettingsLegalOption(cellIdentifier: "about_cell", height: 42.0),
         SettingsLegalOption(cellIdentifier: "policy_cell", height: 42.0),
         SettingsLegalOption(cellIdentifier: "terms_cell", height: 42.0),
+        SettingsLegalOption(cellIdentifier: "licenses_cell", height: 42.0),
+        SettingsLegalOption(cellIdentifier: "email_cell", height: 42.0),
         ]
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
@@ -72,6 +77,17 @@ class SettingsLegalViewController: BaseViewController
     {
         self.viewModel = SettingsLegalViewModel()
     }
+    
+    fileprivate func showEmailUI()
+    {
+        guard MFMailComposeViewController.canSendMail() else { return }
+        
+        let vc = MFMailComposeViewController()
+        vc.setToRecipients(["data.protection@ringoid.com"])
+        vc.mailComposeDelegate = self
+        
+        self.present(vc, animated: true, completion: nil)
+    }
 }
 
 extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegate
@@ -97,6 +113,8 @@ extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegat
                 (cell as? SettingsLegalAboutCell)?.buildText = self.viewModel?.build.value
             case .privacy: break
             case .terms: break
+            case .licenses: break
+            case .email: break
             }
         }
         
@@ -123,6 +141,19 @@ extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegat
         case .terms:
             UIApplication.shared.open(AppConfig.termsUrl, options: [:], completionHandler: nil)
             break
+            
+        case .licenses: break
+        case .email:
+            self.showEmailUI()
+            break
         }
+    }
+}
+
+extension SettingsLegalViewController: MFMailComposeViewControllerDelegate
+{
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
+    {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

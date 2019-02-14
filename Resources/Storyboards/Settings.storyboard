@@ -393,19 +393,19 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="42" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="85" translatesAutoresizingMaskIntoConstraints="NO" id="LCl-E4-8o8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="42" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LCl-E4-8o8">
                                 <rect key="frame" x="0.0" y="82" width="375" height="585"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.80392156859999997" green="0.80784313730000001" blue="0.82745098039999998" alpha="0.13219713180000001" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="18" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="3zW-Pn-Dtw">
-                                    <rect key="frame" x="0.0" y="350.5" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="238" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="about_cell" id="HMa-aB-RIU" customClass="SettingsLegalAboutCell" customModule="ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HMa-aB-RIU" id="OUO-0V-URW">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="41.5"/>
@@ -441,7 +441,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="policy_cell" id="vu8-FT-f0J" customClass="SettingsLegalPolicyCell" customModule="ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="97.5" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="70" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vu8-FT-f0J" id="bu0-kH-kWz">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="41.5"/>
@@ -468,7 +468,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="terms_cell" id="MOA-Lb-s35" customClass="SettingsLegalTermsCell" customModule="ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="139.5" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="112" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MOA-Lb-s35" id="YgF-X6-UFu">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="41.5"/>
@@ -494,15 +494,15 @@
                                             <outlet property="termsLabel" destination="YkQ-3C-JfL" id="5lv-gI-Y3o"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="licenses_cell" id="CGV-MZ-mxO" customClass="SettingsLocaleCell" customModule="ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="181.5" width="375" height="42"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="licenses_cell" id="CGV-MZ-mxO" customClass="SettingsLegalLicensesCell" customModule="ringoid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="154" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CGV-MZ-mxO" id="VUv-0V-OAm">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="41.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oG2-ek-aVi">
-                                                    <rect key="frame" x="18" y="13" width="33" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Licenses" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oG2-ek-aVi">
+                                                    <rect key="frame" x="18" y="13" width="53" height="16"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -518,18 +518,18 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="titleLabel" destination="oG2-ek-aVi" id="g3u-G8-KbL"/>
+                                            <outlet property="licensesLabel" destination="oG2-ek-aVi" id="uCg-St-hW8"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="email_cell" id="jP7-GV-gRa" userLabel="email_cell" customClass="SettingsLocaleCell" customModule="ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="223.5" width="375" height="42"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="email_cell" id="jP7-GV-gRa" userLabel="email_cell" customClass="SettingsLegalEmailCell" customModule="ringoid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="196" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jP7-GV-gRa" id="rzg-GW-h3e">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="41.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vy-9x-3Wm">
-                                                    <rect key="frame" x="18" y="13" width="33" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Data Protection Officer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vy-9x-3Wm">
+                                                    <rect key="frame" x="18" y="13" width="173" height="16"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -545,7 +545,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="titleLabel" destination="9vy-9x-3Wm" id="hh0-12-Uxy"/>
+                                            <outlet property="emailLabel" destination="9vy-9x-3Wm" id="ZSU-2X-PG0"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

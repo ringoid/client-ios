@@ -41,6 +41,8 @@
 
 "SETTINGS_LEGAL_POLICY" = "Privacy Policy";
 "SETTINGS_LEGAL_TERMS" = "Terms of Service";
+"SETTINGS_LEGAL_LICENSES" = "Licenses";
+"SETTINGS_LEGAL_EMAIL" = "Email Data Protection Officer";
 
 "LMM_HEADER_CHATS_OPTION" = "Chats";
 "LMM_HEADER_LIKES_OPTION" = "Likes You";
