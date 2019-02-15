@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import RxAlamofire
 import Alamofire
+import Sentry
 
 class ApiServiceDefault: ApiService
 {
@@ -278,6 +279,8 @@ class ApiServiceDefault: ApiService
                 }
                 
                 if let repeatAfter = jsonDict["repeatRequestAfterSec"] as? Int, repeatAfter >= 1 {
+
+                    SentryService.shared.send(.repeatAfterDelay)
                     print("repeating after \(repeatAfter)")
                     return self!.requestGET(path: path, params: params).delay(RxTimeInterval(repeatAfter), scheduler: MainScheduler.instance)
                 }
