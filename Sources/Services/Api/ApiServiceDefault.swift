@@ -241,8 +241,9 @@ class ApiServiceDefault: ApiService
     fileprivate func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any]) -> Observable<[String: Any]>
     {
         let url = self.config.endpoint + "/" + path
+        let buildVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"
         return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
-            "x-ringoid-ios-buildnum": "100",
+            "x-ringoid-ios-buildnum": buildVersion,
             ]).json().flatMap({ [weak self] obj -> Observable<[String: Any]> in
                 var jsonDict: [String: Any] = [:]
                 
@@ -264,8 +265,9 @@ class ApiServiceDefault: ApiService
     fileprivate func requestGET(path: String, params: [String: Any]) -> Observable<[String: Any]>
     {
         let url = self.config.endpoint + "/" + path
+        let buildVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"
         return RxAlamofire.request(.get, url, parameters: params, headers: [
-            "x-ringoid-ios-buildnum": "100",
+            "x-ringoid-ios-buildnum": buildVersion,
             ]).json().flatMap({ [weak self] obj -> Observable<[String: Any]> in
                 var jsonDict: [String: Any] = [:]
                 

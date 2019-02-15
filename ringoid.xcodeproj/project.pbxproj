@@ -1589,7 +1589,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ringoid.dating;
 				PRODUCT_NAME = Ringoid;
-				PROVISIONING_PROFILE_SPECIFIER = "ringoid dev";
+				PROVISIONING_PROFILE_SPECIFIER = "ringoid daiting dev";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1611,7 +1611,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ringoid.dating;
 				PRODUCT_NAME = Ringoid;
-				PROVISIONING_PROFILE_SPECIFIER = "ringoid prod";
+				PROVISIONING_PROFILE_SPECIFIER = "ringoid dating prod";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1633,7 +1633,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ringoid.dating-st";
 				PRODUCT_NAME = "Ringoid st";
-				PROVISIONING_PROFILE_SPECIFIER = "ringoid dev";
+				PROVISIONING_PROFILE_SPECIFIER = "ringoid dating stage dev";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG STAGE";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1656,7 +1656,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ringoid.dating-st";
 				PRODUCT_NAME = "Ringoid st";
-				PROVISIONING_PROFILE_SPECIFIER = "ringoid prod";
+				PROVISIONING_PROFILE_SPECIFIER = "ringoid dating stage prod";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
