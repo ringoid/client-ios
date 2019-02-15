@@ -1689,6 +1689,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ringoid.dating-st";
 				PRODUCT_NAME = "Ringoid st";
 				PROVISIONING_PROFILE_SPECIFIER = "ringoid dating stage prod";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = STAGE;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
