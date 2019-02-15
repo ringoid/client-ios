@@ -73,11 +73,38 @@ class NewFacesViewController: BaseViewController
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
                 self?.tableView.headRefreshControl.endRefreshing()
-                self?.tableView.footRefreshControl.endRefreshing()
                 
                 UIView.animate(withDuration: 0.095) {
                     self?.emptyFeedLabel.alpha = 1.0
                 }
+        }).disposed(by: self.disposeBag)
+    }
+    
+    func onFetchMore()
+    {
+        self.tableView.footRefreshControl.endRefreshing()
+        
+        if self.viewModel?.isPhotosAdded == false {
+            self.showAddPhotosOptions()
+            
+            return
+        }
+        
+        guard let count = self.viewModel?.profiles.value.count, count > 0 else { return }
+        
+        self.loadingActivityView.startAnimating()
+        self.feedEndLabel.isHidden = true
+        self.viewModel?.fetchNext().subscribe(
+            onNext: { [weak self] _ in
+                self?.lastFetchCount = count
+            }, onError: { [weak self] error in
+                guard let `self` = self else { return }
+                
+                showError(error, vc: self)
+            }, onCompleted: { [weak self] in
+                self?.viewModel?.finishFetching()
+                self?.loadingActivityView.stopAnimating()
+                self?.feedEndLabel.isHidden = false
         }).disposed(by: self.disposeBag)
     }
     
@@ -100,7 +127,7 @@ class NewFacesViewController: BaseViewController
         }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
         
         self.tableView.bindFootRefreshHandler({ [weak self] in
-            self?.onReload()
+            self?.onFetchMore()
         }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
     }
     
