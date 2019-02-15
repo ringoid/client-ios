@@ -243,9 +243,15 @@ class ApiServiceDefault: ApiService
     {
         let url = self.config.endpoint + "/" + path
         let buildVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"
+        let timestamp = Date()
+        
         return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
             ]).json().flatMap({ [weak self] obj -> Observable<[String: Any]> in
+                if Date().timeIntervalSince(timestamp) > 1.0 {
+                    SentryService.shared.send(.responseGeneralDelay)
+                }
+                
                 var jsonDict: [String: Any] = [:]
                 
                 do {
@@ -255,6 +261,7 @@ class ApiServiceDefault: ApiService
                 }
                 
                 if let repeatAfter = jsonDict["repeatRequestAfterSec"] as? Int, repeatAfter >= 1 {
+                    SentryService.shared.send(.repeatAfterDelay)
                     print("repeating after \(repeatAfter)")
                     return self!.request(method, path: path, jsonBody: jsonBody).delay(RxTimeInterval(repeatAfter), scheduler: MainScheduler.instance)
                 }
@@ -267,9 +274,15 @@ class ApiServiceDefault: ApiService
     {
         let url = self.config.endpoint + "/" + path
         let buildVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"
+        let timestamp = Date()
+        
         return RxAlamofire.request(.get, url, parameters: params, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
             ]).json().flatMap({ [weak self] obj -> Observable<[String: Any]> in
+                if Date().timeIntervalSince(timestamp) > 1.0 {
+                    SentryService.shared.send(.responseGeneralDelay)
+                }
+                
                 var jsonDict: [String: Any] = [:]
                 
                 do {
@@ -279,7 +292,6 @@ class ApiServiceDefault: ApiService
                 }
                 
                 if let repeatAfter = jsonDict["repeatRequestAfterSec"] as? Int, repeatAfter >= 1 {
-
                     SentryService.shared.send(.repeatAfterDelay)
                     print("repeating after \(repeatAfter)")
                     return self!.requestGET(path: path, params: params).delay(RxTimeInterval(repeatAfter), scheduler: MainScheduler.instance)

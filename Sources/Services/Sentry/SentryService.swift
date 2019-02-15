@@ -11,6 +11,8 @@ import Sentry
 enum SentryEvent: String
 {
     case repeatAfterDelay = "Repeat after delay"
+    case internalError = "Internal Server Error"
+    case responseGeneralDelay = "Waiting for response longer than expected"
 }
 
 class SentryService
@@ -43,6 +45,9 @@ extension SentryEvent
     {
         switch self {
         case .repeatAfterDelay: return .error
+        case .internalError: return .error
+        case .responseGeneralDelay: return .warning
+            
         }
     }
 }
