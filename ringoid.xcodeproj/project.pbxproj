@@ -242,6 +242,7 @@
 		57EE654F2216711000246B45 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7BD21F99EDE00C3AEE3 /* Chat.storyboard */; };
 		57EE65502216711000246B45 /* NewFaces.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D3721E330B100038798 /* NewFaces.storyboard */; };
 		57EE6559221677DE00246B45 /* ApiServiceConfigProd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE6558221677DE00246B45 /* ApiServiceConfigProd.swift */; };
+		57EE655A2216991700246B45 /* ApiServiceConfigStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -1267,6 +1268,7 @@
 				579CD7CC21FA094600C3AEE3 /* KeyboardListener.swift in Sources */,
 				579CD7CA21F9DB8B00C3AEE3 /* ChatBaseCell.swift in Sources */,
 				57B863F021EF5A0000B9CC70 /* ApiAction.swift in Sources */,
+				57EE655A2216991700246B45 /* ApiServiceConfigStage.swift in Sources */,
 				57B863D921EE18ED00B9CC70 /* DiagonalGradientView.swift in Sources */,
 				57EE64CD2215394A00246B45 /* SettingsLegalLicensesCell.swift in Sources */,
 				57585D5921E4928600038798 /* FileServiceDefault.swift in Sources */,

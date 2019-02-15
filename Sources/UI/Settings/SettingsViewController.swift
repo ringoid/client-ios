@@ -17,6 +17,8 @@ fileprivate struct SettingsOption
     let height: CGFloat
 }
 
+#if STAGE
+
 fileprivate enum SettingsOptionType: Int
 {
     case theme = 0
@@ -26,10 +28,22 @@ fileprivate enum SettingsOptionType: Int
     case delete = 4
 }
 
+#else
+
+fileprivate enum SettingsOptionType: Int
+{
+    case legal = 0
+    case support = 1
+    case delete = 2
+}
+
+#endif
+
 class SettingsViewController: BaseViewController
 {
     var input: SettingsVMInput!
     
+     #if STAGE
     fileprivate let options = [
         SettingsOption(cellIdentifier: "theme_cell", height: 42.0),
         SettingsOption(cellIdentifier: "language_cell", height: 42.0),
@@ -37,6 +51,13 @@ class SettingsViewController: BaseViewController
         SettingsOption(cellIdentifier: "support_cell", height: 42.0),
         SettingsOption(cellIdentifier: "delete_cell", height: 82.0)
     ]
+    #else
+    fileprivate let options = [
+        SettingsOption(cellIdentifier: "legal_cell", height: 42.0),
+        SettingsOption(cellIdentifier: "support_cell", height: 42.0),
+        SettingsOption(cellIdentifier: "delete_cell", height: 82.0)
+    ]
+    #endif
     
     fileprivate var viewModel: SettingsViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
@@ -50,6 +71,8 @@ class SettingsViewController: BaseViewController
         assert(input != nil )
         
         super.viewDidLoad()
+        
+        self.tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.tableView.bounds.width, height: 1.0))
         
         self.setupBindigs()
         self.tableView.reloadData()
@@ -146,11 +169,13 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         guard let option = SettingsOptionType(rawValue: indexPath.row) else { return }
         
         switch option {
+            #if STAGE
         case .theme: return
         case .language:
             self.performSegue(withIdentifier: SegueIds.locale, sender: nil)
             break
-            
+            #else
+            #endif
         case .legal:
             self.performSegue(withIdentifier: SegueIds.legal, sender: nil)
             break

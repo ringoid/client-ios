@@ -50,8 +50,8 @@ class AppManager
         #if STAGE
         let apiConfig = ApiServiceConfigStage()
         #else
-        let apiConfig = ApiServiceConfigProd()
-        //let apiConfig = ApiServiceConfigStage()
+        //let apiConfig = ApiServiceConfigProd()
+        let apiConfig = ApiServiceConfigStage()
         #endif
         
         
