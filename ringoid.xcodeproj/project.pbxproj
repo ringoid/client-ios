@@ -13,7 +13,6 @@
 		570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D047E21DCED5600E0DCFB /* ApiService.swift */; };
 		570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D048021DCEF3800E0DCFB /* ApiServiceConfig.swift */; };
 		570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049B21DCFB6600E0DCFB /* ApiServiceDefault.swift */; };
-		570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */; };
 		570D04A121DD021E00E0DCFB /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04A021DD021E00E0DCFB /* Errors.swift */; };
 		570D04A521DD087100E0DCFB /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04A421DD087100E0DCFB /* AppManager.swift */; };
 		570D04A921DDCF3200E0DCFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04A721DDCF3200E0DCFB /* LaunchScreen.storyboard */; };
@@ -119,6 +118,130 @@
 		57EE64CB2215304000246B45 /* SettingsLegalTermsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64CA2215304000246B45 /* SettingsLegalTermsCell.swift */; };
 		57EE64CD2215394A00246B45 /* SettingsLegalLicensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64CC2215394A00246B45 /* SettingsLegalLicensesCell.swift */; };
 		57EE64CF22153B1000246B45 /* SettingsLegalEmailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64CE22153B1000246B45 /* SettingsLegalEmailCell.swift */; };
+		57EE64D42216711000246B45 /* SettingsLegalAboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64C622150FD600246B45 /* SettingsLegalAboutCell.swift */; };
+		57EE64D52216711000246B45 /* SettingsLocaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */; };
+		57EE64D62216711000246B45 /* SettingsLegalTermsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64CA2215304000246B45 /* SettingsLegalTermsCell.swift */; };
+		57EE64D72216711000246B45 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04AC21DDD2A900E0DCFB /* RootViewController.swift */; };
+		57EE64D82216711000246B45 /* ApiViewAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F321EF5BCD00B9CC70 /* ApiViewAction.swift */; };
+		57EE64D92216711000246B45 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C021DF4E1F00E0DCFB /* Alerts.swift */; };
+		57EE64DA2216711000246B45 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC125220486A100BA5ABE /* Types.swift */; };
+		57EE64DB2216711000246B45 /* NewFaceProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BCD21E74A3700AAA29D /* NewFaceProfileViewController.swift */; };
+		57EE64DC2216711000246B45 /* ChatRightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7C721F9D4F700C3AEE3 /* ChatRightCell.swift */; };
+		57EE64DD2216711000246B45 /* ApiUnlikeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F721EF5CF100B9CC70 /* ApiUnlikeAction.swift */; };
+		57EE64DE2216711000246B45 /* UserProfileContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7D121FB43E200C3AEE3 /* UserProfileContainerCell.swift */; };
+		57EE64DF2216711000246B45 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC721E629BE00AAA29D /* ContainerViewController.swift */; };
+		57EE64E02216711000246B45 /* NewFacePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BD421E7661200AAA29D /* NewFacePhotoViewController.swift */; };
+		57EE64E12216711000246B45 /* NewFacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3521E3309300038798 /* NewFacesViewController.swift */; };
+		57EE64E22216711000246B45 /* UploaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D5D21E4BF1B00038798 /* UploaderService.swift */; };
+		57EE64E32216711000246B45 /* DeviceServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC115220188AB00BA5ABE /* DeviceServiceDefault.swift */; };
+		57EE64E42216711000246B45 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863C121ECB94800B9CC70 /* Message.swift */; };
+		57EE64E52216711000246B45 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863EC21EF448100B9CC70 /* Action.swift */; };
+		57EE64E62216711000246B45 /* MainLMMProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D221EDB18600B9CC70 /* MainLMMProfileViewModel.swift */; };
+		57EE64E72216711000246B45 /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BD221E74C3E00AAA29D /* Storyboards.swift */; };
+		57EE64E82216711000246B45 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC1132201876A00BA5ABE /* DeviceService.swift */; };
+		57EE64E92216711000246B45 /* NewFacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3E21E354FA00038798 /* NewFacesManager.swift */; };
+		57EE64EA2216711000246B45 /* VerticalGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D421EE16E700B9CC70 /* VerticalGradientView.swift */; };
+		57EE64EB2216711000246B45 /* TouchThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D621EE179F00B9CC70 /* TouchThroughView.swift */; };
+		57EE64EC2216711000246B45 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D5321E48E3700038798 /* Image.swift */; };
+		57EE64ED2216711000246B45 /* TouchThroughAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC12322047E6400BA5ABE /* TouchThroughAreaView.swift */; };
+		57EE64EE2216711000246B45 /* UserProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B121DDE4E200E0DCFB /* UserProfileManager.swift */; };
+		57EE64EF2216711000246B45 /* UserProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */; };
+		57EE64F02216711000246B45 /* UserPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D4D21E3897800038798 /* UserPhoto.swift */; };
+		57EE64F12216711000246B45 /* LocalizedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E3F220B27C00000E5D9 /* LocalizedTableViewCell.swift */; };
+		57EE64F22216711000246B45 /* XStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B721DE2B6400E0DCFB /* XStorageService.swift */; };
+		57EE64F32216711000246B45 /* ApiUserPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC12922086B6C00BA5ABE /* ApiUserPhoto.swift */; };
+		57EE64F42216711000246B45 /* UploaderServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D5F21E4BF4900038798 /* UploaderServiceDefault.swift */; };
+		57EE64F52216711000246B45 /* BlockedProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC12122032D7E00BA5ABE /* BlockedProfile.swift */; };
+		57EE64F62216711000246B45 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C821E32F4800E0DCFB /* AuthViewController.swift */; };
+		57EE64F72216711000246B45 /* NewFacesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D4821E35B8C00038798 /* NewFacesCell.swift */; };
+		57EE64F82216711000246B45 /* NewFaceProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BCF21E74AAC00AAA29D /* NewFaceProfileViewModel.swift */; };
+		57EE64F92216711000246B45 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
+		57EE64FA2216711000246B45 /* SettingsLocaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67A2213D7E6000BD768 /* SettingsLocaleViewController.swift */; };
+		57EE64FB2216711000246B45 /* ChatLeftCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7C521F9D4E600C3AEE3 /* ChatLeftCell.swift */; };
+		57EE64FC2216711000246B45 /* LMMProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BF21ECB93200B9CC70 /* LMMProfile.swift */; };
+		57EE64FD2216711000246B45 /* ApiServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049B21DCFB6600E0DCFB /* ApiServiceDefault.swift */; };
+		57EE64FE2216711000246B45 /* ActionProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10921FEC9FF00BA5ABE /* ActionProfile.swift */; };
+		57EE64FF2216711000246B45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D047521DCE3DA00E0DCFB /* AppDelegate.swift */; };
+		57EE65002216711000246B45 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D6F21E500FD00038798 /* ThemeManager.swift */; };
+		57EE65012216711000246B45 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7C021F9A91700C3AEE3 /* ChatViewController.swift */; };
+		57EE65022216711000246B45 /* SettingsLanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E41220B2FB20000E5D9 /* SettingsLanguageCell.swift */; };
+		57EE65032216711000246B45 /* ApiMessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F921EF5D2A00B9CC70 /* ApiMessageAction.swift */; };
+		57EE65042216711000246B45 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C921E32F4800E0DCFB /* AuthViewModel.swift */; };
+		57EE65052216711000246B45 /* SettingsThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B521F8947000C3AEE3 /* SettingsThemeCell.swift */; };
+		57EE65062216711000246B45 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04A021DD021E00E0DCFB /* Errors.swift */; };
+		57EE65072216711000246B45 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10C21FF33EA00BA5ABE /* NavigationManager.swift */; };
+		57EE65082216711000246B45 /* UserProfilePhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D4B21E388EC00038798 /* UserProfilePhotosViewController.swift */; };
+		57EE65092216711000246B45 /* SettingsDeleteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E45220B33FE0000E5D9 /* SettingsDeleteCell.swift */; };
+		57EE650A2216711000246B45 /* MainLMMProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D021EDB16300B9CC70 /* MainLMMProfileViewController.swift */; };
+		57EE650B2216711000246B45 /* ApiLikeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F121EF5AFB00B9CC70 /* ApiLikeAction.swift */; };
+		57EE650C2216711000246B45 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7CB21FA094600C3AEE3 /* KeyboardListener.swift */; };
+		57EE650D2216711000246B45 /* ChatBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7C921F9DB8B00C3AEE3 /* ChatBaseCell.swift */; };
+		57EE650E2216711000246B45 /* ApiAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863EF21EF5A0000B9CC70 /* ApiAction.swift */; };
+		57EE650F2216711000246B45 /* DiagonalGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863D821EE18ED00B9CC70 /* DiagonalGradientView.swift */; };
+		57EE65102216711000246B45 /* SettingsLegalLicensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64CC2215394A00246B45 /* SettingsLegalLicensesCell.swift */; };
+		57EE65112216711000246B45 /* FileServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D5821E4928600038798 /* FileServiceDefault.swift */; };
+		57EE65122216711000246B45 /* SettingsLegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64C0221478A600246B45 /* SettingsLegalViewController.swift */; };
+		57EE65132216711000246B45 /* ApiBlockAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F521EF5C4900B9CC70 /* ApiBlockAction.swift */; };
+		57EE65142216711000246B45 /* NewFacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D6321E4C73600038798 /* NewFacesViewModel.swift */; };
+		57EE65152216711000246B45 /* ApiProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3B21E34AFC00038798 /* ApiProfile.swift */; };
+		57EE65162216711000246B45 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B221F890A300C3AEE3 /* SettingsViewModel.swift */; };
+		57EE65172216711000246B45 /* SettingsLegalEmailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64CE22153B1000246B45 /* SettingsLegalEmailCell.swift */; };
+		57EE65182216711000246B45 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C521DFBD5A00E0DCFB /* DBService.swift */; };
+		57EE65192216711000246B45 /* SettingsEmailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64BE221435E100246B45 /* SettingsEmailCell.swift */; };
+		57EE651A2216711000246B45 /* ApiLMMProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */; };
+		57EE651B2216711000246B45 /* ApiServiceConfigStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */; };
+		57EE651C2216711000246B45 /* DefaultStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04BC21DE385E00E0DCFB /* DefaultStorageService.swift */; };
+		57EE651D2216711000246B45 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04A421DD087100E0DCFB /* AppManager.swift */; };
+		57EE651E2216711000246B45 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BCB21E73D3C00AAA29D /* ContainerView.swift */; };
+		57EE651F2216711000246B45 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D4321E3558800038798 /* Photo.swift */; };
+		57EE65202216711000246B45 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
+		57EE65212216711000246B45 /* MainLMMCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863CE21ECD98F00B9CC70 /* MainLMMCell.swift */; };
+		57EE65222216711000246B45 /* ApiOpenChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863FB21EF5DDF00B9CC70 /* ApiOpenChat.swift */; };
+		57EE65232216711000246B45 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D5A21E4A0F100038798 /* FilePath.swift */; };
+		57EE65242216711000246B45 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC321E61BE400AAA29D /* MainViewController.swift */; };
+		57EE65252216711000246B45 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D6921E4FF2400038798 /* Colors.swift */; };
+		57EE65262216711000246B45 /* NewFaceProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D4521E3570B00038798 /* NewFaceProfile.swift */; };
+		57EE65272216711000246B45 /* ActionPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10721FEC9C400BA5ABE /* ActionPhoto.swift */; };
+		57EE65282216711000246B45 /* LMMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863C421ECC34C00B9CC70 /* LMMManager.swift */; };
+		57EE65292216711000246B45 /* ApiPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3921E3499E00038798 /* ApiPhoto.swift */; };
+		57EE652A2216711000246B45 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D5621E4925600038798 /* FileService.swift */; };
+		57EE652B2216711000246B45 /* ApiServiceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D048021DCEF3800E0DCFB /* ApiServiceConfig.swift */; };
+		57EE652C2216711000246B45 /* MainLMMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863C921ECD1DC00B9CC70 /* MainLMMViewModel.swift */; };
+		57EE652D2216711000246B45 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7C221F9A93E00C3AEE3 /* ChatViewModel.swift */; };
+		57EE652E2216711000246B45 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D7121E5055D00038798 /* BaseViewController.swift */; };
+		57EE652F2216711000246B45 /* ApiUserPhotoPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C221DFA4EF00E0DCFB /* ApiUserPhotoPlaceholder.swift */; };
+		57EE65302216711000246B45 /* ApiMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BD21EC758200B9CC70 /* ApiMessage.swift */; };
+		57EE65312216711000246B45 /* UserProfilePhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D5121E4808500038798 /* UserProfilePhotosViewModel.swift */; };
+		57EE65322216711000246B45 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D4121E3555E00038798 /* Profile.swift */; };
+		57EE65332216711000246B45 /* MainLMMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863C721ECD17B00B9CC70 /* MainLMMViewController.swift */; };
+		57EE65342216711000246B45 /* SettingsLocaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */; };
+		57EE65352216711000246B45 /* LocaleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC1182201E0EE00BA5ABE /* LocaleManager.swift */; };
+		57EE65362216711000246B45 /* XStorageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04B921DE322200E0DCFB /* XStorageObject.swift */; };
+		57EE65372216711000246B45 /* SettingsLegalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64C2221478EA00246B45 /* SettingsLegalViewModel.swift */; };
+		57EE65382216711000246B45 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E47220C2F6F0000E5D9 /* AppConfig.swift */; };
+		57EE65392216711000246B45 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC921E63D6800AAA29D /* MainViewModel.swift */; };
+		57EE653A2216711000246B45 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7BB21F8C4D800C3AEE3 /* SettingsManager.swift */; };
+		57EE653B2216711000246B45 /* ActionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863EA21EE33D200B9CC70 /* ActionsManager.swift */; };
+		57EE653C2216711000246B45 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7CE21FAE2D000C3AEE3 /* ChatManager.swift */; };
+		57EE653D2216711000246B45 /* UIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E4A220C7A7C0000E5D9 /* UIManager.swift */; };
+		57EE653E2216711000246B45 /* ErrorsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC11022001CD400BA5ABE /* ErrorsManager.swift */; };
+		57EE653F2216711000246B45 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D047E21DCED5600E0DCFB /* ApiService.swift */; };
+		57EE65402216711000246B45 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
+		57EE65412216711000246B45 /* SettingsLegalPolicyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64C822152AC400246B45 /* SettingsLegalPolicyCell.swift */; };
+		57EE65422216711000246B45 /* SettingsLegalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E43220B33120000E5D9 /* SettingsLegalCell.swift */; };
+		57EE65442216711000246B45 /* Pods_ringoid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */; };
+		57EE65462216711000246B45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
+		57EE65472216711000246B45 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04AE21DDD34E00E0DCFB /* Auth.storyboard */; };
+		57EE65482216711000246B45 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 576FC11F2201EBC400BA5ABE /* Localizable.strings */; };
+		57EE65492216711000246B45 /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04A821DDCF3200E0DCFB /* Root.storyboard */; };
+		57EE654A2216711000246B45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 570D046D21DCE3DA00E0DCFB /* Assets.xcassets */; };
+		57EE654B2216711000246B45 /* MainLMM.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57B863CB21ECD32100B9CC70 /* MainLMM.storyboard */; };
+		57EE654C2216711000246B45 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D4F21E45F1600038798 /* UserProfile.storyboard */; };
+		57EE654D2216711000246B45 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7AD21F8603500C3AEE3 /* Settings.storyboard */; };
+		57EE654E2216711000246B45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04A721DDCF3200E0DCFB /* LaunchScreen.storyboard */; };
+		57EE654F2216711000246B45 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7BD21F99EDE00C3AEE3 /* Chat.storyboard */; };
+		57EE65502216711000246B45 /* NewFaces.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D3721E330B100038798 /* NewFaces.storyboard */; };
+		57EE6559221677DE00246B45 /* ApiServiceConfigProd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE6558221677DE00246B45 /* ApiServiceConfigProd.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -133,7 +256,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		570D045721DCE32000E0DCFB /* ringoid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ringoid.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		570D045721DCE32000E0DCFB /* Ringoid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ringoid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		570D046D21DCE3DA00E0DCFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		570D047521DCE3DA00E0DCFB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		570D047B21DCE40200E0DCFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -247,6 +370,8 @@
 		57EE64CA2215304000246B45 /* SettingsLegalTermsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalTermsCell.swift; sourceTree = "<group>"; };
 		57EE64CC2215394A00246B45 /* SettingsLegalLicensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalLicensesCell.swift; sourceTree = "<group>"; };
 		57EE64CE22153B1000246B45 /* SettingsLegalEmailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalEmailCell.swift; sourceTree = "<group>"; };
+		57EE65562216711000246B45 /* Ringoid st.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ringoid st.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57EE6558221677DE00246B45 /* ApiServiceConfigProd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceConfigProd.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -272,6 +397,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		57EE65432216711000246B45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57EE65442216711000246B45 /* Pods_ringoid.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -290,7 +423,8 @@
 		570D045821DCE32000E0DCFB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				570D045721DCE32000E0DCFB /* ringoid.app */,
+				570D045721DCE32000E0DCFB /* Ringoid.app */,
+				57EE65562216711000246B45 /* Ringoid st.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -357,6 +491,7 @@
 				570D049B21DCFB6600E0DCFB /* ApiServiceDefault.swift */,
 				570D048021DCEF3800E0DCFB /* ApiServiceConfig.swift */,
 				570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */,
+				57EE6558221677DE00246B45 /* ApiServiceConfigProd.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -820,7 +955,27 @@
 			);
 			name = ringoid;
 			productName = ringoid;
-			productReference = 570D045721DCE32000E0DCFB /* ringoid.app */;
+			productReference = 570D045721DCE32000E0DCFB /* Ringoid.app */;
+			productType = "com.apple.product-type.application";
+		};
+		57EE64D12216711000246B45 /* ringoid st */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 57EE65532216711000246B45 /* Build configuration list for PBXNativeTarget "ringoid st" */;
+			buildPhases = (
+				57EE64D22216711000246B45 /* [CP] Check Pods Manifest.lock */,
+				57EE64D32216711000246B45 /* Sources */,
+				57EE65432216711000246B45 /* Frameworks */,
+				57EE65452216711000246B45 /* Resources */,
+				57EE65512216711000246B45 /* [CP] Embed Pods Frameworks */,
+				57EE65522216711000246B45 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ringoid st";
+			productName = ringoid;
+			productReference = 57EE65562216711000246B45 /* Ringoid st.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -853,6 +1008,7 @@
 			projectRoot = "";
 			targets = (
 				570D045621DCE32000E0DCFB /* ringoid */,
+				57EE64D12216711000246B45 /* ringoid st */,
 			);
 		};
 /* End PBXProject section */
@@ -876,10 +1032,102 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		57EE65452216711000246B45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57EE65462216711000246B45 /* Main.storyboard in Resources */,
+				57EE65472216711000246B45 /* Auth.storyboard in Resources */,
+				57EE65482216711000246B45 /* Localizable.strings in Resources */,
+				57EE65492216711000246B45 /* Root.storyboard in Resources */,
+				57EE654A2216711000246B45 /* Assets.xcassets in Resources */,
+				57EE654B2216711000246B45 /* MainLMM.storyboard in Resources */,
+				57EE654C2216711000246B45 /* UserProfile.storyboard in Resources */,
+				57EE654D2216711000246B45 /* Settings.storyboard in Resources */,
+				57EE654E2216711000246B45 /* LaunchScreen.storyboard in Resources */,
+				57EE654F2216711000246B45 /* Chat.storyboard in Resources */,
+				57EE65502216711000246B45 /* NewFaces.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		57EE64D02215826200246B45 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 89dbf76a6060d765a50797055e5dbedaf7e0062d 61a91daea2df2ee6473bd23c5f9afc656ba103b013037fc1c3d40e26965c50ba\n";
+		};
+		57EE64D22216711000246B45 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ringoid-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57EE65512216711000246B45 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ringoid/Pods-ringoid-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/KafkaRefresh/KafkaRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KafkaRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ringoid/Pods-ringoid-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57EE65522216711000246B45 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1031,7 +1279,6 @@
 				570D04C621DFBD5A00E0DCFB /* DBService.swift in Sources */,
 				57EE64BF221435E100246B45 /* SettingsEmailCell.swift in Sources */,
 				57B863BC21EC74BF00B9CC70 /* ApiLMMProfile.swift in Sources */,
-				570D049E21DCFD3300E0DCFB /* ApiServiceConfigStage.swift in Sources */,
 				570D04BD21DE385E00E0DCFB /* DefaultStorageService.swift in Sources */,
 				570D04A521DD087100E0DCFB /* AppManager.swift in Sources */,
 				57FB7BCC21E73D3C00AAA29D /* ContainerView.swift in Sources */,
@@ -1067,10 +1314,129 @@
 				579CD7CF21FAE2D100C3AEE3 /* ChatManager.swift in Sources */,
 				57386E4B220C7A7C0000E5D9 /* UIManager.swift in Sources */,
 				576FC11122001CD400BA5ABE /* ErrorsManager.swift in Sources */,
+				57EE6559221677DE00246B45 /* ApiServiceConfigProd.swift in Sources */,
 				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,
 				579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */,
 				57EE64C922152AC400246B45 /* SettingsLegalPolicyCell.swift in Sources */,
 				57386E44220B33120000E5D9 /* SettingsLegalCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		57EE64D32216711000246B45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57EE64D42216711000246B45 /* SettingsLegalAboutCell.swift in Sources */,
+				57EE64D52216711000246B45 /* SettingsLocaleCell.swift in Sources */,
+				57EE64D62216711000246B45 /* SettingsLegalTermsCell.swift in Sources */,
+				57EE64D72216711000246B45 /* RootViewController.swift in Sources */,
+				57EE64D82216711000246B45 /* ApiViewAction.swift in Sources */,
+				57EE64D92216711000246B45 /* Alerts.swift in Sources */,
+				57EE64DA2216711000246B45 /* Types.swift in Sources */,
+				57EE64DB2216711000246B45 /* NewFaceProfileViewController.swift in Sources */,
+				57EE64DC2216711000246B45 /* ChatRightCell.swift in Sources */,
+				57EE64DD2216711000246B45 /* ApiUnlikeAction.swift in Sources */,
+				57EE64DE2216711000246B45 /* UserProfileContainerCell.swift in Sources */,
+				57EE64DF2216711000246B45 /* ContainerViewController.swift in Sources */,
+				57EE64E02216711000246B45 /* NewFacePhotoViewController.swift in Sources */,
+				57EE64E12216711000246B45 /* NewFacesViewController.swift in Sources */,
+				57EE64E22216711000246B45 /* UploaderService.swift in Sources */,
+				57EE64E32216711000246B45 /* DeviceServiceDefault.swift in Sources */,
+				57EE64E42216711000246B45 /* Message.swift in Sources */,
+				57EE64E52216711000246B45 /* Action.swift in Sources */,
+				57EE64E62216711000246B45 /* MainLMMProfileViewModel.swift in Sources */,
+				57EE64E72216711000246B45 /* Storyboards.swift in Sources */,
+				57EE64E82216711000246B45 /* DeviceService.swift in Sources */,
+				57EE64E92216711000246B45 /* NewFacesManager.swift in Sources */,
+				57EE64EA2216711000246B45 /* VerticalGradientView.swift in Sources */,
+				57EE64EB2216711000246B45 /* TouchThroughView.swift in Sources */,
+				57EE64EC2216711000246B45 /* Image.swift in Sources */,
+				57EE64ED2216711000246B45 /* TouchThroughAreaView.swift in Sources */,
+				57EE64EE2216711000246B45 /* UserProfileManager.swift in Sources */,
+				57EE64EF2216711000246B45 /* UserProfilePhotoViewController.swift in Sources */,
+				57EE64F02216711000246B45 /* UserPhoto.swift in Sources */,
+				57EE64F12216711000246B45 /* LocalizedTableViewCell.swift in Sources */,
+				57EE64F22216711000246B45 /* XStorageService.swift in Sources */,
+				57EE64F32216711000246B45 /* ApiUserPhoto.swift in Sources */,
+				57EE64F42216711000246B45 /* UploaderServiceDefault.swift in Sources */,
+				57EE64F52216711000246B45 /* BlockedProfile.swift in Sources */,
+				57EE64F62216711000246B45 /* AuthViewController.swift in Sources */,
+				57EE64F72216711000246B45 /* NewFacesCell.swift in Sources */,
+				57EE64F82216711000246B45 /* NewFaceProfileViewModel.swift in Sources */,
+				57EE64F92216711000246B45 /* MainLMMMContainerViewController.swift in Sources */,
+				57EE64FA2216711000246B45 /* SettingsLocaleViewController.swift in Sources */,
+				57EE64FB2216711000246B45 /* ChatLeftCell.swift in Sources */,
+				57EE64FC2216711000246B45 /* LMMProfile.swift in Sources */,
+				57EE64FD2216711000246B45 /* ApiServiceDefault.swift in Sources */,
+				57EE64FE2216711000246B45 /* ActionProfile.swift in Sources */,
+				57EE64FF2216711000246B45 /* AppDelegate.swift in Sources */,
+				57EE65002216711000246B45 /* ThemeManager.swift in Sources */,
+				57EE65012216711000246B45 /* ChatViewController.swift in Sources */,
+				57EE65022216711000246B45 /* SettingsLanguageCell.swift in Sources */,
+				57EE65032216711000246B45 /* ApiMessageAction.swift in Sources */,
+				57EE65042216711000246B45 /* AuthViewModel.swift in Sources */,
+				57EE65052216711000246B45 /* SettingsThemeCell.swift in Sources */,
+				57EE65062216711000246B45 /* Errors.swift in Sources */,
+				57EE65072216711000246B45 /* NavigationManager.swift in Sources */,
+				57EE65082216711000246B45 /* UserProfilePhotosViewController.swift in Sources */,
+				57EE65092216711000246B45 /* SettingsDeleteCell.swift in Sources */,
+				57EE650A2216711000246B45 /* MainLMMProfileViewController.swift in Sources */,
+				57EE650B2216711000246B45 /* ApiLikeAction.swift in Sources */,
+				57EE650C2216711000246B45 /* KeyboardListener.swift in Sources */,
+				57EE650D2216711000246B45 /* ChatBaseCell.swift in Sources */,
+				57EE650E2216711000246B45 /* ApiAction.swift in Sources */,
+				57EE650F2216711000246B45 /* DiagonalGradientView.swift in Sources */,
+				57EE65102216711000246B45 /* SettingsLegalLicensesCell.swift in Sources */,
+				57EE65112216711000246B45 /* FileServiceDefault.swift in Sources */,
+				57EE65122216711000246B45 /* SettingsLegalViewController.swift in Sources */,
+				57EE65132216711000246B45 /* ApiBlockAction.swift in Sources */,
+				57EE65142216711000246B45 /* NewFacesViewModel.swift in Sources */,
+				57EE65152216711000246B45 /* ApiProfile.swift in Sources */,
+				57EE65162216711000246B45 /* SettingsViewModel.swift in Sources */,
+				57EE65172216711000246B45 /* SettingsLegalEmailCell.swift in Sources */,
+				57EE65182216711000246B45 /* DBService.swift in Sources */,
+				57EE65192216711000246B45 /* SettingsEmailCell.swift in Sources */,
+				57EE651A2216711000246B45 /* ApiLMMProfile.swift in Sources */,
+				57EE651B2216711000246B45 /* ApiServiceConfigStage.swift in Sources */,
+				57EE651C2216711000246B45 /* DefaultStorageService.swift in Sources */,
+				57EE651D2216711000246B45 /* AppManager.swift in Sources */,
+				57EE651E2216711000246B45 /* ContainerView.swift in Sources */,
+				57EE651F2216711000246B45 /* Photo.swift in Sources */,
+				57EE65202216711000246B45 /* DBServiceObject.swift in Sources */,
+				57EE65212216711000246B45 /* MainLMMCell.swift in Sources */,
+				57EE65222216711000246B45 /* ApiOpenChat.swift in Sources */,
+				57EE65232216711000246B45 /* FilePath.swift in Sources */,
+				57EE65242216711000246B45 /* MainViewController.swift in Sources */,
+				57EE65252216711000246B45 /* Colors.swift in Sources */,
+				57EE65262216711000246B45 /* NewFaceProfile.swift in Sources */,
+				57EE65272216711000246B45 /* ActionPhoto.swift in Sources */,
+				57EE65282216711000246B45 /* LMMManager.swift in Sources */,
+				57EE65292216711000246B45 /* ApiPhoto.swift in Sources */,
+				57EE652A2216711000246B45 /* FileService.swift in Sources */,
+				57EE652B2216711000246B45 /* ApiServiceConfig.swift in Sources */,
+				57EE652C2216711000246B45 /* MainLMMViewModel.swift in Sources */,
+				57EE652D2216711000246B45 /* ChatViewModel.swift in Sources */,
+				57EE652E2216711000246B45 /* BaseViewController.swift in Sources */,
+				57EE652F2216711000246B45 /* ApiUserPhotoPlaceholder.swift in Sources */,
+				57EE65302216711000246B45 /* ApiMessage.swift in Sources */,
+				57EE65312216711000246B45 /* UserProfilePhotosViewModel.swift in Sources */,
+				57EE65322216711000246B45 /* Profile.swift in Sources */,
+				57EE65332216711000246B45 /* MainLMMViewController.swift in Sources */,
+				57EE65342216711000246B45 /* SettingsLocaleViewModel.swift in Sources */,
+				57EE65352216711000246B45 /* LocaleManager.swift in Sources */,
+				57EE65362216711000246B45 /* XStorageObject.swift in Sources */,
+				57EE65372216711000246B45 /* SettingsLegalViewModel.swift in Sources */,
+				57EE65382216711000246B45 /* AppConfig.swift in Sources */,
+				57EE65392216711000246B45 /* MainViewModel.swift in Sources */,
+				57EE653A2216711000246B45 /* SettingsManager.swift in Sources */,
+				57EE653B2216711000246B45 /* ActionsManager.swift in Sources */,
+				57EE653C2216711000246B45 /* ChatManager.swift in Sources */,
+				57EE653D2216711000246B45 /* UIManager.swift in Sources */,
+				57EE653E2216711000246B45 /* ErrorsManager.swift in Sources */,
+				57EE653F2216711000246B45 /* ApiService.swift in Sources */,
+				57EE65402216711000246B45 /* SettingsViewController.swift in Sources */,
+				57EE65412216711000246B45 /* SettingsLegalPolicyCell.swift in Sources */,
+				57EE65422216711000246B45 /* SettingsLegalCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1213,6 +1579,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = PXR6CFL6JF;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1220,8 +1587,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ringoid.ringoid;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ringoid.dating;
+				PRODUCT_NAME = Ringoid;
 				PROVISIONING_PROFILE_SPECIFIER = "ringoid dev";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1242,8 +1609,53 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ringoid.ringoid;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ringoid.dating;
+				PRODUCT_NAME = Ringoid;
+				PROVISIONING_PROFILE_SPECIFIER = "ringoid prod";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		57EE65542216711000246B45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = PXR6CFL6JF;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ringoid.dating-st";
+				PRODUCT_NAME = "Ringoid st";
+				PROVISIONING_PROFILE_SPECIFIER = "ringoid dev";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG STAGE";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		57EE65552216711000246B45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = PXR6CFL6JF;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ringoid.dating-st";
+				PRODUCT_NAME = "Ringoid st";
 				PROVISIONING_PROFILE_SPECIFIER = "ringoid prod";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1267,6 +1679,15 @@
 			buildConfigurations = (
 				570D046A21DCE32200E0DCFB /* Debug */,
 				570D046B21DCE32200E0DCFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		57EE65532216711000246B45 /* Build configuration list for PBXNativeTarget "ringoid st" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				57EE65542216711000246B45 /* Debug */,
+				57EE65552216711000246B45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

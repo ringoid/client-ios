@@ -67,7 +67,7 @@ class MainLMMViewController: BaseViewController
             bottom: UIScreen.main.bounds.height - cellHeight,
             right: 0.0
         )
-        
+
         UIManager.shared.blockModeEnabled.accept(false)
         UIManager.shared.chatModeEnabled.accept(false)
 
@@ -224,8 +224,13 @@ class MainLMMViewController: BaseViewController
         
         // Default scenario - reloading and applying stored offset
         let offset = MainLMMViewController.feedsState[self.type.value]?.offset
+        
         self.tableView.reloadData()
-        if let cachedOffset = offset {
+        if var cachedOffset = offset {
+            if abs(cachedOffset) < 0.1 {
+                cachedOffset = -1.0 * (self.view.safeAreaInsets.top + self.tableView.contentInset.top)
+            }
+            
             self.tableView.layoutIfNeeded()
             self.tableView.setContentOffset(CGPoint(x: 0.0, y: cachedOffset), animated: false)
         }

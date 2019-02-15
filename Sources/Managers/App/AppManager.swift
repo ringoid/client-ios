@@ -47,7 +47,14 @@ class AppManager
         self.db = DBService()
         self.uploader = UploaderServiceDefault()
         
+        #if STAGE
         let apiConfig = ApiServiceConfigStage()
+        #else
+        let apiConfig = ApiServiceConfigProd()
+        //let apiConfig = ApiServiceConfigStage()
+        #endif
+        
+        
         self.apiService = ApiServiceDefault(config: apiConfig, storage: self.defaultStorage)        
     }
     

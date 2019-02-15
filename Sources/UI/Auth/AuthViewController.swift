@@ -34,6 +34,12 @@ class AuthViewController: BaseViewController
         
         super.viewDidLoad()
         
+        #if STAGE
+        self.themeBtn.isHidden = false
+        #else
+        self.themeBtn.isHidden = true
+        #endif
+        
         self.authActivityView.stopAnimating()
         
         let linkColor = UIColor(red: 73.0 / 255.0, green: 183.0 / 255.0, blue: 70.0 / 255.0, alpha: 1.0)
