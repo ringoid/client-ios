@@ -29,6 +29,7 @@ class NewFacePhotoViewController: UIViewController
     
     @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
+    @IBOutlet fileprivate weak var animationLikeView: UIImageView!
     
     static func create() -> NewFacePhotoViewController
     {
@@ -93,6 +94,8 @@ class NewFacePhotoViewController: UIViewController
                 source: input.sourceType
             )
         } else {
+            self.playLikeAnimation()
+            
             input.actionsManager.likeActionProtected(
                 input.profile.actionInstance(),
                 photo: photo.actionInstance(),
@@ -115,6 +118,8 @@ class NewFacePhotoViewController: UIViewController
         
         guard let input = self.input, let photo = self.photo else { return }
         guard !photo.isLiked else { return }
+        
+        self.playLikeAnimation()
         
         input.actionsManager.likeActionProtected(
             input.profile.actionInstance(),
@@ -178,6 +183,28 @@ class NewFacePhotoViewController: UIViewController
         case .messages: return false
         case .newFaces: return true
         }
+    }
+    
+    fileprivate func playLikeAnimation()
+    {
+        let duration = 0.4
+        let appearAnimator = UIViewPropertyAnimator(duration: duration / 2.0, curve: .easeIn) {
+            self.animationLikeView.alpha = 1.0
+            self.animationLikeView.transform = .init(scaleX: 3.0, y: 3.0)
+            self.likeBtn.transform = .init(scaleX: 1.2, y: 1.2)
+        }
+        
+        let disappearAnimator = UIViewPropertyAnimator(duration: duration / 2.0, curve: .easeIn) {
+            self.animationLikeView.alpha = 0.0
+            self.animationLikeView.transform = .identity
+            self.likeBtn.transform = .identity
+        }
+        
+        appearAnimator.addCompletion { _ in
+            disappearAnimator.startAnimation()
+        }
+        
+        appearAnimator.startAnimation()
     }
 }
 
