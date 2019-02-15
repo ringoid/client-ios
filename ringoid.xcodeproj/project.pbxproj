@@ -229,7 +229,6 @@
 		57EE65402216711000246B45 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
 		57EE65412216711000246B45 /* SettingsLegalPolicyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64C822152AC400246B45 /* SettingsLegalPolicyCell.swift */; };
 		57EE65422216711000246B45 /* SettingsLegalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E43220B33120000E5D9 /* SettingsLegalCell.swift */; };
-		57EE65442216711000246B45 /* Pods_ringoid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */; };
 		57EE65462216711000246B45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
 		57EE65472216711000246B45 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 570D04AE21DDD34E00E0DCFB /* Auth.storyboard */; };
 		57EE65482216711000246B45 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 576FC11F2201EBC400BA5ABE /* Localizable.strings */; };
@@ -254,9 +253,12 @@
 		57FB7BD021E74AAC00AAA29D /* NewFaceProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BCF21E74AAC00AAA29D /* NewFaceProfileViewModel.swift */; };
 		57FB7BD321E74C3E00AAA29D /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BD221E74C3E00AAA29D /* Storyboards.swift */; };
 		57FB7BD521E7661200AAA29D /* NewFacePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BD421E7661200AAA29D /* NewFacePhotoViewController.swift */; };
+		7EE7CEBA361816C892B869A8 /* Pods_ringoid_st.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67A24B1F556F9D0CC50E542E /* Pods_ringoid_st.framework */; };
+		DB8A8CCDE7E1E5C619DD0106 /* Pods_ringoid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C3CF48257E2CA86C82D650C /* Pods-ringoid st.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid st.release.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid st/Pods-ringoid st.release.xcconfig"; sourceTree = "<group>"; };
 		570D045721DCE32000E0DCFB /* Ringoid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ringoid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		570D046D21DCE3DA00E0DCFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		570D047521DCE3DA00E0DCFB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -384,9 +386,11 @@
 		57FB7BCF21E74AAC00AAA29D /* NewFaceProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFaceProfileViewModel.swift; sourceTree = "<group>"; };
 		57FB7BD221E74C3E00AAA29D /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
 		57FB7BD421E7661200AAA29D /* NewFacePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacePhotoViewController.swift; sourceTree = "<group>"; };
-		727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.release.xcconfig"; sourceTree = "<group>"; };
-		873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.debug.xcconfig"; sourceTree = "<group>"; };
+		5CE70EE5D5469A7A12844F34 /* Pods-ringoid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.release.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.release.xcconfig"; sourceTree = "<group>"; };
+		67A24B1F556F9D0CC50E542E /* Pods_ringoid_st.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ringoid_st.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ringoid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6BFCC36DDB8A172D261447B /* Pods-ringoid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid/Pods-ringoid.debug.xcconfig"; sourceTree = "<group>"; };
+		E91E0C376033C3AD59321CBF /* Pods-ringoid st.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ringoid st.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ringoid st/Pods-ringoid st.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				214C73FCCE7E2C37DC05FC6C /* Pods_ringoid.framework in Frameworks */,
+				DB8A8CCDE7E1E5C619DD0106 /* Pods_ringoid.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +407,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57EE65442216711000246B45 /* Pods_ringoid.framework in Frameworks */,
+				7EE7CEBA361816C892B869A8 /* Pods_ringoid_st.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -923,6 +928,7 @@
 			isa = PBXGroup;
 			children = (
 				9CB994F1BE3EFB581333251A /* Pods_ringoid.framework */,
+				67A24B1F556F9D0CC50E542E /* Pods_ringoid_st.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -930,8 +936,10 @@
 		C06DF6A5A1156987FFA53DC0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */,
-				727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */,
+				D6BFCC36DDB8A172D261447B /* Pods-ringoid.debug.xcconfig */,
+				5CE70EE5D5469A7A12844F34 /* Pods-ringoid.release.xcconfig */,
+				E91E0C376033C3AD59321CBF /* Pods-ringoid st.debug.xcconfig */,
+				2C3CF48257E2CA86C82D650C /* Pods-ringoid st.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -963,12 +971,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 57EE65532216711000246B45 /* Build configuration list for PBXNativeTarget "ringoid st" */;
 			buildPhases = (
-				57EE64D22216711000246B45 /* [CP] Check Pods Manifest.lock */,
+				C06C01841F454BD5C893127D /* [CP] Check Pods Manifest.lock */,
 				57EE64D32216711000246B45 /* Sources */,
 				57EE65432216711000246B45 /* Frameworks */,
 				57EE65452216711000246B45 /* Resources */,
-				57EE65512216711000246B45 /* [CP] Embed Pods Frameworks */,
 				57EE65522216711000246B45 /* ShellScript */,
+				EDE8CA1B9BC155F9F491776F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1059,12 +1067,8 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
@@ -1072,73 +1076,13 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 89dbf76a6060d765a50797055e5dbedaf7e0062d 61a91daea2df2ee6473bd23c5f9afc656ba103b013037fc1c3d40e26965c50ba\n";
 		};
-		57EE64D22216711000246B45 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ringoid-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		57EE65512216711000246B45 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ringoid/Pods-ringoid-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/KafkaRefresh/KafkaRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KafkaRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ringoid/Pods-ringoid-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		57EE65522216711000246B45 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
@@ -1164,13 +1108,35 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C06C01841F454BD5C893127D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ringoid st-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C172FC572089E9E59C18CBAF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ringoid/Pods-ringoid-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ringoid/Pods-ringoid-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/KafkaRefresh/KafkaRefresh.framework",
@@ -1178,10 +1144,12 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Sentry/Sentry.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1192,14 +1160,62 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sentry.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ringoid/Pods-ringoid-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ringoid/Pods-ringoid-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDE8CA1B9BC155F9F491776F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ringoid st/Pods-ringoid st-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/KafkaRefresh/KafkaRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Sentry/Sentry.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KafkaRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sentry.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ringoid st/Pods-ringoid st-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1577,7 +1593,7 @@
 		};
 		570D046A21DCE32200E0DCFB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */;
+			baseConfigurationReference = D6BFCC36DDB8A172D261447B /* Pods-ringoid.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -1599,7 +1615,7 @@
 		};
 		570D046B21DCE32200E0DCFB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */;
+			baseConfigurationReference = 5CE70EE5D5469A7A12844F34 /* Pods-ringoid.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -1621,7 +1637,7 @@
 		};
 		57EE65542216711000246B45 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 873092B1FEBD53E8FE340DB9 /* Pods-ringoid.debug.xcconfig */;
+			baseConfigurationReference = E91E0C376033C3AD59321CBF /* Pods-ringoid st.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -1644,7 +1660,7 @@
 		};
 		57EE65552216711000246B45 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 727CE69A2110E6F4B72E109F /* Pods-ringoid.release.xcconfig */;
+			baseConfigurationReference = 2C3CF48257E2CA86C82D650C /* Pods-ringoid st.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";

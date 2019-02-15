@@ -9,6 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import Sentry
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +29,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication)
     {
         self.appManager.onTerminate()
+    }
+    
+    // MARK: -
+    
+    fileprivate func setupSenty()
+    {
+        do {
+            Client.shared = try Client(dsn: "https://179c556658a3465d852019ffbb5aaac1@sentry.io/1387002")
+            try Client.shared?.startCrashHandler()
+        } catch let error {
+            print("Sentry error: \(error)")
+        }
     }
 }
 

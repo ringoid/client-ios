@@ -1,9 +1,10 @@
+source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '11.0'
 use_frameworks!
 
 project 'ringoid'
 
-target 'ringoid' do
+def common_pods
 	pod 'RxRealm'
 	pod 'RxCocoa'
 	pod 'RxDataSources'
@@ -12,4 +13,13 @@ target 'ringoid' do
 	pod 'KafkaRefresh'
 	pod 'Fabric'
 	pod 'Crashlytics'
+	pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '4.1.0'
+end
+
+target 'ringoid' do
+	common_pods
+end
+
+target 'ringoid st' do
+	common_pods
 end
