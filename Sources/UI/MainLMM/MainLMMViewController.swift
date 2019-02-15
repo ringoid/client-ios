@@ -46,7 +46,6 @@ class MainLMMViewController: BaseViewController
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
-    @IBOutlet fileprivate weak var chatConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
     @IBOutlet fileprivate weak var feedEndView: UIView!
     @IBOutlet fileprivate weak var tableView: UITableView!
@@ -246,14 +245,12 @@ class MainLMMViewController: BaseViewController
         })
         
         self.chatContainerView.embed(vc, to: self)
-        self.chatConstraint.constant = -self.view.bounds.height
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.chatContainerView.isHidden = false
+        }
         
         self.scrollTop(to: indexPath.row)
         profileVC?.hideNotChatControls()
-        
-        UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
-            self.view.layoutSubviews()
-        }).startAnimation()
     }
     
     fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?, profile: LMMProfile, photo: Photo)
@@ -273,15 +270,8 @@ class MainLMMViewController: BaseViewController
         
         profileVC?.showNotChatControls()
         
-        self.chatConstraint.constant = 0.0
-        
-        let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeOut, animations: {
-            self.view.layoutSubviews()
-        })
-        animator.addCompletion({ _ in
-            self.chatContainerView.remove()
-        })
-        animator.startAnimation()
+        self.chatContainerView.isHidden = true
+        self.chatContainerView.remove()
     }
     
     fileprivate func placeholderText() -> String
@@ -307,7 +297,7 @@ class MainLMMViewController: BaseViewController
     {
         guard self.isScrollTopVisible else { return }
         
-        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
+        let animator = UIViewPropertyAnimator(duration: 0.15, curve: .linear) {
             self.scrollTopBtn.alpha = 0.0
         }
         animator.addCompletion { _ in

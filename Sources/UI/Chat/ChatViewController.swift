@@ -190,10 +190,8 @@ extension ChatViewController: KeyboardListenerDelegate
     func keyboardListener(_ listener: KeyboardListener, animationFor keyboardHeight: CGFloat) -> (() -> ())?
     {
         self.inputBottomConstraint.constant = keyboardHeight
-        
-        return { [weak self] in
-            self?.view.layoutSubviews()
-        }
+
+        return nil
     }
 }
 
