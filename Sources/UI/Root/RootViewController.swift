@@ -59,7 +59,8 @@ class RootViewController: BaseViewController {
                 profileManager: self.appManager.profileManager,
                 lmmManager: self.appManager.lmmManager,
                 settingsManager: self.appManager.settingsMananger,
-                navigationManager: self.appManager.navigationManager
+                navigationManager: self.appManager.navigationManager,
+                newFacesManager: self.appManager.newFacesManager
             )
         }
         

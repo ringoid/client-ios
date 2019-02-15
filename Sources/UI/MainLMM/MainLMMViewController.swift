@@ -33,7 +33,7 @@ class MainLMMViewController: BaseViewController
         .matches: FeedState(),
         .messages: FeedState()
     ]
-    fileprivate var isDragged: Bool = false
+    fileprivate var isDragged: Bool = false    
     
     fileprivate var viewModel: MainLMMViewModel?
     fileprivate var feedDisposeBag: DisposeBag = DisposeBag()

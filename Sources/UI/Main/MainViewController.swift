@@ -24,6 +24,7 @@ class MainViewController: BaseViewController
     fileprivate var viewModel: MainViewModel?
     fileprivate var containerVC: ContainerViewController!
     fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var menuVCCache: [SelectionState: UIViewController] = [:]
     
     @IBOutlet fileprivate weak var searchBtn: UIButton!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
@@ -70,8 +71,6 @@ class MainViewController: BaseViewController
     
     fileprivate func select(_ to: SelectionState)
     {
-        self.viewModel?.purgeNewFaces()
-        
         switch to {
         case .search:
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
@@ -98,6 +97,12 @@ class MainViewController: BaseViewController
     
     fileprivate func embedNewFaces()
     {
+        if let vc = self.menuVCCache[.search] {
+            self.containerVC.embed(vc)
+            
+            return
+        }
+        
         let storyboard = Storyboards.newFaces()
         guard let vc = storyboard.instantiateInitialViewController() as? NewFacesViewController else { return }
         vc.input = NewFacesVMInput(
@@ -107,11 +112,18 @@ class MainViewController: BaseViewController
             navigationManager: self.input.navigationManager
         )
         
+        self.menuVCCache[.search] = vc
         self.containerVC.embed(vc)
     }
     
     fileprivate func embedMainLMM()
     {
+        if let vc = self.menuVCCache[.like] {
+            self.containerVC.embed(vc)
+            
+            return
+        }
+        
         let storyboard = Storyboards.mainLMM()
         guard let vc = storyboard.instantiateInitialViewController() as? MainLMMContainerViewController else { return }
         vc.input = MainLMMVMInput(
@@ -119,23 +131,33 @@ class MainViewController: BaseViewController
             actionsManager: self.input.actionsManager,
             chatManager: self.input.chatManager,
             profileManager: self.input.profileManager,
-            navigationManager: self.input.navigationManager
+            navigationManager: self.input.navigationManager,
+            newFacesManager: self.input.newFacesManager
         )
-        
+       
+        self.menuVCCache[.like] = vc
         self.containerVC.embed(vc)
     }
     
     fileprivate func embedUserProfile()
     {
+        if let vc = self.menuVCCache[.profile] {
+            self.containerVC.embed(vc)
+            
+            return
+        }
+        
         let storyboard = Storyboards.userProfile()
         guard let vc = storyboard.instantiateInitialViewController() as? UserProfilePhotosViewController else { return }
         vc.input = UserProfilePhotosVCInput(
             profileManager: self.input.profileManager,
             lmmManager: self.input.lmmManager,
             settingsManager: self.input.settingsManager,
-            navigationManager: self.input.navigationManager
+            navigationManager: self.input.navigationManager,
+            newFacesManager: self.input.newFacesManager
         )
         
+        self.menuVCCache[.profile] = vc
         self.containerVC.embed(vc)
     }
     

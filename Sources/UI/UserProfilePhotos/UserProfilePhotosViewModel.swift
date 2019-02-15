@@ -15,6 +15,7 @@ struct UserProfilePhotosVCInput
     let lmmManager: LMMManager
     let settingsManager: SettingsManager
     let navigationManager: NavigationManager
+    let newFacesManager: NewFacesManager
 }
 
 class UserProfilePhotosViewModel
@@ -54,6 +55,7 @@ class UserProfilePhotosViewModel
     
     func refresh() -> Observable<Void>
     {
+        self.input.newFacesManager.purge()
         return self.input.profileManager.refresh().flatMap({ [weak self] _ -> Observable<Void> in
             return self!.input.lmmManager.refresh()
         })
