@@ -57,6 +57,9 @@ class MainLMMProfileViewController: UIViewController
             let vc = NewFacePhotoViewController.create()
             vc.photo = photo
             vc.input = NewFaceProfileVMInput(profile: self.input.profile.actionInstance(), actionsManager: self.input.actionsManager, sourceType: self.input.feedType.sourceType())
+            vc.onChatBlock = { [weak self] in
+                self?.onChatSelected()
+            }
             
             return vc
         })

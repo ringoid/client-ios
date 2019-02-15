@@ -21,13 +21,14 @@ class NewFacePhotoViewController: UIViewController
         }
     }
     
+    var onChatBlock: ( () -> () )?
     
     fileprivate var actionProfile: ActionProfile?
     fileprivate var actionPhoto: ActionPhoto?
     fileprivate var disposeBag: DisposeBag = DisposeBag()
     
     @IBOutlet fileprivate weak var photoView: UIImageView!
-    @IBOutlet fileprivate weak var likeView: UIImageView!
+    @IBOutlet fileprivate weak var likeBtn: UIButton!
     
     static func create() -> NewFacePhotoViewController
     {
@@ -39,7 +40,7 @@ class NewFacePhotoViewController: UIViewController
     {
         super.viewDidLoad()
         
-        self.likeView.isHidden = !self.isLikesAvailable()
+        self.likeBtn.isHidden = !self.isLikesAvailable()
         
         self.updateBindings()
         self.update()
@@ -103,6 +104,29 @@ class NewFacePhotoViewController: UIViewController
             self?.photo?.isLiked = !photo.isLiked
         })
     }
+    
+    @IBAction func  onTap()
+    {
+        guard self.isLikesAvailable() else {
+            self.onChatBlock?()
+            
+            return
+        }
+        
+        guard let input = self.input, let photo = self.photo else { return }
+        guard !photo.isLiked else { return }
+        
+        input.actionsManager.likeActionProtected(
+            input.profile.actionInstance(),
+            photo: photo.actionInstance(),
+            source: input.sourceType
+            
+        )
+        
+        self.photo?.write({ obj in
+            (obj as? Photo)?.isLiked = true
+        })
+    }
         
     // MARK: -
     
@@ -124,14 +148,14 @@ class NewFacePhotoViewController: UIViewController
         
         self.photo?.rx.observe(Photo.self, "isLiked").subscribe(onNext: { [weak self] _ in
             let imgName = self?.photo?.isLiked == true ? "feed_like_selected" : "feed_like"
-            self?.likeView?.image = UIImage(named: imgName)
+            self?.likeBtn.setImage(UIImage(named: imgName), for: .normal)
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             let alpha: CGFloat = state ? 0.0 : 1.0
             
             UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
-                self?.likeView.alpha = alpha
+                self?.likeBtn.alpha = alpha
             }).startAnimation()
         }).disposed(by: self.disposeBag)
         
@@ -139,7 +163,7 @@ class NewFacePhotoViewController: UIViewController
             let alpha: CGFloat = state ? 0.0 : 1.0
             
             UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
-                self?.likeView.alpha = alpha
+                self?.likeBtn.alpha = alpha
             }).startAnimation()
         }).disposed(by: self.disposeBag)
     }
