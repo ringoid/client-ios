@@ -222,14 +222,19 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
 {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
     {
-        guard let cropRect = info[.cropRect] as? CGRect, let image = info[.originalImage] as? UIImage else { return }
+        defer {
+            picker.dismiss(animated: true, completion: nil)
+        }
         
-        let width = cropRect.width / 4.0 * 3.0
+        guard let image = info[.editedImage] as? UIImage else { return }
+        
+        let size = image.size
+        let width = size.width / 4.0 * 3.0
         let adjustedCropRect = CGRect(
-            x: cropRect.midX - width / 2.0,
-            y: cropRect.origin.y,
+            x: (size.width - width) / 2.0,
+            y: 0.0,
             width: width,
-            height: cropRect.height
+            height: size.height
         )
         guard let croppedImage = image.crop(rect: adjustedCropRect) else { return }
 
@@ -249,8 +254,6 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
             
             showError(error, vc: self)
         })).disposed(by: self.disposeBag)
-        
-        picker.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
