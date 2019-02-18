@@ -291,7 +291,7 @@ class ApiServiceDefault: ApiService
                     return .error(error)
                 }
                 
-                if let repeatAfter = jsonDict["repeatRequestAfterSec"] as? Int, repeatAfter >= 1 {
+                if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
                     SentryService.shared.send(.repeatAfterDelay)
                     print("repeating after \(repeatAfter)")
                     return self!.requestGET(path: path, params: params).delay(RxTimeInterval(Double(repeatAfter) / 1000.0), scheduler: MainScheduler.instance)
