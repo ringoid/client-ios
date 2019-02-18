@@ -180,7 +180,7 @@ class MainLMMViewController: BaseViewController
     fileprivate func updateFeed()
     {
         guard self.isUpdated else { return }
-        guard let updatedProfiles = self.profiles()?.value else { return }
+        guard let updatedProfiles = self.profiles()?.value.filter({ !$0.isInvalidated }) else { return }
         
         defer {
             self.lastFeedIds = updatedProfiles.map { $0.id }

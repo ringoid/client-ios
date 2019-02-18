@@ -13,7 +13,7 @@
         <!--MainLMM Container View Controller-->
         <scene sceneID="z9F-BM-hJV">
             <objects>
-                <viewController id="7TG-Gv-7GI" customClass="MainLMMContainerViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7TG-Gv-7GI" customClass="MainLMMContainerViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gwy-Hy-mww">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +24,7 @@
                                     <segue destination="5Bt-Xu-MH5" kind="embed" identifier="embed_lmm" id="758-j3-FOe"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ywr-Pj-xRP" userLabel="LMMOptionsView" customClass="VerticalGradientView" customModule="ringoid" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ywr-Pj-xRP" userLabel="LMMOptionsView" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30C-S0-bMA">
@@ -186,7 +186,7 @@
         <!--MainLMM View Controller-->
         <scene sceneID="sja-MF-CcL">
             <objects>
-                <viewController storyboardIdentifier="main_lmm_vc" id="5Bt-Xu-MH5" customClass="MainLMMViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main_lmm_vc" id="5Bt-Xu-MH5" customClass="MainLMMViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aDZ-sn-yKR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -227,14 +227,14 @@ see who likes you</string>
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="main_llm_cell" id="Way-Aw-DVV" customClass="MainLMMCell" customModule="ringoid" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="main_llm_cell" id="Way-Aw-DVV" customClass="MainLMMCell" customModule="Ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="358"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Way-Aw-DVV" id="M06-Hj-Ah5">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="358"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BzW-Ph-VcE" customClass="ContainerView" customModule="ringoid" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BzW-Ph-VcE" customClass="ContainerView" customModule="Ringoid" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="357"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
@@ -258,7 +258,7 @@ see who likes you</string>
                                     <outlet property="delegate" destination="5Bt-Xu-MH5" id="ZU8-q5-eXy"/>
                                 </connections>
                             </tableView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ey6-2A-Ohd" customClass="ContainerView" customModule="ringoid" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ey6-2A-Ohd" customClass="ContainerView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -306,7 +306,7 @@ see who likes you</string>
         <!--MainLMM Profile View Controller-->
         <scene sceneID="v7N-6P-XpP">
             <objects>
-                <viewController storyboardIdentifier="lmm_profile" id="Nf7-hc-eWV" customClass="MainLMMProfileViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="lmm_profile" id="Nf7-hc-eWV" customClass="MainLMMProfileViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ekE-T8-wuA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -318,7 +318,7 @@ see who likes you</string>
                                     <segue destination="gqb-l2-0Wt" kind="embed" identifier="embed_pages" id="ztS-ZW-J5g"/>
                                 </connections>
                             </containerView>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OWQ-dc-NR9" customClass="DiagonalGradientView" customModule="ringoid" customModuleProvider="target">
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OWQ-dc-NR9" customClass="DiagonalGradientView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>

@@ -57,13 +57,7 @@ class MainLMMContainerViewController: BaseViewController
     {
         if segue.identifier == "embed_lmm", let vc = segue.destination as? MainLMMViewController {
             vc.input = self.input
-//            vc.onChatShown = { [weak self] in
-//                self?.optionsContainer.isHidden = true
-//            }
-//            vc.onChatHidden = { [weak self] in
-//                self?.optionsContainer.isHidden = false
-//            }
-            
+
             self.lmmVC = vc
         }
     }
