@@ -27,6 +27,9 @@ class NewFacePhotoViewController: UIViewController
     fileprivate var actionPhoto: ActionPhoto?
     fileprivate var disposeBag: DisposeBag = DisposeBag()
     
+    fileprivate weak var activeAppearAnimator: UIViewPropertyAnimator?
+    fileprivate weak var activeDisappearAnimator: UIViewPropertyAnimator?
+    
     @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
     @IBOutlet fileprivate weak var animationLikeView: UIImageView!
@@ -117,7 +120,6 @@ class NewFacePhotoViewController: UIViewController
         }
         
         guard let input = self.input, let photo = self.photo else { return }
-        guard !photo.isLiked else { return }
         
         self.playLikeAnimation()
         
@@ -187,6 +189,16 @@ class NewFacePhotoViewController: UIViewController
     
     fileprivate func playLikeAnimation()
     {
+        if self.activeAppearAnimator?.isRunning == true {
+            self.activeAppearAnimator?.stopAnimation(true)
+            self.activeAppearAnimator?.finishAnimation(at: .start)
+        }
+        
+        if self.activeDisappearAnimator?.isRunning == true {
+            self.activeDisappearAnimator?.stopAnimation(true)
+            self.activeDisappearAnimator?.finishAnimation(at: .end)
+        }
+        
         let duration = 0.4
         let appearAnimator = UIViewPropertyAnimator(duration: duration / 2.0, curve: .easeIn) {
             self.animationLikeView.alpha = 1.0
@@ -199,6 +211,9 @@ class NewFacePhotoViewController: UIViewController
             self.animationLikeView.transform = .identity
             self.likeBtn.transform = .identity
         }
+        
+        self.activeAppearAnimator = appearAnimator
+        self.activeDisappearAnimator = disappearAnimator
         
         appearAnimator.addCompletion { _ in
             disappearAnimator.startAnimation()
