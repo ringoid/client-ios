@@ -88,6 +88,17 @@ class SettingsLegalViewController: BaseViewController
         
         self.present(vc, animated: true, completion: nil)
     }
+    
+    fileprivate func showAboutUI()
+    {
+        let alertVC = UIAlertController(
+            title: "COMMON_ABOUT".localized(),
+            message: "SETTINGS_LEGAL_ABOUT_MESSAGE".localized(),
+            preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK".localized(), style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
+    }
 }
 
 extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegate
@@ -133,7 +144,10 @@ extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegat
         guard let option = SettingsLegalOptionType(rawValue: indexPath.row) else { return }
         
         switch option {
-        case .about: break
+        case .about:
+            self.showAboutUI()
+            break
+            
         case .privacy:
             UIApplication.shared.open(AppConfig.policyUrl, options: [:], completionHandler: nil)
             break
