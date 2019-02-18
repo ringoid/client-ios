@@ -55,6 +55,8 @@ class MainLMMProfileViewModel
 
     fileprivate func setupBindings()
     {
+        guard !self.input.profile.isInvalidated else { return }
+        
         self.input.profile.photos.filter({ !$0.isInvalidated }).forEach ({ photo in
             photo.rx.observe(Photo.self, "isLiked").subscribe(onNext: { [weak self] _ in
                 self?.updateMessagingState()
