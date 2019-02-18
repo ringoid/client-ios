@@ -52,11 +52,12 @@ class MainLMMProfileViewController: UIViewController
         self.updateMessageBtnOffset()
         self.messageBtn.setImage(UIImage(named: self.input.profile.state.iconName()), for: .normal)
         
+        let input = NewFaceProfileVMInput(profile: self.input.profile.actionInstance() , actionsManager: self.input.actionsManager, sourceType: self.input.feedType.sourceType())
         self.pageControl.numberOfPages = self.input.profile.photos.count
         self.photosVCs = self.input.profile.photos.map({ photo in
             let vc = NewFacePhotoViewController.create()
             vc.photo = photo
-            vc.input = NewFaceProfileVMInput(profile: self.input.profile.actionInstance(), actionsManager: self.input.actionsManager, sourceType: self.input.feedType.sourceType())
+            vc.input = input
             vc.onChatBlock = { [weak self] in
                 self?.onChatSelected()
             }
