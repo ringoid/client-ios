@@ -359,6 +359,7 @@ extension MainLMMViewController: UITableViewDataSource
         if let profile = self.profiles()?.value[indexPath.row] {
             let photoIndex: Int = MainLMMViewController.feedsState[self.type.value]?.photos[indexPath.row] ?? 0
             let profileVC = MainLMMProfileViewController.create(profile, feedType: self.type.value, actionsManager: self.input.actionsManager, initialIndex: photoIndex)
+            weak var weakProfileVC = profileVC
             profileVC.onChatShow = { [weak self, weak cell] profile, photo, vc in
                 guard let `cell` = cell else { return }
                 guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
@@ -366,7 +367,7 @@ extension MainLMMViewController: UITableViewDataSource
                 self?.showChat(profile, photo: photo, indexPath: cellIndexPath, profileVC: vc)
             }
             profileVC.onChatHide = { [weak self] profile, photo, vc in
-                self?.hideChat(profileVC, profile: profile, photo: photo)
+                self?.hideChat(weakProfileVC, profile: profile, photo: photo)
                 self?.isUpdated = true // for blocked profile update
             }
             profileVC.onBlockOptionsWillShow = { [weak self, weak cell] in
