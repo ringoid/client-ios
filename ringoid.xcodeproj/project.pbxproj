@@ -28,6 +28,8 @@
 		570D04C621DFBD5A00E0DCFB /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C521DFBD5A00E0DCFB /* DBService.swift */; };
 		570D04CA21E32F4800E0DCFB /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C821E32F4800E0DCFB /* AuthViewController.swift */; };
 		570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C921E32F4800E0DCFB /* AuthViewModel.swift */; };
+		57149D60221AD32D00F636A4 /* SettingsLegalCustomerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57149D5F221AD32D00F636A4 /* SettingsLegalCustomerCell.swift */; };
+		57149D61221AD32D00F636A4 /* SettingsLegalCustomerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57149D5F221AD32D00F636A4 /* SettingsLegalCustomerCell.swift */; };
 		57386E40220B27C00000E5D9 /* LocalizedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E3F220B27C00000E5D9 /* LocalizedTableViewCell.swift */; };
 		57386E42220B2FB20000E5D9 /* SettingsLanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E41220B2FB20000E5D9 /* SettingsLanguageCell.swift */; };
 		57386E44220B33120000E5D9 /* SettingsLegalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E43220B33120000E5D9 /* SettingsLegalCell.swift */; };
@@ -284,6 +286,7 @@
 		570D04C521DFBD5A00E0DCFB /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		570D04C821E32F4800E0DCFB /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		570D04C921E32F4800E0DCFB /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		57149D5F221AD32D00F636A4 /* SettingsLegalCustomerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalCustomerCell.swift; sourceTree = "<group>"; };
 		57386E3F220B27C00000E5D9 /* LocalizedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedTableViewCell.swift; sourceTree = "<group>"; };
 		57386E41220B2FB20000E5D9 /* SettingsLanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLanguageCell.swift; sourceTree = "<group>"; };
 		57386E43220B33120000E5D9 /* SettingsLegalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalCell.swift; sourceTree = "<group>"; };
@@ -812,6 +815,7 @@
 				57EE64CA2215304000246B45 /* SettingsLegalTermsCell.swift */,
 				57EE64CC2215394A00246B45 /* SettingsLegalLicensesCell.swift */,
 				57EE64CE22153B1000246B45 /* SettingsLegalEmailCell.swift */,
+				57149D5F221AD32D00F636A4 /* SettingsLegalCustomerCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1329,6 +1333,7 @@
 				579CD7C321F9A93E00C3AEE3 /* ChatViewModel.swift in Sources */,
 				57585D7221E5055D00038798 /* BaseViewController.swift in Sources */,
 				570D04C321DFA4EF00E0DCFB /* ApiUserPhotoPlaceholder.swift in Sources */,
+				57149D60221AD32D00F636A4 /* SettingsLegalCustomerCell.swift in Sources */,
 				57B863BE21EC758200B9CC70 /* ApiMessage.swift in Sources */,
 				57585D5221E4808500038798 /* UserProfilePhotosViewModel.swift in Sources */,
 				57585D4221E3555E00038798 /* Profile.swift in Sources */,
@@ -1444,6 +1449,7 @@
 				57EE65272216711000246B45 /* ActionPhoto.swift in Sources */,
 				57EE65282216711000246B45 /* LMMManager.swift in Sources */,
 				57EE65292216711000246B45 /* ApiPhoto.swift in Sources */,
+				57149D61221AD32D00F636A4 /* SettingsLegalCustomerCell.swift in Sources */,
 				57EE652A2216711000246B45 /* FileService.swift in Sources */,
 				57EE652B2216711000246B45 /* ApiServiceConfig.swift in Sources */,
 				57EE652C2216711000246B45 /* MainLMMViewModel.swift in Sources */,

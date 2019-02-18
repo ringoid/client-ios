@@ -29,7 +29,7 @@ class SettingsLocaleViewController: BaseViewController
         
         self.setupBindings()
     }
-    
+        
     override func updateTheme()
     {
         let theme = ThemeManager.shared.theme.value

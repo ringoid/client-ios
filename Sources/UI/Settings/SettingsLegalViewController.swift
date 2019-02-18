@@ -22,10 +22,13 @@ fileprivate enum SettingsLegalOptionType: Int
     case terms = 2
     case licenses = 3
     case email = 4
+    case customerId = 5
 }
 
 class SettingsLegalViewController: BaseViewController
 {
+    var input: SettingsVMInput!
+    
     fileprivate var viewModel: SettingsLegalViewModel?
     
     fileprivate let options = [
@@ -34,6 +37,7 @@ class SettingsLegalViewController: BaseViewController
         SettingsLegalOption(cellIdentifier: "terms_cell", height: 42.0),
         SettingsLegalOption(cellIdentifier: "licenses_cell", height: 42.0),
         SettingsLegalOption(cellIdentifier: "email_cell", height: 42.0),
+        SettingsLegalOption(cellIdentifier: "customer_cell", height: 84.0),
         ]
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
@@ -42,6 +46,8 @@ class SettingsLegalViewController: BaseViewController
     
     override func viewDidLoad()
     {
+        assert(self.input != nil)
+        
         super.viewDidLoad()
         
         self.setupBindings()
@@ -75,7 +81,7 @@ class SettingsLegalViewController: BaseViewController
     
     func setupBindings()
     {
-        self.viewModel = SettingsLegalViewModel()
+        self.viewModel = SettingsLegalViewModel(self.input.settingsManager)
     }
     
     fileprivate func showEmailUI()
@@ -126,6 +132,8 @@ extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegat
             case .terms: break
             case .licenses: break
             case .email: break
+            case .customerId:
+                (cell as? SettingsLegalCustomerCell)?.customerId = self.viewModel?.customerId.value ?? ""
             }
         }
         
@@ -160,6 +168,8 @@ extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegat
         case .email:
             self.showEmailUI()
             break
+            
+        case .customerId: break
         }
     }
 }

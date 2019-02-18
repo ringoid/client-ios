@@ -19,6 +19,11 @@ class SettingsManager
     
     let isFirstTimePhoto: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
+    var customerId: BehaviorRelay<String>
+    {
+        return self.api.customerId
+    }
+    
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager)

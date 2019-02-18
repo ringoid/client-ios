@@ -78,6 +78,13 @@ class SettingsViewController: BaseViewController
         self.tableView.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "legal_vc", let vc = segue.destination as? SettingsLegalViewController {
+            vc.input = self.input
+        }
+    }
+    
     override func updateTheme()
     {
         let theme = ThemeManager.shared.theme.value

@@ -18,10 +18,10 @@ class ApiServiceDefault: ApiService
     let storage: XStorageService
     
     var isAuthorized: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var customerId: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
     var error: BehaviorRelay<ApiError> = BehaviorRelay<ApiError>(value: ApiError(type: .unknown))
 
     fileprivate var accessToken: String?
-    fileprivate var customerId: String?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     init(config: ApiServiceConfig, storage: XStorageService)
@@ -61,7 +61,7 @@ class ApiServiceDefault: ApiService
             }
             
             self?.accessToken = accessToken
-            self?.customerId = customerId
+            self?.customerId.accept(customerId)
             self?.storeCredentials()
             
             return .just(())
@@ -314,9 +314,9 @@ class ApiServiceDefault: ApiService
         self.storage.store(token, key: "access_token").asObservable().subscribe().disposed(by: self.disposeBag)
         self.isAuthorized.accept(true)
         
-        guard let id = self.customerId else { return }
-        
+        let id = self.customerId.value
         self.storage.store(id, key: "customer_id").subscribe().disposed(by: self.disposeBag)
+        self.customerId.accept(id)
     }
     
     fileprivate func loadCredentials()
@@ -327,7 +327,7 @@ class ApiServiceDefault: ApiService
         }).disposed(by: self.disposeBag)
         
         self.storage.object("customer_id").subscribe(onNext: { [weak self] id in
-            self?.customerId = id as? String
+            self?.customerId.accept(id as? String ?? "")
         }).disposed(by: self.disposeBag)
     }
     

@@ -27,6 +27,7 @@ struct ApiError
 protocol ApiService
 {
     var isAuthorized: BehaviorRelay<Bool> { get }
+    var customerId: BehaviorRelay<String> { get }
     var error: BehaviorRelay<ApiError> { get }
     
     func createProfile(year: Int, sex: Sex) -> Observable<Void>
