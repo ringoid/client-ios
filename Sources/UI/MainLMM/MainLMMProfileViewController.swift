@@ -99,6 +99,9 @@ class MainLMMProfileViewController: UIViewController
     {
         weak var weakSelf = self
         let profile = self.input.profile
+        
+        guard !profile.isInvalidated else { return }
+        
         self.onChatShow?(profile, profile.photos[self.currentIndex.value], weakSelf)
     }
     

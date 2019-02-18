@@ -54,7 +54,7 @@ class ChatViewModel
         self.input.profile.rx.observe(LMMProfile.self, "messages").subscribe(onNext: { [weak self] _ in
             guard let updatedProfile = self?.input.profile else { return }
             
-            self?.messages.accept(Array(updatedProfile.messages))
+            self?.messages.accept(Array(updatedProfile.messages.sorted(byKeyPath: "orderPosition")))
         }).disposed(by: self.disposeBag)
     }
 }
