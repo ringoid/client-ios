@@ -37,6 +37,11 @@ class UserProfilePhotosViewModel
         return self.input.settingsManager.isFirstTimePhoto
     }
     
+    var isAuthorized: BehaviorRelay<Bool>
+    {
+        return self.input.settingsManager.isAuthorized
+    }
+    
     init(_ input: UserProfilePhotosVCInput)
     {
         self.input = input

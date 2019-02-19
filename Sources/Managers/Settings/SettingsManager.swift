@@ -24,6 +24,11 @@ class SettingsManager
         return self.api.customerId
     }
     
+    var isAuthorized: BehaviorRelay<Bool>
+    {
+        return self.api.isAuthorized
+    }
+    
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager)
@@ -50,7 +55,7 @@ class SettingsManager
         self.isFirstTimePhoto.accept(true)
         self.db.reset()
         self.fs.reset()
-        self.actions.lastActionDate = nil
+        self.actions.reset()
     }
     
     // MARK: -

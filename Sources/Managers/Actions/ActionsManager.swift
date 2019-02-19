@@ -79,6 +79,15 @@ class ActionsManager
         self.sendQueue().subscribe().disposed(by: self.disposeBag)
     }
     
+    func reset()
+    {
+        self.triggerTimer?.invalidate()
+        self.triggerTimer = nil
+        self.lastActionDate = nil
+        self.queue.removeAll()
+        self.setupTimerTrigger()
+    }
+    
     func finishViewActions(for profiles: [Profile], source: SourceFeedType)
     {
         profiles.forEach { profile in

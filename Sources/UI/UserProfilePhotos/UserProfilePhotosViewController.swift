@@ -105,7 +105,11 @@ class UserProfilePhotosViewController: BaseViewController
     
     fileprivate func pickPhotoIfNeeded()
     {
-        guard self.input.profileManager.photos.value.count == 0, self.viewModel?.isFirstTime.value == true else { return }
+        guard
+            self.input.profileManager.photos.value.count == 0,
+            self.viewModel?.isFirstTime.value == true,
+            self.viewModel?.isAuthorized.value == true
+            else { return }
         
         self.pickPhoto()
     }
