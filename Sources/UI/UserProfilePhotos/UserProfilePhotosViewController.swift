@@ -181,10 +181,14 @@ class UserProfilePhotosViewController: BaseViewController
             self?.pickPhoto()
         })))
         alertVC.addAction(UIAlertAction(title: "PROFILE_DISCOVER_USERS".localized(), style: .default, handler: ({ [weak self] _ in
+            self?.viewModel?.isFirstTime.accept(false)
+            self?.viewModel?.isFirstTime.accept(false)
             self?.viewModel?.moveToSearch()
         })))
         
-        alertVC.addAction(UIAlertAction(title: "COMMON_CLOSE".localized(), style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "COMMON_CLOSE".localized(), style: .cancel, handler: { [weak self] _ in
+            self?.viewModel?.isFirstTime.accept(false)
+        }))
         
         self.present(alertVC, animated: true, completion: nil)
     }
@@ -243,8 +247,6 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
             self?.lastClientPhotoId = photo.clientId
             
             guard self?.viewModel?.isFirstTime.value == true else { return }
-            
-            self?.viewModel?.isFirstTime.accept(false)
             
             DispatchQueue.main.async {
                 self?.showOptionsAlert()
