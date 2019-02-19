@@ -188,7 +188,7 @@ class DBService
     
     fileprivate func filterBlocked(_ objects: [DBServiceObject]) -> [DBServiceObject]
     {
-        let blockedIds = self.realm.objects(BlockedProfile.self).map({ $0.id })
+        let blockedIds = Array(self.realm.objects(BlockedProfile.self).map({ $0.id }))
         
         return objects.filter({ object in
             guard let profile = object as? Profile else { return true }
