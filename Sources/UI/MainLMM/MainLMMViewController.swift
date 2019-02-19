@@ -405,8 +405,11 @@ extension MainLMMViewController: UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "main_llm_cell") as! MainLMMCell
-        if let profile = self.profiles()?.value[indexPath.row] {
-            let photoIndex: Int = MainLMMViewController.feedsState[self.type.value]?.photos[indexPath.row] ?? 0
+        
+        let index = indexPath.row
+        if  let profiles = self.profiles()?.value, profiles.count > index {
+            let profile = profiles[index] 
+            let photoIndex: Int = MainLMMViewController.feedsState[self.type.value]?.photos[index] ?? 0
             let profileVC = MainLMMProfileViewController.create(profile, feedType: self.type.value, actionsManager: self.input.actionsManager, initialIndex: photoIndex)
             weak var weakProfileVC = profileVC
             profileVC.onChatShow = { [weak self, weak cell] profile, photo, vc in
