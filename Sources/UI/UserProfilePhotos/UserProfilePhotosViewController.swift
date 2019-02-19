@@ -67,21 +67,9 @@ class UserProfilePhotosViewController: BaseViewController
         self.view.backgroundColor = BackgroundColor().uiColor()
     }
     
-    fileprivate func pickPhotoIfNeeded()
+    func showPhotoPicker()
     {
-        guard self.input.profileManager.photos.value.count == 0, self.viewModel?.isFirstTime.value == true else { return }
-        
         self.pickPhoto()
-    }
-    
-    fileprivate func pickPhoto()
-    {
-        let vc = UIImagePickerController()
-        vc.sourceType = .photoLibrary
-        vc.allowsEditing = true
-        vc.delegate = self
-        
-        self.present(vc, animated: true, completion: nil)
     }
     
     // MARK: - Actions
@@ -113,6 +101,23 @@ class UserProfilePhotosViewController: BaseViewController
         self.containerTableView.bindHeadRefreshHandler({ [weak self] in
             self?.reload()
             }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
+    }
+    
+    fileprivate func pickPhotoIfNeeded()
+    {
+        guard self.input.profileManager.photos.value.count == 0, self.viewModel?.isFirstTime.value == true else { return }
+        
+        self.pickPhoto()
+    }
+    
+    fileprivate func pickPhoto()
+    {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.allowsEditing = true
+        vc.delegate = self
+        
+        self.present(vc, animated: true, completion: nil)
     }
     
     fileprivate func updatePages()
@@ -181,7 +186,6 @@ class UserProfilePhotosViewController: BaseViewController
             self?.pickPhoto()
         })))
         alertVC.addAction(UIAlertAction(title: "PROFILE_DISCOVER_USERS".localized(), style: .default, handler: ({ [weak self] _ in
-            self?.viewModel?.isFirstTime.accept(false)
             self?.viewModel?.isFirstTime.accept(false)
             self?.viewModel?.moveToSearch()
         })))

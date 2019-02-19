@@ -63,6 +63,6 @@ class UserProfilePhotosViewModel
     
     func moveToSearch()
     {
-        self.input.navigationManager.mainItem.accept(.search)
+        self.input.navigationManager.mainItem.accept(.searchAndFetch)
     }
 }

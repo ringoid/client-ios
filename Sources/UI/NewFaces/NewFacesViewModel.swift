@@ -72,6 +72,6 @@ class NewFacesViewModel
     
     func moveToProfile()
     {
-        self.navigationManager.mainItem.accept(.profile)
+        self.navigationManager.mainItem.accept(.profileAndPick)
     }
 }

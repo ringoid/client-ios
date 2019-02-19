@@ -14,6 +14,9 @@ enum SelectionState {
     case search
     case like
     case profile
+    
+    case searchAndFetch
+    case profileAndPick
 }
 
 class MainViewController: BaseViewController
@@ -92,28 +95,35 @@ class MainViewController: BaseViewController
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
             self.embedUserProfile()
             break
+            
+        case .profileAndPick:
+            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
+            self.embedUserProfileAndPick()
+            break
+            
+        case .searchAndFetch:
+            self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.embedNewFacesAndFetch()
+            break
         }
     }
     
     fileprivate func embedNewFaces()
     {
-        if let vc = self.menuVCCache[.search] {
-            self.containerVC.embed(vc)
-            
-            return
-        }
-        
-        let storyboard = Storyboards.newFaces()
-        guard let vc = storyboard.instantiateInitialViewController() as? NewFacesViewController else { return }
-        vc.input = NewFacesVMInput(
-            newFacesManager: self.input.newFacesManager,
-            actionsManager: self.input.actionsManager,
-            profileManager: self.input.profileManager,
-            navigationManager: self.input.navigationManager
-        )
-        
-        self.menuVCCache[.search] = vc
+        guard let vc = self.getNewFacesVC() else { return }
         self.containerVC.embed(vc)
+    }
+    
+    fileprivate func embedNewFacesAndFetch()
+    {
+        guard let vc = self.getNewFacesVC() else { return }
+        
+        self.containerVC.embed(vc)
+        vc.onReload()
     }
     
     fileprivate func embedMainLMM()
@@ -141,14 +151,26 @@ class MainViewController: BaseViewController
     
     fileprivate func embedUserProfile()
     {
-        if let vc = self.menuVCCache[.profile] {
-            self.containerVC.embed(vc)
-            
-            return
-        }
+        guard let vc = self.getUserProfileVC() else { return }
+        
+        self.containerVC.embed(vc)
+    }
+    
+    fileprivate func embedUserProfileAndPick()
+    {
+        guard let vc = self.getUserProfileVC() else { return }
+        
+        self.containerVC.embed(vc)
+        
+        vc.showPhotoPicker()
+    }
+    
+    fileprivate func getUserProfileVC() -> UserProfilePhotosViewController?
+    {
+        if let vc = self.menuVCCache[.profile] as? UserProfilePhotosViewController { return vc }
         
         let storyboard = Storyboards.userProfile()
-        guard let vc = storyboard.instantiateInitialViewController() as? UserProfilePhotosViewController else { return }
+        guard let vc = storyboard.instantiateInitialViewController() as? UserProfilePhotosViewController else { return nil }
         vc.input = UserProfilePhotosVCInput(
             profileManager: self.input.profileManager,
             lmmManager: self.input.lmmManager,
@@ -158,7 +180,26 @@ class MainViewController: BaseViewController
         )
         
         self.menuVCCache[.profile] = vc
-        self.containerVC.embed(vc)
+        
+        return vc
+    }
+    
+    fileprivate func getNewFacesVC() -> NewFacesViewController?
+    {
+        if let vc = self.menuVCCache[.search] as? NewFacesViewController { return vc }
+        
+        let storyboard = Storyboards.newFaces()
+        guard let vc = storyboard.instantiateInitialViewController() as? NewFacesViewController else { return nil }
+        vc.input = NewFacesVMInput(
+            newFacesManager: self.input.newFacesManager,
+            actionsManager: self.input.actionsManager,
+            profileManager: self.input.profileManager,
+            navigationManager: self.input.navigationManager
+        )
+        
+        self.menuVCCache[.search] = vc
+        
+        return vc
     }
     
     fileprivate func setupBindings()
@@ -187,6 +228,9 @@ extension MainNavigationItem
         case .search: return .search
         case .like: return .like
         case .profile: return .profile
+            
+        case .profileAndPick: return .profileAndPick
+        case .searchAndFetch: return .searchAndFetch
         }
     }
 }

@@ -14,6 +14,9 @@ enum MainNavigationItem
     case search
     case like
     case profile
+    
+    case searchAndFetch
+    case profileAndPick
 }
 
 class NavigationManager
