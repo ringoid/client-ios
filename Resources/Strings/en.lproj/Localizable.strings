@@ -50,6 +50,9 @@
 "LMM_HEADER_CHATS_OPTION" = "Chats";
 "LMM_HEADER_LIKES_OPTION" = "Likes You";
 "LMM_HEADER_MATCHES_OPTION" = "Matches";
+"LMM_NO_LIKES_YOU" = "No likes yet";
+"LMM_NO_MATCHES_YOU" = "No matches yet";
+"LMM_NO_CHATS_YOU" = "No chats yet";
 
 "NEW_FACES_NO_PHOTO_ALERT_MESSAGE" = "Add your photo to see who likes you, like and message others.";
 "NEW_FACES_NO_PHOTO_ALERT_CANCEL" = "Not now";

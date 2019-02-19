@@ -52,7 +52,7 @@ class NewFacesViewController: BaseViewController
         self.setupBindings()
         self.setupReloader()
     }
-    
+        
     override func updateTheme()
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
@@ -81,7 +81,10 @@ class NewFacesViewController: BaseViewController
             guard let `self` = self else { return }
             
             showError(error, vc: self)
-            }).disposed(by: self.disposeBag)
+            }, onCompleted: { [weak self] in
+                self?.toggleActivity(.contentAvailable)
+                self?.updateFeed()
+        }).disposed(by: self.disposeBag)
     }
     
     func onFetchMore()
@@ -147,7 +150,14 @@ class NewFacesViewController: BaseViewController
         let isEmpty = totalCount == 0
         self.titleLabel.isHidden = !isEmpty
         self.feedEndLabel.isHidden = isEmpty
-        self.toggleActivity(isEmpty ?.empty : .contentAvailable)
+        
+        if isEmpty && self.currentActivityState != .initial && self.currentActivityState != .fetching {
+            self.toggleActivity(.empty)
+        }
+        
+        if !isEmpty {
+            self.toggleActivity(.contentAvailable)
+        }
         
         let lastItemsCount = self.lastFeedIds.count
         

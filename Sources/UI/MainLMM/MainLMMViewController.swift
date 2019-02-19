@@ -23,6 +23,14 @@ fileprivate struct FeedState
     var photos: [Int: Int] = [:]
 }
 
+fileprivate enum LMMFeedActivityState
+{
+    case initial;
+    case fetching
+    case empty
+    case contentAvailable
+}
+
 class MainLMMViewController: BaseViewController
 {
     var input: MainLMMVMInput!
@@ -43,18 +51,22 @@ class MainLMMViewController: BaseViewController
     fileprivate var prevScrollingOffset: CGFloat = 0.0
     fileprivate var isScrollTopVisible: Bool = false
     fileprivate var lastFeedIds: [String] = []
+    fileprivate var currentActivityState: LMMFeedActivityState = .initial
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
     @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
     @IBOutlet fileprivate weak var feedEndView: UIView!
     @IBOutlet fileprivate weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var emptyFeedActivityView: UIActivityIndicatorView!
     
     override func viewDidLoad()
     {
         assert(self.input != nil)
         
         super.viewDidLoad()
+        
+        self.toggleActivity(.initial)
         
         let cellHeight = UIScreen.main.bounds.width * AppConfig.photoRatio
         self.tableView.tableHeaderView = nil
@@ -138,9 +150,8 @@ class MainLMMViewController: BaseViewController
         
         self.isUpdated = true
         
-        UIView.animate(withDuration: 0.095) {
-            self.emptyFeedLabel.alpha = 0.0
-        }
+        self.toggleActivity(.fetching)
+        self.tableView.headRefreshControl.endRefreshing()
         
         // TODO: move "finishViewActions" logic inside view model
         self.input.actionsManager.finishViewActions(for: self.profiles()?.value ?? [], source: self.type.value.sourceType())
@@ -149,12 +160,10 @@ class MainLMMViewController: BaseViewController
             
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
+                self?.toggleActivity(.contentAvailable)
+                self?.isUpdated = true
+                self?.updateFeed()
                 self?.resetStates()
-                self?.tableView.headRefreshControl.endRefreshing()
-                
-                UIView.animate(withDuration: 0.095) {
-                    self?.emptyFeedLabel.alpha = 1.0
-                }
         }).disposed(by: self.disposeBag)
     }
     
@@ -187,10 +196,17 @@ class MainLMMViewController: BaseViewController
         }
         
         let totalCount = updatedProfiles.count
-        self.isUpdated = totalCount == 0
-        self.emptyFeedLabel.text = self.placeholderText()
-        self.emptyFeedLabel.isHidden = !updatedProfiles.isEmpty
-        self.feedEndView.isHidden = updatedProfiles.isEmpty
+        let isEmpty = updatedProfiles.isEmpty
+        self.isUpdated = isEmpty
+        self.feedEndView.isHidden = isEmpty
+        
+        if isEmpty && self.currentActivityState != .initial && self.currentActivityState != .fetching {
+            self.toggleActivity(.empty)
+        }
+        
+        if !isEmpty {
+            self.toggleActivity(.contentAvailable)
+        }
         
         // Checking for blocking scenario
         if totalCount == self.lastFeedIds.count - 1, self.lastFeedIds.count > 1 {
@@ -274,11 +290,6 @@ class MainLMMViewController: BaseViewController
         self.chatContainerView.remove()
     }
     
-    fileprivate func placeholderText() -> String
-    {
-        return "FEED_PULL_TO_REFRESH".localized()
-    }
-    
     fileprivate func showScrollToTopOption()
     {
         guard !self.isScrollTopVisible else { return }
@@ -338,6 +349,44 @@ class MainLMMViewController: BaseViewController
         self.present(alertVC, animated: true, completion: { [weak self] in
             self?.tableView.headRefreshControl.endRefreshing()            
         })
+    }
+    
+    fileprivate func toggleActivity(_ state: LMMFeedActivityState)
+    {
+        self.currentActivityState = state
+        
+        switch state {
+        case .initial:
+            self.emptyFeedActivityView.stopAnimating()
+            self.emptyFeedLabel.text = "FEED_PULL_TO_REFRESH".localized()
+            self.emptyFeedLabel.isHidden = false
+            break
+            
+        case .fetching:
+            self.emptyFeedActivityView.startAnimating()
+            self.emptyFeedLabel.isHidden = true
+            break
+            
+        case .empty:
+            self.emptyFeedActivityView.stopAnimating()
+            self.emptyFeedLabel.text = self.emptyLabelTitle()
+            self.emptyFeedLabel.isHidden = false
+            break
+            
+        case .contentAvailable:
+            self.emptyFeedActivityView.stopAnimating()
+            self.emptyFeedLabel.isHidden = true
+            break
+        }
+    }
+    
+    fileprivate func emptyLabelTitle() -> String
+    {
+        switch self.type.value {
+        case .likesYou: return "LMM_NO_LIKES_YOU".localized()
+        case .matches: return "LMM_NO_MATCHES_YOU".localized()
+        case .messages: return "LMM_NO_CHATS_YOU".localized()
+        }
     }
 }
 

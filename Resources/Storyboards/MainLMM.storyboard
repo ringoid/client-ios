@@ -191,6 +191,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="pJn-VE-YRs">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h51-ww-FZ6">
                                 <rect key="frame" x="122.5" y="314.5" width="130.5" height="38.5"/>
                                 <string key="text">Pull to refresh to
@@ -276,11 +279,13 @@ see who likes you</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="pJn-VE-YRs" firstAttribute="centerX" secondItem="aDZ-sn-yKR" secondAttribute="centerX" id="2I2-H5-56P"/>
                             <constraint firstItem="kbx-tQ-FPO" firstAttribute="top" secondItem="aDZ-sn-yKR" secondAttribute="top" id="3Jo-e4-nRS"/>
                             <constraint firstAttribute="bottom" secondItem="kbx-tQ-FPO" secondAttribute="bottom" id="8jo-ly-7Yp"/>
                             <constraint firstItem="Ey6-2A-Ohd" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="leading" id="KnO-mh-1R0"/>
                             <constraint firstItem="h51-ww-FZ6" firstAttribute="centerX" secondItem="aDZ-sn-yKR" secondAttribute="centerX" id="NTq-DH-wWu"/>
                             <constraint firstAttribute="bottom" secondItem="Ey6-2A-Ohd" secondAttribute="bottom" id="NbN-z8-AjE"/>
+                            <constraint firstItem="pJn-VE-YRs" firstAttribute="centerY" secondItem="aDZ-sn-yKR" secondAttribute="centerY" id="XfT-5K-CPg"/>
                             <constraint firstItem="Q8X-YU-toI" firstAttribute="leading" secondItem="DRO-WM-fEC" secondAttribute="leading" constant="16" id="anz-kP-t7t"/>
                             <constraint firstItem="kbx-tQ-FPO" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="leading" id="fH6-My-2G0"/>
                             <constraint firstItem="DRO-WM-fEC" firstAttribute="bottom" secondItem="Q8X-YU-toI" secondAttribute="bottom" constant="56" id="hFO-hJ-lIq"/>
@@ -293,6 +298,7 @@ see who likes you</string>
                     </view>
                     <connections>
                         <outlet property="chatContainerView" destination="Ey6-2A-Ohd" id="Fd7-eT-6cV"/>
+                        <outlet property="emptyFeedActivityView" destination="pJn-VE-YRs" id="l9t-IH-Boy"/>
                         <outlet property="emptyFeedLabel" destination="h51-ww-FZ6" id="BKR-9v-s1U"/>
                         <outlet property="feedEndView" destination="P7m-Dj-IGu" id="1qf-sg-R6H"/>
                         <outlet property="scrollTopBtn" destination="Q8X-YU-toI" id="E1j-Er-aIg"/>
