@@ -10,6 +10,14 @@ import UIKit
 import RxSwift
 import KafkaRefresh
 
+fileprivate enum NewFacesFeedActivityState
+{
+    case initial;
+    case fetching
+    case empty
+    case contentAvailable
+}
+
 class NewFacesViewController: BaseViewController
 {
     var input: NewFacesVMInput!
@@ -18,12 +26,14 @@ class NewFacesViewController: BaseViewController
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var lastFeedIds: [String] = []
     fileprivate var lastFetchCount: Int = -1
+    fileprivate var currentActivityState: NewFacesFeedActivityState = .initial
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var loadingActivityView: UIActivityIndicatorView!
     @IBOutlet fileprivate weak var feedEndLabel: UILabel!
+    @IBOutlet fileprivate weak var emptyFeedActivityView: UIActivityIndicatorView!
     
     override func viewDidLoad()
     {
@@ -31,7 +41,7 @@ class NewFacesViewController: BaseViewController
         
         super.viewDidLoad()
         
-        self.emptyFeedLabel.text = "FEED_PULL_TO_REFRESH".localized()
+        self.toggleActivity(.initial)
         
         self.tableView.tableHeaderView = nil
         let rowHeight = UIScreen.main.bounds.width * AppConfig.photoRatio
@@ -50,7 +60,7 @@ class NewFacesViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.emptyFeedLabel.text = "NEW_FACES_NO_NEW_ITEMS".localized()
+        self.toggleActivity(self.currentActivityState)
     }
     
     // MARK: - Actions
@@ -62,22 +72,16 @@ class NewFacesViewController: BaseViewController
             return
         }
         
-        UIView.animate(withDuration: 0.095) {
-            self.emptyFeedLabel.alpha = 0.0
-        }
+        self.toggleActivity(.fetching)
+        self.tableView.headRefreshControl.endRefreshing()
         
         self.lastFetchCount = -1
+        
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
             
             showError(error, vc: self)
-            }, onCompleted:{ [weak self] in
-                self?.tableView.headRefreshControl.endRefreshing()
-                
-                UIView.animate(withDuration: 0.095) {
-                    self?.emptyFeedLabel.alpha = 1.0
-                }
-        }).disposed(by: self.disposeBag)
+            }).disposed(by: self.disposeBag)
     }
     
     func onFetchMore()
@@ -142,8 +146,8 @@ class NewFacesViewController: BaseViewController
         let totalCount = profiles.count
         let isEmpty = totalCount == 0
         self.titleLabel.isHidden = !isEmpty
-        self.emptyFeedLabel.isHidden = !isEmpty
         self.feedEndLabel.isHidden = isEmpty
+        self.toggleActivity(isEmpty ?.empty : .contentAvailable)
         
         let lastItemsCount = self.lastFeedIds.count
         
@@ -197,6 +201,35 @@ class NewFacesViewController: BaseViewController
             self?.tableView.headRefreshControl.endRefreshing()
             self?.tableView.footRefreshControl.endRefreshing()
         })
+    }
+    
+    fileprivate func toggleActivity(_ state: NewFacesFeedActivityState)
+    {
+        self.currentActivityState = state
+        
+        switch state {
+        case .initial:
+            self.emptyFeedActivityView.stopAnimating()
+            self.emptyFeedLabel.text = "FEED_PULL_TO_REFRESH".localized()
+            self.emptyFeedLabel.isHidden = false
+            break
+            
+        case .fetching:
+            self.emptyFeedActivityView.startAnimating()
+            self.emptyFeedLabel.isHidden = true
+            break
+            
+        case .empty:
+            self.emptyFeedActivityView.stopAnimating()
+            self.emptyFeedLabel.text = "NEW_FACES_NO_NEW_ITEMS".localized()
+            self.emptyFeedLabel.isHidden = false
+            break
+            
+        case .contentAvailable:
+            self.emptyFeedActivityView.stopAnimating()
+            self.emptyFeedLabel.isHidden = true
+            break
+        }
     }
 }
 
