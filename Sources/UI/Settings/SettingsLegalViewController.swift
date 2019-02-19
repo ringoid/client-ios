@@ -164,7 +164,9 @@ extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegat
             UIApplication.shared.open(AppConfig.termsUrl, options: [:], completionHandler: nil)
             break
             
-        case .licenses: break
+        case .licenses:
+            UIApplication.shared.open(AppConfig.licensesUrl, options: [:], completionHandler: nil)
+            break
         case .email:
             self.showEmailUI()
             break

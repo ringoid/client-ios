@@ -17,4 +17,5 @@ class AppConfig
     
     static let termsUrl: URL = URL(string: "http://ringoid.com/terms.html")!
     static let policyUrl: URL = URL(string: "http://ringoid.com/privacy.html")!
+    static let licensesUrl: URL = URL(string: "http://ringoid.com/licenses-ios.html")!
 }
