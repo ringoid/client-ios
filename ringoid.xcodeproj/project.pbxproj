@@ -30,6 +30,7 @@
 		570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C921E32F4800E0DCFB /* AuthViewModel.swift */; };
 		57149D60221AD32D00F636A4 /* SettingsLegalCustomerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57149D5F221AD32D00F636A4 /* SettingsLegalCustomerCell.swift */; };
 		57149D61221AD32D00F636A4 /* SettingsLegalCustomerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57149D5F221AD32D00F636A4 /* SettingsLegalCustomerCell.swift */; };
+		57149D63221C493400F636A4 /* ApiServiceConfigStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */; };
 		57386E40220B27C00000E5D9 /* LocalizedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E3F220B27C00000E5D9 /* LocalizedTableViewCell.swift */; };
 		57386E42220B2FB20000E5D9 /* SettingsLanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E41220B2FB20000E5D9 /* SettingsLanguageCell.swift */; };
 		57386E44220B33120000E5D9 /* SettingsLegalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E43220B33120000E5D9 /* SettingsLegalCell.swift */; };
@@ -191,7 +192,6 @@
 		57EE65182216711000246B45 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04C521DFBD5A00E0DCFB /* DBService.swift */; };
 		57EE65192216711000246B45 /* SettingsEmailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64BE221435E100246B45 /* SettingsEmailCell.swift */; };
 		57EE651A2216711000246B45 /* ApiLMMProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */; };
-		57EE651B2216711000246B45 /* ApiServiceConfigStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */; };
 		57EE651C2216711000246B45 /* DefaultStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04BC21DE385E00E0DCFB /* DefaultStorageService.swift */; };
 		57EE651D2216711000246B45 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D04A421DD087100E0DCFB /* AppManager.swift */; };
 		57EE651E2216711000246B45 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BCB21E73D3C00AAA29D /* ContainerView.swift */; };
@@ -243,7 +243,6 @@
 		57EE654F2216711000246B45 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7BD21F99EDE00C3AEE3 /* Chat.storyboard */; };
 		57EE65502216711000246B45 /* NewFaces.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D3721E330B100038798 /* NewFaces.storyboard */; };
 		57EE6559221677DE00246B45 /* ApiServiceConfigProd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE6558221677DE00246B45 /* ApiServiceConfigProd.swift */; };
-		57EE655A2216991700246B45 /* ApiServiceConfigStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */; };
 		57EE655D2216DCA700246B45 /* SentryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE655C2216DCA700246B45 /* SentryService.swift */; };
 		57EE655E2216DCA700246B45 /* SentryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE655C2216DCA700246B45 /* SentryService.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
@@ -1300,7 +1299,6 @@
 				579CD7CC21FA094600C3AEE3 /* KeyboardListener.swift in Sources */,
 				579CD7CA21F9DB8B00C3AEE3 /* ChatBaseCell.swift in Sources */,
 				57B863F021EF5A0000B9CC70 /* ApiAction.swift in Sources */,
-				57EE655A2216991700246B45 /* ApiServiceConfigStage.swift in Sources */,
 				57B863D921EE18ED00B9CC70 /* DiagonalGradientView.swift in Sources */,
 				57EE64CD2215394A00246B45 /* SettingsLegalLicensesCell.swift in Sources */,
 				57585D5921E4928600038798 /* FileServiceDefault.swift in Sources */,
@@ -1372,6 +1370,7 @@
 				57EE64DB2216711000246B45 /* NewFaceProfileViewController.swift in Sources */,
 				57EE64DC2216711000246B45 /* ChatRightCell.swift in Sources */,
 				57EE64DD2216711000246B45 /* ApiUnlikeAction.swift in Sources */,
+				57149D63221C493400F636A4 /* ApiServiceConfigStage.swift in Sources */,
 				57EE64DE2216711000246B45 /* UserProfileContainerCell.swift in Sources */,
 				57EE64DF2216711000246B45 /* ContainerViewController.swift in Sources */,
 				57EE64E02216711000246B45 /* NewFacePhotoViewController.swift in Sources */,
@@ -1434,7 +1433,6 @@
 				57EE65182216711000246B45 /* DBService.swift in Sources */,
 				57EE65192216711000246B45 /* SettingsEmailCell.swift in Sources */,
 				57EE651A2216711000246B45 /* ApiLMMProfile.swift in Sources */,
-				57EE651B2216711000246B45 /* ApiServiceConfigStage.swift in Sources */,
 				57EE651C2216711000246B45 /* DefaultStorageService.swift in Sources */,
 				57EE651D2216711000246B45 /* AppManager.swift in Sources */,
 				57EE651E2216711000246B45 /* ContainerView.swift in Sources */,
