@@ -18,7 +18,10 @@ class DBService
     
     init()
     {
-        self.realm = try! Realm(configuration: .defaultConfiguration)
+        let version: UInt64 = 1
+        let config = Realm.Configuration(schemaVersion: version, deleteRealmIfMigrationNeeded: true)
+        
+        self.realm = try! Realm(configuration: config)
         self.currentOrderPosition = UserDefaults.standard.integer(forKey: "db_service_order_position_key")
     }
     
