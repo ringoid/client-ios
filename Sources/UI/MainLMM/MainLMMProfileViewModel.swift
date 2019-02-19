@@ -76,6 +76,8 @@ class MainLMMProfileViewModel
             return
         }
         
+        guard !self.input.profile.isInvalidated else { return }
+        
         for photo in self.input.profile.photos {
             if photo.isLiked {
                 if !currentValue {
