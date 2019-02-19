@@ -27,6 +27,8 @@ class AuthViewController: BaseViewController
     @IBOutlet fileprivate weak var themeBtn: UIButton!
     @IBOutlet fileprivate weak var termsPolicyTextView: UITextView!
     @IBOutlet fileprivate weak var authActivityView: UIActivityIndicatorView!
+    @IBOutlet fileprivate weak var birthErrorView: UIView!
+    @IBOutlet fileprivate weak var birthValidView: UIView!
     
     override func viewDidLoad()
     {
@@ -49,6 +51,7 @@ class AuthViewController: BaseViewController
         
         self.setupUI()
         self.setupBindings()
+        self.birthYearTextField.delegate = self
         self.birthYearTextField.becomeFirstResponder()
         self.viewModel?.enableFirstTimeFlow()
     }
@@ -137,8 +140,20 @@ class AuthViewController: BaseViewController
     
     fileprivate func updateRegistrationState()
     {
-        let isValidated = self.viewModel?.sex.value != nil &&
-        self.validateBirthYear()
+        let isDateValid = self.validateBirthYear()
+        let isValidated = self.viewModel?.sex.value != nil && isDateValid
+        
+        if self.birthYearTextField.text?.count == 0 {
+            self.birthYearContainerView.layer.borderColor = UIColor(red: 73.0 / 255.0, green: 73.0 / 255.0, blue: 73.0 / 255.0, alpha: 1.0).cgColor
+            self.birthErrorView.isHidden = true
+            self.birthValidView.isHidden = true
+        } else {
+            let validColor = UIColor(red: 100.0 / 255.0, green: 170.0 / 255.0, blue: 9.0 / 255.0, alpha: 1.0).cgColor
+            let invalidColor = UIColor(red: 1.0, green: 152.0 / 255.0, blue: 0.0, alpha: 1.0).cgColor
+            self.birthYearContainerView.layer.borderColor = isDateValid ? validColor : invalidColor
+            self.birthErrorView.isHidden = isDateValid
+            self.birthValidView.isHidden = !isDateValid
+        }
         
         self.registerBtn.alpha = isValidated ? 1.0 : 0.5
         self.registerBtn.isEnabled = isValidated
@@ -200,5 +215,19 @@ extension AuthViewController: UITextViewDelegate
         UIApplication.shared.open(URL, options: [:], completionHandler: nil)
         
         return false
+    }
+}
+
+extension AuthViewController: UITextFieldDelegate
+{
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        guard string != "" else { return true } // always allowing backspaces
+        guard let text = textField.text else { return true }
+        
+        var dateText: NSString = text as NSString
+        dateText = dateText.replacingCharacters(in: range, with: string) as NSString
+        
+        return dateText.length <= 4
     }
 }

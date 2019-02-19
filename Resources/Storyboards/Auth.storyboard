@@ -13,7 +13,7 @@
         <!--Auth View Controller-->
         <scene sceneID="cTR-zr-uea">
             <objects>
-                <viewController id="g3D-bb-6vc" customClass="AuthViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="g3D-bb-6vc" customClass="AuthViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PRy-JI-jqS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,10 +34,21 @@
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert"/>
                                             </textField>
+                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_bar_no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="4p3-Hn-SSD">
+                                                <rect key="frame" x="191" y="19.5" width="3" height="10"/>
+                                            </imageView>
+                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="gnK-Jn-JRz">
+                                                <rect key="frame" x="176.5" y="8.5" width="32" height="32"/>
+                                                <color key="tintColor" red="0.3921568627" green="0.66666666669999997" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="4p3-Hn-SSD" firstAttribute="centerY" secondItem="cO2-Ma-bvu" secondAttribute="centerY" id="2GL-wJ-6Ap"/>
                                             <constraint firstItem="CBF-BB-eko" firstAttribute="centerX" secondItem="cO2-Ma-bvu" secondAttribute="centerX" id="59A-DK-s3y"/>
+                                            <constraint firstItem="4p3-Hn-SSD" firstAttribute="centerY" secondItem="gnK-Jn-JRz" secondAttribute="centerY" id="7D0-Fk-vCa"/>
+                                            <constraint firstAttribute="trailing" secondItem="4p3-Hn-SSD" secondAttribute="trailing" constant="16" id="98t-4u-4Km"/>
+                                            <constraint firstItem="4p3-Hn-SSD" firstAttribute="centerX" secondItem="gnK-Jn-JRz" secondAttribute="centerX" id="MXW-Wa-gDq"/>
                                             <constraint firstAttribute="width" constant="210" id="Vtg-6A-fU9"/>
                                             <constraint firstAttribute="height" constant="49" id="cqa-9I-wNR"/>
                                             <constraint firstItem="CBF-BB-eko" firstAttribute="centerY" secondItem="cO2-Ma-bvu" secondAttribute="centerY" id="dMB-0m-JgM"/>
@@ -64,6 +75,7 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="0.3921568627" green="0.66666666669999997" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="cA5-0H-fcR" firstAttribute="top" secondItem="bh1-NE-O5a" secondAttribute="top" constant="10" id="ARa-xf-Spm"/>
                                             <constraint firstItem="Nn1-Tx-MyN" firstAttribute="centerX" secondItem="bh1-NE-O5a" secondAttribute="centerX" id="EOa-kc-Iev"/>
@@ -87,8 +99,8 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_female_logo" translatesAutoresizingMaskIntoConstraints="NO" id="pXK-b7-zje">
                                                 <rect key="frame" x="31" y="12" width="36" height="50"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qvw-hC-UD2">
-                                                <rect key="frame" x="30.5" y="72" width="37" height="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qvw-hC-UD2">
+                                                <rect key="frame" x="24.5" y="72" width="49.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                 <color key="textColor" red="1" green="0.38431372549019605" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -205,6 +217,8 @@
                     </view>
                     <connections>
                         <outlet property="authActivityView" destination="7xf-j8-IEa" id="bNE-2m-5Cj"/>
+                        <outlet property="birthErrorView" destination="4p3-Hn-SSD" id="kRV-m7-gGc"/>
+                        <outlet property="birthValidView" destination="gnK-Jn-JRz" id="KUw-es-e1e"/>
                         <outlet property="birthYearContainerView" destination="cO2-Ma-bvu" id="Ihs-Wh-Kg6"/>
                         <outlet property="birthYearTextField" destination="CBF-BB-eko" id="Ouj-5a-f20"/>
                         <outlet property="femaleBtn" destination="oFs-C8-vnJ" id="BPc-8n-X3f"/>
@@ -218,12 +232,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6pk-Yk-K8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="127" y="62"/>
+            <point key="canvasLocation" x="125.59999999999999" y="61.619190404797607"/>
         </scene>
     </scenes>
     <resources>
+        <image name="auth_checkmark" width="32" height="32"/>
         <image name="auth_female_logo" width="36" height="50"/>
         <image name="auth_male_logo" width="34" height="50"/>
         <image name="auth_theme_btn_day" width="49" height="36"/>
+        <image name="main_bar_no_photo" width="3" height="10"/>
     </resources>
 </document>
