@@ -17,6 +17,7 @@ enum SelectionState {
     
     case searchAndFetch
     case profileAndPick
+    case profileAndFetch
 }
 
 class MainViewController: BaseViewController
@@ -110,6 +111,13 @@ class MainViewController: BaseViewController
             self.embedUserProfileAndPick()
             break
             
+        case .profileAndFetch:
+            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
+            self.embedUserProfileAndFetch()
+            break
+            
         case .searchAndFetch:
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
@@ -170,6 +178,15 @@ class MainViewController: BaseViewController
         self.containerVC.embed(vc)
         
         vc.showPhotoPicker()
+    }
+    
+    fileprivate func embedUserProfileAndFetch()
+    {
+        guard let vc = self.getUserProfileVC() else { return }
+        
+        self.containerVC.embed(vc)
+        
+        vc.reload()
     }
     
     fileprivate func getUserProfileVC() -> UserProfilePhotosViewController?
@@ -235,7 +252,8 @@ extension MainNavigationItem
         case .search: return .search
         case .like: return .like
         case .profile: return .profile
-            
+        
+        case .profileAndFetch: return .profileAndFetch
         case .profileAndPick: return .profileAndPick
         case .searchAndFetch: return .searchAndFetch
         }

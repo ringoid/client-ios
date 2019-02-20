@@ -54,7 +54,7 @@ class RootViewController: BaseViewController {
             self.embedAuthVC()
         case .main:
             self.embedMainVC()
-            self.appManager.navigationManager.mainItem.accept(.search)
+            self.appManager.navigationManager.mainItem.accept(.profileAndFetch)
         case .userProfile:
             self.embedMainVC()
             self.appManager.navigationManager.mainItem.accept(.profile)

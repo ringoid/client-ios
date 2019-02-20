@@ -71,6 +71,18 @@ class UserProfilePhotosViewController: BaseViewController
         self.pickPhoto()
     }
     
+    @objc func reload()
+    {
+        self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
+            guard let `self` = self else { return }
+            
+            showError(error, vc: self)
+            }, onCompleted:{ [weak self] in
+                self?.containerTableView.refreshControl?.endRefreshing()
+                
+        }).disposed(by: self.disposeBag)
+    }
+    
     // MARK: - Actions
     
     @IBAction func addPhoto()
@@ -198,18 +210,6 @@ class UserProfilePhotosViewController: BaseViewController
         }))
         
         self.present(alertVC, animated: true, completion: nil)
-    }
-    
-    @objc fileprivate func reload()
-    {
-        self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
-            guard let `self` = self else { return }
-            
-            showError(error, vc: self)
-            }, onCompleted:{ [weak self] in
-                self?.containerTableView.refreshControl?.endRefreshing()
-
-        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func showControls()
