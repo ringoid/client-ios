@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import KafkaRefresh
 
 fileprivate enum NewFacesFeedActivityState
 {
@@ -64,7 +63,7 @@ class NewFacesViewController: BaseViewController
     }
     
     // MARK: - Actions
-    func onReload()
+    @objc func onReload()
     {
         if self.viewModel?.isPhotosAdded == false {
             self.showAddPhotosOptions()
@@ -73,7 +72,7 @@ class NewFacesViewController: BaseViewController
         }
         
         self.toggleActivity(.fetching)
-        self.tableView.headRefreshControl.endRefreshing()
+        self.tableView.refreshControl?.endRefreshing()
         
         self.lastFetchCount = -1
         
@@ -89,8 +88,6 @@ class NewFacesViewController: BaseViewController
     
     func onFetchMore()
     {
-        self.tableView.footRefreshControl.endRefreshing()
-        
         if self.viewModel?.isPhotosAdded == false {
             self.showAddPhotosOptions()
             
@@ -129,13 +126,9 @@ class NewFacesViewController: BaseViewController
     
     fileprivate func setupReloader()
     {
-        self.tableView.bindHeadRefreshHandler({ [weak self] in
-            self?.onReload()
-        }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
-        
-        self.tableView.bindFootRefreshHandler({ [weak self] in
-            self?.onFetchMore()
-        }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(onReload), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
     }
     
     fileprivate func updateFeed()
@@ -208,8 +201,7 @@ class NewFacesViewController: BaseViewController
         alertVC.addAction(UIAlertAction(title: "NEW_FACES_NO_PHOTO_ALERT_CANCEL".localized(), style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: { [weak self] in
-            self?.tableView.headRefreshControl.endRefreshing()
-            self?.tableView.footRefreshControl.endRefreshing()
+            self?.tableView.refreshControl?.endRefreshing()
         })
     }
     

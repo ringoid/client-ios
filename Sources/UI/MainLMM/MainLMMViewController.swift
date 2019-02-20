@@ -8,7 +8,6 @@
 
 import RxSwift
 import RxCocoa
-import KafkaRefresh
 
 enum LMMType: String
 {
@@ -135,12 +134,12 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func setupReloader()
     {
-        self.tableView.bindHeadRefreshHandler({ [weak self] in
-            self?.reload()
-            }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reload), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
     }
     
-    fileprivate func reload()
+    @objc fileprivate func reload()
     {
         if self.viewModel?.isPhotosAdded == false {
             self.showAddPhotosOptions()
@@ -151,7 +150,7 @@ class MainLMMViewController: BaseViewController
         self.isUpdated = true
         
         self.toggleActivity(.fetching)
-        self.tableView.headRefreshControl.endRefreshing()
+        self.tableView.refreshControl?.endRefreshing()
         
         // TODO: move "finishViewActions" logic inside view model
         self.input.actionsManager.finishViewActions(for: self.profiles()?.value ?? [], source: self.type.value.sourceType())
@@ -347,7 +346,7 @@ class MainLMMViewController: BaseViewController
         alertVC.addAction(UIAlertAction(title: "NEW_FACES_NO_PHOTO_ALERT_CANCEL".localized(), style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: { [weak self] in
-            self?.tableView.headRefreshControl.endRefreshing()            
+            self?.tableView.refreshControl?.endRefreshing()
         })
     }
     

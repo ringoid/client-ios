@@ -4,41 +4,6 @@ PODS:
     - Fabric (~> 1.9.0)
   - Differentiator (3.1.0)
   - Fabric (1.9.0)
-  - KafkaRefresh (1.3.0):
-    - KafkaRefresh/Category (= 1.3.0)
-    - KafkaRefresh/Configuration (= 1.3.0)
-    - KafkaRefresh/Core (= 1.3.0)
-    - KafkaRefresh/Default (= 1.3.0)
-    - KafkaRefresh/Style (= 1.3.0)
-    - KafkaRefresh/UIKit (= 1.3.0)
-  - KafkaRefresh/Category (1.3.0)
-  - KafkaRefresh/Configuration (1.3.0):
-    - KafkaRefresh/UIKit/FootKit
-    - KafkaRefresh/UIKit/HeadKit
-  - KafkaRefresh/Core (1.3.0):
-    - KafkaRefresh/Category
-  - KafkaRefresh/Default (1.3.0):
-    - KafkaRefresh/Style
-  - KafkaRefresh/Style (1.3.0)
-  - KafkaRefresh/UIKit (1.3.0):
-    - KafkaRefresh/UIKit/FootKit (= 1.3.0)
-    - KafkaRefresh/UIKit/HeadKit (= 1.3.0)
-    - KafkaRefresh/UIKit/LayerKit (= 1.3.0)
-  - KafkaRefresh/UIKit/FootKit (1.3.0):
-    - KafkaRefresh/Category
-    - KafkaRefresh/Core
-    - KafkaRefresh/Default
-    - KafkaRefresh/Style
-    - KafkaRefresh/UIKit/LayerKit
-  - KafkaRefresh/UIKit/HeadKit (1.3.0):
-    - KafkaRefresh/Category
-    - KafkaRefresh/Core
-    - KafkaRefresh/Default
-    - KafkaRefresh/Style
-    - KafkaRefresh/UIKit/LayerKit
-  - KafkaRefresh/UIKit/LayerKit (1.3.0):
-    - KafkaRefresh/Category
-    - KafkaRefresh/Default
   - Nuke (7.5.2)
   - Realm (3.13.1):
     - Realm/Headers (= 3.13.1)
@@ -69,7 +34,6 @@ PODS:
 DEPENDENCIES:
   - Crashlytics
   - Fabric
-  - KafkaRefresh
   - Nuke
   - RxAlamofire
   - RxCocoa
@@ -83,7 +47,6 @@ SPEC REPOS:
     - Crashlytics
     - Differentiator
     - Fabric
-    - KafkaRefresh
     - Nuke
     - Realm
     - RealmSwift
@@ -109,7 +72,6 @@ SPEC CHECKSUMS:
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
-  KafkaRefresh: 49c022888ee6444461f8c9599567e2b7dbc23f4d
   Nuke: 0350d346a688426e8f2331253ef28dc2fc4f6178
   Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
   RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
@@ -121,6 +83,6 @@ SPEC CHECKSUMS:
   RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
   Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
 
-PODFILE CHECKSUM: da819c05ee30d82e219b0e1c0b9c558408ea72c3
+PODFILE CHECKSUM: 6ccd5db71de2a89364773df89e0d518b4ece1814
 
 COCOAPODS: 1.6.0

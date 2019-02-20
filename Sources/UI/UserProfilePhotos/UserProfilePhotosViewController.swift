@@ -8,7 +8,6 @@
 
 import UIKit
 import RxSwift
-import KafkaRefresh
 
 class UserProfilePhotosViewController: BaseViewController
 {
@@ -98,9 +97,9 @@ class UserProfilePhotosViewController: BaseViewController
     
     fileprivate func setupReloader()
     {
-        self.containerTableView.bindHeadRefreshHandler({ [weak self] in
-            self?.reload()
-            }, themeColor: .lightGray, refreshStyle: .replicatorCircle)
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reload), for: .valueChanged)
+        self.containerTableView.refreshControl = refreshControl
     }
     
     fileprivate func pickPhotoIfNeeded()
@@ -201,14 +200,14 @@ class UserProfilePhotosViewController: BaseViewController
         self.present(alertVC, animated: true, completion: nil)
     }
     
-    fileprivate func reload()
+    @objc fileprivate func reload()
     {
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
             
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
-                self?.containerTableView.headRefreshControl.endRefreshing()
+                self?.containerTableView.refreshControl?.endRefreshing()
 
         }).disposed(by: self.disposeBag)
     }

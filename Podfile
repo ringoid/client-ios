@@ -10,7 +10,6 @@ def common_pods
 	pod 'RxDataSources'
 	pod 'RxAlamofire'
 	pod 'Nuke'
-	pod 'KafkaRefresh'
 	pod 'Fabric'
 	pod 'Crashlytics'
 	pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '4.1.0'
