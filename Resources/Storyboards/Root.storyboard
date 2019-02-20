@@ -13,46 +13,32 @@
         <!--Root View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="RootViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RootViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Fk-T6-FB9" customClass="ContainerView" customModule="Ringoid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6Fk-T6-FB9" secondAttribute="trailing" id="GG3-PK-1wo"/>
+                            <constraint firstItem="6Fk-T6-FB9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="VbO-L7-oVe"/>
+                            <constraint firstItem="6Fk-T6-FB9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dts-lS-8hT"/>
+                            <constraint firstAttribute="bottom" secondItem="6Fk-T6-FB9" secondAttribute="bottom" id="iP6-Xz-qfk"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <segue destination="cV6-nU-s6e" kind="show" identifier="auth_flow" animates="NO" id="WiD-aZ-esg"/>
-                        <segue destination="6zL-Dg-c45" kind="show" identifier="user_profile_flow" animates="NO" id="0la-ES-UER"/>
-                        <segue destination="hEY-vA-UdR" kind="show" identifier="main_flow" animates="NO" id="mhQ-25-XgY"/>
+                        <outlet property="containerView" destination="6Fk-T6-FB9" id="kWi-Ef-hVP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="103" y="65"/>
-        </scene>
-        <!--Auth-->
-        <scene sceneID="2XX-Ww-fUK">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Auth" id="cV6-nU-s6e" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QrI-TT-w4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="769" y="-144"/>
-        </scene>
-        <!--UserProfile-->
-        <scene sceneID="GNJ-mu-gEy">
-            <objects>
-                <viewControllerPlaceholder storyboardName="UserProfile" id="6zL-Dg-c45" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="n2R-w1-QFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="801" y="4"/>
-        </scene>
-        <!--Main-->
-        <scene sceneID="kHS-LP-sSs">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="hEY-vA-UdR" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2PX-zs-TwP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="770" y="139"/>
         </scene>
     </scenes>
 </document>

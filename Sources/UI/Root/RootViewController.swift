@@ -24,59 +24,20 @@ class RootViewController: BaseViewController {
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var mode: AppUIMode = .unknown
-    fileprivate var mainItem: MainNavigationItem = .search
+    
+    @IBOutlet fileprivate weak var containerView: ContainerView!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         self.appManager = (UIApplication.shared.delegate as! AppDelegate).appManager
-    }
-    
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        
         self.subscribeToAuthState()
     }
-    
+
     override func updateTheme()
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if segue.identifier == SegueIds.auth, let vc = segue.destination as? AuthViewController {
-            vc.input = AuthVMInput(
-                apiService: self.appManager.apiService,
-                settingsManager: self.appManager.settingsMananger
-            )
-        }
-        
-        if segue.identifier == SegueIds.userProfile, let vc = segue.destination as? UserProfilePhotosViewController {
-            vc.input = UserProfilePhotosVCInput(
-                profileManager: self.appManager.profileManager,
-                lmmManager: self.appManager.lmmManager,
-                settingsManager: self.appManager.settingsMananger,
-                navigationManager: self.appManager.navigationManager,
-                newFacesManager: self.appManager.newFacesManager
-            )
-        }
-        
-        if segue.identifier == SegueIds.main, let vc = segue.destination as? MainViewController {
-            vc.input = MainVMInput(
-                actionsManager: self.appManager.actionsManager,
-                newFacesManager: self.appManager.newFacesManager,
-                lmmManager: self.appManager.lmmManager,
-                profileManager: self.appManager.profileManager,
-                settingsManager: self.appManager.settingsMananger,
-                chatManager: self.appManager.chatManager,
-                navigationManager: self.appManager.navigationManager
-            )
-            
-            self.appManager.navigationManager.mainItem.accept(self.mainItem)
-        }
     }
     
     // MARK: -
@@ -86,26 +47,47 @@ class RootViewController: BaseViewController {
         guard to != self.mode else { return }
 
         self.mode = to
-
-        var segueId = ""
         
         switch to {
         case .unknown: break
         case .auth:
-            segueId = SegueIds.auth
+            self.embedAuthVC()
         case .main:
-            segueId = SegueIds.main
+            self.embedMainVC()
+            self.appManager.navigationManager.mainItem.accept(.search)
         case .userProfile:
-            segueId = SegueIds.main
-            self.mainItem = .profile
+            self.embedMainVC()
+            self.appManager.navigationManager.mainItem.accept(.profile)
             break
         }
+    }
+    
+    fileprivate func embedMainVC()
+    {
+        let vc = MainViewController.create()
+        vc.input = MainVMInput(
+            actionsManager: self.appManager.actionsManager,
+            newFacesManager: self.appManager.newFacesManager,
+            lmmManager: self.appManager.lmmManager,
+            profileManager: self.appManager.profileManager,
+            settingsManager: self.appManager.settingsMananger,
+            chatManager: self.appManager.chatManager,
+            navigationManager: self.appManager.navigationManager
+        )
         
-        DispatchQueue.main.async {
-            self.dismissPresentedVC({
-                self.performSegue(withIdentifier: segueId, sender: nil)
-            })
-        }
+        self.containerView.embed(vc, to: self)
+    }
+    
+    fileprivate func embedAuthVC()
+    {
+        self.presentedViewController?.dismiss(animated: false, completion: nil)
+        let vc = AuthViewController.create()
+        vc.input = AuthVMInput(
+            apiService: self.appManager.apiService,
+            settingsManager: self.appManager.settingsMananger
+        )
+        
+        self.containerView.embed(vc, to: self)
     }
     
     fileprivate func subscribeToAuthState()
@@ -122,28 +104,4 @@ class RootViewController: BaseViewController {
             }
         }).disposed(by: disposeBag)
     }
-    
-    fileprivate func dismissPresentedVC(_ completion: (()->())?)
-    {
-        guard let presentedVC = self.presentedViewController else {
-            completion?()
-            
-            return
-        }
-        
-        presentedVC.dismiss(animated: false) { [weak self] in
-            self?.dismissPresentedVC(completion)
-        }
-    }
 }
-
-extension RootViewController
-{
-    fileprivate struct SegueIds
-    {
-        static let auth = "auth_flow"
-        static let main = "main_flow"
-        static let userProfile = "user_profile_flow"
-    }
-}
-

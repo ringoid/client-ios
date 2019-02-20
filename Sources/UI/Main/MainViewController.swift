@@ -35,6 +35,13 @@ class MainViewController: BaseViewController
     @IBOutlet fileprivate weak var profileIndicatorView: UIView!
     @IBOutlet fileprivate weak var lmmNotSeenIndicatorView: UIView!
     
+    static func create() -> MainViewController
+    {
+        let storyboard = Storyboards.main()
+        
+        return storyboard.instantiateInitialViewController() as! MainViewController
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()

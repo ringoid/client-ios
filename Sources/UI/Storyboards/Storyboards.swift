@@ -12,6 +12,16 @@ class Storyboards
 {
     private init() {}
     
+    static func auth() -> UIStoryboard
+    {
+        return UIStoryboard(name: "Auth", bundle: nil)
+    }
+    
+    static func main() -> UIStoryboard
+    {
+        return UIStoryboard(name: "Main", bundle: nil)
+    }
+    
     static func newFaces() -> UIStoryboard
     {
         return UIStoryboard(name: "NewFaces", bundle: nil)

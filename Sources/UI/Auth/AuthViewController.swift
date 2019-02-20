@@ -30,6 +30,13 @@ class AuthViewController: BaseViewController
     @IBOutlet fileprivate weak var birthErrorView: UIView!
     @IBOutlet fileprivate weak var birthValidView: UIView!
     
+    static func create() -> AuthViewController
+    {
+        let storyboard = Storyboards.auth()
+        
+        return storyboard.instantiateInitialViewController() as! AuthViewController
+    }
+    
     override func viewDidLoad()
     {
         assert(self.input != nil)
