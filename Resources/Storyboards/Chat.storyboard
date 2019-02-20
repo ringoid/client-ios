@@ -13,8 +13,8 @@
         <!--Chat View Controller-->
         <scene sceneID="dIG-lQ-Sqh">
             <objects>
-                <viewController id="7Sb-wa-NBj" customClass="ChatViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="H5L-B8-AIS" customClass="TouchThroughAreaView" customModule="ringoid" customModuleProvider="target">
+                <viewController id="7Sb-wa-NBj" customClass="ChatViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H5L-B8-AIS" customClass="TouchThroughAreaView" customModule="Ringoid" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -54,7 +54,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chat_left_cell" id="KE6-Sh-3nk" customClass="ChatLeftCell" customModule="ringoid" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chat_left_cell" id="KE6-Sh-3nk" customClass="ChatLeftCell" customModule="Ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KE6-Sh-3nk" id="dbc-Rm-vHS">
@@ -93,7 +93,7 @@
                                             <outlet property="labelWidthConstraint" destination="jdl-ZM-eYR" id="kfk-bi-JF8"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chat_right_cell" id="LnI-UU-UqA" customClass="ChatRightCell" customModule="ringoid" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chat_right_cell" id="LnI-UU-UqA" customClass="ChatRightCell" customModule="Ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="86" width="343" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LnI-UU-UqA" id="rD1-Kd-xHb">
@@ -162,22 +162,6 @@
                                     <action selector="onClose" destination="7Sb-wa-NBj" eventType="touchUpInside" id="Yr3-rM-d48"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J21-mx-HH3">
-                                <rect key="frame" x="139.5" y="555" width="96" height="32"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="96" id="BBt-Fu-0Eh"/>
-                                    <constraint firstAttribute="height" constant="32" id="tA2-hG-Piu"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="16"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -194,8 +178,6 @@
                             <constraint firstItem="Gu8-Zv-Egg" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" constant="2" id="dkE-yI-QpT"/>
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="trailing" secondItem="qPj-U6-bjV" secondAttribute="trailing" id="iZx-Xs-XS7"/>
                             <constraint firstAttribute="trailing" secondItem="H3p-mh-W6s" secondAttribute="trailing" constant="16" id="kFu-OV-Myh"/>
-                            <constraint firstItem="J21-mx-HH3" firstAttribute="centerX" secondItem="H5L-B8-AIS" secondAttribute="centerX" id="tHa-CC-drI"/>
-                            <constraint firstItem="cjc-8j-yFq" firstAttribute="top" secondItem="J21-mx-HH3" secondAttribute="bottom" constant="40" id="tMz-I1-AQ1"/>
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" id="v0j-UO-ASI"/>
                             <constraint firstAttribute="bottom" secondItem="cjc-8j-yFq" secondAttribute="bottom" id="wfc-o3-Tec" userLabel="InputBottom"/>
                         </constraints>
@@ -206,7 +188,6 @@
                         <outlet property="inputHeightConstraint" destination="Wjg-rX-7Lb" id="19f-jC-htu"/>
                         <outlet property="messageTextView" destination="FHy-pP-KSv" id="aLs-qn-RyH"/>
                         <outlet property="tableView" destination="H3p-mh-W6s" id="AZR-2p-pDt"/>
-                        <outlet property="toastLabel" destination="J21-mx-HH3" id="22c-8x-sm7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBJ-Cm-bUE" userLabel="First Responder" sceneMemberID="firstResponder"/>

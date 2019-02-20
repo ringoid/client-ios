@@ -23,7 +23,6 @@ class ChatViewController: BaseViewController
     @IBOutlet fileprivate weak var messageTextView: UITextView!
     @IBOutlet fileprivate weak var inputBottomConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var inputHeightConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var toastLabel: UILabel!
     
     static func create() -> ChatViewController
     {
@@ -76,7 +75,7 @@ class ChatViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.toastLabel.text = "CHAT_MESSAGE_SENT".localized()
+        
     }
     
     // MARK: - Actions
@@ -108,7 +107,6 @@ class ChatViewController: BaseViewController
             return
         }
         
-        self.playToastAnimation()
         self.inputHeightConstraint.constant = 40.0
         self.view.layoutSubviews()
     }
@@ -136,21 +134,6 @@ class ChatViewController: BaseViewController
             attributes: [NSAttributedString.Key.font: font],
             context: nil
             ).size
-    }
-    
-    func playToastAnimation()
-    {
-        let animator = UIViewPropertyAnimator(duration: 0.15, curve: .linear) {
-            self.toastLabel.alpha = 1.0
-        }
-        
-        animator.addCompletion({ _ in
-            UIViewPropertyAnimator(duration: 0.15, curve: .linear, animations: {
-                self.toastLabel.alpha = 0.0
-            }).startAnimation(afterDelay: 0.9)
-        })
-        
-        animator.startAnimation()
     }
 }
 
