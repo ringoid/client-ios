@@ -43,6 +43,9 @@ class NewFacesViewController: BaseViewController
         self.toggleActivity(.initial)
         
         self.tableView.tableHeaderView = nil
+        self.tableView.estimatedSectionHeaderHeight = 0.0
+        self.tableView.estimatedSectionFooterHeight = 0.0
+        
         let rowHeight = UIScreen.main.bounds.width * AppConfig.photoRatio
         self.tableView.rowHeight = rowHeight
         self.tableView.estimatedRowHeight = rowHeight
@@ -171,15 +174,21 @@ class NewFacesViewController: BaseViewController
                 
                 // Found diff - playing animation
                 if profile.id != self.lastFeedIds[i] {
-                    self.tableView.deleteRows(at: [IndexPath(row: i, section: 0)], with: .top)
-                    
+                    self.tableView.performBatchUpdates({
+                        self.tableView.deleteRows(at: [IndexPath(row: i, section: 0)], with: .top)
+                    }, completion: nil)
+                    self.tableView.layer.removeAllAnimations()
+
                     return
                 }
             }
             
             // Diff should be last item
-            self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
-            
+            self.tableView.performBatchUpdates({
+                self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
+            }, completion: nil)
+            self.tableView.layer.removeAllAnimations()
+
             return
         }
 

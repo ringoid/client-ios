@@ -68,6 +68,9 @@ class MainLMMViewController: BaseViewController
         
         self.toggleActivity(.initial)
         
+        self.tableView.estimatedSectionHeaderHeight = 0.0
+        self.tableView.estimatedSectionFooterHeight = 0.0
+        
         let cellHeight = UIScreen.main.bounds.width * AppConfig.photoRatio
         self.tableView.tableHeaderView = nil
         self.tableView.rowHeight = cellHeight
@@ -226,11 +229,17 @@ class MainLMMViewController: BaseViewController
             
             // Blocking scenario confirmed
             if diffCount == 1 {
-                self.tableView.deleteRows(at: [IndexPath(row: diffIndex, section: 0)], with: .top)
-                
+                self.tableView.performBatchUpdates({
+                    self.tableView.deleteRows(at: [IndexPath(row: diffIndex, section: 0)], with: .top)
+                }, completion: nil)
+                self.tableView.layer.removeAllAnimations()
+
                 return
             } else if diffCount == 0 { // Last profile should be removed
-                self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
+                self.tableView.performBatchUpdates({
+                    self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
+                }, completion: nil)
+                self.tableView.layer.removeAllAnimations()
                 
                 return
             }
