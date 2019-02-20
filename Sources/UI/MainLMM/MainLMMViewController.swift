@@ -50,6 +50,7 @@ class MainLMMViewController: BaseViewController
     fileprivate var prevScrollingOffset: CGFloat = 0.0
     fileprivate var isScrollTopVisible: Bool = false
     fileprivate var lastFeedIds: [String] = []
+    fileprivate var lastUpdateFeedType: LMMType = .likesYou
     fileprivate var currentActivityState: LMMFeedActivityState = .initial
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
@@ -192,6 +193,7 @@ class MainLMMViewController: BaseViewController
         
         defer {
             self.lastFeedIds = updatedProfiles.map { $0.id }
+            self.lastUpdateFeedType = self.type.value
         }
         
         let totalCount = updatedProfiles.count
@@ -208,7 +210,7 @@ class MainLMMViewController: BaseViewController
         }
         
         // Checking for blocking scenario
-        if totalCount == self.lastFeedIds.count - 1, self.lastFeedIds.count > 1 {
+        if totalCount == self.lastFeedIds.count - 1, self.lastFeedIds.count > 1, self.lastUpdateFeedType == self.type.value {
             var diffCount: Int = 0
             var diffIndex: Int = 0
             
