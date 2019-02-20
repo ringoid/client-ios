@@ -13,7 +13,7 @@
         <!--User Profile Photos View Controller-->
         <scene sceneID="Oa1-gr-Vmi">
             <objects>
-                <viewController id="aaf-t7-SOT" customClass="UserProfilePhotosViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aaf-t7-SOT" customClass="UserProfilePhotosViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q5L-So-vMI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,14 +39,14 @@ see how many likes you get</string>
                                     <constraint firstAttribute="height" constant="500" id="qh3-Cf-W29"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="container_cell" id="X1L-aE-hdx" customClass="UserProfileContainerCell" customModule="ringoid" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="container_cell" id="X1L-aE-hdx" customClass="UserProfileContainerCell" customModule="Ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X1L-aE-hdx" id="sJ1-66-Vow">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XdB-e9-WUk" customClass="ContainerView" customModule="ringoid" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XdB-e9-WUk" customClass="ContainerView" customModule="Ringoid" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
@@ -88,7 +88,7 @@ see how many likes you get</string>
                                 <rect key="frame" x="322" y="46" width="30" height="30"/>
                                 <state key="normal" image="profile_settings"/>
                                 <connections>
-                                    <segue destination="yQa-yl-S9g" kind="show" identifier="settings_vc" id="Emm-PL-Vpz"/>
+                                    <segue destination="yQa-yl-S9g" kind="presentation" identifier="settings_vc" id="Emm-PL-Vpz"/>
                                 </connections>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="gyn-28-5bi">
@@ -152,7 +152,7 @@ see how many likes you get</string>
         <!--User Profile Photo View Controller-->
         <scene sceneID="hQ6-Uq-em0">
             <objects>
-                <viewController storyboardIdentifier="user_profile_photo_vc" id="CTV-VO-snh" customClass="UserProfilePhotoViewController" customModule="ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="user_profile_photo_vc" id="CTV-VO-snh" customClass="UserProfilePhotoViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9ej-Xx-5fe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -160,7 +160,7 @@ see how many likes you get</string>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EvB-7Q-pcw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <view alpha="0.20000000298023224" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qm8-2C-8JX" customClass="VerticalGradientView" customModule="ringoid" customModuleProvider="target">
+                            <view alpha="0.20000000298023224" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qm8-2C-8JX" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
