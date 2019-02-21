@@ -169,6 +169,17 @@
                                     <action selector="onClose" destination="7Sb-wa-NBj" eventType="touchUpInside" id="Yr3-rM-d48"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZHb-Cm-ZEN">
+                                <rect key="frame" x="299" y="20" width="76" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="emC-fB-vbz"/>
+                                    <constraint firstAttribute="width" constant="76" id="y0I-uk-FYC"/>
+                                </constraints>
+                                <state key="normal" image="feed_options"/>
+                                <connections>
+                                    <action selector="onBlock" destination="7Sb-wa-NBj" eventType="touchUpInside" id="sK6-PI-Tbc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -187,6 +198,8 @@
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="trailing" secondItem="qPj-U6-bjV" secondAttribute="trailing" id="iZx-Xs-XS7"/>
                             <constraint firstAttribute="trailing" secondItem="Y4U-O2-Qkv" secondAttribute="trailing" id="jEu-u2-fwH"/>
                             <constraint firstAttribute="trailing" secondItem="H3p-mh-W6s" secondAttribute="trailing" constant="16" id="kFu-OV-Myh"/>
+                            <constraint firstItem="ZHb-Cm-ZEN" firstAttribute="top" secondItem="b2c-7o-Xv8" secondAttribute="top" id="oiM-pY-2o4"/>
+                            <constraint firstAttribute="trailing" secondItem="ZHb-Cm-ZEN" secondAttribute="trailing" id="rbp-Qe-zWF"/>
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" id="v0j-UO-ASI"/>
                             <constraint firstItem="Y4U-O2-Qkv" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" id="wOX-qk-8OE"/>
                             <constraint firstAttribute="bottom" secondItem="cjc-8j-yFq" secondAttribute="bottom" id="wfc-o3-Tec" userLabel="InputBottom"/>
@@ -214,5 +227,6 @@
     <resources>
         <image name="chat_close" width="26" height="26"/>
         <image name="chat_send" width="25" height="22"/>
+        <image name="feed_options" width="32" height="12"/>
     </resources>
 </document>

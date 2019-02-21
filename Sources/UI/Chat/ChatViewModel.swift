@@ -16,6 +16,7 @@ struct ChatVMInput
     let chatManager: ChatManager
     let source: SourceFeedType
     let onClose: (()->())?
+    let onBlock: (()->())?
 }
 
 class ChatViewModel

@@ -266,10 +266,13 @@ class MainLMMViewController: BaseViewController
         self.chatStartDate = Date()
         
         let vc = ChatViewController.create()
-        vc.input = ChatVMInput(profile: profile, photo: photo, chatManager: self.input.chatManager, source: .messages, onClose: { [weak self] in
-            self?.hideChat(profileVC, profile: profile, photo: photo)
+        vc.input = ChatVMInput(profile: profile, photo: photo, chatManager: self.input.chatManager, source: .messages
+            , onClose: { [weak self] in
+                self?.hideChat(profileVC, profile: profile, photo: photo)
+            }, onBlock: { [weak profileVC] in
+                profileVC?.onBlock()
         })
-        
+  
         self.chatContainerView.embed(vc, to: self)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.chatContainerView.isHidden = false

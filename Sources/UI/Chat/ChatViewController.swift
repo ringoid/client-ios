@@ -101,6 +101,11 @@ class ChatViewController: BaseViewController
         self.view.layoutSubviews()
     }
     
+    @IBAction func onBlock()
+    {
+        self.input.onBlock?()
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
