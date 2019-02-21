@@ -43,7 +43,7 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHy-pP-KSv">
-                                <rect key="frame" x="16" y="627" width="303" height="40"/>
+                                <rect key="frame" x="16" y="627" width="295" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -147,12 +147,12 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPj-U6-bjV">
-                                <rect key="frame" x="319" y="587" width="56" height="80"/>
+                                <rect key="frame" x="311" y="587" width="64" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="Car-CU-AJo"/>
-                                    <constraint firstAttribute="width" constant="56" id="KC0-O4-vyI"/>
+                                    <constraint firstAttribute="width" constant="64" id="KC0-O4-vyI"/>
                                 </constraints>
-                                <inset key="contentEdgeInsets" minX="16" minY="40" maxX="0.0" maxY="0.0"/>
+                                <inset key="contentEdgeInsets" minX="24" minY="40" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="chat_send"/>
                                 <connections>
                                     <action selector="onSend" destination="7Sb-wa-NBj" eventType="touchUpInside" id="O92-Ne-7mq"/>
