@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Nuke
 
 class ChatViewController: BaseViewController
 {
@@ -21,6 +22,7 @@ class ChatViewController: BaseViewController
     
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var messageTextView: UITextView!
+    @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var inputBottomConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var inputHeightConstraint: NSLayoutConstraint!
     
@@ -42,6 +44,7 @@ class ChatViewController: BaseViewController
         self.tableView.transform = CGAffineTransform(rotationAngle: -.pi)
         
         self.messageTextView.text = ChatViewController.messagesCache[self.input.profile.id]
+        Nuke.loadImage(with: self.input.photo.filepath().url(), into: self.photoView)
         
         self.setupBindings()
     }
@@ -53,24 +56,11 @@ class ChatViewController: BaseViewController
         self.messageTextView.becomeFirstResponder()
     }
     
-    override func viewDidLayoutSubviews()
-    {
-        super.viewDidLayoutSubviews()
-        
-        let width: CGFloat = 76.0
-        let height: CGFloat = 56.0
-        (self.view as? TouchThroughAreaView)?.area = CGRect(
-            x: self.view.bounds.width - width,
-            y: self.view.safeAreaInsets.top,
-            width: width,
-            height: height
-        )
-    }
-    
     override func updateTheme()
     {
         let theme = ThemeManager.shared.theme.value
         self.messageTextView.keyboardAppearance = theme == .dark ? .dark : .light
+        self.view.backgroundColor = BackgroundColor().uiColor()
     }
     
     override func updateLocale()
@@ -212,5 +202,13 @@ extension ChatViewController: UITextViewDelegate
         contentText.replacingCharacters(in: range, with: text)
         
         return contentText.length <= 1000
+    }
+    
+    // Cursor color fix
+    func textViewDidBeginEditing(_ textView: UITextView)
+    {
+        let color = textView.tintColor
+        textView.tintColor = .clear
+        textView.tintColor = color
     }
 }

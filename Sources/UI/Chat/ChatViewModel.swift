@@ -24,6 +24,7 @@ class ChatViewModel
     
     let messages: BehaviorRelay<[Message]> = BehaviorRelay<[Message]>(value: [])
     
+    
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     init(_ input: ChatVMInput)
