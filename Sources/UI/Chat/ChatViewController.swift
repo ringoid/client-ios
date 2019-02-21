@@ -33,6 +33,11 @@ class ChatViewController: BaseViewController
         return storyboard.instantiateInitialViewController() as! ChatViewController
     }
     
+    deinit
+    {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad()
     {
         assert(self.input != nil)
@@ -46,6 +51,8 @@ class ChatViewController: BaseViewController
         self.messageTextView.text = ChatViewController.messagesCache[self.input.profile.id]
         Nuke.loadImage(with: self.input.photo.filepath().url(), into: self.photoView)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        
         self.setupBindings()
     }
     
@@ -54,6 +61,7 @@ class ChatViewController: BaseViewController
         super.viewWillAppear(animated)
         
         self.messageTextView.becomeFirstResponder()
+        
     }
     
     override func viewDidLayoutSubviews()
@@ -136,6 +144,11 @@ class ChatViewController: BaseViewController
             attributes: [NSAttributedString.Key.font: font],
             context: nil
             ).size
+    }
+    
+    @objc fileprivate func onAppBecomeActive()
+    {
+        self.messageTextView.becomeFirstResponder()
     }
 }
 
