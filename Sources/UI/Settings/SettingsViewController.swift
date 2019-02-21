@@ -45,17 +45,17 @@ class SettingsViewController: BaseViewController
     
      #if STAGE
     fileprivate let options = [
-        SettingsOption(cellIdentifier: "theme_cell", height: 42.0),
-        SettingsOption(cellIdentifier: "language_cell", height: 42.0),
-        SettingsOption(cellIdentifier: "legal_cell", height: 42.0),
-        SettingsOption(cellIdentifier: "support_cell", height: 42.0),
-        SettingsOption(cellIdentifier: "delete_cell", height: 82.0)
+        SettingsOption(cellIdentifier: "theme_cell", height: 56.0),
+        SettingsOption(cellIdentifier: "language_cell", height: 56.0),
+        SettingsOption(cellIdentifier: "legal_cell", height: 56.0),
+        SettingsOption(cellIdentifier: "support_cell", height: 56.0),
+        SettingsOption(cellIdentifier: "delete_cell", height: 96.0)
     ]
     #else
     fileprivate let options = [
-        SettingsOption(cellIdentifier: "legal_cell", height: 42.0),
-        SettingsOption(cellIdentifier: "support_cell", height: 42.0),
-        SettingsOption(cellIdentifier: "delete_cell", height: 82.0)
+        SettingsOption(cellIdentifier: "legal_cell", height: 56.0),
+        SettingsOption(cellIdentifier: "support_cell", height: 56.0),
+        SettingsOption(cellIdentifier: "delete_cell", height: 96.0)
     ]
     #endif
     

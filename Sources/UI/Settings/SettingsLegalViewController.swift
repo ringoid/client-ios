@@ -32,11 +32,11 @@ class SettingsLegalViewController: BaseViewController
     fileprivate var viewModel: SettingsLegalViewModel?
     
     fileprivate let options = [
-        SettingsLegalOption(cellIdentifier: "about_cell", height: 42.0),
-        SettingsLegalOption(cellIdentifier: "policy_cell", height: 42.0),
-        SettingsLegalOption(cellIdentifier: "terms_cell", height: 42.0),
-        SettingsLegalOption(cellIdentifier: "licenses_cell", height: 42.0),
-        SettingsLegalOption(cellIdentifier: "email_cell", height: 42.0),
+        SettingsLegalOption(cellIdentifier: "about_cell", height: 56.0),
+        SettingsLegalOption(cellIdentifier: "policy_cell", height: 56.0),
+        SettingsLegalOption(cellIdentifier: "terms_cell", height: 56.0),
+        SettingsLegalOption(cellIdentifier: "licenses_cell", height: 56.0),
+        SettingsLegalOption(cellIdentifier: "email_cell", height: 56.0),
         SettingsLegalOption(cellIdentifier: "customer_cell", height: 84.0),
         ]
     
