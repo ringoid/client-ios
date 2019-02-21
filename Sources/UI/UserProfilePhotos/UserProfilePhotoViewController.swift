@@ -60,7 +60,18 @@ class UserProfilePhotoViewController: UIViewController
                 return
             }
             
-            self?.likeLabel?.text = "\(photo.likes)"
+            let shadow = NSShadow()
+            shadow.shadowColor = UIColor.black.withAlphaComponent(0.5)
+            shadow.shadowOffset = CGSize(width: 3.0, height: 3.0)
+            shadow.shadowBlurRadius = 3.0
+            
+            let attributes: [NSAttributedString.Key : Any] = [
+                .font: UIFont.systemFont(ofSize: 16.0, weight: .medium),
+                .foregroundColor: UIColor.white,
+                .shadow: shadow
+            ]
+            
+            self?.likeLabel?.attributedText = NSAttributedString(string: "\(photo.likes)", attributes: attributes)
         }).disposed(by: self.disposeBag)
     }
 }

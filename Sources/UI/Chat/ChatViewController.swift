@@ -44,6 +44,7 @@ class ChatViewController: BaseViewController
         
         super.viewDidLoad()
         
+        self.setupInputAttributes()
         KeyboardListener.shared.delegate = self
         
         self.tableView.transform = CGAffineTransform(rotationAngle: -.pi)
@@ -149,6 +150,20 @@ class ChatViewController: BaseViewController
     @objc fileprivate func onAppBecomeActive()
     {
         self.messageTextView.becomeFirstResponder()
+    }
+    
+    fileprivate func setupInputAttributes()
+    {
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.black.withAlphaComponent(0.88)
+        shadow.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        shadow.shadowBlurRadius = 3.0
+        
+        self.messageTextView.typingAttributes = [
+            .font: UIFont.systemFont(ofSize: 15.0),
+            .foregroundColor: UIColor.white,
+            .shadow: shadow
+        ]
     }
 }
 
