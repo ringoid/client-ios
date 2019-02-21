@@ -9,7 +9,8 @@
 import RxSwift
 import RxCocoa
 
-fileprivate let selectedFont = UIFont.systemFont(ofSize: 17.0, weight: .medium)
+fileprivate let selectedFont = UIFont.systemFont(ofSize: 18.0, weight: .bold
+)
 fileprivate let unselectedFont = UIFont.systemFont(ofSize: 17.0, weight: .regular)
 fileprivate let selectedColor = UIColor.white
 fileprivate let unselectedColor = UIColor(

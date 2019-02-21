@@ -72,9 +72,8 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1R-St-pNy">
-                                        <rect key="frame" x="227.5" y="20" width="90" height="44"/>
+                                        <rect key="frame" x="227.5" y="20" width="147.5" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="1UZ-tC-soV"/>
                                             <constraint firstAttribute="height" constant="44" id="qDw-du-VIy"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
@@ -141,6 +140,7 @@
                                     <constraint firstItem="30C-S0-bMA" firstAttribute="leading" secondItem="Ywr-Pj-xRP" secondAttribute="leading" id="ZOb-mr-uXJ"/>
                                     <constraint firstItem="Y1R-St-pNy" firstAttribute="leading" secondItem="t6H-GQ-xYk" secondAttribute="trailing" id="Zwg-1Q-IhN"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerY" secondItem="30C-S0-bMA" secondAttribute="centerY" id="eBn-Oa-T8H"/>
+                                    <constraint firstAttribute="trailing" secondItem="Y1R-St-pNy" secondAttribute="trailing" id="iZZ-Wm-K6t"/>
                                     <constraint firstItem="P5a-bc-Su9" firstAttribute="leading" secondItem="t6H-GQ-xYk" secondAttribute="trailing" id="pIi-HL-G3z"/>
                                     <constraint firstItem="82V-db-bgk" firstAttribute="leading" secondItem="Y1R-St-pNy" secondAttribute="leading" constant="85" id="rgj-Cw-iLZ"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="leading" secondItem="VWc-0L-YS8" secondAttribute="trailing" id="rsb-PC-rfS"/>
