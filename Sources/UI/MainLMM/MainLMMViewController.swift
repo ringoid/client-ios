@@ -98,7 +98,7 @@ class MainLMMViewController: BaseViewController
     override func viewDidLayoutSubviews()
     {
         super.viewDidLayoutSubviews()
-     
+        
         // Applying offset after view size is set
         guard isInitialLayout else { return }
         
@@ -274,7 +274,7 @@ class MainLMMViewController: BaseViewController
         })
   
         self.chatContainerView.embed(vc, to: self)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.chatContainerView.isHidden = false
         }
         

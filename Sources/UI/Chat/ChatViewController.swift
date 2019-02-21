@@ -56,6 +56,13 @@ class ChatViewController: BaseViewController
         self.messageTextView.becomeFirstResponder()
     }
     
+    override func viewDidLayoutSubviews()
+    {
+        super.viewDidLayoutSubviews()
+        
+        self.tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: self.tableView.bounds.width - 10.0)
+    }
+    
     override func updateTheme()
     {
         let theme = ThemeManager.shared.theme.value
