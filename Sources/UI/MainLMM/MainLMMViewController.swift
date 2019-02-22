@@ -489,7 +489,6 @@ extension MainLMMViewController: UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     {
         let offset = scrollView.contentOffset.y
-        
         self.updateVisibleCellsBorders(offset)
         
         guard self.isDragged else { return }

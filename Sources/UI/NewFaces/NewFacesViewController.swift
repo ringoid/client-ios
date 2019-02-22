@@ -242,6 +242,21 @@ class NewFacesViewController: BaseViewController
             break
         }
     }
+    
+    fileprivate func updateVisibleCellsBorders(_  contentOffset: CGFloat)
+    {
+        let tableBottomOffset = contentOffset + self.tableView.bounds.height
+        
+        self.tableView.visibleCells.forEach { cell in
+            guard let vc = (cell as? NewFacesCell)?.containerView.containedVC as? NewFaceProfileViewController else { return }
+            guard let index = self.tableView.indexPath(for: cell)?.row else { return }
+            
+            let cellTopOffset = CGFloat(index) * cell.bounds.height
+            let cellBottomOffset = cellTopOffset + cell.bounds.height
+            
+            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 72.0
+        }
+    }
 }
 
 extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
@@ -302,5 +317,14 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
                 self?.loadingActivityView.stopAnimating()
                 self?.feedEndLabel.isHidden = false
         }).disposed(by: self.disposeBag)
+    }
+}
+
+extension NewFacesViewController: UIScrollViewDelegate
+{
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    {
+        let offset = scrollView.contentOffset.y
+        self.updateVisibleCellsBorders(offset)
     }
 }
