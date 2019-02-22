@@ -62,13 +62,17 @@ class UserProfilePhotoViewController: UIViewController
             
             let shadow = NSShadow()
             shadow.shadowColor = UIColor.black.withAlphaComponent(0.5)
-            shadow.shadowOffset = CGSize(width: 3.0, height: 3.0)
-            shadow.shadowBlurRadius = 3.0
+            shadow.shadowOffset = CGSize(width: 1.0, height: 1.0)
+            shadow.shadowBlurRadius = 1.0
+            
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
             
             let attributes: [NSAttributedString.Key : Any] = [
-                .font: UIFont.systemFont(ofSize: 16.0, weight: .medium),
+                .font: UIFont.systemFont(ofSize: 17.0, weight: .medium),
                 .foregroundColor: UIColor.white,
-                .shadow: shadow
+                .shadow: shadow,
+                .paragraphStyle: paragraphStyle
             ]
             
             self?.likeLabel?.attributedText = NSAttributedString(string: "\(photo.likes)", attributes: attributes)
