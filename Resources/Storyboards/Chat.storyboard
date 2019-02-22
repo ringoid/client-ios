@@ -175,6 +175,7 @@
                                     <constraint firstAttribute="height" constant="56" id="emC-fB-vbz"/>
                                     <constraint firstAttribute="width" constant="76" id="y0I-uk-FYC"/>
                                 </constraints>
+                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="feed_options"/>
                                 <connections>
                                     <action selector="onBlock" destination="7Sb-wa-NBj" eventType="touchUpInside" id="sK6-PI-Tbc"/>

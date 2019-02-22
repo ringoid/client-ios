@@ -346,6 +346,7 @@ see who likes you</string>
                                     <constraint firstAttribute="height" constant="56" id="96L-r9-tgI"/>
                                     <constraint firstAttribute="width" constant="76" id="u4U-5Y-OGC"/>
                                 </constraints>
+                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="feed_options"/>
                                 <connections>
                                     <action selector="onBlock" destination="Nf7-hc-eWV" eventType="touchUpInside" id="IY0-9P-tsM"/>
@@ -357,13 +358,14 @@ see who likes you</string>
                                     <constraint firstAttribute="height" constant="55" id="JgA-rf-4Mi"/>
                                     <constraint firstAttribute="width" constant="60" id="fJq-oh-zWs"/>
                                 </constraints>
+                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="feed_messages_empty"/>
                                 <connections>
                                     <action selector="onChatSelected" destination="Nf7-hc-eWV" eventType="touchUpInside" id="d62-YA-ePo"/>
                                 </connections>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="mPS-Ki-Bpa">
-                                <rect key="frame" x="33" y="37" width="7" height="8"/>
+                                <rect key="frame" x="16" y="37" width="7" height="8"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="qeS-kI-LaX"/>
                                 </constraints>
@@ -378,7 +380,7 @@ see who likes you</string>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="centerX" secondItem="lGR-yG-LEW" secondAttribute="centerX" id="NaJ-Wi-l5L"/>
                             <constraint firstItem="mPS-Ki-Bpa" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="topMargin" constant="17" id="OMt-DE-Crh"/>
-                            <constraint firstItem="mPS-Ki-Bpa" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leadingMargin" constant="17" id="SGF-af-fD4"/>
+                            <constraint firstItem="mPS-Ki-Bpa" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="SGF-af-fD4"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="118" id="UE3-94-yVQ" userLabel="MessageTopOffset"/>
                             <constraint firstAttribute="trailing" secondItem="OWQ-dc-NR9" secondAttribute="trailing" id="Wcg-X3-5ye"/>
                             <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="XAG-qi-5bb"/>

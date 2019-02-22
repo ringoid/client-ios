@@ -153,7 +153,7 @@ discover users nearby</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="BxI-1L-kXF">
-                                <rect key="frame" x="17" y="17" width="7" height="8"/>
+                                <rect key="frame" x="16" y="17" width="7" height="8"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="g86-vE-fd5"/>
                                 </constraints>
@@ -164,6 +164,7 @@ discover users nearby</string>
                                     <constraint firstAttribute="height" constant="56" id="QjX-Vu-hve"/>
                                     <constraint firstAttribute="width" constant="76" id="R9H-dW-1yd"/>
                                 </constraints>
+                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="feed_options"/>
                                 <connections>
                                     <action selector="onBlock" destination="gBk-mi-2xQ" eventType="touchUpInside" id="zg5-YE-ePs"/>
@@ -181,7 +182,7 @@ discover users nearby</string>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
                             <constraint firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" id="hMK-Ge-ajI"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="ms1-Iv-Xza"/>
-                            <constraint firstItem="BxI-1L-kXF" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="17" id="rJi-uN-WJL"/>
+                            <constraint firstItem="BxI-1L-kXF" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="rJi-uN-WJL"/>
                             <constraint firstAttribute="trailing" secondItem="Jbu-JW-RgU" secondAttribute="trailing" id="x67-KR-aFy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QNT-if-MPg"/>
@@ -213,11 +214,12 @@ discover users nearby</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQE-2r-NTn">
-                                        <rect key="frame" x="304" y="127" width="60" height="60"/>
+                                        <rect key="frame" x="299" y="127" width="76" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="QFJ-RU-rhY"/>
-                                            <constraint firstAttribute="width" constant="60" id="fIR-xj-IPZ"/>
+                                            <constraint firstAttribute="width" constant="76" id="fIR-xj-IPZ"/>
                                         </constraints>
+                                        <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="feed_like"/>
                                         <connections>
                                             <action selector="onLike" destination="CPb-Zo-KOu" eventType="touchUpInside" id="W3D-gT-hTo"/>
@@ -226,7 +228,7 @@ discover users nearby</string>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="BQE-2r-NTn" secondAttribute="trailing" constant="11" id="Tvk-IW-GbN"/>
+                                    <constraint firstAttribute="trailing" secondItem="BQE-2r-NTn" secondAttribute="trailing" id="Tvk-IW-GbN"/>
                                     <constraint firstItem="BQE-2r-NTn" firstAttribute="top" secondItem="C4Q-m8-YTj" secondAttribute="top" constant="127" id="dXk-GV-DKq"/>
                                 </constraints>
                             </view>
