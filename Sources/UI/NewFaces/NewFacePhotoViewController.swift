@@ -159,19 +159,13 @@ class NewFacePhotoViewController: UIViewController
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
-            let alpha: CGFloat = state ? 0.0 : 1.0
-            
-            UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
-                self?.likeBtn.alpha = alpha
-            }).startAnimation()
+            let isLikesAvailable = self?.isLikesAvailable() ?? false
+            self?.likeBtn.isHidden = !isLikesAvailable || state
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.chatModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
-            let alpha: CGFloat = state ? 0.0 : 1.0
-            
-            UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
-                self?.likeBtn.alpha = alpha
-            }).startAnimation()
+            let isLikesAvailable = self?.isLikesAvailable() ?? false
+            self?.likeBtn.isHidden = !isLikesAvailable || state
         }).disposed(by: self.disposeBag)
     }
     
