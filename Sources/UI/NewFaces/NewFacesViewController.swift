@@ -140,6 +140,9 @@ class NewFacesViewController: BaseViewController
         
         defer {
             self.lastFeedIds = profiles.map({ $0.id })
+            
+            let offset = self.tableView.contentOffset.y
+            self.updateVisibleCellsBorders(offset)
         }
 
         let totalCount = profiles.count

@@ -190,6 +190,9 @@ class MainLMMViewController: BaseViewController
         defer {
             self.lastFeedIds = updatedProfiles.map { $0.id }
             self.lastUpdateFeedType = self.type.value
+            
+            let offset = self.tableView.contentOffset.y
+            self.updateVisibleCellsBorders(offset)
         }
         
         let totalCount = updatedProfiles.count
