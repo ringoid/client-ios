@@ -45,7 +45,6 @@ class MainLMMViewController: BaseViewController
     fileprivate var viewModel: MainLMMViewModel?
     fileprivate var feedDisposeBag: DisposeBag = DisposeBag()
     fileprivate var disposeBag: DisposeBag = DisposeBag()
-    fileprivate var isUpdated: Bool = true
     fileprivate var chatStartDate: Date? = nil
     fileprivate var prevScrollingOffset: CGFloat = 0.0
     fileprivate var isScrollTopVisible: Bool = false
@@ -103,7 +102,6 @@ class MainLMMViewController: BaseViewController
         guard isInitialLayout else { return }
         
         self.isInitialLayout = false
-        self.isUpdated = true
         self.updateFeed()
     }
     
@@ -130,7 +128,6 @@ class MainLMMViewController: BaseViewController
     fileprivate func updateBindings()
     {
         self.feedDisposeBag = DisposeBag()
-        self.isUpdated = true
         self.profiles()?.asObservable().subscribe(onNext: { [weak self] _ in
             self?.updateFeed()
         }).disposed(by: self.feedDisposeBag)
@@ -151,8 +148,6 @@ class MainLMMViewController: BaseViewController
             return
         }
         
-        self.isUpdated = true
-        
         self.toggleActivity(.fetching)
         self.tableView.refreshControl?.endRefreshing()
         
@@ -164,7 +159,6 @@ class MainLMMViewController: BaseViewController
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
                 self?.toggleActivity(.contentAvailable)
-                self?.isUpdated = true
                 self?.updateFeed()
                 self?.resetStates()
         }).disposed(by: self.disposeBag)
@@ -191,7 +185,6 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func updateFeed()
     {
-        guard self.isUpdated else { return }
         guard let updatedProfiles = self.profiles()?.value.filter({ !$0.isInvalidated }) else { return }
         
         defer {
@@ -201,7 +194,6 @@ class MainLMMViewController: BaseViewController
         
         let totalCount = updatedProfiles.count
         let isEmpty = updatedProfiles.isEmpty
-        self.isUpdated = isEmpty
         self.feedEndView.isHidden = isEmpty
         
         if isEmpty && self.currentActivityState != .initial && self.currentActivityState != .fetching {
@@ -454,7 +446,6 @@ extension MainLMMViewController: UITableViewDataSource
                 guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
                 
                 self?.hideChat(weakProfileVC, profile: profile, photo: photo, indexPath: cellIndexPath)
-                self?.isUpdated = true // for blocked profile update
             }
             profileVC.onBlockOptionsWillShow = { [weak self, weak cell] in
                 guard let `cell` = cell else { return }
