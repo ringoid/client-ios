@@ -188,7 +188,7 @@ class MainLMMProfileViewController: UIViewController
         
         for reason in BlockReason.reportResons() {            
             alertVC.addAction(UIAlertAction(title: reason.title(), style: .default) { _ in
-                UIManager.shared.blockModeEnabled.accept(false)                
+                UIManager.shared.blockModeEnabled.accept(false)
                 self.viewModel?.block(at: self.currentIndex.value, reason: reason)
             })
         }
@@ -208,36 +208,36 @@ class MainLMMProfileViewController: UIViewController
     
     fileprivate func handleTopBorderDistanceChange(_ value: CGFloat)
     {
-        self.pageControl.alpha = self.topOpacityFor(self.pageControl.frame, offset: value) ?? 1.0
-        self.optionsBtn.alpha = self.topOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0
-        self.messageBtn.alpha = self.topOpacityFor(self.messageBtn.frame, offset: value) ?? 1.0
+        self.pageControl.alpha = self.discreetOpacity(for: self.topOpacityFor(self.pageControl.frame, offset: value) ?? 1.0)
+        self.optionsBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
+        self.messageBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(self.messageBtn.frame, offset: value) ?? 1.0)
         
         self.photosVCs.forEach { vc in
             guard let likeBtn = vc.likeBtn else { return }
             
-            likeBtn.alpha = self.topOpacityFor(likeBtn.frame, offset: value) ?? 1.0
+            likeBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(likeBtn.frame, offset: value) ?? 1.0 )
         }
     }
     
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
     {
         if let pageControlOpacity = self.bottomOpacityFor(self.pageControl.frame, offset: value) {
-            self.pageControl.alpha = pageControlOpacity
+            self.pageControl.alpha = self.discreetOpacity(for: pageControlOpacity)
         }
         
         if let optionBtnOpacity = self.bottomOpacityFor(self.optionsBtn.frame, offset: value) {
-            self.optionsBtn.alpha = optionBtnOpacity
+            self.optionsBtn.alpha = self.discreetOpacity(for: optionBtnOpacity)
         }
         
         if let messageBtnOpacity = self.bottomOpacityFor(self.messageBtn.frame, offset: value) {
-            self.messageBtn.alpha = messageBtnOpacity
+            self.messageBtn.alpha = self.discreetOpacity(for: messageBtnOpacity)
         }
         
         self.photosVCs.forEach { vc in
             guard let likeBtn = vc.likeBtn else { return }
             
             if let likeBtnOpacity = self.bottomOpacityFor(likeBtn.frame, offset: value) {
-                likeBtn.alpha = likeBtnOpacity
+                likeBtn.alpha = self.discreetOpacity(for: likeBtnOpacity)
             }
         }
     }
@@ -270,6 +270,11 @@ class MainLMMProfileViewController: UIViewController
         guard t > 0.0 else { return 0.0 }
         
         return pow(t, 2.0)
+    }
+    
+    fileprivate func discreetOpacity(for opacity: CGFloat) -> CGFloat
+    {
+        return opacity < 0.5 ? 0.0 : 1.0
     }
 }
 

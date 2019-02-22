@@ -148,13 +148,13 @@ class NewFaceProfileViewController: UIViewController
     
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
     {
-        self.pageControl.alpha = self.bottomOpacityFor(self.pageControl.frame, offset: value) ?? 1.0
-        self.optionsBtn.alpha = self.bottomOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0
+        self.pageControl.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.pageControl.frame, offset: value) ?? 1.0)
+        self.optionsBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
         
         self.photosVCs.forEach { vc in
             guard let likeBtn = vc.likeBtn else { return }
             
-            likeBtn.alpha = self.bottomOpacityFor(likeBtn.frame, offset: value) ?? 1.0            
+            likeBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(likeBtn.frame, offset: value) ?? 1.0)
         }
     }
     
@@ -171,6 +171,11 @@ class NewFaceProfileViewController: UIViewController
         guard t > 0.0 else { return 0.0 }
         
         return pow(t, 2.0)
+    }
+    
+    fileprivate func discreetOpacity(for opacity: CGFloat) -> CGFloat
+    {
+        return opacity < 0.5 ? 0.0 : 1.0
     }
 }
 
