@@ -250,6 +250,7 @@ class NewFacesViewController: BaseViewController
     {
         let tableBottomOffset = contentOffset + self.tableView.bounds.height
         
+        // Cells
         self.tableView.visibleCells.forEach { cell in
             guard let vc = (cell as? NewFacesCell)?.containerView.containedVC as? NewFaceProfileViewController else { return }
             guard let index = self.tableView.indexPath(for: cell)?.row else { return }
@@ -258,6 +259,21 @@ class NewFacesViewController: BaseViewController
             let cellBottomOffset = cellTopOffset + cell.bounds.height
             
             vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 62.0
+        }
+        
+        // Footer
+        let globalLabelFrame = self.feedEndLabel.convert(self.feedEndLabel.frame, to: self.view)
+        if globalLabelFrame.origin.y + globalLabelFrame.height > self.tableView.bounds.height - self.view.safeAreaInsets.bottom - 62.0 {
+            self.feedEndLabel.alpha = 0.0
+        } else {
+            self.feedEndLabel.alpha = 1.0
+        }
+        
+        let globalIndicatorFrame = self.loadingActivityView.convert(self.loadingActivityView.frame, to: self.view)
+        if globalIndicatorFrame.origin.y + globalIndicatorFrame.height > self.tableView.bounds.height - self.view.safeAreaInsets.bottom - 62.0 {
+            self.loadingActivityView.alpha = 0.0
+        } else {
+            self.loadingActivityView.alpha = 1.0
         }
     }
 }

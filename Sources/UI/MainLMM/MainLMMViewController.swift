@@ -401,6 +401,7 @@ class MainLMMViewController: BaseViewController
     {
         let tableBottomOffset = contentOffset + self.tableView.bounds.height
         
+        // Cells
         self.tableView.visibleCells.forEach { cell in
             guard let vc = (cell as? MainLMMCell)?.containerView.containedVC as? MainLMMProfileViewController else { return }
             guard let index = self.tableView.indexPath(for: cell)?.row else { return }
@@ -410,6 +411,14 @@ class MainLMMViewController: BaseViewController
             
             vc.topVisibleBorderDistance = cellTopOffset - contentOffset - self.view.safeAreaInsets.top - 34.0
             vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 62.0
+        }
+        
+        // Footer
+        let globalFrame = self.feedEndView.convert(self.feedEndView.frame, to: self.view)
+        if globalFrame.origin.y + globalFrame.height > self.tableView.bounds.height - self.view.safeAreaInsets.bottom - 62.0 {
+            self.feedEndView.alpha = 0.0
+        } else {
+            self.feedEndView.alpha = 1.0
         }
     }
 }
