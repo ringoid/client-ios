@@ -14,6 +14,20 @@ class MainLMMProfileViewController: UIViewController
 {
     var input: MainLMMProfileVMInput!
     
+    var topVisibleBorderDistance: CGFloat = 0.0
+    {
+        didSet {
+            self.handleTopBorderDistanceChange(self.topVisibleBorderDistance)
+        }
+    }
+    
+    var bottomVisibleBorderDistance: CGFloat = 0.0
+    {
+        didSet {
+            self.handleBottomBorderDistanceChange(self.bottomVisibleBorderDistance)
+        }
+    }
+    
     var currentIndex: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     var onChatShow: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
     var onChatHide: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
@@ -22,7 +36,7 @@ class MainLMMProfileViewController: UIViewController
     fileprivate let diposeBag: DisposeBag = DisposeBag()
     fileprivate var viewModel: MainLMMProfileViewModel?
     fileprivate var pagesVC: UIPageViewController?
-    fileprivate var photosVCs: [UIViewController] = []
+    fileprivate var photosVCs: [NewFacePhotoViewController] = []
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var messageBtn: UIButton!
@@ -188,6 +202,72 @@ class MainLMMProfileViewController: UIViewController
     {
         self.messageBtnTopConstraint.constant = self.input.feedType != .likesYou ? 138.0 : 228.0
     }
+    
+    fileprivate func handleTopBorderDistanceChange(_ value: CGFloat)
+    {
+        self.pageControl.alpha = self.topOpacityFor(self.pageControl.frame, offset: value) ?? 1.0
+        self.optionsBtn.alpha = self.topOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0
+        self.messageBtn.alpha = self.topOpacityFor(self.messageBtn.frame, offset: value) ?? 1.0
+        
+        self.photosVCs.forEach { vc in
+            guard let likeBtn = vc.likeBtn else { return }
+            
+            likeBtn.alpha = self.topOpacityFor(likeBtn.frame, offset: value) ?? 1.0
+        }
+    }
+    
+    fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
+    {
+        if let pageControlOpacity = self.bottomOpacityFor(self.pageControl.frame, offset: value) {
+            self.pageControl.alpha = pageControlOpacity
+        }
+        
+        if let optionBtnOpacity = self.bottomOpacityFor(self.optionsBtn.frame, offset: value) {
+            self.optionsBtn.alpha = optionBtnOpacity
+        }
+        
+        if let messageBtnOpacity = self.bottomOpacityFor(self.messageBtn.frame, offset: value) {
+            self.messageBtn.alpha = messageBtnOpacity
+        }
+        
+        self.photosVCs.forEach { vc in
+            guard let likeBtn = vc.likeBtn else { return }
+            
+            if let likeBtnOpacity = self.bottomOpacityFor(likeBtn.frame, offset: value) {
+                likeBtn.alpha = likeBtnOpacity
+            }
+        }
+    }
+    
+    fileprivate func topOpacityFor(_ frame: CGRect, offset: CGFloat) -> CGFloat?
+    {
+        let y = frame.origin.y
+        let inset = abs(offset)
+        
+        guard offset < 0.0 else { return nil }
+        guard inset > y else { return nil }
+        
+        let t = 1.0 - (inset - y) / (frame.height / 2.0)
+        
+        guard t > 0.0 else { return 0.0 }
+        
+        return pow(t, 2.0)
+    }
+    
+    fileprivate func bottomOpacityFor(_ frame: CGRect, offset: CGFloat) -> CGFloat?
+    {
+        let inset = abs(offset)
+        let y = self.view.bounds.height - frame.maxY
+        
+        guard offset < 0.0 else { return nil }
+        guard inset > frame.height else { return nil }
+        
+        let t = 1.0 - (inset - y) / (frame.height / 2.0)
+        
+        guard t > 0.0 else { return 0.0 }
+        
+        return pow(t, 2.0)
+    }
 }
 
 extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource
@@ -196,7 +276,8 @@ extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageView
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController?
     {
-        guard let index = self.photosVCs.index(of: viewController) else { return nil }
+        guard let vc = viewController as? NewFacePhotoViewController else { return nil }
+        guard let index = self.photosVCs.index(of: vc) else { return nil }
         guard index > 0 else { return nil }
         
         return self.photosVCs[index-1]
@@ -204,7 +285,8 @@ extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageView
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController?
     {
-        guard let index = self.photosVCs.index(of: viewController) else { return nil}
+        guard let vc = viewController as? NewFacePhotoViewController else { return nil }
+        guard let index = self.photosVCs.index(of: vc) else { return nil}
         guard index < (self.photosVCs.count - 1) else { return nil }
         
         return self.photosVCs[index+1]
@@ -212,7 +294,7 @@ extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageView
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool)
     {
-        guard let photoVC = pageViewController.viewControllers?.first else { return }
+        guard let photoVC = pageViewController.viewControllers?.first as? NewFacePhotoViewController else { return }
         
         guard finished, completed else { return }
         guard let index = self.photosVCs.index(of: photoVC) else { return }

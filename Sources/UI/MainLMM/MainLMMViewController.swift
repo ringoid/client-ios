@@ -401,6 +401,22 @@ class MainLMMViewController: BaseViewController
         case .messages: return "LMM_NO_CHATS_YOU".localized()
         }
     }
+    
+    fileprivate func updateVisibleCellsBorders(_  contentOffset: CGFloat)
+    {
+        let tableBottomOffset = contentOffset + self.tableView.bounds.height
+        
+        self.tableView.visibleCells.forEach { cell in
+            guard let vc = (cell as? MainLMMCell)?.containerView.containedVC as? MainLMMProfileViewController else { return }
+            guard let index = self.tableView.indexPath(for: cell)?.row else { return }
+            
+            let cellTopOffset = CGFloat(index) * cell.bounds.height
+            let cellBottomOffset = cellTopOffset + cell.bounds.height
+            
+            vc.topVisibleBorderDistance = cellTopOffset - contentOffset - self.view.safeAreaInsets.top - 56.0
+            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 72.0
+        }
+    }
 }
 
 extension MainLMMViewController: UITableViewDataSource
@@ -473,6 +489,8 @@ extension MainLMMViewController: UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     {
         let offset = scrollView.contentOffset.y
+        
+        self.updateVisibleCellsBorders(offset)
         
         guard self.isDragged else { return }
         

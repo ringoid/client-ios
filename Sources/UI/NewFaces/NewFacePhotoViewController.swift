@@ -31,7 +31,7 @@ class NewFacePhotoViewController: UIViewController
     fileprivate weak var activeDisappearAnimator: UIViewPropertyAnimator?
     
     @IBOutlet fileprivate weak var photoView: UIImageView!
-    @IBOutlet fileprivate weak var likeBtn: UIButton!
+    @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet fileprivate weak var animationLikeView: UIImageView!
     
     static func create() -> NewFacePhotoViewController
