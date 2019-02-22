@@ -352,7 +352,7 @@ see who likes you</string>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Wc-Ed-6t2">
-                                <rect key="frame" x="315" y="118" width="60" height="55"/>
+                                <rect key="frame" x="307" y="118" width="60" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="JgA-rf-4Mi"/>
                                     <constraint firstAttribute="width" constant="60" id="fJq-oh-zWs"/>
@@ -371,12 +371,12 @@ see who likes you</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="2Wc-Ed-6t2" secondAttribute="trailing" id="1l4-B6-3jE"/>
                             <constraint firstAttribute="trailing" secondItem="lGR-yG-LEW" secondAttribute="trailing" id="3dD-ad-k8o"/>
                             <constraint firstItem="OWQ-dc-NR9" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="Cbe-SI-EXr"/>
                             <constraint firstItem="OWQ-dc-NR9" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="Jh2-Xt-krz"/>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
+                            <constraint firstItem="2Wc-Ed-6t2" firstAttribute="centerX" secondItem="lGR-yG-LEW" secondAttribute="centerX" id="NaJ-Wi-l5L"/>
                             <constraint firstItem="mPS-Ki-Bpa" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="topMargin" constant="17" id="OMt-DE-Crh"/>
                             <constraint firstItem="mPS-Ki-Bpa" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leadingMargin" constant="17" id="SGF-af-fD4"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="118" id="UE3-94-yVQ" userLabel="MessageTopOffset"/>
