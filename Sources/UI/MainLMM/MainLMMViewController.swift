@@ -268,7 +268,7 @@ class MainLMMViewController: BaseViewController
         let vc = ChatViewController.create()
         vc.input = ChatVMInput(profile: profile, photo: photo, chatManager: self.input.chatManager, source: .messages
             , onClose: { [weak self] in
-                self?.hideChat(profileVC, profile: profile, photo: photo)
+                self?.hideChat(profileVC, profile: profile, photo: photo, indexPath: indexPath)
             }, onBlock: { [weak profileVC] in
                 profileVC?.onBlock()
         })
@@ -278,11 +278,11 @@ class MainLMMViewController: BaseViewController
             self.chatContainerView.isHidden = false
         }
         
-        self.scrollTop(to: indexPath.row)
+        self.scrollTop(to: indexPath.row, offset: 0.0, animated: true)
         profileVC?.hideNotChatControls()
     }
     
-    fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?, profile: LMMProfile, photo: Photo)
+    fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?, profile: LMMProfile, photo: Photo, indexPath: IndexPath)
     {
         if let startDate = self.chatStartDate {
             let interval = Int(Date().timeIntervalSince(startDate))
@@ -301,6 +301,8 @@ class MainLMMViewController: BaseViewController
         
         self.chatContainerView.isHidden = true
         self.chatContainerView.remove()
+        
+        self.scrollTop(to: indexPath.row, offset: 44.0, animated: false)
     }
     
     fileprivate func showScrollToTopOption()
@@ -340,12 +342,12 @@ class MainLMMViewController: BaseViewController
         ]
     }
     
-    fileprivate func scrollTop(to index: Int)
+    fileprivate func scrollTop(to index: Int, offset: CGFloat, animated: Bool)
     {
         let height = UIScreen.main.bounds.width * AppConfig.photoRatio
         let topOffset = self.view.safeAreaInsets.top
 
-        self.tableView.setContentOffset(CGPoint(x: 0.0, y: CGFloat(index) * height - topOffset), animated: true)
+        self.tableView.setContentOffset(CGPoint(x: 0.0, y: CGFloat(index) * height - topOffset - offset), animated: animated)
     }
     
     fileprivate func showAddPhotosOptions()
@@ -413,7 +415,7 @@ class MainLMMViewController: BaseViewController
             let cellTopOffset = CGFloat(index) * cell.bounds.height
             let cellBottomOffset = cellTopOffset + cell.bounds.height
             
-            vc.topVisibleBorderDistance = cellTopOffset - contentOffset - self.view.safeAreaInsets.top - 56.0
+            vc.topVisibleBorderDistance = cellTopOffset - contentOffset - self.view.safeAreaInsets.top - 44.0
             vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 72.0
         }
     }
@@ -447,15 +449,25 @@ extension MainLMMViewController: UITableViewDataSource
                 
                 self?.showChat(profile, photo: photo, indexPath: cellIndexPath, profileVC: vc)
             }
-            profileVC.onChatHide = { [weak self] profile, photo, vc in
-                self?.hideChat(weakProfileVC, profile: profile, photo: photo)
+            profileVC.onChatHide = { [weak self, weak cell] profile, photo, vc in
+                guard let `cell` = cell else { return }
+                guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
+                
+                self?.hideChat(weakProfileVC, profile: profile, photo: photo, indexPath: cellIndexPath)
                 self?.isUpdated = true // for blocked profile update
             }
             profileVC.onBlockOptionsWillShow = { [weak self, weak cell] in
                 guard let `cell` = cell else { return }
                 guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
                 
-                self?.scrollTop(to: cellIndexPath.row)
+                self?.scrollTop(to: cellIndexPath.row, offset: 0.0, animated: true)
+            }
+            
+            profileVC.onBlockOptionsWillHide = { [weak self, weak cell] in
+                    guard let `cell` = cell else { return }
+                    guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
+                    
+                    self?.scrollTop(to: cellIndexPath.row, offset: 44.0, animated: false)
             }
             
             profileVC.currentIndex.asObservable().subscribe(onNext: { [weak self] index in

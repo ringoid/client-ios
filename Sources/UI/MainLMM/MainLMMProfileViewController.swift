@@ -32,6 +32,7 @@ class MainLMMProfileViewController: UIViewController
     var onChatShow: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
     var onChatHide: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
     var onBlockOptionsWillShow: (() -> ())?
+    var onBlockOptionsWillHide: (() -> ())?
     
     fileprivate let diposeBag: DisposeBag = DisposeBag()
     fileprivate var viewModel: MainLMMProfileViewModel?
@@ -172,6 +173,7 @@ class MainLMMProfileViewController: UIViewController
             self.showBlockReasonOptions()
         }))
         alertVC.addAction(UIAlertAction(title: "COMMON_CANCEL".localized(), style: .cancel, handler: { _ in
+            self.onBlockOptionsWillHide?()
             UIManager.shared.blockModeEnabled.accept(false)
         }))
         
@@ -186,12 +188,13 @@ class MainLMMProfileViewController: UIViewController
         
         for reason in BlockReason.reportResons() {            
             alertVC.addAction(UIAlertAction(title: reason.title(), style: .default) { _ in
-                UIManager.shared.blockModeEnabled.accept(false)
+                UIManager.shared.blockModeEnabled.accept(false)                
                 self.viewModel?.block(at: self.currentIndex.value, reason: reason)
             })
         }
         
         alertVC.addAction(UIAlertAction(title: "COMMON_CANCEL".localized(), style: .cancel, handler: { _ in
+            self.onBlockOptionsWillHide?()
             UIManager.shared.blockModeEnabled.accept(false)
         }))
         
