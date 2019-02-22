@@ -266,11 +266,9 @@ class MainLMMViewController: BaseViewController
         })
   
         self.chatContainerView.embed(vc, to: self)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.chatContainerView.isHidden = false
-        }
-        
-        self.scrollTop(to: indexPath.row, offset: 0.0, animated: true)
+        self.chatContainerView.isHidden = false
+                
+        self.scrollTop(to: indexPath.row, offset: 0.0, animated: false)
         profileVC?.hideNotChatControls()
     }
     
