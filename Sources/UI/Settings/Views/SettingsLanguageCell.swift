@@ -10,7 +10,6 @@ import UIKit
 
 class SettingsLanguageCell: BaseTableViewCell
 {
-    @IBOutlet fileprivate weak var languageLabel: UILabel!
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     
     override func awakeFromNib()
@@ -21,13 +20,11 @@ class SettingsLanguageCell: BaseTableViewCell
     override func updateTheme()
     {
         self.titleLabel.textColor = ContentColor().uiColor()
-        self.languageLabel.textColor = ContentColor().uiColor()
         self.tintColor = ContentColor().uiColor()
     }
     
     override func updateLocale()
     {
         self.titleLabel.text = "SETTINGS_LANGUAGE".localized()
-        self.languageLabel.text = LocaleManager.shared.language.value.title()
     }
 }

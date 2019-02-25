@@ -108,23 +108,14 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGo-jz-pUD">
-                                                    <rect key="frame" x="295" y="12.5" width="47" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="fpi-N9-RWi" firstAttribute="leading" secondItem="Pev-CB-uxZ" secondAttribute="leading" constant="48" id="Eiu-fe-CLP"/>
-                                                <constraint firstItem="OGo-jz-pUD" firstAttribute="centerY" secondItem="Pev-CB-uxZ" secondAttribute="centerY" id="Mn9-4x-7lc"/>
                                                 <constraint firstItem="fpi-N9-RWi" firstAttribute="centerY" secondItem="Pev-CB-uxZ" secondAttribute="centerY" id="Q6b-nJ-D7D"/>
-                                                <constraint firstAttribute="trailing" secondItem="OGo-jz-pUD" secondAttribute="trailing" id="f5J-Lc-Qvc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="languageLabel" destination="OGo-jz-pUD" id="z5m-FN-baG"/>
                                             <outlet property="titleLabel" destination="fpi-N9-RWi" id="w84-rO-cZB"/>
                                         </connections>
                                     </tableViewCell>
