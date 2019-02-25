@@ -94,6 +94,8 @@ class AuthViewController: BaseViewController
             onError: { [weak self] error in
             guard let `self` = self else { return }
             
+            self.authActivityView.stopAnimating()
+            self.registerBtn.isHidden = false
             showError(error, vc: self)
             }, onCompleted: { [weak self] in
                 self?.authActivityView.stopAnimating()

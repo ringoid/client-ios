@@ -82,6 +82,8 @@ class NewFacesViewController: BaseViewController
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
             
+            self.toggleActivity(.contentAvailable)
+            self.updateFeed()
             showError(error, vc: self)
             }, onCompleted: { [weak self] in
                 self?.toggleActivity(.contentAvailable)

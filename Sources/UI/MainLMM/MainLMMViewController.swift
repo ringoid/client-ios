@@ -161,6 +161,11 @@ class MainLMMViewController: BaseViewController
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
             
+            UIManager.shared.lmmRefreshModeEnabled.accept(false)
+            self.toggleActivity(.contentAvailable)
+            self.tableView.dataSource = self
+            self.updateFeed()
+            
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
                 UIManager.shared.lmmRefreshModeEnabled.accept(false)

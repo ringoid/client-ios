@@ -76,10 +76,10 @@ class UserProfilePhotosViewController: BaseViewController
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
             
+            self.containerTableView.refreshControl?.endRefreshing()
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
                 self?.containerTableView.refreshControl?.endRefreshing()
-                
         }).disposed(by: self.disposeBag)
     }
     
