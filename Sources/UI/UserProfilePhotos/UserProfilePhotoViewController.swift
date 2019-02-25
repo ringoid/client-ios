@@ -69,7 +69,7 @@ class UserProfilePhotoViewController: UIViewController
             paragraphStyle.alignment = .center
             
             let attributes: [NSAttributedString.Key : Any] = [
-                .font: UIFont.systemFont(ofSize: 20.0, weight: .medium),
+                .font: UIFont.systemFont(ofSize: 18.0, weight: .medium),
                 .foregroundColor: UIColor.white,
                 .shadow: shadow,
                 .paragraphStyle: paragraphStyle
