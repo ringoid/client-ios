@@ -100,7 +100,9 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.requestGET(path: "feeds/get_lmm", params: params).flatMap { jsonDict -> Observable<ApiLMMResult> in
+        return self.requestGET(path: "feeds/get_lmm", params: params)
+            .take(1.5, scheduler: MainScheduler.instance)
+            .flatMap { jsonDict -> Observable<ApiLMMResult> in
             guard let likesYouArray = jsonDict["likesYou"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong likesYou profiles data format", type: .hidden)
                 
