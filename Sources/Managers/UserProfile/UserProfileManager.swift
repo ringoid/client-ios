@@ -103,6 +103,13 @@ class UserProfileManager
             self?.lastPhotoId.accept(String.create(obj))
             self?.setupLastPhotoBinding()
         }).disposed(by: self.disposeBag)
+        
+        self.photos.subscribe(onNext:{ [weak self] photos in
+            guard photos.count == 0 else { return }
+            guard let `self` = self else { return }
+            
+            self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func setupLastPhotoBinding()
