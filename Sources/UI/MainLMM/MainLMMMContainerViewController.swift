@@ -112,13 +112,10 @@ class MainLMMContainerViewController: BaseViewController
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
-            guard state else { return }
-            
-            // Just hiding on enabled state and giving Rx bindings chance to update indicators state after
-            self?.likesYouIndicatorView.isHidden = true
-            self?.matchesIndicatorView.isHidden = true
-            self?.chatIndicatorView.isHidden = true
-            
+            let alpha: CGFloat = state ? 0.0 : 1.0
+            self?.likesYouIndicatorView.alpha = alpha
+            self?.matchesIndicatorView.alpha = alpha
+            self?.chatIndicatorView.alpha = alpha            
         }).disposed(by: self.disposeBag)
     }
     

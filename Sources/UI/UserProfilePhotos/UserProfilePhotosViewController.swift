@@ -184,7 +184,7 @@ class UserProfilePhotosViewController: BaseViewController
             
             guard let photo = self.viewModel?.photos.value[self.currentIndex] else { return }
             
-            self.input.profileManager.deletePhoto(photo)
+            self.viewModel?.delete(photo)
         })))
         alertVC.addAction(UIAlertAction(title: "COMMON_CANCEL".localized(), style: .cancel, handler: { _ in
             self.showControls()

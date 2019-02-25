@@ -142,6 +142,8 @@ class MainLMMViewController: BaseViewController
     
     @objc fileprivate func reload()
     {
+        self.tableView.refreshControl?.endRefreshing()
+        
         if self.viewModel?.isPhotosAdded == false {
             self.showAddPhotosOptions()
             
@@ -151,7 +153,6 @@ class MainLMMViewController: BaseViewController
         self.resetStates()
         self.feedEndView.isHidden = true
         self.toggleActivity(.fetching)
-        self.tableView.refreshControl?.endRefreshing()
         self.tableView.dataSource = EmptyFeed.shared
         self.tableView.reloadData()
         UIManager.shared.lmmRefreshModeEnabled.accept(true)

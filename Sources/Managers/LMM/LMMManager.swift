@@ -109,6 +109,11 @@ class LMMManager
         })       
     }
     
+    func purge()
+    {
+        self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
+    }
+    
     fileprivate func setupBindings()
     {
         self.db.fetchLikesYou().bind(to: self.likesYou).disposed(by: self.disposeBag)
@@ -120,11 +125,6 @@ class LMMManager
             
             self?.purge()
         }).disposed(by: self.disposeBag)
-    }
-    
-    fileprivate func purge()
-    {
-        self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
     }
 }
 
