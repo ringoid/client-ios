@@ -17,15 +17,13 @@ class SettingsLocaleViewController: BaseViewController
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
-    @IBOutlet fileprivate weak var footerView: UIView!
-    @IBOutlet fileprivate weak var helpLabel: UILabel!
     @IBOutlet fileprivate weak var backBtn: UIButton!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        self.tableView.tableFooterView = self.footerView
+        self.tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.tableView.bounds.width, height: 1.0))
         
         self.setupBindings()
     }
@@ -44,7 +42,6 @@ class SettingsLocaleViewController: BaseViewController
     override func updateLocale()
     {
         self.titleLabel.text = "SETTINGS_LANGUAGE".localized()
-        self.helpLabel.attributedText = NSAttributedString(string: "SETTINGS_LOCALE_HELP_LOCALIZE".localized())
     }
     
     // MARK: - Actions
@@ -74,14 +71,22 @@ extension SettingsLocaleViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel?.locales.count ?? 0
+        return (self.viewModel?.locales.count ?? 0) + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        let index = indexPath.row
+        if index == self.viewModel?.locales.count {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "help_cell") as! SettingsLocaleHelpCell
+            
+            return cell
+        }
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "locale_cell") as! SettingsLocaleCell
         
-        let locale = self.viewModel?.locales[indexPath.row]
+        let locale = self.viewModel?.locales[index]
         let isSelected = LocaleManager.shared.language.value == locale
         
         cell.locale = locale
@@ -92,8 +97,20 @@ extension SettingsLocaleViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        guard let language = self.viewModel?.locales[indexPath.row] else { return }
+        let index = indexPath.row
         
-        LocaleManager.shared.language.accept(language)
+        guard let locales = self.viewModel?.locales, index < locales.count else { return }
+        
+        LocaleManager.shared.language.accept(locales[index])
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        let index = indexPath.row
+        if index == self.viewModel?.locales.count {
+            return 72.0
+        }
+        
+        return 56.0
     }
 }
