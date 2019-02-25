@@ -148,8 +148,13 @@ class MainLMMViewController: BaseViewController
             return
         }
         
+        self.resetStates()
+        self.feedEndView.isHidden = true
         self.toggleActivity(.fetching)
         self.tableView.refreshControl?.endRefreshing()
+        self.tableView.dataSource = EmptyFeed.shared
+        self.tableView.reloadData()
+        UIManager.shared.lmmRefreshModeEnabled.accept(true)
         
         // TODO: move "finishViewActions" logic inside view model
         self.input.actionsManager.finishViewActions(for: self.profiles()?.value ?? [], source: self.type.value.sourceType())
@@ -158,9 +163,10 @@ class MainLMMViewController: BaseViewController
             
             showError(error, vc: self)
             }, onCompleted:{ [weak self] in
+                UIManager.shared.lmmRefreshModeEnabled.accept(false)
                 self?.toggleActivity(.contentAvailable)
+                self?.tableView.dataSource = self
                 self?.updateFeed()
-                self?.resetStates()
         }).disposed(by: self.disposeBag)
     }
     

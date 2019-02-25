@@ -241,6 +241,11 @@ class MainViewController: BaseViewController
             self?.lmmNotSeenIndicatorView.isHidden = !state
         }).disposed(by: self.disposeBag)
         
+        UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
+            guard state else { return }
+            
+            self?.lmmNotSeenIndicatorView.isHidden = true
+        }).disposed(by: self.disposeBag)
     }
 }
 

@@ -48,11 +48,14 @@ class MainLMMViewModel
     func refresh() -> Observable<Void>
     {
         self.newFacesManager.purge()
-        self.actionsManager.commit()
         
-        return self.lmmManager.refresh().flatMap({ [weak self] _ -> Observable<Void> in
-            return self!.profileManager.refresh()
-        })
+        return self.actionsManager.sendQueue().flatMap { [weak self] _ -> Observable<Void> in
+            
+            return self!.lmmManager.refresh().flatMap({ [weak self] _ -> Observable<Void> in
+                
+                return self!.profileManager.refresh()
+            })
+        }
     }
     
     func moveToProfile()

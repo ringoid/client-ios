@@ -110,6 +110,16 @@ class MainLMMContainerViewController: BaseViewController
                 self?.optionsContainer.alpha = state ? 0.0 : 1.0
             }).startAnimation()
         }).disposed(by: self.disposeBag)
+        
+        UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
+            guard state else { return }
+            
+            // Just hiding on enabled state and giving Rx bindings chance to update indicators state after
+            self?.likesYouIndicatorView.isHidden = true
+            self?.matchesIndicatorView.isHidden = true
+            self?.chatIndicatorView.isHidden = true
+            
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func toggle(_ type: LMMType)

@@ -13,6 +13,7 @@ class UIManager
 {
     let blockModeEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     let chatModeEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    let lmmRefreshModeEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     static let shared = UIManager()
     
