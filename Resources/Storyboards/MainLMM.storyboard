@@ -37,7 +37,7 @@
                                         <size key="titleShadowOffset" width="1" height="1"/>
                                         <state key="normal" title="Chats">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.24761879280821919" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="onChatSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="Of8-n5-Puc"/>
@@ -69,7 +69,7 @@
                                         <size key="titleShadowOffset" width="1" height="1"/>
                                         <state key="normal" title="Matches">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.2403146404109589" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="onMatchesSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="ONu-bD-Af9"/>
@@ -85,7 +85,7 @@
                                         <size key="titleShadowOffset" width="1" height="1"/>
                                         <state key="normal" title="Likes You">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.25040132705479456" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="onLikesYouSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="FNb-tC-1cH"/>
