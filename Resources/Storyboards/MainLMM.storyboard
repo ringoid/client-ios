@@ -364,11 +364,8 @@ see who likes you</string>
                                     <action selector="onChatSelected" destination="Nf7-hc-eWV" eventType="touchUpInside" id="d62-YA-ePo"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="mPS-Ki-Bpa">
-                                <rect key="frame" x="16" y="37" width="7" height="8"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="8" id="qeS-kI-LaX"/>
-                                </constraints>
+                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="mPS-Ki-Bpa">
+                                <rect key="frame" x="16" y="0.0" width="7" height="56"/>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -379,12 +376,13 @@ see who likes you</string>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="centerX" secondItem="lGR-yG-LEW" secondAttribute="centerX" id="NaJ-Wi-l5L"/>
-                            <constraint firstItem="mPS-Ki-Bpa" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="topMargin" constant="17" id="OMt-DE-Crh"/>
                             <constraint firstItem="mPS-Ki-Bpa" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="SGF-af-fD4"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="118" id="UE3-94-yVQ" userLabel="MessageTopOffset"/>
+                            <constraint firstItem="lGR-yG-LEW" firstAttribute="bottom" secondItem="mPS-Ki-Bpa" secondAttribute="bottom" id="WBI-Jx-Y3u"/>
                             <constraint firstAttribute="trailing" secondItem="OWQ-dc-NR9" secondAttribute="trailing" id="Wcg-X3-5ye"/>
                             <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="XAG-qi-5bb"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="gA6-9y-Jou"/>
+                            <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="mPS-Ki-Bpa" secondAttribute="top" id="jMf-vm-kBR"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dlp-dl-iCM"/>

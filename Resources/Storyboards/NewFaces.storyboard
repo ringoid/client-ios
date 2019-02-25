@@ -153,10 +153,7 @@ discover users nearby</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="BxI-1L-kXF">
-                                <rect key="frame" x="16" y="17" width="7" height="8"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="8" id="g86-vE-fd5"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="0.0" width="7" height="56"/>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1t-jW-NWk">
                                 <rect key="frame" x="299" y="0.0" width="76" height="56"/>
@@ -173,15 +170,16 @@ discover users nearby</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="BxI-1L-kXF" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="17" id="4ce-mr-mY9"/>
                             <constraint firstItem="4jC-bO-SnE" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="FaK-YT-vKV"/>
                             <constraint firstAttribute="trailing" secondItem="4jC-bO-SnE" secondAttribute="trailing" id="GOv-Pb-j3S"/>
                             <constraint firstAttribute="trailing" secondItem="X1t-jW-NWk" secondAttribute="trailing" id="Le3-5c-RWL"/>
+                            <constraint firstItem="X1t-jW-NWk" firstAttribute="bottom" secondItem="BxI-1L-kXF" secondAttribute="bottom" id="QbY-f7-Ji4"/>
                             <constraint firstItem="4jC-bO-SnE" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="Quc-kx-fpH"/>
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
                             <constraint firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" id="hMK-Ge-ajI"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="ms1-Iv-Xza"/>
+                            <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="BxI-1L-kXF" secondAttribute="top" id="pY4-4d-WmO"/>
                             <constraint firstItem="BxI-1L-kXF" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="rJi-uN-WJL"/>
                             <constraint firstAttribute="trailing" secondItem="Jbu-JW-RgU" secondAttribute="trailing" id="x67-KR-aFy"/>
                         </constraints>
