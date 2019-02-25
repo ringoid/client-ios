@@ -417,6 +417,6 @@ see who likes you</string>
     <resources>
         <image name="feed_messages_empty" width="36" height="35"/>
         <image name="feed_options" width="32" height="12"/>
-        <image name="feed_scroll_top" width="30" height="30"/>
+        <image name="feed_scroll_top" width="65" height="65"/>
     </resources>
 </document>
