@@ -36,6 +36,7 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet weak var matchesIndicatorView: UIView!
     @IBOutlet weak var likesYouIndicatorView: UIView!
     @IBOutlet weak var optionsContainer: UIView!
+    @IBOutlet weak var matchesBtnWidthLayout: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -52,6 +53,8 @@ class MainLMMContainerViewController: BaseViewController
         self.chatBtn.setTitle("LMM_HEADER_CHATS_OPTION".localized(), for: .normal)
         self.likeYouBtn.setTitle("LMM_HEADER_LIKES_OPTION".localized(), for: .normal)
         self.matchesBtn.setTitle("LMM_HEADER_MATCHES_OPTION".localized(), for: .normal)
+        
+        self.updateBtnSizes()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -143,5 +146,18 @@ class MainLMMContainerViewController: BaseViewController
         }
         
         self.lmmVC?.type.accept(type)
+    }
+    
+    fileprivate func updateBtnSizes()
+    {
+        let width = ("LMM_HEADER_MATCHES_OPTION".localized() as NSString).boundingRect(
+            with: CGSize(width: 300.0, height: 200.0),
+            options: .usesLineFragmentOrigin,
+            attributes: [.font: unselectedFont],
+            context: nil
+            ).width
+        
+        self.matchesBtnWidthLayout.constant = width + 20.0
+        self.view.layoutSubviews()
     }
 }

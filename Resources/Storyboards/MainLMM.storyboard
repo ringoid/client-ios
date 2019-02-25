@@ -44,18 +44,18 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VWc-0L-YS8" userLabel="SeparatorView">
-                                        <rect key="frame" x="146.5" y="38.5" width="1" height="7"/>
+                                        <rect key="frame" x="146.5" y="37.5" width="1" height="9"/>
                                         <color key="backgroundColor" red="0.50588235294117645" green="0.50980392156862742" blue="0.52156862745098043" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="7" id="dtF-KK-HfR"/>
+                                            <constraint firstAttribute="height" constant="9" id="dtF-KK-HfR"/>
                                             <constraint firstAttribute="width" constant="1" id="nXz-gz-gfh"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P5a-bc-Su9" userLabel="SeparatorView">
-                                        <rect key="frame" x="227.5" y="38.5" width="1" height="7"/>
+                                        <rect key="frame" x="227.5" y="37.5" width="1" height="9"/>
                                         <color key="backgroundColor" red="0.50588235290000005" green="0.50980392159999999" blue="0.52156862749999999" alpha="0.5" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="7" id="ily-Be-4rr"/>
+                                            <constraint firstAttribute="height" constant="9" id="ily-Be-4rr"/>
                                             <constraint firstAttribute="width" constant="1" id="nvo-SH-UT2"/>
                                         </constraints>
                                     </view>
@@ -181,6 +181,7 @@
                         <outlet property="likeYouBtn" destination="Y1R-St-pNy" id="Dtl-TH-ZOd"/>
                         <outlet property="likesYouIndicatorView" destination="82V-db-bgk" id="f1s-bo-8kh"/>
                         <outlet property="matchesBtn" destination="t6H-GQ-xYk" id="TUl-ED-bSc"/>
+                        <outlet property="matchesBtnWidthLayout" destination="bXK-SU-xmC" id="Kyg-Sy-DCl"/>
                         <outlet property="matchesIndicatorView" destination="QY6-GC-5lz" id="WV5-Hz-7pf"/>
                         <outlet property="optionsContainer" destination="Ywr-Pj-xRP" id="7t7-9d-4A3"/>
                     </connections>
