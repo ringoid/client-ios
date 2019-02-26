@@ -107,6 +107,7 @@ class ActionsManager
         self.stopViewAction(profile, photo: photo, sourceType: source)
         self.add(.like(likeCount: 1), profile: profile, photo: photo, source: source)
         self.startViewAction(profile, photo: photo)
+        self.commit()
     }
     
     func unlikeActionProtected(_ profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
@@ -114,6 +115,7 @@ class ActionsManager
         self.stopViewAction(profile, photo: photo, sourceType: source)
         self.add(.unlike, profile: profile, photo: photo, source: source)
         self.startViewAction(profile, photo: photo)
+        self.commit()
     }
     
     func blockActionProtected(_ reason: BlockReason, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
@@ -131,6 +133,7 @@ class ActionsManager
         self.stopViewAction(profile, photo: photo, sourceType: source)
         self.add(.openChat(openChatCount: count, openChatTimeSec: timeSec), profile: profile, photo: photo, source: source)
         self.startViewAction(profile, photo: photo)
+        self.commit()
     }
     
     func startViewAction(_ profile: ActionProfile, photo: ActionPhoto)
