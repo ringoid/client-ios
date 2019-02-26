@@ -73,6 +73,8 @@ class UserProfilePhotosViewController: BaseViewController
     
     @objc func reload()
     {
+        MainLMMViewController.resetStates() // TODO: Think about more elegant solution to reset offset caches
+        
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
             

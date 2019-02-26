@@ -150,7 +150,7 @@ class MainLMMViewController: BaseViewController
             return
         }
         
-        self.resetStates()
+        MainLMMViewController.resetStates()
         self.feedEndView.isHidden = true
         self.toggleActivity(.fetching)
         self.tableView.dataSource = EmptyFeed.shared
@@ -338,7 +338,7 @@ class MainLMMViewController: BaseViewController
         animator.startAnimation()
     }
     
-    fileprivate func resetStates()
+    static func resetStates()
     {
         MainLMMViewController.feedsState = [
             .likesYou: FeedState(offset: 0.0, photos: [:]),
