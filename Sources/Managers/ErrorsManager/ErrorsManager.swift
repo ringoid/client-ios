@@ -38,15 +38,19 @@ class ErrorsManager
         switch error.type {
         case .unknown: return
         case .internalServerError:
+            log("Internal Server Error")
             SentryService.shared.send(.internalError)
             break
             
         case .invalidAccessTokenClientError:
+            log("Invalid Access Token Client Error")
             self.settings.reset()
             self.api.reset()
             break
             
-        case .tooOldAppVersionClientError: return
+        case .tooOldAppVersionClientError:
+            log("Too old app version client error")
+            return
         }
     }
 }
