@@ -13,9 +13,7 @@ func showError(_ error: Error, vc: UIViewController)
     let description = (error as NSError).localizedDescription
     
     guard (error as NSError).code == ErrorType.visible.rawValue else {
-        print("------------------------------")
-        print("ERROR: \(description)")
-        print("------------------------------")
+        log(description)
         
         return
     }

@@ -50,9 +50,9 @@ class UserProfileManager
             // Starting data upload
             if let url = URL(string: apiPhotoPlaceholder.url) {
                 self!.uploader.upload(data, to: url).subscribe(onNext: {
-                    print("Photo successfuly uploaded")
+                    log("Photo successfuly uploaded")
                 }, onError: { error in
-                    print("ERROR: \(error)")
+                    log("ERROR: \(error)")
                 }).disposed(by: self!.disposeBag)
             }
             

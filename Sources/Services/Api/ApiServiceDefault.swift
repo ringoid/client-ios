@@ -264,7 +264,7 @@ class ApiServiceDefault: ApiService
                 
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
                     SentryService.shared.send(.repeatAfterDelay)
-                    print("repeating after \(repeatAfter)")
+                    log("repeating after \(repeatAfter) \(url)")
                     return self!.request(method, path: path, jsonBody: jsonBody).delay(RxTimeInterval(Double(repeatAfter) * 1000.0), scheduler: MainScheduler.instance)
                 }
                 
@@ -295,7 +295,7 @@ class ApiServiceDefault: ApiService
                 
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
                     SentryService.shared.send(.repeatAfterDelay)
-                    print("repeating after \(repeatAfter)")
+                    log("repeating after \(repeatAfter) \(url)")
                     return self!.requestGET(path: path, params: params).delay(RxTimeInterval(Double(repeatAfter) / 1000.0), scheduler: MainScheduler.instance)
                 }
                 

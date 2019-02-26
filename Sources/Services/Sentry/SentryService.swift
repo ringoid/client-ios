@@ -27,7 +27,7 @@ class SentryService
             Client.shared = try Client(dsn: "https://179c556658a3465d852019ffbb5aaac1@sentry.io/1387002")
             try Client.shared?.startCrashHandler()
         } catch let error {
-            print("Sentry error: \(error)")
+            log("Sentry error: \(error)")
         }
     }
     

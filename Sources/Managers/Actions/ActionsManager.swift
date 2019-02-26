@@ -168,7 +168,7 @@ class ActionsManager
         self.queue.removeFirst(enqued.count)
         self.sendingActions.append(contentsOf: enqued)
         
-        print("Sending events: \(self.sendingActions.count)")
+        log("Sending events: \(self.sendingActions.count)")
         
         return self.apiService.sendActions(self.sendingActions.compactMap({ $0.apiAction() }))
             .do(onNext: { [weak self] date in

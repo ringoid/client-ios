@@ -45,6 +45,8 @@
 		573A5C15222541FF0094A9FA /* SettingsDebugCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C13222541FF0094A9FA /* SettingsDebugCell.swift */; };
 		573A5C172225440B0094A9FA /* SettingsDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C162225440B0094A9FA /* SettingsDebugViewController.swift */; };
 		573A5C182225440B0094A9FA /* SettingsDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C162225440B0094A9FA /* SettingsDebugViewController.swift */; };
+		573A5C1B222556AD0094A9FA /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C1A222556AD0094A9FA /* LogService.swift */; };
+		573A5C1C222556AD0094A9FA /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C1A222556AD0094A9FA /* LogService.swift */; };
 		57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3521E3309300038798 /* NewFacesViewController.swift */; };
 		57585D3821E330B100038798 /* NewFaces.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D3721E330B100038798 /* NewFaces.storyboard */; };
 		57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3921E3499E00038798 /* ApiPhoto.swift */; };
@@ -304,6 +306,7 @@
 		573A5C0D222409F10094A9FA /* EmptyFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFeed.swift; sourceTree = "<group>"; };
 		573A5C13222541FF0094A9FA /* SettingsDebugCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugCell.swift; sourceTree = "<group>"; };
 		573A5C162225440B0094A9FA /* SettingsDebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugViewController.swift; sourceTree = "<group>"; };
+		573A5C1A222556AD0094A9FA /* LogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
 		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
 		57585D3721E330B100038798 /* NewFaces.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewFaces.storyboard; sourceTree = "<group>"; };
 		57585D3921E3499E00038798 /* ApiPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPhoto.swift; sourceTree = "<group>"; };
@@ -495,6 +498,7 @@
 		570D047C21DCED1800E0DCFB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				573A5C19222556A00094A9FA /* Log */,
 				57EE655B2216DC9200246B45 /* Sentry */,
 				576FC1122201875900BA5ABE /* Device */,
 				57585D5C21E4BEF900038798 /* Uploader */,
@@ -646,6 +650,14 @@
 				57386E4A220C7A7C0000E5D9 /* UIManager.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		573A5C19222556A00094A9FA /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				573A5C1A222556AD0094A9FA /* LogService.swift */,
+			);
+			path = Log;
 			sourceTree = "<group>";
 		};
 		57585D3421E3308300038798 /* NewFaces */ = {
@@ -1334,6 +1346,7 @@
 				57B863CF21ECD98F00B9CC70 /* MainLMMCell.swift in Sources */,
 				57B863FC21EF5DDF00B9CC70 /* ApiOpenChat.swift in Sources */,
 				57585D5B21E4A0F100038798 /* FilePath.swift in Sources */,
+				573A5C1B222556AD0094A9FA /* LogService.swift in Sources */,
 				57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */,
 				57585D6A21E4FF2400038798 /* Colors.swift in Sources */,
 				57585D4621E3570B00038798 /* NewFaceProfile.swift in Sources */,
@@ -1458,6 +1471,7 @@
 				57EE651F2216711000246B45 /* Photo.swift in Sources */,
 				57EE65202216711000246B45 /* DBServiceObject.swift in Sources */,
 				57EE65212216711000246B45 /* MainLMMCell.swift in Sources */,
+				573A5C1C222556AD0094A9FA /* LogService.swift in Sources */,
 				57EE65222216711000246B45 /* ApiOpenChat.swift in Sources */,
 				57EE65232216711000246B45 /* FilePath.swift in Sources */,
 				57EE65242216711000246B45 /* MainViewController.swift in Sources */,

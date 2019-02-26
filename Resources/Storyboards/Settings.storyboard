@@ -664,7 +664,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Log content" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OwT-Zr-peC">
-                                <rect key="frame" x="0.0" y="82" width="375" height="585"/>
+                                <rect key="frame" x="16" y="82" width="359" height="585"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -674,7 +674,7 @@
                         <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="OwT-Zr-peC" secondAttribute="trailing" id="Ebc-eE-swj"/>
-                            <constraint firstItem="OwT-Zr-peC" firstAttribute="leading" secondItem="d0u-ou-YiQ" secondAttribute="leading" id="FIL-BK-ruZ"/>
+                            <constraint firstItem="OwT-Zr-peC" firstAttribute="leading" secondItem="d0u-ou-YiQ" secondAttribute="leading" constant="16" id="FIL-BK-ruZ"/>
                             <constraint firstAttribute="bottom" secondItem="OwT-Zr-peC" secondAttribute="bottom" id="IAK-Ec-7LI"/>
                             <constraint firstItem="05C-Ll-fRf" firstAttribute="top" secondItem="iHv-R2-OI1" secondAttribute="top" constant="9" id="Wji-Xa-bpO"/>
                             <constraint firstItem="WDu-es-7pn" firstAttribute="centerY" secondItem="05C-Ll-fRf" secondAttribute="centerY" id="Zyf-qZ-DZw"/>
@@ -684,6 +684,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iHv-R2-OI1"/>
                     </view>
+                    <connections>
+                        <outlet property="logTextView" destination="OwT-Zr-peC" id="j6f-vp-pd8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A5Z-5w-9Li" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
