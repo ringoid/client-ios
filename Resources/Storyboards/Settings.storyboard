@@ -393,7 +393,7 @@
                                 <color key="separatorColor" red="0.80392156859999997" green="0.80784313730000001" blue="0.82745098039999998" alpha="0.13219713180000001" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="18" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="3zW-Pn-Dtw">
-                                    <rect key="frame" x="0.0" y="322" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="364" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
@@ -542,8 +542,32 @@
                                             <outlet property="emailLabel" destination="9vy-9x-3Wm" id="ZSU-2X-PG0"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="debug_cell" id="Ia3-QG-yW1" customClass="SettingsDebugCell" customModule="Ringoid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="238" width="375" height="42"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ia3-QG-yW1" id="p5Q-qU-MA8">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="41.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debug" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIU-9W-T20">
+                                                    <rect key="frame" x="18" y="10.5" width="51" height="20.5"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="OIU-9W-T20" firstAttribute="leading" secondItem="p5Q-qU-MA8" secondAttribute="leading" constant="18" id="ci7-ev-PVR"/>
+                                                <constraint firstItem="OIU-9W-T20" firstAttribute="centerY" secondItem="p5Q-qU-MA8" secondAttribute="centerY" id="q67-UY-clC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="customer_cell" rowHeight="84" id="P7t-dZ-YBu" customClass="SettingsLegalCustomerCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="238" width="375" height="84"/>
+                                        <rect key="frame" x="0.0" y="280" width="375" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P7t-dZ-YBu" id="oEf-7w-GVB">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="83.5"/>
@@ -603,11 +627,67 @@
                         <outlet property="backBtn" destination="ACC-J5-4fi" id="mb9-bk-hkE"/>
                         <outlet property="tableView" destination="LCl-E4-8o8" id="kAi-EX-hGy"/>
                         <outlet property="titleLabel" destination="MEX-ZZ-vGs" id="8B2-ID-5SV"/>
+                        <segue destination="lmv-40-rMH" kind="show" identifier="debug_vc" id="8Hf-Ah-5wP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lUQ-4Y-Td1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="525.60000000000002" y="857.72113943028489"/>
+        </scene>
+        <!--Settings Debug View Controller-->
+        <scene sceneID="Quu-tP-XVJ">
+            <objects>
+                <viewController id="lmv-40-rMH" customClass="SettingsDebugViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d0u-ou-YiQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05C-Ll-fRf">
+                                <rect key="frame" x="9" y="29" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Bih-GG-40J"/>
+                                    <constraint firstAttribute="width" constant="44" id="NWw-Ta-5xa"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="common_back"/>
+                                <connections>
+                                    <action selector="onBack" destination="Xr8-DS-6ty" eventType="touchUpInside" id="Et7-xW-Lm2"/>
+                                    <action selector="onBack" destination="i4T-DQ-OzO" eventType="touchUpInside" id="MRA-zT-O1h"/>
+                                    <action selector="onBack" destination="eFf-2P-mkZ" eventType="touchUpInside" id="QWb-ov-Ejl"/>
+                                    <action selector="onBack" destination="lmv-40-rMH" eventType="touchUpInside" id="dct-gv-xD0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debug" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDu-es-7pn">
+                                <rect key="frame" x="156" y="38.5" width="63" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Log content" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OwT-Zr-peC">
+                                <rect key="frame" x="0.0" y="82" width="375" height="585"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="OwT-Zr-peC" secondAttribute="trailing" id="Ebc-eE-swj"/>
+                            <constraint firstItem="OwT-Zr-peC" firstAttribute="leading" secondItem="d0u-ou-YiQ" secondAttribute="leading" id="FIL-BK-ruZ"/>
+                            <constraint firstAttribute="bottom" secondItem="OwT-Zr-peC" secondAttribute="bottom" id="IAK-Ec-7LI"/>
+                            <constraint firstItem="05C-Ll-fRf" firstAttribute="top" secondItem="iHv-R2-OI1" secondAttribute="top" constant="9" id="Wji-Xa-bpO"/>
+                            <constraint firstItem="WDu-es-7pn" firstAttribute="centerY" secondItem="05C-Ll-fRf" secondAttribute="centerY" id="Zyf-qZ-DZw"/>
+                            <constraint firstItem="WDu-es-7pn" firstAttribute="centerX" secondItem="d0u-ou-YiQ" secondAttribute="centerX" id="dVq-Ut-sqN"/>
+                            <constraint firstItem="OwT-Zr-peC" firstAttribute="top" secondItem="05C-Ll-fRf" secondAttribute="bottom" constant="9" id="mOE-6i-qpa"/>
+                            <constraint firstItem="05C-Ll-fRf" firstAttribute="leading" secondItem="d0u-ou-YiQ" secondAttribute="leading" constant="9" id="nkH-C4-f0k"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iHv-R2-OI1"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A5Z-5w-9Li" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1346.4000000000001" y="861.3193403298352"/>
         </scene>
     </scenes>
     <resources>

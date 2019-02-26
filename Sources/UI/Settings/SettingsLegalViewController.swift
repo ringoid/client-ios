@@ -15,6 +15,19 @@ fileprivate struct SettingsLegalOption
     let height: CGFloat
 }
 
+#if STAGE
+fileprivate enum SettingsLegalOptionType: Int
+{
+    case about = 0
+    case privacy = 1
+    case terms = 2
+    case licenses = 3
+    case email = 4
+    case debug = 5
+    case customerId = 6
+}
+
+#else
 fileprivate enum SettingsLegalOptionType: Int
 {
     case about = 0
@@ -24,6 +37,7 @@ fileprivate enum SettingsLegalOptionType: Int
     case email = 4
     case customerId = 5
 }
+#endif
 
 class SettingsLegalViewController: BaseViewController
 {
@@ -31,6 +45,17 @@ class SettingsLegalViewController: BaseViewController
     
     fileprivate var viewModel: SettingsLegalViewModel?
     
+    #if STAGE
+    fileprivate let options = [
+        SettingsLegalOption(cellIdentifier: "about_cell", height: 56.0),
+        SettingsLegalOption(cellIdentifier: "policy_cell", height: 56.0),
+        SettingsLegalOption(cellIdentifier: "terms_cell", height: 56.0),
+        SettingsLegalOption(cellIdentifier: "licenses_cell", height: 56.0),
+        SettingsLegalOption(cellIdentifier: "email_cell", height: 56.0),
+        SettingsLegalOption(cellIdentifier: "debug_cell", height: 56.0),
+        SettingsLegalOption(cellIdentifier: "customer_cell", height: 84.0),
+        ]
+    #else
     fileprivate let options = [
         SettingsLegalOption(cellIdentifier: "about_cell", height: 56.0),
         SettingsLegalOption(cellIdentifier: "policy_cell", height: 56.0),
@@ -39,6 +64,7 @@ class SettingsLegalViewController: BaseViewController
         SettingsLegalOption(cellIdentifier: "email_cell", height: 56.0),
         SettingsLegalOption(cellIdentifier: "customer_cell", height: 84.0),
         ]
+    #endif
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
@@ -132,6 +158,9 @@ extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegat
             case .terms: break
             case .licenses: break
             case .email: break
+            #if STAGE
+            case .debug: break
+            #endif
             case .customerId:
                 (cell as? SettingsLegalCustomerCell)?.customerId = self.viewModel?.customerId.value ?? ""
             }
@@ -171,6 +200,12 @@ extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegat
             self.showEmailUI()
             break
             
+        #if STAGE
+        case .debug:
+             self.performSegue(withIdentifier: SegueIds.debug, sender: nil)
+            break
+        #endif
+            
         case .customerId: break
         }
     }
@@ -181,5 +216,13 @@ extension SettingsLegalViewController: MFMailComposeViewControllerDelegate
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
     {
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SettingsLegalViewController
+{
+    struct SegueIds
+    {
+        static let debug = "debug_vc"
     }
 }

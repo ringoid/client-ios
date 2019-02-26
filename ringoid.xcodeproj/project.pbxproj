@@ -41,6 +41,10 @@
 		573A5C0C2223C8470094A9FA /* SettingsLocaleHelpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C0A2223C4520094A9FA /* SettingsLocaleHelpCell.swift */; };
 		573A5C0E222409F10094A9FA /* EmptyFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C0D222409F10094A9FA /* EmptyFeed.swift */; };
 		573A5C0F22240C160094A9FA /* EmptyFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C0D222409F10094A9FA /* EmptyFeed.swift */; };
+		573A5C14222541FF0094A9FA /* SettingsDebugCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C13222541FF0094A9FA /* SettingsDebugCell.swift */; };
+		573A5C15222541FF0094A9FA /* SettingsDebugCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C13222541FF0094A9FA /* SettingsDebugCell.swift */; };
+		573A5C172225440B0094A9FA /* SettingsDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C162225440B0094A9FA /* SettingsDebugViewController.swift */; };
+		573A5C182225440B0094A9FA /* SettingsDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C162225440B0094A9FA /* SettingsDebugViewController.swift */; };
 		57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3521E3309300038798 /* NewFacesViewController.swift */; };
 		57585D3821E330B100038798 /* NewFaces.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D3721E330B100038798 /* NewFaces.storyboard */; };
 		57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3921E3499E00038798 /* ApiPhoto.swift */; };
@@ -298,6 +302,8 @@
 		57386E4A220C7A7C0000E5D9 /* UIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIManager.swift; sourceTree = "<group>"; };
 		573A5C0A2223C4520094A9FA /* SettingsLocaleHelpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleHelpCell.swift; sourceTree = "<group>"; };
 		573A5C0D222409F10094A9FA /* EmptyFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFeed.swift; sourceTree = "<group>"; };
+		573A5C13222541FF0094A9FA /* SettingsDebugCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugCell.swift; sourceTree = "<group>"; };
+		573A5C162225440B0094A9FA /* SettingsDebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugViewController.swift; sourceTree = "<group>"; };
 		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
 		57585D3721E330B100038798 /* NewFaces.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewFaces.storyboard; sourceTree = "<group>"; };
 		57585D3921E3499E00038798 /* ApiPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPhoto.swift; sourceTree = "<group>"; };
@@ -803,6 +809,7 @@
 				57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */,
 				57EE64C0221478A600246B45 /* SettingsLegalViewController.swift */,
 				57EE64C2221478EA00246B45 /* SettingsLegalViewModel.swift */,
+				573A5C162225440B0094A9FA /* SettingsDebugViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -823,6 +830,7 @@
 				57EE64CE22153B1000246B45 /* SettingsLegalEmailCell.swift */,
 				57149D5F221AD32D00F636A4 /* SettingsLegalCustomerCell.swift */,
 				573A5C0A2223C4520094A9FA /* SettingsLocaleHelpCell.swift */,
+				573A5C13222541FF0094A9FA /* SettingsDebugCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1252,6 +1260,7 @@
 				570D04C121DF4E1F00E0DCFB /* Alerts.swift in Sources */,
 				576FC126220486A100BA5ABE /* Types.swift in Sources */,
 				57FB7BCE21E74A3700AAA29D /* NewFaceProfileViewController.swift in Sources */,
+				573A5C172225440B0094A9FA /* SettingsDebugViewController.swift in Sources */,
 				579CD7C821F9D4F700C3AEE3 /* ChatRightCell.swift in Sources */,
 				57B863F821EF5CF100B9CC70 /* ApiUnlikeAction.swift in Sources */,
 				579CD7D221FB43E200C3AEE3 /* UserProfileContainerCell.swift in Sources */,
@@ -1262,6 +1271,7 @@
 				576FC116220188AB00BA5ABE /* DeviceServiceDefault.swift in Sources */,
 				57B863C221ECB94800B9CC70 /* Message.swift in Sources */,
 				57B863ED21EF448100B9CC70 /* Action.swift in Sources */,
+				573A5C14222541FF0094A9FA /* SettingsDebugCell.swift in Sources */,
 				57B863D321EDB18600B9CC70 /* MainLMMProfileViewModel.swift in Sources */,
 				57FB7BD321E74C3E00AAA29D /* Storyboards.swift in Sources */,
 				576FC1142201876A00BA5ABE /* DeviceService.swift in Sources */,
@@ -1374,6 +1384,7 @@
 				57EE64D92216711000246B45 /* Alerts.swift in Sources */,
 				57EE64DA2216711000246B45 /* Types.swift in Sources */,
 				57EE64DB2216711000246B45 /* NewFaceProfileViewController.swift in Sources */,
+				573A5C182225440B0094A9FA /* SettingsDebugViewController.swift in Sources */,
 				57EE64DC2216711000246B45 /* ChatRightCell.swift in Sources */,
 				57EE64DD2216711000246B45 /* ApiUnlikeAction.swift in Sources */,
 				57149D63221C493400F636A4 /* ApiServiceConfigStage.swift in Sources */,
@@ -1384,6 +1395,7 @@
 				57EE64E22216711000246B45 /* UploaderService.swift in Sources */,
 				57EE64E32216711000246B45 /* DeviceServiceDefault.swift in Sources */,
 				57EE64E42216711000246B45 /* Message.swift in Sources */,
+				573A5C15222541FF0094A9FA /* SettingsDebugCell.swift in Sources */,
 				57EE64E52216711000246B45 /* Action.swift in Sources */,
 				57EE64E62216711000246B45 /* MainLMMProfileViewModel.swift in Sources */,
 				57EE64E72216711000246B45 /* Storyboards.swift in Sources */,
