@@ -29,7 +29,6 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var addBtn: UIButton!
     @IBOutlet fileprivate weak var containerTableView: UITableView!
-    @IBOutlet fileprivate weak var containerTableViewHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -39,7 +38,6 @@ class UserProfilePhotosViewController: BaseViewController
         
         let height = UIScreen.main.bounds.width * AppConfig.photoRatio
         self.containerTableView.rowHeight = height
-        self.containerTableViewHeightConstraint.constant = height
         self.containerTableView.reloadData()
         
         self.setupBindings()
