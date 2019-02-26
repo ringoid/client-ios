@@ -68,6 +68,10 @@ class NewFacesViewController: BaseViewController
     // MARK: - Actions
     @objc func onReload()
     {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.tableView.refreshControl?.endRefreshing()
+        }
+        
         if self.viewModel?.isPhotosAdded == false {
             self.showAddPhotosOptions()
             
@@ -75,7 +79,6 @@ class NewFacesViewController: BaseViewController
         }
         
         self.toggleActivity(.fetching)
-        self.tableView.refreshControl?.endRefreshing()
         
         self.lastFetchCount = -1
         
@@ -214,9 +217,7 @@ class NewFacesViewController: BaseViewController
         }))
         alertVC.addAction(UIAlertAction(title: "NEW_FACES_NO_PHOTO_ALERT_CANCEL".localized(), style: .cancel, handler: nil))
         
-        self.present(alertVC, animated: true, completion: { [weak self] in
-            self?.tableView.refreshControl?.endRefreshing()
-        })
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     fileprivate func toggleActivity(_ state: NewFacesFeedActivityState)

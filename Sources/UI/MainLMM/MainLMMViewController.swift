@@ -142,7 +142,9 @@ class MainLMMViewController: BaseViewController
     
     @objc fileprivate func reload()
     {
-        self.tableView.refreshControl?.endRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.tableView.refreshControl?.endRefreshing()
+        }
         
         if self.viewModel?.isPhotosAdded == false {
             self.showAddPhotosOptions()
@@ -366,9 +368,7 @@ class MainLMMViewController: BaseViewController
         }))
         alertVC.addAction(UIAlertAction(title: "NEW_FACES_NO_PHOTO_ALERT_CANCEL".localized(), style: .cancel, handler: nil))
         
-        self.present(alertVC, animated: true, completion: { [weak self] in
-            self?.tableView.refreshControl?.endRefreshing()
-        })
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     fileprivate func toggleActivity(_ state: LMMFeedActivityState)
