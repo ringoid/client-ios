@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import Nuke
 
 enum LMMType: String
 {
@@ -51,6 +52,7 @@ class MainLMMViewController: BaseViewController
     fileprivate var lastFeedIds: [String] = []
     fileprivate var lastUpdateFeedType: LMMType = .likesYou
     fileprivate var currentActivityState: LMMFeedActivityState = .initial
+    fileprivate let preheater = ImagePreheater()
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
@@ -435,7 +437,7 @@ class MainLMMViewController: BaseViewController
     }
 }
 
-extension MainLMMViewController: UITableViewDataSource
+extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
 {
     func numberOfSections(in tableView: UITableView) -> Int
     {
@@ -493,6 +495,18 @@ extension MainLMMViewController: UITableViewDataSource
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
+    {
+        if let profiles = self.profiles()?.value {
+            var distance = profiles.count - indexPath.row
+            distance = distance < 0 ? 0 : distance
+            distance = distance > 4 ? 4 : distance
+            
+            let urls = profiles[indexPath.row..<(indexPath.row + distance)].compactMap({ $0.orderedPhotos().first?.filepath().url() })
+            self.preheater.startPreheating(with: urls)
+        }
     }
 }
 

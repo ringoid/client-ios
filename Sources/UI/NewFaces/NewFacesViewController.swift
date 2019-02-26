@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import Nuke
 
 fileprivate enum NewFacesFeedActivityState
 {
@@ -26,6 +27,7 @@ class NewFacesViewController: BaseViewController
     fileprivate var lastFeedIds: [String] = []
     fileprivate var lastFetchCount: Int = -1
     fileprivate var currentActivityState: NewFacesFeedActivityState = .initial
+    fileprivate let preheater = ImagePreheater()
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
@@ -125,7 +127,7 @@ class NewFacesViewController: BaseViewController
     fileprivate func setupBindings()
     {
         self.viewModel = NewFacesViewModel(self.input)
-        self.viewModel?.profiles.asObservable().subscribe(onNext: { [weak self] _ in
+        self.viewModel?.profiles.asObservable().subscribe(onNext: { [weak self] updatedProfiles in
             guard let `self` = self else { return }
             
             self.updateFeed()
@@ -316,6 +318,15 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
+        if let profiles = self.viewModel?.profiles.value {
+            var distance = profiles.count - indexPath.row
+            distance = distance < 0 ? 0 : distance
+            distance = distance > 4 ? 4 : distance
+            
+            let urls = profiles[indexPath.row..<(indexPath.row + distance)].compactMap({ $0.orderedPhotos().first?.filepath().url() })
+            self.preheater.startPreheating(with: urls)
+        }
+        
         print("index: \(indexPath.row) total: \(self.viewModel!.profiles.value.count)")
         guard let isFetching = self.viewModel?.isFetching, !isFetching else { return }
         guard

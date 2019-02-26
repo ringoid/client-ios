@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import Nuke
 
 class UserProfilePhotosViewController: BaseViewController
 {
@@ -21,6 +22,7 @@ class UserProfilePhotosViewController: BaseViewController
     fileprivate var photosVCs: [UIViewController] = []
     fileprivate var currentIndex: Int = 0
     fileprivate var lastClientPhotoId: String? = nil
+    fileprivate let preheater = ImagePreheater()
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedView: UIView!
@@ -49,6 +51,18 @@ class UserProfilePhotosViewController: BaseViewController
         super.viewDidAppear(animated)
         
         self.pickPhotoIfNeeded()
+        
+        guard let photos = self.viewModel?.photos.value else { return }
+        
+        self.preheater.startPreheating(with: photos.map({ $0.filepath().url() }))
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+
+        self.preheater.stopPreheating()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
