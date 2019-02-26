@@ -99,6 +99,7 @@ class UserProfileManager
     
     fileprivate func setupBindings()
     {
+        
         self.storage.object(self.photoKey).subscribe(onNext: { [weak self] obj in
             self?.lastPhotoId.accept(String.create(obj))
             self?.setupLastPhotoBinding()
@@ -144,9 +145,12 @@ class UserProfileManager
 
                 if  remoteId == localId {
                     try? localPhoto.realm?.write {
+                        self.fileService.rm(localPhoto.filepath())
+                        
                         localPhoto.likes = remoteApiPhoto.likes
                         localPhoto.isBlocked = remoteApiPhoto.isBlocked
                         localPhoto.id = remoteApiPhoto.id
+                        localPhoto.setFilepath(FilePath(filename: remoteApiPhoto.url, type: .url))
                     }
                 }
             }

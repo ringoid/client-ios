@@ -159,7 +159,7 @@ class ActionsManager
     func sendQueue() -> Observable<Void>
     {
         guard self.sendingActions.isEmpty else { return .error(createError("Sending actions already in progress", type: .hidden)) }
-        guard !self.queue.isEmpty else { return .error(createError("Sending actions already in progress", type: .hidden)) }
+        guard !self.queue.isEmpty else { return .just(()) }
         
         let enqued = self.queue
         self.queue.removeFirst(enqued.count)
