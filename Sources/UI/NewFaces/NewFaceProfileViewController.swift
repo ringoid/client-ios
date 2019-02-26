@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Nuke
 
 class NewFaceProfileViewController: UIViewController
 {
@@ -28,6 +29,7 @@ class NewFaceProfileViewController: UIViewController
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [NewFacePhotoViewController] = []
     fileprivate var currentIndex: Int = 0
+    fileprivate let preheater = ImagePreheater()
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
@@ -181,7 +183,12 @@ class NewFaceProfileViewController: UIViewController
 
 extension NewFaceProfileViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource
 {
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {}
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController])
+    {
+        guard let urls = self.viewModel?.input.profile.orderedPhotos().map({ $0.filepath().url() }) else { return }
+        
+        self.preheater.startPreheating(with: urls)
+    }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController?
     {
