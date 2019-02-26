@@ -25,6 +25,7 @@ class ChatManager
         let message = Message()
         message.text = text
         message.wasYouSender = true
+        message.orderPosition = profile.messages.sorted(byKeyPath: "orderPosition").last?.orderPosition ?? 0
 
         profile.write { obj in
             let lmmProfile = obj as? LMMProfile

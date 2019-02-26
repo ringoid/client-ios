@@ -29,7 +29,7 @@ class NewFaceProfileViewModel
         self.input.actionsManager.add(
             [.view(viewCount: 1, viewTimeSec: 1), .like(likeCount: 1)],
             profile: self.input.profile.actionInstance(),
-            photo: self.input.profile.photos[photoIndex].actionInstance(),
+            photo: self.input.profile.orderedPhotos()[photoIndex].actionInstance(),
             source: .newFaces)
     }
     
@@ -38,7 +38,7 @@ class NewFaceProfileViewModel
         self.input.actionsManager.blockActionProtected(
             reason,
             profile: self.input.profile.actionInstance(),
-            photo: self.input.profile.photos[photoIndex].actionInstance(),
+            photo: self.input.profile.orderedPhotos()[photoIndex].actionInstance(),
             source: .newFaces)
     }
 }

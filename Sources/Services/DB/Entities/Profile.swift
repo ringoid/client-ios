@@ -12,4 +12,9 @@ class Profile: DBServiceObject
 {
     @objc dynamic var id: String!
     let photos: List<Photo> = List<Photo>()
+    
+    func orderedPhotos() -> [Photo]
+    {
+        return Array(self.photos.sorted(byKeyPath: "orderPosition"))
+    }
 }

@@ -43,11 +43,15 @@ class NewFacesManager
     {
         return self.apiService.getNewFaces(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] profiles -> Observable<Void> in
             
+            var localOrderPosition: Int = 0
+            
             let localProfiles = self!.filterExisting(profiles).map({ profile -> NewFaceProfile in
                 let localPhotos = profile.photos.map({ photo -> Photo in
                     let localPhoto = Photo()
                     localPhoto.id = photo.id
                     localPhoto.setFilepath(FilePath(filename: photo.url, type: .url))
+                    localPhoto.orderPosition = localOrderPosition
+                    localOrderPosition += 1
                     
                     return localPhoto
                 })

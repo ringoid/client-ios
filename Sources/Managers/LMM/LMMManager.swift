@@ -130,12 +130,16 @@ class LMMManager
 
 fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMMProfile]
 {
+    var localOrderPosition: Int = 0
+    
     return from.map({ profile -> LMMProfile in
         let localPhotos = profile.photos.map({ photo -> Photo in
             let localPhoto = Photo()
             localPhoto.id = photo.id
             localPhoto.path = photo.url
             localPhoto.pathType = FileType.url.rawValue
+            localPhoto.orderPosition = localOrderPosition
+            localOrderPosition += 1
             
             return localPhoto
         })
@@ -144,6 +148,8 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
             let localMessage = Message()
             localMessage.wasYouSender = message.wasYouSender
             localMessage.text = message.text
+            localMessage.orderPosition = localOrderPosition
+            localOrderPosition += 1
             
             return localMessage
         })

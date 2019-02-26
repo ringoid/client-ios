@@ -69,7 +69,7 @@ class MainLMMProfileViewController: UIViewController
         
         let input = NewFaceProfileVMInput(profile: self.input.profile.actionInstance() , actionsManager: self.input.actionsManager, sourceType: self.input.feedType.sourceType())
         self.pageControl.numberOfPages = self.input.profile.photos.count
-        self.photosVCs = self.input.profile.photos.map({ photo in
+        self.photosVCs = self.input.profile.orderedPhotos().map({ photo in
             let vc = NewFacePhotoViewController.create()
             vc.photo = photo
             vc.input = input
@@ -118,14 +118,14 @@ class MainLMMProfileViewController: UIViewController
         
         guard !profile.isInvalidated else { return }
         
-        self.onChatShow?(profile, profile.photos[self.currentIndex.value], weakSelf)
+        self.onChatShow?(profile, profile.orderedPhotos()[self.currentIndex.value], weakSelf)
     }
     
     @IBAction func onBlock()
     {
         weak var weakSelf = self
         let profile = self.input.profile
-        self.onChatHide?(profile, profile.photos[self.currentIndex.value], weakSelf)
+        self.onChatHide?(profile, profile.orderedPhotos()[self.currentIndex.value], weakSelf)
         self.showBlockOptions()
     }
     

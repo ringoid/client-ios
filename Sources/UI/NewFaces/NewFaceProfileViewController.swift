@@ -54,7 +54,7 @@ class NewFaceProfileViewController: UIViewController
         guard !self.input.profile.isInvalidated else { return }
         
         self.pageControl.numberOfPages = self.input.profile.photos.count
-        self.photosVCs = self.input.profile.photos.map({ photo in
+        self.photosVCs = self.input.profile.orderedPhotos().map({ photo in
             let vc = NewFacePhotoViewController.create()
             vc.input = self.input
             vc.photo = photo
