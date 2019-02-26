@@ -151,6 +151,7 @@ class UserProfileManager
                         localPhoto.isBlocked = remoteApiPhoto.isBlocked
                         localPhoto.id = remoteApiPhoto.id
                         localPhoto.setFilepath(FilePath(filename: remoteApiPhoto.url, type: .url))
+                        self.db.updateOrder(localPhoto)
                     }
                 }
             }

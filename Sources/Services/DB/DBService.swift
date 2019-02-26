@@ -130,6 +130,19 @@ class DBService
         })
     }
     
+    func updateOrder(_ object: DBServiceObject)
+    {
+        if self.realm.isInWriteTransaction {
+            object.orderPosition = self.currentOrderPosition
+            self.currentOrderPosition += 1
+        } else {
+            try? self.realm.write {
+                object.orderPosition = self.currentOrderPosition
+                self.currentOrderPosition += 1
+            }
+        }
+    }
+    
     func delete(_ objects: [Object]) -> Observable<Void>
     {
         return Observable<Void>.create({ [weak self] observer -> Disposable in
