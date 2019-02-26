@@ -106,7 +106,7 @@ class UserProfileManager
         }).disposed(by: self.disposeBag)
         
         self.photos.subscribe(onNext:{ [weak self] photos in
-            guard photos.count == 0 else { return }
+            guard photos.filter({ !$0.isBlocked }).count == 0 else { return }
             guard let `self` = self else { return }
             
             self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
