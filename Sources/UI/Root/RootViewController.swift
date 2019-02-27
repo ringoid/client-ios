@@ -33,6 +33,7 @@ class RootViewController: BaseViewController {
         
         self.appManager = (UIApplication.shared.delegate as! AppDelegate).appManager
         self.subscribeToAuthState()
+        self.subscribeToNoConnectionState()
     }
 
     override func updateTheme()
@@ -90,6 +91,14 @@ class RootViewController: BaseViewController {
         self.containerView.embed(vc, to: self)
     }
     
+    fileprivate func showNoConnection()
+    {
+        let storyboard = Storyboards.root()
+        let vc = storyboard.instantiateViewController(withIdentifier: "no_connection_vc")
+        
+        self.present(vc, animated: false, completion: nil)
+    }
+    
     fileprivate func subscribeToAuthState()
     {
         self.appManager.apiService.isAuthorized.asObservable().subscribe ({ [weak self] event in
@@ -103,5 +112,12 @@ class RootViewController: BaseViewController {
                 }
             }
         }).disposed(by: disposeBag)
+    }
+    
+    fileprivate func subscribeToNoConnectionState()
+    {
+        self.appManager.errorsManager.disconnection.asObservable().subscribe(onNext: { [weak self] _ in
+            self?.showNoConnection()
+        }).disposed(by: self.disposeBag)
     }
 }

@@ -12,6 +12,11 @@ class Storyboards
 {
     private init() {}
     
+    static func root() -> UIStoryboard
+    {
+        return UIStoryboard(name: "Root", bundle: nil)
+    }
+    
     static func auth() -> UIStoryboard
     {
         return UIStoryboard(name: "Auth", bundle: nil)

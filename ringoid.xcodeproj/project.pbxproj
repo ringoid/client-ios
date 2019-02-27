@@ -47,6 +47,8 @@
 		573A5C182225440B0094A9FA /* SettingsDebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C162225440B0094A9FA /* SettingsDebugViewController.swift */; };
 		573A5C1B222556AD0094A9FA /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C1A222556AD0094A9FA /* LogService.swift */; };
 		573A5C1C222556AD0094A9FA /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C1A222556AD0094A9FA /* LogService.swift */; };
+		573A5C202226AD820094A9FA /* NoConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C1F2226AD810094A9FA /* NoConnectionViewController.swift */; };
+		573A5C212226AD820094A9FA /* NoConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C1F2226AD810094A9FA /* NoConnectionViewController.swift */; };
 		57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3521E3309300038798 /* NewFacesViewController.swift */; };
 		57585D3821E330B100038798 /* NewFaces.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D3721E330B100038798 /* NewFaces.storyboard */; };
 		57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3921E3499E00038798 /* ApiPhoto.swift */; };
@@ -307,6 +309,7 @@
 		573A5C13222541FF0094A9FA /* SettingsDebugCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugCell.swift; sourceTree = "<group>"; };
 		573A5C162225440B0094A9FA /* SettingsDebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugViewController.swift; sourceTree = "<group>"; };
 		573A5C1A222556AD0094A9FA /* LogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
+		573A5C1F2226AD810094A9FA /* NoConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoConnectionViewController.swift; sourceTree = "<group>"; };
 		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
 		57585D3721E330B100038798 /* NewFaces.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewFaces.storyboard; sourceTree = "<group>"; };
 		57585D3921E3499E00038798 /* ApiPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPhoto.swift; sourceTree = "<group>"; };
@@ -597,6 +600,7 @@
 			isa = PBXGroup;
 			children = (
 				570D04AC21DDD2A900E0DCFB /* RootViewController.swift */,
+				573A5C1F2226AD810094A9FA /* NoConnectionViewController.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -1332,6 +1336,7 @@
 				57B863F621EF5C4900B9CC70 /* ApiBlockAction.swift in Sources */,
 				57585D6421E4C73600038798 /* NewFacesViewModel.swift in Sources */,
 				573A5C0E222409F10094A9FA /* EmptyFeed.swift in Sources */,
+				573A5C202226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
 				57585D3C21E34AFC00038798 /* ApiProfile.swift in Sources */,
 				579CD7B321F890A300C3AEE3 /* SettingsViewModel.swift in Sources */,
 				57EE64CF22153B1000246B45 /* SettingsLegalEmailCell.swift in Sources */,
@@ -1457,6 +1462,7 @@
 				57EE65112216711000246B45 /* FileServiceDefault.swift in Sources */,
 				57EE65122216711000246B45 /* SettingsLegalViewController.swift in Sources */,
 				573A5C0F22240C160094A9FA /* EmptyFeed.swift in Sources */,
+				573A5C212226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
 				57EE65132216711000246B45 /* ApiBlockAction.swift in Sources */,
 				57EE65142216711000246B45 /* NewFacesViewModel.swift in Sources */,
 				57EE65152216711000246B45 /* ApiProfile.swift in Sources */,

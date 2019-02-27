@@ -157,7 +157,7 @@ class MainLMMContainerViewController: BaseViewController
     
     fileprivate func updateBtnSizes()
     {
-        let width = ("lmm_tab_matches/".localized() as NSString).boundingRect(
+        let width = ("lmm_tab_matches".localized() as NSString).boundingRect(
             with: CGSize(width: 300.0, height: 200.0),
             options: .usesLineFragmentOrigin,
             attributes: [.font: unselectedFont],

@@ -249,11 +249,11 @@ class ApiServiceDefault: ApiService
         
         return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
-            ])
+            ]).json()
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
             })
-            .json().flatMap({ [weak self] obj -> Observable<[String: Any]> in
+            .flatMap({ [weak self] obj -> Observable<[String: Any]> in
                 if Date().timeIntervalSince(timestamp) > 1.0 {
                     SentryService.shared.send(.responseGeneralDelay)
                 }
@@ -289,11 +289,11 @@ class ApiServiceDefault: ApiService
         
         return RxAlamofire.request(.get, url, parameters: params, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
-            ])
+            ]).json()
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
             })
-            .json().flatMap({ [weak self] obj -> Observable<[String: Any]> in
+            .flatMap({ [weak self] obj -> Observable<[String: Any]> in
                 if Date().timeIntervalSince(timestamp) > 1.0 {
                     SentryService.shared.send(.responseGeneralDelay)
                 }

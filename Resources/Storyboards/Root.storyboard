@@ -40,5 +40,66 @@
             </objects>
             <point key="canvasLocation" x="103" y="65"/>
         </scene>
+        <!--No Connection View Controller-->
+        <scene sceneID="dlw-Zr-GuS">
+            <objects>
+                <viewController storyboardIdentifier="no_connection_vc" id="vri-T5-8Xn" customClass="NoConnectionViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VVt-NC-YF7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="root_no_connection_icon" translatesAutoresizingMaskIntoConstraints="NO" id="UMd-Cd-7ni">
+                                <rect key="frame" x="161" y="267" width="53" height="53"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No network connection" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpQ-QI-3jY">
+                                <rect key="frame" x="101.5" y="350" width="172.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <color key="textColor" red="0.53725490196078429" green="0.53725490196078429" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4b-Hj-bQz">
+                                <rect key="frame" x="16" y="604" width="343" height="45"/>
+                                <color key="backgroundColor" red="0.26274509800000001" green="0.54901960780000003" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="z0l-aY-EhG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <state key="normal" title="Retry">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onRetry" destination="vri-T5-8Xn" eventType="touchUpInside" id="4AP-cP-trJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wpQ-QI-3jY" firstAttribute="top" secondItem="UMd-Cd-7ni" secondAttribute="bottom" constant="30" id="AN8-TB-m94"/>
+                            <constraint firstItem="UMd-Cd-7ni" firstAttribute="centerY" secondItem="VVt-NC-YF7" secondAttribute="centerY" constant="-40" id="DpY-R5-72G"/>
+                            <constraint firstItem="VCX-GS-Ft5" firstAttribute="bottom" secondItem="t4b-Hj-bQz" secondAttribute="bottom" constant="18" id="Vps-Gx-87j"/>
+                            <constraint firstAttribute="trailing" secondItem="t4b-Hj-bQz" secondAttribute="trailing" constant="16" id="ZYe-kX-FwJ"/>
+                            <constraint firstItem="wpQ-QI-3jY" firstAttribute="centerX" secondItem="VVt-NC-YF7" secondAttribute="centerX" id="fA2-Ct-Cf9"/>
+                            <constraint firstItem="t4b-Hj-bQz" firstAttribute="leading" secondItem="VVt-NC-YF7" secondAttribute="leading" constant="16" id="kgk-vc-hg8"/>
+                            <constraint firstItem="UMd-Cd-7ni" firstAttribute="centerX" secondItem="VVt-NC-YF7" secondAttribute="centerX" id="xz4-Qp-URO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VCX-GS-Ft5"/>
+                    </view>
+                    <connections>
+                        <outlet property="noConnectionLabel" destination="wpQ-QI-3jY" id="irh-Ug-9j4"/>
+                        <outlet property="retryBtn" destination="t4b-Hj-bQz" id="NgE-pz-nZQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TkG-RK-ZK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="879" y="64"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="root_no_connection_icon" width="53" height="53"/>
+    </resources>
 </document>
