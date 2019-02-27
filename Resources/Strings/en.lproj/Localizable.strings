@@ -26,6 +26,8 @@
 "lmm_tab_matches" = "Matches";
 "lmm_tab_messenger" = "Chats";
 
+"settings_language_help" = "If you want to help the community and localise Ringoid to your native language, please email support@ringoid.com";
+
 "COMMON_ABOUT" = "About";
 "COMMON_OK" = "OK";
 
@@ -53,7 +55,6 @@
 "SETTINGS_DELETE_ACCOUNT" = "Delete Account";
 "SETTINGS_DELETE_ACCOUNT_ALERT_TITLE" = "Delete Account?";
 "SETTINGS_DELETE_ACCOUNT_ALERT_MESSAGE" = "There is no undo.";
-"SETTINGS_LOCALE_HELP_LOCALIZE" = "If you want to help the community and localise Ringoid to your native language, please email support@ringoid.com";
 
 "SETTINGS_LEGAL_POLICY" = "Privacy Policy";
 "SETTINGS_LEGAL_TERMS" = "Terms of Service";

@@ -19,6 +19,6 @@ class SettingsLocaleHelpCell: BaseTableViewCell
     
     override func updateLocale()
     {
-        self.descriptionLabel.attributedText = NSAttributedString(string: "SETTINGS_LOCALE_HELP_LOCALIZE".localized())
+        self.descriptionLabel.attributedText = NSAttributedString(string: "settings_language_help".localized())
     }
 }
