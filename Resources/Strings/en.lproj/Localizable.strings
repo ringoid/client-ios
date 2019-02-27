@@ -17,12 +17,14 @@
 "common_sex_male" = "Male";
 "common_sex_female" = "Female";
 
-"lmm_tab_likes" = "Likes You";
-"lmm_tab_matches" = "Matches";
-"lmm_tab_messenger" = "Chats";
+"debug_email_support_button_label" = "Email support@ringoid.com";
 
 "error_screen_no_network_connection" = "No Internet connection";
 "error_screen_no_network_connection_button_label" = "Retry";
+
+"lmm_tab_likes" = "Likes You";
+"lmm_tab_matches" = "Matches";
+"lmm_tab_messenger" = "Chats";
 
 "COMMON_ABOUT" = "About";
 "COMMON_OK" = "OK";

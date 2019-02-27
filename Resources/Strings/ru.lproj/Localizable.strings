@@ -16,12 +16,14 @@
 "common_sex_male" = "Мужчина";
 "common_sex_female" = "Женщина";
 
-"lmm_tab_likes" = "Ты нравишься";
-"lmm_tab_matches" = "Взаимно";
-"lmm_tab_messenger" = "Чаты";
+"debug_email_support_button_label" = "Написать в support@ringoid.com";
 
 "error_screen_no_network_connection" = "Нет интернета";
 "error_screen_no_network_connection_button_label" = "Повторить попытку";
+
+"lmm_tab_likes" = "Ты нравишься";
+"lmm_tab_matches" = "Взаимно";
+"lmm_tab_messenger" = "Чаты";
 
 "BLOCK_REASON_INAPPROPRIATE" = "Inappropriate content";
 "BLOCK_REASON_STOLEN" = "Stolen photos, Copyright Infringment";
