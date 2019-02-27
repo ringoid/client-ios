@@ -6,9 +6,13 @@
   Copyright © 2019 Ringoid. All rights reserved.
 */
 
-"COMMON_CANCEL" = "Cancel";
-"COMMON_DELETE" = "Delete";
-"COMMON_CLOSE" = "Close";
+
+"button_add_photo" = "Add photo";
+"button_cancel" = "Cancel";
+"button_close" = "Close";
+"button_delete" = "Delete";
+"button_later" = "Not now";
+
 "COMMON_ABOUT" = "About";
 "COMMON_OK" = "OK";
 
@@ -55,8 +59,6 @@
 "LMM_NO_CHATS_YOU" = "No chats yet";
 
 "NEW_FACES_NO_PHOTO_ALERT_MESSAGE" = "Add your photo to see who likes you, like and message others.";
-"NEW_FACES_NO_PHOTO_ALERT_CANCEL" = "Not now";
-"NEW_FACES_NO_PHOTO_ALERT_ADD" = "Add photo";
 "NEW_FACES_NO_NEW_ITEMS" = "No one new around";
 
 "CHAT_MESSAGE_SENT" = "Sent";

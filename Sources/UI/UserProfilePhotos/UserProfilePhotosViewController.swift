@@ -195,7 +195,7 @@ class UserProfilePhotosViewController: BaseViewController
             
             self.viewModel?.delete(photo)
         })))
-        alertVC.addAction(UIAlertAction(title: "COMMON_CANCEL".localized(), style: .cancel, handler: { _ in
+        alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
             self.showControls()
         }))
         
@@ -214,7 +214,7 @@ class UserProfilePhotosViewController: BaseViewController
             self?.viewModel?.moveToSearch()
         })))
         
-        alertVC.addAction(UIAlertAction(title: "COMMON_CLOSE".localized(), style: .cancel, handler: { [weak self] _ in
+        alertVC.addAction(UIAlertAction(title: "button_close".localized(), style: .cancel, handler: { [weak self] _ in
             self?.viewModel?.isFirstTime.accept(false)
         }))
         

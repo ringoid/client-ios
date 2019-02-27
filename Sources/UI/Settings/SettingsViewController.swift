@@ -124,10 +124,10 @@ class SettingsViewController: BaseViewController
             message: "SETTINGS_DELETE_ACCOUNT_ALERT_MESSAGE".localized(),
             preferredStyle: .alert
         )
-        alertVC.addAction(UIAlertAction(title: "COMMON_DELETE".localized(), style: .default, handler: ({ _ in
+        alertVC.addAction(UIAlertAction(title: "button_delete".localized(), style: .default, handler: ({ _ in
             self.viewModel?.logout()
         })))
-        alertVC.addAction(UIAlertAction(title: "COMMON_CANCEL".localized(), style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
     }

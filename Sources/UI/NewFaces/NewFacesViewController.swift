@@ -214,10 +214,10 @@ class NewFacesViewController: BaseViewController
             title: nil,
             message: "NEW_FACES_NO_PHOTO_ALERT_MESSAGE".localized(),
             preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "NEW_FACES_NO_PHOTO_ALERT_ADD".localized(), style: .default, handler: { [weak self] _ in
+        alertVC.addAction(UIAlertAction(title: "button_add_photo".localized(), style: .default, handler: { [weak self] _ in
             self?.viewModel?.moveToProfile()
         }))
-        alertVC.addAction(UIAlertAction(title: "NEW_FACES_NO_PHOTO_ALERT_CANCEL".localized(), style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "button_later".localized(), style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
     }

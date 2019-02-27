@@ -6,9 +6,11 @@
   Copyright © 2019 Ringoid. All rights reserved.
 */
 
-"CANCEL_OPTION" = "Отмена";
-"DELETE_OPTION" = "Удалить";
-"CLOSE_OPTION" = "Закрыть";
+"button_add_photo" = "Добавить фото";
+"button_cancel" = "Отмена";
+"button_close" = "Закрыть";
+"button_delete" = "Удалить";
+"button_later" = "Не сейчас";
 
 "BLOCK_REASON_INAPPROPRIATE" = "Inappropriate content";
 "BLOCK_REASON_STOLEN" = "Stolen photos, Copyright Infringment";
@@ -37,8 +39,6 @@
 "LMM_HEADER_MATCHES_OPTION" = "Совпадения";
 
 "NEW_FACES_NO_PHOTO_ALERT_MESSAGE" = "Add your photo to see who likes you, like and message others.";
-"NEW_FACES_NO_PHOTO_ALERT_CANCEL" = "Не сейчас";
-"NEW_FACES_NO_PHOTO_ALERT_ADD" = "Добавить фото";
 "NEW_FACES_NO_NEW_ITEMS" = "No one new around";
 
 "CHAT_MESSAGE_SENT" = "Отправлено";

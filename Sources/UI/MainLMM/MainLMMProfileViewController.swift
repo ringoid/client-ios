@@ -177,7 +177,7 @@ class MainLMMProfileViewController: UIViewController
         alertVC.addAction(UIAlertAction(title: "BLOCK_REPORT_OPTION".localized(), style: .default, handler: { _ in
             self.showBlockReasonOptions()
         }))
-        alertVC.addAction(UIAlertAction(title: "COMMON_CANCEL".localized(), style: .cancel, handler: { _ in
+        alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
             self.onBlockOptionsWillHide?()
             UIManager.shared.blockModeEnabled.accept(false)
         }))
@@ -198,7 +198,7 @@ class MainLMMProfileViewController: UIViewController
             })
         }
         
-        alertVC.addAction(UIAlertAction(title: "COMMON_CANCEL".localized(), style: .cancel, handler: { _ in
+        alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
             self.onBlockOptionsWillHide?()
             UIManager.shared.blockModeEnabled.accept(false)
         }))
