@@ -21,6 +21,9 @@
 "lmm_tab_matches" = "Matches";
 "lmm_tab_messenger" = "Chats";
 
+"error_screen_no_network_connection" = "No Internet connection";
+"error_screen_no_network_connection_button_label" = "Retry";
+
 "COMMON_ABOUT" = "About";
 "COMMON_OK" = "OK";
 

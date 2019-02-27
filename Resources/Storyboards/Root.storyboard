@@ -57,7 +57,7 @@
                                 <color key="textColor" red="0.53725490196078429" green="0.53725490196078429" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4b-Hj-bQz">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4b-Hj-bQz">
                                 <rect key="frame" x="16" y="604" width="343" height="45"/>
                                 <color key="backgroundColor" red="0.26274509800000001" green="0.54901960780000003" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -90,6 +90,7 @@
                         <viewLayoutGuide key="safeArea" id="VCX-GS-Ft5"/>
                     </view>
                     <connections>
+                        <outlet property="iconImageView" destination="UMd-Cd-7ni" id="76v-C6-evT"/>
                         <outlet property="noConnectionLabel" destination="wpQ-QI-3jY" id="irh-Ug-9j4"/>
                         <outlet property="retryBtn" destination="t4b-Hj-bQz" id="NgE-pz-nZQ"/>
                     </connections>

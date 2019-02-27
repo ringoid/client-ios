@@ -20,6 +20,8 @@
 "lmm_tab_matches" = "Взаимно";
 "lmm_tab_messenger" = "Чаты";
 
+"error_screen_no_network_connection" = "Нет интернета";
+"error_screen_no_network_connection_button_label" = "Повторить попытку";
 
 "BLOCK_REASON_INAPPROPRIATE" = "Inappropriate content";
 "BLOCK_REASON_STOLEN" = "Stolen photos, Copyright Infringment";
