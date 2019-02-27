@@ -16,6 +16,10 @@
 "common_sex_male" = "Мужчина";
 "common_sex_female" = "Женщина";
 
+"lmm_tab_likes" = "Ты нравишься";
+"lmm_tab_matches" = "Взаимно";
+"lmm_tab_messenger" = "Чаты";
+
 
 "BLOCK_REASON_INAPPROPRIATE" = "Inappropriate content";
 "BLOCK_REASON_STOLEN" = "Stolen photos, Copyright Infringment";
@@ -36,10 +40,6 @@
 "SETTINGS_DELETE_ACCOUNT" = "Удалить Аккаунт";
 "SETTINGS_DELETE_ACCOUNT_ALERT_TITLE" = "Удалить Аккаунт?";
 "SETTINGS_DELETE_ACCOUNT_ALERT_MESSAGE" = "There is no undo.";
-
-"LMM_HEADER_CHATS_OPTION" = "Чаты";
-"LMM_HEADER_LIKES_OPTION" = "Вы Нравитесь";
-"LMM_HEADER_MATCHES_OPTION" = "Совпадения";
 
 "NEW_FACES_NO_PHOTO_ALERT_MESSAGE" = "Add your photo to see who likes you, like and message others.";
 "NEW_FACES_NO_NEW_ITEMS" = "No one new around";

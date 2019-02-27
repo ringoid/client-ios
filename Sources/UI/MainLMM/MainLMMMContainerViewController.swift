@@ -50,9 +50,9 @@ class MainLMMContainerViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.chatBtn.setTitle("LMM_HEADER_CHATS_OPTION".localized(), for: .normal)
-        self.likeYouBtn.setTitle("LMM_HEADER_LIKES_OPTION".localized(), for: .normal)
-        self.matchesBtn.setTitle("LMM_HEADER_MATCHES_OPTION".localized(), for: .normal)
+        self.chatBtn.setTitle("lmm_tab_messenger".localized(), for: .normal)
+        self.likeYouBtn.setTitle("lmm_tab_likes".localized(), for: .normal)
+        self.matchesBtn.setTitle("lmm_tab_matches".localized(), for: .normal)
         
         self.updateBtnSizes()
     }
@@ -115,7 +115,7 @@ class MainLMMContainerViewController: BaseViewController
             let alpha: CGFloat = state ? 0.0 : 1.0
             self?.likesYouIndicatorView.alpha = alpha
             self?.matchesIndicatorView.alpha = alpha
-            self?.chatIndicatorView.alpha = alpha            
+            self?.chatIndicatorView.alpha = alpha
         }).disposed(by: self.disposeBag)
     }
     
@@ -157,7 +157,7 @@ class MainLMMContainerViewController: BaseViewController
     
     fileprivate func updateBtnSizes()
     {
-        let width = ("LMM_HEADER_MATCHES_OPTION".localized() as NSString).boundingRect(
+        let width = ("lmm_tab_matches".localized() as NSString).boundingRect(
             with: CGSize(width: 300.0, height: 200.0),
             options: .usesLineFragmentOrigin,
             attributes: [.font: unselectedFont],

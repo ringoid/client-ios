@@ -17,6 +17,10 @@
 "common_sex_male" = "Male";
 "common_sex_female" = "Female";
 
+"lmm_tab_likes" = "Likes You";
+"lmm_tab_matches" = "Matches";
+"lmm_tab_messenger" = "Chats";
+
 "COMMON_ABOUT" = "About";
 "COMMON_OK" = "OK";
 
