@@ -146,7 +146,13 @@ class NewFacePhotoViewController: UIViewController
             return
         }
         
-        Nuke.loadImage(with: url, into: photoView)
+        let contentModes = ImageLoadingOptions.ContentModes(
+            success: .scaleAspectFill,
+            failure: .scaleAspectFill,
+            placeholder: .scaleAspectFill
+        )
+        let options = ImageLoadingOptions( contentModes: contentModes)
+        Nuke.loadImage(with: url, options: options, into: photoView)
     }
     
     fileprivate func updateBindings()

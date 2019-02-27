@@ -50,7 +50,13 @@ class ChatViewController: BaseViewController
         self.tableView.transform = CGAffineTransform(rotationAngle: -.pi)
         
         self.messageTextView.text = ChatViewController.messagesCache[self.input.profile.id]
-        Nuke.loadImage(with: self.input.photo.filepath().url(), into: self.photoView)
+        let contentModes = ImageLoadingOptions.ContentModes(
+            success: .scaleAspectFill,
+            failure: .scaleAspectFill,
+            placeholder: .scaleAspectFill
+        )
+        let options = ImageLoadingOptions( contentModes: contentModes)
+        Nuke.loadImage(with: self.input.photo.filepath().url(), options: options, into: self.photoView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         
