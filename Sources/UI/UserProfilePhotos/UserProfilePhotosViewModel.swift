@@ -63,6 +63,8 @@ class UserProfilePhotosViewModel
         self.input.newFacesManager.purge()
         
         return self.input.profileManager.refresh().flatMap({ [weak self] _ -> Observable<Void> in
+            guard self!.photos.value.filter({ !$0.isBlocked }).count != 0 else { return .error(createError("No user photos available", type: .hidden))}
+            
             return self!.input.lmmManager.refresh()
         })
     }
