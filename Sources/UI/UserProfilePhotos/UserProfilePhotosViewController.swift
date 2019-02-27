@@ -54,15 +54,7 @@ class UserProfilePhotosViewController: BaseViewController
         
         guard let photos = self.viewModel?.photos.value else { return }
         
-        self.preheater.startPreheating(with: photos.map({ $0.filepath().url() }))
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool)
-    {
-        super.viewWillDisappear(animated)
-
-        self.preheater.stopPreheating()
+        self.preheater.startPreheating(with: photos.map({ $0.filepath().url() }))        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
