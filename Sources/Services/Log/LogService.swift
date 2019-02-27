@@ -25,7 +25,12 @@ class LogService
     
     var records: [LogRecord] = []
     
-    private init() {}
+    fileprivate let formatter = DateFormatter()
+    
+    private init()
+    {
+        self.formatter.dateFormat = "H:m:ss.SSSS"
+    }
     
     func log(_ message: String)
     {
@@ -34,16 +39,13 @@ class LogService
             timestamp: Date()
         ))
         
-        print("LOG: \(message)")
+        print("LOG(\(self.formatter.string(from: Date()))): \(message)")
     }
     
     func asText() -> String
     {
-        let formatter = DateFormatter()
-        formatter.timeStyle = .medium
-        
         return self.records.reduce(into: "", { (currentResult, record) in
-            currentResult += formatter.string(from: record.timestamp) + ": " + record.message + "\n"
+            currentResult += self.formatter.string(from: record.timestamp) + ": " + record.message + "\n"
         })
     }
 }
