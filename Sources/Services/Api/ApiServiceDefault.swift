@@ -101,7 +101,7 @@ class ApiServiceDefault: ApiService
         }
         
         return self.requestGET(path: "feeds/get_lmm", params: params)
-            .timeout(2.0, scheduler: MainScheduler.instance)            
+            .timeout(2.0, scheduler: MainScheduler.instance)
             .flatMap { jsonDict -> Observable<ApiLMMResult> in
             guard let likesYouArray = jsonDict["likesYou"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong likesYou profiles data format", type: .hidden)
@@ -265,7 +265,12 @@ class ApiServiceDefault: ApiService
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
                     SentryService.shared.send(.repeatAfterDelay)
                     log("repeating after \(repeatAfter) \(url)")
-                    return self!.request(method, path: path, jsonBody: jsonBody).delay(RxTimeInterval(Double(repeatAfter) * 1000.0), scheduler: MainScheduler.instance)
+                    
+                    return Observable<Void>.just(())
+                        .delay(RxTimeInterval(Double(repeatAfter) / 1000.0), scheduler: MainScheduler.instance)
+                        .flatMap ({ _ -> Observable<[String: Any]> in
+                        return self!.request(method, path: path, jsonBody: jsonBody)
+                    })
                 }
                 
                 return .just(jsonDict)
@@ -296,7 +301,12 @@ class ApiServiceDefault: ApiService
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
                     SentryService.shared.send(.repeatAfterDelay)
                     log("repeating after \(repeatAfter) \(url)")
-                    return self!.requestGET(path: path, params: params).delay(RxTimeInterval(Double(repeatAfter) / 1000.0), scheduler: MainScheduler.instance)
+                    
+                    return Observable<Void>.just(())
+                        .delay(RxTimeInterval(Double(repeatAfter) / 1000.0), scheduler: MainScheduler.instance)
+                        .flatMap ({ _ -> Observable<[String: Any]> in
+                            return self!.requestGET(path: path, params: params)
+                        })
                 }
                 
                 return .just(jsonDict)

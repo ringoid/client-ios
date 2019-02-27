@@ -29,7 +29,7 @@ class LogService
     
     private init()
     {
-        self.formatter.dateFormat = "H:m:ss.SSSS"
+        self.formatter.dateFormat = "H:m:ss.SSS"
     }
     
     func log(_ message: String)
