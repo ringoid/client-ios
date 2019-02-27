@@ -12,6 +12,11 @@
 "button_delete" = "Удалить";
 "button_later" = "Не сейчас";
 
+"common_pull_to_refresh" = "Потяни, чтобы обновить";
+"common_sex_male" = "Мужчина";
+"common_sex_female" = "Женщина";
+
+
 "BLOCK_REASON_INAPPROPRIATE" = "Inappropriate content";
 "BLOCK_REASON_STOLEN" = "Stolen photos, Copyright Infringment";
 "BLOCK_REASON_SPAM" = "Spam, Advertising, Commercial Activity";
@@ -21,8 +26,6 @@
 
 "BLOCK_OPTION" = "Заблокировать";
 "BLOCK_REPORT_OPTION" = "Report & Block";
-
-"FEED_PULL_TO_REFRESH" = "Pull to refresh";
 
 "THEME_NIGHT_MODE" = "Night mode";
 "THEME_DAY_MODE" = "Day mode";

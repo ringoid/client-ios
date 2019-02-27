@@ -19,6 +19,8 @@ class AuthViewController: BaseViewController
     
     @IBOutlet fileprivate weak var maleContainerView: UIView!
     @IBOutlet fileprivate weak var femaleContainerView: UIView!
+    @IBOutlet fileprivate weak var maleLabel: UILabel!
+    @IBOutlet fileprivate weak var femaleLabel: UILabel!
     @IBOutlet fileprivate weak var maleBtn: UIButton!
     @IBOutlet fileprivate weak var femaleBtn: UIButton!
     @IBOutlet fileprivate weak var birthYearContainerView: UIView!
@@ -84,6 +86,9 @@ class AuthViewController: BaseViewController
     {
         self.updatePlaceholder()
         self.updateTermsPolicy()
+        
+        self.maleLabel.text = "common_sex_male".localized()
+        self.femaleLabel.text = "common_sex_female".localized()
     }
     
     @IBAction func onRegister()

@@ -380,7 +380,7 @@ class MainLMMViewController: BaseViewController
         switch state {
         case .initial:
             self.emptyFeedActivityView.stopAnimating()
-            self.emptyFeedLabel.text = "FEED_PULL_TO_REFRESH".localized()
+            self.emptyFeedLabel.text = "common_pull_to_refresh".localized()
             self.emptyFeedLabel.isHidden = false
             break
             

@@ -223,8 +223,10 @@
                         <outlet property="birthYearTextField" destination="CBF-BB-eko" id="Ouj-5a-f20"/>
                         <outlet property="femaleBtn" destination="oFs-C8-vnJ" id="BPc-8n-X3f"/>
                         <outlet property="femaleContainerView" destination="39I-EI-ikh" id="FYo-6p-cCj"/>
+                        <outlet property="femaleLabel" destination="Qvw-hC-UD2" id="wT9-4I-gJH"/>
                         <outlet property="maleBtn" destination="FpE-Be-fZR" id="aV6-hM-DB1"/>
                         <outlet property="maleContainerView" destination="bh1-NE-O5a" id="7Wx-5v-Vdv"/>
+                        <outlet property="maleLabel" destination="Nn1-Tx-MyN" id="pbL-hq-6qP"/>
                         <outlet property="registerBtn" destination="Qfe-tw-Yjt" id="MZc-q1-RJj"/>
                         <outlet property="termsPolicyTextView" destination="ytv-xm-SNC" id="QH6-vG-azm"/>
                         <outlet property="themeBtn" destination="zLp-TM-j8c" id="gZe-hg-dPb"/>

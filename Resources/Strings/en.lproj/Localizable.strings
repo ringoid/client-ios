@@ -13,6 +13,10 @@
 "button_delete" = "Delete";
 "button_later" = "Not now";
 
+"common_pull_to_refresh" = "Pull to refresh";
+"common_sex_male" = "Male";
+"common_sex_female" = "Female";
+
 "COMMON_ABOUT" = "About";
 "COMMON_OK" = "OK";
 
@@ -30,8 +34,6 @@
 
 "BLOCK_OPTION" = "Block";
 "BLOCK_REPORT_OPTION" = "Report & Block";
-
-"FEED_PULL_TO_REFRESH" = "Pull to refresh";
 
 "THEME_NIGHT_MODE" = "Night mode";
 "THEME_DAY_MODE" = "Day mode";
