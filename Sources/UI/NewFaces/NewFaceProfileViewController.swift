@@ -77,6 +77,13 @@ class NewFaceProfileViewController: UIViewController
         }
     }
     
+    func preheatSecondPhoto()
+    {
+        guard self.input.profile.photos.count >= 2 else { return }
+        
+        self.preheater.startPreheating(with: [self.input.profile.orderedPhotos()[1].filepath().url()])
+    }
+    
     // MARK: - Actions
         
     @IBAction func onBlock()

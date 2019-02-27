@@ -523,6 +523,12 @@ extension MainLMMViewController: UIScrollViewDelegate
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
     {
         self.isDragged = false
+        
+        self.tableView.visibleCells.forEach { cell in
+            guard let vc = (cell as? MainLMMCell)?.containerView.containedVC as? MainLMMProfileViewController else { return }
+            
+            vc.preheatSecondPhoto()
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView)

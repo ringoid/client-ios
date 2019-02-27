@@ -360,4 +360,13 @@ extension NewFacesViewController: UIScrollViewDelegate
         let offset = scrollView.contentOffset.y
         self.updateVisibleCellsBorders(offset)
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
+    {
+        self.tableView.visibleCells.forEach { cell in
+            guard let vc = (cell as? NewFacesCell)?.containerView.containedVC as? NewFaceProfileViewController else { return }
+           
+            vc.preheatSecondPhoto()
+        }
+    }
 }
