@@ -249,13 +249,27 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
         guard let image = info[.editedImage] as? UIImage else { return }
         
         let size = image.size
-        let width = size.width / 4.0 * 3.0
-        let adjustedCropRect = CGRect(
-            x: (size.width - width) / 2.0,
-            y: 0.0,
-            width: width,
-            height: size.height
-        )
+        let origWidth = size.width
+        let origHeight = size.height
+        var adjustedCropRect: CGRect = .zero
+        let ratio = AppConfig.photoRatio
+        
+        if origWidth * ratio >= origHeight {
+            adjustedCropRect = CGRect(
+                x: (origWidth - origHeight / ratio) / 2.0,
+                y: 0.0,
+                width: origHeight / ratio,
+                height: origHeight
+            )
+        } else {
+            adjustedCropRect = CGRect(
+                x: 0.0,
+                y: (origHeight - origWidth * ratio) / 2.0,
+                width: origWidth,
+                height: origWidth * ratio
+            )
+        }
+
         guard let croppedImage = image.crop(rect: adjustedCropRect) else { return }
 
         self.viewModel?.add(croppedImage).subscribe(onNext: ({ [weak self] photo in
