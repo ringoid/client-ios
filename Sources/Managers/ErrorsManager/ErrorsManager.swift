@@ -13,6 +13,8 @@ class ErrorsManager
 {
     let api: ApiService
     let settings: SettingsManager
+
+    let disconnection: BehaviorRelay<ApiError?> = BehaviorRelay<ApiError?>(value: nil)
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
@@ -30,6 +32,7 @@ class ErrorsManager
     {
         self.api.error.asObservable().subscribe(onNext: { [weak self] error in
             self?.handleApiError(error)
+            self?.handleConnectionError(error)
         }).disposed(by: self.disposeBag)
     }
     
@@ -51,6 +54,19 @@ class ErrorsManager
         case .tooOldAppVersionClientError:
             log("Too old app version client error")
             return
+            
+        default: return
+        }
+    }
+    
+    fileprivate func handleConnectionError(_ error: ApiError)
+    {
+        switch error.type {
+        case .notConnectedToInternet, .connectionLost, .secureConnectionFailed, .connectionTimeout:
+            self.disconnection.accept(error)
+            break
+            
+        default: return
         }
     }
 }

@@ -17,6 +17,11 @@ enum ApiErrorType: String
     case internalServerError = "InternalServerError"
     case invalidAccessTokenClientError = "InvalidAccessTokenClientError"
     case tooOldAppVersionClientError = "TooOldAppVersionClientError"
+    
+    case notConnectedToInternet
+    case connectionLost
+    case secureConnectionFailed
+    case connectionTimeout
 }
 
 struct ApiError
