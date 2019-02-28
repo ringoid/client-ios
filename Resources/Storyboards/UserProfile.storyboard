@@ -234,6 +234,9 @@ see how many likes you get</string>
                                             <constraint firstAttribute="height" constant="200" id="p55-4u-4Vg"/>
                                             <constraint firstAttribute="width" constant="200" id="uM7-ZG-lvc"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="delegate" destination="XPN-ma-d0Q" id="fYe-6A-mqf"/>
+                                        </connections>
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
