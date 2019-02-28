@@ -49,6 +49,12 @@
 		573A5C1C222556AD0094A9FA /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C1A222556AD0094A9FA /* LogService.swift */; };
 		573A5C202226AD820094A9FA /* NoConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C1F2226AD810094A9FA /* NoConnectionViewController.swift */; };
 		573A5C212226AD820094A9FA /* NoConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C1F2226AD810094A9FA /* NoConnectionViewController.swift */; };
+		573A5C232227A9620094A9FA /* ExtendedTouchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C222227A9620094A9FA /* ExtendedTouchesView.swift */; };
+		573A5C242227A9620094A9FA /* ExtendedTouchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C222227A9620094A9FA /* ExtendedTouchesView.swift */; };
+		573A5C262227AA080094A9FA /* UserProfilePhotoCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C252227AA080094A9FA /* UserProfilePhotoCropViewController.swift */; };
+		573A5C272227AA080094A9FA /* UserProfilePhotoCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C252227AA080094A9FA /* UserProfilePhotoCropViewController.swift */; };
+		573A5C292227AD0D0094A9FA /* UserProfileCropOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C282227AD0D0094A9FA /* UserProfileCropOverlayView.swift */; };
+		573A5C2A2227AD0D0094A9FA /* UserProfileCropOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C282227AD0D0094A9FA /* UserProfileCropOverlayView.swift */; };
 		57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3521E3309300038798 /* NewFacesViewController.swift */; };
 		57585D3821E330B100038798 /* NewFaces.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D3721E330B100038798 /* NewFaces.storyboard */; };
 		57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3921E3499E00038798 /* ApiPhoto.swift */; };
@@ -310,6 +316,9 @@
 		573A5C162225440B0094A9FA /* SettingsDebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugViewController.swift; sourceTree = "<group>"; };
 		573A5C1A222556AD0094A9FA /* LogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
 		573A5C1F2226AD810094A9FA /* NoConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoConnectionViewController.swift; sourceTree = "<group>"; };
+		573A5C222227A9620094A9FA /* ExtendedTouchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedTouchesView.swift; sourceTree = "<group>"; };
+		573A5C252227AA080094A9FA /* UserProfilePhotoCropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCropViewController.swift; sourceTree = "<group>"; };
+		573A5C282227AD0D0094A9FA /* UserProfileCropOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCropOverlayView.swift; sourceTree = "<group>"; };
 		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
 		57585D3721E330B100038798 /* NewFaces.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewFaces.storyboard; sourceTree = "<group>"; };
 		57585D3921E3499E00038798 /* ApiPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPhoto.swift; sourceTree = "<group>"; };
@@ -718,6 +727,7 @@
 				57585D4B21E388EC00038798 /* UserProfilePhotosViewController.swift */,
 				57585D5121E4808500038798 /* UserProfilePhotosViewModel.swift */,
 				579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */,
+				573A5C252227AA080094A9FA /* UserProfilePhotoCropViewController.swift */,
 			);
 			path = UserProfilePhotos;
 			sourceTree = "<group>";
@@ -753,6 +763,7 @@
 				57B863D821EE18ED00B9CC70 /* DiagonalGradientView.swift */,
 				57386E3F220B27C00000E5D9 /* LocalizedTableViewCell.swift */,
 				573A5C0D222409F10094A9FA /* EmptyFeed.swift */,
+				573A5C222227A9620094A9FA /* ExtendedTouchesView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -891,6 +902,7 @@
 			isa = PBXGroup;
 			children = (
 				579CD7D121FB43E200C3AEE3 /* UserProfileContainerCell.swift */,
+				573A5C282227AD0D0094A9FA /* UserProfileCropOverlayView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1295,6 +1307,7 @@
 				57B863D521EE16E700B9CC70 /* VerticalGradientView.swift in Sources */,
 				57B863D721EE179F00B9CC70 /* TouchThroughView.swift in Sources */,
 				57585D5421E48E3700038798 /* Image.swift in Sources */,
+				573A5C232227A9620094A9FA /* ExtendedTouchesView.swift in Sources */,
 				576FC12422047E6500BA5ABE /* TouchThroughAreaView.swift in Sources */,
 				570D04B221DDE4E200E0DCFB /* UserProfileManager.swift in Sources */,
 				579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */,
@@ -1345,7 +1358,9 @@
 				57B863BC21EC74BF00B9CC70 /* ApiLMMProfile.swift in Sources */,
 				570D04BD21DE385E00E0DCFB /* DefaultStorageService.swift in Sources */,
 				570D04A521DD087100E0DCFB /* AppManager.swift in Sources */,
+				573A5C292227AD0D0094A9FA /* UserProfileCropOverlayView.swift in Sources */,
 				57FB7BCC21E73D3C00AAA29D /* ContainerView.swift in Sources */,
+				573A5C262227AA080094A9FA /* UserProfilePhotoCropViewController.swift in Sources */,
 				57585D4421E3558800038798 /* Photo.swift in Sources */,
 				57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */,
 				57B863CF21ECD98F00B9CC70 /* MainLMMCell.swift in Sources */,
@@ -1421,6 +1436,7 @@
 				57EE64E82216711000246B45 /* DeviceService.swift in Sources */,
 				57EE64E92216711000246B45 /* NewFacesManager.swift in Sources */,
 				57EE64EA2216711000246B45 /* VerticalGradientView.swift in Sources */,
+				573A5C242227A9620094A9FA /* ExtendedTouchesView.swift in Sources */,
 				57EE64EB2216711000246B45 /* TouchThroughView.swift in Sources */,
 				57EE64EC2216711000246B45 /* Image.swift in Sources */,
 				57EE64ED2216711000246B45 /* TouchThroughAreaView.swift in Sources */,
@@ -1471,7 +1487,9 @@
 				57EE65182216711000246B45 /* DBService.swift in Sources */,
 				57EE65192216711000246B45 /* SettingsEmailCell.swift in Sources */,
 				57EE651A2216711000246B45 /* ApiLMMProfile.swift in Sources */,
+				573A5C2A2227AD0D0094A9FA /* UserProfileCropOverlayView.swift in Sources */,
 				57EE651C2216711000246B45 /* DefaultStorageService.swift in Sources */,
+				573A5C272227AA080094A9FA /* UserProfilePhotoCropViewController.swift in Sources */,
 				57EE651D2216711000246B45 /* AppManager.swift in Sources */,
 				57EE651E2216711000246B45 /* ContainerView.swift in Sources */,
 				57EE651F2216711000246B45 /* Photo.swift in Sources */,

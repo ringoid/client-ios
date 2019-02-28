@@ -116,7 +116,9 @@ class RootViewController: BaseViewController {
     
     fileprivate func subscribeToNoConnectionState()
     {
-        self.appManager.errorsManager.disconnection.asObservable().subscribe(onNext: { [weak self] _ in
+        self.appManager.errorsManager.disconnection.asObservable().subscribe(onNext: { [weak self] error in
+            guard let _ = error else { return }
+            
             self?.showNoConnection()
         }).disposed(by: self.disposeBag)
     }

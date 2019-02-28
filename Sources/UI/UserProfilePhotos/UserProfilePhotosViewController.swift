@@ -23,6 +23,7 @@ class UserProfilePhotosViewController: BaseViewController
     fileprivate var currentIndex: Int = 0
     fileprivate var lastClientPhotoId: String? = nil
     fileprivate let preheater = ImagePreheater()
+    fileprivate var pickedPhoto: UIImage?
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedView: UIView!
@@ -59,9 +60,14 @@ class UserProfilePhotosViewController: BaseViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if segue.identifier == "settings_vc",
+        if segue.identifier == SegueIds.settingsVC,
             let vc = (segue.destination as? UINavigationController)?.viewControllers.first as? SettingsViewController {
             vc.input = SettingsVMInput(settingsManager: self.input.settingsManager)
+        }
+        
+        if segue.identifier == SegueIds.cropVC, let vc = segue.destination as? UserProfilePhotoCropViewController {
+            vc.sourceImage = self.pickedPhoto
+            vc.delegate = self
         }
     }
     
@@ -145,7 +151,6 @@ class UserProfilePhotosViewController: BaseViewController
     {
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
-        vc.allowsEditing = true
         vc.delegate = self
         
         self.present(vc, animated: true, completion: nil)
@@ -249,50 +254,15 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
 {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
     {
-        defer {
-            picker.dismiss(animated: true, completion: nil)
-        }
+        guard let image = info[.originalImage] as? UIImage else { return }
         
-        guard let image = info[.editedImage] as? UIImage else { return }
+        self.pickedPhoto = image
         
-        let size = image.size
-        let origWidth = size.width
-        let origHeight = size.height
-        var adjustedCropRect: CGRect = .zero
-        let ratio = AppConfig.photoRatio
         
-        if origWidth * ratio >= origHeight {
-            adjustedCropRect = CGRect(
-                x: (origWidth - origHeight / ratio) / 2.0,
-                y: 0.0,
-                width: origHeight / ratio,
-                height: origHeight
-            )
-        } else {
-            adjustedCropRect = CGRect(
-                x: 0.0,
-                y: (origHeight - origWidth * ratio) / 2.0,
-                width: origWidth,
-                height: origWidth * ratio
-            )
-        }
-
-        guard let croppedImage = image.crop(rect: adjustedCropRect) else { return }
-
-        self.viewModel?.add(croppedImage).subscribe(onNext: ({ [weak self] photo in
-            self?.viewModel?.lastPhotoId.accept(nil)
-            self?.lastClientPhotoId = photo.clientId
-            
-            guard self?.viewModel?.isFirstTime.value == true else { return }
-            
-            DispatchQueue.main.async {
-                self?.showOptionsAlert()
-            }
-        }), onError: ({ [weak self] error in
-            guard let `self` = self else { return }
-            
-            showError(error, vc: self)
-        })).disposed(by: self.disposeBag)
+        guard let cropVC = Storyboards.userProfile().instantiateViewController(withIdentifier: "crop_vc") as? UserProfilePhotoCropViewController else { return }
+        cropVC.sourceImage = image
+        cropVC.delegate = self
+        picker.pushViewController(cropVC, animated: true)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
@@ -361,5 +331,35 @@ extension UserProfilePhotosViewController: UITableViewDataSource, UITableViewDel
         self.updatePages()
         
         return cell
+    }
+}
+
+extension UserProfilePhotosViewController: UserProfilePhotoCropVCDelegate
+{
+    func cropVC(_ vc: UserProfilePhotoCropViewController, didCrop image: UIImage)
+    {
+        self.viewModel?.add(image).subscribe(onNext: ({ [weak self] photo in
+            self?.viewModel?.lastPhotoId.accept(nil)
+            self?.lastClientPhotoId = photo.clientId
+            
+            guard self?.viewModel?.isFirstTime.value == true else { return }
+            
+            DispatchQueue.main.async {
+                self?.showOptionsAlert()
+            }
+        }), onError: ({ [weak self] error in
+            guard let `self` = self else { return }
+            
+            showError(error, vc: self)
+        })).disposed(by: self.disposeBag)
+    }
+}
+
+extension UserProfilePhotosViewController
+{
+    struct SegueIds
+    {
+        static let cropVC = "crop_vc"
+        static let settingsVC = "settings_vc"
     }
 }
