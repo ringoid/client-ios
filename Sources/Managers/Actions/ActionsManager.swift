@@ -163,6 +163,7 @@ class ActionsManager
     {
         // Delaying request if previous one still in progress
         guard self.sendingActions.isEmpty else {
+            log("Actions sendinging in progress - delaying request")
             
             return Observable<Void>.just(())
                 .delay(RxTimeInterval(0.1), scheduler: MainScheduler.instance)

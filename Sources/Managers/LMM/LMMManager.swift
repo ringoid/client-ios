@@ -85,6 +85,8 @@ class LMMManager
     
     func refresh() -> Observable<Void>
     {
+        log("LMM reloading process started")
+        
         let chatCache = self.messages.value.filter({ !$0.notSeen }).map({ ChatProfileCache.create($0) })
         
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] result -> Observable<Void> in
