@@ -10,6 +10,7 @@ import UIKit
 
 class AppManager
 {
+    var reachability: ReachabilityService!
     var deviceService: DeviceService!
     var fileService: FileService!
     var apiService: ApiService!
@@ -46,6 +47,7 @@ class AppManager
         self.defaultStorage = DefaultStorageService()
         self.db = DBService()
         self.uploader = UploaderServiceDefault()
+        self.reachability = ReachabilityServiceDefault()
         
         #if STAGE
         let apiConfig = ApiServiceConfigStage()

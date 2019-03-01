@@ -93,8 +93,7 @@ class RootViewController: BaseViewController {
     
     fileprivate func showNoConnection()
     {
-        let storyboard = Storyboards.root()
-        let vc = storyboard.instantiateViewController(withIdentifier: "no_connection_vc")
+        let vc = NoConnectionViewController.create(NoConnectionVCInput(reachability: self.appManager.reachability))
         
         self.present(vc, animated: false, completion: nil)
     }
@@ -116,8 +115,8 @@ class RootViewController: BaseViewController {
     
     fileprivate func subscribeToNoConnectionState()
     {
-        self.appManager.errorsManager.disconnection.asObservable().subscribe(onNext: { [weak self] error in
-            guard let _ = error else { return }
+        self.appManager.reachability.isInternetAvailable.asObservable().subscribe(onNext: { [weak self] state in
+            guard !state else { return }
             
             self?.showNoConnection()
         }).disposed(by: self.disposeBag)

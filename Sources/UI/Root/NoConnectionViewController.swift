@@ -10,11 +10,30 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+struct NoConnectionVCInput
+{
+    let reachability: ReachabilityService
+}
+
 class NoConnectionViewController: BaseViewController
 {
+    var input: NoConnectionVCInput!
+    
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
     @IBOutlet fileprivate weak var noConnectionLabel: UILabel!
     @IBOutlet fileprivate weak var retryBtn: UIButton!
     @IBOutlet fileprivate weak var iconImageView: UIImageView!
+    @IBOutlet fileprivate weak var activityView: UIActivityIndicatorView!
+    
+    static func create(_ input: NoConnectionVCInput) -> NoConnectionViewController
+    {
+        let storyboard = Storyboards.root()
+        let vc = storyboard.instantiateViewController(withIdentifier: "no_connection_vc") as! NoConnectionViewController
+        vc.input = input
+        
+        return vc
+    }
     
     override var prefersStatusBarHidden: Bool
     {
@@ -24,6 +43,15 @@ class NoConnectionViewController: BaseViewController
     override var preferredStatusBarStyle: UIStatusBarStyle
     {
         return ThemeManager.shared.theme.value == .dark ? .lightContent : .default
+    }
+    
+    override func viewDidLoad()
+    {
+        assert(self.input != nil)
+        
+        super.viewDidLoad()
+        
+        self.activityView.stopAnimating()
     }
     
     override func updateTheme()
@@ -43,6 +71,17 @@ class NoConnectionViewController: BaseViewController
     
     @IBAction fileprivate func onRetry()
     {
-        self.dismiss(animated: false, completion: nil)
+        self.retryBtn.isHidden = true
+        self.activityView.startAnimating()
+        self.input.reachability.check().subscribe(onNext: { [weak self] state in
+            guard state else {
+                self?.activityView.stopAnimating()
+                self?.retryBtn.isHidden = false
+                
+                return
+            }
+            
+            self?.dismiss(animated: false, completion: nil)
+        }).disposed(by: self.disposeBag)
     }
 }

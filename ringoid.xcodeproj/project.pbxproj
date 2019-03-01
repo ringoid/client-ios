@@ -55,6 +55,10 @@
 		573A5C272227AA080094A9FA /* UserProfilePhotoCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C252227AA080094A9FA /* UserProfilePhotoCropViewController.swift */; };
 		573A5C292227AD0D0094A9FA /* UserProfileCropOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C282227AD0D0094A9FA /* UserProfileCropOverlayView.swift */; };
 		573A5C2A2227AD0D0094A9FA /* UserProfileCropOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C282227AD0D0094A9FA /* UserProfileCropOverlayView.swift */; };
+		573A5C2D2229184E0094A9FA /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C2C2229184E0094A9FA /* ReachabilityService.swift */; };
+		573A5C2E2229184E0094A9FA /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C2C2229184E0094A9FA /* ReachabilityService.swift */; };
+		573A5C30222919460094A9FA /* ReachabilityServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */; };
+		573A5C31222919470094A9FA /* ReachabilityServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */; };
 		57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3521E3309300038798 /* NewFacesViewController.swift */; };
 		57585D3821E330B100038798 /* NewFaces.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D3721E330B100038798 /* NewFaces.storyboard */; };
 		57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3921E3499E00038798 /* ApiPhoto.swift */; };
@@ -319,6 +323,8 @@
 		573A5C222227A9620094A9FA /* ExtendedTouchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedTouchesView.swift; sourceTree = "<group>"; };
 		573A5C252227AA080094A9FA /* UserProfilePhotoCropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCropViewController.swift; sourceTree = "<group>"; };
 		573A5C282227AD0D0094A9FA /* UserProfileCropOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCropOverlayView.swift; sourceTree = "<group>"; };
+		573A5C2C2229184E0094A9FA /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
+		573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityServiceDefault.swift; sourceTree = "<group>"; };
 		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
 		57585D3721E330B100038798 /* NewFaces.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewFaces.storyboard; sourceTree = "<group>"; };
 		57585D3921E3499E00038798 /* ApiPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPhoto.swift; sourceTree = "<group>"; };
@@ -510,6 +516,7 @@
 		570D047C21DCED1800E0DCFB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				573A5C2B2229183C0094A9FA /* Reachability */,
 				573A5C19222556A00094A9FA /* Log */,
 				57EE655B2216DC9200246B45 /* Sentry */,
 				576FC1122201875900BA5ABE /* Device */,
@@ -671,6 +678,15 @@
 				573A5C1A222556AD0094A9FA /* LogService.swift */,
 			);
 			path = Log;
+			sourceTree = "<group>";
+		};
+		573A5C2B2229183C0094A9FA /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				573A5C2C2229184E0094A9FA /* ReachabilityService.swift */,
+				573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		57585D3421E3308300038798 /* NewFaces */ = {
@@ -1199,12 +1215,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxReachability/RxReachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Sentry/Sentry.framework",
@@ -1214,12 +1232,14 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxReachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sentry.framework",
@@ -1241,12 +1261,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxReachability/RxReachability.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Sentry/Sentry.framework",
@@ -1258,12 +1280,14 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxReachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sentry.framework",
@@ -1292,6 +1316,7 @@
 				579CD7C821F9D4F700C3AEE3 /* ChatRightCell.swift in Sources */,
 				57B863F821EF5CF100B9CC70 /* ApiUnlikeAction.swift in Sources */,
 				579CD7D221FB43E200C3AEE3 /* UserProfileContainerCell.swift in Sources */,
+				573A5C30222919460094A9FA /* ReachabilityServiceDefault.swift in Sources */,
 				57FB7BC821E629BE00AAA29D /* ContainerViewController.swift in Sources */,
 				57FB7BD521E7661200AAA29D /* NewFacePhotoViewController.swift in Sources */,
 				57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */,
@@ -1330,6 +1355,7 @@
 				57585D7021E500FD00038798 /* ThemeManager.swift in Sources */,
 				579CD7C121F9A91700C3AEE3 /* ChatViewController.swift in Sources */,
 				57386E42220B2FB20000E5D9 /* SettingsLanguageCell.swift in Sources */,
+				573A5C2D2229184E0094A9FA /* ReachabilityService.swift in Sources */,
 				57B863FA21EF5D2A00B9CC70 /* ApiMessageAction.swift in Sources */,
 				570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */,
 				579CD7B621F8947000C3AEE3 /* SettingsThemeCell.swift in Sources */,
@@ -1421,6 +1447,7 @@
 				57EE64DC2216711000246B45 /* ChatRightCell.swift in Sources */,
 				57EE64DD2216711000246B45 /* ApiUnlikeAction.swift in Sources */,
 				57149D63221C493400F636A4 /* ApiServiceConfigStage.swift in Sources */,
+				573A5C31222919470094A9FA /* ReachabilityServiceDefault.swift in Sources */,
 				57EE64DE2216711000246B45 /* UserProfileContainerCell.swift in Sources */,
 				57EE64DF2216711000246B45 /* ContainerViewController.swift in Sources */,
 				57EE64E02216711000246B45 /* NewFacePhotoViewController.swift in Sources */,
@@ -1459,6 +1486,7 @@
 				57EE64FE2216711000246B45 /* ActionProfile.swift in Sources */,
 				57EE64FF2216711000246B45 /* AppDelegate.swift in Sources */,
 				57EE65002216711000246B45 /* ThemeManager.swift in Sources */,
+				573A5C2E2229184E0094A9FA /* ReachabilityService.swift in Sources */,
 				57EE65012216711000246B45 /* ChatViewController.swift in Sources */,
 				57EE65022216711000246B45 /* SettingsLanguageCell.swift in Sources */,
 				57EE65032216711000246B45 /* ApiMessageAction.swift in Sources */,

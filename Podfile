@@ -13,6 +13,7 @@ def common_pods
 	pod 'Fabric'
 	pod 'Crashlytics'
 	pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '4.1.0'
+	pod 'RxReachability'
 end
 
 target 'ringoid' do

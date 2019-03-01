@@ -76,9 +76,14 @@
                                     <action selector="onRetry" destination="vri-T5-8Xn" eventType="touchUpInside" id="4AP-cP-trJ"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="NSo-CY-pS7">
+                                <rect key="frame" x="177.5" y="385.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="NSo-CY-pS7" firstAttribute="top" secondItem="wpQ-QI-3jY" secondAttribute="bottom" constant="16" id="3WY-hl-im9"/>
+                            <constraint firstItem="NSo-CY-pS7" firstAttribute="centerX" secondItem="VVt-NC-YF7" secondAttribute="centerX" id="4N5-mj-2xV"/>
                             <constraint firstItem="wpQ-QI-3jY" firstAttribute="top" secondItem="UMd-Cd-7ni" secondAttribute="bottom" constant="30" id="AN8-TB-m94"/>
                             <constraint firstItem="UMd-Cd-7ni" firstAttribute="centerY" secondItem="VVt-NC-YF7" secondAttribute="centerY" constant="-40" id="DpY-R5-72G"/>
                             <constraint firstItem="VCX-GS-Ft5" firstAttribute="bottom" secondItem="t4b-Hj-bQz" secondAttribute="bottom" constant="18" id="Vps-Gx-87j"/>
@@ -90,6 +95,7 @@
                         <viewLayoutGuide key="safeArea" id="VCX-GS-Ft5"/>
                     </view>
                     <connections>
+                        <outlet property="activityView" destination="NSo-CY-pS7" id="6dN-CK-AIo"/>
                         <outlet property="iconImageView" destination="UMd-Cd-7ni" id="76v-C6-evT"/>
                         <outlet property="noConnectionLabel" destination="wpQ-QI-3jY" id="irh-Ug-9j4"/>
                         <outlet property="retryBtn" destination="t4b-Hj-bQz" id="NgE-pz-nZQ"/>
