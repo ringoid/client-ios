@@ -21,7 +21,7 @@ struct NewFacesVMInput
 class NewFacesViewModel
 {
     var profiles: BehaviorRelay<[NewFaceProfile]> { return self.newFacesManager.profiles }
-    var isFetching: Bool = false
+    var isFetching : BehaviorRelay<Bool> { return self.newFacesManager.isFetching }
     var isPhotosAdded: Bool
     {
         return !self.profileManager.photos.value.isEmpty
@@ -50,24 +50,17 @@ class NewFacesViewModel
     
     func fetchNext() -> Observable<Void>
     {
-        guard !self.isFetching else {
+        guard !self.newFacesManager.isFetching.value else {
             let error = createError("New faces fetching in already in progress", type: .hidden)
             
             return .error(error)
         }
-        
-        self.isFetching = true
-        
+  
         return self.actionsManager.sendQueue().flatMap { [weak self] _ -> Observable<Void> in
             guard let `self` = self else { return .just(()) } // view model deleted
             
             return self.newFacesManager.fetch()
         }
-    }
-    
-    func finishFetching()
-    {
-        self.isFetching = false
     }
     
     func moveToProfile()

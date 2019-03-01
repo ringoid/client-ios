@@ -73,6 +73,8 @@ class NewFacesViewController: BaseViewController
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.tableView.refreshControl?.endRefreshing()
         }
+     
+        guard self.viewModel?.isFetching.value == false else { return }
         
         if self.viewModel?.isPhotosAdded == false {
             self.showAddPhotosOptions()
@@ -116,7 +118,6 @@ class NewFacesViewController: BaseViewController
                 
                 showError(error, vc: self)
             }, onCompleted: { [weak self] in
-                self?.viewModel?.finishFetching()
                 self?.loadingActivityView.stopAnimating()
                 self?.feedEndLabel.isHidden = false
         }).disposed(by: self.disposeBag)
@@ -144,7 +145,7 @@ class NewFacesViewController: BaseViewController
     fileprivate func updateFeed()
     {
         guard let profiles = self.viewModel?.profiles.value else { return }
-        
+
         defer {
             self.lastFeedIds = profiles.map({ $0.id })
             
@@ -328,7 +329,7 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
         }
         
         print("index: \(indexPath.row) total: \(self.viewModel!.profiles.value.count)")
-        guard let isFetching = self.viewModel?.isFetching, !isFetching else { return }
+        guard let isFetching = self.viewModel?.isFetching.value, !isFetching else { return }
         guard
             let totalCount = self.viewModel?.profiles.value.count,
             totalCount != self.lastFetchCount,
@@ -346,7 +347,6 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
                 
                 showError(error, vc: self)
             }, onCompleted: { [weak self] in
-                self?.viewModel?.finishFetching()
                 self?.loadingActivityView.stopAnimating()
                 self?.feedEndLabel.isHidden = false
         }).disposed(by: self.disposeBag)

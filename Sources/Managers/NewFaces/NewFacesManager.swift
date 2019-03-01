@@ -19,6 +19,7 @@ class NewFacesManager
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     var profiles: BehaviorRelay<[NewFaceProfile]> = BehaviorRelay<[NewFaceProfile]>(value: [])
+    let isFetching: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     init(_ db: DBService, api: ApiService, device: DeviceService, actionsManager: ActionsManager)
     {
@@ -41,6 +42,8 @@ class NewFacesManager
     
     func fetch() -> Observable<Void>
     {
+        self.isFetching.accept(true)
+        
         return self.apiService.getNewFaces(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] profiles -> Observable<Void> in
             
             var localOrderPosition: Int = 0
@@ -64,6 +67,10 @@ class NewFacesManager
             })
             
             return self!.db.add(localProfiles)
+        }).do(onError: { [weak self] _ in
+            self?.isFetching.accept(false)
+            }, onCompleted: { [weak self] in
+            self?.isFetching.accept(false)
         })
     }
     
