@@ -161,7 +161,16 @@ class ActionsManager
     
     func sendQueue() -> Observable<Void>
     {
-        guard self.sendingActions.isEmpty else { return .error(createError("Sending actions already in progress", type: .hidden)) }
+        // Delaying request if previous one still in progress
+        guard self.sendingActions.isEmpty else {
+            
+            return Observable<Void>.just(())
+                .delay(RxTimeInterval(0.1), scheduler: MainScheduler.instance)
+                .flatMap ({ _ -> Observable<Void> in
+                    return self.sendQueue()
+                })
+        }
+        
         guard !self.queue.isEmpty else { return .just(()) }
         
         let enqued = self.queue
@@ -195,7 +204,7 @@ class ActionsManager
         let timer = Timer(timeInterval: 5.0, repeats: true, block: { [weak self] _ in
             guard let `self` = self else { return }
             
-            self.sendQueue().subscribe().disposed(by: self.disposeBag)
+            self.commit()
         })
         self.triggerTimer = timer
         RunLoop.main.add(timer, forMode: .default)
