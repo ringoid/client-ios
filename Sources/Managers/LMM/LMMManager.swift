@@ -36,6 +36,8 @@ class LMMManager
     var matches: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     var messages: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     
+    let isFetching: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    
     var notSeenLikesYouCount: Observable<Int>
     {
         return self.likesYou.asObservable().map { profiles -> Int in
@@ -86,7 +88,7 @@ class LMMManager
     func refresh() -> Observable<Void>
     {
         log("LMM reloading process started")
-        
+        self.isFetching.accept(true)
         let chatCache = self.messages.value.filter({ !$0.notSeen }).map({ ChatProfileCache.create($0) })
         
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] result -> Observable<Void> in
@@ -108,7 +110,11 @@ class LMMManager
             }
             
             return self!.db.add(localLikesYou + matches + messages)
-        })       
+        }).do(onError: { [weak self] _ in
+                self?.isFetching.accept(false)
+            }, onCompleted:{ [weak self] in
+                self?.isFetching.accept(false)
+        })
     }
     
     func purge()

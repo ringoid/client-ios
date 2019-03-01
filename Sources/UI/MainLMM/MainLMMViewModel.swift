@@ -31,6 +31,8 @@ class MainLMMViewModel
     var matches: BehaviorRelay<[LMMProfile]> { return self.lmmManager.matches }
     var messages: BehaviorRelay<[LMMProfile]> { return self.lmmManager.messages }
     
+    var isFetching: BehaviorRelay<Bool> { return self.lmmManager.isFetching }
+    
     var isPhotosAdded: Bool
     {
         return !self.profileManager.photos.value.isEmpty

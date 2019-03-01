@@ -83,22 +83,16 @@ class UserProfilePhotosViewController: BaseViewController
     
     @objc func reload()
     {
-        UIManager.shared.lmmRefreshModeEnabled.accept(true)
-        MainLMMViewController.resetStates() // TODO: Think about more elegant solution to reset offset caches
-        
         self.viewModel?.refresh().subscribe(
             onError:{ [weak self] error in
                 guard let `self` = self else { return }
                 
-                UIManager.shared.lmmRefreshModeEnabled.accept(false)
                 showError(error, vc: self)
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                     self.containerTableView.refreshControl?.endRefreshing()
                 })
             }, onCompleted:{ [weak self] in
-                UIManager.shared.lmmRefreshModeEnabled.accept(false)
-                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                     self?.containerTableView.refreshControl?.endRefreshing()
                 })

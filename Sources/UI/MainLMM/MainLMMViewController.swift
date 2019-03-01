@@ -125,6 +125,22 @@ class MainLMMViewController: BaseViewController
         self.type.asObservable().subscribe(onNext:{ [weak self] type in
             self?.toggle(type)
         }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.isFetching.asObservable().subscribe(onNext: { [weak self] state in
+            if state {
+                MainLMMViewController.resetStates()
+                self?.feedEndView.isHidden = true
+                self?.toggleActivity(.fetching)
+                self?.tableView.dataSource = EmptyFeed.shared
+                self?.tableView.reloadData()
+                UIManager.shared.lmmRefreshModeEnabled.accept(true)
+            } else {
+                UIManager.shared.lmmRefreshModeEnabled.accept(false)
+                self?.toggleActivity(.contentAvailable)
+                self?.tableView.dataSource = self
+                self?.updateFeed()
+            }
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func updateBindings()
@@ -154,30 +170,13 @@ class MainLMMViewController: BaseViewController
             return
         }
         
-        MainLMMViewController.resetStates()
-        self.feedEndView.isHidden = true
-        self.toggleActivity(.fetching)
-        self.tableView.dataSource = EmptyFeed.shared
-        self.tableView.reloadData()
-        UIManager.shared.lmmRefreshModeEnabled.accept(true)
-        
         // TODO: move "finishViewActions" logic inside view model
         self.input.actionsManager.finishViewActions(for: self.profiles()?.value ?? [], source: self.type.value.sourceType())
         self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
-            
-            UIManager.shared.lmmRefreshModeEnabled.accept(false)
-            self.toggleActivity(.contentAvailable)
-            self.tableView.dataSource = self
-            self.updateFeed()
-            
+
             showError(error, vc: self)
-            }, onCompleted:{ [weak self] in
-                UIManager.shared.lmmRefreshModeEnabled.accept(false)
-                self?.toggleActivity(.contentAvailable)
-                self?.tableView.dataSource = self
-                self?.updateFeed()
-        }).disposed(by: self.disposeBag)
+            }).disposed(by: self.disposeBag)
     }
     
     fileprivate func toggle(_ type: LMMType)
