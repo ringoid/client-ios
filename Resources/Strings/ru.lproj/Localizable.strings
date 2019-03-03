@@ -20,6 +20,8 @@
 
 "error_screen_no_network_connection" = "Нет интернета";
 "error_screen_no_network_connection_button_label" = "Повторить попытку";
+"error_screen_old_app_version" = "Пожалуйста, обновите приложение";
+"error_screen_old_app_version_button_label" = "Открыть Appstore";
 
 "lmm_tab_likes" = "Ты нравишься";
 "lmm_tab_matches" = "Взаимно";

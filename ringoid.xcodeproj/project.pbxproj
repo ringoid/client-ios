@@ -94,6 +94,8 @@
 		576FC12422047E6500BA5ABE /* TouchThroughAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC12322047E6400BA5ABE /* TouchThroughAreaView.swift */; };
 		576FC126220486A100BA5ABE /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC125220486A100BA5ABE /* Types.swift */; };
 		576FC12A22086B6C00BA5ABE /* ApiUserPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC12922086B6C00BA5ABE /* ApiUserPhoto.swift */; };
+		57801A81222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */; };
+		57801A82222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */; };
 		579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */; };
 		579CD7AE21F8603500C3AEE3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7AD21F8603500C3AEE3 /* Settings.storyboard */; };
 		579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
@@ -360,6 +362,7 @@
 		576FC12322047E6400BA5ABE /* TouchThroughAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchThroughAreaView.swift; sourceTree = "<group>"; };
 		576FC125220486A100BA5ABE /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		576FC12922086B6C00BA5ABE /* ApiUserPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiUserPhoto.swift; sourceTree = "<group>"; };
+		57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateVersionViewController.swift; sourceTree = "<group>"; };
 		579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		579CD7AD21F8603500C3AEE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -617,6 +620,7 @@
 			children = (
 				570D04AC21DDD2A900E0DCFB /* RootViewController.swift */,
 				573A5C1F2226AD810094A9FA /* NoConnectionViewController.swift */,
+				57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -1331,6 +1335,7 @@
 				57585D3F21E354FA00038798 /* NewFacesManager.swift in Sources */,
 				57B863D521EE16E700B9CC70 /* VerticalGradientView.swift in Sources */,
 				57B863D721EE179F00B9CC70 /* TouchThroughView.swift in Sources */,
+				57801A81222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */,
 				57585D5421E48E3700038798 /* Image.swift in Sources */,
 				573A5C232227A9620094A9FA /* ExtendedTouchesView.swift in Sources */,
 				576FC12422047E6500BA5ABE /* TouchThroughAreaView.swift in Sources */,
@@ -1462,6 +1467,7 @@
 				57EE655E2216DCA700246B45 /* SentryService.swift in Sources */,
 				57EE64E82216711000246B45 /* DeviceService.swift in Sources */,
 				57EE64E92216711000246B45 /* NewFacesManager.swift in Sources */,
+				57801A82222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */,
 				57EE64EA2216711000246B45 /* VerticalGradientView.swift in Sources */,
 				573A5C242227A9620094A9FA /* ExtendedTouchesView.swift in Sources */,
 				57EE64EB2216711000246B45 /* TouchThroughView.swift in Sources */,

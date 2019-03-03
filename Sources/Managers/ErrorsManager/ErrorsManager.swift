@@ -15,6 +15,7 @@ class ErrorsManager
     let settings: SettingsManager
 
     let disconnection: BehaviorRelay<ApiError?> = BehaviorRelay<ApiError?>(value: nil)
+    let oldVersion: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
@@ -53,6 +54,7 @@ class ErrorsManager
             
         case .tooOldAppVersionClientError:
             log("Too old app version client error")
+            self.oldVersion.accept(true)
             return
             
         default: return

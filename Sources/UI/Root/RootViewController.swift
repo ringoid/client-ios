@@ -34,6 +34,7 @@ class RootViewController: BaseViewController {
         self.appManager = (UIApplication.shared.delegate as! AppDelegate).appManager
         self.subscribeToAuthState()
         self.subscribeToNoConnectionState()
+        self.subscribeToOldVersionState()
     }
 
     override func updateTheme()
@@ -98,6 +99,13 @@ class RootViewController: BaseViewController {
         self.present(vc, animated: false, completion: nil)
     }
     
+    fileprivate func showOldVersion()
+    {
+        let vc = UpdateVersionViewController.create()
+        
+        self.present(vc, animated: false, completion: nil)
+    }
+    
     fileprivate func subscribeToAuthState()
     {
         self.appManager.apiService.isAuthorized.asObservable().subscribe ({ [weak self] event in
@@ -119,6 +127,15 @@ class RootViewController: BaseViewController {
             guard !state else { return }
             
             self?.showNoConnection()
+        }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func subscribeToOldVersionState()
+    {
+        self.appManager.errorsManager.oldVersion.asObservable().subscribe(onNext: { [weak self] state in
+            guard state else { return }
+            
+            self?.showOldVersion()
         }).disposed(by: self.disposeBag)
     }
 }

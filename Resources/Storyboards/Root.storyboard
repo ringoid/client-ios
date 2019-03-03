@@ -105,8 +105,86 @@
             </objects>
             <point key="canvasLocation" x="879" y="64"/>
         </scene>
+        <!--Update Version View Controller-->
+        <scene sceneID="1Fu-De-Oag">
+            <objects>
+                <viewController storyboardIdentifier="update_version_vc" id="hPK-i8-xdQ" customClass="UpdateVersionViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7J1-0B-1zi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ffg-oh-dDS">
+                                <rect key="frame" x="16" y="604" width="343" height="45"/>
+                                <color key="backgroundColor" red="0.26274509800000001" green="0.54901960780000003" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Wlv-EF-c3L"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <state key="normal" title="Open Appstore">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onLink" destination="hPK-i8-xdQ" eventType="touchUpInside" id="Zfz-nB-Lae"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_screen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Nfq-Pe-SNY">
+                                <rect key="frame" x="126" y="222" width="123" height="123"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_screen_title" translatesAutoresizingMaskIntoConstraints="NO" id="izm-5S-ozp">
+                                <rect key="frame" x="135" y="370" width="105" height="32"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0X-hA-TBR">
+                                <rect key="frame" x="16" y="402" width="343" height="202"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please update the app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4E6-e7-56o">
+                                        <rect key="frame" x="86" y="91" width="171" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="4E6-e7-56o" firstAttribute="centerY" secondItem="X0X-hA-TBR" secondAttribute="centerY" id="3N5-78-8BN"/>
+                                    <constraint firstItem="4E6-e7-56o" firstAttribute="centerX" secondItem="X0X-hA-TBR" secondAttribute="centerX" id="tLW-qg-4oL"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tKk-Xf-OFd" firstAttribute="bottom" secondItem="Ffg-oh-dDS" secondAttribute="bottom" constant="18" id="1fY-de-MW4"/>
+                            <constraint firstItem="izm-5S-ozp" firstAttribute="top" secondItem="Nfq-Pe-SNY" secondAttribute="bottom" constant="25" id="Cq4-2Q-zbm"/>
+                            <constraint firstItem="Nfq-Pe-SNY" firstAttribute="centerY" secondItem="7J1-0B-1zi" secondAttribute="centerY" constant="-50" id="E95-TU-jYM"/>
+                            <constraint firstItem="Nfq-Pe-SNY" firstAttribute="centerX" secondItem="7J1-0B-1zi" secondAttribute="centerX" id="F3E-4a-Jee"/>
+                            <constraint firstItem="X0X-hA-TBR" firstAttribute="leading" secondItem="7J1-0B-1zi" secondAttribute="leadingMargin" id="KI4-FC-BxC"/>
+                            <constraint firstItem="Ffg-oh-dDS" firstAttribute="top" secondItem="X0X-hA-TBR" secondAttribute="bottom" id="M48-wq-u0q"/>
+                            <constraint firstAttribute="trailing" secondItem="Ffg-oh-dDS" secondAttribute="trailing" constant="16" id="THc-gL-k26"/>
+                            <constraint firstItem="Ffg-oh-dDS" firstAttribute="leading" secondItem="7J1-0B-1zi" secondAttribute="leading" constant="16" id="cQb-eN-Tbg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="X0X-hA-TBR" secondAttribute="trailing" id="f7u-ts-XEh"/>
+                            <constraint firstItem="izm-5S-ozp" firstAttribute="centerX" secondItem="7J1-0B-1zi" secondAttribute="centerX" id="fQG-OG-VD1"/>
+                            <constraint firstItem="izm-5S-ozp" firstAttribute="top" secondItem="Nfq-Pe-SNY" secondAttribute="bottom" constant="25" id="qYO-XT-2BQ"/>
+                            <constraint firstItem="X0X-hA-TBR" firstAttribute="top" secondItem="izm-5S-ozp" secondAttribute="bottom" id="vuN-Ty-odX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tKk-Xf-OFd"/>
+                    </view>
+                    <connections>
+                        <outlet property="infoLabel" destination="4E6-e7-56o" id="6dO-qf-qSi"/>
+                        <outlet property="storeBtn" destination="Ffg-oh-dDS" id="eBi-Dc-mk6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gqv-5a-5ih" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1678" y="63"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="launch_screen_logo" width="123" height="123"/>
+        <image name="launch_screen_title" width="105" height="32"/>
         <image name="root_no_connection_icon" width="53" height="53"/>
     </resources>
 </document>
