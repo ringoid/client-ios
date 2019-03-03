@@ -40,12 +40,8 @@ class ReachabilityServiceDefault: ReachabilityService
     
     fileprivate func setupBindings()
     {
-        self.reachability?.rx.isConnected.asObservable().subscribe(onNext: { [weak self] _ in
-            self?.isInternetAvailable.accept(true)
-        }).disposed(by: self.disposeBag)
-        
-        self.reachability?.rx.isDisconnected.asObservable().subscribe(onNext: { [weak self] _ in
-            self?.isInternetAvailable.accept(false)
+        self.reachability?.rx.isReachable.asObservable().subscribe(onNext: { [weak self] state in
+            self?.isInternetAvailable.accept(state)
         }).disposed(by: self.disposeBag)
     }
 }

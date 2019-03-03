@@ -115,7 +115,7 @@ class RootViewController: BaseViewController {
     
     fileprivate func subscribeToNoConnectionState()
     {
-        self.appManager.reachability.isInternetAvailable.asObservable().subscribe(onNext: { [weak self] state in
+        self.appManager.actionsManager.isInternetAvailable.asObservable().subscribe(onNext: { [weak self] state in
             guard !state else { return }
             
             self?.showNoConnection()

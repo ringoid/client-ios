@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import RxCocoa
 
 enum BlockReason: Int
 {
@@ -33,9 +34,12 @@ class ActionsManager
 {
     var lastActionDate: Date?
     
+    let isInternetAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
+    
     fileprivate let db: DBService
     fileprivate let apiService: ApiService
     fileprivate let fs: FileService
+    fileprivate let reachability: ReachabilityService
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var viewActionsMap: [String: Date] = [:]
     fileprivate var queue: [Action] = []
@@ -48,11 +52,12 @@ class ActionsManager
         self.triggerTimer = nil
     }
     
-    init(_ db: DBService, api: ApiService, fs: FileService)
+    init(_ db: DBService, api: ApiService, fs: FileService, reachability: ReachabilityService)
     {
         self.db = db
         self.apiService = api
         self.fs = fs
+        self.reachability = reachability
         
         self.inqueueStoredActions()
         self.setupTimerTrigger()
@@ -161,6 +166,8 @@ class ActionsManager
     
     func sendQueue() -> Observable<Void>
     {
+        self.isInternetAvailable.accept(self.reachability.isInternetAvailable.value)
+        
         // Delaying request if previous one still in progress
         guard self.sendingActions.isEmpty else {
             log("Actions sendinging in progress - delaying request")
