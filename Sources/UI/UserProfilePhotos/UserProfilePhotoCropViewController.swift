@@ -89,18 +89,23 @@ class UserProfilePhotoCropViewController: BaseViewController
         let photoAreaWidth = boundsSize.width - 32.0
         let photoAreaHeight = photoAreaWidth * AppConfig.photoRatio
         var defaultScale: CGFloat = 1.0
+        var contentInset: UIEdgeInsets = .zero
         
         if size.height >= size.width { // Portrait
             defaultScale = photoAreaWidth / size.width
+            contentInset.top = (size.height * defaultScale - photoAreaHeight)  / 2.0
+            contentInset.bottom = (size.height * defaultScale - photoAreaHeight)  / 2.0
         } else { // Landscape
             defaultScale = photoAreaHeight / size.height
+            contentInset.left = (size.width * defaultScale - photoAreaWidth)  / 2.0
+            contentInset.right =  (size.width * defaultScale - photoAreaWidth) / 2.0
         }
         
         let maxScale = defaultScale * 3.0
         
-        let contentViewHeight = size.height * defaultScale
         let contentViewWidth = size.width * defaultScale
-
+        let contentViewHeight = size.height * defaultScale
+        
         self.contentHeightConstraint.constant = contentViewHeight
         self.contentWidthConstraint.constant = contentViewWidth
         
@@ -108,6 +113,7 @@ class UserProfilePhotoCropViewController: BaseViewController
         self.contentView.maximumZoomScale = maxScale
         self.contentView.contentSize = size
         self.contentView.setZoomScale(defaultScale, animated: false)
+        self.contentView.contentInset = contentInset
         let initialCenterOffset = CGPoint(
             x: (self.contentView.contentSize.width - contentViewWidth) / 2.0,
             y: (self.contentView.contentSize.height - contentViewHeight) / 2.0
