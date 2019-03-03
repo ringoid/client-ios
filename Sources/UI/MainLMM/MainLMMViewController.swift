@@ -160,7 +160,7 @@ class MainLMMViewController: BaseViewController
     
     @objc fileprivate func reload()
     {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.tableView.refreshControl?.endRefreshing()
         }
         
