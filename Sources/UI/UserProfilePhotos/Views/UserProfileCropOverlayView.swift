@@ -43,7 +43,7 @@ class UserProfileCropOverlayView: TouchThroughView
     override func draw(_ rect: CGRect)
     {
         // Outter white
-        let holeWidth1 = self.bounds.width - 32.0
+        let holeWidth1 = self.bounds.width - 34.0
         let holeHeight1 = holeWidth1 * AppConfig.photoRatio
         let holePath1 = UIBezierPath(rect: CGRect(
             x: (self.bounds.width - holeWidth1) / 2.0,
@@ -53,6 +53,7 @@ class UserProfileCropOverlayView: TouchThroughView
         )
         
         UIColor.white.set()
+        holePath1.lineWidth = 2.0
         holePath1.stroke()
         
         // Inner black
