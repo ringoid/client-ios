@@ -35,6 +35,7 @@ class RootViewController: BaseViewController {
         self.subscribeToAuthState()
         self.subscribeToNoConnectionState()
         self.subscribeToOldVersionState()
+        self.subscribeToSomethingWentWrong()
     }
 
     override func updateTheme()
@@ -106,6 +107,18 @@ class RootViewController: BaseViewController {
         self.present(vc, animated: false, completion: nil)
     }
     
+    fileprivate func showErrorStatus(_ text: String)
+    {
+        let alertVC = UIAlertController(
+            title: "error_common".localized(),
+            message: text,
+            preferredStyle: .alert
+        )
+        
+        alertVC.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
     fileprivate func subscribeToAuthState()
     {
         self.appManager.apiService.isAuthorized.asObservable().subscribe ({ [weak self] event in
@@ -136,6 +149,15 @@ class RootViewController: BaseViewController {
             guard state else { return }
             
             self?.showOldVersion()
+        }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func subscribeToSomethingWentWrong()
+    {
+        self.appManager.errorsManager.somethingWentWrong.asObservable().subscribe(onNext: { [weak self] text in
+            guard let text = text else { return }
+            
+            self?.showErrorStatus(text)
         }).disposed(by: self.disposeBag)
     }
 }

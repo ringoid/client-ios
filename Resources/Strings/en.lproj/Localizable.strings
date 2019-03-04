@@ -17,6 +17,8 @@
 "common_sex_male" = "Male";
 "common_sex_female" = "Female";
 
+"error_common" = "Oops! Something went wrong";
+
 "debug_email_support_button_label" = "Email support@ringoid.com";
 
 "error_screen_no_network_connection" = "No Internet connection";
@@ -29,6 +31,8 @@
 "lmm_tab_messenger" = "Chats";
 
 "settings_language_help" = "If you want to help the community and localise Ringoid to your native language, please email support@ringoid.com";
+
+"web_url_error_status" = "http://ringoid.com/status.html";
 
 "COMMON_ABOUT" = "About";
 "COMMON_OK" = "OK";

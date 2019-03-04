@@ -239,6 +239,11 @@ class ApiServiceDefault: ApiService
         }
     }
     
+    func getStatusText() -> Observable<String>
+    {
+        return RxAlamofire.request(.get, "web_url_error_status".localized(), parameters: [:], headers: [:]).string()
+    }
+    
     // MARK: - Basic
     
     fileprivate func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any]) -> Observable<[String: Any]>

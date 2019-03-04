@@ -16,6 +16,8 @@
 "common_sex_male" = "Мужчина";
 "common_sex_female" = "Женщина";
 
+"error_common" = "Ой! Что-то пошло не так";
+
 "debug_email_support_button_label" = "Написать в support@ringoid.com";
 
 "error_screen_no_network_connection" = "Нет интернета";
@@ -28,6 +30,8 @@
 "lmm_tab_messenger" = "Чаты";
 
 "settings_language_help" = "Если вы хотите помочь и перевести Рингоид на родной язык, пожалуйста, напишите в support@ringoid.com";
+
+"web_url_error_status" = "http://ringoid.com/status-ru.html";
 
 "BLOCK_REASON_INAPPROPRIATE" = "Inappropriate content";
 "BLOCK_REASON_STOLEN" = "Stolen photos, Copyright Infringment";

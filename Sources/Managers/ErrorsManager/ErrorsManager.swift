@@ -14,8 +14,8 @@ class ErrorsManager
     let api: ApiService
     let settings: SettingsManager
 
-    let disconnection: BehaviorRelay<ApiError?> = BehaviorRelay<ApiError?>(value: nil)
     let oldVersion: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    let somethingWentWrong: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
@@ -65,7 +65,14 @@ class ErrorsManager
     {
         switch error.type {
         case .notConnectedToInternet, .connectionLost, .secureConnectionFailed, .connectionTimeout:
-            self.disconnection.accept(error)
+            
+            self.api.getStatusText().subscribe(
+                onNext: { [weak self] text in
+                    self?.somethingWentWrong.accept(text)
+                }, onError: { [weak self] _ in
+                    self?.somethingWentWrong.accept("")
+            }).disposed(by: self.disposeBag)
+            
             break
             
         default: return

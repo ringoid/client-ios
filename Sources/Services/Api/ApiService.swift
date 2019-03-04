@@ -48,4 +48,6 @@ protocol ApiService
     func deletePhoto(_ photoId: String) -> Observable<Void>
     
     func sendActions(_ actions: [ApiAction]) -> Observable<Date>
+    
+    func getStatusText() -> Observable<String>
 }
