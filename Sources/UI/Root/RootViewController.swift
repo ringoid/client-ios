@@ -115,7 +115,7 @@ class RootViewController: BaseViewController {
             preferredStyle: .alert
         )
         
-        alertVC.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "button_close".localized(), style: .default, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
     
