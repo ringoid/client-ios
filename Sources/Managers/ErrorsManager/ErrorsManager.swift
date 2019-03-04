@@ -44,6 +44,14 @@ class ErrorsManager
         case .internalServerError:
             log("Internal Server Error")
             SentryService.shared.send(.internalError)
+            
+            self.api.getStatusText().subscribe(
+                onNext: { [weak self] text in
+                    self?.somethingWentWrong.accept(text)
+                }, onError: { [weak self] _ in
+                    self?.somethingWentWrong.accept("")
+            }).disposed(by: self.disposeBag)
+            
             break
             
         case .invalidAccessTokenClientError:
@@ -65,14 +73,6 @@ class ErrorsManager
     {
         switch error.type {
         case .notConnectedToInternet, .connectionLost, .secureConnectionFailed, .connectionTimeout:
-            
-            self.api.getStatusText().subscribe(
-                onNext: { [weak self] text in
-                    self?.somethingWentWrong.accept(text)
-                }, onError: { [weak self] _ in
-                    self?.somethingWentWrong.accept("")
-            }).disposed(by: self.disposeBag)
-            
             break
             
         default: return
