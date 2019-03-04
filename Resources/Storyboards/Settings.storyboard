@@ -670,17 +670,32 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFs-Ws-fdM">
+                                <rect key="frame" x="309" y="29" width="66" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="PzG-dy-EFZ"/>
+                                    <constraint firstAttribute="height" constant="44" id="zhc-uz-JgT"/>
+                                </constraints>
+                                <state key="normal" title="Copy">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onCopy" destination="lmv-40-rMH" eventType="touchUpInside" id="CHZ-Bc-MWU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="OwT-Zr-peC" secondAttribute="trailing" id="Ebc-eE-swj"/>
                             <constraint firstItem="OwT-Zr-peC" firstAttribute="leading" secondItem="d0u-ou-YiQ" secondAttribute="leading" constant="16" id="FIL-BK-ruZ"/>
                             <constraint firstAttribute="bottom" secondItem="OwT-Zr-peC" secondAttribute="bottom" id="IAK-Ec-7LI"/>
+                            <constraint firstItem="rFs-Ws-fdM" firstAttribute="centerY" secondItem="WDu-es-7pn" secondAttribute="centerY" id="QtC-fd-jRd"/>
                             <constraint firstItem="05C-Ll-fRf" firstAttribute="top" secondItem="iHv-R2-OI1" secondAttribute="top" constant="9" id="Wji-Xa-bpO"/>
                             <constraint firstItem="WDu-es-7pn" firstAttribute="centerY" secondItem="05C-Ll-fRf" secondAttribute="centerY" id="Zyf-qZ-DZw"/>
                             <constraint firstItem="WDu-es-7pn" firstAttribute="centerX" secondItem="d0u-ou-YiQ" secondAttribute="centerX" id="dVq-Ut-sqN"/>
                             <constraint firstItem="OwT-Zr-peC" firstAttribute="top" secondItem="05C-Ll-fRf" secondAttribute="bottom" constant="9" id="mOE-6i-qpa"/>
                             <constraint firstItem="05C-Ll-fRf" firstAttribute="leading" secondItem="d0u-ou-YiQ" secondAttribute="leading" constant="9" id="nkH-C4-f0k"/>
+                            <constraint firstAttribute="trailing" secondItem="rFs-Ws-fdM" secondAttribute="trailing" id="pXv-0v-Qyx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iHv-R2-OI1"/>
                     </view>

@@ -48,4 +48,11 @@ class LogService
             currentResult += self.formatter.string(from: record.timestamp) + ": " + record.message + "\n"
         })
     }
+    
+    func asClipboardText() -> String
+    {
+        return Array(self.records.suffix(20)).reduce(into: "", { (currentResult, record) in
+            currentResult += self.formatter.string(from: record.timestamp) + ": " + record.message + "\n"
+        })
+    }
 }

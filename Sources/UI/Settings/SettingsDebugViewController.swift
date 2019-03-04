@@ -30,4 +30,14 @@ class SettingsDebugViewController: BaseViewController
     {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func onCopy()
+    {
+        UIPasteboard.general.string = LogService.shared.asClipboardText()
+        
+        let alertVC = UIAlertController(title: "Success", message: nil, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "button_close".localized(), style: .default, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
+    }
 }
