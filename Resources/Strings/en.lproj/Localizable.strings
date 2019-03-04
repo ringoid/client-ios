@@ -32,10 +32,10 @@
 
 "settings_language_help" = "If you want to help the community and localise Ringoid to your native language, please email support@ringoid.com";
 
-"web_url_error_status" = "http://ringoid.com/status.html";
+"settings_info_about" = "About";
+"settings_info_about_dialog_description" = "Copyright © Ringoid Ltd, 2018.\n\nRINGOID LTD is registered in England with Company No. 09427326 and VAT Reg No: GB 208660511. \n\nRegistered Office: 97 Friars Mead, London, E14 3JY, England.\n\nRingoid is a registered trademark of Ringoid Ltd.\n\nRingoid Ltd is trading as Ringoid.\n\nRingoid is registered with the UK\'s Information Commissioner\'s Office with registration number ZA455969 and operates within compliance of the EU General Data Protection Regulation 2018.\n\nEmail: support@ringoid.com\nWeb: http://ringoid.com";
 
-"COMMON_ABOUT" = "About";
-"COMMON_OK" = "OK";
+"web_url_error_status" = "http://ringoid.com/status.html";
 
 "AUTH_TERMS_AND_POLICY" = "By tapping the button below, you confirm that you have read, understood, consent and agree to Ringoid's $terms$ and $policy$, and that you are of legal age and adult, as defined by the country or state from where you access Ringoid.";
 "AUTH_TERMS_OF_SERVICE" = "Terms of Service";
@@ -67,11 +67,7 @@
 "SETTINGS_LEGAL_LICENSES" = "Licenses";
 "SETTINGS_LEGAL_EMAIL" = "Email Data Protection Officer";
 "SETTINGS_LEGAL_CUSTOMER_ID" = "Customer ID";
-"SETTINGS_LEGAL_ABOUT_MESSAGE" = "Copyright © Ringoid Ltd, 2018.\n\nRINGOID LTD is registered in England with Company No. 09427326 and VAT Reg No: GB 208660511. \n\nRegistered Office: 97 Friars Mead, London, E14 3JY, England.\n\nRingoid is a registered trademark of Ringoid Ltd.\n\nRingoid Ltd is trading as Ringoid.\n\nRingoid is registered with the UK\'s Information Commissioner\'s Office with registration number ZA455969 and operates within compliance of the EU General Data Protection Regulation 2018.\n\nEmail: support@ringoid.com\nWeb: http://ringoid.com";
 
-"LMM_HEADER_CHATS_OPTION" = "Chats";
-"LMM_HEADER_LIKES_OPTION" = "Likes You";
-"LMM_HEADER_MATCHES_OPTION" = "Matches";
 "LMM_NO_LIKES_YOU" = "No likes yet";
 "LMM_NO_MATCHES_YOU" = "No matches yet";
 "LMM_NO_CHATS_YOU" = "No chats yet";

@@ -23,7 +23,7 @@ class SettingsLegalAboutCell: BaseTableViewCell
     
     override func updateLocale()
     {
-        self.aboutLabel.text = "COMMON_ABOUT".localized()
+        self.aboutLabel.text = "settings_info_about".localized()
     }
     
     override func updateTheme()

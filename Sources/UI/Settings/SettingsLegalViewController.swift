@@ -124,8 +124,8 @@ class SettingsLegalViewController: BaseViewController
     fileprivate func showAboutUI()
     {
         let alertVC = UIAlertController(
-            title: "COMMON_ABOUT".localized(),
-            message: "SETTINGS_LEGAL_ABOUT_MESSAGE".localized(),
+            title: "settings_info_about".localized(),
+            message: "settings_info_about_dialog_description".localized(),
             preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK".localized(), style: .cancel, handler: nil))
         
