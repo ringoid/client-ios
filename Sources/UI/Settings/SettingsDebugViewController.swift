@@ -39,7 +39,16 @@ class SettingsDebugViewController: BaseViewController
         self.items = [
             DebugErrorItem(title: "No Internet", trigger: { [weak self] in
                 self?.input.actionsManager.isInternetAvailable.accept(false)
-            })
+            }),
+            DebugErrorItem(title: "Internal Server Error", trigger: { [weak self] in
+                self?.input.errorsManager.simulatedError.accept(ApiError(type: .internalServerError))
+            }),
+            DebugErrorItem(title: "Invalid Access Token", trigger: { [weak self] in
+                self?.input.errorsManager.simulatedError.accept(ApiError(type: .invalidAccessTokenClientError))
+            }),
+            DebugErrorItem(title: "Too Old App version", trigger: { [weak self] in
+                self?.input.errorsManager.simulatedError.accept(ApiError(type: .tooOldAppVersionClientError))
+            }),
         ]
     }
     

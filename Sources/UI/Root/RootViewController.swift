@@ -129,7 +129,14 @@ class RootViewController: BaseViewController {
         )
         
         alertVC.addAction(UIAlertAction(title: "button_close".localized(), style: .default, handler: nil))
-        self.present(alertVC, animated: true, completion: nil)
+        
+        if self.presentedViewController != nil {
+            self.presentedViewController?.dismiss(animated: false, completion: {
+                self.present(alertVC, animated: true, completion: nil)
+            })
+        } else {
+            self.present(alertVC, animated: true, completion: nil)
+        }
     }
     
     fileprivate func subscribeToAuthState()
