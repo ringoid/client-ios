@@ -43,3 +43,18 @@ extension Bool: XStorageObject
         return (from as? String) == "true"
     }
 }
+
+extension Array: XStorageObject where Element == String
+{
+    func storableObject() -> Any
+    {
+        return self.reduce(into:"", { (currentResult, element) in
+            currentResult += "," + element
+        })
+    }
+    
+    static func create(_ from: Any) -> [String]?
+    {
+        return (from as? String)?.components(separatedBy: CharacterSet(charactersIn: ","))
+    }
+}
