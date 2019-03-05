@@ -46,7 +46,7 @@ class AppManager
         self.fileService = FileServiceDefault()
         self.defaultStorage = DefaultStorageService()
         self.db = DBService()
-        self.uploader = UploaderServiceDefault()
+        self.uploader = UploaderServiceDefault(self.defaultStorage)
         self.reachability = ReachabilityServiceDefault()
         
         #if STAGE

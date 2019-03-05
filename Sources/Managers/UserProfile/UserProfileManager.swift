@@ -80,6 +80,7 @@ class UserProfileManager
         }).disposed(by: self.disposeBag)
                 
         if let id = photoId {
+            self.uploader.cancel(path.url())
             self.apiService.deletePhoto(id).subscribe().disposed(by: self.disposeBag)
         }
     }

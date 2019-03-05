@@ -13,13 +13,26 @@ import Alamofire
 
 class UploaderServiceDefault: UploaderService
 {
-    fileprivate let disposeBag = DisposeBag()
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate let storage: XStorageService
+    
+    fileprivate var activeUploads: [URL: URLSessionTask?] = [:]
+    
+    init(_ storage: XStorageService)
+    {
+        self.storage = storage
+    }
     
     func upload(_ data: Data, to: URL) -> Observable<Void>
     {
-        return Observable<Void>.create({ [weak self] observer -> Disposable in
-            Alamofire.upload(data, to: to, method: .put, headers: nil).responseData { response in
+        let request = Alamofire.upload(data, to: to, method: .put, headers: nil)
+        self.activeUploads[to] = request.task
+        
+        return Observable<Void>.create({ [weak self] observer -> Disposable in            
+                request.responseData { response in
+                    
                 defer {
+                    self?.activeUploads.removeValue(forKey: to)
                     observer.onCompleted()
                 }
                 
@@ -33,6 +46,11 @@ class UploaderServiceDefault: UploaderService
             }
 
             return Disposables.create()
-        })
+        }).retry(3)
+    }
+    
+    func cancel(_ url: URL)
+    {
+        self.activeUploads[url]??.cancel()
     }
 }

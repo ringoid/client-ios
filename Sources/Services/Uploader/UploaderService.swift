@@ -11,4 +11,5 @@ import RxSwift
 protocol UploaderService
 {
     func upload(_ data: Data, to: URL) -> Observable<Void>
+    func cancel(_ url: URL)
 }
