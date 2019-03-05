@@ -49,7 +49,11 @@ extension Array: XStorageObject where Element == String
     func storableObject() -> Any
     {
         return self.reduce(into:"", { (currentResult, element) in
-            currentResult += "," + element
+            if currentResult.count != 0 {
+                currentResult += "," + element
+            } else {
+                currentResult += element
+            }
         })
     }
     
