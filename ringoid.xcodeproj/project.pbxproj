@@ -96,6 +96,8 @@
 		576FC12A22086B6C00BA5ABE /* ApiUserPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC12922086B6C00BA5ABE /* ApiUserPhoto.swift */; };
 		57801A81222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */; };
 		57801A82222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */; };
+		57801A84222E4378005A9731 /* SettingsDebugItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A83222E4378005A9731 /* SettingsDebugItemCell.swift */; };
+		57801A85222E4379005A9731 /* SettingsDebugItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A83222E4378005A9731 /* SettingsDebugItemCell.swift */; };
 		579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */; };
 		579CD7AE21F8603500C3AEE3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7AD21F8603500C3AEE3 /* Settings.storyboard */; };
 		579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
@@ -363,6 +365,7 @@
 		576FC125220486A100BA5ABE /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		576FC12922086B6C00BA5ABE /* ApiUserPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiUserPhoto.swift; sourceTree = "<group>"; };
 		57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateVersionViewController.swift; sourceTree = "<group>"; };
+		57801A83222E4378005A9731 /* SettingsDebugItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugItemCell.swift; sourceTree = "<group>"; };
 		579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		579CD7AD21F8603500C3AEE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -878,6 +881,7 @@
 				57149D5F221AD32D00F636A4 /* SettingsLegalCustomerCell.swift */,
 				573A5C0A2223C4520094A9FA /* SettingsLocaleHelpCell.swift */,
 				573A5C13222541FF0094A9FA /* SettingsDebugCell.swift */,
+				57801A83222E4378005A9731 /* SettingsDebugItemCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1395,6 +1399,7 @@
 				57585D4421E3558800038798 /* Photo.swift in Sources */,
 				57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */,
 				57B863CF21ECD98F00B9CC70 /* MainLMMCell.swift in Sources */,
+				57801A84222E4378005A9731 /* SettingsDebugItemCell.swift in Sources */,
 				57B863FC21EF5DDF00B9CC70 /* ApiOpenChat.swift in Sources */,
 				57585D5B21E4A0F100038798 /* FilePath.swift in Sources */,
 				573A5C1B222556AD0094A9FA /* LogService.swift in Sources */,
@@ -1527,6 +1532,7 @@
 				57EE651D2216711000246B45 /* AppManager.swift in Sources */,
 				57EE651E2216711000246B45 /* ContainerView.swift in Sources */,
 				57EE651F2216711000246B45 /* Photo.swift in Sources */,
+				57801A85222E4379005A9731 /* SettingsDebugItemCell.swift in Sources */,
 				57EE65202216711000246B45 /* DBServiceObject.swift in Sources */,
 				57EE65212216711000246B45 /* MainLMMCell.swift in Sources */,
 				573A5C1C222556AD0094A9FA /* LogService.swift in Sources */,

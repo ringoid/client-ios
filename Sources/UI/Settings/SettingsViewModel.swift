@@ -12,6 +12,8 @@ import RxCocoa
 struct SettingsVMInput
 {
     let settingsManager: SettingsManager
+    let actionsManager: ActionsManager
+    let errorsManager: ErrorsManager
 }
 
 class SettingsViewModel

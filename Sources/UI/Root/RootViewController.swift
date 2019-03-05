@@ -75,7 +75,8 @@ class RootViewController: BaseViewController {
             profileManager: self.appManager.profileManager,
             settingsManager: self.appManager.settingsMananger,
             chatManager: self.appManager.chatManager,
-            navigationManager: self.appManager.navigationManager
+            navigationManager: self.appManager.navigationManager,
+            errorsManager: self.appManager.errorsManager
         )
         
         self.containerView.embed(vc, to: self)
@@ -97,14 +98,26 @@ class RootViewController: BaseViewController {
     {
         let vc = NoConnectionViewController.create(NoConnectionVCInput(reachability: self.appManager.reachability))
         
-        self.present(vc, animated: false, completion: nil)
+        if self.presentedViewController != nil {
+            self.presentedViewController?.dismiss(animated: false, completion: {
+                self.present(vc, animated: false, completion: nil)
+            })
+        } else {
+            self.present(vc, animated: false, completion: nil)
+        }
     }
     
     fileprivate func showOldVersion()
     {
         let vc = UpdateVersionViewController.create()
-        
-        self.present(vc, animated: false, completion: nil)
+     
+        if self.presentedViewController != nil {
+            self.presentedViewController?.dismiss(animated: false, completion: {
+                self.present(vc, animated: false, completion: nil)
+            })
+        } else {
+            self.present(vc, animated: false, completion: nil)
+        }
     }
     
     fileprivate func showErrorStatus(_ text: String)

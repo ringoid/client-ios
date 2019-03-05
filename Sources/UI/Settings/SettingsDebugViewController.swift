@@ -8,15 +8,39 @@
 
 import UIKit
 
+struct SettingsDebugVCInput
+{
+    let actionsManager: ActionsManager
+    let errorsManager: ErrorsManager
+}
+
+struct DebugErrorItem
+{
+    let title: String
+    let trigger: (() -> ())?
+}
+
 class SettingsDebugViewController: BaseViewController
 {
-    @IBOutlet fileprivate weak var logTextView: UITextView!
+    var input: SettingsDebugVCInput!
+    
+    fileprivate var items: [DebugErrorItem] = []
+    
+    @IBOutlet fileprivate weak var tableView: UITableView!
     
     override func viewDidLoad()
     {
+        assert(self.input != nil)
+        
         super.viewDidLoad()
         
-        self.logTextView.text = LogService.shared.asText()
+        self.tableView.tableFooterView = UIView(frame: .zero)
+        
+        self.items = [
+            DebugErrorItem(title: "No Internet", trigger: { [weak self] in
+                self?.input.actionsManager.isInternetAvailable.accept(false)
+            })
+        ]
     }
     
     override func updateTheme()
@@ -39,5 +63,32 @@ class SettingsDebugViewController: BaseViewController
         alertVC.addAction(UIAlertAction(title: "button_close".localized(), style: .default, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
+    }
+}
+
+extension SettingsDebugViewController: UITableViewDataSource, UITableViewDelegate
+{
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return self.items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "debug_item_cell") as! SettingsDebugItemCell
+        
+        cell.item = self.items[indexPath.row]
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        self.items[indexPath.row].trigger?()
     }
 }

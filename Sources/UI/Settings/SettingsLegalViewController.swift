@@ -79,6 +79,12 @@ class SettingsLegalViewController: BaseViewController
         self.setupBindings()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueIds.debug, let vc = segue.destination as? SettingsDebugViewController {
+            vc.input = SettingsDebugVCInput(actionsManager: self.input.actionsManager, errorsManager: self.input.errorsManager)
+        }
+    }
+    
     override func updateTheme()
     {
         let theme = ThemeManager.shared.theme.value

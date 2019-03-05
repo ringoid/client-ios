@@ -17,6 +17,9 @@ class ErrorsManager
     let oldVersion: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     let somethingWentWrong: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     
+    // For debug purpose
+    let simulatedError: BehaviorRelay<ApiError> = BehaviorRelay<ApiError>(value: ApiError(type: .unknown))
+    
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     init(_ api: ApiService, settings: SettingsManager)
@@ -32,6 +35,12 @@ class ErrorsManager
     fileprivate func setupBindings()
     {
         self.api.error.asObservable().subscribe(onNext: { [weak self] error in
+            self?.handleApiError(error)
+            self?.handleConnectionError(error)
+        }).disposed(by: self.disposeBag)
+        
+        // For debug purpose
+        self.simulatedError.asObservable().subscribe(onNext: { [weak self] error in
             self?.handleApiError(error)
             self?.handleConnectionError(error)
         }).disposed(by: self.disposeBag)

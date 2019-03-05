@@ -16,6 +16,8 @@ struct UserProfilePhotosVCInput
     let settingsManager: SettingsManager
     let navigationManager: NavigationManager
     let newFacesManager: NewFacesManager
+    let actionsManager: ActionsManager
+    let errorsManager: ErrorsManager
 }
 
 class UserProfilePhotosViewModel
