@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import Nuke
+import MobileCoreServices
 
 class UserProfilePhotosViewController: BaseViewController
 {
@@ -147,6 +148,7 @@ class UserProfilePhotosViewController: BaseViewController
     {
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
+        vc.mediaTypes = [kUTTypeImage] as [String]
         vc.delegate = self
         
         self.present(vc, animated: true, completion: nil)
