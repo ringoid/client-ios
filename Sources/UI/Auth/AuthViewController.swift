@@ -92,7 +92,7 @@ class AuthViewController: BaseViewController
     }
     
     @IBAction func onRegister()
-    {
+    {        
         self.authActivityView.startAnimating()
         self.registerBtn.isHidden = true
         self.viewModel?.register().subscribe(

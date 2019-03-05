@@ -83,6 +83,8 @@ class UserProfilePhotosViewController: BaseViewController
     
     @objc func reload()
     {
+        self.input.actionsManager.checkConnectionState()
+        
         self.viewModel?.refresh().subscribe(
             onError:{ [weak self] error in
                 guard let `self` = self else { return }

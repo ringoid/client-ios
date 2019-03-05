@@ -122,6 +122,8 @@ class MainLMMProfileViewController: UIViewController
     
     @IBAction func onChatSelected()
     {
+        self.input.actionsManager.checkConnectionState()
+        
         weak var weakSelf = self
         let profile = self.input.profile
         
@@ -132,6 +134,8 @@ class MainLMMProfileViewController: UIViewController
     
     @IBAction func onBlock()
     {
+        self.input.actionsManager.checkConnectionState()
+        
         weak var weakSelf = self
         let profile = self.input.profile
         self.onChatHide?(profile, profile.orderedPhotos()[self.currentIndex.value], weakSelf)

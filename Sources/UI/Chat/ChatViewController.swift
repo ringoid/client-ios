@@ -103,6 +103,8 @@ class ChatViewController: BaseViewController
     
     @IBAction func onSend()
     {
+        self.input.chatManager.actionsManager.checkConnectionState()
+        
         let text = self.messageTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         
         guard text.count > 0 else { return }
@@ -125,6 +127,7 @@ class ChatViewController: BaseViewController
     
     @IBAction func onBlock()
     {
+        self.input.chatManager.actionsManager.checkConnectionState()
         self.input.onBlock?()
     }
     

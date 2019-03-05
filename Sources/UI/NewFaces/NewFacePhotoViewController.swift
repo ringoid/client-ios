@@ -87,6 +87,8 @@ class NewFacePhotoViewController: UIViewController
     
     @IBAction func  onLike()
     {
+        self.input?.actionsManager.checkConnectionState()
+        
         guard self.isLikesAvailable() else { return }
         guard let input = self.input, let photo = self.photo else { return }
         

@@ -166,8 +166,6 @@ class ActionsManager
     
     func sendQueue() -> Observable<Void>
     {
-        self.isInternetAvailable.accept(self.reachability.isInternetAvailable.value)
-        
         // Delaying request if previous one still in progress
         guard self.sendingActions.isEmpty else {
             log("Actions sendinging in progress - delaying request")
@@ -200,6 +198,11 @@ class ActionsManager
                     self.queue.insert(contentsOf: self.sendingActions, at: 0)
                     self.sendingActions.removeAll()
             }).map({ _ -> Void in return () })
+    }
+    
+    func checkConnectionState()
+    {
+        self.isInternetAvailable.accept(self.reachability.isInternetAvailable.value)
     }
     
     // MARK: -

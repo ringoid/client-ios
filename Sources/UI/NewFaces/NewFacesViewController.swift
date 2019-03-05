@@ -361,6 +361,11 @@ extension NewFacesViewController: UIScrollViewDelegate
         self.updateVisibleCellsBorders(offset)
     }
     
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
+    {
+        self.input.actionsManager.checkConnectionState()
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
     {
         self.tableView.visibleCells.forEach { cell in

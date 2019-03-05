@@ -88,6 +88,8 @@ class NewFaceProfileViewController: UIViewController
         
     @IBAction func onBlock()
     {
+        self.input.actionsManager.checkConnectionState()
+        
         self.showBlockOptions()
     }
     

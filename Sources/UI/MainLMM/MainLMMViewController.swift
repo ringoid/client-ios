@@ -516,6 +516,8 @@ extension MainLMMViewController: UIScrollViewDelegate
 {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     {
+        self.input.actionsManager.checkConnectionState()
+        
         self.isDragged = true
     }
     
