@@ -84,7 +84,7 @@ class UserProfilePhotosViewController: BaseViewController
     
     @objc func reload()
     {
-        self.input.actionsManager.checkConnectionState()
+        guard self.input.actionsManager.checkConnectionState() else { return }
         
         self.viewModel?.refresh().subscribe(
             onError:{ [weak self] error in
@@ -106,14 +106,14 @@ class UserProfilePhotosViewController: BaseViewController
     
     @IBAction func addPhoto()
     {
-        self.input.actionsManager.checkConnectionState()
+        guard self.input.actionsManager.checkConnectionState() else { return }
         
         self.pickPhoto()
     }
     
     @IBAction func deletePhoto()
     {
-        self.input.actionsManager.checkConnectionState()
+        guard self.input.actionsManager.checkConnectionState() else { return }
         
         self.showDeletionAlert()
     }

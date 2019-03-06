@@ -121,7 +121,7 @@ class MainLMMContainerViewController: BaseViewController
     
     fileprivate func toggle(_ type: LMMType)
     {
-        self.input.chatManager.actionsManager.checkConnectionState()
+        guard self.input.chatManager.actionsManager.checkConnectionState() else { return }
         
         MainLMMContainerViewController.feedTypeCache = type
         

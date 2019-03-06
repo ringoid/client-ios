@@ -363,7 +363,7 @@ extension NewFacesViewController: UIScrollViewDelegate
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     {
-        self.input.actionsManager.checkConnectionState()
+        _ = self.input.actionsManager.checkConnectionState()
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)

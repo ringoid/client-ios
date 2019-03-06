@@ -200,9 +200,12 @@ class ActionsManager
             }).map({ _ -> Void in return () })
     }
     
-    func checkConnectionState()
+    func checkConnectionState() -> Bool
     {
-        self.isInternetAvailable.accept(self.reachability.isInternetAvailable.value)
+        let state = self.reachability.isInternetAvailable.value
+        self.isInternetAvailable.accept(state)
+        
+        return state
     }
     
     // MARK: -

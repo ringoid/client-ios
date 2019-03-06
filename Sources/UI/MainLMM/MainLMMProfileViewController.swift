@@ -122,7 +122,7 @@ class MainLMMProfileViewController: UIViewController
     
     @IBAction func onChatSelected()
     {
-        self.input.actionsManager.checkConnectionState()
+        guard self.input.actionsManager.checkConnectionState() else { return }
         
         weak var weakSelf = self
         let profile = self.input.profile
@@ -134,7 +134,7 @@ class MainLMMProfileViewController: UIViewController
     
     @IBAction func onBlock()
     {
-        self.input.actionsManager.checkConnectionState()
+        guard self.input.actionsManager.checkConnectionState() else { return }
         
         weak var weakSelf = self
         let profile = self.input.profile
