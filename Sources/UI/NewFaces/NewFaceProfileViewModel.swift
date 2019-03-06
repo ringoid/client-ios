@@ -27,7 +27,7 @@ class NewFaceProfileViewModel
     func like(at photoIndex: Int)
     {
         self.input.actionsManager.add(
-            [.view(viewCount: 1, viewTimeSec: 1), .like(likeCount: 1)],
+            [.view(viewCount: 1, viewTime: 1), .like(likeCount: 1)],
             profile: self.input.profile.actionInstance(),
             photo: self.input.profile.orderedPhotos()[photoIndex].actionInstance(),
             source: .newFaces)

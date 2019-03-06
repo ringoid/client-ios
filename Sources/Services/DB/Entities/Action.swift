@@ -62,21 +62,21 @@ extension Action
 
 extension Action
 {
-    func viewData() -> (viewCount: Int, viewTimeSec: Int)?
+    func viewData() -> (viewCount: Int, viewTime: Int)?
     {
         guard self.type == ActionType.view.rawValue else { return nil }
         guard let jsonData = self.extraData, let jsonDict = (try? JSONSerialization.jsonObject(with: jsonData)) as? [String: Any] else { return nil }
         guard let viewCount = jsonDict["viewCount"] as? Int else { return nil }
-        guard let viewTimeSec = jsonDict["viewTimeSec"] as? Int else { return nil }
+        guard let viewTime = jsonDict["viewTime"] as? Int else { return nil }
         
-        return (viewCount: viewCount, viewTimeSec: viewTimeSec)
+        return (viewCount: viewCount, viewTime: viewTime)
     }
     
-    func setViewData(viewCount: Int, viewTimeSec: Int)
+    func setViewData(viewCount: Int, viewTime: Int)
     {
         guard self.type == ActionType.view.rawValue else { return }
         
-        self.extraData = try? JSONSerialization.data(withJSONObject: ["viewCount": viewCount, "viewTimeSec": viewCount])
+        self.extraData = try? JSONSerialization.data(withJSONObject: ["viewCount": viewCount, "viewTime": viewTime])
     }
 }
 
