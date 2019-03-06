@@ -228,7 +228,7 @@ see how many likes you get</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwV-or-7Pl" customClass="ExtendedTouchesView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="3" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTO-9T-zT1">
+                                    <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="3" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTO-9T-zT1">
                                         <rect key="frame" x="87" y="233" width="200" height="200"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -274,7 +274,7 @@ see how many likes you get</string>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xhJ-SX-ipM" firstAttribute="trailing" secondItem="iwV-or-7Pl" secondAttribute="trailing" id="8nc-t4-RjS"/>
                             <constraint firstItem="iwV-or-7Pl" firstAttribute="leading" secondItem="IuN-Ig-UFi" secondAttribute="leading" id="Bw8-GO-Chc"/>
