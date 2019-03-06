@@ -33,6 +33,7 @@ class NewFaceProfileViewController: UIViewController
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
+    @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     
     static func create(_ profile: NewFaceProfile, actionsManager: ActionsManager) -> NewFaceProfileViewController
     {
@@ -66,6 +67,11 @@ class NewFaceProfileViewController: UIViewController
         
         guard let vc = self.photosVCs.first else { return }
         self.pagesVC?.setViewControllers([vc], direction: .forward, animated: false, completion: nil)
+        
+        #if STAGE
+        self.profileIdLabel.text = String(self.input.profile.id.suffix(4))
+        self.profileIdLabel.isHidden = false
+        #endif
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)

@@ -30,9 +30,10 @@ class NewFacePhotoViewController: UIViewController
     fileprivate weak var activeAppearAnimator: UIViewPropertyAnimator?
     fileprivate weak var activeDisappearAnimator: UIViewPropertyAnimator?
     
-    @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var animationLikeView: UIImageView!
+    @IBOutlet fileprivate weak var photoIdLabel: UILabel!
     
     static func create() -> NewFacePhotoViewController
     {
@@ -48,6 +49,11 @@ class NewFacePhotoViewController: UIViewController
         
         self.updateBindings()
         self.update()
+        
+        #if STAGE
+        self.photoIdLabel.text = String(self.photo?.id.suffix(4) ?? "")
+        self.photoIdLabel.isHidden = false
+        #endif
     }
     
     override func viewDidAppear(_ animated: Bool)
