@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import MessageUI
 
 fileprivate enum AppUIMode
 {
@@ -133,7 +134,16 @@ class RootViewController: BaseViewController {
             preferredStyle: .alert
         )
         
-        alertVC.addAction(UIAlertAction(title: "button_close".localized(), style: .default, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "debug_email_support_button_label".localized(), style: .default, handler: { _ in
+            guard MFMailComposeViewController.canSendMail() else { return }
+            
+            let vc = MFMailComposeViewController()
+            vc.setToRecipients(["support@ringoid.com"])
+            vc.mailComposeDelegate = self
+            
+            self.present(vc, animated: true, completion: nil)
+        }))
+        alertVC.addAction(UIAlertAction(title: "button_close".localized(), style: .cancel, handler: nil))
         
         if self.presentedViewController != nil {
             self.presentedViewController?.dismiss(animated: false, completion: {
@@ -191,6 +201,14 @@ class RootViewController: BaseViewController {
         LogService.shared.records.asObservable().subscribe(onNext: { [weak self] _ in
             self?.debugTextView.text = LogService.shared.asShortText()
         }).disposed(by: self.disposeBag)
+    }
+}
+
+extension RootViewController: MFMailComposeViewControllerDelegate
+{
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
+    {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 

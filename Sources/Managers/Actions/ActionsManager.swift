@@ -282,7 +282,7 @@ extension Action {
         apiAction?.actionType = self.type
         apiAction?.targetPhotoId = self.photo?.id ?? ""
         apiAction?.targetUserId = self.profile?.id ?? ""
-        apiAction?.actionTime = Int(self.actionTime.timeIntervalSince1970)
+        apiAction?.actionTime = Int(self.actionTime.timeIntervalSince1970 * 1000.0)
         
         return apiAction
     }
