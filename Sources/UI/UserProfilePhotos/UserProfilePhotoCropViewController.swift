@@ -101,7 +101,7 @@ class UserProfilePhotoCropViewController: BaseViewController
             contentInset.right =  (size.width * defaultScale - photoAreaWidth) / 2.0
         }
         
-        let maxScale = defaultScale * 3.0
+        let maxScale = defaultScale * 6.0
         
         let contentViewWidth = size.width * defaultScale
         let contentViewHeight = size.height * defaultScale
