@@ -141,7 +141,9 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.requestGET(path: "feeds/get_new_faces", params: params).flatMap { jsonDict -> Observable<[ApiProfile]> in
+        return self.requestGET(path: "feeds/get_new_faces", params: params)
+            .timeout(2.0, scheduler: MainScheduler.instance)
+            .flatMap { jsonDict -> Observable<[ApiProfile]> in
             guard let profilesArray = jsonDict["profiles"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong profiles data format", type: .hidden)
                 
