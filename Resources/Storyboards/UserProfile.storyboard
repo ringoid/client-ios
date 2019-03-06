@@ -88,8 +88,8 @@ see how many likes you get</string>
                                     <segue destination="yQa-yl-S9g" kind="presentation" identifier="settings_vc" id="Emm-PL-Vpz"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="gyn-28-5bi">
-                                <rect key="frame" x="17" y="38" width="7" height="8"/>
+                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="gyn-28-5bi">
+                                <rect key="frame" x="17" y="44" width="7" height="8"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="1gg-Wv-gER"/>
                                 </constraints>
@@ -100,7 +100,7 @@ see how many likes you get</string>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="4hG-ZS-M4a"/>
                             <constraint firstItem="UJu-F3-4rH" firstAttribute="leading" secondItem="Yc6-CF-qSL" secondAttribute="leading" constant="18" id="84h-sg-v7S"/>
                             <constraint firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" id="EeI-Bh-ckx"/>
-                            <constraint firstItem="gyn-28-5bi" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" constant="18" id="G7V-WC-jCi"/>
+                            <constraint firstItem="gyn-28-5bi" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" constant="24" id="G7V-WC-jCi"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="J5p-mc-dZY"/>
                             <constraint firstAttribute="trailing" secondItem="GhS-rk-bVb" secondAttribute="trailing" id="MAW-HJ-rQf"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="Q1a-Y0-U7m"/>
@@ -251,10 +251,10 @@ see how many likes you get</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y31-Rq-thY">
-                                <rect key="frame" x="315" y="20" width="60" height="60"/>
+                                <rect key="frame" x="322" y="29" width="44" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="e3a-pC-VxU"/>
-                                    <constraint firstAttribute="width" constant="60" id="xeh-xL-10j"/>
+                                    <constraint firstAttribute="height" constant="44" id="e3a-pC-VxU"/>
+                                    <constraint firstAttribute="width" constant="44" id="xeh-xL-10j"/>
                                 </constraints>
                                 <state key="normal" image="common_done"/>
                                 <connections>
@@ -262,10 +262,10 @@ see how many likes you get</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qtg-SY-uKb">
-                                <rect key="frame" x="0.0" y="20" width="60" height="60"/>
+                                <rect key="frame" x="9" y="29" width="44" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="a1B-MP-v3X"/>
-                                    <constraint firstAttribute="width" constant="60" id="beV-ck-Zbx"/>
+                                    <constraint firstAttribute="height" constant="44" id="a1B-MP-v3X"/>
+                                    <constraint firstAttribute="width" constant="44" id="beV-ck-Zbx"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="common_back"/>
@@ -279,15 +279,15 @@ see how many likes you get</string>
                             <constraint firstItem="xhJ-SX-ipM" firstAttribute="trailing" secondItem="iwV-or-7Pl" secondAttribute="trailing" id="8nc-t4-RjS"/>
                             <constraint firstItem="iwV-or-7Pl" firstAttribute="leading" secondItem="IuN-Ig-UFi" secondAttribute="leading" id="Bw8-GO-Chc"/>
                             <constraint firstItem="xhJ-SX-ipM" firstAttribute="top" secondItem="iwV-or-7Pl" secondAttribute="top" id="HFz-kl-Rlh"/>
-                            <constraint firstItem="Qtg-SY-uKb" firstAttribute="top" secondItem="dnQ-Od-s3C" secondAttribute="top" id="HMl-Rh-pqV"/>
+                            <constraint firstItem="Qtg-SY-uKb" firstAttribute="top" secondItem="dnQ-Od-s3C" secondAttribute="top" constant="9" id="HMl-Rh-pqV"/>
                             <constraint firstItem="xhJ-SX-ipM" firstAttribute="bottom" secondItem="iwV-or-7Pl" secondAttribute="bottom" id="LmY-XV-xbc"/>
+                            <constraint firstAttribute="trailing" secondItem="Y31-Rq-thY" secondAttribute="trailing" constant="9" id="Myb-UW-CPA"/>
                             <constraint firstAttribute="bottom" secondItem="iwV-or-7Pl" secondAttribute="bottom" id="SoS-qy-sPV"/>
                             <constraint firstAttribute="trailing" secondItem="iwV-or-7Pl" secondAttribute="trailing" id="TUW-6e-UFr"/>
                             <constraint firstItem="xhJ-SX-ipM" firstAttribute="leading" secondItem="iwV-or-7Pl" secondAttribute="leading" id="Zut-9e-Cfg"/>
                             <constraint firstItem="iwV-or-7Pl" firstAttribute="top" secondItem="IuN-Ig-UFi" secondAttribute="top" id="fyJ-fH-i2W"/>
                             <constraint firstItem="Y31-Rq-thY" firstAttribute="centerY" secondItem="Qtg-SY-uKb" secondAttribute="centerY" id="iEr-zS-fiY"/>
-                            <constraint firstAttribute="trailing" secondItem="Y31-Rq-thY" secondAttribute="trailing" id="mjw-3B-I0f"/>
-                            <constraint firstItem="Qtg-SY-uKb" firstAttribute="leading" secondItem="IuN-Ig-UFi" secondAttribute="leading" id="x98-7S-0cm"/>
+                            <constraint firstItem="Qtg-SY-uKb" firstAttribute="leading" secondItem="IuN-Ig-UFi" secondAttribute="leading" constant="9" id="x98-7S-0cm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dnQ-Od-s3C"/>
                     </view>
