@@ -106,11 +106,15 @@ class UserProfilePhotosViewController: BaseViewController
     
     @IBAction func addPhoto()
     {
+        self.input.actionsManager.checkConnectionState()
+        
         self.pickPhoto()
     }
     
     @IBAction func deletePhoto()
     {
+        self.input.actionsManager.checkConnectionState()
+        
         self.showDeletionAlert()
     }
     
