@@ -252,6 +252,8 @@ class ApiServiceDefault: ApiService
         let buildVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"
         let timestamp = Date()
         
+        log("Starting: \(method) \(url)")
+        
         return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
             ]).json()
@@ -268,6 +270,8 @@ class ApiServiceDefault: ApiService
                 do {
                     jsonDict = try self?.validateJsonResponse(obj) ?? [:]
                 } catch {
+                    log("FAILURE: url: \(url) error: \(error)")
+                    
                     return .error(error)
                 }
                 
@@ -282,6 +286,8 @@ class ApiServiceDefault: ApiService
                     })
                 }
                 
+                log("SUCCESS: url: \(url)")
+                
                 return .just(jsonDict)
             })
     }
@@ -291,6 +297,8 @@ class ApiServiceDefault: ApiService
         let url = self.config.endpoint + "/" + path
         let buildVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"
         let timestamp = Date()
+        
+        log("Starting: GET \(url)")
         
         return RxAlamofire.request(.get, url, parameters: params, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
@@ -308,6 +316,8 @@ class ApiServiceDefault: ApiService
                 do {
                     jsonDict = try self?.validateJsonResponse(obj) ?? [:]
                 } catch {
+                    log("FAILURE: url: \(url) error: \(error)")
+                    
                     return .error(error)
                 }
                 
@@ -321,6 +331,8 @@ class ApiServiceDefault: ApiService
                             return self!.requestGET(path: path, params: params)
                         })
                 }
+                
+                log("SUCCESS: url: \(url)")
                 
                 return .just(jsonDict)
             })
