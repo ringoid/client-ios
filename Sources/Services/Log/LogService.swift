@@ -56,4 +56,11 @@ class LogService
             currentResult += self.formatter.string(from: record.timestamp) + ": " + record.message + "\n"
         })
     }
+    
+    func asShortText() -> String
+    {
+        return Array(self.records.value.suffix(4)).reduce(into: "", { (currentResult, record) in
+            currentResult += self.formatter.string(from: record.timestamp) + ": " + record.message + "\n"
+        })
+    }
 }
