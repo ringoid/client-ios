@@ -44,9 +44,9 @@ extension SentryEvent
     var level: SentrySeverity
     {
         switch self {
-        case .repeatAfterDelay: return .error
+        case .repeatAfterDelay: return .warning
         case .internalError: return .error
-        case .responseGeneralDelay: return .warning
+        case .responseGeneralDelay: return .error
             
         }
     }
