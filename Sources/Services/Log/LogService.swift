@@ -43,6 +43,11 @@ class LogService
         print("LOG(\(self.formatter.string(from: Date()))): \(message)")
     }
     
+    func clear()
+    {
+        self.records.accept([])
+    }
+    
     func asText() -> String
     {
         return self.records.value.reduce(into: "", { (currentResult, record) in

@@ -670,11 +670,11 @@
                                     <constraint firstAttribute="height" constant="44" id="zhc-uz-JgT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                <state key="normal" title="Copy log">
+                                <state key="normal" title="Log">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="onCopy" destination="lmv-40-rMH" eventType="touchUpInside" id="CHZ-Bc-MWU"/>
+                                    <segue destination="M8N-iJ-rPh" kind="show" id="Ery-ZC-w1R"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n6D-HR-s3L">
@@ -735,6 +735,103 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A5Z-5w-9Li" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1346.4000000000001" y="861.3193403298352"/>
+        </scene>
+        <!--Settings Debug Log View Controller-->
+        <scene sceneID="BxG-ca-XeF">
+            <objects>
+                <viewController id="M8N-iJ-rPh" customClass="SettingsDebugLogViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MDU-OR-IFn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luE-zT-oTp">
+                                <rect key="frame" x="9" y="29" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Edg-rb-gBw"/>
+                                    <constraint firstAttribute="width" constant="44" id="VUt-SN-fT2"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="common_back"/>
+                                <connections>
+                                    <action selector="onBack" destination="i4T-DQ-OzO" eventType="touchUpInside" id="9eu-5B-p6s"/>
+                                    <action selector="onBack" destination="M8N-iJ-rPh" eventType="touchUpInside" id="Pil-Aq-KA0"/>
+                                    <action selector="onBack" destination="eFf-2P-mkZ" eventType="touchUpInside" id="WaF-4b-7nT"/>
+                                    <action selector="onBack" destination="Xr8-DS-6ty" eventType="touchUpInside" id="eGb-id-RLM"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9x-eh-vb8">
+                                <rect key="frame" x="170" y="38.5" width="35.5" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkB-pc-3eS">
+                                <rect key="frame" x="299" y="29" width="76" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="76" id="JmO-l2-D3f"/>
+                                    <constraint firstAttribute="height" constant="44" id="sL0-2d-LVO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <state key="normal" title="Copy">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onCopy" destination="M8N-iJ-rPh" eventType="touchUpInside" id="Axu-5o-hG8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4k-1w-Rxt">
+                                <rect key="frame" x="16" y="604" width="343" height="45"/>
+                                <color key="backgroundColor" red="0.26274509800000001" green="0.54901960780000003" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="YcQ-LE-QhR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <state key="normal" title="Clear">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onClear" destination="M8N-iJ-rPh" eventType="touchUpInside" id="Yor-Y8-IVl"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FuL-Yz-5mf">
+                                <rect key="frame" x="0.0" y="81" width="375" height="515"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="FuL-Yz-5mf" firstAttribute="top" secondItem="luE-zT-oTp" secondAttribute="bottom" constant="8" id="0DP-8z-nBT"/>
+                            <constraint firstItem="luE-zT-oTp" firstAttribute="top" secondItem="v8H-1L-ciz" secondAttribute="top" constant="9" id="3bh-v9-1YA"/>
+                            <constraint firstItem="h4k-1w-Rxt" firstAttribute="top" secondItem="FuL-Yz-5mf" secondAttribute="bottom" constant="8" id="Cha-OF-XTM"/>
+                            <constraint firstItem="v8H-1L-ciz" firstAttribute="bottom" secondItem="h4k-1w-Rxt" secondAttribute="bottom" constant="18" id="EOE-NC-Cgy"/>
+                            <constraint firstItem="h4k-1w-Rxt" firstAttribute="leading" secondItem="MDU-OR-IFn" secondAttribute="leading" constant="16" id="NFg-cn-1Pj"/>
+                            <constraint firstItem="FuL-Yz-5mf" firstAttribute="leading" secondItem="MDU-OR-IFn" secondAttribute="leading" id="RBK-B1-EIP"/>
+                            <constraint firstItem="s9x-eh-vb8" firstAttribute="centerY" secondItem="luE-zT-oTp" secondAttribute="centerY" id="Uy7-Y1-qdk"/>
+                            <constraint firstAttribute="trailing" secondItem="FuL-Yz-5mf" secondAttribute="trailing" id="fDh-SD-iAc"/>
+                            <constraint firstItem="luE-zT-oTp" firstAttribute="leading" secondItem="MDU-OR-IFn" secondAttribute="leading" constant="9" id="ho0-tz-4ue"/>
+                            <constraint firstAttribute="trailing" secondItem="IkB-pc-3eS" secondAttribute="trailing" id="kRb-Mp-zkX"/>
+                            <constraint firstItem="s9x-eh-vb8" firstAttribute="centerX" secondItem="MDU-OR-IFn" secondAttribute="centerX" id="pf9-eD-bOx"/>
+                            <constraint firstItem="IkB-pc-3eS" firstAttribute="centerY" secondItem="s9x-eh-vb8" secondAttribute="centerY" id="wP1-8O-eqV"/>
+                            <constraint firstAttribute="trailing" secondItem="h4k-1w-Rxt" secondAttribute="trailing" constant="16" id="yNb-4o-NZ3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="v8H-1L-ciz"/>
+                    </view>
+                    <connections>
+                        <outlet property="logTextView" destination="FuL-Yz-5mf" id="NgW-9C-Dwe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z9i-vF-4pI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2084" y="857.72113943028489"/>
         </scene>
     </scenes>
     <resources>
