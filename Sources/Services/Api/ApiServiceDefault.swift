@@ -259,7 +259,7 @@ class ApiServiceDefault: ApiService
                 self?.checkConnectionError(error as NSError)
             })
             .flatMap({ [weak self] obj -> Observable<[String: Any]> in
-                if Date().timeIntervalSince(timestamp) > 1.0 {
+                if Date().timeIntervalSince(timestamp) > 2.0 {
                     SentryService.shared.send(.responseGeneralDelay)
                 }
                 
@@ -299,7 +299,7 @@ class ApiServiceDefault: ApiService
                 self?.checkConnectionError(error as NSError)
             })
             .flatMap({ [weak self] obj -> Observable<[String: Any]> in
-                if Date().timeIntervalSince(timestamp) > 1.0 {
+                if Date().timeIntervalSince(timestamp) > 2.0 {
                     SentryService.shared.send(.responseGeneralDelay)
                 }
                 
