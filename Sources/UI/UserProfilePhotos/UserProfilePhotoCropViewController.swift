@@ -91,7 +91,7 @@ class UserProfilePhotoCropViewController: BaseViewController
         var defaultScale: CGFloat = 1.0
         var contentInset: UIEdgeInsets = .zero
         
-        if size.height >= size.width { // Portrait
+        if size.height > size.width * AppConfig.photoRatio { // Portrait
             defaultScale = photoAreaWidth / size.width
             contentInset.top = (size.height * defaultScale - photoAreaHeight)  / 2.0
             contentInset.bottom = (size.height * defaultScale - photoAreaHeight)  / 2.0
