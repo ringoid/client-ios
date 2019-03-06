@@ -26,6 +26,7 @@ class RootViewController: BaseViewController {
     fileprivate var mode: AppUIMode = .unknown
     
     @IBOutlet fileprivate weak var containerView: ContainerView!
+    @IBOutlet fileprivate weak var debugTextView: UITextView!
     
     override func viewDidLoad()
     {
@@ -36,6 +37,10 @@ class RootViewController: BaseViewController {
         self.subscribeToNoConnectionState()
         self.subscribeToOldVersionState()
         self.subscribeToSomethingWentWrong()
+        
+        #if STAGE
+        self.subscribeForDebugLog()
+        #endif
     }
 
     override func updateTheme()
@@ -180,4 +185,21 @@ class RootViewController: BaseViewController {
             self?.showErrorStatus(text)
         }).disposed(by: self.disposeBag)
     }
+    
+    fileprivate func subscribeForDebugLog()
+    {
+        LogService.shared.records.asObservable().subscribe(onNext: { [weak self] _ in
+            self?.debugTextView.text = LogService.shared.asText()
+        }).disposed(by: self.disposeBag)
+    }
 }
+
+#if STAGE
+extension RootViewController
+{
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?)
+    {
+        self.debugTextView.isHidden = !self.debugTextView.isHidden
+    }
+}
+#endif

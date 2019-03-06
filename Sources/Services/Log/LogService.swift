@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 func log(_ message: String)
 {
@@ -23,7 +25,7 @@ class LogService
 {
     static let shared = LogService()
     
-    var records: [LogRecord] = []
+    let records: BehaviorRelay<[LogRecord]> = BehaviorRelay<[LogRecord]>(value: [])
     
     fileprivate let formatter = DateFormatter()
     
@@ -34,24 +36,23 @@ class LogService
     
     func log(_ message: String)
     {
-        self.records.append(LogRecord(
+        self.records.accept(self.records.value + [LogRecord(
             message: message,
             timestamp: Date()
-        ))
-        
+            )])
         print("LOG(\(self.formatter.string(from: Date()))): \(message)")
     }
     
     func asText() -> String
     {
-        return self.records.reduce(into: "", { (currentResult, record) in
+        return self.records.value.reduce(into: "", { (currentResult, record) in
             currentResult += self.formatter.string(from: record.timestamp) + ": " + record.message + "\n"
         })
     }
     
     func asClipboardText() -> String
     {
-        return Array(self.records.suffix(20)).reduce(into: "", { (currentResult, record) in
+        return Array(self.records.value.suffix(20)).reduce(into: "", { (currentResult, record) in
             currentResult += self.formatter.string(from: record.timestamp) + ": " + record.message + "\n"
         })
     }

@@ -22,11 +22,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qkI-rc-FWt">
+                                <rect key="frame" x="0.0" y="459" width="375" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.76795269691780821" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="pvA-6M-jws"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="qkI-rc-FWt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CMZ-XD-lWm"/>
                             <constraint firstAttribute="trailing" secondItem="6Fk-T6-FB9" secondAttribute="trailing" id="GG3-PK-1wo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qkI-rc-FWt" secondAttribute="bottom" constant="80" id="HAK-66-3RD"/>
                             <constraint firstItem="6Fk-T6-FB9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="VbO-L7-oVe"/>
+                            <constraint firstAttribute="trailing" secondItem="qkI-rc-FWt" secondAttribute="trailing" id="XnK-gK-WhV"/>
                             <constraint firstItem="6Fk-T6-FB9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dts-lS-8hT"/>
                             <constraint firstAttribute="bottom" secondItem="6Fk-T6-FB9" secondAttribute="bottom" id="iP6-Xz-qfk"/>
                         </constraints>
@@ -34,11 +47,12 @@
                     </view>
                     <connections>
                         <outlet property="containerView" destination="6Fk-T6-FB9" id="kWi-Ef-hVP"/>
+                        <outlet property="debugTextView" destination="qkI-rc-FWt" id="JDn-4A-RqH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="103" y="65"/>
+            <point key="canvasLocation" x="101.59999999999999" y="64.31784107946028"/>
         </scene>
         <!--No Connection View Controller-->
         <scene sceneID="dlw-Zr-GuS">
