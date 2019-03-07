@@ -337,19 +337,19 @@ extension BlockReason
 {
     static func reportResons() -> [BlockReason]
     {
-        return [.inappropriate, .stolen, .spam, .criminal, .underaged, .harrasment]
+        return [.block, .inappropriate, .stolen, .spam, .criminal, .underaged, .harrasment]
     }
     
     func title() -> String
     {
         switch self {
-        case .inappropriate: return "BLOCK_REASON_INAPPROPRIATE".localized()
-        case .stolen: return "BLOCK_REASON_STOLEN".localized()
-        case .spam: return "BLOCK_REASON_SPAM".localized()
-        case .criminal: return "BLOCK_REASON_CRIMINAL".localized()
-        case .underaged: return "BLOCK_REASON_UNDERAGED".localized()
-        case .harrasment: return "BLOCK_REASON_HARRASMENT".localized()
-        default: return ""
+        case .block: return "report_profile_button_0".localized()
+        case .inappropriate: return "report_profile_button_1".localized()
+        case .stolen: return "report_profile_button_2".localized()
+        case .spam: return "report_profile_button_3".localized()
+        case .criminal: return "report_profile_button_4".localized()
+        case .underaged: return "report_profile_button_4".localized()
+        case .harrasment: return "report_profile_button_6".localized()
         }
     }
 }
