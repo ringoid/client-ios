@@ -22,7 +22,7 @@ class SettingsLegalCustomerCell: BaseTableViewCell
     
     override func updateLocale()
     {
-        self.customerLabel.text = "SETTINGS_LEGAL_CUSTOMER_ID".localized()
+        self.customerLabel.text = "settings_info_customer_info".localized()
     }
     
     override func updateTheme()

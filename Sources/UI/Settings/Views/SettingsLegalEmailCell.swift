@@ -14,7 +14,7 @@ class SettingsLegalEmailCell: BaseTableViewCell
     
     override func updateLocale()
     {
-        self.emailLabel.text = "SETTINGS_LEGAL_EMAIL".localized()
+        self.emailLabel.text = "settings_info_email_officer".localized()
     }
     
     override func updateTheme()

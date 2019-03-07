@@ -14,7 +14,7 @@ class SettingsLegalLicensesCell: BaseTableViewCell
     
     override func updateLocale()
     {
-        self.licensesLabel.text = "SETTINGS_LEGAL_LICENSES".localized()
+        self.licensesLabel.text = "settings_info_licenses".localized()
     }
     
     override func updateTheme()

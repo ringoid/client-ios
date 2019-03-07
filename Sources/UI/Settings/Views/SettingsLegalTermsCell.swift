@@ -14,7 +14,7 @@ class SettingsLegalTermsCell: BaseTableViewCell
     
     override func updateLocale()
     {
-        self.termsLabel.text = "SETTINGS_LEGAL_TERMS".localized()
+        self.termsLabel.text = "settings_info_terms".localized()
     }
     
     override func updateTheme()
