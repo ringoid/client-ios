@@ -362,7 +362,7 @@ class MainLMMViewController: BaseViewController
     {
         let alertVC = UIAlertController(
             title: nil,
-            message: "NEW_FACES_NO_PHOTO_ALERT_MESSAGE".localized(),
+            message: "feed_explore_dialog_no_user_photo_description".localized(),
             preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "button_add_photo".localized(), style: .default, handler: { [weak self] _ in
             self?.viewModel?.moveToProfile()
@@ -404,9 +404,9 @@ class MainLMMViewController: BaseViewController
     fileprivate func emptyLabelTitle() -> String
     {
         switch self.type.value {
-        case .likesYou: return "LMM_NO_LIKES_YOU".localized()
-        case .matches: return "LMM_NO_MATCHES_YOU".localized()
-        case .messages: return "LMM_NO_CHATS_YOU".localized()
+        case .likesYou: return "feed_likes_you_empty_no_data".localized()
+        case .matches: return "feed_matches_empty_no_data".localized()
+        case .messages: return "feed_messages_empty_no_data".localized()
         }
     }
     

@@ -37,6 +37,14 @@
 "report_profile_button_5" = "Несовершеннолетние пользователи";
 "report_profile_button_6" = "Угрозы или Домогательства";
 
+"feed_explore_empty_title" = "Поиск";
+
+"feed_explore_dialog_no_user_photo_description" = "Добавь фото, чтобы получать лайки";
+"feed_explore_empty_no_data" = "Новых пока нет";
+"feed_likes_you_empty_no_data" = "Лайков ещё нет";
+"feed_matches_empty_no_data" = "Взаимных симпатий (совпадений) ещё нет";
+"feed_messages_empty_no_data" = "Сообщений ещё нет";
+
 "lmm_tab_likes" = "Ты нравишься";
 "lmm_tab_matches" = "Взаимно";
 "lmm_tab_messenger" = "Чаты";
@@ -65,11 +73,6 @@
 "settings_info_terms" = "Условия использования";
 
 "web_url_error_status" = "http://ringoid.com/status-ru.html";
-
-"NEW_FACES_NO_PHOTO_ALERT_MESSAGE" = "Add your photo to see who likes you, like and message others.";
-"NEW_FACES_NO_NEW_ITEMS" = "No one new around";
-
-"CHAT_MESSAGE_SENT" = "Отправлено";
 
 "PROFILE_DELETE_PHOTO" = "Удалить Фото";
 "PROFILE_DISCOVER_USERS" = "Discover users nearby";

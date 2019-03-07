@@ -64,6 +64,8 @@ class NewFacesViewController: BaseViewController
     
     override func updateLocale()
     {
+        self.titleLabel.text = "feed_explore_empty_title".localized()
+        
         self.toggleActivity(self.currentActivityState)
     }
     
@@ -213,7 +215,7 @@ class NewFacesViewController: BaseViewController
     {
         let alertVC = UIAlertController(
             title: nil,
-            message: "NEW_FACES_NO_PHOTO_ALERT_MESSAGE".localized(),
+            message: "feed_explore_dialog_no_user_photo_description".localized(),
             preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "button_add_photo".localized(), style: .default, handler: { [weak self] _ in
             self?.viewModel?.moveToProfile()
@@ -241,7 +243,7 @@ class NewFacesViewController: BaseViewController
             
         case .empty:
             self.emptyFeedActivityView.stopAnimating()
-            self.emptyFeedLabel.text = "NEW_FACES_NO_NEW_ITEMS".localized()
+            self.emptyFeedLabel.text = "feed_explore_empty_no_data".localized()
             self.emptyFeedLabel.isHidden = false
             break
             

@@ -36,6 +36,14 @@
 "report_profile_button_5" = "Underage user, Child exploitation";
 "report_profile_button_6" = "Harassment or threats, Abuse";
 
+"feed_explore_empty_title" = "Discover";
+
+"feed_explore_dialog_no_user_photo_description" = "Add photo so others can like you";
+"feed_explore_empty_no_data" = "No one new around";
+"feed_likes_you_empty_no_data" = "No likes yet";
+"feed_matches_empty_no_data" = "No matches (mutual likes) yet";
+"feed_messages_empty_no_data" = "No messages yet";
+
 "lmm_tab_likes" = "Likes You";
 "lmm_tab_matches" = "Matches";
 "lmm_tab_messenger" = "Chats";
@@ -64,15 +72,6 @@
 "settings_info_terms" = "Terms of Service";
 
 "web_url_error_status" = "http://ringoid.com/status.html";
-
-"LMM_NO_LIKES_YOU" = "No likes yet";
-"LMM_NO_MATCHES_YOU" = "No matches yet";
-"LMM_NO_CHATS_YOU" = "No chats yet";
-
-"NEW_FACES_NO_PHOTO_ALERT_MESSAGE" = "Add your photo to see who likes you, like and message others.";
-"NEW_FACES_NO_NEW_ITEMS" = "No one new around";
-
-"CHAT_MESSAGE_SENT" = "Sent";
 
 "PROFILE_DELETE_PHOTO" = "Delete Photo";
 "PROFILE_DISCOVER_USERS" = "Discover users nearby";
