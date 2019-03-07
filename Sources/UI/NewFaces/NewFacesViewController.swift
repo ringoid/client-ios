@@ -336,7 +336,7 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
             (totalCount - indexPath.row) <= 5
             else { return }
 
-        log("fetching next page")
+        log("fetching next page", level: .high)
         self.loadingActivityView.startAnimating()
         self.feedEndLabel.isHidden = true
         self.viewModel?.fetchNext().subscribe(

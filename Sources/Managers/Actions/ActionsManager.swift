@@ -168,7 +168,7 @@ class ActionsManager
     {
         // Delaying request if previous one still in progress
         guard self.sendingActions.isEmpty else {
-            log("Actions sendinging in progress - delaying request")
+            log("Actions sendinging in progress - delaying request", level: .medium)
             
             return Observable<Void>.just(())
                 .delay(RxTimeInterval(0.1), scheduler: MainScheduler.instance)
@@ -183,7 +183,7 @@ class ActionsManager
         self.queue.removeFirst(enqued.count)
         self.sendingActions.append(contentsOf: enqued)
         
-        log("Sending events: \(self.sendingActions.count)")
+        log("Sending events: \(self.sendingActions.count)", level: .high)
         
         return self.apiService.sendActions(self.sendingActions.compactMap({ $0.apiAction() }))
             .do(onNext: { [weak self] date in

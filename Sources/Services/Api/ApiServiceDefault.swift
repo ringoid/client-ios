@@ -254,7 +254,7 @@ class ApiServiceDefault: ApiService
         let buildVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"
         let timestamp = Date()
         
-        log("Starting: \(method) \(url)")
+        log("Starting: \(method) \(url)", level: .low)
         
         return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
@@ -272,14 +272,14 @@ class ApiServiceDefault: ApiService
                 do {
                     jsonDict = try self?.validateJsonResponse(obj) ?? [:]
                 } catch {
-                    log("FAILURE: url: \(url) error: \(error)")
+                    log("FAILURE: url: \(url) error: \(error)", level: .low)
                     
                     return .error(error)
                 }
                 
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
                     SentryService.shared.send(.repeatAfterDelay)
-                    log("repeating after \(repeatAfter) \(url)")
+                    log("repeating after \(repeatAfter) \(url)", level: .low)
                     
                     return Observable<Void>.just(())
                         .delay(RxTimeInterval(Double(repeatAfter) / 1000.0), scheduler: MainScheduler.instance)
@@ -288,7 +288,7 @@ class ApiServiceDefault: ApiService
                     })
                 }
                 
-                log("SUCCESS: url: \(url)")
+                log("SUCCESS: url: \(url)", level: .low)
                 
                 return .just(jsonDict)
             })
@@ -300,7 +300,7 @@ class ApiServiceDefault: ApiService
         let buildVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"
         let timestamp = Date()
         
-        log("Starting: GET \(url)")
+        log("Starting: GET \(url)", level: .low)
         
         return RxAlamofire.request(.get, url, parameters: params, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
@@ -318,14 +318,14 @@ class ApiServiceDefault: ApiService
                 do {
                     jsonDict = try self?.validateJsonResponse(obj) ?? [:]
                 } catch {
-                    log("FAILURE: url: \(url) error: \(error)")
+                    log("FAILURE: url: \(url) error: \(error)", level: .low)
                     
                     return .error(error)
                 }
                 
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
                     SentryService.shared.send(.repeatAfterDelay)
-                    log("repeating after \(repeatAfter) \(url)")
+                    log("repeating after \(repeatAfter) \(url)", level: .low)
                     
                     return Observable<Void>.just(())
                         .delay(RxTimeInterval(Double(repeatAfter) / 1000.0), scheduler: MainScheduler.instance)
@@ -334,7 +334,7 @@ class ApiServiceDefault: ApiService
                         })
                 }
                 
-                log("SUCCESS: url: \(url)")
+                log("SUCCESS: url: \(url)", level: .low)
                 
                 return .just(jsonDict)
             })

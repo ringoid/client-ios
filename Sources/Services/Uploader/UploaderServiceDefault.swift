@@ -29,7 +29,7 @@ class UploaderServiceDefault: UploaderService
     
     func upload(_ data: Data, to: URL) -> Observable<Void>
     {
-        log("Photo uploading started \(to)")
+        log("Photo uploading started \(to)", level: .high)
         
         let request = Alamofire.upload(data, to: to, method: .put, headers: nil)
         self.activeUploads[to] = request.task

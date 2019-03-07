@@ -87,7 +87,7 @@ class LMMManager
     
     func refresh() -> Observable<Void>
     {
-        log("LMM reloading process started")
+        log("LMM reloading process started", level: .high)
         self.isFetching.accept(true)
         let chatCache = self.messages.value.filter({ !$0.notSeen }).map({ ChatProfileCache.create($0) })
         
