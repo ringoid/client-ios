@@ -11,6 +11,7 @@ import RxCocoa
 import RxAlamofire
 import Alamofire
 import Sentry
+import DeviceKit
 
 class ApiServiceDefault: ApiService
 {
@@ -36,6 +37,8 @@ class ApiServiceDefault: ApiService
     
     func createProfile(year: Int, sex: Sex) -> Observable<Void>
     {
+        let device = Device()
+        
         let params: [String: Any] = [
             "yearOfBirth": year,
             "sex": sex.rawValue,
@@ -43,8 +46,8 @@ class ApiServiceDefault: ApiService
             "dtLA": Int(Date().timeIntervalSince1970),
             "dtPN": Int(Date().timeIntervalSince1970),
             "locale": "en",
-            "deviceModel": "iPhone",
-            "osVersion": "11.0"
+            "deviceModel": device.description,
+            "osVersion": device.systemVersion
         ]
         
         return self.request(.post, path: "auth/create_profile", jsonBody: params).flatMap { [weak self] jsonDict -> Observable<Void> in

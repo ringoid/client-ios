@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DeviceKit
 
 class DeviceServiceDefault: DeviceService
 {
@@ -34,5 +35,10 @@ class DeviceServiceDefault: DeviceService
         }
         
         return self.resolutions.values.first!
+    }
+    
+    var deviceName: String
+    {
+        return Device().description
     }
 }

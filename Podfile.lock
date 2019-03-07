@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.8.1)
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
+  - DeviceKit (1.11.0)
   - Differentiator (3.1.0)
   - Fabric (1.9.0)
   - Nuke (7.5.2)
@@ -38,6 +39,7 @@ PODS:
 
 DEPENDENCIES:
   - Crashlytics
+  - DeviceKit (~> 1.3)
   - Fabric
   - Nuke
   - RxAlamofire
@@ -51,6 +53,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Crashlytics
+    - DeviceKit
     - Differentiator
     - Fabric
     - Nuke
@@ -78,6 +81,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  DeviceKit: a3a86f8dddbe1317a9a243cdf9646858bf135dce
   Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Nuke: 0350d346a688426e8f2331253ef28dc2fc4f6178
@@ -93,6 +97,6 @@ SPEC CHECKSUMS:
   RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
   Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
 
-PODFILE CHECKSUM: 1fee90b2f3fa801445617b9c8326e06c1b96a577
+PODFILE CHECKSUM: e151f356ab4de9e21152709523f2413ee4f652ea
 
 COCOAPODS: 1.6.0

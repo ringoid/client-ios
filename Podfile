@@ -14,6 +14,7 @@ def common_pods
 	pod 'Crashlytics'
 	pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '4.1.0'
 	pod 'RxReachability'
+	pod 'DeviceKit', '~> 1.3'
 end
 
 target 'ringoid' do
