@@ -201,7 +201,7 @@ class AuthViewController: BaseViewController
     
     fileprivate func updatePlaceholder()
     {
-        self.birthYearTextField.attributedPlaceholder = NSAttributedString(string: "AUTH_YOB".localized(), attributes: [
+        self.birthYearTextField.attributedPlaceholder = NSAttributedString(string: "login_year_of_birth_et_hint".localized(), attributes: [
             .foregroundColor: ContentColor().uiColor(),
             .font: UIFont.systemFont(ofSize: 17.0, weight: .light)
             ])
@@ -209,11 +209,11 @@ class AuthViewController: BaseViewController
     
     fileprivate func updateTermsPolicy()
     {
-        let attributedText = "AUTH_TERMS_AND_POLICY".localizedWithAttributes(mainStringAttributes: [.foregroundColor: SecondContentColor().uiColor()], markers: [
-            LocalizationAttributeMarker(marker: "$terms$", localizationKey: "AUTH_TERMS_OF_SERVICE", attributes: [
+        let attributedText = "login_terms".localizedWithAttributes(mainStringAttributes: [.foregroundColor: SecondContentColor().uiColor()], markers: [
+            LocalizationAttributeMarker(marker: "$terms$", localizationKey: "login_variable_terms", attributes: [
                 .link: AppConfig.termsUrl
                 ]),
-            LocalizationAttributeMarker(marker: "$policy$", localizationKey: "AUTH_PRIVACY_POLICY", attributes: [
+            LocalizationAttributeMarker(marker: "$policy$", localizationKey: "login_variable_policy", attributes: [
                 .link: AppConfig.policyUrl
                 ]),
             ])

@@ -30,17 +30,18 @@
 "lmm_tab_matches" = "Matches";
 "lmm_tab_messenger" = "Chats";
 
+"login_button" = "Continue to Upload Photo";
+"login_terms" = "By tapping the button below, you confirm that you have read, understood, consent and agree to Ringoid's $terms$ and $policy$, and that you are of legal age and adult, as defined by the country or state from where you access Ringoid.";
+"login_year_of_birth_et_hint" = "Year of Birth";
+"login_variable_terms" = "Terms of Service";
+"login_variable_policy" = "Privacy Policy";
+
 "settings_language_help" = "If you want to help the community and localise Ringoid to your native language, please email support@ringoid.com";
 
 "settings_info_about" = "About";
 "settings_info_about_dialog_description" = "Copyright © Ringoid Ltd, 2018.\n\nRINGOID LTD is registered in England with Company No. 09427326 and VAT Reg No: GB 208660511. \n\nRegistered Office: 97 Friars Mead, London, E14 3JY, England.\n\nRingoid is a registered trademark of Ringoid Ltd.\n\nRingoid Ltd is trading as Ringoid.\n\nRingoid is registered with the UK\'s Information Commissioner\'s Office with registration number ZA455969 and operates within compliance of the EU General Data Protection Regulation 2018.\n\nEmail: support@ringoid.com\nWeb: http://ringoid.com";
 
 "web_url_error_status" = "http://ringoid.com/status.html";
-
-"AUTH_TERMS_AND_POLICY" = "By tapping the button below, you confirm that you have read, understood, consent and agree to Ringoid's $terms$ and $policy$, and that you are of legal age and adult, as defined by the country or state from where you access Ringoid.";
-"AUTH_TERMS_OF_SERVICE" = "Terms of Service";
-"AUTH_PRIVACY_POLICY" = "Privacy Policy";
-"AUTH_YOB" = "Year of Birth";
 
 "BLOCK_REASON_INAPPROPRIATE" = "Inappropriate content";
 "BLOCK_REASON_STOLEN" = "Stolen photos, Copyright Infringment";
