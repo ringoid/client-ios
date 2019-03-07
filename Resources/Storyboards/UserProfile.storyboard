@@ -120,7 +120,7 @@ see how many likes you get</string>
                         <outlet property="addBtn" destination="R3C-Zv-Ixf" id="3Be-pJ-u5T"/>
                         <outlet property="containerTableView" destination="GhS-rk-bVb" id="o6E-fd-3zd"/>
                         <outlet property="deleteBtn" destination="32r-W0-czT" id="qDq-QL-d5e"/>
-                        <outlet property="emptyFeedView" destination="c03-Vj-oKe" id="0d8-h2-kLZ"/>
+                        <outlet property="emptyFeedLabel" destination="c03-Vj-oKe" id="HhA-IN-Ey8"/>
                         <outlet property="optionsBtn" destination="0Ze-nT-pEZ" id="xcA-G9-NaZ"/>
                         <outlet property="pageControl" destination="gyn-28-5bi" id="KYH-ae-ET6"/>
                         <outlet property="titleLabel" destination="UJu-F3-4rH" id="DNT-SD-cx5"/>

@@ -55,6 +55,13 @@
 "login_variable_terms" = "Условия использования";
 "login_variable_policy" = "Политику конфиденциальности";
 
+"profile_button_delete_image" = "Удалить фото";
+"profile_dialog_image_another_button_add" = "Добавить еще фото";
+"profile_dialog_image_another_button_cancel" = "Искать новых пользователей";
+"profile_dialog_image_another_title" = "Что дальше?";
+"profile_empty_images" = "Добавь фото, чтобы\nполучать лайки";
+"profile_empty_title" = "Профиль";
+
 "settings_account_delete" = "Удалить Профиль";
 "settings_account_delete_dialog_title" = "Удалить Профиль?";
 "settings_app_info" = "Информация";
@@ -73,8 +80,3 @@
 "settings_info_terms" = "Условия использования";
 
 "web_url_error_status" = "http://ringoid.com/status-ru.html";
-
-"PROFILE_DELETE_PHOTO" = "Удалить Фото";
-"PROFILE_DISCOVER_USERS" = "Discover users nearby";
-"PROFILE_ADD_PHOTO" = "Add another photo";
-"PROFILE_ADD_ALERT_TITLE" = "What do you want to do next?";

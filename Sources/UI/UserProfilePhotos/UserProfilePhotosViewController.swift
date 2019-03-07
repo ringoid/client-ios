@@ -27,7 +27,7 @@ class UserProfilePhotosViewController: BaseViewController
     fileprivate var pickedPhoto: UIImage?
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var emptyFeedView: UIView!
+    @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var deleteBtn: UIButton!
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
@@ -75,6 +75,12 @@ class UserProfilePhotosViewController: BaseViewController
     override func updateTheme()
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
+    }
+    
+    override func updateLocale()
+    {
+        self.titleLabel.text = "profile_empty_title".localized()
+        self.emptyFeedLabel.text = "profile_empty_images".localized()
     }
     
     func showPhotoPicker()
@@ -176,7 +182,7 @@ class UserProfilePhotosViewController: BaseViewController
             self.viewModel?.lastPhotoId.accept(photos.first?.id)
         }
         
-        self.emptyFeedView.isHidden = !photos.isEmpty
+        self.emptyFeedLabel.isHidden = !photos.isEmpty
         self.titleLabel.isHidden = !photos.isEmpty
         self.pageControl.numberOfPages = photos.count
         self.photosVCs = photos.map({ photo in
@@ -202,7 +208,7 @@ class UserProfilePhotosViewController: BaseViewController
     fileprivate func showDeletionAlert()
     {
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alertVC.addAction(UIAlertAction(title: "PROFILE_DELETE_PHOTO".localized(), style: .destructive, handler: ({ _ in
+        alertVC.addAction(UIAlertAction(title: "profile_button_delete_image".localized(), style: .destructive, handler: ({ _ in
             self.showControls()
             
             guard let photo = self.viewModel?.photos.value[self.currentIndex] else { return }
@@ -219,11 +225,11 @@ class UserProfilePhotosViewController: BaseViewController
     
     fileprivate func showOptionsAlert()
     {
-        let alertVC = UIAlertController(title: "PROFILE_ADD_ALERT_TITLE".localized(), message: nil, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "PROFILE_ADD_PHOTO".localized(), style: .default, handler: ({ [weak self] _ in
+        let alertVC = UIAlertController(title: "profile_dialog_image_another_title".localized(), message: nil, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "profile_dialog_image_another_button_add".localized(), style: .default, handler: ({ [weak self] _ in
             self?.pickPhoto()
         })))
-        alertVC.addAction(UIAlertAction(title: "PROFILE_DISCOVER_USERS".localized(), style: .default, handler: ({ [weak self] _ in
+        alertVC.addAction(UIAlertAction(title: "profile_dialog_image_another_button_cancel".localized(), style: .default, handler: ({ [weak self] _ in
             self?.viewModel?.isFirstTime.accept(false)
             self?.viewModel?.moveToSearch()
         })))

@@ -54,6 +54,13 @@
 "login_variable_terms" = "Terms of Service";
 "login_variable_policy" = "Privacy Policy";
 
+"profile_button_delete_image" = "Delete photo";
+"profile_dialog_image_another_button_add" = "Add another photo";
+"profile_dialog_image_another_button_cancel" = "Discover new users";
+"profile_dialog_image_another_title" = "What's next?";
+"profile_empty_images" = "Add photo to\nsee who likes you";
+"profile_empty_title" = "Profile";
+
 "settings_account_delete" = "Delete Account";
 "settings_account_delete_dialog_title" = "Delete Account?";
 "settings_app_info" = "Legal";
@@ -72,8 +79,3 @@
 "settings_info_terms" = "Terms of Service";
 
 "web_url_error_status" = "http://ringoid.com/status.html";
-
-"PROFILE_DELETE_PHOTO" = "Delete Photo";
-"PROFILE_DISCOVER_USERS" = "Discover users nearby";
-"PROFILE_ADD_PHOTO" = "Add another photo";
-"PROFILE_ADD_ALERT_TITLE" = "What do you want to do next?";
