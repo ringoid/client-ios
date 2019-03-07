@@ -81,6 +81,8 @@ class ActionsManager
     
     func commit()
     {
+        guard !self.queue.isEmpty else { return }
+        
         self.sendQueue().subscribe().disposed(by: self.disposeBag)
     }
     
@@ -166,6 +168,8 @@ class ActionsManager
     
     func sendQueue() -> Observable<Void>
     {
+        guard !self.queue.isEmpty else { return .just(()) }
+        
         // Delaying request if previous one still in progress
         guard self.sendingActions.isEmpty else {
             log("Actions sendinging in progress - delaying request", level: .medium)
@@ -176,8 +180,6 @@ class ActionsManager
                     return self.sendQueue()
                 })
         }
-        
-        guard !self.queue.isEmpty else { return .just(()) }
         
         let enqued = self.queue
         self.queue.removeFirst(enqued.count)
