@@ -89,6 +89,7 @@ class AuthViewController: BaseViewController
         
         self.maleLabel.text = "common_sex_male".localized()
         self.femaleLabel.text = "common_sex_female".localized()
+        self.registerBtn.setTitle("login_button".localized(), for: .normal)
     }
     
     @IBAction func onRegister()
