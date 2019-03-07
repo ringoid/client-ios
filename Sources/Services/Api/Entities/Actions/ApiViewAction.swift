@@ -16,7 +16,7 @@ class ApiViewAction: ApiAction
     override func json() -> [String: Any] {
         var jsonObj = super.json()
         jsonObj["viewCount"] = self.viewCount
-        jsonObj["viewTime"] = self.viewTime
+        jsonObj["viewTimeMillis"] = self.viewTime
         
         return jsonObj
     }

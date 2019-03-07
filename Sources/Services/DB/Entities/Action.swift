@@ -67,7 +67,7 @@ extension Action
         guard self.type == ActionType.view.rawValue else { return nil }
         guard let jsonData = self.extraData, let jsonDict = (try? JSONSerialization.jsonObject(with: jsonData)) as? [String: Any] else { return nil }
         guard let viewCount = jsonDict["viewCount"] as? Int else { return nil }
-        guard let viewTime = jsonDict["viewTime"] as? Int else { return nil }
+        guard let viewTime = jsonDict["viewTimeMillis"] as? Int else { return nil }
         
         return (viewCount: viewCount, viewTime: viewTime)
     }
@@ -76,7 +76,7 @@ extension Action
     {
         guard self.type == ActionType.view.rawValue else { return }
         
-        self.extraData = try? JSONSerialization.data(withJSONObject: ["viewCount": viewCount, "viewTime": viewTime])
+        self.extraData = try? JSONSerialization.data(withJSONObject: ["viewCount": viewCount, "viewTimeMillis": viewTime])
     }
 }
 
