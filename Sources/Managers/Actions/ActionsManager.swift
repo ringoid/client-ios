@@ -184,12 +184,18 @@ class ActionsManager
         let enqued = self.queue
         self.queue.removeFirst(enqued.count)
         self.sendingActions.append(contentsOf: enqued)
+        let localLastActionTime = self.sendingActions.last?.actionTime ?? Date()
         
         log("Sending events: \(self.sendingActions.count)", level: .high)
         
         return self.apiService.sendActions(self.sendingActions.compactMap({ $0.apiAction() }))
             .do(onNext: { [weak self] date in
                 guard let `self` = self else { return }
+                
+                if abs(date.timeIntervalSince1970 - localLastActionTime.timeIntervalSince1970) > 0.001 {
+                    log("ERROR: last action times not equal", level: .high)
+                    SentryService.shared.send(.lastActionTimeError)
+                }
                 
                 self.lastActionDate = date
                 self.db.delete(self.sendingActions).subscribe().disposed(by: self.disposeBag)

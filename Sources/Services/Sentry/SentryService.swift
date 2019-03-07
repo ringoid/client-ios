@@ -13,6 +13,7 @@ enum SentryEvent: String
     case repeatAfterDelay = "Repeat after delay"
     case internalError = "Internal Server Error"
     case responseGeneralDelay = "Waiting for response longer than expected"
+    case lastActionTimeError = "Last action time error"
 }
 
 class SentryService
@@ -47,7 +48,7 @@ extension SentryEvent
         case .repeatAfterDelay: return .warning
         case .internalError: return .error
         case .responseGeneralDelay: return .error
-            
+        case .lastActionTimeError: return .error            
         }
     }
 }

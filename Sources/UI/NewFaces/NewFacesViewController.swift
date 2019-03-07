@@ -65,6 +65,7 @@ class NewFacesViewController: BaseViewController
     override func updateLocale()
     {
         self.titleLabel.text = "feed_explore_empty_title".localized()
+        self.feedEndLabel.text = "feed_explore_empty_no_data".localized()
         
         self.toggleActivity(self.currentActivityState)
     }
