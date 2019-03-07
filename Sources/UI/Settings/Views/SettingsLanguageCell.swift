@@ -25,6 +25,6 @@ class SettingsLanguageCell: BaseTableViewCell
     
     override func updateLocale()
     {
-        self.titleLabel.text = "SETTINGS_LANGUAGE".localized()
+        self.titleLabel.text = "settings_language".localized()
     }
 }

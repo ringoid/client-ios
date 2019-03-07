@@ -99,7 +99,7 @@ class SettingsLegalViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.titleLabel.text = "SETTINGS_LEGAL".localized()
+        self.titleLabel.text = "settings_app_info".localized()
     }
     
     // MARK: - Actions

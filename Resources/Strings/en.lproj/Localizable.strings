@@ -16,10 +16,9 @@
 "common_pull_to_refresh" = "Pull to refresh";
 "common_sex_male" = "Male";
 "common_sex_female" = "Female";
+"common_uncancellable" = "There is no undo.";
 
 "error_common" = "Oops! Something went wrong";
-
-"debug_email_support_button_label" = "Email support@ringoid.com";
 
 "error_screen_no_network_connection" = "No Internet connection";
 "error_screen_no_network_connection_button_label" = "Retry";
@@ -47,22 +46,19 @@
 "login_variable_terms" = "Terms of Service";
 "login_variable_policy" = "Privacy Policy";
 
+"settings_account_delete" = "Delete Account";
+"settings_account_delete_dialog_title" = "Delete Account?";
+"settings_app_info" = "Legal";
+"settings_language" = "Language";
 "settings_language_help" = "If you want to help the community and localise Ringoid to your native language, please email support@ringoid.com";
+"settings_support" = "Email support@ringoid.com";
+"settings_title" = "Settings";
+"settings_theme_dark" = "Night Mode";
 
 "settings_info_about" = "About";
 "settings_info_about_dialog_description" = "Copyright © Ringoid Ltd, 2018.\n\nRINGOID LTD is registered in England with Company No. 09427326 and VAT Reg No: GB 208660511. \n\nRegistered Office: 97 Friars Mead, London, E14 3JY, England.\n\nRingoid is a registered trademark of Ringoid Ltd.\n\nRingoid Ltd is trading as Ringoid.\n\nRingoid is registered with the UK\'s Information Commissioner\'s Office with registration number ZA455969 and operates within compliance of the EU General Data Protection Regulation 2018.\n\nEmail: support@ringoid.com\nWeb: http://ringoid.com";
 
 "web_url_error_status" = "http://ringoid.com/status.html";
-
-"THEME_NIGHT_MODE" = "Night mode";
-"THEME_DAY_MODE" = "Day mode";
-
-"SETTINGS_TITLE" = "Settings";
-"SETTINGS_LANGUAGE" = "Language";
-"SETTINGS_LEGAL" = "Legal";
-"SETTINGS_DELETE_ACCOUNT" = "Delete Account";
-"SETTINGS_DELETE_ACCOUNT_ALERT_TITLE" = "Delete Account?";
-"SETTINGS_DELETE_ACCOUNT_ALERT_MESSAGE" = "There is no undo.";
 
 "SETTINGS_LEGAL_POLICY" = "Privacy Policy";
 "SETTINGS_LEGAL_TERMS" = "Terms of Service";

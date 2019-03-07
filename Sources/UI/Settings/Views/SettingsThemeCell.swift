@@ -28,7 +28,7 @@ class SettingsThemeCell: BaseTableViewCell
 
     override func updateLocale()
     {
-        self.themeLabel.text = "THEME_NIGHT_MODE".localized()
+        self.themeLabel.text = "settings_theme_dark".localized()
     }
     
     override func updateTheme()

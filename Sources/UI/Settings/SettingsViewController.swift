@@ -100,7 +100,7 @@ class SettingsViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.titleLabel.text = "SETTINGS_TITLE".localized()
+        self.titleLabel.text = "settings_title".localized()
     }
     
     // MARK: - Actions
@@ -120,8 +120,8 @@ class SettingsViewController: BaseViewController
     fileprivate func showLogoutAlert()
     {
         let alertVC = UIAlertController(
-            title: "SETTINGS_DELETE_ACCOUNT_ALERT_TITLE".localized(),
-            message: "SETTINGS_DELETE_ACCOUNT_ALERT_MESSAGE".localized(),
+            title: "settings_account_delete_dialog_title".localized(),
+            message: "common_uncancellable".localized(),
             preferredStyle: .alert
         )
         alertVC.addAction(UIAlertAction(title: "button_delete".localized(), style: .default, handler: ({ _ in

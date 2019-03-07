@@ -134,7 +134,7 @@ class RootViewController: BaseViewController {
             preferredStyle: .alert
         )
         
-        alertVC.addAction(UIAlertAction(title: "debug_email_support_button_label".localized(), style: .default, handler: { _ in
+        alertVC.addAction(UIAlertAction(title: "settings_support".localized(), style: .default, handler: { _ in
             guard MFMailComposeViewController.canSendMail() else { return }
             
             let vc = MFMailComposeViewController()

@@ -14,6 +14,6 @@ class SettingsDeleteCell: BaseTableViewCell
     
     override func updateLocale()
     {
-        self.deleteLabel.text = "SETTINGS_DELETE_ACCOUNT".localized()
+        self.deleteLabel.text = "settings_account_delete".localized()
     }
 }

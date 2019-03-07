@@ -41,7 +41,7 @@ class SettingsLocaleViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.titleLabel.text = "SETTINGS_LANGUAGE".localized()
+        self.titleLabel.text = "settings_language".localized()
     }
     
     // MARK: - Actions

@@ -20,6 +20,6 @@ class SettingsEmailCell: BaseTableViewCell
     
     override func updateLocale()
     {
-        self.titleLabel.text = "debug_email_support_button_label".localized()
+        self.titleLabel.text = "settings_support".localized()
     }
 }
