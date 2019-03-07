@@ -35,6 +35,11 @@ class NewFacePhotoViewController: UIViewController
     @IBOutlet fileprivate weak var animationLikeView: UIImageView!
     @IBOutlet fileprivate weak var photoIdLabel: UILabel!
     
+    deinit
+    {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     static func create() -> NewFacePhotoViewController
     {
         let storyboard = Storyboards.newFaces()
@@ -49,6 +54,9 @@ class NewFacePhotoViewController: UIViewController
         
         self.updateBindings()
         self.update()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeInactive), name: UIApplication.willResignActiveNotification, object: nil)
         
         #if STAGE
         self.photoIdLabel.text = String(self.photo?.id.suffix(4) ?? "")
@@ -228,6 +236,21 @@ class NewFacePhotoViewController: UIViewController
         }
         
         appearAnimator.startAnimation()
+    }
+    
+    @objc fileprivate func onAppBecomeActive()
+    {
+        guard let profile = self.input?.profile.actionInstance(), let photo = self.photo?.actionInstance() else { return }
+        
+        self.input?.actionsManager.startViewAction(
+            profile,
+            photo: photo
+        )
+    }
+    
+    @objc fileprivate func onAppBecomeInactive()
+    {
+        self.stopViewAction()
     }
 }
 
