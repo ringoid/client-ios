@@ -257,7 +257,7 @@ class ApiServiceDefault: ApiService
         let buildVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"
         let timestamp = Date()
         
-        log("Starting: \(method) \(url)", level: .low)
+        log("STARTED: \(method) \(url)", level: .low)
         
         return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
@@ -303,13 +303,17 @@ class ApiServiceDefault: ApiService
         let buildVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"
         let timestamp = Date()
         
-        log("Starting: GET \(url)", level: .low)
+        log("STARTED: GET \(url)", level: .low)
         
         return RxAlamofire.request(.get, url, parameters: params, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
             ]).json()
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
+            }, onCompleted: {
+                log("COMPLETED: \(url)", level: .low)
+            }, onDispose: {
+                log("DISPOSED: \(url)", level: .low)
             })
             .flatMap({ [weak self] obj -> Observable<[String: Any]> in
                 if Date().timeIntervalSince(timestamp) > 2.0 {
