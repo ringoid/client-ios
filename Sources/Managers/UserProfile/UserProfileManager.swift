@@ -34,7 +34,6 @@ class UserProfileManager
         
         self.setupBindings()
         self.db.fetchUserPhotos().bind(to: self.photos).disposed(by: self.disposeBag)
-        self.refresh().subscribe().disposed(by: self.disposeBag)
     }
     
     func addPhoto(_ data: Data, filename: String) -> Observable<UserPhoto>
