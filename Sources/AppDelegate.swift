@@ -31,5 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         self.appManager.onTerminate()
     }
+    
+    func applicationWillResignActive(_ application: UIApplication)
+    {
+        self.appManager.onResignActive()
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication)
+    {
+        self.appManager.onBecomeActive()
+    }
 }
 

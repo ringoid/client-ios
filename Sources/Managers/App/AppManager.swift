@@ -38,6 +38,16 @@ class AppManager
         self.defaultStorage.sync()
     }
     
+    func onBecomeActive()
+    {
+        
+    }
+    
+    func onResignActive()
+    {
+        self.actionsManager.commit()
+    }
+    
     // MARK: -
     
     fileprivate func setupServices()
