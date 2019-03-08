@@ -126,13 +126,7 @@ class LMMManager
     {
         self.db.fetchLikesYou().bind(to: self.likesYou).disposed(by: self.disposeBag)
         self.db.fetchMatches().bind(to: self.matches).disposed(by: self.disposeBag)
-        self.db.fetchMessages().bind(to: self.messages).disposed(by: self.disposeBag)
-        
-        self.db.fetchUserPhotos().subscribe(onNext:{ [weak self] photos in
-            guard photos.count == 0 else { return }
-            
-            self?.purge()
-        }).disposed(by: self.disposeBag)
+        self.db.fetchMessages().bind(to: self.messages).disposed(by: self.disposeBag)        
     }
 }
 

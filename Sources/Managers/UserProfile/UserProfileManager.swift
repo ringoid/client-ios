@@ -115,6 +115,7 @@ class UserProfileManager
             guard let `self` = self else { return }
             
             self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
+            self.db.resetNewFaces().subscribe().disposed(by: self.disposeBag)
         }).disposed(by: self.disposeBag)
     }
     
