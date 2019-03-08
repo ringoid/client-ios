@@ -27,7 +27,7 @@ enum FeedAction
     case block(reason: BlockReason)
     case unlike
     case message(text: String)
-    case openChat(openChatCount: Int, openChatTimeSec: Int)
+    case openChat(openChatCount: Int, openChatTime: Int)
 }
 
 class ActionsManager
@@ -135,10 +135,10 @@ class ActionsManager
         self.commit()
     }
     
-    func openChatActionProtected(_ count: Int, timeSec: Int,  profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
+    func openChatActionProtected(_ count: Int, time: Int,  profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         self.stopViewAction(profile, photo: photo, sourceType: source)
-        self.add(.openChat(openChatCount: count, openChatTimeSec: timeSec), profile: profile, photo: photo, source: source)
+        self.add(.openChat(openChatCount: count, openChatTime: time), profile: profile, photo: photo, source: source)
         self.startViewAction(profile, photo: photo)
         self.commit()
     }
@@ -281,7 +281,7 @@ extension Action {
             let openChatAction = ApiOpenChatAction()
             let data = self.openChatData()
             openChatAction.openChatCount = data?.openChatCount ?? 0
-            openChatAction.openChatTimeSec = data?.openChatTimeSec ?? 0
+            openChatAction.openChatTime = data?.openChatTime ?? 0
             apiAction = openChatAction
             break
         }
@@ -332,9 +332,9 @@ extension FeedAction
             createdAction.setMessageData(text)
             break
             
-        case .openChat(let openChatCount, let openChatTimeSec):
+        case .openChat(let openChatCount, let openChatTime):
             createdAction.type = ActionType.openChat.rawValue
-            createdAction.setOpenChatData(openChatCount: openChatCount, openChatTimeSec: openChatTimeSec)
+            createdAction.setOpenChatData(openChatCount: openChatCount, openChatTime: openChatTime)
             break
         }
         

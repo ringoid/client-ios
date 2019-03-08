@@ -11,12 +11,12 @@ import Foundation
 class ApiOpenChatAction: ApiAction
 {
     var openChatCount: Int = 0
-    var openChatTimeSec: Int = 0
+    var openChatTime: Int = 0
     
     override func json() -> [String: Any] {
         var jsonObj = super.json()
         jsonObj["openChatCount"] = self.openChatCount
-        jsonObj["openChatTimeSec"] = self.openChatTimeSec
+        jsonObj["openChatTimeMillis"] = self.openChatTime
         
         return jsonObj
     }

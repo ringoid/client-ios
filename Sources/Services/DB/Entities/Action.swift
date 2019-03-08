@@ -126,20 +126,20 @@ extension Action
 
 extension Action
 {
-    func openChatData() -> (openChatCount: Int, openChatTimeSec: Int)?
+    func openChatData() -> (openChatCount: Int, openChatTime: Int)?
     {
         guard self.type == ActionType.openChat.rawValue else { return nil }
         guard let jsonData = self.extraData, let jsonDict = (try? JSONSerialization.jsonObject(with: jsonData)) as? [String: Any] else { return nil }
         guard let openChatCount = jsonDict["openChatCount"] as? Int else { return nil }
-        guard let openChatTimeSec = jsonDict["openChatTimeSec"] as? Int else { return nil }
+        guard let openChatTime = jsonDict["openChatTimeMillis"] as? Int else { return nil }
         
-        return (openChatCount: openChatCount, openChatTimeSec: openChatTimeSec)
+        return (openChatCount: openChatCount, openChatTime: openChatTime)
     }
     
-    func setOpenChatData(openChatCount: Int, openChatTimeSec: Int)
+    func setOpenChatData(openChatCount: Int, openChatTime: Int)
     {
         guard self.type == ActionType.openChat.rawValue else { return }
         
-        self.extraData = try? JSONSerialization.data(withJSONObject: ["openChatCount": openChatCount, "openChatTimeSec": openChatTimeSec])
+        self.extraData = try? JSONSerialization.data(withJSONObject: ["openChatCount": openChatCount, "openChatTimeMillis": openChatTime])
     }
 }

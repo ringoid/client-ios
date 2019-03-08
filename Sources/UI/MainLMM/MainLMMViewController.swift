@@ -293,12 +293,12 @@ class MainLMMViewController: BaseViewController
     fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?, profile: LMMProfile, photo: Photo, indexPath: IndexPath)
     {
         if let startDate = self.chatStartDate {
-            let interval = Int(Date().timeIntervalSince(startDate))
+            let interval = Int(Date().timeIntervalSince(startDate) * 1000.0)
             self.chatStartDate = nil
 
             self.input.actionsManager.openChatActionProtected(
                 1,
-                timeSec: interval,
+                time: interval,
                 profile: profile.actionInstance(),
                 photo: photo.actionInstance(),
                 source: self.type.value.sourceType()
