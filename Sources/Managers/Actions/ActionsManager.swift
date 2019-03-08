@@ -65,15 +65,13 @@ class ActionsManager
     
     func add(_ action: FeedAction, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
-        let createdAction = action.model(profile: profile, photo: photo, source: source)
-        self.db.add([createdAction]).subscribe(onNext: { [weak self] _ in
-            self?.queue.append(createdAction)
-        }).disposed(by: self.disposeBag)
+        self.add([action], profile: profile, photo: photo, source: source)
     }
     
     func add(_ actions: [FeedAction], profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         let createdActions = actions.map({ $0.model(profile: profile, photo: photo, source: source) })
+
         self.db.add(createdActions).subscribe(onNext: { [weak self] _ in
             self?.queue.append(contentsOf: createdActions)
         }).disposed(by: self.disposeBag)
@@ -184,11 +182,13 @@ class ActionsManager
         let enqued = self.queue
         self.queue.removeFirst(enqued.count)
         self.sendingActions.append(contentsOf: enqued)
-        let localLastActionTime = self.sendingActions.last?.actionTime ?? Date()
         
         log("Sending events: \(self.sendingActions.count)", level: .high)
         
-        return self.apiService.sendActions(self.sendingActions.compactMap({ $0.apiAction() }))
+        let sortedActions = self.sendingActions.sorted(by: { $0.actionTime < $1.actionTime })
+        let localLastActionTime = sortedActions.last?.actionTime ?? Date()
+        
+        return self.apiService.sendActions(sortedActions.compactMap({ $0.apiAction() }))
             .do(onNext: { [weak self] date in
                 guard let `self` = self else { return }
                 
