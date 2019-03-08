@@ -240,6 +240,7 @@ class NewFacePhotoViewController: UIViewController
     
     @objc fileprivate func onAppBecomeActive()
     {
+        guard self.isVisible else { return }
         guard let profile = self.input?.profile.actionInstance(), let photo = self.photo?.actionInstance() else { return }
         
         self.input?.actionsManager.startViewAction(
@@ -250,6 +251,8 @@ class NewFacePhotoViewController: UIViewController
     
     @objc fileprivate func onAppBecomeInactive()
     {
+        guard self.isVisible else { return }
+        
         self.stopViewAction()
     }
 }
