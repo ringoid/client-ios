@@ -336,6 +336,7 @@ extension UserProfilePhotosViewController: UITableViewDataSource, UITableViewDel
         self.pagesVC = vc
         
         cell.containerView.embed(vc, to: self)
+
         self.updatePages()
         
         return cell

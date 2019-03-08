@@ -92,7 +92,7 @@ class MainLMMProfileViewController: UIViewController
         self.currentIndex.accept(index)
         
         #if STAGE
-        self.profileIdLabel.text = String(self.input.profile.id.suffix(4))
+        self.profileIdLabel.text = "Profile: " + String(self.input.profile.id.suffix(4))
         self.profileIdLabel.isHidden = false
         #endif
     }

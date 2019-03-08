@@ -59,7 +59,7 @@ class NewFacePhotoViewController: UIViewController
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeInactive), name: UIApplication.willResignActiveNotification, object: nil)
         
         #if STAGE
-        self.photoIdLabel.text = String(self.photo?.id.suffix(4) ?? "")
+        self.photoIdLabel.text = "Photo: " + String(self.photo?.id.suffix(4) ?? "")
         self.photoIdLabel.isHidden = false
         #endif
     }

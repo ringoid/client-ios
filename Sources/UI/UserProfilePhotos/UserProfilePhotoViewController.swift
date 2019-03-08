@@ -30,6 +30,7 @@ class UserProfilePhotoViewController: UIViewController
     @IBOutlet fileprivate weak var photoView: UIImageView?
     @IBOutlet fileprivate weak var likeView: UIView?
     @IBOutlet fileprivate weak var likeLabel: UILabel?
+    @IBOutlet fileprivate weak var photoIdLabel: UILabel?
     
     override func viewDidLoad()
     {
@@ -37,6 +38,11 @@ class UserProfilePhotoViewController: UIViewController
         
         self.update()
         self.updateBindings()
+        
+        #if STAGE
+        self.photoIdLabel?.text = "Photo: " + String(self.photo?.id?.suffix(4) ?? "")
+        self.photoIdLabel?.isHidden = false
+        #endif
     }
     
     // MARK: -
