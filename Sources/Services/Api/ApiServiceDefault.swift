@@ -277,7 +277,7 @@ class ApiServiceDefault: ApiService
                     let interval = Int(Date().timeIntervalSince(timestamp) * 1000.0)
                     
                     log("FAILURE: url: \(url) error: \(error)", level: .low)
-                    log("TOOK: \(interval) ms", level: .low)
+                    log("Duration: \(interval) ms", level: .low)
                     
                     return .error(error)
                 }
@@ -295,7 +295,7 @@ class ApiServiceDefault: ApiService
                 
                 let interval = Int(Date().timeIntervalSince(timestamp) * 1000.0)
                 log("SUCCESS: url: \(url)", level: .low)
-                log("TOOK: \(interval) ms", level: .low)
+                log("Duration: \(interval) ms", level: .low)
                 
                 return .just(jsonDict)
             })
@@ -331,7 +331,7 @@ class ApiServiceDefault: ApiService
                 } catch {
                     let interval = Int(Date().timeIntervalSince(timestamp) * 1000.0)                    
                     log("FAILURE: url: \(url) error: \(error)", level: .low)
-                    log("TOOK: \(interval) ms", level: .low)
+                    log("Duration: \(interval) ms", level: .low)
                     
                     return .error(error)
                 }
@@ -349,7 +349,7 @@ class ApiServiceDefault: ApiService
                 
                 let interval = Int(Date().timeIntervalSince(timestamp) * 1000.0)
                 log("SUCCESS: url: \(url)", level: .low)
-                log("TOOK: \(interval) ms", level: .low)
+                log("Duration: \(interval) ms", level: .low)
                 
                 return .just(jsonDict)
             })

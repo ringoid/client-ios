@@ -93,6 +93,11 @@ class UserProfileManager
         })
     }
     
+    func refreshInBackground()
+    {
+        self.refresh().subscribe().disposed(by: self.disposeBag)
+    }
+    
     // MARK: -
     
     fileprivate let photoKey: String = "profile_last_photo_id"

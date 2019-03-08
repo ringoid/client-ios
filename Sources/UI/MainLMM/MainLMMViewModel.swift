@@ -53,10 +53,9 @@ class MainLMMViewModel
         
         return self.actionsManager.sendQueue().flatMap { [weak self] _ -> Observable<Void> in
             
-            return self!.lmmManager.refresh().flatMap({ [weak self] _ -> Observable<Void> in
-                
-                return self!.profileManager.refresh()
-            })
+            self!.profileManager.refreshInBackground()
+            
+            return self!.lmmManager.refresh()
         }
     }
     
