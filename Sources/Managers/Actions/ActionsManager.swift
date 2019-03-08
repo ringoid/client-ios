@@ -23,7 +23,7 @@ enum BlockReason: Int
 enum FeedAction
 {
     case like(likeCount: Int)
-    case view(viewCount: Int, viewTime: Int)
+    case view(viewCount: Int, viewTime: Int, actionTime: Date)
     case block(reason: BlockReason)
     case unlike
     case message(text: String)
@@ -156,7 +156,7 @@ class ActionsManager
         self.viewActionsMap.removeValue(forKey: photo.id)
         
         let interval = Date().timeIntervalSince(date) * 1000.0
-        self.add(FeedAction.view(viewCount: 1, viewTime: Int(interval)), profile: profile, photo: photo, source: sourceType)
+        self.add(FeedAction.view(viewCount: 1, viewTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
     }
     
     func inqueueStoredActions()
@@ -312,9 +312,10 @@ extension FeedAction
             createdAction.setLikeData(likeCount)
             break
             
-        case .view(let viewCount, let viewTime):
+        case .view(let viewCount, let viewTime, let actionTime):
             createdAction.type = ActionType.view.rawValue
             createdAction.setViewData(viewCount: viewCount, viewTime: viewTime)
+            createdAction.actionTime = actionTime
             break
             
         case .block(let reason):
