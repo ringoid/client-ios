@@ -314,8 +314,6 @@ class ApiServiceDefault: ApiService
             ]).json()
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
-            }, onCompleted: {
-                log("COMPLETED: \(url)", level: .low)
             }, onDispose: {
                 log("DISPOSED: \(url)", level: .low)
             })
