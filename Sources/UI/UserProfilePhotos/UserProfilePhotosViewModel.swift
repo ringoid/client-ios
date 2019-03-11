@@ -62,13 +62,12 @@ class UserProfilePhotosViewModel
     
     func refresh() -> Observable<Void>
     {
-        self.input.newFacesManager.purge()
+        log("LMM source: Profile", level: .low)
         
-        return self.input.profileManager.refresh().flatMap({ [weak self] _ -> Observable<Void> in
-            guard self!.photos.value.filter({ !$0.isBlocked }).count != 0 else { return .error(createError("No user photos available", type: .hidden))}
-            
-            return self!.input.lmmManager.refresh()
-        })
+        self.input.newFacesManager.purge()
+        self.input.lmmManager.refreshInBackground()
+
+        return self.input.profileManager.refresh()
     }
     
     func delete(_ photo: UserPhoto)

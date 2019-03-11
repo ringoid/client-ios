@@ -117,6 +117,14 @@ class LMMManager
         })
     }
     
+    func refreshInBackground()
+    {
+        return self.actionsManager.sendQueue().flatMap ({ [weak self] _ -> Observable<Void> in
+            
+            return self!.refresh()
+        }).subscribe().disposed(by: self.disposeBag)
+    }
+    
     func purge()
     {
         self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
