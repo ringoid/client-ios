@@ -44,6 +44,22 @@ extension Bool: XStorageObject
     }
 }
 
+extension Date: XStorageObject
+{
+    func storableObject() -> Any
+    {
+        return String(Int(self.timeIntervalSince1970 * 1000.0))
+    }
+    
+    static func create(_ from: Any) -> Date?
+    {
+        guard let str = (from as? String), let interval = Int(str) else { return nil }
+        
+        return Date(timeIntervalSince1970: Double(interval) / 1000.0)
+    }
+        
+}
+
 extension Array: XStorageObject where Element == String
 {
     func storableObject() -> Any

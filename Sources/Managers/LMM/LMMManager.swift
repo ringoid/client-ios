@@ -91,7 +91,7 @@ class LMMManager
         self.isFetching.accept(true)
         let chatCache = self.messages.value.filter({ !$0.notSeen }).map({ ChatProfileCache.create($0) })
         
-        return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate,source: from).flatMap({ [weak self] result -> Observable<Void> in
+        return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
             
             self!.purge()
             

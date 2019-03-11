@@ -44,7 +44,7 @@ class NewFacesManager
     {
         self.isFetching.accept(true)
         
-        return self.apiService.getNewFaces(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] profiles -> Observable<Void> in
+        return self.apiService.getNewFaces(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value).flatMap({ [weak self] profiles -> Observable<Void> in
             
             var localOrderPosition: Int = 0
             

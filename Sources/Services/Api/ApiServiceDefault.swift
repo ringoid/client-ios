@@ -318,7 +318,7 @@ class ApiServiceDefault: ApiService
             })
             .flatMap({ [weak self] obj -> Observable<[String: Any]> in
                 if Date().timeIntervalSince(timestamp) > 2.0 {
-                    log("Request took more then 2000ms - cancelling...", level: .high)
+                    log("Request took more then 2000ms", level: .high)
                     SentryService.shared.send(.responseGeneralDelay)
                 }
                 

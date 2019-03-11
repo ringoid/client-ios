@@ -32,13 +32,14 @@ enum FeedAction
 
 class ActionsManager
 {
-    var lastActionDate: Date?
+    var lastActionDate: BehaviorRelay<Date?> = BehaviorRelay<Date?>(value: nil)
     
     let isInternetAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     
     fileprivate let db: DBService
     fileprivate let apiService: ApiService
     fileprivate let fs: FileService
+    fileprivate let storage: XStorageService
     fileprivate let reachability: ReachabilityService
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var viewActionsMap: [String: Date] = [:]
@@ -52,13 +53,16 @@ class ActionsManager
         self.triggerTimer = nil
     }
     
-    init(_ db: DBService, api: ApiService, fs: FileService, reachability: ReachabilityService)
+    init(_ db: DBService, api: ApiService, fs: FileService, storage: XStorageService, reachability: ReachabilityService)
     {
         self.db = db
         self.apiService = api
         self.fs = fs
+        self.storage = storage
         self.reachability = reachability
         
+        self.loadLastActionDate()
+        self.setupDateStorage()
         self.inqueueStoredActions()
         self.setupTimerTrigger()
     }
@@ -88,7 +92,7 @@ class ActionsManager
     {
         self.triggerTimer?.invalidate()
         self.triggerTimer = nil
-        self.lastActionDate = nil
+        self.lastActionDate.accept(nil)
         self.queue.removeAll()
         self.setupTimerTrigger()
     }
@@ -213,7 +217,7 @@ class ActionsManager
                     SentryService.shared.send(.lastActionTimeError)
                 }
                 
-                self.lastActionDate = date
+                self.lastActionDate.accept(date)
                 self.db.delete(self.sendingActions).subscribe().disposed(by: self.disposeBag)
                 self.sendingActions.removeAll()
                 }, onError: { [weak self] _ in
@@ -253,6 +257,26 @@ class ActionsManager
         profile.photos.forEach{ photo in
             self.fs.rm(photo.filepath())
         }
+    }
+    
+    fileprivate func setupDateStorage()
+    {
+        self.lastActionDate.asObservable().subscribe(onNext: { [weak self] date in
+            guard let date = date else {
+                self!.storage.remove("lastActionDate").subscribe().disposed(by: self!.disposeBag)
+                
+                return
+            }
+            
+            self!.storage.store(date, key: "lastActionDate").subscribe().disposed(by: self!.disposeBag)
+        }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func loadLastActionDate()
+    {
+        self.storage.object("lastActionDate").subscribe(onNext: { obj in
+            self.lastActionDate.accept(Date.create(obj))
+        }).disposed(by: self.disposeBag)
     }
 }
 
