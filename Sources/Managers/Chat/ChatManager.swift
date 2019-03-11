@@ -33,14 +33,12 @@ class ChatManager
             lmmProfile?.notSeen = false
         }
 
-        self.actionsManager.add(
-            .message(text: text),
+        self.actionsManager.messageActionProtected(
+            text,
             profile: profile.actionInstance(),
             photo: photo.actionInstance(),
             source: source
         )
-        
-        self.actionsManager.commit()
     }
     
     func markAsRead(_ profile: LMMProfile)

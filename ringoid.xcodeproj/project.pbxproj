@@ -139,7 +139,7 @@
 		57B863F621EF5C4900B9CC70 /* ApiBlockAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F521EF5C4900B9CC70 /* ApiBlockAction.swift */; };
 		57B863F821EF5CF100B9CC70 /* ApiUnlikeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F721EF5CF100B9CC70 /* ApiUnlikeAction.swift */; };
 		57B863FA21EF5D2A00B9CC70 /* ApiMessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863F921EF5D2A00B9CC70 /* ApiMessageAction.swift */; };
-		57B863FC21EF5DDF00B9CC70 /* ApiOpenChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863FB21EF5DDF00B9CC70 /* ApiOpenChat.swift */; };
+		57B863FC21EF5DDF00B9CC70 /* ApiViewChatAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863FB21EF5DDF00B9CC70 /* ApiViewChatAction.swift */; };
 		57BEB67B2213D7E6000BD768 /* SettingsLocaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67A2213D7E6000BD768 /* SettingsLocaleViewController.swift */; };
 		57BEB67D2213D806000BD768 /* SettingsLocaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */; };
 		57BEB67F2213F306000BD768 /* SettingsLocaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */; };
@@ -228,7 +228,7 @@
 		57EE651F2216711000246B45 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D4321E3558800038798 /* Photo.swift */; };
 		57EE65202216711000246B45 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57EE65212216711000246B45 /* MainLMMCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863CE21ECD98F00B9CC70 /* MainLMMCell.swift */; };
-		57EE65222216711000246B45 /* ApiOpenChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863FB21EF5DDF00B9CC70 /* ApiOpenChat.swift */; };
+		57EE65222216711000246B45 /* ApiViewChatAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863FB21EF5DDF00B9CC70 /* ApiViewChatAction.swift */; };
 		57EE65232216711000246B45 /* FilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D5A21E4A0F100038798 /* FilePath.swift */; };
 		57EE65242216711000246B45 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB7BC321E61BE400AAA29D /* MainViewController.swift */; };
 		57EE65252216711000246B45 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D6921E4FF2400038798 /* Colors.swift */; };
@@ -409,7 +409,7 @@
 		57B863F521EF5C4900B9CC70 /* ApiBlockAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiBlockAction.swift; sourceTree = "<group>"; };
 		57B863F721EF5CF100B9CC70 /* ApiUnlikeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUnlikeAction.swift; sourceTree = "<group>"; };
 		57B863F921EF5D2A00B9CC70 /* ApiMessageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMessageAction.swift; sourceTree = "<group>"; };
-		57B863FB21EF5DDF00B9CC70 /* ApiOpenChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiOpenChat.swift; sourceTree = "<group>"; };
+		57B863FB21EF5DDF00B9CC70 /* ApiViewChatAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiViewChatAction.swift; sourceTree = "<group>"; };
 		57BEB67A2213D7E6000BD768 /* SettingsLocaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleViewController.swift; sourceTree = "<group>"; };
 		57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleViewModel.swift; sourceTree = "<group>"; };
 		57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleCell.swift; sourceTree = "<group>"; };
@@ -985,7 +985,7 @@
 				57B863F521EF5C4900B9CC70 /* ApiBlockAction.swift */,
 				57B863F721EF5CF100B9CC70 /* ApiUnlikeAction.swift */,
 				57B863F921EF5D2A00B9CC70 /* ApiMessageAction.swift */,
-				57B863FB21EF5DDF00B9CC70 /* ApiOpenChat.swift */,
+				57B863FB21EF5DDF00B9CC70 /* ApiViewChatAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -1414,7 +1414,7 @@
 				57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */,
 				57B863CF21ECD98F00B9CC70 /* MainLMMCell.swift in Sources */,
 				57801A84222E4378005A9731 /* SettingsDebugItemCell.swift in Sources */,
-				57B863FC21EF5DDF00B9CC70 /* ApiOpenChat.swift in Sources */,
+				57B863FC21EF5DDF00B9CC70 /* ApiViewChatAction.swift in Sources */,
 				57585D5B21E4A0F100038798 /* FilePath.swift in Sources */,
 				573A5C1B222556AD0094A9FA /* LogService.swift in Sources */,
 				57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */,
@@ -1552,7 +1552,7 @@
 				57EE65202216711000246B45 /* DBServiceObject.swift in Sources */,
 				57EE65212216711000246B45 /* MainLMMCell.swift in Sources */,
 				573A5C1C222556AD0094A9FA /* LogService.swift in Sources */,
-				57EE65222216711000246B45 /* ApiOpenChat.swift in Sources */,
+				57EE65222216711000246B45 /* ApiViewChatAction.swift in Sources */,
 				57EE65232216711000246B45 /* FilePath.swift in Sources */,
 				57EE65242216711000246B45 /* MainViewController.swift in Sources */,
 				57EE65252216711000246B45 /* Colors.swift in Sources */,

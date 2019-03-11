@@ -12,7 +12,7 @@ enum SentryEvent: String
 {
     case repeatAfterDelay = "Repeat after delay"
     case internalError = "Internal Server Error"
-    case responseGeneralDelay = "Waiting for response longer than expected"
+    case responseGeneralDelay = "Waiting for response longer than expected 2000 ms"
     case lastActionTimeError = "Last action time error"
 }
 

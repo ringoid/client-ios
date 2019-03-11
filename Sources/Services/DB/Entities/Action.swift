@@ -15,7 +15,7 @@ enum ActionType: String
     case block = "BLOCK"
     case unlike = "UNLIKE"
     case message = "MESSAGE"
-    case openChat = "OPEN_CHAT"
+    case viewChat = "VIEW_CHAT"
 }
 
 enum SourceFeedType: String
@@ -128,20 +128,20 @@ extension Action
 
 extension Action
 {
-    func openChatData() -> (openChatCount: Int, openChatTime: Int)?
+    func viewChatData() -> (viewChatCount: Int, viewChatTime: Int)?
     {
-        guard self.type == ActionType.openChat.rawValue else { return nil }
+        guard self.type == ActionType.viewChat.rawValue else { return nil }
         guard let jsonData = self.extraData, let jsonDict = (try? JSONSerialization.jsonObject(with: jsonData)) as? [String: Any] else { return nil }
-        guard let openChatCount = jsonDict["openChatCount"] as? Int else { return nil }
-        guard let openChatTime = jsonDict["openChatTimeMillis"] as? Int else { return nil }
+        guard let viewChatCount = jsonDict["viewChatCount"] as? Int else { return nil }
+        guard let viewChatTime = jsonDict["viewChatTimeMillis"] as? Int else { return nil }
         
-        return (openChatCount: openChatCount, openChatTime: openChatTime)
+        return (viewChatCount: viewChatCount, viewChatTime: viewChatTime)
     }
     
-    func setOpenChatData(openChatCount: Int, openChatTime: Int)
+    func setViewChatData(viewChatCount: Int, viewChatTime: Int)
     {
-        guard self.type == ActionType.openChat.rawValue else { return }
+        guard self.type == ActionType.viewChat.rawValue else { return }
         
-        self.extraData = try? JSONSerialization.data(withJSONObject: ["openChatCount": openChatCount, "openChatTimeMillis": openChatTime])
+        self.extraData = try? JSONSerialization.data(withJSONObject: ["viewChatCount": viewChatCount, "viewChatTimeMillis": viewChatTime])
     }
 }

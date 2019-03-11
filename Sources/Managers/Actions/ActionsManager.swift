@@ -27,7 +27,7 @@ enum FeedAction
     case block(reason: BlockReason)
     case unlike
     case message(text: String)
-    case openChat(openChatCount: Int, openChatTime: Int)
+    case viewChat(viewChatCount: Int, viewChatTime: Int, actionTime: Date)
 }
 
 class ActionsManager
@@ -133,11 +133,11 @@ class ActionsManager
         self.commit()
     }
     
-    func openChatActionProtected(_ count: Int, time: Int,  profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
+    func messageActionProtected(_ text: String, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
-        self.stopViewAction(profile, photo: photo, sourceType: source)
-        self.add(.openChat(openChatCount: count, openChatTime: time), profile: profile, photo: photo, source: source)
-        self.startViewAction(profile, photo: photo)
+        self.stopViewChatAction(profile, photo: photo, sourceType: source)
+        self.add(.message(text: text), profile: profile, photo: photo, source: source)
+        self.startViewChatAction(profile, photo: photo)
         self.commit()
     }
     
@@ -155,6 +155,22 @@ class ActionsManager
         
         let interval = Date().timeIntervalSince(date) * 1000.0
         self.add(FeedAction.view(viewCount: 1, viewTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
+    }
+    
+    func startViewChatAction(_ profile: ActionProfile, photo: ActionPhoto)
+    {
+        self.viewActionsMap[photo.id] = Date()
+    }
+    
+    func stopViewChatAction(_ profile: ActionProfile, photo: ActionPhoto, sourceType: SourceFeedType)
+    {
+        guard !profile.isInvalidated else { return }
+        guard let date = self.viewActionsMap[photo.id] else { return }
+        
+        self.viewActionsMap.removeValue(forKey: photo.id)
+        
+        let interval = Date().timeIntervalSince(date) * 1000.0
+        self.add(FeedAction.viewChat(viewChatCount: 1, viewChatTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
     }
     
     func inqueueStoredActions()
@@ -277,12 +293,12 @@ extension Action {
             apiAction = messageAction
             break
             
-        case .openChat:
-            let openChatAction = ApiOpenChatAction()
-            let data = self.openChatData()
-            openChatAction.openChatCount = data?.openChatCount ?? 0
-            openChatAction.openChatTime = data?.openChatTime ?? 0
-            apiAction = openChatAction
+        case .viewChat:
+            let viewChatAction = ApiViewChatAction()
+            let data = self.viewChatData()
+            viewChatAction.viewChatCount = data?.viewChatCount ?? 0
+            viewChatAction.viewChatTime = data?.viewChatTime ?? 0
+            apiAction = viewChatAction
             break
         }
 
@@ -332,9 +348,10 @@ extension FeedAction
             createdAction.setMessageData(text)
             break
             
-        case .openChat(let openChatCount, let openChatTime):
-            createdAction.type = ActionType.openChat.rawValue
-            createdAction.setOpenChatData(openChatCount: openChatCount, openChatTime: openChatTime)
+        case .viewChat(let viewChatCount, let viewChatTime, let actionTime):
+            createdAction.type = ActionType.viewChat.rawValue
+            createdAction.setViewChatData(viewChatCount: viewChatCount, viewChatTime: viewChatTime)
+            createdAction.actionTime = actionTime
             break
         }
         

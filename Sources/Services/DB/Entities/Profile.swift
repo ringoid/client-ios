@@ -15,6 +15,8 @@ class Profile: DBServiceObject
     
     func orderedPhotos() -> [Photo]
     {
+        guard !self.isInvalidated else { return [] }
+        
         return Array(self.photos.sorted(byKeyPath: "orderPosition"))
     }
 }

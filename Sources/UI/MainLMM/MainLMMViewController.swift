@@ -46,7 +46,6 @@ class MainLMMViewController: BaseViewController
     fileprivate var viewModel: MainLMMViewModel?
     fileprivate var feedDisposeBag: DisposeBag = DisposeBag()
     fileprivate var disposeBag: DisposeBag = DisposeBag()
-    fileprivate var chatStartDate: Date? = nil
     fileprivate var prevScrollingOffset: CGFloat = 0.0
     fileprivate var isScrollTopVisible: Bool = false
     fileprivate var lastFeedIds: [String] = []
@@ -274,7 +273,7 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func showChat(_ profile: LMMProfile, photo: Photo, indexPath: IndexPath, profileVC: MainLMMProfileViewController?)
     {
-        self.chatStartDate = Date()
+        self.input.actionsManager.startViewChatAction(profile.actionInstance(), photo: photo.actionInstance())
         
         let vc = ChatViewController.create()
         vc.input = ChatVMInput(profile: profile, photo: photo, chatManager: self.input.chatManager, source: .messages
@@ -293,18 +292,7 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?, profile: LMMProfile, photo: Photo, indexPath: IndexPath)
     {
-        if let startDate = self.chatStartDate {
-            let interval = Int(Date().timeIntervalSince(startDate) * 1000.0)
-            self.chatStartDate = nil
-
-            self.input.actionsManager.openChatActionProtected(
-                1,
-                time: interval,
-                profile: profile.actionInstance(),
-                photo: photo.actionInstance(),
-                source: self.type.value.sourceType()
-            )            
-        }
+        self.input.actionsManager.stopViewChatAction(profile.actionInstance(), photo: photo.actionInstance(), sourceType: self.type.value.sourceType())
         
         profileVC?.showNotChatControls()
         
