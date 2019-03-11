@@ -104,7 +104,7 @@ class MainLMMViewController: BaseViewController
         guard isInitialLayout else { return }
         
         self.isInitialLayout = false
-        self.updateFeed()
+        self.updateFeed(true)
     }
     
     // MARK: - Actions
@@ -138,7 +138,7 @@ class MainLMMViewController: BaseViewController
                 UIManager.shared.lmmRefreshModeEnabled.accept(false)
                 self?.toggleActivity(.contentAvailable)
                 self?.tableView.dataSource = self
-                self?.updateFeed()
+                self?.updateFeed(true)
             }
         }).disposed(by: self.disposeBag)
     }
@@ -147,7 +147,7 @@ class MainLMMViewController: BaseViewController
     {
         self.feedDisposeBag = DisposeBag()
         self.profiles()?.asObservable().subscribe(onNext: { [weak self] _ in
-            self?.updateFeed()
+            self?.updateFeed(false)
         }).disposed(by: self.feedDisposeBag)
     }
     
@@ -199,7 +199,7 @@ class MainLMMViewController: BaseViewController
         }
     }
     
-    fileprivate func updateFeed()
+    fileprivate func updateFeed(_ force: Bool)
     {
         guard !self.isChatShown else { return } // Chat updates should not reload feed
         
@@ -224,6 +224,11 @@ class MainLMMViewController: BaseViewController
         if !isEmpty {
             self.toggleActivity(.contentAvailable)
         }
+        
+        let lastItemsCount = self.lastFeedIds.count
+        
+        // No changes case
+        if lastItemsCount == totalCount && !force { return }
         
         // Checking for blocking scenario
         if totalCount == self.lastFeedIds.count - 1, self.lastFeedIds.count > 1, self.lastUpdateFeedType == self.type.value {
