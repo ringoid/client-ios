@@ -45,6 +45,8 @@ class SettingsManager
     
     func logout()
     {
+        guard self.actions.checkConnectionState() else { return }
+        
         self.api.logout().subscribe(onNext: { [weak self] _ in
             self?.reset()
         }).disposed(by: self.disposeBag)
