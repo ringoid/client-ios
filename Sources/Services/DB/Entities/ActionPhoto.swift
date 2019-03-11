@@ -8,9 +8,12 @@
 
 import RealmSwift
 
-class ActionPhoto: Photo
+class ActionPhoto: DBServiceObject
 {
-    
+    @objc dynamic var id: String!
+    @objc dynamic var path: String!
+    @objc dynamic var pathType: Int = 0
+    @objc dynamic var isLiked: Bool = false
 }
 
 extension Photo

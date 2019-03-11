@@ -93,11 +93,11 @@ class NewFacesViewController: BaseViewController
             guard let `self` = self else { return }
             
             self.toggleActivity(.contentAvailable)
-            self.updateFeed(true)
+            self.updateFeed()
             showError(error, vc: self)
             }, onCompleted: { [weak self] in
                 self?.toggleActivity(.contentAvailable)
-                self?.updateFeed(true)
+                self?.updateFeed()
         }).disposed(by: self.disposeBag)
     }
     
@@ -134,7 +134,7 @@ class NewFacesViewController: BaseViewController
         self.viewModel?.profiles.asObservable().subscribe(onNext: { [weak self] updatedProfiles in
             guard let `self` = self else { return }
             
-            self.updateFeed(false)
+            self.updateFeed()
         }).disposed(by: self.disposeBag)
     }
     
@@ -145,7 +145,7 @@ class NewFacesViewController: BaseViewController
         self.tableView.refreshControl = refreshControl
     }
     
-    fileprivate func updateFeed(_ force: Bool)
+    fileprivate func updateFeed()
     {
         guard let profiles = self.viewModel?.profiles.value else { return }
 
@@ -170,10 +170,7 @@ class NewFacesViewController: BaseViewController
         }
         
         let lastItemsCount = self.lastFeedIds.count
-        
-        // No changes case
-        if lastItemsCount == totalCount && !force { return }
-        
+
         // No items or several items removal case
         if lastItemsCount <= 1 || totalCount < (lastItemsCount - 1) {
             self.tableView.reloadData()

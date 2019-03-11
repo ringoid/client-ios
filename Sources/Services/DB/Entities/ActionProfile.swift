@@ -8,9 +8,10 @@
 
 import RealmSwift
 
-class ActionProfile: Profile
+class ActionProfile: DBServiceObject
 {
-    
+    @objc dynamic var id: String!
+    let photos: List<Photo> = List<Photo>()
 }
 
 extension Profile

@@ -252,7 +252,7 @@ class ActionsManager
         RunLoop.main.add(timer, forMode: .default)
     }
     
-    fileprivate func clearProfileResources(_ profile: Profile)
+    fileprivate func clearProfileResources(_ profile: ActionProfile)
     {
         profile.photos.forEach{ photo in
             self.fs.rm(photo.filepath())
