@@ -68,6 +68,7 @@ class NewFacePhotoViewController: UIViewController
     {
         super.viewDidAppear(animated)
         
+        guard self.input?.profile.isInvalidated == false else { return }
         guard let profile = self.input?.profile.actionInstance(), let photo = self.photo?.actionInstance() else { return }
         
         self.actionProfile = profile
