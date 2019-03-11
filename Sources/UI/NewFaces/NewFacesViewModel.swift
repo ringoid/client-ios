@@ -50,12 +50,14 @@ class NewFacesViewModel
     
     func fetchNext() -> Observable<Void>
     {
-        guard !self.newFacesManager.isFetching.value else {
+        guard !self.isFetching.value else {
             let error = createError("New faces fetching in already in progress", type: .hidden)
             
             return .error(error)
         }
   
+        self.isFetching.accept(true)
+        
         return self.actionsManager.sendQueue().flatMap { [weak self] _ -> Observable<Void> in
             guard let `self` = self else { return .just(()) } // view model deleted
             
