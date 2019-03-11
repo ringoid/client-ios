@@ -85,13 +85,13 @@ class LMMManager
         self.setupBindings()
     }
     
-    func refresh() -> Observable<Void>
+    func refresh(_ from: SourceFeedType) -> Observable<Void>
     {
         log("LMM reloading process started", level: .high)
         self.isFetching.accept(true)
         let chatCache = self.messages.value.filter({ !$0.notSeen }).map({ ChatProfileCache.create($0) })
         
-        return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate).flatMap({ [weak self] result -> Observable<Void> in
+        return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate,source: from).flatMap({ [weak self] result -> Observable<Void> in
             
             self!.purge()
             
@@ -117,11 +117,11 @@ class LMMManager
         })
     }
     
-    func refreshInBackground()
+    func refreshInBackground(_ from: SourceFeedType)
     {
         return self.actionsManager.sendQueue().flatMap ({ [weak self] _ -> Observable<Void> in
             
-            return self!.refresh()
+            return self!.refresh(from)
         }).subscribe().disposed(by: self.disposeBag)
     }
     

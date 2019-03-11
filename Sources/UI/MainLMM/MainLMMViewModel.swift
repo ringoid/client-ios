@@ -47,7 +47,7 @@ class MainLMMViewModel
         self.newFacesManager = input.newFacesManager
     }
     
-    func refresh() -> Observable<Void>
+    func refresh(_ from: LMMType) -> Observable<Void>
     {
         self.newFacesManager.purge()
         
@@ -55,7 +55,7 @@ class MainLMMViewModel
             
             self!.profileManager.refreshInBackground()
             
-            return self!.lmmManager.refresh()
+            return self!.lmmManager.refresh(from.sourceType())
         }
     }
     

@@ -41,7 +41,7 @@ protocol ApiService
     
     func getNewFaces(_ resolution: String, lastActionDate: Date?) -> Observable<[ApiProfile]>
     
-    func getLMM(_ resolution: String, lastActionDate: Date?) -> Observable<ApiLMMResult>
+    func getLMM(_ resolution: String, lastActionDate: Date?, source: SourceFeedType) -> Observable<ApiLMMResult>
     
     func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhotoPlaceholder>
     func getUserOwnPhotos(_ resolution: String) -> Observable<[ApiUserPhoto]>

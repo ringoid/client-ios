@@ -200,6 +200,8 @@ class NewFacePhotoViewController: UIViewController
         case .matches: return false
         case .messages: return false
         case .newFaces: return true
+        case .profile: return false
+        case .chat: return false
         }
     }
     

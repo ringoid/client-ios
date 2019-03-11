@@ -62,10 +62,8 @@ class UserProfilePhotosViewModel
     
     func refresh() -> Observable<Void>
     {
-        log("LMM source: Profile", level: .low)
-        
         self.input.newFacesManager.purge()
-        self.input.lmmManager.refreshInBackground()
+        self.input.lmmManager.refreshInBackground(.profile)
 
         return self.input.profileManager.refresh()
     }

@@ -92,16 +92,19 @@ class ApiServiceDefault: ApiService
     }
     
     // MARK: - Feeds
-    func getLMM(_ resolution: String, lastActionDate: Date?) -> Observable<ApiLMMResult>
+    func getLMM(_ resolution: String, lastActionDate: Date?, source: SourceFeedType) -> Observable<ApiLMMResult>
     {
         var params: [String: Any] = [
             "resolution": resolution,
-            "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970 * 1000.0)
+            "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970 * 1000.0),
+            "source": source
         ]
         
         if let accessToken = self.accessToken {
             params["accessToken"] = accessToken
         }
+        
+        log("LMM source: \(source)", level: .low)
         
         return self.requestGET(path: "feeds/get_lmm", params: params)
             .timeout(2.0, scheduler: MainScheduler.instance)

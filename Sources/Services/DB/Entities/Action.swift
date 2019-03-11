@@ -24,6 +24,8 @@ enum SourceFeedType: String
     case whoLikedMe = "who_liked_me"
     case matches = "matches"
     case messages = "messages"
+    case profile = "profile"
+    case chat = "chat"
 }
 
 class Action: DBServiceObject
