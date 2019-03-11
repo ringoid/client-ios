@@ -97,14 +97,14 @@ class ApiServiceDefault: ApiService
         var params: [String: Any] = [
             "resolution": resolution,
             "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970 * 1000.0),
-            "source": source
+            "source": source.rawValue
         ]
         
         if let accessToken = self.accessToken {
             params["accessToken"] = accessToken
         }
         
-        log("LMM source: \(source)", level: .low)
+        log("LMM source: \(source.rawValue)", level: .low)
         
         return self.requestGET(path: "feeds/get_lmm", params: params)
             .timeout(2.0, scheduler: MainScheduler.instance)
