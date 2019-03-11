@@ -1,5 +1,5 @@
 //
-//  ApiOpenChat.swift
+//  ApiViewChatAction.swift
 //  ringoid
 //
 //  Created by Victor Sukochev on 16/01/2019.
@@ -8,15 +8,15 @@
 
 import Foundation
 
-class ApiOpenChatAction: ApiAction
+class ApiViewChatAction: ApiAction
 {
-    var openChatCount: Int = 0
-    var openChatTime: Int = 0
+    var viewChatCount: Int = 0
+    var viewChatTime: Int = 0
     
     override func json() -> [String: Any] {
         var jsonObj = super.json()
-        jsonObj["openChatCount"] = self.openChatCount
-        jsonObj["openChatTimeMillis"] = self.openChatTime
+        jsonObj["viewChatCount"] = self.viewChatCount
+        jsonObj["viewChatTimeMillis"] = self.viewChatTime
         
         return jsonObj
     }
