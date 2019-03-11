@@ -48,6 +48,7 @@ class MainLMMViewController: BaseViewController
     fileprivate var disposeBag: DisposeBag = DisposeBag()
     fileprivate var prevScrollingOffset: CGFloat = 0.0
     fileprivate var isScrollTopVisible: Bool = false
+    fileprivate var isChatShown: Bool = false
     fileprivate var lastFeedIds: [String] = []
     fileprivate var lastUpdateFeedType: LMMType = .likesYou
     fileprivate var currentActivityState: LMMFeedActivityState = .initial
@@ -200,6 +201,8 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func updateFeed()
     {
+        guard !self.isChatShown else { return } // Chat updates should not reload feed
+        
         guard let updatedProfiles = self.profiles()?.value.filter({ !$0.isInvalidated }) else { return }
         
         defer {
@@ -273,6 +276,7 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func showChat(_ profile: LMMProfile, photo: Photo, indexPath: IndexPath, profileVC: MainLMMProfileViewController?)
     {
+        self.isChatShown = true
         self.input.actionsManager.startViewChatAction(profile.actionInstance(), photo: photo.actionInstance())
         
         let vc = ChatViewController.create()
@@ -292,6 +296,7 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?, profile: LMMProfile, photo: Photo, indexPath: IndexPath)
     {
+        self.isChatShown = false
         self.input.actionsManager.stopViewChatAction(profile.actionInstance(), photo: photo.actionInstance(), sourceType: self.type.value.sourceType())
         
         profileVC?.showNotChatControls()
