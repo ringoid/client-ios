@@ -98,11 +98,11 @@ class UserProfilePhotosViewController: BaseViewController
                 
                 showError(error, vc: self)
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                     self.containerTableView.refreshControl?.endRefreshing()
                 })
             }, onCompleted:{ [weak self] in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                     self?.containerTableView.refreshControl?.endRefreshing()
                 })
         }).disposed(by: self.disposeBag)
