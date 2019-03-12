@@ -296,7 +296,6 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?, profile: LMMProfile, photo: Photo, indexPath: IndexPath)
     {
-        self.isChatShown = false
         self.input.actionsManager.stopViewChatAction(profile.actionInstance(), photo: photo.actionInstance(), sourceType: self.type.value.sourceType())
         
         profileVC?.showNotChatControls()
@@ -305,6 +304,7 @@ class MainLMMViewController: BaseViewController
         self.chatContainerView.remove()
         
         self.scrollTop(to: indexPath.row, offset: 44.0, animated: false)
+        self.isChatShown = false
     }
     
     fileprivate func showScrollToTopOption()
