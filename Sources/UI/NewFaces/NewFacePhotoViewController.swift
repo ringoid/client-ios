@@ -116,20 +116,25 @@ class NewFacePhotoViewController: UIViewController
                 photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
                 source: input.sourceType
             )
-        } else {
-            self.playLikeAnimation()
             
-            input.actionsManager.likeActionProtected(
-                actionProfile,
-                photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
-                source: input.sourceType
-            )
+            try? self.photo?.realm?.write({ [weak self] in
+                self?.photo?.isLiked = false
+            })
+        } else {
+            self.playLikeAnimation { [weak self] in
+                input.actionsManager.likeActionProtected(
+                    actionProfile,
+                    photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
+                    source: input.sourceType
+                )
+                    
+                    try? self?.photo?.realm?.write({
+                        self?.photo?.isLiked = true
+                    })
+            }
         }
-        
-        try? self.photo?.realm?.write({ [weak self] in
-            self?.photo?.isLiked = !photo.isLiked
-        })
     }
+
     
     @IBAction func  onTap()
     {
@@ -141,18 +146,20 @@ class NewFacePhotoViewController: UIViewController
         
         guard let input = self.input, let photo = self.photo else { return }
         
-        self.playLikeAnimation()
-        
-        let actionProfile = input.profile.actionInstance()
-        input.actionsManager.likeActionProtected(
-            actionProfile,
-            photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
-            source: input.sourceType            
-        )
-        
-        self.photo?.write({ obj in
-            (obj as? Photo)?.isLiked = true
-        })
+        self.playLikeAnimation { [weak self] in
+            guard let `self` = self else { return }
+            
+            let actionProfile = input.profile.actionInstance()
+            input.actionsManager.likeActionProtected(
+                actionProfile,
+                photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
+                source: input.sourceType
+            )
+            
+            self.photo?.write({ obj in
+                (obj as? Photo)?.isLiked = true
+            })
+        }
     }
         
     // MARK: -
@@ -209,8 +216,10 @@ class NewFacePhotoViewController: UIViewController
         }
     }
     
-    fileprivate func playLikeAnimation()
+    fileprivate func playLikeAnimation(_ completion: (()->())?)
     {
+        self.likeBtn.setImage(UIImage(named: "feed_like_selected"), for: .normal)
+        
         if self.activeAppearAnimator?.isRunning == true {
             self.activeAppearAnimator?.stopAnimation(true)
             self.activeAppearAnimator?.finishAnimation(at: .start)
@@ -239,6 +248,10 @@ class NewFacePhotoViewController: UIViewController
         
         appearAnimator.addCompletion { _ in
             disappearAnimator.startAnimation()
+        }
+        
+        disappearAnimator.addCompletion { _ in
+            completion?()
         }
         
         appearAnimator.startAnimation()
