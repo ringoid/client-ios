@@ -24,6 +24,7 @@ class ApiServiceDefault: ApiService
 
     fileprivate var accessToken: String?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var retryMap: [String: Int] = [:]
     
     init(config: ApiServiceConfig, storage: XStorageService)
     {
@@ -255,11 +256,15 @@ class ApiServiceDefault: ApiService
     
     // MARK: - Basic
     
-    fileprivate func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any]) -> Observable<[String: Any]>
+    fileprivate func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any], id: String? = nil) -> Observable<[String: Any]>
     {
+        let requestId = id ?? UUID().uuidString
         let url = self.config.endpoint + "/" + path
         let buildVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"
         let timestamp = Date()
+        
+        let retryCount = (retryMap[requestId] ?? -1) + 1
+        retryMap[requestId] = retryCount
         
         log("STARTED: \(method) \(url)", level: .low)
         
@@ -279,34 +284,42 @@ class ApiServiceDefault: ApiService
                     
                     log("FAILURE: url: \(url) error: \(error)", level: .low)
                     log("Duration: \(interval) ms", level: .low)
+                    self?.retryMap.removeValue(forKey: requestId)
                     
                     return .error(error)
                 }
                 
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
+                    guard retryCount < 5 else { self?.retryMap.removeValue(forKey: requestId); return .error(createError("Retry limit exceeded", type: .hidden)) }
+                    
                     SentryService.shared.send(.repeatAfterDelay)
                     log("repeating after \(repeatAfter) \(url)", level: .low)
                     
                     return Observable<Void>.just(())
                         .delay(RxTimeInterval(Double(repeatAfter) / 1000.0), scheduler: MainScheduler.instance)
                         .flatMap ({ _ -> Observable<[String: Any]> in
-                        return self!.request(method, path: path, jsonBody: jsonBody)
+                            return self!.request(method, path: path, jsonBody: jsonBody, id: requestId)
                     })
                 }
                 
                 let interval = Int(Date().timeIntervalSince(timestamp) * 1000.0)
                 log("SUCCESS: url: \(url)", level: .low)
                 log("Duration: \(interval) ms", level: .low)
+                self?.retryMap.removeValue(forKey: requestId)
                 
                 return .just(jsonDict)
             })
     }
     
-    fileprivate func requestGET(path: String, params: [String: Any]) -> Observable<[String: Any]>
+    fileprivate func requestGET(path: String, params: [String: Any], id: String? = nil) -> Observable<[String: Any]>
     {
+        let requestId = id ?? UUID().uuidString
         let url = self.config.endpoint + "/" + path
         let buildVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"
         let timestamp = Date()
+        
+        let retryCount = (retryMap[requestId] ?? -1) + 1
+        retryMap[requestId] = retryCount
         
         log("STARTED: GET \(url)", level: .low)
         
@@ -332,24 +345,28 @@ class ApiServiceDefault: ApiService
                     let interval = Int(Date().timeIntervalSince(timestamp) * 1000.0)                    
                     log("FAILURE: url: \(url) error: \(error)", level: .low)
                     log("Duration: \(interval) ms", level: .low)
+                    self?.retryMap.removeValue(forKey: requestId)
                     
                     return .error(error)
                 }
                 
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
+                    guard retryCount < 5 else { self?.retryMap.removeValue(forKey: requestId); return .error(createError("Retry limit exceeded", type: .hidden)) }
+                    
                     SentryService.shared.send(.repeatAfterDelay)
                     log("repeating after \(repeatAfter) \(url)", level: .low)
                     
                     return Observable<Void>.just(())
                         .delay(RxTimeInterval(Double(repeatAfter) / 1000.0), scheduler: MainScheduler.instance)
                         .flatMap ({ _ -> Observable<[String: Any]> in
-                            return self!.requestGET(path: path, params: params)
+                            return self!.requestGET(path: path, params: params, id: requestId)
                         })
                 }
                 
                 let interval = Int(Date().timeIntervalSince(timestamp) * 1000.0)
                 log("SUCCESS: url: \(url)", level: .low)
                 log("Duration: \(interval) ms", level: .low)
+                self?.retryMap.removeValue(forKey: requestId)
                 
                 return .just(jsonDict)
             })
