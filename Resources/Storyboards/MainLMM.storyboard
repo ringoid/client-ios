@@ -382,6 +382,14 @@ see who likes you</string>
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOc-LA-9UX">
+                                <rect key="frame" x="167" y="630" width="41.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -401,6 +409,8 @@ see who likes you</string>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="gA6-9y-Jou"/>
                             <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="mPS-Ki-Bpa" secondAttribute="top" id="jMf-vm-kBR"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
+                            <constraint firstItem="cOc-LA-9UX" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="wXK-ay-mMI"/>
+                            <constraint firstItem="qVA-P0-T2F" firstAttribute="centerY" secondItem="cOc-LA-9UX" secondAttribute="centerY" id="y1x-2e-RdV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dlp-dl-iCM"/>
                     </view>
@@ -410,6 +420,7 @@ see who likes you</string>
                         <outlet property="optionsBtn" destination="lGR-yG-LEW" id="Yk6-ZA-bUI"/>
                         <outlet property="pageControl" destination="mPS-Ki-Bpa" id="nuR-eb-yLf"/>
                         <outlet property="profileIdLabel" destination="qVA-P0-T2F" id="lHS-cL-wGz"/>
+                        <outlet property="seenLabel" destination="cOc-LA-9UX" id="6Hb-uX-gKP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZT-PD-qcS" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -46,6 +46,7 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var messageBtnTopConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
+    @IBOutlet fileprivate weak var seenLabel: UILabel!
     
     static func create(_ profile: LMMProfile, feedType: LMMType, actionsManager: ActionsManager, initialIndex: Int) -> MainLMMProfileViewController
     {
@@ -94,6 +95,8 @@ class MainLMMProfileViewController: UIViewController
         #if STAGE
         self.profileIdLabel.text = "Profile: " + String(self.input.profile.id.suffix(4))
         self.profileIdLabel.isHidden = false
+        self.seenLabel.text = self.viewModel?.input.profile.notSeen == true ? "Not seen" : "Seen"
+        self.seenLabel.isHidden = false
         #endif
     }
     

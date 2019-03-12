@@ -108,7 +108,7 @@ class ApiServiceDefault: ApiService
         
         return self.requestGET(path: "feeds/get_lmm", params: params)
             .timeout(2.0, scheduler: MainScheduler.instance)
-            .flatMap { jsonDict -> Observable<ApiLMMResult> in
+            .flatMap ({ jsonDict -> Observable<ApiLMMResult> in
             guard let likesYouArray = jsonDict["likesYou"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong likesYou profiles data format", type: .hidden)
                 
@@ -132,7 +132,9 @@ class ApiServiceDefault: ApiService
                 matches: matchesArray.compactMap({ApiLMMProfile.lmmParse($0)}),
                 messages: messagesArray.compactMap({ApiLMMProfile.lmmParse($0)})
             ))
-        }
+            }).do(onError: { error in
+                log("ERROR: feeds/get_lmm: \(error)", level: .high)
+            })
     }
     
     func getNewFaces(_ resolution: String, lastActionDate: Date?) -> Observable<[ApiProfile]>
