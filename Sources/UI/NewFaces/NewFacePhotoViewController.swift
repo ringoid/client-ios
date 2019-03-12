@@ -69,14 +69,15 @@ class NewFacePhotoViewController: UIViewController
         super.viewDidAppear(animated)
         
         guard self.input?.profile.isInvalidated == false else { return }
-        guard let profile = self.input?.profile.actionInstance(), let photo = self.photo?.actionInstance() else { return }
+        guard let actionProfile = self.input?.profile.actionInstance(), let origPhoto = self.photo else { return }
+        guard let actionPhoto = actionProfile.photos.toArray().filter({ $0.id == origPhoto.id }).first else { return }
         
-        self.actionProfile = profile
-        self.actionPhoto = photo
+        self.actionProfile = actionProfile
+        self.actionPhoto = actionPhoto
         
         self.input?.actionsManager.startViewAction(
-            profile,
-            photo: photo
+            actionProfile,
+            photo: actionPhoto
         )
     }
     
@@ -107,18 +108,20 @@ class NewFacePhotoViewController: UIViewController
         guard self.isLikesAvailable() else { return }
         guard let input = self.input, let photo = self.photo else { return }
         
+        let actionProfile = input.profile.actionInstance()
+        
         if photo.isLiked {
             input.actionsManager.unlikeActionProtected(
-                input.profile.actionInstance(),
-                photo: photo.actionInstance(),
+                actionProfile,
+                photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
                 source: input.sourceType
             )
         } else {
             self.playLikeAnimation()
             
             input.actionsManager.likeActionProtected(
-                input.profile.actionInstance(),
-                photo: photo.actionInstance(),
+                actionProfile,
+                photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
                 source: input.sourceType
             )
         }
@@ -140,11 +143,11 @@ class NewFacePhotoViewController: UIViewController
         
         self.playLikeAnimation()
         
+        let actionProfile = input.profile.actionInstance()
         input.actionsManager.likeActionProtected(
-            input.profile.actionInstance(),
-            photo: photo.actionInstance(),
-            source: input.sourceType
-            
+            actionProfile,
+            photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
+            source: input.sourceType            
         )
         
         self.photo?.write({ obj in

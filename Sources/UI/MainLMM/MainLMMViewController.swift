@@ -277,7 +277,11 @@ class MainLMMViewController: BaseViewController
     fileprivate func showChat(_ profile: LMMProfile, photo: Photo, indexPath: IndexPath, profileVC: MainLMMProfileViewController?)
     {
         self.isChatShown = true
-        self.input.actionsManager.startViewChatAction(profile.actionInstance(), photo: photo.actionInstance())
+        let actionProfile = profile.actionInstance()
+        self.input.actionsManager.startViewChatAction(
+            actionProfile,
+            photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!
+        )
         
         let vc = ChatViewController.create()
         vc.input = ChatVMInput(profile: profile, photo: photo, chatManager: self.input.chatManager, source: .messages
@@ -296,7 +300,12 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?, profile: LMMProfile, photo: Photo, indexPath: IndexPath)
     {
-        self.input.actionsManager.stopViewChatAction(profile.actionInstance(), photo: photo.actionInstance(), sourceType: self.type.value.sourceType())
+        let actionProfile = profile.actionInstance()
+        self.input.actionsManager.stopViewChatAction(
+            actionProfile,
+            photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
+            sourceType: self.type.value.sourceType()
+        )
         
         profileVC?.showNotChatControls()
         

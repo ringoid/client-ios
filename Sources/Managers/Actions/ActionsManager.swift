@@ -106,7 +106,12 @@ class ActionsManager
                 guard !photo.isInvalidated else { return }
                 guard let _ = self.viewActionsMap[photo.id] else { return }
                 
-                self.stopViewAction(profile.actionInstance(), photo: photo.actionInstance(), sourceType: source)
+                let actionProfile = profile.actionInstance()
+                self.stopViewAction(
+                    actionProfile,
+                    photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
+                    sourceType: source
+                )
             }
         }
     }
