@@ -38,3 +38,19 @@ extension Photo
         return actionPhoto
     }
 }
+
+extension ActionPhoto
+{
+    func filepath() -> FilePath
+    {
+        let type = FileType(rawValue: self.pathType)!
+        
+        return FilePath(filename: self.path, type: type)
+    }
+    
+    func setFilepath(_ filepath: FilePath)
+    {
+        self.path = filepath.filename
+        self.pathType = filepath.type.rawValue
+    }
+}

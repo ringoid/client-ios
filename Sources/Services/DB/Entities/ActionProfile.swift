@@ -11,7 +11,7 @@ import RealmSwift
 class ActionProfile: DBServiceObject
 {
     @objc dynamic var id: String!
-    let photos: List<Photo> = List<Photo>()
+    let photos: List<ActionPhoto> = List<ActionPhoto>()
 }
 
 extension Profile
@@ -20,7 +20,7 @@ extension Profile
     {
         let actionProfile = ActionProfile()
         actionProfile.id = self.id
-        actionProfile.photos.append(objectsIn: self.photos)
+        actionProfile.photos.append(objectsIn: self.photos.map({ $0.actionInstance() }))
         
         if self.realm?.isInWriteTransaction == true {
             self.realm?.add(actionProfile)
