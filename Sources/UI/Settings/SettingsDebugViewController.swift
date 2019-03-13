@@ -49,6 +49,12 @@ class SettingsDebugViewController: BaseViewController
             DebugErrorItem(title: "Too Old App version", trigger: { [weak self] in
                 self?.input.errorsManager.simulatedError.accept(ApiError(type: .tooOldAppVersionClientError))
             }),
+            DebugErrorItem(title: "Response code not 200", trigger: { [weak self] in
+                self?.input.errorsManager.simulatedError.accept(ApiError(type: .non200StatusCode))
+            }),
+            DebugErrorItem(title: "Timeout", trigger: { [weak self] in
+                self?.input.errorsManager.simulatedError.accept(ApiError(type: .connectionTimeout))
+            }),
         ]
     }
     

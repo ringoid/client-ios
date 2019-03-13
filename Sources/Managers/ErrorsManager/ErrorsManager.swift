@@ -53,13 +53,7 @@ class ErrorsManager
         case .internalServerError:
             log("Internal Server Error", level: .high)
             SentryService.shared.send(.internalError)
-            
-            self.api.getStatusText().subscribe(
-                onNext: { [weak self] text in
-                    self?.somethingWentWrong.accept(text)
-                }, onError: { [weak self] _ in
-                    self?.somethingWentWrong.accept("")
-            }).disposed(by: self.disposeBag)
+            self.triggerSomethingWentWrong()
             
             break
             
@@ -81,10 +75,22 @@ class ErrorsManager
     fileprivate func handleConnectionError(_ error: ApiError)
     {
         switch error.type {
-        case .notConnectedToInternet, .connectionLost, .secureConnectionFailed, .connectionTimeout:
+        case .secureConnectionFailed, .connectionTimeout, .non200StatusCode:
+            self.triggerSomethingWentWrong()
+            
             break
             
         default: return
         }
+    }
+    
+    fileprivate func triggerSomethingWentWrong()
+    {
+        self.api.getStatusText().subscribe(
+            onNext: { [weak self] text in
+                self?.somethingWentWrong.accept(text)
+            }, onError: { [weak self] _ in
+                self?.somethingWentWrong.accept("")
+        }).disposed(by: self.disposeBag)
     }
 }

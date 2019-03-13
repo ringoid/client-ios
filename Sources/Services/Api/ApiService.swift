@@ -22,6 +22,7 @@ enum ApiErrorType: String
     case connectionLost
     case secureConnectionFailed
     case connectionTimeout
+    case non200StatusCode
 }
 
 struct ApiError
