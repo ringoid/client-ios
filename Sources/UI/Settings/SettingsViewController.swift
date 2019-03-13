@@ -32,9 +32,10 @@ fileprivate enum SettingsOptionType: Int
 
 fileprivate enum SettingsOptionType: Int
 {
-    case legal = 0
-    case support = 1
-    case delete = 2
+    case language = 0
+    case legal = 1
+    case support = 2
+    case delete = 3
 }
 
 #endif
@@ -53,6 +54,7 @@ class SettingsViewController: BaseViewController
     ]
     #else
     fileprivate let options = [
+        SettingsOption(cellIdentifier: "language_cell", height: 56.0),
         SettingsOption(cellIdentifier: "legal_cell", height: 56.0),
         SettingsOption(cellIdentifier: "support_cell", height: 56.0),
         SettingsOption(cellIdentifier: "delete_cell", height: 96.0)
@@ -178,11 +180,11 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         switch option {
             #if STAGE
         case .theme: return
+            #endif
         case .language:
             self.performSegue(withIdentifier: SegueIds.locale, sender: nil)
             break
-            #else
-            #endif
+            
         case .legal:
             self.performSegue(withIdentifier: SegueIds.legal, sender: nil)
             break
