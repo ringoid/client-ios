@@ -26,6 +26,7 @@ extension Photo
         actionPhoto.path = self.path
         actionPhoto.pathType = self.pathType
         actionPhoto.isLiked = self.isLiked
+        actionPhoto.orderPosition = self.orderPosition
 
         return actionPhoto
     }

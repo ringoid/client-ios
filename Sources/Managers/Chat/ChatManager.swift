@@ -33,7 +33,8 @@ class ChatManager
             lmmProfile?.notSeen = false
         }
 
-        let actionProfile = profile.actionInstance()
+        guard let actionProfile = profile.actionInstance() else { return }
+        
         self.actionsManager.messageActionProtected(
             text,
             profile: actionProfile,

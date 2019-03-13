@@ -116,14 +116,15 @@ class NewFacesViewController: BaseViewController
         self.viewModel?.fetchNext().subscribe(
             onNext: { [weak self] _ in
                 self?.lastFetchCount = count
+                self?.loadingActivityView.stopAnimating()
+                self?.feedEndLabel.isHidden = false
             }, onError: { [weak self] error in
                 guard let `self` = self else { return }
                 
+                self.loadingActivityView.stopAnimating()
+                self.feedEndLabel.isHidden = false
                 showError(error, vc: self)
-            }, onCompleted: { [weak self] in
-                self?.loadingActivityView.stopAnimating()
-                self?.feedEndLabel.isHidden = false
-        }).disposed(by: self.disposeBag)
+            }).disposed(by: self.disposeBag)
     }
     
     // MARK: -
@@ -344,15 +345,16 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
         self.feedEndLabel.isHidden = true
         self.viewModel?.fetchNext().subscribe(
             onNext: { [weak self] _ in
+                self?.loadingActivityView.stopAnimating()
+                self?.feedEndLabel.isHidden = false
                 self?.lastFetchCount = totalCount
             }, onError: { [weak self] error in
                 guard let `self` = self else { return }
                 
+                self.loadingActivityView.stopAnimating()
+                self.feedEndLabel.isHidden = false
                 showError(error, vc: self)
-            }, onCompleted: { [weak self] in
-                self?.loadingActivityView.stopAnimating()
-                self?.feedEndLabel.isHidden = false
-        }).disposed(by: self.disposeBag)
+            }).disposed(by: self.disposeBag)
     }
 }
 

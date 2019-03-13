@@ -107,8 +107,7 @@ class NewFacePhotoViewController: UIViewController
         
         guard self.isLikesAvailable() else { return }
         guard let input = self.input, let photo = self.photo else { return }
-        
-        let actionProfile = input.profile.actionInstance()
+        guard let actionProfile = input.profile.actionInstance() else { return }
         
         if photo.isLiked {
             input.actionsManager.unlikeActionProtected(
@@ -148,8 +147,8 @@ class NewFacePhotoViewController: UIViewController
         
         self.playLikeAnimation { [weak self] in
             guard let `self` = self else { return }
+            guard let actionProfile = input.profile.actionInstance() else { return }
             
-            let actionProfile = input.profile.actionInstance()
             input.actionsManager.likeActionProtected(
                 actionProfile,
                 photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,

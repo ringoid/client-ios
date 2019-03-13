@@ -26,10 +26,12 @@ class NewFaceProfileViewModel
     
     func block(at photoIndex: Int, reason: BlockReason)
     {
+        guard let actionProfile = self.input.profile.actionInstance() else { return }
+        
         self.input.actionsManager.blockActionProtected(
             reason,
-            profile: self.input.profile.actionInstance(),
-            photo: self.input.profile.orderedPhotos()[photoIndex].actionInstance(),
+            profile: actionProfile,
+            photo: actionProfile.orderedPhotos()[photoIndex],
             source: .newFaces)
     }
 }

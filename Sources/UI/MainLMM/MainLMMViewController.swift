@@ -277,11 +277,12 @@ class MainLMMViewController: BaseViewController
     fileprivate func showChat(_ profile: LMMProfile, photo: Photo, indexPath: IndexPath, profileVC: MainLMMProfileViewController?)
     {
         self.isChatShown = true
-        let actionProfile = profile.actionInstance()
-        self.input.actionsManager.startViewChatAction(
-            actionProfile,
-            photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!
-        )
+        if let actionProfile = profile.actionInstance() {
+            self.input.actionsManager.startViewChatAction(
+                actionProfile,
+                photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!
+            )
+        }
         
         let vc = ChatViewController.create()
         vc.input = ChatVMInput(profile: profile, photo: photo, chatManager: self.input.chatManager, source: .messages
@@ -300,13 +301,13 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?, profile: LMMProfile, photo: Photo, indexPath: IndexPath)
     {
-        let actionProfile = profile.actionInstance()
-        self.input.actionsManager.stopViewChatAction(
-            actionProfile,
-            photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
-            sourceType: self.type.value.sourceType()
-        )
-        
+        if let actionProfile = profile.actionInstance() {
+            self.input.actionsManager.stopViewChatAction(
+                actionProfile,
+                photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
+                sourceType: self.type.value.sourceType()
+            )
+        }
         profileVC?.showNotChatControls()
         
         self.chatContainerView.isHidden = true

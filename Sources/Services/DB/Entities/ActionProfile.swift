@@ -12,12 +12,21 @@ class ActionProfile: DBServiceObject
 {
     @objc dynamic var id: String!
     let photos: List<ActionPhoto> = List<ActionPhoto>()
+    
+    func orderedPhotos() -> [ActionPhoto]
+    {
+        guard !self.isInvalidated else { return []  }
+        
+        return Array(self.photos.sorted(byKeyPath: "orderPosition"))
+    }
 }
 
 extension Profile
 {
-    func actionInstance() -> ActionProfile
+    func actionInstance() -> ActionProfile?
     {
+        guard !self.isInvalidated else { return nil }
+        
         let actionProfile = ActionProfile()
         actionProfile.id = self.id
         actionProfile.photos.append(objectsIn: self.photos.map({ $0.actionInstance() }))
