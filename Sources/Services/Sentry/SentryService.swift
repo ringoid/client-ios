@@ -15,6 +15,7 @@ enum SentryEvent: String
     case responseGeneralDelay = "Waiting for response longer than expected 2000 ms"
     case lastActionTimeError = "Last action time error"
     case somethingWentWrong = "Something Went Wrong"
+    case waitingForResponseLLM = "Waiting for response from LMM longer than 2000 ms"
 }
 
 class SentryService
@@ -52,6 +53,7 @@ extension SentryEvent
         case .responseGeneralDelay: return .error
         case .lastActionTimeError: return .error
         case .somethingWentWrong: return .error
+        case .waitingForResponseLLM: return .warning
         }
     }
 }

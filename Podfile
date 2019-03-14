@@ -7,7 +7,6 @@ project 'ringoid'
 def common_pods
 	pod 'RxRealm'
 	pod 'RxCocoa'
-	pod 'RxDataSources'
 	pod 'RxAlamofire'
 	pod 'Nuke'
 	pod 'Fabric'

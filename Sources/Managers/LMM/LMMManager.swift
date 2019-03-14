@@ -85,7 +85,7 @@ class LMMManager
         self.setupBindings()
     }
     
-    func refresh(_ from: SourceFeedType) -> Observable<Void>
+    fileprivate func refresh(_ from: SourceFeedType) -> Observable<Void>
     {
         log("LMM reloading process started", level: .high)
         self.isFetching.accept(true)
@@ -121,10 +121,21 @@ class LMMManager
     
     func refreshInBackground(_ from: SourceFeedType)
     {
+        self.refreshProtected(from).subscribe().disposed(by: self.disposeBag)
+    }
+    
+    func refreshProtected(_ from: SourceFeedType) -> Observable<Void>
+    {
+        let startDate = Date()
+        
         return self.actionsManager.sendQueue().flatMap ({ [weak self] _ -> Observable<Void> in
             
             return self!.refresh(from)
-        }).subscribe().disposed(by: self.disposeBag)
+        }).do(onNext: { _ in
+            if Date().timeIntervalSince(startDate) < 2.0 {
+                SentryService.shared.send(.waitingForResponseLLM)
+            }
+        })
     }
     
     func purge()
