@@ -110,7 +110,7 @@ class LMMManager
             }
             
             return self!.db.add(localLikesYou + matches + messages)
-        }).do(
+        }).delay(0.05, scheduler: MainScheduler.instance).do(
             onNext: { [weak self] _ in
                 self?.isFetching.accept(false)
         },

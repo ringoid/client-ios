@@ -65,7 +65,7 @@ class NewFacesManager
             })
             
             return self!.db.add(localProfiles)
-        }).do(onNext: { [weak self] _ in
+        }).delay(0.05, scheduler: MainScheduler.instance).do(onNext: { [weak self] _ in
             self?.isFetching.accept(false)
             }, onError: { [weak self] _ in
             self?.isFetching.accept(false)

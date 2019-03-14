@@ -121,9 +121,10 @@ class DBService
             } else {
                 try? self.realm.write {
                     self.realm.add(objectsToAdd)
-                    observer.onNext(())
-                    observer.onCompleted()
                 }
+                
+                observer.onNext(())
+                observer.onCompleted()
             }
             
             return Disposables.create()
