@@ -14,6 +14,7 @@ enum SentryEvent: String
     case internalError = "Internal Server Error"
     case responseGeneralDelay = "Waiting for response longer than expected 2000 ms"
     case lastActionTimeError = "Last action time error"
+    case somethingWentWrong = "Something Went Wrong"
 }
 
 class SentryService
@@ -32,10 +33,11 @@ class SentryService
         }
     }
     
-    func send(_ sentryEvent: SentryEvent)
+    func send(_ sentryEvent: SentryEvent, params: [String: String] = [:])
     {
         let event = Event(level: sentryEvent.level)
         event.message = sentryEvent.rawValue
+        event.tags = params
         Client.shared?.send(event: event, completion: nil)
     }
 }
@@ -48,7 +50,8 @@ extension SentryEvent
         case .repeatAfterDelay: return .warning
         case .internalError: return .error
         case .responseGeneralDelay: return .error
-        case .lastActionTimeError: return .error            
+        case .lastActionTimeError: return .error
+        case .somethingWentWrong: return .error
         }
     }
 }

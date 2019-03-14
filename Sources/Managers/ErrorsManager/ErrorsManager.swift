@@ -76,6 +76,7 @@ class ErrorsManager
     {
         switch error.type {
         case .secureConnectionFailed, .connectionTimeout, .non200StatusCode:
+            SentryService.shared.send(.somethingWentWrong, params: ["Error": error.type.rawValue])
             self.triggerSomethingWentWrong()
             
             break
