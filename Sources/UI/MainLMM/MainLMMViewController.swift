@@ -182,6 +182,7 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func toggle(_ type: LMMType)
     {
+        self.input.actionsManager.commit()
         self.updateBindings()
     }
     

@@ -82,6 +82,8 @@ class MainViewController: BaseViewController
     
     fileprivate func select(_ to: SelectionState)
     {
+        self.input.actionsManager.commit()
+        
         switch to {
         case .search:
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
