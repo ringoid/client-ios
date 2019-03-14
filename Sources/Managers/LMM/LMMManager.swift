@@ -110,9 +110,11 @@ class LMMManager
             }
             
             return self!.db.add(localLikesYou + matches + messages)
-        }).do(onError: { [weak self] _ in
+        }).do(
+            onNext: { [weak self] _ in
                 self?.isFetching.accept(false)
-            }, onCompleted:{ [weak self] in
+        },
+            onError: { [weak self] _ in
                 self?.isFetching.accept(false)
         })
     }
