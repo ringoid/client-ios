@@ -89,15 +89,13 @@ class NewFacesViewController: BaseViewController
         
         self.lastFetchCount = -1
         
-        self.viewModel?.refresh().subscribe(onError:{ [weak self] error in
-            guard let `self` = self else { return }
-            
-            self.toggleActivity(.contentAvailable)
-            self.updateFeed()
-            showError(error, vc: self)
-            }, onCompleted: { [weak self] in
-                self?.toggleActivity(.contentAvailable)
-                self?.updateFeed()
+        self.viewModel?.refresh().subscribe(onNext: { [weak self] _ in
+            self?.updateFeed()
+            }, onError:{ [weak self] error in
+                guard let `self` = self else { return }
+                
+                self.updateFeed()
+                showError(error, vc: self)
         }).disposed(by: self.disposeBag)
     }
     

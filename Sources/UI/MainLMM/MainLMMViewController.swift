@@ -543,7 +543,9 @@ extension MainLMMViewController: UIScrollViewDelegate
         
         guard self.isDragged else { return }
         
-        MainLMMViewController.feedsState[self.type.value]?.offset = offset
+        if offset > -1.0 * self.tableView.contentInset.top {
+            MainLMMViewController.feedsState[self.type.value]?.offset = offset
+        }
                 
         guard offset > topTrashhold else {
             self.hideScrollToTopOption()
