@@ -154,6 +154,8 @@ class ActionsManager
     
     func startViewAction(_ profile: ActionProfile, photo: ActionPhoto)
     {
+        guard viewActionsMap[photo.id] == nil else { return }
+        
         self.viewActionsMap[photo.id] = Date()
     }
     
@@ -170,6 +172,8 @@ class ActionsManager
     
     func startViewChatAction(_ profile: ActionProfile, photo: ActionPhoto)
     {
+        guard viewActionsMap[photo.id] == nil else { return }
+        
         self.viewActionsMap[photo.id] = Date()
     }
     
