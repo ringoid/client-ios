@@ -135,6 +135,14 @@ class NewFacesViewController: BaseViewController
             
             self.updateFeed()
         }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.isFetching.asObservable().subscribe(onNext: { [weak self] state in
+            if state {
+                self?.toggleActivity(.fetching)
+            } else {
+                self?.toggleActivity(.contentAvailable)
+            }
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func setupReloader()
