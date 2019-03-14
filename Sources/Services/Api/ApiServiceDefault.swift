@@ -108,7 +108,7 @@ class ApiServiceDefault: ApiService
         log("LMM source: \(source.rawValue)", level: .low)
         
         return self.requestGET(path: "feeds/get_lmm", params: params)
-            .timeout(2.0, scheduler: MainScheduler.instance)
+            //.timeout(2.0, scheduler: MainScheduler.instance)
             .flatMap ({ jsonDict -> Observable<ApiLMMResult> in
             guard let likesYouArray = jsonDict["likesYou"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong likesYou profiles data format", type: .hidden)

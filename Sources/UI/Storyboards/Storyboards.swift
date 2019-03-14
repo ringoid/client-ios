@@ -12,6 +12,9 @@ class Storyboards
 {
     private init() {}
     
+    fileprivate static let newFacesStoryboard: UIStoryboard = UIStoryboard(name: "NewFaces", bundle: nil)
+    fileprivate static let mainLmmStoryboard: UIStoryboard = UIStoryboard(name: "MainLMM", bundle: nil)
+    
     static func root() -> UIStoryboard
     {
         return UIStoryboard(name: "Root", bundle: nil)
@@ -29,12 +32,12 @@ class Storyboards
     
     static func newFaces() -> UIStoryboard
     {
-        return UIStoryboard(name: "NewFaces", bundle: nil)
+        return Storyboards.newFacesStoryboard
     }
     
     static func mainLMM() -> UIStoryboard
     {
-        return UIStoryboard(name: "MainLMM", bundle: nil)
+        return Storyboards.mainLmmStoryboard
     }
     
     static func userProfile() -> UIStoryboard

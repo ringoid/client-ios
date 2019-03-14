@@ -41,7 +41,7 @@ class ActionsManager
     fileprivate let fs: FileService
     fileprivate let storage: XStorageService
     fileprivate let reachability: ReachabilityService
-    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var disposeBag: DisposeBag = DisposeBag()
     fileprivate var viewActionsMap: [String: Date] = [:]
     fileprivate var queue: [Action] = []
     fileprivate var sendingActions: [Action] = []
@@ -92,8 +92,10 @@ class ActionsManager
     {
         self.triggerTimer?.invalidate()
         self.triggerTimer = nil
-        self.lastActionDate.accept(nil)
+        self.disposeBag = DisposeBag()
+        self.sendingActions.removeAll()
         self.queue.removeAll()
+        self.lastActionDate.accept(nil)
         self.setupTimerTrigger()
     }
     

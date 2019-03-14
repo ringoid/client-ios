@@ -47,17 +47,15 @@ class SettingsManager
     {
         guard self.actions.checkConnectionState() else { return }
         
-        self.api.logout().subscribe(onNext: { [weak self] _ in
-            self?.reset()
-        }).disposed(by: self.disposeBag)
+        self.api.logout().subscribe().disposed(by: self.disposeBag)
     }
     
     func reset()
     {
+        self.actions.reset()
         self.isFirstTimePhoto.accept(true)
         self.db.reset()
         self.fs.reset()
-        self.actions.reset()
     }
     
     // MARK: -
