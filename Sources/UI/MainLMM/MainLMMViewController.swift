@@ -114,6 +114,7 @@ class MainLMMViewController: BaseViewController
         self.hideScrollToTopOption()
         let topOffset = self.view.safeAreaInsets.top + self.tableView.contentInset.top
         self.tableView.setContentOffset(CGPoint(x: 0.0, y: -topOffset), animated: false)
+        self.input.actionsManager.commit()
     }
     
     // MARK: -
@@ -278,15 +279,15 @@ class MainLMMViewController: BaseViewController
     fileprivate func showChat(_ profile: LMMProfile, photo: Photo, indexPath: IndexPath, profileVC: MainLMMProfileViewController?)
     {
         self.isChatShown = true
-        if let actionProfile = profile.actionInstance() {
-            self.input.actionsManager.startViewChatAction(
-                actionProfile,
-                photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!
-            )
+        if let actionProfile = profile.actionInstance(),
+            let photo = actionProfile.photos.toArray().filter({ $0.id == photo.id }).first {
+            
+            self.input.actionsManager.stopViewAction(actionProfile, photo: photo, sourceType: self.type.value.sourceType())
+            self.input.actionsManager.startViewChatAction(actionProfile, photo: photo)
         }
         
         let vc = ChatViewController.create()
-        vc.input = ChatVMInput(profile: profile, photo: photo, chatManager: self.input.chatManager, source: .messages
+        vc.input = ChatVMInput(profile: profile, photo: photo, chatManager: self.input.chatManager, source: self.type.value.sourceType()
             , onClose: { [weak self] in
                 self?.hideChat(profileVC, profile: profile, photo: photo, indexPath: indexPath)
             }, onBlock: { [weak profileVC] in
@@ -302,12 +303,10 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?, profile: LMMProfile, photo: Photo, indexPath: IndexPath)
     {
-        if let actionProfile = profile.actionInstance() {
-            self.input.actionsManager.stopViewChatAction(
-                actionProfile,
-                photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
-                sourceType: self.type.value.sourceType()
-            )
+        if let actionProfile = profile.actionInstance(),
+            let photo = actionProfile.photos.toArray().filter({ $0.id == photo.id }).first {
+            self.input.actionsManager.stopViewChatAction(actionProfile, photo: photo, sourceType: self.type.value.sourceType())
+            self.input.actionsManager.startViewAction(actionProfile, photo: photo)
         }
         profileVC?.showNotChatControls()
         
