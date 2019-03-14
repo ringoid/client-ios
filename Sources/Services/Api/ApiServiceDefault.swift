@@ -303,7 +303,9 @@ class ApiServiceDefault: ApiService
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
                     guard retryCount < 5 else { self?.retryMap.removeValue(forKey: requestId); return .error(createError("Retry limit exceeded", type: .hidden)) }
                     
+                    #if STAGE
                     SentryService.shared.send(.repeatAfterDelay)
+                    #endif
                     log("repeating after \(repeatAfter) \(url)", level: .low)
                     
                     return Observable<Void>.just(())
@@ -375,7 +377,9 @@ class ApiServiceDefault: ApiService
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
                     guard retryCount < 5 else { self?.retryMap.removeValue(forKey: requestId); return .error(createError("Retry limit exceeded", type: .hidden)) }
                     
+                    #if STAGE
                     SentryService.shared.send(.repeatAfterDelay)
+                    #endif
                     log("repeating after \(repeatAfter) \(url)", level: .low)
                     
                     return Observable<Void>.just(())
