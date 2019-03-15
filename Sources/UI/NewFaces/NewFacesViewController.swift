@@ -336,7 +336,8 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
-        if let profiles = self.viewModel?.profiles.value {
+        
+        if let profiles = self.viewModel?.profiles.value, profiles.count != 0 {
             var distance = profiles.count - indexPath.row
             distance = distance < 0 ? 0 : distance
             distance = distance > 4 ? 4 : distance
@@ -350,6 +351,7 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
         guard
             let totalCount = self.viewModel?.profiles.value.count,
             totalCount != self.lastFetchCount,
+            totalCount > 14,
             (totalCount - indexPath.row) <= 5
             else { return }
 

@@ -42,6 +42,8 @@ class NewFacesViewModel
     
     func refresh() -> Observable<Void>
     {
+        self.isFetching.accept(true)
+        
         self.actionsManager.finishViewActions(for: self.profiles.value, source: .newFaces)
         return self.actionsManager.sendQueue().flatMap({ _ -> Observable<Void> in
             return self.newFacesManager.refresh()
