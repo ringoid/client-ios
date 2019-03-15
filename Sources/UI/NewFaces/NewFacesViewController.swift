@@ -180,7 +180,7 @@ class NewFacesViewController: BaseViewController
         
         let lastItemsCount = self.lastFeedIds.count
 
-        // No profile data changed
+        // No signle profile data changed
         if totalCount == 1, lastItemsCount == 1, profiles.first?.id == self.lastFeedIds.last {
             return
         }
@@ -220,6 +220,9 @@ class NewFacesViewController: BaseViewController
             return
         }
 
+        // No update case
+        guard totalCount != lastItemsCount else { self.tableView.reloadData(); return }
+        
         // Paging case
         let pageRange = lastItemsCount..<totalCount
         self.lastFeedIds.append(contentsOf: profiles[pageRange].map({ $0.id }))
