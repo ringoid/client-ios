@@ -121,23 +121,6 @@ class ActionsManager
         }
     }
     
-    func restartViewActions(for profiles: [Profile], source: SourceFeedType)
-    {
-        profiles.forEach { profile in
-            guard !profile.isInvalidated else { return }
-            
-            profile.photos.forEach { photo in
-                guard !photo.isInvalidated else { return }
-                guard let _ = self.viewActionsMap[photo.id] else { return }
-                guard let actionProfile = profile.actionInstance() else { return }
-                guard let actionPhoto = actionProfile.photos.toArray().filter({ $0.id == photo.id }).first else { return }
-                
-                self.stopViewAction(actionProfile, photo: actionPhoto, sourceType: source)
-                self.startViewAction(actionProfile, photo: actionPhoto)
-            }
-        }
-    }
-    
     func likeActionProtected(_ profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         self.stopViewAction(profile, photo: photo, sourceType: source)
