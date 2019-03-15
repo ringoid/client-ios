@@ -14,20 +14,25 @@ class Storyboards
     
     fileprivate static let newFacesStoryboard: UIStoryboard = UIStoryboard(name: "NewFaces", bundle: nil)
     fileprivate static let mainLmmStoryboard: UIStoryboard = UIStoryboard(name: "MainLMM", bundle: nil)
+    fileprivate static let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    fileprivate static let rootStoryboard: UIStoryboard = UIStoryboard(name: "Root", bundle: nil)
+    fileprivate static let authStoryboard: UIStoryboard = UIStoryboard(name: "Auth", bundle: nil)
+    fileprivate static let userProfileStoryboard: UIStoryboard = UIStoryboard(name: "UserProfile", bundle: nil)
+    fileprivate static let chatStoryboard: UIStoryboard = UIStoryboard(name: "Chat", bundle: nil)
     
     static func root() -> UIStoryboard
     {
-        return UIStoryboard(name: "Root", bundle: nil)
+        return Storyboards.rootStoryboard
     }
     
     static func auth() -> UIStoryboard
     {
-        return UIStoryboard(name: "Auth", bundle: nil)
+        return Storyboards.authStoryboard
     }
     
     static func main() -> UIStoryboard
     {
-        return UIStoryboard(name: "Main", bundle: nil)
+        return Storyboards.mainStoryboard
     }
     
     static func newFaces() -> UIStoryboard
@@ -42,11 +47,11 @@ class Storyboards
     
     static func userProfile() -> UIStoryboard
     {
-        return UIStoryboard(name: "UserProfile", bundle: nil)
+        return Storyboards.userProfileStoryboard
     }
     
     static func chat() -> UIStoryboard
     {
-        return UIStoryboard(name: "Chat", bundle: nil)
+        return Storyboards.chatStoryboard
     }
 }
