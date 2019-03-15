@@ -178,6 +178,11 @@ class NewFacesViewController: BaseViewController
         
         let lastItemsCount = self.lastFeedIds.count
 
+        // No profile data changed
+        if totalCount == 1, lastItemsCount == 1, profiles.first?.id == self.lastFeedIds.last {
+            return
+        }
+        
         // No items or several items removal case
         if lastItemsCount <= 1 || totalCount < (lastItemsCount - 1) {
             self.tableView.reloadData()
