@@ -14,7 +14,7 @@ class SettingsLegalAboutCell: BaseTableViewCell
     var buildText: String?
     {
         didSet {
-            self.buildLabel.text = buildText
+            self.buildLabel.text = self.buildText
         }
     }
     
