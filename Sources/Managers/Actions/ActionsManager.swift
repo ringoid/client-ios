@@ -95,7 +95,10 @@ class ActionsManager
         self.disposeBag = DisposeBag()
         self.sendingActions.removeAll()
         self.queue.removeAll()
+        
+        self.setupDateStorage()
         self.lastActionDate.accept(nil)
+        
         self.setupTimerTrigger()
     }
     
