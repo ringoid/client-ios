@@ -138,7 +138,7 @@ class NewFacesViewController: BaseViewController
             self.updateFeed()
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.isFetching.asObservable().subscribe(onNext: { [weak self] state in
+        self.viewModel?.isFetching.asObservable().skip(1).subscribe(onNext: { [weak self] state in
             if state {
                 self?.toggleActivity(.fetching)
             } else {
@@ -182,13 +182,14 @@ class NewFacesViewController: BaseViewController
 
         // No signle profile data changed
         if totalCount == 1, lastItemsCount == 1, profiles.first?.id == self.lastFeedIds.last {
+            print("NO PROFILE DATA CHANGED")
             return
         }
         
         // No items or several items removal case
         if lastItemsCount <= 1 || totalCount < (lastItemsCount - 1) {
             self.tableView.reloadData()
-            
+
             return
         }
         
@@ -216,17 +217,21 @@ class NewFacesViewController: BaseViewController
                 self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
             }, completion: nil)
             self.tableView.layer.removeAllAnimations()
-
+            
             return
         }
 
         // No update case
-        guard totalCount != lastItemsCount else { self.tableView.reloadData(); return }
+        guard totalCount != lastItemsCount else { return }
         
         // Paging case
         let pageRange = lastItemsCount..<totalCount
         self.lastFeedIds.append(contentsOf: profiles[pageRange].map({ $0.id }))
-        self.tableView.insertRows(at: pageRange.map({ IndexPath(row: $0, section: 0) }), with: .none)
+        DispatchQueue.main.async {
+            self.tableView.performBatchUpdates({
+                self.tableView.insertRows(at: pageRange.map({ IndexPath(row: $0, section: 0) }), with: .none)
+            }, completion: nil)
+        }
     }
     
     fileprivate func showAddPhotosOptions()
