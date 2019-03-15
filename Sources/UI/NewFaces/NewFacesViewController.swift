@@ -73,6 +73,8 @@ class NewFacesViewController: BaseViewController
     // MARK: - Actions
     @objc func onReload()
     {
+        self.tableView.refreshControl?.alpha = 0.0
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.tableView.refreshControl?.endRefreshing()
         }
@@ -384,6 +386,8 @@ extension NewFacesViewController: UIScrollViewDelegate
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
     {
+        self.tableView.refreshControl?.alpha = 1.0
+        
         self.tableView.visibleCells.forEach { cell in
             guard let vc = (cell as? NewFacesCell)?.containerView.containedVC as? NewFaceProfileViewController else { return }
            
