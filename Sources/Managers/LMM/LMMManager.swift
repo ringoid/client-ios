@@ -100,6 +100,8 @@ class LMMManager
             let messages = createProfiles(result.messages, type: .messages)
             
             (messages + matches + localLikesYou).forEach { remoteProfile in
+                guard remoteProfile.messages.count != 0 else { return }
+                
                 remoteProfile.notSeen = true
                 
                 chatCache.forEach { localChatProfile in
