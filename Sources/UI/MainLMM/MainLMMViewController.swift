@@ -173,8 +173,7 @@ class MainLMMViewController: BaseViewController
             return
         }
         
-        // TODO: move "finishViewActions" logic inside view model
-        self.input.actionsManager.finishViewActions(for: self.profiles()?.value ?? [], source: self.type.value.sourceType())
+        self.input.actionsManager.restartViewActions(for: self.profiles()?.value ?? [], source: self.type.value.sourceType())
         
         self.viewModel?.refresh(self.type.value).subscribe(onError:{ [weak self] error in
             guard let `self` = self else { return }
