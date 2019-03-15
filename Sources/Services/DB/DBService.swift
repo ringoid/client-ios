@@ -196,11 +196,11 @@ class DBService
     // MARK: -
     fileprivate func removeProfiles(_ id: String)
     {
-        var objectsToRemove: [Object] = []
+        var objectsToRemove: [DBServiceObject] = []
         let predicate = NSPredicate(format: "id = %@ AND isDeleted = false", id)
         objectsToRemove.append(contentsOf: Array(self.realm.objects(NewFaceProfile.self).filter(predicate)))
         objectsToRemove.append(contentsOf: Array(self.realm.objects(LMMProfile.self).filter(predicate)))
-        self.realm.delete(objectsToRemove)        
+        self.delete(objectsToRemove).subscribe().disposed(by: self.disposeBag)
     }
     
     fileprivate func filterBlocked(_ objects: [DBServiceObject]) -> [DBServiceObject]
