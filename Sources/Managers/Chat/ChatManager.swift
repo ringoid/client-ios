@@ -33,12 +33,13 @@ class ChatManager
             lmmProfile?.notSeen = false
         }
 
-        guard let actionProfile = profile.actionInstance() else { return }
+        let photoId = photo.id
+        guard let actionProfile = profile.actionInstance(), let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first else { return }
         
         self.actionsManager.messageActionProtected(
             text,
             profile: actionProfile,
-            photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
+            photo: actionPhoto,
             source: source
         )
     }

@@ -281,11 +281,12 @@ class MainLMMViewController: BaseViewController
     fileprivate func showChat(_ profile: LMMProfile, photo: Photo, indexPath: IndexPath, profileVC: MainLMMProfileViewController?)
     {
         self.isChatShown = true
+        let photoId = photo.id
         if let actionProfile = profile.actionInstance(),
-            let photo = actionProfile.photos.toArray().filter({ $0.id == photo.id }).first {
+            let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first {
             
-            self.input.actionsManager.stopViewAction(actionProfile, photo: photo, sourceType: self.type.value.sourceType())
-            self.input.actionsManager.startViewChatAction(actionProfile, photo: photo)
+            self.input.actionsManager.stopViewAction(actionProfile, photo: actionPhoto, sourceType: self.type.value.sourceType())
+            self.input.actionsManager.startViewChatAction(actionProfile, photo: actionPhoto)
         }
         
         let vc = ChatViewController.create()
@@ -305,10 +306,11 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func hideChat(_ profileVC: MainLMMProfileViewController?, profile: LMMProfile, photo: Photo, indexPath: IndexPath)
     {
+        let photoId = photo.id
         if let actionProfile = profile.actionInstance(),
-            let photo = actionProfile.photos.toArray().filter({ $0.id == photo.id }).first {
-            self.input.actionsManager.stopViewChatAction(actionProfile, photo: photo, sourceType: self.type.value.sourceType())
-            self.input.actionsManager.startViewAction(actionProfile, photo: photo)
+            let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first {
+            self.input.actionsManager.stopViewChatAction(actionProfile, photo: actionPhoto, sourceType: self.type.value.sourceType())
+            self.input.actionsManager.startViewAction(actionProfile, photo: actionPhoto)
         }
         profileVC?.showNotChatControls()
         

@@ -109,12 +109,16 @@ class ActionsManager
             
             profile.photos.forEach { photo in
                 guard !photo.isInvalidated else { return }
+                
+                let photoId = photo.id
+                
                 guard let _ = self.viewActionsMap[photo.id] else { return }
                 guard let actionProfile = profile.actionInstance() else { return }
+                guard let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first else { return }
                 
                 self.stopViewAction(
                     actionProfile,
-                    photo: actionProfile.photos.toArray().filter({ $0.id == photo.id }).first!,
+                    photo: actionPhoto,
                     sourceType: source
                 )
             }
