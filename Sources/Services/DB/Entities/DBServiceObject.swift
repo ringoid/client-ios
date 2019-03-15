@@ -11,6 +11,7 @@ import RealmSwift
 class DBServiceObject: Object
 {
     @objc dynamic var orderPosition: Int = 0
+    @objc dynamic var isDeleted: Bool = false
     
     func write(_ writeBlock: ((Object?) -> ())?)
     {

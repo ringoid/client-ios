@@ -18,17 +18,19 @@ class DBService
     
     init()
     {
-        let version: UInt64 = 2
+        let version: UInt64 = 3
         let config = Realm.Configuration(schemaVersion: version, deleteRealmIfMigrationNeeded: true)
         
         self.realm = try! Realm(configuration: config)
         self.currentOrderPosition = UserDefaults.standard.integer(forKey: "db_service_order_position_key")
+        self.cleanDeletedObjects()
     }
     
     // MARK: - New Faces
     func fetchNewFaces() -> Observable<[NewFaceProfile]>
     {
-        let profiles = self.realm.objects(NewFaceProfile.self).sorted(byKeyPath: "orderPosition")
+        let predicate = NSPredicate(format: "isDeleted = false")
+        let profiles = self.realm.objects(NewFaceProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition")
         
         return Observable.array(from: profiles)
     }
@@ -37,7 +39,7 @@ class DBService
     
     func fetchLikesYou() -> Observable<[LMMProfile]>
     {
-        let predicate = NSPredicate(format: "type = %d", FeedType.likesYou.rawValue)
+        let predicate = NSPredicate(format: "type = %d AND isDeleted = false", FeedType.likesYou.rawValue)
         let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition")
         
         return Observable.array(from: profiles)
@@ -45,7 +47,7 @@ class DBService
     
     func fetchMatches() -> Observable<[LMMProfile]>
     {
-        let predicate = NSPredicate(format: "type = %d", FeedType.matches.rawValue)
+        let predicate = NSPredicate(format: "type = %d AND isDeleted = false", FeedType.matches.rawValue)
         let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition")
         
         return Observable.array(from: profiles)
@@ -53,7 +55,7 @@ class DBService
     
     func fetchMessages() -> Observable<[LMMProfile]>
     {
-        let predicate = NSPredicate(format: "type = %d", FeedType.messages.rawValue)
+        let predicate = NSPredicate(format: "type = %d AND isDeleted = false", FeedType.messages.rawValue)
         let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition")
         
         return Observable.array(from: profiles)
@@ -72,14 +74,15 @@ class DBService
     
     func fetchUserPhotos() -> Observable<[UserPhoto]>
     {
-        let photos = self.realm.objects(UserPhoto.self).sorted(byKeyPath: "orderPosition")
+        let predicate = NSPredicate(format: "isDeleted = false")
+        let photos = self.realm.objects(UserPhoto.self).filter(predicate).sorted(byKeyPath: "orderPosition")
         
         return Observable.array(from: photos)
     }
     
     func fetchUserPhoto(_ clientId: String) -> Observable<UserPhoto?>
     {
-        let predicate = NSPredicate(format: "clientId = %@", clientId)
+        let predicate = NSPredicate(format: "clientId = %@ AND isDeleted = false", clientId)
         let photo = self.realm.objects(UserPhoto.self).filter(predicate).first
         
         return .just(photo)
@@ -89,7 +92,8 @@ class DBService
     
     func fetchActions() -> Observable<[Action]>
     {
-        let actions = self.realm.objects(Action.self)
+        let predicate = NSPredicate(format: "isDeleted = false")
+        let actions = self.realm.objects(Action.self).filter(predicate)
         
         return Observable.array(from: actions)
     }
@@ -143,18 +147,18 @@ class DBService
         }
     }
     
-    func delete(_ objects: [Object]) -> Observable<Void>
+    func delete(_ objects: [DBServiceObject]) -> Observable<Void>
     {
         return Observable<Void>.create({ [weak self] observer -> Disposable in
             guard let `self` = self else { return Disposables.create() }
             
             if self.realm.isInWriteTransaction {
-                self.realm.delete(objects)
+                objects.forEach({ $0.isDeleted = true })
                 observer.onNext(())
                 observer.onCompleted()
             } else {
                 try? self.realm.write {
-                    self.realm.delete(objects)
+                    objects.forEach({ $0.isDeleted = true })
                     observer.onNext(())
                     observer.onCompleted()
                 }
@@ -193,7 +197,7 @@ class DBService
     fileprivate func removeProfiles(_ id: String)
     {
         var objectsToRemove: [Object] = []
-        let predicate = NSPredicate(format: "id = %@", id)
+        let predicate = NSPredicate(format: "id = %@ AND isDeleted = false", id)
         objectsToRemove.append(contentsOf: Array(self.realm.objects(NewFaceProfile.self).filter(predicate)))
         objectsToRemove.append(contentsOf: Array(self.realm.objects(LMMProfile.self).filter(predicate)))
         self.realm.delete(objectsToRemove)        
@@ -212,5 +216,24 @@ class DBService
             
             return true
         })
+    }
+    
+    fileprivate func cleanDeletedObjects()
+    {
+        var objectsToDelete: [Object] = []
+        let predicate = NSPredicate(format: "isDeleted = true")
+        objectsToDelete.append(contentsOf: Array(self.realm.objects(Action.self).filter(predicate)))
+        objectsToDelete.append(contentsOf: Array(self.realm.objects(ActionPhoto.self).filter(predicate)))
+        objectsToDelete.append(contentsOf: Array(self.realm.objects(ActionProfile.self).filter(predicate)))
+        objectsToDelete.append(contentsOf: Array(self.realm.objects(Profile.self).filter(predicate)))
+        objectsToDelete.append(contentsOf: Array(self.realm.objects(Photo.self).filter(predicate)))
+        objectsToDelete.append(contentsOf: Array(self.realm.objects(UserPhoto.self).filter(predicate)))
+        objectsToDelete.append(contentsOf: Array(self.realm.objects(NewFaceProfile.self).filter(predicate)))
+        objectsToDelete.append(contentsOf: Array(self.realm.objects(LMMProfile.self).filter(predicate)))
+        objectsToDelete.append(contentsOf: Array(self.realm.objects(Message.self).filter(predicate)))
+
+        try? self.realm.write {
+            self.realm.delete(objectsToDelete)
+        }
     }
 }
