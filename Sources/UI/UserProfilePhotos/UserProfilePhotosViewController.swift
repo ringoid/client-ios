@@ -98,16 +98,7 @@ class UserProfilePhotosViewController: BaseViewController
             
             return
         }
-        
-        // No photos
-        guard self.viewModel?.photos.value.count != 0 else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
-                self.containerTableView.refreshControl?.endRefreshing()
-            })
-            
-            return
-        }
-        
+                
         self.viewModel?.refresh().subscribe(
             onError:{ [weak self] error in
                 guard let `self` = self else { return }

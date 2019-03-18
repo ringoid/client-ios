@@ -62,8 +62,10 @@ class UserProfilePhotosViewModel
     
     func refresh() -> Observable<Void>
     {
-        self.input.newFacesManager.purge()
-        self.input.lmmManager.refreshInBackground(.profile)
+        if self.photos.value.count != 0 {
+            self.input.newFacesManager.purge()
+            self.input.lmmManager.refreshInBackground(.profile)
+        }
 
         return self.input.profileManager.refresh()
     }
