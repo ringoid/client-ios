@@ -158,8 +158,8 @@ class RootViewController: BaseViewController {
     {
         self.appManager.apiService.isAuthorized.asObservable().subscribe ({ [weak self] event in
             if event.element != true {
-                self?.appManager.settingsMananger.reset()
                 self?.move(to: .auth)
+                self?.appManager.settingsMananger.reset()
             } else {
                 if self?.appManager.profileManager.photos.value.count == 0 {
                     self?.move(to: .userProfile)
