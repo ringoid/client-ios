@@ -29,6 +29,8 @@ class SettingsLegalViewModel
         guard let appVersion = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else { return }
         guard let buildVersion = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String else { return }
         
-        self.build.accept("\(appVersion).\(buildVersion)")
+        var buildComponents = appVersion.components(separatedBy: CharacterSet(charactersIn: "."))
+        buildComponents.removeLast()        
+        self.build.accept("\(buildComponents[0]).\(buildComponents[1]).\(buildVersion)")
     }
 }
