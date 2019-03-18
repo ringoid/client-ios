@@ -30,7 +30,7 @@ class LMMManager
     let actionsManager: ActionsManager
     let deviceService: DeviceService
     
-    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var disposeBag: DisposeBag = DisposeBag()
     
     var likesYou: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     var matches: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
@@ -150,6 +150,12 @@ class LMMManager
         self.db.fetchLikesYou().bind(to: self.likesYou).disposed(by: self.disposeBag)
         self.db.fetchMatches().bind(to: self.matches).disposed(by: self.disposeBag)
         self.db.fetchMessages().bind(to: self.messages).disposed(by: self.disposeBag)        
+    }
+    
+    func reset()
+    {
+        self.disposeBag = DisposeBag()
+        self.setupBindings()
     }
 }
 

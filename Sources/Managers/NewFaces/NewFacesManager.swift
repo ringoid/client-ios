@@ -16,7 +16,7 @@ class NewFacesManager
     let deviceService: DeviceService
     let actionsManager: ActionsManager
     
-    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var disposeBag: DisposeBag = DisposeBag()
     
     var profiles: BehaviorRelay<[NewFaceProfile]> = BehaviorRelay<[NewFaceProfile]>(value: [])
     let isFetching: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
@@ -30,7 +30,7 @@ class NewFacesManager
         
         self.purge()
         
-        self.db.fetchNewFaces().bind(to: self.profiles).disposed(by: self.disposeBag)
+        self.setupBindings()
     }
     
     func refresh() -> Observable<Void>
@@ -78,7 +78,18 @@ class NewFacesManager
         self.db.resetNewFaces().subscribe().disposed(by: self.disposeBag)
     }
     
+    func reset()
+    {
+        self.disposeBag = DisposeBag()
+        self.setupBindings()
+    }
+    
     // MARK: -
+    
+    fileprivate func setupBindings()
+    {
+        self.db.fetchNewFaces().bind(to: self.profiles).disposed(by: self.disposeBag)
+    }
     
     fileprivate func filterExisting(_ incomingProfiles: [ApiProfile]) -> [ApiProfile]
     {
