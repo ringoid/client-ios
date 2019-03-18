@@ -27,7 +27,11 @@ class SentryService
     func setup()
     {
         do {
+            #if STAGE
             Client.shared = try Client(dsn: "https://179c556658a3465d852019ffbb5aaac1@sentry.io/1387002")
+            #else
+            Client.shared = try Client(dsn: "https://66679f22e10c439ca88e34e68e11eabc@sentry.io/1417642")
+            #endif
             try Client.shared?.startCrashHandler()
         } catch let error {
             log("Sentry error: \(error)", level: .high)
