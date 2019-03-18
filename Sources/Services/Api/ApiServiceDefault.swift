@@ -270,7 +270,7 @@ class ApiServiceDefault: ApiService
         
         return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
-            ]).responseJSON()
+            ]).retry(3).responseJSON()
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
             })
@@ -338,7 +338,7 @@ class ApiServiceDefault: ApiService
         
         return RxAlamofire.request(.get, url, parameters: params, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
-            ]).responseJSON()
+            ]).retry(3).responseJSON()
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
             }, onDispose: {
