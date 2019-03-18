@@ -14,20 +14,20 @@ class SettingsLegalAboutCell: BaseTableViewCell
     var buildText: String?
     {
         didSet {
-            self.buildLabel.text = self.buildText
+            self.buildLabel?.text = self.buildText
         }
     }
     
-    @IBOutlet fileprivate weak var aboutLabel: UILabel!
-    @IBOutlet fileprivate weak var buildLabel: UILabel!
+    @IBOutlet fileprivate weak var aboutLabel: UILabel?
+    @IBOutlet fileprivate weak var buildLabel: UILabel?
     
     override func updateLocale()
     {
-        self.aboutLabel.text = "settings_info_about".localized()
+        self.aboutLabel?.text = "settings_info_about".localized()
     }
     
     override func updateTheme()
     {
-        self.aboutLabel.textColor = ContentColor().uiColor()        
+        self.aboutLabel?.textColor = ContentColor().uiColor()
     }
 }
