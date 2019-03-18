@@ -416,7 +416,7 @@ extension BlockReason
         case .stolen: return "report_profile_button_2".localized()
         case .spam: return "report_profile_button_3".localized()
         case .criminal: return "report_profile_button_4".localized()
-        case .underaged: return "report_profile_button_4".localized()
+        case .underaged: return "report_profile_button_5".localized()
         case .harrasment: return "report_profile_button_6".localized()
         }
     }
