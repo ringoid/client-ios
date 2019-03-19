@@ -386,6 +386,11 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
                 showError(error, vc: self)
             }).disposed(by: self.disposeBag)
     }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath)
+    {
+        (cell as? NewFacesCell)?.containerView.remove()
+    }
 }
 
 extension NewFacesViewController: UIScrollViewDelegate

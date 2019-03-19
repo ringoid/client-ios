@@ -515,6 +515,11 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
             self.preheater.startPreheating(with: urls)
         }
     }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath)
+    {
+        (cell as? MainLMMCell)?.containerView.remove()
+    }
 }
 
 fileprivate let topTrashhold: CGFloat = 0.0
