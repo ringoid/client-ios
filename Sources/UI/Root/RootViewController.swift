@@ -25,6 +25,8 @@ class RootViewController: BaseViewController {
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var mode: AppUIMode = .unknown
+    fileprivate var prevOldVersionState: Bool = false
+    fileprivate var prevNoConnectionState: Bool = false
     
     @IBOutlet fileprivate weak var containerView: ContainerView!
     @IBOutlet fileprivate weak var debugTextView: UITextView!
@@ -173,6 +175,10 @@ class RootViewController: BaseViewController {
     fileprivate func subscribeToNoConnectionState()
     {
         self.appManager.actionsManager.isInternetAvailable.asObservable().subscribe(onNext: { [weak self] state in
+            guard state != self?.prevNoConnectionState else { return }
+            
+            self?.prevNoConnectionState = state
+            
             guard !state else { return }
             
             self?.showNoConnection()
@@ -182,6 +188,10 @@ class RootViewController: BaseViewController {
     fileprivate func subscribeToOldVersionState()
     {
         self.appManager.errorsManager.oldVersion.asObservable().subscribe(onNext: { [weak self] state in
+            guard state != self?.prevOldVersionState else { return }
+            
+            self?.prevOldVersionState = state
+            
             guard state else { return }
             
             self?.showOldVersion()
