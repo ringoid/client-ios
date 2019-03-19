@@ -33,7 +33,6 @@ class UserProfileManager
         self.storage = storage
         
         self.setupBindings()
-        self.db.fetchUserPhotos().bind(to: self.photos).disposed(by: self.disposeBag)
     }
     
     func addPhoto(_ data: Data, filename: String) -> Observable<UserPhoto>
@@ -117,6 +116,8 @@ class UserProfileManager
             self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
             self.db.resetNewFaces().subscribe().disposed(by: self.disposeBag)
         }).disposed(by: self.disposeBag)
+        
+        self.db.fetchUserPhotos().subscribeOn(MainScheduler.instance).bind(to: self.photos).disposed(by: self.disposeBag)
     }
     
     fileprivate func setupLastPhotoBinding()

@@ -67,7 +67,7 @@ class UserProfilePhotoViewController: UIViewController
     
     fileprivate func updateBindings()
     {
-        self.photo?.rx.observe(UserPhoto.self, "likes").subscribe(onNext: { [weak self] _ in
+        self.photo?.rx.observe(UserPhoto.self, "likes").subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             guard let photo = self?.photo else {
                 return
             }
