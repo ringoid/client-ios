@@ -23,7 +23,7 @@
 "error_screen_no_network_connection" = "No Internet connection";
 "error_screen_no_network_connection_button_label" = "Retry";
 "error_screen_old_app_version" = "Please update the app";
-"error_screen_old_app_version_button_label" = "Open Appstore";
+"error_screen_old_app_version_button_label" = "Open App Store";
 
 "block_profile_button_block" = "Block";
 "block_profile_button_report" = "Report & Block";
