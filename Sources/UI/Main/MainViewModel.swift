@@ -19,6 +19,7 @@ struct MainVMInput
     let chatManager: ChatManager
     let navigationManager: NavigationManager
     let errorsManager: ErrorsManager
+    let device: DeviceService
 }
 
 class MainViewModel

@@ -204,7 +204,8 @@ class MainViewController: BaseViewController
             navigationManager: self.input.navigationManager,
             newFacesManager: self.input.newFacesManager,
             actionsManager: self.input.actionsManager,
-            errorsManager: self.input.errorsManager
+            errorsManager: self.input.errorsManager,
+            device: self.input.device
         )
         
         self.menuVCCache[.profile] = vc

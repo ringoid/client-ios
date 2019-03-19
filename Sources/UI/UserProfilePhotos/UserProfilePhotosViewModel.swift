@@ -18,6 +18,7 @@ struct UserProfilePhotosVCInput
     let newFacesManager: NewFacesManager
     let actionsManager: ActionsManager
     let errorsManager: ErrorsManager
+    let device: DeviceService
 }
 
 class UserProfilePhotosViewModel

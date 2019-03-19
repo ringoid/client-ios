@@ -84,7 +84,8 @@ class RootViewController: BaseViewController {
             settingsManager: self.appManager.settingsMananger,
             chatManager: self.appManager.chatManager,
             navigationManager: self.appManager.navigationManager,
-            errorsManager: self.appManager.errorsManager
+            errorsManager: self.appManager.errorsManager,
+            device: self.appManager.deviceService
         )
         
         self.containerView.embed(vc, to: self)

@@ -226,8 +226,7 @@ class NewFacesViewController: BaseViewController
         guard totalCount != lastItemsCount else { return }
         
         // Paging case
-        let pageRange = lastItemsCount..<totalCount
-        let diff = totalCount - lastItemsCount
+        let pageRange = lastItemsCount..<totalCount        
         self.lastFeedIds.append(contentsOf: profiles[pageRange].map({ $0.id }))
         
         self.tableView.performBatchUpdates({

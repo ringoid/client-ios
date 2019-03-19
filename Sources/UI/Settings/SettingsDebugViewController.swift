@@ -12,6 +12,7 @@ struct SettingsDebugVCInput
 {
     let actionsManager: ActionsManager
     let errorsManager: ErrorsManager
+    let device: DeviceService
 }
 
 struct DebugErrorItem
@@ -27,6 +28,9 @@ class SettingsDebugViewController: BaseViewController
     fileprivate var items: [DebugErrorItem] = []
     
     @IBOutlet fileprivate weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var footerView: UIView!
+    @IBOutlet fileprivate weak var screenLabel: UILabel!
+    @IBOutlet fileprivate weak var resolutionLabel: UILabel!
     
     override func viewDidLoad()
     {
@@ -56,6 +60,12 @@ class SettingsDebugViewController: BaseViewController
                 self?.input.errorsManager.simulatedError.accept(ApiError(type: .connectionTimeout))
             }),
         ]
+        
+        let displayWidth: Int = Int(UIScreen.main.bounds.width * UIScreen.main.nativeScale)
+        let displayHeight: Int = Int(UIScreen.main.bounds.height * UIScreen.main.nativeScale)
+        self.screenLabel.text = "\(displayWidth)x\(displayHeight)"
+        self.resolutionLabel.text = self.input.device.photoResolution
+        self.tableView.tableFooterView = self.footerView
     }
     
     override func updateTheme()

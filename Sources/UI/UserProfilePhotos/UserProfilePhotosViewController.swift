@@ -63,7 +63,12 @@ class UserProfilePhotosViewController: BaseViewController
     {
         if segue.identifier == SegueIds.settingsVC,
             let vc = (segue.destination as? UINavigationController)?.viewControllers.first as? SettingsViewController {
-            vc.input = SettingsVMInput(settingsManager: self.input.settingsManager, actionsManager: self.input.actionsManager, errorsManager: self.input.errorsManager)
+            vc.input = SettingsVMInput(
+                settingsManager: self.input.settingsManager,
+                actionsManager: self.input.actionsManager,
+                errorsManager: self.input.errorsManager,
+                device: self.input.device
+            )
         }
         
         if segue.identifier == SegueIds.cropVC, let vc = segue.destination as? UserProfilePhotoCropViewController {
@@ -98,7 +103,7 @@ class UserProfilePhotosViewController: BaseViewController
             
             return
         }
-                
+        
         self.viewModel?.refresh().subscribe(
             onError:{ [weak self] error in
                 guard let `self` = self else { return }

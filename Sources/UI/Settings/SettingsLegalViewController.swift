@@ -81,7 +81,7 @@ class SettingsLegalViewController: BaseViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIds.debug, let vc = segue.destination as? SettingsDebugViewController {
-            vc.input = SettingsDebugVCInput(actionsManager: self.input.actionsManager, errorsManager: self.input.errorsManager)
+            vc.input = SettingsDebugVCInput(actionsManager: self.input.actionsManager, errorsManager: self.input.errorsManager, device: self.input.device)
         }
     }
     
