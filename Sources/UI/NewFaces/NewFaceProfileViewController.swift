@@ -17,6 +17,7 @@ class NewFaceProfileViewController: UIViewController
     
     var onBlockOptionsWillShow: (() -> ())?
     
+    let currentIndex: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     var bottomVisibleBorderDistance: CGFloat = 0.0
     {
         didSet {
@@ -28,19 +29,19 @@ class NewFaceProfileViewController: UIViewController
     fileprivate var viewModel: NewFaceProfileViewModel?
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [NewFacePhotoViewController] = []
-    fileprivate var currentIndex: Int = 0
     fileprivate let preheater = ImagePreheater()
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     
-    static func create(_ profile: NewFaceProfile, actionsManager: ActionsManager) -> NewFaceProfileViewController
+    static func create(_ profile: NewFaceProfile, actionsManager: ActionsManager, initialIndex: Int) -> NewFaceProfileViewController
     {
         let storyboard = Storyboards.newFaces()
         
         let vc = storyboard.instantiateViewController(withIdentifier: "new_face_profile") as! NewFaceProfileViewController
         vc.input = NewFaceProfileVMInput(profile: profile, actionsManager: actionsManager, sourceType: .newFaces)
+        vc.currentIndex.accept(initialIndex)
         
         return vc
     }
@@ -65,7 +66,7 @@ class NewFaceProfileViewController: UIViewController
             return vc
         })
         
-        guard let vc = self.photosVCs.first else { return }
+        let vc = self.photosVCs[self.currentIndex.value]
         self.pagesVC?.setViewControllers([vc], direction: .forward, animated: false, completion: nil)
         
         #if STAGE
@@ -132,7 +133,7 @@ class NewFaceProfileViewController: UIViewController
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "block_profile_button_block".localized(), style: .default, handler: { _ in
             UIManager.shared.blockModeEnabled.accept(false)
-            self.viewModel?.block(at: self.currentIndex, reason: BlockReason(rawValue: 0)!)
+            self.viewModel?.block(at: self.currentIndex.value, reason: BlockReason(rawValue: 0)!)
         }))
         alertVC.addAction(UIAlertAction(title: "block_profile_button_report".localized(), style: .default, handler: { _ in
             self.showBlockReasonOptions()
@@ -153,7 +154,7 @@ class NewFaceProfileViewController: UIViewController
         for reason in BlockReason.reportResons() {
             alertVC.addAction(UIAlertAction(title: reason.title(), style: .default) { _ in
                 UIManager.shared.blockModeEnabled.accept(false)
-                self.viewModel?.block(at: self.currentIndex, reason: reason)
+                self.viewModel?.block(at: self.currentIndex.value, reason: reason)
             })
         }
         
@@ -231,7 +232,7 @@ extension NewFaceProfileViewController: UIPageViewControllerDelegate, UIPageView
         guard finished, completed else { return }
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
-        self.currentIndex = index
+        self.currentIndex.accept(index)
         self.pageControl.currentPage = index
     }
 }

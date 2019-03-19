@@ -26,6 +26,7 @@ class NewFacesViewController: BaseViewController
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var lastFeedIds: [String] = []
     fileprivate var lastFetchCount: Int = -1
+    fileprivate var photoIndexes: [String: Int] = [:]
     fileprivate var currentActivityState: NewFacesFeedActivityState = .initial
     fileprivate let preheater = ImagePreheater()
     
@@ -226,6 +227,7 @@ class NewFacesViewController: BaseViewController
         
         // Paging case
         let pageRange = lastItemsCount..<totalCount
+        let diff = totalCount - lastItemsCount
         self.lastFeedIds.append(contentsOf: profiles[pageRange].map({ $0.id }))
         
         self.tableView.performBatchUpdates({
@@ -328,7 +330,7 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
         guard let count = self.viewModel?.profiles.value.count, indexPath.row < count else { return cell }
         
         if let profile = self.viewModel?.profiles.value[indexPath.row], !profile.isInvalidated {
-            let profileVC = NewFaceProfileViewController.create(profile, actionsManager: self.input.actionsManager)
+            let profileVC = NewFaceProfileViewController.create(profile, actionsManager: self.input.actionsManager, initialIndex: self.photoIndexes[profile.id] ?? 0)
             cell.containerView.embed(profileVC, to: self)
             
             profileVC.onBlockOptionsWillShow = { [weak self, weak cell] in
@@ -337,6 +339,11 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
                 
                 self?.tableView.scrollToRow(at: cellIndexPath, at: .top, animated: true)
             }
+            
+            let profileId = profile.id!
+            profileVC.currentIndex.asObservable().subscribe(onNext:{ [weak self] index in
+                self?.photoIndexes[profileId] = index
+            }).disposed(by: self.disposeBag)
         }
         
         return cell
