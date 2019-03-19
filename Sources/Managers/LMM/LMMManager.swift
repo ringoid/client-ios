@@ -147,9 +147,9 @@ class LMMManager
     
     fileprivate func setupBindings()
     {
-        self.db.fetchLikesYou().bind(to: self.likesYou).disposed(by: self.disposeBag)
-        self.db.fetchMatches().bind(to: self.matches).disposed(by: self.disposeBag)
-        self.db.fetchMessages().bind(to: self.messages).disposed(by: self.disposeBag)        
+        self.db.fetchLikesYou().subscribeOn(MainScheduler.instance).bind(to: self.likesYou).disposed(by: self.disposeBag)
+        self.db.fetchMatches().subscribeOn(MainScheduler.instance).bind(to: self.matches).disposed(by: self.disposeBag)
+        self.db.fetchMessages().subscribeOn(MainScheduler.instance).bind(to: self.messages).disposed(by: self.disposeBag)        
     }
     
     func reset()

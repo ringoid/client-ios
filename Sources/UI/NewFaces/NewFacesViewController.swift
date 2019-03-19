@@ -227,11 +227,11 @@ class NewFacesViewController: BaseViewController
         // Paging case
         let pageRange = lastItemsCount..<totalCount
         self.lastFeedIds.append(contentsOf: profiles[pageRange].map({ $0.id }))
-        DispatchQueue.main.async {
-            self.tableView.performBatchUpdates({
-                self.tableView.insertRows(at: pageRange.map({ IndexPath(row: $0, section: 0) }), with: .none)
-            }, completion: nil)
-        }
+        
+        self.tableView.performBatchUpdates({
+            self.tableView.insertRows(at: pageRange.map({ IndexPath(row: $0, section: 0) }), with: .none)
+        }, completion: nil)
+        
     }
     
     fileprivate func showAddPhotosOptions()

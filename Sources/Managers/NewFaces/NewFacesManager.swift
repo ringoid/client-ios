@@ -88,7 +88,7 @@ class NewFacesManager
     
     fileprivate func setupBindings()
     {
-        self.db.fetchNewFaces().bind(to: self.profiles).disposed(by: self.disposeBag)
+        self.db.fetchNewFaces().subscribeOn(MainScheduler.instance).bind(to: self.profiles).disposed(by: self.disposeBag)
     }
     
     fileprivate func filterExisting(_ incomingProfiles: [ApiProfile]) -> [ApiProfile]
