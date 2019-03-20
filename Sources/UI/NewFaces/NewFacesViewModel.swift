@@ -15,6 +15,7 @@ struct NewFacesVMInput
     let newFacesManager: NewFacesManager
     let actionsManager: ActionsManager
     let profileManager: UserProfileManager
+    let lmmManager: LMMManager
     let navigationManager: NavigationManager
 }
 
@@ -31,6 +32,7 @@ class NewFacesViewModel
     let profileManager: UserProfileManager
     let navigationManager: NavigationManager
     let actionsManager: ActionsManager
+    let lmmManager: LMMManager
     
     init(_ input: NewFacesVMInput)
     {
@@ -38,15 +40,19 @@ class NewFacesViewModel
         self.profileManager = input.profileManager
         self.navigationManager = input.navigationManager
         self.actionsManager = input.actionsManager
+        self.lmmManager = input.lmmManager
     }
     
     func refresh() -> Observable<Void>
     {
         self.isFetching.accept(true)
-        
+        self.profileManager.refreshInBackground()
         self.actionsManager.finishViewActions(for: self.profiles.value, source: .newFaces)
-        return self.actionsManager.sendQueue().flatMap({ _ -> Observable<Void> in
-            return self.newFacesManager.refresh()
+        
+        return self.actionsManager.sendQueue().flatMap({ [weak self] _ -> Observable<Void> in
+            self!.lmmManager.refreshInBackground(.newFaces)
+            
+            return self!.newFacesManager.refresh()
         })
     }
     

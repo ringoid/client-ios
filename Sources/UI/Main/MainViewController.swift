@@ -223,6 +223,7 @@ class MainViewController: BaseViewController
             newFacesManager: self.input.newFacesManager,
             actionsManager: self.input.actionsManager,
             profileManager: self.input.profileManager,
+            lmmManager: self.input.lmmManager,
             navigationManager: self.input.navigationManager
         )
         
