@@ -95,6 +95,8 @@ class UserProfilePhotosViewController: BaseViewController
     
     @objc func reload()
     {
+        self.containerTableView.panGestureRecognizer.isEnabled = false
+        
         // No internet
         guard self.input.actionsManager.checkConnectionState() else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
@@ -108,12 +110,15 @@ class UserProfilePhotosViewController: BaseViewController
             onError:{ [weak self] error in
                 guard let `self` = self else { return }
                 
+                self.containerTableView.panGestureRecognizer.isEnabled = true
                 showError(error, vc: self)
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                     self.containerTableView.refreshControl?.endRefreshing()
                 })
             }, onCompleted:{ [weak self] in
+                self?.containerTableView.panGestureRecognizer.isEnabled = true
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                     self?.containerTableView.refreshControl?.endRefreshing()
                 })

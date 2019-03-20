@@ -125,9 +125,10 @@ class DBService
             } else {
                 try? self.realm.write {
                     self.realm.add(objectsToAdd)
-                    observer.onNext(())
-                    observer.onCompleted()
                 }
+                
+                observer.onNext(())
+                observer.onCompleted()
             }
             
             return Disposables.create()
@@ -159,9 +160,10 @@ class DBService
             } else {
                 try? self.realm.write {
                     objects.forEach({ $0.isDeleted = true })
-                    observer.onNext(())
-                    observer.onCompleted()
                 }
+                
+                observer.onNext(())
+                observer.onCompleted()
             }
 
             return Disposables.create()

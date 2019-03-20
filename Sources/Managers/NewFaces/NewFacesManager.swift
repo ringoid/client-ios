@@ -28,16 +28,16 @@ class NewFacesManager
         self.deviceService = device
         self.actionsManager = actionsManager
         
-        self.purge()
+        self.purgeInBackground()
         
         self.setupBindings()
     }
     
     func refresh() -> Observable<Void>
     {
-        self.purge()
-        
-        return self.fetch()
+        return self.purge().flatMap({ _ -> Observable<Void> in
+            return self.fetch()
+        })
     }
     
     func fetch() -> Observable<Void>
@@ -72,10 +72,16 @@ class NewFacesManager
         })
     }
     
-    func purge()
+    func purge() -> Observable<Void>
     {
         log("New faces: PURGE", level: .high)
-        self.db.resetNewFaces().subscribe().disposed(by: self.disposeBag)
+        
+        return self.db.resetNewFaces()
+    }
+    
+    func purgeInBackground()
+    {
+        return self.purge().subscribe().disposed(by: self.disposeBag)
     }
     
     func reset()

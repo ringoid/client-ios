@@ -74,6 +74,7 @@ class NewFacesViewController: BaseViewController
     // MARK: - Actions
     @objc func onReload()
     {
+        self.tableView.panGestureRecognizer.isEnabled = false
         self.tableView.refreshControl?.alpha = 0.0
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -91,13 +92,16 @@ class NewFacesViewController: BaseViewController
         self.toggleActivity(.fetching)
         
         self.lastFetchCount = -1
+        self.photoIndexes.removeAll()
         
         self.viewModel?.refresh().subscribe(onNext: { [weak self] _ in
             self?.updateFeed()
+            self?.tableView.panGestureRecognizer.isEnabled = true
             }, onError:{ [weak self] error in
                 guard let `self` = self else { return }
                 
                 self.updateFeed()
+                self.tableView.panGestureRecognizer.isEnabled = true
                 showError(error, vc: self)
         }).disposed(by: self.disposeBag)
     }
@@ -139,7 +143,7 @@ class NewFacesViewController: BaseViewController
             self.updateFeed()
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.isFetching.asObservable().skip(1).subscribe(onNext: { [weak self] state in
+        self.viewModel?.isFetching.asObservable().subscribeOn(MainScheduler.instance).skip(1).subscribe(onNext: { [weak self] state in
             if state {
                 self?.toggleActivity(.fetching)
             } else {

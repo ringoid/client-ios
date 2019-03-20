@@ -161,6 +161,7 @@ class MainLMMViewController: BaseViewController
     
     @objc fileprivate func reload()
     {
+        self.tableView.panGestureRecognizer.isEnabled = false
         self.tableView.refreshControl?.alpha = 0.0
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -176,11 +177,15 @@ class MainLMMViewController: BaseViewController
         // TODO: move "finishViewActions" logic inside view model
         self.input.actionsManager.finishViewActions(for: self.profiles()?.value ?? [], source: self.type.value.sourceType())
         
-        self.viewModel?.refresh(self.type.value).subscribe(onError:{ [weak self] error in
-            guard let `self` = self else { return }
-
-            showError(error, vc: self)
-            }).disposed(by: self.disposeBag)
+        self.viewModel?.refresh(self.type.value).subscribe(
+            onNext: { [weak self ] _ in
+                self?.tableView.panGestureRecognizer.isEnabled = true                
+            }, onError:{ [weak self] error in
+                guard let `self` = self else { return }
+                
+                self.tableView.panGestureRecognizer.isEnabled = true
+                showError(error, vc: self)
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func toggle(_ type: LMMType)

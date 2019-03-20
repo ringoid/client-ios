@@ -57,7 +57,7 @@ class MainViewModel
     
     func purgeNewFaces()
     {
-        self.input.newFacesManager.purge()
+        self.input.newFacesManager.purgeInBackground()
     }
     
     func moveToSearch()
