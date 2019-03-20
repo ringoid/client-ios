@@ -16,6 +16,12 @@ enum Language: String
     case russian = "ru"
 }
 
+fileprivate let languageMap: [String: String] = [
+    "en": "en",
+    "ru": "ru",
+    "uk": "ru",
+    "be": "ru"
+]
 
 class LocaleManager
 {
@@ -54,7 +60,10 @@ class LocaleManager
                 let lang = Language(rawValue: String.create(obj)!) ?? .english
                 self?.language.accept(lang)
             }, onError: { [weak self] _ in
-                let lang = Language(rawValue: NSLocale.preferredLanguages.first!) ?? .english
+                let localeCode = NSLocale.preferredLanguages.first!
+                let languageCode = NSLocale.components(fromLocaleIdentifier: localeCode)["kCFLocaleLanguageCodeKey"] ?? "en"
+                let adjustedCode = languageMap[languageCode] ?? "en"
+                let lang = Language(rawValue: adjustedCode) ?? .english
                 self?.language.accept(lang)
         }).disposed(by: self.disposeBag)
     }
