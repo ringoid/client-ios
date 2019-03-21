@@ -212,6 +212,7 @@ class UserProfilePhotosViewController: BaseViewController
             self.viewModel?.lastPhotoId.accept(photos.first?.id)
         }
         
+        self.coinsBtn.isHidden = photos.isEmpty
         self.emptyFeedLabel.isHidden = !photos.isEmpty
         self.titleLabel.isHidden = !photos.isEmpty
         self.pageControl.numberOfPages = photos.count
