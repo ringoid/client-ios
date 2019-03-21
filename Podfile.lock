@@ -31,6 +31,7 @@ PODS:
   - Sentry (4.1.0):
     - Sentry/Core (= 4.1.0)
   - Sentry/Core (4.1.0)
+  - Valet (3.2.3)
 
 DEPENDENCIES:
   - Crashlytics
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - RxReachability
   - RxRealm
   - Sentry (from `https://github.com/getsentry/sentry-cocoa.git`, tag `4.1.0`)
+  - Valet
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -59,6 +61,7 @@ SPEC REPOS:
     - RxReachability
     - RxRealm
     - RxSwift
+    - Valet
 
 EXTERNAL SOURCES:
   Sentry:
@@ -86,7 +89,8 @@ SPEC CHECKSUMS:
   RxRealm: 5379eddd74f8d617ca7681d1f8d144af25b432b0
   RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
   Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
+  Valet: 4af0382d4a94db5c7861504f751884f653437d24
 
-PODFILE CHECKSUM: 156146e1ab85c14616c45da0f6534269e8c09d35
+PODFILE CHECKSUM: ddedfe9d2071435640c88afc9656ef2461574928
 
 COCOAPODS: 1.6.0

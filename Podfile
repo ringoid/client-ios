@@ -14,6 +14,7 @@ def common_pods
 	pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '4.1.0'
 	pod 'RxReachability'
 	pod 'DeviceKit', '~> 1.3'
+	pod 'Valet'
 end
 
 target 'ringoid' do
