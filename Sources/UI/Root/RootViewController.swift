@@ -85,6 +85,7 @@ class RootViewController: BaseViewController {
             chatManager: self.appManager.chatManager,
             navigationManager: self.appManager.navigationManager,
             errorsManager: self.appManager.errorsManager,
+            promotionManager: self.appManager.promotionManager,
             device: self.appManager.deviceService
         )
         
@@ -97,7 +98,8 @@ class RootViewController: BaseViewController {
         let vc = AuthViewController.create()
         vc.input = AuthVMInput(
             apiService: self.appManager.apiService,
-            settingsManager: self.appManager.settingsMananger
+            settingsManager: self.appManager.settingsMananger,
+            promotionManager: self.appManager.promotionManager
         )
         
         self.containerView.embed(vc, to: self)

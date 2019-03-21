@@ -205,6 +205,7 @@ class MainViewController: BaseViewController
             newFacesManager: self.input.newFacesManager,
             actionsManager: self.input.actionsManager,
             errorsManager: self.input.errorsManager,
+            promotionManager: self.input.promotionManager,
             device: self.input.device
         )
         

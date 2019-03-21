@@ -36,9 +36,10 @@ protocol ApiService
     var customerId: BehaviorRelay<String> { get }
     var error: BehaviorRelay<ApiError> { get }
     
-    func createProfile(year: Int, sex: Sex) -> Observable<Void>
+    func createProfile(year: Int, sex: Sex, privateKey: String?, referralCode: String?) -> Observable<Void>
     func logout() -> Observable<Void>
     func reset()
+    func claim(_ code: String) -> Observable<Void>
     
     func getNewFaces(_ resolution: String, lastActionDate: Date?) -> Observable<[ApiProfile]>
     

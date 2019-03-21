@@ -20,6 +20,7 @@ struct AuthVMInput
 {
     let apiService: ApiService
     let settingsManager: SettingsManager
+    let promotionManager: PromotionManager
 }
 
 class AuthViewModel
@@ -29,11 +30,13 @@ class AuthViewModel
     
     let apiService: ApiService
     let settingsManager: SettingsManager
+    let promotionManager: PromotionManager
     
     init(_ input: AuthVMInput)
     {
         self.apiService = input.apiService
         self.settingsManager = input.settingsManager
+        self.promotionManager = input.promotionManager
     }
     
     func register() -> Observable<Void>
@@ -44,7 +47,10 @@ class AuthViewModel
             return Observable<Void>.error(error)
         }
         
-        return self.apiService.createProfile(year: year, sex: sex)
+        let privateKey = self.promotionManager.privateKey
+        let referralCode = self.promotionManager.referralCode
+        
+        return self.apiService.createProfile(year: year, sex: sex, privateKey: privateKey, referralCode: referralCode)
     }
     
     func enableFirstTimeFlow()

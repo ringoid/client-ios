@@ -11,6 +11,8 @@
 "button_close" = "Закрыть";
 "button_delete" = "Удалить";
 "button_later" = "Не сейчас";
+"button_apply" = "Применить";
+"button_ok" = "OK";
 
 "common_pull_to_refresh" = "Потяни, чтобы обновить";
 "common_sex_male" = "Мужчина";
@@ -62,6 +64,10 @@
 "profile_dialog_image_another_title" = "Что дальше?";
 "profile_empty_images" = "Добавь фото, чтобы\nполучать лайки";
 "profile_empty_title" = "Профиль";
+"profile_coins" = "монет";
+"profile_referral_code" = "Код приглашения";
+"profile_referral_code_invalid" = "Код неверен";
+"profile_coins_gifted" = "Начислено 5 монет";
 
 "settings_account_delete" = "Удалить Профиль";
 "settings_account_delete_dialog_title" = "Удалить Профиль?";

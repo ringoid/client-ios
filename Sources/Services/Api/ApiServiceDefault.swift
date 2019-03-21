@@ -36,11 +36,11 @@ class ApiServiceDefault: ApiService
     
     // MARK: - Auth
     
-    func createProfile(year: Int, sex: Sex) -> Observable<Void>
+    func createProfile(year: Int, sex: Sex, privateKey: String?, referralCode: String?) -> Observable<Void>
     {
         let device = Device()
         
-        let params: [String: Any] = [
+        var params: [String: Any] = [
             "yearOfBirth": year,
             "sex": sex.rawValue,
             "dtTC": Int(Date().timeIntervalSince1970),
@@ -50,6 +50,14 @@ class ApiServiceDefault: ApiService
             "deviceModel": device.description,
             "osVersion": device.systemVersion
         ]
+        
+        if let privateKey = privateKey {
+            params["privateKey"] = privateKey
+        }
+        
+        if let referralCode = referralCode {
+            params["referralId"] = referralCode
+        }
         
         return self.request(.post, path: "auth/create_profile", jsonBody: params).flatMap { [weak self] jsonDict -> Observable<Void> in
             guard let accessToken = jsonDict["accessToken"] as? String else {
@@ -90,6 +98,21 @@ class ApiServiceDefault: ApiService
     func reset()
     {
         self.clearCredentials()
+    }
+    
+    func claim(_ code: String) -> Observable<Void>
+    {
+        var params: [String: Any] = [
+            "referralId": code
+        ]
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        return self.request(.post, path: "auth/claim", jsonBody: params).flatMap({ _ -> Observable<Void> in
+            return .just(())
+        })
     }
     
     // MARK: - Feeds
@@ -270,34 +293,30 @@ class ApiServiceDefault: ApiService
         
         return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
-            ]).responseJSON().retry(3)
+            ])
+            .responseData().retry(3)
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
             })
-            .flatMap({ [weak self] response -> Observable<[String: Any]> in
-                guard response.response?.statusCode == 200 else {
+            .flatMap({ [weak self] (response, data) -> Observable<[String: Any]> in
+                guard response.statusCode == 200 else {
                     self?.error.accept(ApiError(type: .non200StatusCode))
                     
                     return .error(createError("Non 200 status code", type: .hidden))
                 }
                 
-                
                 var jsonDict: [String: Any] = [:]
-                
-                switch response.result {
-                case .success(let obj):
-                    do {
-                        jsonDict = try self?.validateJsonResponse(obj) ?? [:]
-                    } catch {
-                        let interval = Int(Date().timeIntervalSince(timestamp) * 1000.0)
-                        
-                        log("FAILURE: url: \(url) error: \(error)", level: .low)
-                        log("Duration: \(interval) ms", level: .low)
-                        self?.retryMap.removeValue(forKey: requestId)
-                        
-                        return .error(error)
-                    }
-                default: break
+                do {
+                    let obj = try JSONSerialization.jsonObject(with: data, options: [])
+                    jsonDict = try self?.validateJsonResponse(obj) ?? [:]
+                } catch {
+                    let interval = Int(Date().timeIntervalSince(timestamp) * 1000.0)
+                    
+                    log("FAILURE: url: \(url) error: \(error)", level: .low)
+                    log("Duration: \(interval) ms", level: .low)
+                    self?.retryMap.removeValue(forKey: requestId)
+                    
+                    return .error(error)
                 }
                 
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
@@ -338,42 +357,38 @@ class ApiServiceDefault: ApiService
         
         return RxAlamofire.request(.get, url, parameters: params, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
-            ]).responseJSON().retry(3)
+            ])
+            .responseData().retry(3)
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
             }, onDispose: {
                 log("DISPOSED: \(url)", level: .low)
             })
-            .flatMap({ [weak self] response -> Observable<[String: Any]> in
+            .flatMap({ [weak self] (response, data) -> Observable<[String: Any]> in
                 if Date().timeIntervalSince(timestamp) > 2.0 {
                     log("Request took more then 2000ms", level: .high)
                     SentryService.shared.send(.responseGeneralDelay)
                 }
                 
-                guard response.response?.statusCode == 200 else {
+                guard response.statusCode == 200 else {
                     self?.error.accept(ApiError(type: .non200StatusCode))
                     
                     return .error(createError("Non 200 status code", type: .hidden))
                 }
                 
                 var jsonDict: [String: Any] = [:]
-                
-                switch response.result {
-                case .success(let obj):
-                    do {
-                        jsonDict = try self?.validateJsonResponse(obj) ?? [:]
-                    } catch {
-                        let interval = Int(Date().timeIntervalSince(timestamp) * 1000.0)
-                        log("FAILURE: url: \(url) error: \(error)", level: .low)
-                        log("Duration: \(interval) ms", level: .low)
-                        self?.retryMap.removeValue(forKey: requestId)
-                        
-                        return .error(error)
-                    }
+                do {
+                    let obj = try JSONSerialization.jsonObject(with: data, options: [])
+                    jsonDict = try self?.validateJsonResponse(obj) ?? [:]
+                } catch {
+                    let interval = Int(Date().timeIntervalSince(timestamp) * 1000.0)
+                    log("FAILURE: url: \(url) error: \(error)", level: .low)
+                    log("Duration: \(interval) ms", level: .low)
+                    self?.retryMap.removeValue(forKey: requestId)
                     
-                default: break
+                    return .error(error)
                 }
-                
+
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
                     guard retryCount < 5 else { self?.retryMap.removeValue(forKey: requestId); return .error(createError("Retry limit exceeded", type: .hidden)) }
                     
