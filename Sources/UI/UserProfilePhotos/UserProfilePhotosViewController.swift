@@ -279,6 +279,8 @@ class UserProfilePhotosViewController: BaseViewController
         self.deleteBtn.isHidden = false
         self.optionsBtn.isHidden = false
         self.addBtn.isHidden = false
+        self.titleLabel.isHidden = false
+        self.coinsBtn.isHidden = false
     }
     
     fileprivate func hideControls()
@@ -287,6 +289,8 @@ class UserProfilePhotosViewController: BaseViewController
         self.deleteBtn.isHidden = true
         self.optionsBtn.isHidden = true
         self.addBtn.isHidden = true
+        self.titleLabel.isHidden = true
+        self.coinsBtn.isHidden = true
     }
     
     fileprivate func showReferralCodeUI()

@@ -29,12 +29,13 @@ see how many likes you get</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="czw-ci-QbL">
                                 <rect key="frame" x="0.0" y="20" width="375" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ze-nT-pEZ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ze-nT-pEZ">
                                         <rect key="frame" x="0.0" y="0.0" width="76" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="76" id="g6L-ke-uk1"/>
                                             <constraint firstAttribute="height" constant="60" id="w1a-cA-hzc"/>
                                         </constraints>
+                                        <inset key="imageEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="profile_settings"/>
                                         <connections>
                                             <segue destination="yQa-yl-S9g" kind="presentation" identifier="settings_vc" id="Emm-PL-Vpz"/>
@@ -46,12 +47,13 @@ see how many likes you get</string>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3C-Zv-Ixf">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3C-Zv-Ixf">
                                         <rect key="frame" x="299" y="0.0" width="76" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="Ppb-Xk-uF3"/>
                                             <constraint firstAttribute="width" constant="76" id="cUg-rU-wLd"/>
                                         </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
                                         <state key="normal" image="profile_photo_add"/>
                                         <connections>
                                             <action selector="addPhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="63R-hS-DlC"/>
@@ -199,8 +201,11 @@ see how many likes you get</string>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EvB-7Q-pcw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_likes" translatesAutoresizingMaskIntoConstraints="NO" id="2ec-Dg-we7">
-                                <rect key="frame" x="319" y="143" width="36" height="33"/>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_likes" translatesAutoresizingMaskIntoConstraints="NO" id="2ec-Dg-we7">
+                                <rect key="frame" x="299" y="143" width="76" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="76" id="EVJ-nR-wvK"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mh-A3-a0C">
                                 <rect key="frame" x="332" y="178" width="10.5" height="21"/>
@@ -227,7 +232,7 @@ see how many likes you get</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="2ec-Dg-we7" secondAttribute="trailing" constant="20" id="E2K-MW-N2f"/>
+                            <constraint firstAttribute="trailing" secondItem="2ec-Dg-we7" secondAttribute="trailing" id="E2K-MW-N2f"/>
                             <constraint firstAttribute="trailing" secondItem="EvB-7Q-pcw" secondAttribute="trailing" id="PpM-4N-80m"/>
                             <constraint firstAttribute="trailing" secondItem="kZp-kt-8T6" secondAttribute="trailing" constant="64" id="QpB-7K-8HQ"/>
                             <constraint firstItem="3Mh-A3-a0C" firstAttribute="top" secondItem="2ec-Dg-we7" secondAttribute="bottom" constant="2" id="TrO-li-QYF"/>
