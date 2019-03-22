@@ -37,6 +37,7 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet weak var likesYouIndicatorView: UIView!
     @IBOutlet weak var optionsContainer: UIView!
     @IBOutlet weak var matchesBtnWidthLayout: NSLayoutConstraint!
+    @IBOutlet weak var tabsCenterConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -159,14 +160,29 @@ class MainLMMContainerViewController: BaseViewController
     
     fileprivate func updateBtnSizes()
     {
-        let width = ("lmm_tab_matches".localized() as NSString).boundingRect(
+        let matchesWidth = ("lmm_tab_matches".localized() as NSString).boundingRect(
             with: CGSize(width: 300.0, height: 200.0),
             options: .usesLineFragmentOrigin,
             attributes: [.font: unselectedFont],
             context: nil
             ).width
         
-        self.matchesBtnWidthLayout.constant = width + 20.0
+        let likesWidth = ("lmm_tab_likes".localized() as NSString).boundingRect(
+            with: CGSize(width: 300.0, height: 200.0),
+            options: .usesLineFragmentOrigin,
+            attributes: [.font: unselectedFont],
+            context: nil
+            ).width
+        
+        let chatsWidth = ("lmm_tab_messenger".localized() as NSString).boundingRect(
+            with: CGSize(width: 300.0, height: 200.0),
+            options: .usesLineFragmentOrigin,
+            attributes: [.font: unselectedFont],
+            context: nil
+            ).width
+        
+        self.matchesBtnWidthLayout.constant = matchesWidth + 20.0
+        self.tabsCenterConstraint.constant = (likesWidth - chatsWidth) / 2.0
         self.view.layoutSubviews()
     }
 }

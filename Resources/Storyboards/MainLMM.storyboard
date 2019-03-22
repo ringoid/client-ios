@@ -139,7 +139,7 @@
                                     <constraint firstItem="QY6-GC-5lz" firstAttribute="trailing" secondItem="t6H-GQ-xYk" secondAttribute="trailing" id="AfB-tx-yh5"/>
                                     <constraint firstItem="P5a-bc-Su9" firstAttribute="centerY" secondItem="t6H-GQ-xYk" secondAttribute="centerY" id="Hch-jM-om6"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerY" secondItem="VWc-0L-YS8" secondAttribute="centerY" id="IIq-eu-nbI"/>
-                                    <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerX" secondItem="Ywr-Pj-xRP" secondAttribute="centerX" id="KRt-C6-PGQ"/>
+                                    <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerX" secondItem="Ywr-Pj-xRP" secondAttribute="centerX" id="KRt-C6-PGQ" userLabel="TabsCenter"/>
                                     <constraint firstItem="QY6-GC-5lz" firstAttribute="centerY" secondItem="1ef-im-3ec" secondAttribute="centerY" id="MEy-bx-pMl"/>
                                     <constraint firstItem="1ef-im-3ec" firstAttribute="trailing" secondItem="30C-S0-bMA" secondAttribute="trailing" constant="-5" id="PbZ-wn-vqG"/>
                                     <constraint firstAttribute="bottom" secondItem="t6H-GQ-xYk" secondAttribute="bottom" id="Vfn-Br-crt"/>
@@ -176,6 +176,7 @@
                         <outlet property="matchesBtnWidthLayout" destination="bXK-SU-xmC" id="Kyg-Sy-DCl"/>
                         <outlet property="matchesIndicatorView" destination="QY6-GC-5lz" id="udS-3Q-Kp3"/>
                         <outlet property="optionsContainer" destination="Ywr-Pj-xRP" id="7t7-9d-4A3"/>
+                        <outlet property="tabsCenterConstraint" destination="KRt-C6-PGQ" id="Slx-CV-75P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6BI-HA-c0t" userLabel="First Responder" sceneMemberID="firstResponder"/>
