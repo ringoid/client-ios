@@ -35,7 +35,7 @@ class PromotionManager
     
     var referralCode: String?
     {
-        return UserDefaults.standard.string(forKey: "referral_code")
+        return self.valet.string(forKey: "referral_id")
     }
     
     func send(_ referralCode: String) -> Observable<Void>
@@ -49,7 +49,6 @@ class PromotionManager
     
     fileprivate func storeReferral(_ code: String)
     {
-        UserDefaults.standard.setValue(code, forKey: "referral_code")
-        UserDefaults.standard.synchronize()
+        self.valet.set(string: code, forKey: "referral_id")
     }
 }
