@@ -29,10 +29,13 @@ class NewFacesViewController: BaseViewController
     fileprivate var photoIndexes: [String: Int] = [:]
     fileprivate var currentActivityState: NewFacesFeedActivityState = .initial
     fileprivate let preheater = ImagePreheater()
+    fileprivate var prevScrollingOffset: CGFloat = 0.0
+    fileprivate var isScrollTopVisible: Bool = false
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
     @IBOutlet fileprivate weak var loadingActivityView: UIActivityIndicatorView!
     @IBOutlet fileprivate weak var feedEndLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedActivityView: UIActivityIndicatorView!
@@ -130,6 +133,14 @@ class NewFacesViewController: BaseViewController
                 self.feedEndLabel.isHidden = false
                 showError(error, vc: self)
             }).disposed(by: self.disposeBag)
+    }
+    
+    @IBAction func onScrollTop()
+    {
+        self.hideScrollToTopOption()
+        let topOffset = self.view.safeAreaInsets.top + self.tableView.contentInset.top
+        self.tableView.setContentOffset(CGPoint(x: 0.0, y: -topOffset), animated: false)
+        self.input.actionsManager.commit()
     }
     
     // MARK: -
@@ -312,6 +323,34 @@ class NewFacesViewController: BaseViewController
             self.loadingActivityView.alpha = 1.0
         }
     }
+    
+    fileprivate func showScrollToTopOption()
+    {
+        guard !self.isScrollTopVisible else { return }
+        
+        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
+            self.scrollTopBtn.alpha = 1.0
+        }
+        animator.addCompletion { _ in
+            self.isScrollTopVisible = true
+        }
+        
+        animator.startAnimation()
+    }
+    
+    fileprivate func hideScrollToTopOption()
+    {
+        guard self.isScrollTopVisible else { return }
+        
+        let animator = UIViewPropertyAnimator(duration: 0.15, curve: .linear) {
+            self.scrollTopBtn.alpha = 0.0
+        }
+        animator.addCompletion { _ in
+            self.isScrollTopVisible = false
+        }
+        
+        animator.startAnimation()
+    }
 }
 
 extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
@@ -396,12 +435,38 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
     }
 }
 
+fileprivate let topTrashhold: CGFloat = 0.0
+fileprivate let midTrashhold: CGFloat = 75.0
+
 extension NewFacesViewController: UIScrollViewDelegate
 {
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     {
         let offset = scrollView.contentOffset.y
         self.updateVisibleCellsBorders(offset)
+        
+        // Scroll to top FAB
+        
+        guard offset > topTrashhold else {
+            self.hideScrollToTopOption()
+            self.prevScrollingOffset = 0.0
+            
+            return
+        }
+        
+        if offset - self.prevScrollingOffset <  -1.0 * midTrashhold {
+            self.showScrollToTopOption()
+            self.prevScrollingOffset = offset
+            
+            return
+        }
+        
+        if offset - self.prevScrollingOffset > midTrashhold {
+            self.hideScrollToTopOption()
+            self.prevScrollingOffset = offset
+            
+            return
+        }
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView)

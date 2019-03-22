@@ -541,7 +541,7 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
 }
 
 fileprivate let topTrashhold: CGFloat = 0.0
-fileprivate let midTrashhold: CGFloat = UIScreen.main.bounds.width * AppConfig.photoRatio
+fileprivate let midTrashhold: CGFloat = 75.0
 
 extension MainLMMViewController: UIScrollViewDelegate
 {
@@ -574,7 +574,9 @@ extension MainLMMViewController: UIScrollViewDelegate
         if offset > -1.0 * self.tableView.contentInset.top {
             MainLMMViewController.feedsState[self.type.value]?.offset = offset
         }
-                
+        
+        // Scroll to top FAB
+        
         guard offset > topTrashhold else {
             self.hideScrollToTopOption()
             self.prevScrollingOffset = 0.0
@@ -582,14 +584,14 @@ extension MainLMMViewController: UIScrollViewDelegate
             return
         }
         
-        if offset - self.prevScrollingOffset <  0.0, offset > midTrashhold {
+        if offset - self.prevScrollingOffset <  -1.0 * midTrashhold {
             self.showScrollToTopOption()
             self.prevScrollingOffset = offset
             
             return
         }
         
-        if offset - self.prevScrollingOffset > 0.0 {
+        if offset - self.prevScrollingOffset > midTrashhold {
             self.hideScrollToTopOption()
             self.prevScrollingOffset = offset
             
