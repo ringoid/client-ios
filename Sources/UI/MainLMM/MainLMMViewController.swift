@@ -292,6 +292,14 @@ class MainLMMViewController: BaseViewController
             
             self.tableView.layoutIfNeeded()
             self.tableView.setContentOffset(CGPoint(x: 0.0, y: cachedOffset), animated: false)
+            
+            if cachedOffset > 75.0 {
+                self.scrollTopBtn.alpha = 1.0
+                self.isScrollTopVisible = true
+            } else {
+                self.scrollTopBtn.alpha = 0.0
+                self.isScrollTopVisible = false
+            }
         }
     }
     
