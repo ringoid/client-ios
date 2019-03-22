@@ -153,15 +153,16 @@ discover users nearby</string>
                                 </connections>
                             </containerView>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="BxI-1L-kXF">
-                                <rect key="frame" x="16" y="0.0" width="7" height="56"/>
+                                <rect key="frame" x="16" y="-12" width="7" height="60"/>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1t-jW-NWk">
-                                <rect key="frame" x="299" y="0.0" width="76" height="56"/>
+                                <rect key="frame" x="299" y="-12" width="76" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="QjX-Vu-hve"/>
+                                    <constraint firstAttribute="height" constant="60" id="QjX-Vu-hve"/>
                                     <constraint firstAttribute="width" constant="76" id="R9H-dW-1yd"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="feed_options"/>
                                 <connections>
                                     <action selector="onBlock" destination="gBk-mi-2xQ" eventType="touchUpInside" id="zg5-YE-ePs"/>
@@ -182,7 +183,7 @@ discover users nearby</string>
                             <constraint firstAttribute="trailing" secondItem="X1t-jW-NWk" secondAttribute="trailing" id="Le3-5c-RWL"/>
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="bottom" secondItem="BxI-1L-kXF" secondAttribute="bottom" id="QbY-f7-Ji4"/>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="WHJ-8A-QCL"/>
-                            <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="XwE-WK-GfB"/>
+                            <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="-12" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
                             <constraint firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" id="hMK-Ge-ajI"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="ms1-Iv-Xza"/>

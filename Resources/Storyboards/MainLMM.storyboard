@@ -340,12 +340,13 @@ see who likes you</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGR-yG-LEW">
-                                <rect key="frame" x="299" y="0.0" width="76" height="56"/>
+                                <rect key="frame" x="299" y="-12" width="76" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="96L-r9-tgI"/>
+                                    <constraint firstAttribute="height" constant="60" id="96L-r9-tgI"/>
                                     <constraint firstAttribute="width" constant="76" id="u4U-5Y-OGC"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="feed_options"/>
                                 <connections>
                                     <action selector="onBlock" destination="Nf7-hc-eWV" eventType="touchUpInside" id="IY0-9P-tsM"/>
@@ -364,7 +365,7 @@ see who likes you</string>
                                 </connections>
                             </button>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="mPS-Ki-Bpa">
-                                <rect key="frame" x="16" y="0.0" width="7" height="56"/>
+                                <rect key="frame" x="16" y="-12" width="7" height="60"/>
                             </pageControl>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProfileID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVA-P0-T2F">
                                 <rect key="frame" x="16" y="630" width="70" height="21"/>
@@ -397,7 +398,7 @@ see who likes you</string>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="118" id="UE3-94-yVQ" userLabel="MessageTopOffset"/>
                             <constraint firstItem="lGR-yG-LEW" firstAttribute="bottom" secondItem="mPS-Ki-Bpa" secondAttribute="bottom" id="WBI-Jx-Y3u"/>
                             <constraint firstAttribute="trailing" secondItem="OWQ-dc-NR9" secondAttribute="trailing" id="Wcg-X3-5ye"/>
-                            <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="XAG-qi-5bb"/>
+                            <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="-12" id="XAG-qi-5bb"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="gA6-9y-Jou"/>
                             <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="mPS-Ki-Bpa" secondAttribute="top" id="jMf-vm-kBR"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
