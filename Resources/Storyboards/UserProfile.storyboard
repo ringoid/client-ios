@@ -184,21 +184,6 @@ see how many likes you get</string>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EvB-7Q-pcw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <view alpha="0.20000000298023224" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qm8-2C-8JX" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="Uwh-pV-Agp"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_likes" translatesAutoresizingMaskIntoConstraints="NO" id="2ec-Dg-we7">
                                 <rect key="frame" x="319" y="143" width="36" height="33"/>
                             </imageView>
@@ -228,8 +213,6 @@ see how many likes you get</string>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="2ec-Dg-we7" secondAttribute="trailing" constant="20" id="E2K-MW-N2f"/>
-                            <constraint firstItem="qm8-2C-8JX" firstAttribute="top" secondItem="9ej-Xx-5fe" secondAttribute="top" id="LMc-4A-xKt"/>
-                            <constraint firstItem="qm8-2C-8JX" firstAttribute="leading" secondItem="9ej-Xx-5fe" secondAttribute="leading" id="OGG-9w-dUA"/>
                             <constraint firstAttribute="trailing" secondItem="EvB-7Q-pcw" secondAttribute="trailing" id="PpM-4N-80m"/>
                             <constraint firstAttribute="trailing" secondItem="kZp-kt-8T6" secondAttribute="trailing" constant="64" id="QpB-7K-8HQ"/>
                             <constraint firstItem="3Mh-A3-a0C" firstAttribute="top" secondItem="2ec-Dg-we7" secondAttribute="bottom" constant="2" id="TrO-li-QYF"/>
@@ -238,7 +221,6 @@ see how many likes you get</string>
                             <constraint firstItem="2ec-Dg-we7" firstAttribute="top" secondItem="9ej-Xx-5fe" secondAttribute="top" constant="143" id="bzD-vW-21H"/>
                             <constraint firstAttribute="bottom" secondItem="EvB-7Q-pcw" secondAttribute="bottom" id="jGy-8B-eLC"/>
                             <constraint firstItem="EvB-7Q-pcw" firstAttribute="leading" secondItem="9ej-Xx-5fe" secondAttribute="leading" id="jw5-Cc-VCz"/>
-                            <constraint firstAttribute="trailing" secondItem="qm8-2C-8JX" secondAttribute="trailing" id="rGk-5s-gKc"/>
                             <constraint firstItem="3Mh-A3-a0C" firstAttribute="centerX" secondItem="2ec-Dg-we7" secondAttribute="centerX" id="s1n-4e-HQ5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Hf-TU-RL8"/>

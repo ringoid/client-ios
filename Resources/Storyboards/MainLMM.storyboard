@@ -24,7 +24,7 @@
                                     <segue destination="5Bt-Xu-MH5" kind="embed" identifier="embed_lmm" id="758-j3-FOe"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ywr-Pj-xRP" userLabel="LMMOptionsView" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ywr-Pj-xRP" userLabel="LMMOptionsView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30C-S0-bMA">
@@ -152,14 +152,6 @@
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="leading" secondItem="VWc-0L-YS8" secondAttribute="trailing" id="rsb-PC-rfS"/>
                                     <constraint firstItem="82V-db-bgk" firstAttribute="centerY" secondItem="1ef-im-3ec" secondAttribute="centerY" id="xjl-hW-g2k"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                        <color key="value" white="0.0" alpha="0.29831977739726023" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

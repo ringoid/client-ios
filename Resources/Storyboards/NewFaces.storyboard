@@ -137,21 +137,6 @@ discover users nearby</string>
                                     <segue destination="a3d-Xx-hZB" kind="embed" identifier="embed_pages" id="H5Q-fa-BBJ"/>
                                 </connections>
                             </containerView>
-                            <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4jC-bO-SnE" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="Gzc-yK-wBo"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                        <color key="value" white="0.0" alpha="0.74855522260273977" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="BxI-1L-kXF">
                                 <rect key="frame" x="16" y="0.0" width="7" height="56"/>
                             </pageControl>
@@ -178,12 +163,9 @@ discover users nearby</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="4jC-bO-SnE" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="FaK-YT-vKV"/>
                             <constraint firstAttribute="bottom" secondItem="DXW-7Y-3ph" secondAttribute="bottom" constant="16" id="Fwl-1E-JKd"/>
-                            <constraint firstAttribute="trailing" secondItem="4jC-bO-SnE" secondAttribute="trailing" id="GOv-Pb-j3S"/>
                             <constraint firstAttribute="trailing" secondItem="X1t-jW-NWk" secondAttribute="trailing" id="Le3-5c-RWL"/>
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="bottom" secondItem="BxI-1L-kXF" secondAttribute="bottom" id="QbY-f7-Ji4"/>
-                            <constraint firstItem="4jC-bO-SnE" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="Quc-kx-fpH"/>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="WHJ-8A-QCL"/>
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
