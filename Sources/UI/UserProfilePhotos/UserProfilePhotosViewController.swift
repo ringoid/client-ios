@@ -34,6 +34,7 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var addBtn: UIButton!
     @IBOutlet fileprivate weak var containerTableView: UITableView!
     @IBOutlet fileprivate weak var coinsBtn: UIButton!
+    @IBOutlet fileprivate weak var coinsTopOffsetConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -42,6 +43,7 @@ class UserProfilePhotosViewController: BaseViewController
         super.viewDidLoad()
         
         let height = UIScreen.main.bounds.width * AppConfig.photoRatio
+        self.coinsTopOffsetConstraint.constant = height - 8.0
         self.containerTableView.rowHeight = height
         self.containerTableView.reloadData()
         
@@ -85,7 +87,7 @@ class UserProfilePhotosViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.titleLabel.text = "profile_empty_title".localized()
+        self.titleLabel.text = "app_name".localized()
         self.emptyFeedLabel.text = "profile_empty_images".localized()
         self.coinsBtn.setTitle("\(self.viewModel?.coins.value ?? 0) " + "profile_coins".localized(), for: .normal)
     }
@@ -214,7 +216,6 @@ class UserProfilePhotosViewController: BaseViewController
         
         self.coinsBtn.isHidden = photos.isEmpty
         self.emptyFeedLabel.isHidden = !photos.isEmpty
-        self.titleLabel.isHidden = !photos.isEmpty
         self.pageControl.numberOfPages = photos.count
         self.photosVCs = photos.map({ photo in
             let vc = UserProfilePhotoViewController.create()

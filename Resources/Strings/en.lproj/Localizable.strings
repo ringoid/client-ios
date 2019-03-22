@@ -6,6 +6,7 @@
   Copyright © 2019 Ringoid. All rights reserved.
 */
 
+"app_name" = "Ringoid";
 
 "button_add_photo" = "Add photo";
 "button_cancel" = "Cancel";
