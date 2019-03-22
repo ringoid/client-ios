@@ -269,6 +269,18 @@ class MainLMMViewController: BaseViewController
             // Returning to default scenario
         }
         
+        // No changes scenario check
+        if  totalCount > 0, self.lastFeedIds.count == totalCount {
+            var checkIds = self.lastFeedIds
+            updatedProfiles.forEach { profile in
+                guard let index = checkIds.firstIndex(of: profile.id) else { return }
+                
+                checkIds.remove(at: index)
+            }
+            
+            if updatedProfiles.count == 0 { return }
+        }
+        
         // Default scenario - reloading and applying stored offset
         let offset = MainLMMViewController.feedsState[self.type.value]?.offset
         
