@@ -582,14 +582,14 @@ extension MainLMMViewController: UIScrollViewDelegate
             return
         }
         
-        if offset - self.prevScrollingOffset < -1.0 * midTrashhold {
+        if offset - self.prevScrollingOffset <  0.0, offset > midTrashhold {
             self.showScrollToTopOption()
             self.prevScrollingOffset = offset
             
             return
         }
         
-        if offset - self.prevScrollingOffset > midTrashhold {
+        if offset - self.prevScrollingOffset > 0.0 {
             self.hideScrollToTopOption()
             self.prevScrollingOffset = offset
             
