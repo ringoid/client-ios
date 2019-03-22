@@ -338,7 +338,9 @@ class UserProfilePhotosViewController: BaseViewController
         self.viewModel?.sendReferral(code).subscribeOn(MainScheduler.instance).subscribe(
             onNext: { [weak self] _ in
                 self?.showClaimSuccessUI()
-            }, onError: { [weak self] _ in
+            }, onError: { [weak self] error in
+                guard (error as NSError).code == ErrorType.api.rawValue else { return }
+                
                 self?.showClaimFailureUI()
         }).disposed(by: self.disposeBag)
     }

@@ -17,6 +17,7 @@ enum ApiErrorType: String
     case internalServerError = "InternalServerError"
     case invalidAccessTokenClientError = "InvalidAccessTokenClientError"
     case tooOldAppVersionClientError = "TooOldAppVersionClientError"
+    case wrongRequestParamsClientError = "WrongRequestParamsClientError"
     
     case notConnectedToInternet
     case connectionLost
