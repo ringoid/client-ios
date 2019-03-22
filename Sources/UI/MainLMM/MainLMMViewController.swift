@@ -20,7 +20,7 @@ enum LMMType: String
 fileprivate struct FeedState
 {
     var offset: CGFloat = 0.0
-    var photos: [Int: Int] = [:]
+    var photos: [String: Int] = [:]
 }
 
 fileprivate enum LMMFeedActivityState
@@ -467,8 +467,9 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
         
         let index = indexPath.row
         if  let profiles = self.profiles()?.value, profiles.count > index {
-            let profile = profiles[index] 
-            let photoIndex: Int = MainLMMViewController.feedsState[self.type.value]?.photos[index] ?? 0
+            let profile = profiles[index]
+            let profileId = profile.id!
+            let photoIndex: Int = MainLMMViewController.feedsState[self.type.value]?.photos[profileId] ?? 0
             let profileVC = MainLMMProfileViewController.create(profile, feedType: self.type.value, actionsManager: self.input.actionsManager, initialIndex: photoIndex)
             weak var weakProfileVC = profileVC
             profileVC.onChatShow = { [weak self, weak cell] profile, photo, vc in
@@ -500,7 +501,7 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
             profileVC.currentIndex.asObservable().subscribe(onNext: { [weak self] index in
                 guard let `self` = self else { return }
                 
-                MainLMMViewController.feedsState[self.type.value]?.photos[indexPath.row] = index
+                MainLMMViewController.feedsState[self.type.value]?.photos[profileId] = index
             }).disposed(by: self.disposeBag)
             
             cell.containerView.embed(profileVC, to: self)
