@@ -283,7 +283,7 @@ class MainLMMViewController: BaseViewController
                 checkIds.remove(at: index)
             }
             
-            if updatedProfiles.count == 0 { return }
+            if checkIds.count == 0 { return }
         }
         
         // Default scenario - reloading and applying stored offset
