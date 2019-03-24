@@ -95,6 +95,11 @@ class MainLMMViewController: BaseViewController
         self.view.backgroundColor = BackgroundColor().uiColor()
     }
     
+    override func updateLocale()
+    {
+        self.toggleActivity(self.currentActivityState)
+    }
+    
     fileprivate var isInitialLayout: Bool = true    
     override func viewDidLayoutSubviews()
     {
