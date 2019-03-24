@@ -106,6 +106,8 @@ class UserProfilePhotosViewController: BaseViewController
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                 self.containerTableView.refreshControl?.endRefreshing()
             })
+        
+            self.containerTableView.panGestureRecognizer.isEnabled = true
             
             return
         }
