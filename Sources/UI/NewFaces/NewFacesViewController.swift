@@ -78,16 +78,20 @@ class NewFacesViewController: BaseViewController
     @objc func onReload()
     {
         self.tableView.panGestureRecognizer.isEnabled = false
-        self.tableView.refreshControl?.alpha = 0.0
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.tableView.refreshControl?.endRefreshing()
         }
      
-        guard self.viewModel?.isFetching.value == false else { return }
+        guard self.viewModel?.isFetching.value == false else {
+            self.tableView.panGestureRecognizer.isEnabled = true
+            
+            return
+        }
         
         if self.viewModel?.isPhotosAdded == false {
             self.showAddPhotosOptions()
+            self.tableView.panGestureRecognizer.isEnabled = true
             
             return
         }
@@ -476,8 +480,6 @@ extension NewFacesViewController: UIScrollViewDelegate
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
     {
-        self.tableView.refreshControl?.alpha = 1.0
-        
         self.tableView.visibleCells.forEach { cell in
             guard let vc = (cell as? NewFacesCell)?.containerView.containedVC as? NewFaceProfileViewController else { return }
            

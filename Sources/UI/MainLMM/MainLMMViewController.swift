@@ -162,14 +162,14 @@ class MainLMMViewController: BaseViewController
     @objc fileprivate func reload()
     {
         self.tableView.panGestureRecognizer.isEnabled = false
-        self.tableView.refreshControl?.alpha = 0.0
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.tableView.refreshControl?.endRefreshing()
         }
         
         if self.viewModel?.isPhotosAdded == false {
             self.showAddPhotosOptions()
+            self.tableView.panGestureRecognizer.isEnabled = true
             
             return
         }
@@ -562,8 +562,7 @@ extension MainLMMViewController: UIScrollViewDelegate
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
     {
-        self.isDragged = false
-        self.tableView.refreshControl?.alpha = 1.0
+        self.isDragged = false        
         
         self.tableView.visibleCells.forEach { cell in
             guard let vc = (cell as? MainLMMCell)?.containerView.containedVC as? MainLMMProfileViewController else { return }
