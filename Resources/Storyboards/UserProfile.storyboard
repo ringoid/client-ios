@@ -42,8 +42,8 @@ see how many likes you get</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ringoid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJu-F3-4rH">
-                                        <rect key="frame" x="139.5" y="13.5" width="96.5" height="33.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
+                                        <rect key="frame" x="141" y="14" width="93" height="32.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -111,6 +111,7 @@ see how many likes you get</string>
                                     <constraint firstAttribute="width" constant="76" id="3QJ-PT-rb9"/>
                                     <constraint firstAttribute="height" constant="56" id="pny-sT-cPI"/>
                                 </constraints>
+                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="feed_options"/>
                                 <connections>
                                     <action selector="deletePhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="KYt-hL-B7c"/>
@@ -132,7 +133,7 @@ see how many likes you get</string>
                                 </connections>
                             </button>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="gyn-28-5bi">
-                                <rect key="frame" x="17" y="80" width="7" height="37"/>
+                                <rect key="frame" x="16" y="80" width="7" height="37"/>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.88299978599999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -151,9 +152,9 @@ see how many likes you get</string>
                             <constraint firstItem="czw-ci-QbL" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="SZt-tn-ia5"/>
                             <constraint firstItem="fvM-XQ-P74" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" priority="500" id="UaC-Y9-MsV" userLabel="CoinsTop"/>
                             <constraint firstItem="Yc6-CF-qSL" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fvM-XQ-P74" secondAttribute="bottom" constant="64" id="XGk-VF-ORC"/>
+                            <constraint firstItem="gyn-28-5bi" firstAttribute="leading" secondItem="Yc6-CF-qSL" secondAttribute="leading" constant="16" id="cG5-qn-qXg"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="top" secondItem="czw-ci-QbL" secondAttribute="bottom" id="e5c-9H-2lk"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerY" secondItem="q5L-So-vMI" secondAttribute="centerY" id="h1K-ko-wtW"/>
-                            <constraint firstItem="gyn-28-5bi" firstAttribute="leading" secondItem="Yc6-CF-qSL" secondAttribute="leading" constant="17" id="xWB-fQ-bnr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Yc6-CF-qSL"/>
                     </view>
@@ -202,13 +203,13 @@ see how many likes you get</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_likes" translatesAutoresizingMaskIntoConstraints="NO" id="2ec-Dg-we7">
-                                <rect key="frame" x="299" y="143" width="76" height="33"/>
+                                <rect key="frame" x="307" y="143" width="76" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="76" id="EVJ-nR-wvK"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mh-A3-a0C">
-                                <rect key="frame" x="332" y="178" width="10.5" height="21"/>
+                                <rect key="frame" x="340" y="178" width="10.5" height="21"/>
                                 <attributedString key="attributedText">
                                     <fragment content="0">
                                         <attributes>
@@ -232,7 +233,7 @@ see how many likes you get</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="2ec-Dg-we7" secondAttribute="trailing" id="E2K-MW-N2f"/>
+                            <constraint firstAttribute="trailing" secondItem="2ec-Dg-we7" secondAttribute="trailing" constant="-8" id="E2K-MW-N2f"/>
                             <constraint firstAttribute="trailing" secondItem="EvB-7Q-pcw" secondAttribute="trailing" id="PpM-4N-80m"/>
                             <constraint firstAttribute="trailing" secondItem="kZp-kt-8T6" secondAttribute="trailing" constant="64" id="QpB-7K-8HQ"/>
                             <constraint firstItem="3Mh-A3-a0C" firstAttribute="top" secondItem="2ec-Dg-we7" secondAttribute="bottom" constant="2" id="TrO-li-QYF"/>
