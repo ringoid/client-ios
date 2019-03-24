@@ -6,8 +6,6 @@
   Copyright © 2019 Ringoid. All rights reserved.
 */
 
-"app_name" = "Рингоид";
-
 "button_add_photo" = "Добавить фото";
 "button_cancel" = "Отмена";
 "button_close" = "Закрыть";

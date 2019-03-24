@@ -87,7 +87,6 @@ class UserProfilePhotosViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.titleLabel.text = "app_name".localized()
         self.emptyFeedLabel.text = "profile_empty_images".localized()
         self.coinsBtn.setTitle("\(self.viewModel?.coins.value ?? 0) " + "profile_coins".localized(), for: .normal)
     }
