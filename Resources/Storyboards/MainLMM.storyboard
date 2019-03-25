@@ -24,6 +24,18 @@
                                     <segue destination="5Bt-Xu-MH5" kind="embed" identifier="embed_lmm" id="758-j3-FOe"/>
                                 </connections>
                             </containerView>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avd-pS-HNL" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ywr-Pj-xRP" userLabel="LMMOptionsView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
@@ -157,9 +169,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ywr-Pj-xRP" firstAttribute="leading" secondItem="Gwy-Hy-mww" secondAttribute="leading" id="5g7-M3-Jby"/>
+                            <constraint firstItem="avd-pS-HNL" firstAttribute="leading" secondItem="Gwy-Hy-mww" secondAttribute="leading" id="HeO-gf-4PL"/>
                             <constraint firstItem="R7W-C2-Y21" firstAttribute="leading" secondItem="Gwy-Hy-mww" secondAttribute="leading" id="Tna-hD-fT4"/>
                             <constraint firstItem="R7W-C2-Y21" firstAttribute="top" secondItem="Gwy-Hy-mww" secondAttribute="top" id="Z71-Cu-EnI"/>
+                            <constraint firstAttribute="trailing" secondItem="avd-pS-HNL" secondAttribute="trailing" id="hrP-6s-B77"/>
+                            <constraint firstItem="avd-pS-HNL" firstAttribute="bottom" secondItem="TLI-oN-FKy" secondAttribute="top" constant="72" id="lUZ-ma-LLN"/>
                             <constraint firstAttribute="bottom" secondItem="R7W-C2-Y21" secondAttribute="bottom" id="lka-iJ-3Tj"/>
+                            <constraint firstItem="avd-pS-HNL" firstAttribute="top" secondItem="Gwy-Hy-mww" secondAttribute="top" id="mmI-6j-dH6"/>
                             <constraint firstAttribute="trailing" secondItem="Ywr-Pj-xRP" secondAttribute="trailing" id="ujk-5T-gpD"/>
                             <constraint firstItem="t6H-GQ-xYk" firstAttribute="top" secondItem="TLI-oN-FKy" secondAttribute="top" constant="-4" id="vb9-AT-NBt"/>
                             <constraint firstAttribute="trailing" secondItem="R7W-C2-Y21" secondAttribute="trailing" id="vza-It-2es"/>
