@@ -461,7 +461,7 @@ class MainLMMViewController: BaseViewController
             let cellBottomOffset = cellTopOffset + cell.bounds.height
             
             vc.topVisibleBorderDistance = cellTopOffset - contentOffset - self.view.safeAreaInsets.top - 34.0
-            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 62.0
+            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 42.0
         }
         
         // Footer
