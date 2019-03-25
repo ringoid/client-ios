@@ -24,23 +24,9 @@
                                     <segue destination="hP9-lJ-Ep8" kind="embed" identifier="embed_container" id="mtd-Aw-7vH"/>
                                 </connections>
                             </containerView>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8b-9J-Vw4" userLabel="BottomBarView" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
+                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8b-9J-Vw4" userLabel="BottomBarView" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="595" width="375" height="72"/>
-                                <subviews>
-                                    <view alpha="0.31" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5V4-Yy-5nc">
-                                        <rect key="frame" x="0.0" y="22" width="375" height="1"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="gVh-OP-Ghu"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="5V4-Yy-5nc" secondAttribute="trailing" id="Sao-6F-K1z"/>
-                                    <constraint firstItem="5V4-Yy-5nc" firstAttribute="top" secondItem="E8b-9J-Vw4" secondAttribute="top" constant="22" id="bZq-PW-ZMl"/>
-                                    <constraint firstItem="5V4-Yy-5nc" firstAttribute="leading" secondItem="E8b-9J-Vw4" secondAttribute="leading" id="dvo-05-Q2D"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
                                         <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -91,6 +77,13 @@
                                     <constraint firstItem="uLq-rW-238" firstAttribute="leading" secondItem="QYd-HC-afs" secondAttribute="leading" id="yoB-OP-QvA"/>
                                 </constraints>
                             </stackView>
+                            <view alpha="0.31" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5V4-Yy-5nc">
+                                <rect key="frame" x="0.0" y="617" width="375" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="gVh-OP-Ghu"/>
+                                </constraints>
+                            </view>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_bar_no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="WgY-Bd-4Qd">
                                 <rect key="frame" x="195.5" y="623" width="3" height="10"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -112,10 +105,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="uLq-rW-238" firstAttribute="top" secondItem="02Y-W9-hk1" secondAttribute="top" constant="-6" id="3ZH-qK-WIU"/>
+                            <constraint firstItem="5V4-Yy-5nc" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="5ik-rL-CIL"/>
+                            <constraint firstItem="QYd-HC-afs" firstAttribute="top" secondItem="5V4-Yy-5nc" secondAttribute="top" id="8gQ-KF-EGB"/>
                             <constraint firstItem="uLq-rW-238" firstAttribute="trailing" secondItem="02Y-W9-hk1" secondAttribute="trailing" constant="25" id="93I-rR-S6Y"/>
                             <constraint firstItem="QYd-HC-afs" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="Bqv-WG-NUp"/>
                             <constraint firstAttribute="trailing" secondItem="ZFd-I1-dCK" secondAttribute="trailing" id="CEJ-uj-wFU"/>
                             <constraint firstItem="E8b-9J-Vw4" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="J9K-us-tve"/>
+                            <constraint firstAttribute="trailing" secondItem="5V4-Yy-5nc" secondAttribute="trailing" id="MRg-GR-Frs"/>
                             <constraint firstAttribute="bottom" secondItem="ZFd-I1-dCK" secondAttribute="bottom" id="Qjc-t6-IL0"/>
                             <constraint firstAttribute="bottom" secondItem="E8b-9J-Vw4" secondAttribute="bottom" id="U9q-bB-TTW"/>
                             <constraint firstItem="cD4-SP-HxY" firstAttribute="trailing" secondItem="WgY-Bd-4Qd" secondAttribute="trailing" constant="11" id="V9n-Vt-pGB"/>
