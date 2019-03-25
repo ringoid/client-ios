@@ -60,6 +60,12 @@ class NewFacesViewController: BaseViewController
         self.setupBindings()
         self.setupReloader()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.updateFeed()
+    }
         
     override func updateTheme()
     {
@@ -242,7 +248,18 @@ class NewFacesViewController: BaseViewController
         }
 
         // No update case
-        guard totalCount != lastItemsCount else { return }
+        guard totalCount != lastItemsCount else {
+            let offset = self.tableView.contentOffset.y
+            if offset > 75.0 {
+                self.scrollTopBtn.alpha = 1.0
+                self.isScrollTopVisible = true
+            } else {
+                self.scrollTopBtn.alpha = 0.0
+                self.isScrollTopVisible = false
+            }
+            
+            return
+        }
         
         // Paging case
         let pageRange = lastItemsCount..<totalCount        

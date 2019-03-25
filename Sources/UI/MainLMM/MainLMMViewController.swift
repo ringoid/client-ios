@@ -90,6 +90,13 @@ class MainLMMViewController: BaseViewController
         self.setupReloader()
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        self.updateFeed(true)
+    }
+    
     override func updateTheme()
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
