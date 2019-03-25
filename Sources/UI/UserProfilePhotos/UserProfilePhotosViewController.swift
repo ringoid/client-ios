@@ -346,7 +346,7 @@ class UserProfilePhotosViewController: BaseViewController
             onNext: { [weak self] _ in
                 self?.showClaimSuccessUI()
             }, onError: { [weak self] error in
-                guard (error as NSError).code == ErrorType.api.rawValue else { return }
+                guard (error as NSError).code == ErrorType.wrongParams.rawValue else { return }
                 
                 self?.showClaimFailureUI()
         }).disposed(by: self.disposeBag)

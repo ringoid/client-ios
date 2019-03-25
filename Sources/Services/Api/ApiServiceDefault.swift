@@ -461,6 +461,10 @@ class ApiServiceDefault: ApiService
             
             if let apiErrorType = ApiErrorType(rawValue: errorCode) {
                 self.error.accept(ApiError(type: apiErrorType))
+                
+                if apiErrorType == .wrongRequestParamsClientError {
+                    throw createError("API error: \(errorMessage)", type: .wrongParams)
+                }
             }
             
             throw createError("API error: \(errorMessage)", type: .api)
