@@ -109,7 +109,7 @@ class MainLMMViewController: BaseViewController
         guard isInitialLayout else { return }
         
         self.isInitialLayout = false
-        self.updateFeed()
+        self.updateFeed(true)
     }
     
     // MARK: - Actions
@@ -144,7 +144,7 @@ class MainLMMViewController: BaseViewController
                 UIManager.shared.lmmRefreshModeEnabled.accept(false)
                 self?.toggleActivity(.contentAvailable)
                 self?.tableView.dataSource = self
-                self?.updateFeed()
+                self?.updateFeed(true)
             }
         }).disposed(by: self.disposeBag)
     }
@@ -153,7 +153,7 @@ class MainLMMViewController: BaseViewController
     {
         self.feedDisposeBag = DisposeBag()
         self.profiles()?.asObservable().subscribe(onNext: { [weak self] _ in
-            self?.updateFeed()
+            self?.updateFeed(false)
         }).disposed(by: self.feedDisposeBag)
     }
     
@@ -213,7 +213,7 @@ class MainLMMViewController: BaseViewController
         }
     }
     
-    fileprivate func updateFeed()
+    fileprivate func updateFeed(_ force: Bool)
     {
         guard !self.isChatShown else { return } // Chat updates should not reload feed
         
@@ -283,7 +283,7 @@ class MainLMMViewController: BaseViewController
                 checkIds.remove(at: index)
             }
             
-            if checkIds.count == 0 { return }
+            if checkIds.count == 0 && !force { return }
         }
         
         // Default scenario - reloading and applying stored offset
