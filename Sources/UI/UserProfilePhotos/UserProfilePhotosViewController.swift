@@ -43,9 +43,9 @@ class UserProfilePhotosViewController: BaseViewController
         super.viewDidLoad()
         
         let height = UIScreen.main.bounds.width * AppConfig.photoRatio
-        self.coinsTopOffsetConstraint.constant = height - 8.0 + 60.0
+        self.coinsTopOffsetConstraint.constant = height - 8.0 + 56.0
         self.containerTableView.rowHeight = height
-        self.containerTableView.contentInset = UIEdgeInsets(top: 60.0, left: 0.0, bottom: 0.0, right: 0.0)
+        self.containerTableView.contentInset = UIEdgeInsets(top: 56.0, left: 0.0, bottom: 0.0, right: 0.0)
         self.containerTableView.reloadData()
         
         self.setupBindings()
