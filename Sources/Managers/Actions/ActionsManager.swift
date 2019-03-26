@@ -175,6 +175,8 @@ class ActionsManager
         
         let interval = Date().timeIntervalSince(date) * 1000.0
         self.add(FeedAction.view(viewCount: 1, viewTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
+        
+        self.db.markProfileSeen(profile.id)
     }
     
     func startViewChatAction(_ profile: ActionProfile, photo: ActionPhoto)

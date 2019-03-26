@@ -69,6 +69,21 @@ class DBService
             self?.removeProfiles(id)
         }).disposed(by: self.disposeBag)
     }
+    
+    func markProfileSeen(_ id: String)
+    {
+        let predicate = NSPredicate(format: "id = %@ AND isDeleted = false", id)
+        guard let lmmProfile = self.realm.objects(LMMProfile.self).filter(predicate).first else { return }
+        guard lmmProfile.notSeen else { return }
+        
+        if self.realm.isInWriteTransaction {
+            lmmProfile.notSeen = false
+        } else {
+            try? self.realm.write {
+                lmmProfile.notSeen = false
+            }
+        }        
+    }
 
     // MARK: - User
     
