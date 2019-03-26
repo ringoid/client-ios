@@ -31,6 +31,7 @@ class NewFacesViewController: BaseViewController
     fileprivate let preheater = ImagePreheater()
     fileprivate var prevScrollingOffset: CGFloat = 0.0
     fileprivate var isScrollTopVisible: Bool = false
+    fileprivate var isTabSwitched: Bool = false
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
@@ -64,6 +65,7 @@ class NewFacesViewController: BaseViewController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.isTabSwitched = true
         self.updateFeed()
     }
         
@@ -303,7 +305,7 @@ class NewFacesViewController: BaseViewController
             
         case .empty:
             self.emptyFeedActivityView.stopAnimating()
-            self.emptyFeedLabel.text = "feed_explore_empty_no_data".localized()
+            self.emptyFeedLabel.text =  self.isTabSwitched ? "common_pull_to_refresh".localized() : "feed_explore_empty_no_data".localized()
             self.emptyFeedLabel.isHidden = false
             break
             
@@ -312,6 +314,8 @@ class NewFacesViewController: BaseViewController
             self.emptyFeedLabel.isHidden = true
             break
         }
+        
+        self.isTabSwitched = false
     }
     
     fileprivate func updateVisibleCellsBorders(_  contentOffset: CGFloat)

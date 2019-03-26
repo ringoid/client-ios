@@ -53,6 +53,7 @@ class MainLMMViewController: BaseViewController
     fileprivate var lastUpdateFeedType: LMMType = .likesYou
     fileprivate var currentActivityState: LMMFeedActivityState = .initial
     fileprivate let preheater = ImagePreheater()
+    fileprivate var isTabSwitched: Bool = false
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
@@ -94,6 +95,7 @@ class MainLMMViewController: BaseViewController
     {
         super.viewWillAppear(animated)
         
+        self.isTabSwitched = true
         self.updateFeed(true)
     }
     
@@ -115,6 +117,7 @@ class MainLMMViewController: BaseViewController
         // Applying offset after view size is set
         guard isInitialLayout else { return }
         
+        self.isTabSwitched = true
         self.isInitialLayout = false
         self.updateFeed(true)
     }
@@ -203,6 +206,8 @@ class MainLMMViewController: BaseViewController
     fileprivate func toggle(_ type: LMMType)
     {
         self.input.actionsManager.commit()
+        
+        self.isTabSwitched = true
         self.updateBindings()
     }
     
@@ -444,10 +449,16 @@ class MainLMMViewController: BaseViewController
             self.emptyFeedLabel.isHidden = true
             break
         }
+        
+        self.isTabSwitched = false
     }
     
     fileprivate func emptyLabelTitle() -> String
     {
+        guard !self.isTabSwitched else {
+            return "common_pull_to_refresh".localized()
+        }
+        
         switch self.type.value {
         case .likesYou: return "feed_likes_you_empty_no_data".localized()
         case .matches: return "feed_matches_empty_no_data".localized()
