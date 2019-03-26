@@ -417,6 +417,7 @@
 		57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleViewModel.swift; sourceTree = "<group>"; };
 		57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleCell.swift; sourceTree = "<group>"; };
 		57BEB6802213FEA8000BD768 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		57ED48692249FC070033EB0B /* Ringoid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ringoid.entitlements; sourceTree = "<group>"; };
 		57EE64BE221435E100246B45 /* SettingsEmailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEmailCell.swift; sourceTree = "<group>"; };
 		57EE64C0221478A600246B45 /* SettingsLegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalViewController.swift; sourceTree = "<group>"; };
 		57EE64C2221478EA00246B45 /* SettingsLegalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalViewModel.swift; sourceTree = "<group>"; };
@@ -471,6 +472,7 @@
 			isa = PBXGroup;
 			children = (
 				570D047221DCE3DA00E0DCFB /* Sources */,
+				57ED48692249FC070033EB0B /* Ringoid.entitlements */,
 				570D047B21DCE40200E0DCFB /* Info.plist */,
 				570D046C21DCE3DA00E0DCFB /* Resources */,
 				570D045821DCE32000E0DCFB /* Products */,
@@ -1102,6 +1104,18 @@
 				TargetAttributes = {
 					570D045621DCE32000E0DCFB = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					57EE64D12216711000246B45 = {
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1738,6 +1752,7 @@
 			baseConfigurationReference = D6BFCC36DDB8A172D261447B /* Pods-ringoid.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Ringoid.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = PXR6CFL6JF;
@@ -1760,6 +1775,7 @@
 			baseConfigurationReference = 5CE70EE5D5469A7A12844F34 /* Pods-ringoid.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Ringoid.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PXR6CFL6JF;
@@ -1782,6 +1798,7 @@
 			baseConfigurationReference = E91E0C376033C3AD59321CBF /* Pods-ringoid st.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Ringoid.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = PXR6CFL6JF;
@@ -1805,6 +1822,7 @@
 			baseConfigurationReference = 2C3CF48257E2CA86C82D650C /* Pods-ringoid st.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Ringoid.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PXR6CFL6JF;
