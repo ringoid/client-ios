@@ -252,7 +252,7 @@ class NewFacesViewController: BaseViewController
         // No update case
         guard totalCount != lastItemsCount else {
             let offset = self.tableView.contentOffset.y
-            if offset > 75.0 {
+            if offset > 75.0 && totalCount > 0 {
                 self.scrollTopBtn.alpha = 1.0
                 self.isScrollTopVisible = true
             } else {
