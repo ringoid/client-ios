@@ -16,6 +16,8 @@ class PromotionManager
     let api: ApiService
     let branch: Branch
     
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
     init(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?, api: ApiService)
     {
         self.api = api
@@ -65,22 +67,36 @@ class PromotionManager
         return true
     }
     
+    func sendReferraCodeIfNeeded()
+    {
+        guard let referralId = UserDefaults.standard.string(forKey: "referral_id") else { return }
+        
+        self.send(referralId)
+    }
+    
     // MARK: -
     
     fileprivate func handle(_ params: [String: Any])
     {
-        print("BRANCH: \(params)")
+        guard let referralId = params["referral_id"] as? String else { return }
+        
+        UserDefaults.standard.set(referralId, forKey: "referral_id")
+        UserDefaults.standard.synchronize()
+        
+        self.send(referralId)
     }
     
-    fileprivate func send(_ referralCode: String) -> Observable<Void>
+    fileprivate func send(_ referralCode: String)
     {
-        return self.api.claim(referralCode).do(onNext: { [weak self] _ in
+        self.api.claim(referralCode).subscribe(onNext: { [weak self] _ in
             self?.storeReferral(referralCode)
-        })
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func storeReferral(_ code: String)
     {
+        UserDefaults.standard.removeObject(forKey: "referral_id")
+        UserDefaults.standard.synchronize()
         self.valet.set(string: code, forKey: "referral_id")
     }
 }

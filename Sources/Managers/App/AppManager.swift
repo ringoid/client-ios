@@ -41,7 +41,7 @@ class AppManager
     
     func onBecomeActive()
     {
-        
+        self.promotionManager.sendReferraCodeIfNeeded()
     }
     
     func onResignActive()
