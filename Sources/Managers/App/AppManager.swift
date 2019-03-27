@@ -30,8 +30,8 @@ class AppManager
     
     func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
-        self.setupServices()
-        self.setupManagers()
+        self.setupServices(launchOptions)
+        self.setupManagers(launchOptions)
     }
     
     func onTerminate()
@@ -49,9 +49,20 @@ class AppManager
         self.actionsManager.commit()
     }
     
+    func onOpen(_ url: URL, sourceApplication: String?, annotation: Any) -> Bool
+    {
+        return self.promotionManager.handleOpen(url, sourceApplication:sourceApplication, annotation:annotation)
+    }
+    
+    func onUserActivity(userActivity: NSUserActivity, restorationHandler: ([UIUserActivityRestoring]?) -> Void) -> Bool
+    {
+        return self.promotionManager.handleUserActivity(userActivity)
+    }
+    
+    
     // MARK: -
     
-    fileprivate func setupServices()
+    fileprivate func setupServices(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
         self.deviceService = DeviceServiceDefault()
         self.fileService = FileServiceDefault()
@@ -70,7 +81,7 @@ class AppManager
         self.apiService = ApiServiceDefault(config: apiConfig, storage: self.defaultStorage)        
     }
     
-    fileprivate func setupManagers()
+    fileprivate func setupManagers(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
         self.actionsManager = ActionsManager(self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, reachability: self.reachability)
         self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader, fileService: self.fileService, device: self.deviceService, storage: self.defaultStorage)
@@ -80,7 +91,7 @@ class AppManager
         self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, actions: self.actionsManager, lmm: self.lmmManager, newFaces: self.newFacesManager)
         self.navigationManager = NavigationManager()
         self.errorsManager = ErrorsManager(self.apiService, settings: self.settingsMananger)
-        self.promotionManager = PromotionManager(self.apiService)
+        self.promotionManager = PromotionManager(launchOptions, api: self.apiService)
         
         ThemeManager.shared.storageService = self.defaultStorage
         LocaleManager.shared.storage = self.defaultStorage

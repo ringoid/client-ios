@@ -41,5 +41,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         self.appManager.onBecomeActive()
     }
+    
+    // Respond to URI scheme links
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool
+    {
+        return self.appManager.onOpen(url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
+    // Respond to Universal Links
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool
+    {
+        return self.appManager.onUserActivity(userActivity: userActivity, restorationHandler: restorationHandler)
+    }
 }
 

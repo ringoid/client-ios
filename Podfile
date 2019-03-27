@@ -15,6 +15,7 @@ def common_pods
 	pod 'RxReachability'
 	pod 'DeviceKit', '~> 1.3'
 	pod 'Valet'
+	pod 'Branch'
 end
 
 target 'ringoid' do

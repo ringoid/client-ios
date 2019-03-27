@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (4.8.1)
+  - Branch (0.25.11):
+    - Branch/Core (= 0.25.11)
+  - Branch/Core (0.25.11)
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
   - DeviceKit (1.11.0)
@@ -34,6 +37,7 @@ PODS:
   - Valet (3.2.3)
 
 DEPENDENCIES:
+  - Branch
   - Crashlytics
   - DeviceKit (~> 1.3)
   - Fabric
@@ -48,6 +52,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Branch
     - Crashlytics
     - DeviceKit
     - Fabric
@@ -75,6 +80,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Branch: 3cc6dcfd726db42ced22c418c0fb09aa5e90a847
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   DeviceKit: a3a86f8dddbe1317a9a243cdf9646858bf135dce
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
@@ -91,6 +97,6 @@ SPEC CHECKSUMS:
   Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
   Valet: 4af0382d4a94db5c7861504f751884f653437d24
 
-PODFILE CHECKSUM: ddedfe9d2071435640c88afc9656ef2461574928
+PODFILE CHECKSUM: d1cbb5f56e2a6e55bfb13454b4007d19a54ce1c2
 
 COCOAPODS: 1.6.0
