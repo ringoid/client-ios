@@ -23,6 +23,7 @@ class NotificationsServiceDefault: NSObject, NotificationService
         
         UNUserNotificationCenter.current().delegate = self
         self.isRegistered = UIApplication.shared.isRegisteredForRemoteNotifications
+        self.checkAndRegister()
     }
     
     func update(token: String)
@@ -50,6 +51,17 @@ class NotificationsServiceDefault: NSObject, NotificationService
             DispatchQueue.main.async {
                 UIApplication.shared.registerForRemoteNotifications()
             }
+        }
+    }
+    
+    // MARK: -
+    
+    func checkAndRegister()
+    {
+        UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
+            guard settings.authorizationStatus != .notDetermined else { return }
+            
+            self?.register()
         }
     }
 }
