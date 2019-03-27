@@ -33,8 +33,6 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var addBtn: UIButton!
     @IBOutlet fileprivate weak var containerTableView: UITableView!
-    @IBOutlet fileprivate weak var coinsBtn: UIButton!
-    @IBOutlet fileprivate weak var coinsTopOffsetConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -43,7 +41,6 @@ class UserProfilePhotosViewController: BaseViewController
         super.viewDidLoad()
         
         let height = UIScreen.main.bounds.width * AppConfig.photoRatio
-        self.coinsTopOffsetConstraint.constant = height - 8.0 + 56.0
         self.containerTableView.rowHeight = height
         self.containerTableView.contentInset = UIEdgeInsets(top: 56.0, left: 0.0, bottom: 0.0, right: 0.0)
         self.containerTableView.reloadData()
@@ -89,7 +86,6 @@ class UserProfilePhotosViewController: BaseViewController
     override func updateLocale()
     {
         self.emptyFeedLabel.text = "profile_empty_images".localized()
-        self.coinsBtn.setTitle("\(self.viewModel?.coins.value ?? 0) " + "profile_coins".localized(), for: .normal)
     }
     
     func showPhotoPicker()
@@ -147,13 +143,6 @@ class UserProfilePhotosViewController: BaseViewController
         self.showDeletionAlert()
     }
     
-    @IBAction func claimCode()
-    {
-        guard self.viewModel?.isReferralCodeClaimed == false else { return }
-        
-        self.showReferralCodeUI()
-    }
-    
     // MARK: -
     
     fileprivate func setupBindings()
@@ -163,10 +152,6 @@ class UserProfilePhotosViewController: BaseViewController
             guard let `self` = self else { return }
             
             self.updatePages()
-        }).disposed(by: self.disposeBag)
-        
-        self.viewModel?.coins.asObservable().subscribe(onNext: { [weak self] value in
-            self?.coinsBtn.setTitle("\(value) " + "profile_coins".localized(), for: .normal)
         }).disposed(by: self.disposeBag)
     }
     
@@ -216,7 +201,6 @@ class UserProfilePhotosViewController: BaseViewController
             self.viewModel?.lastPhotoId.accept(photos.first?.id)
         }
         
-        self.coinsBtn.isHidden = photos.isEmpty
         self.emptyFeedLabel.isHidden = !photos.isEmpty
         self.pageControl.numberOfPages = photos.count
         self.photosVCs = photos.map({ photo in
@@ -282,7 +266,6 @@ class UserProfilePhotosViewController: BaseViewController
         self.optionsBtn.isHidden = false
         self.addBtn.isHidden = false
         self.titleLabel.isHidden = false
-        self.coinsBtn.isHidden = false
     }
     
     fileprivate func hideControls()
@@ -292,64 +275,6 @@ class UserProfilePhotosViewController: BaseViewController
         self.optionsBtn.isHidden = true
         self.addBtn.isHidden = true
         self.titleLabel.isHidden = true
-        self.coinsBtn.isHidden = true
-    }
-    
-    fileprivate func showReferralCodeUI()
-    {
-        let alertVC = UIAlertController(title: "profile_referral_code".localized(), message: nil, preferredStyle: .alert)
-        alertVC.addTextField { textField in
-            
-        }
-        
-        alertVC.addAction(UIAlertAction(title: "button_apply".localized(), style: .default, handler: { _ in
-            let code = alertVC.textFields?.first?.text
-            self.send(code)
-        }))
-        
-        alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: nil))
-        
-        self.present(alertVC, animated: true, completion: nil)
-    }
-    
-    fileprivate func showClaimFailureUI()
-    {
-        let alertVC = UIAlertController(
-            title: nil,
-            message: "profile_referral_code_invalid".localized(),
-            preferredStyle: .alert
-        )
-        
-        alertVC.addAction(UIAlertAction(title: "button_close".localized(), style: .default, handler: nil))
-        
-        self.present(alertVC, animated: true, completion: nil)
-    }
-    
-    fileprivate func showClaimSuccessUI()
-    {
-        let alertVC = UIAlertController(
-            title: nil,
-            message: "profile_coins_gifted".localized(),
-            preferredStyle: .alert
-        )
-        
-        alertVC.addAction(UIAlertAction(title: "button_ok".localized(), style: .default, handler: nil))
-        
-        self.present(alertVC, animated: true, completion: nil)
-    }
-    
-    fileprivate func send(_ code: String?)
-    {
-        guard let code = code else { return }
-        
-        self.viewModel?.sendReferral(code).subscribeOn(MainScheduler.instance).subscribe(
-            onNext: { [weak self] _ in
-                self?.showClaimSuccessUI()
-            }, onError: { [weak self] error in
-                guard (error as NSError).code == ErrorType.wrongParams.rawValue else { return }
-                
-                self?.showClaimFailureUI()
-        }).disposed(by: self.disposeBag)
     }
 }
 

@@ -46,19 +46,9 @@ class UserProfilePhotosViewModel
         return self.input.settingsManager.isAuthorized
     }
     
-    let coins: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
-    var isReferralCodeClaimed: Bool
-    {
-        return self.input.promotionManager.referralCode != nil
-    }
-    
     init(_ input: UserProfilePhotosVCInput)
     {
         self.input = input
-        
-        if let _ = self.input.promotionManager.referralCode {
-            self.coins.accept(5)
-        }
     }
     
     func add(_ photo: UIImage) -> Observable<UserPhoto>
@@ -90,12 +80,5 @@ class UserProfilePhotosViewModel
     func moveToSearch()
     {
         self.input.navigationManager.mainItem.accept(.searchAndFetch)
-    }
-    
-    func sendReferral(_ code: String) -> Observable<Void>
-    {
-        return self.input.promotionManager.send(code).do(onNext: { [weak self] _ in
-            self?.coins.accept(5)
-        })
     }
 }

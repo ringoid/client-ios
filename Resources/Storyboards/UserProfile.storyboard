@@ -114,21 +114,6 @@ see how many likes you get</string>
                                     <action selector="deletePhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="KYt-hL-B7c"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvM-XQ-P74">
-                                <rect key="frame" x="0.0" y="20" width="66" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="V9c-xP-Y5r"/>
-                                </constraints>
-                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <size key="titleShadowOffset" width="1" height="1"/>
-                                <state key="normal" title="0 coins">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="claimCode" destination="aaf-t7-SOT" eventType="touchUpInside" id="o4J-av-RSN"/>
-                                </connections>
-                            </button>
                             <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="gyn-28-5bi">
                                 <rect key="frame" x="16" y="80" width="7" height="37"/>
                             </pageControl>
@@ -139,7 +124,6 @@ see how many likes you get</string>
                             <constraint firstItem="gyn-28-5bi" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="60" id="4sN-UV-dza"/>
                             <constraint firstItem="32r-W0-czT" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="60" id="EDx-rN-Hng"/>
                             <constraint firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" id="EeI-Bh-ckx"/>
-                            <constraint firstItem="fvM-XQ-P74" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="FQU-Dj-Jae"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="J5p-mc-dZY"/>
                             <constraint firstAttribute="trailing" secondItem="32r-W0-czT" secondAttribute="trailing" id="K8k-hh-C28"/>
                             <constraint firstItem="czw-ci-QbL" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="LPJ-xp-Qg7"/>
@@ -148,8 +132,6 @@ see how many likes you get</string>
                             <constraint firstAttribute="trailing" secondItem="czw-ci-QbL" secondAttribute="trailing" id="NuO-3f-hgg"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="Q1a-Y0-U7m"/>
                             <constraint firstItem="czw-ci-QbL" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="SZt-tn-ia5"/>
-                            <constraint firstItem="fvM-XQ-P74" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" priority="500" id="UaC-Y9-MsV" userLabel="CoinsTop"/>
-                            <constraint firstItem="Yc6-CF-qSL" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fvM-XQ-P74" secondAttribute="bottom" constant="42" id="XGk-VF-ORC"/>
                             <constraint firstItem="0Ze-nT-pEZ" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="gjJ-L8-PF8"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerY" secondItem="q5L-So-vMI" secondAttribute="centerY" id="h1K-ko-wtW"/>
                             <constraint firstItem="R3C-Zv-Ixf" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="j5U-ve-N2a"/>
@@ -160,8 +142,6 @@ see how many likes you get</string>
                     </view>
                     <connections>
                         <outlet property="addBtn" destination="R3C-Zv-Ixf" id="3Be-pJ-u5T"/>
-                        <outlet property="coinsBtn" destination="fvM-XQ-P74" id="LVh-xS-cTr"/>
-                        <outlet property="coinsTopOffsetConstraint" destination="UaC-Y9-MsV" id="aWz-z4-lc6"/>
                         <outlet property="containerTableView" destination="GhS-rk-bVb" id="o6E-fd-3zd"/>
                         <outlet property="deleteBtn" destination="32r-W0-czT" id="qDq-QL-d5e"/>
                         <outlet property="emptyFeedLabel" destination="c03-Vj-oKe" id="HhA-IN-Ey8"/>
