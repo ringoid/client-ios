@@ -6,4 +6,22 @@
 //  Copyright © 2019 Ringoid. All rights reserved.
 //
 
-import Foundation
+import RxSwift
+import RxCocoa
+
+struct RemoteNotification
+{
+    let message: String
+}
+
+protocol NotificationService
+{
+    var notification: BehaviorRelay<RemoteNotification> { get }
+    var token: String? { get }
+    var isRegistered: Bool { get }
+    var isGranted: Bool { get }
+    
+    func update(token: String)
+    func handle(notificationDict: [AnyHashable : Any])
+    func register()
+}

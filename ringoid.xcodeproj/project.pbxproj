@@ -145,6 +145,10 @@
 		57BEB67B2213D7E6000BD768 /* SettingsLocaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67A2213D7E6000BD768 /* SettingsLocaleViewController.swift */; };
 		57BEB67D2213D806000BD768 /* SettingsLocaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */; };
 		57BEB67F2213F306000BD768 /* SettingsLocaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */; };
+		57ED486D224B82C10033EB0B /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED486C224B82C10033EB0B /* NotificationsService.swift */; };
+		57ED486E224B82C10033EB0B /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED486C224B82C10033EB0B /* NotificationsService.swift */; };
+		57ED4870224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED486F224B82D30033EB0B /* NotificationsServiceDefault.swift */; };
+		57ED4871224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED486F224B82D30033EB0B /* NotificationsServiceDefault.swift */; };
 		57EE64BF221435E100246B45 /* SettingsEmailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64BE221435E100246B45 /* SettingsEmailCell.swift */; };
 		57EE64C1221478A600246B45 /* SettingsLegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64C0221478A600246B45 /* SettingsLegalViewController.swift */; };
 		57EE64C3221478EA00246B45 /* SettingsLegalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64C2221478EA00246B45 /* SettingsLegalViewModel.swift */; };
@@ -418,6 +422,8 @@
 		57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleCell.swift; sourceTree = "<group>"; };
 		57BEB6802213FEA8000BD768 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		57ED48692249FC070033EB0B /* Ringoid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ringoid.entitlements; sourceTree = "<group>"; };
+		57ED486C224B82C10033EB0B /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
+		57ED486F224B82D30033EB0B /* NotificationsServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsServiceDefault.swift; sourceTree = "<group>"; };
 		57EE64BE221435E100246B45 /* SettingsEmailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEmailCell.swift; sourceTree = "<group>"; };
 		57EE64C0221478A600246B45 /* SettingsLegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalViewController.swift; sourceTree = "<group>"; };
 		57EE64C2221478EA00246B45 /* SettingsLegalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalViewModel.swift; sourceTree = "<group>"; };
@@ -533,6 +539,7 @@
 		570D047C21DCED1800E0DCFB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				57ED486B224B825E0033EB0B /* Notifications */,
 				573A5C2B2229183C0094A9FA /* Reachability */,
 				573A5C19222556A00094A9FA /* Log */,
 				57EE655B2216DC9200246B45 /* Sentry */,
@@ -1004,6 +1011,15 @@
 			path = Actions;
 			sourceTree = "<group>";
 		};
+		57ED486B224B825E0033EB0B /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				57ED486C224B82C10033EB0B /* NotificationsService.swift */,
+				57ED486F224B82D30033EB0B /* NotificationsServiceDefault.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		57EE655B2216DC9200246B45 /* Sentry */ = {
 			isa = PBXGroup;
 			children = (
@@ -1411,6 +1427,7 @@
 				57B863FA21EF5D2A00B9CC70 /* ApiMessageAction.swift in Sources */,
 				570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */,
 				579CD7B621F8947000C3AEE3 /* SettingsThemeCell.swift in Sources */,
+				57ED4870224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
 				576FC10D21FF33EA00BA5ABE /* NavigationManager.swift in Sources */,
 				57585D4C21E388EC00038798 /* UserProfilePhotosViewController.swift in Sources */,
@@ -1425,6 +1442,7 @@
 				57585D5921E4928600038798 /* FileServiceDefault.swift in Sources */,
 				57EE64C1221478A600246B45 /* SettingsLegalViewController.swift in Sources */,
 				57801A87222FF049005A9731 /* SettingsDebugLogViewController.swift in Sources */,
+				57ED486D224B82C10033EB0B /* NotificationsService.swift in Sources */,
 				57B863F621EF5C4900B9CC70 /* ApiBlockAction.swift in Sources */,
 				57585D6421E4C73600038798 /* NewFacesViewModel.swift in Sources */,
 				573A5C0E222409F10094A9FA /* EmptyFeed.swift in Sources */,
@@ -1547,6 +1565,7 @@
 				57EE65012216711000246B45 /* ChatViewController.swift in Sources */,
 				57EE65022216711000246B45 /* SettingsLanguageCell.swift in Sources */,
 				57EE65032216711000246B45 /* ApiMessageAction.swift in Sources */,
+				57ED4871224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */,
 				57EE65042216711000246B45 /* AuthViewModel.swift in Sources */,
 				57EE65052216711000246B45 /* SettingsThemeCell.swift in Sources */,
 				57EE65062216711000246B45 /* Errors.swift in Sources */,
@@ -1561,6 +1580,7 @@
 				57EE650F2216711000246B45 /* DiagonalGradientView.swift in Sources */,
 				57EE65102216711000246B45 /* SettingsLegalLicensesCell.swift in Sources */,
 				57801A88222FF04A005A9731 /* SettingsDebugLogViewController.swift in Sources */,
+				57ED486E224B82C10033EB0B /* NotificationsService.swift in Sources */,
 				57EE65112216711000246B45 /* FileServiceDefault.swift in Sources */,
 				57EE65122216711000246B45 /* SettingsLegalViewController.swift in Sources */,
 				573A5C0F22240C160094A9FA /* EmptyFeed.swift in Sources */,

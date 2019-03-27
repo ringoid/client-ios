@@ -17,6 +17,7 @@ class AppManager
     var uploader: UploaderService!
     var defaultStorage: XStorageService!
     var db: DBService!
+    var notifications: NotificationService!
     
     var actionsManager: ActionsManager!
     var profileManager: UserProfileManager!
@@ -59,6 +60,18 @@ class AppManager
         return self.promotionManager.handleUserActivity(userActivity)
     }
     
+    // Pushes: -
+    
+    func onGot(deviceToken: String)
+    {
+        self.notifications.update(token: deviceToken)
+    }
+    
+    func onGot(notificationDict: [AnyHashable : Any])
+    {
+        self.notifications.handle(notificationDict: notificationDict)
+    }
+    
     
     // MARK: -
     
@@ -70,6 +83,7 @@ class AppManager
         self.db = DBService()
         self.uploader = UploaderServiceDefault(self.defaultStorage, fs: self.fileService)
         self.reachability = ReachabilityServiceDefault()
+        self.notifications = NotificationsServiceDefault()
         
         #if STAGE
         let apiConfig = ApiServiceConfigStage()
@@ -83,7 +97,7 @@ class AppManager
     
     fileprivate func setupManagers(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
-        self.actionsManager = ActionsManager(self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, reachability: self.reachability)
+        self.actionsManager = ActionsManager(self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, reachability: self.reachability, notifications: self.notifications)
         self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader, fileService: self.fileService, device: self.deviceService, storage: self.defaultStorage)
         self.newFacesManager = NewFacesManager(self.db, api: self.apiService, device: self.deviceService, actionsManager: self.actionsManager)
         self.lmmManager = LMMManager(self.db, api: self.apiService, device: self.deviceService, actionsManager: self.actionsManager)

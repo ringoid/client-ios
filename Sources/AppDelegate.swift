@@ -53,5 +53,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         return self.appManager.onUserActivity(userActivity: userActivity, restorationHandler: restorationHandler)
     }
+    
+    //MARK: - Pushes management
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
+    {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        self.appManager.onGot(deviceToken: token)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
+    {
+        log("failed to get DeviceToken: \(error)", level: .high)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
+    {
+        self.appManager.onGot(notificationDict: userInfo)
+        
+//        if UIApplication.shared.applicationState != .background {
+//            completionHandler(.noData)
+//            return
+//        }
+    }
 }
 

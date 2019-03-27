@@ -41,6 +41,7 @@ class ActionsManager
     fileprivate let fs: FileService
     fileprivate let storage: XStorageService
     fileprivate let reachability: ReachabilityService
+    fileprivate let notifications: NotificationService
     fileprivate var disposeBag: DisposeBag = DisposeBag()
     fileprivate var viewActionsMap: [String: Date] = [:]
     fileprivate var queue: [Action] = []
@@ -53,13 +54,14 @@ class ActionsManager
         self.triggerTimer = nil
     }
     
-    init(_ db: DBService, api: ApiService, fs: FileService, storage: XStorageService, reachability: ReachabilityService)
+    init(_ db: DBService, api: ApiService, fs: FileService, storage: XStorageService, reachability: ReachabilityService, notifications: NotificationService)
     {
         self.db = db
         self.apiService = api
         self.fs = fs
         self.storage = storage
         self.reachability = reachability
+        self.notifications = notifications
         
         self.loadLastActionDate()
         self.setupDateStorage()
@@ -67,12 +69,12 @@ class ActionsManager
         self.setupTimerTrigger()
     }
     
-    func add(_ action: FeedAction, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
+    fileprivate func add(_ action: FeedAction, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         self.add([action], profile: profile, photo: photo, source: source)
     }
     
-    func add(_ actions: [FeedAction], profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
+    fileprivate func add(_ actions: [FeedAction], profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         let createdActions = actions.map({ $0.model(profile: profile, photo: photo, source: source) })
 
@@ -131,6 +133,10 @@ class ActionsManager
         self.add(.like(likeCount: 1), profile: profile, photo: photo, source: source)
         self.startViewAction(profile, photo: photo)
         self.commit()
+        
+        guard !self.notifications.isRegistered && !self.notifications.isGranted else { return }
+        
+        self.notifications.register()
     }
     
     func unlikeActionProtected(_ profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
