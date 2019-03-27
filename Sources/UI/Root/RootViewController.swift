@@ -166,11 +166,8 @@ class RootViewController: BaseViewController {
                 self?.move(to: .auth)
                 self?.appManager.settingsMananger.reset()
             } else {
-                if self?.appManager.profileManager.photos.value.count == 0 {
-                    self?.move(to: .userProfile)
-                } else {
-                    self?.move(to: .main)
-                }
+                self?.move(to: .main)
+                self?.appManager.navigationManager.mainItem.accept(.searchAndFetch)
             }
         }).disposed(by: disposeBag)
     }

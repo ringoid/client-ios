@@ -97,13 +97,6 @@ class NewFacesViewController: BaseViewController
             return
         }
         
-        if self.viewModel?.isPhotosAdded == false {
-            self.showAddPhotosOptions()
-            self.tableView.panGestureRecognizer.isEnabled = true
-            
-            return
-        }
-        
         self.toggleActivity(.fetching)
         
         self.lastFetchCount = -1
@@ -122,13 +115,7 @@ class NewFacesViewController: BaseViewController
     }
     
     func onFetchMore()
-    {
-        if self.viewModel?.isPhotosAdded == false {
-            self.showAddPhotosOptions()
-            
-            return
-        }
-        
+    {        
         guard let count = self.viewModel?.profiles.value.count, count > 0 else { return }
         
         self.loadingActivityView.startAnimating()
@@ -271,20 +258,6 @@ class NewFacesViewController: BaseViewController
             self.tableView.insertRows(at: pageRange.map({ IndexPath(row: $0, section: 0) }), with: .none)
         }, completion: nil)
         
-    }
-    
-    fileprivate func showAddPhotosOptions()
-    {
-        let alertVC = UIAlertController(
-            title: nil,
-            message: "feed_explore_dialog_no_user_photo_description".localized(),
-            preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "button_add_photo".localized(), style: .default, handler: { [weak self] _ in
-            self?.viewModel?.moveToProfile()
-        }))
-        alertVC.addAction(UIAlertAction(title: "button_later".localized(), style: .cancel, handler: nil))
-        
-        self.present(alertVC, animated: true, completion: nil)
     }
     
     fileprivate func toggleActivity(_ state: NewFacesFeedActivityState)

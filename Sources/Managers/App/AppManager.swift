@@ -91,7 +91,6 @@ class AppManager
         let apiConfig = ApiServiceConfigProd()        
         #endif
         
-        
         self.apiService = ApiServiceDefault(config: apiConfig, storage: self.defaultStorage)        
     }
     

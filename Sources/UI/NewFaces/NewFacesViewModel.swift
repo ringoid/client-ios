@@ -23,10 +23,6 @@ class NewFacesViewModel
 {
     var profiles: BehaviorRelay<[NewFaceProfile]> { return self.newFacesManager.profiles }
     var isFetching : BehaviorRelay<Bool> { return self.newFacesManager.isFetching }
-    var isPhotosAdded: Bool
-    {
-        return !self.profileManager.photos.value.isEmpty
-    }
     
     let newFacesManager: NewFacesManager
     let profileManager: UserProfileManager

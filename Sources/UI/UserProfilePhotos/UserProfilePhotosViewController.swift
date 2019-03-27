@@ -52,9 +52,7 @@ class UserProfilePhotosViewController: BaseViewController
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
-        
-        self.pickPhotoIfNeeded()
-        
+
         guard let photos = self.viewModel?.photos.value else { return }
         
         self.preheater.startPreheating(with: photos.map({ $0.filepath().url() }))        
@@ -162,17 +160,6 @@ class UserProfilePhotosViewController: BaseViewController
         self.containerTableView.refreshControl = refreshControl
     }
     
-    fileprivate func pickPhotoIfNeeded()
-    {
-        guard
-            self.input.profileManager.photos.value.count == 0,
-            self.viewModel?.isFirstTime.value == true,
-            self.viewModel?.isAuthorized.value == true
-            else { return }
-        
-        self.pickPhoto()
-    }
-    
     fileprivate func pickPhoto()
     {
         let vc = UIImagePickerController()
@@ -238,24 +225,6 @@ class UserProfilePhotosViewController: BaseViewController
         }))
         
         self.hideControls()
-        self.present(alertVC, animated: true, completion: nil)
-    }
-    
-    fileprivate func showOptionsAlert()
-    {
-        let alertVC = UIAlertController(title: "profile_dialog_image_another_title".localized(), message: nil, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "profile_dialog_image_another_button_add".localized(), style: .default, handler: ({ [weak self] _ in
-            self?.pickPhoto()
-        })))
-        alertVC.addAction(UIAlertAction(title: "profile_dialog_image_another_button_cancel".localized(), style: .default, handler: ({ [weak self] _ in
-            self?.viewModel?.isFirstTime.accept(false)
-            self?.viewModel?.moveToSearch()
-        })))
-        
-        alertVC.addAction(UIAlertAction(title: "button_close".localized(), style: .cancel, handler: { [weak self] _ in
-            self?.viewModel?.isFirstTime.accept(false)
-        }))
-        
         self.present(alertVC, animated: true, completion: nil)
     }
     
@@ -370,12 +339,6 @@ extension UserProfilePhotosViewController: UserProfilePhotoCropVCDelegate
         self.viewModel?.add(image).subscribe(onNext: ({ [weak self] photo in
             self?.viewModel?.lastPhotoId.accept(nil)
             self?.lastClientPhotoId = photo.clientId
-            
-            guard self?.viewModel?.isFirstTime.value == true else { return }
-            
-            DispatchQueue.main.async {
-                self?.showOptionsAlert()
-            }
         }), onError: ({ [weak self] error in
             guard let `self` = self else { return }
             
