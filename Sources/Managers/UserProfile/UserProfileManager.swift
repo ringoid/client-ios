@@ -20,6 +20,10 @@ class UserProfileManager
     
     var photos: BehaviorRelay<[UserPhoto]> = BehaviorRelay<[UserPhoto]>(value: [])
     var lastPhotoId: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+    var isPhotosAdded: Bool
+    {
+        return !self.photos.value.filter({ !$0.isBlocked }).isEmpty
+    }
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     

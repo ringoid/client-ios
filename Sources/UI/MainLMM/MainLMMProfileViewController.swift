@@ -48,11 +48,11 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     @IBOutlet fileprivate weak var seenLabel: UILabel!
     
-    static func create(_ profile: LMMProfile, feedType: LMMType, actionsManager: ActionsManager, initialIndex: Int) -> MainLMMProfileViewController
+    static func create(_ profile: LMMProfile, feedType: LMMType, actionsManager: ActionsManager, profileManager: UserProfileManager, navigationManager: NavigationManager, initialIndex: Int) -> MainLMMProfileViewController
     {
         let storyboard = Storyboards.mainLMM()
         let vc = storyboard.instantiateViewController(withIdentifier: "lmm_profile") as! MainLMMProfileViewController
-        vc.input = MainLMMProfileVMInput(profile: profile, feedType: feedType, actionsManager: actionsManager, initialIndex: initialIndex)
+        vc.input = MainLMMProfileVMInput(profile: profile, feedType: feedType, actionsManager: actionsManager, profileManager: profileManager, navigationManager: navigationManager, initialIndex: initialIndex)
         
         return vc
     }
@@ -71,7 +71,7 @@ class MainLMMProfileViewController: UIViewController
         self.updateMessageBtnOffset()
         self.messageBtn.setImage(UIImage(named: self.input.profile.state.iconName()), for: .normal)
         
-        let input = NewFaceProfileVMInput(profile: self.input.profile, actionsManager: self.input.actionsManager, sourceType: self.input.feedType.sourceType())
+        let input = NewFaceProfileVMInput(profile: self.input.profile, actionsManager: self.input.actionsManager, profileManager: self.input.profileManager, navigationManager: self.input.navigationManager, sourceType: self.input.feedType.sourceType())
         self.pageControl.numberOfPages = self.input.profile.photos.count
         self.photosVCs = self.input.profile.orderedPhotos().map({ photo in
             let vc = NewFacePhotoViewController.create()

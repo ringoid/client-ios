@@ -15,6 +15,8 @@ struct MainLMMProfileVMInput
     let profile: LMMProfile
     let feedType: LMMType
     let actionsManager: ActionsManager
+    let profileManager: UserProfileManager
+    let navigationManager: NavigationManager
     let initialIndex: Int
 }
 

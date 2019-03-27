@@ -12,13 +12,15 @@ struct NewFaceProfileVMInput
 {
     let profile: Profile
     let actionsManager: ActionsManager
+    let profileManager: UserProfileManager
+    let navigationManager: NavigationManager
     let sourceType: SourceFeedType
 }
 
 class NewFaceProfileViewModel
 {
     let input: NewFaceProfileVMInput
-    
+        
     init(_ input: NewFaceProfileVMInput)
     {
         self.input = input

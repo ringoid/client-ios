@@ -13,7 +13,7 @@ import RxCocoa
 
 class NewFacePhotoViewController: UIViewController
 {
-    var input: NewFaceProfileVMInput?
+    var input: NewFaceProfileVMInput!
     var photo: Photo?
     {
         didSet {
@@ -48,6 +48,8 @@ class NewFacePhotoViewController: UIViewController
     
     override func viewDidLoad()
     {
+        assert( self.input != nil )
+        
         super.viewDidLoad()
         
         self.likeBtn.isHidden = !self.isLikesAvailable()
@@ -103,6 +105,12 @@ class NewFacePhotoViewController: UIViewController
     
     @IBAction func  onLike()
     {
+        guard self.input.profileManager.isPhotosAdded else {
+            self.showAddPhotoAlert()
+            
+            return
+        }
+        
         guard self.input?.actionsManager.checkConnectionState() == true else { return }
         
         guard self.isLikesAvailable() else { return }
@@ -138,6 +146,12 @@ class NewFacePhotoViewController: UIViewController
     
     @IBAction func  onTap()
     {
+        guard self.input.profileManager.isPhotosAdded else {
+            self.showAddPhotoAlert()
+            
+            return
+        }
+        
         guard self.isLikesAvailable() else {
             self.onChatBlock?()
             
@@ -274,6 +288,17 @@ class NewFacePhotoViewController: UIViewController
         guard self.isVisible else { return }
         
         self.stopViewAction()
+    }
+    
+    fileprivate func showAddPhotoAlert()
+    {
+        let alertVC = UIAlertController(title: nil, message: "profile_add_photo".localized(), preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "button_add_photo".localized(), style: .default, handler: { [weak self] _ in
+            self?.input.navigationManager.mainItem.accept(.profileAndPick)
+        }))
+        alertVC.addAction(UIAlertAction(title: "button_later".localized(), style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
 

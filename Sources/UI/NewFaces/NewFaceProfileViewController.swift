@@ -35,12 +35,12 @@ class NewFaceProfileViewController: UIViewController
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     
-    static func create(_ profile: NewFaceProfile, actionsManager: ActionsManager, initialIndex: Int) -> NewFaceProfileViewController
+    static func create(_ profile: NewFaceProfile, actionsManager: ActionsManager, profileManager: UserProfileManager, navigationManager: NavigationManager, initialIndex: Int) -> NewFaceProfileViewController
     {
         let storyboard = Storyboards.newFaces()
         
         let vc = storyboard.instantiateViewController(withIdentifier: "new_face_profile") as! NewFaceProfileViewController
-        vc.input = NewFaceProfileVMInput(profile: profile, actionsManager: actionsManager, sourceType: .newFaces)
+        vc.input = NewFaceProfileVMInput(profile: profile, actionsManager: actionsManager, profileManager: profileManager, navigationManager: navigationManager, sourceType: .newFaces)
         vc.currentIndex.accept(initialIndex)
         
         return vc

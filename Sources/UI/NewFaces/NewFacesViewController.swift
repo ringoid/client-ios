@@ -370,7 +370,7 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
         guard let count = self.viewModel?.profiles.value.count, indexPath.row < count else { return cell }
         
         if let profile = self.viewModel?.profiles.value[indexPath.row], !profile.isInvalidated {
-            let profileVC = NewFaceProfileViewController.create(profile, actionsManager: self.input.actionsManager, initialIndex: self.photoIndexes[profile.id] ?? 0)
+            let profileVC = NewFaceProfileViewController.create(profile, actionsManager: self.input.actionsManager, profileManager: self.input.profileManager, navigationManager: self.input.navigationManager,  initialIndex: self.photoIndexes[profile.id] ?? 0)
             cell.containerView.embed(profileVC, to: self)
             
             profileVC.onBlockOptionsWillShow = { [weak self, weak cell] in
