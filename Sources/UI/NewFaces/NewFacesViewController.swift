@@ -102,7 +102,7 @@ class NewFacesViewController: BaseViewController
         self.lastFetchCount = -1
         self.photoIndexes.removeAll()
         
-        self.viewModel?.refresh().subscribe(onNext: { [weak self] _ in
+        self.viewModel?.refresh().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             self?.updateFeed()
             self?.tableView.panGestureRecognizer.isEnabled = true
             }, onError:{ [weak self] error in
@@ -115,7 +115,7 @@ class NewFacesViewController: BaseViewController
     }
     
     func onFetchMore()
-    {        
+    {
         guard let count = self.viewModel?.profiles.value.count, count > 0 else { return }
         
         self.loadingActivityView.startAnimating()
@@ -147,7 +147,7 @@ class NewFacesViewController: BaseViewController
     fileprivate func setupBindings()
     {
         self.viewModel = NewFacesViewModel(self.input)
-        self.viewModel?.profiles.asObservable().subscribe(onNext: { [weak self] updatedProfiles in
+        self.viewModel?.profiles.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] updatedProfiles in
             guard let `self` = self else { return }
             
             self.updateFeed()
