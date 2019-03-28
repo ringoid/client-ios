@@ -21,6 +21,7 @@ struct MainVMInput
     let errorsManager: ErrorsManager
     let promotionManager: PromotionManager
     let device: DeviceService
+    let notifications: NotificationService
 }
 
 class MainViewModel

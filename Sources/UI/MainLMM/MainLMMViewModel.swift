@@ -17,6 +17,7 @@ struct MainLMMVMInput
     let profileManager: UserProfileManager
     let navigationManager: NavigationManager
     let newFacesManager: NewFacesManager
+    let notifications: NotificationService
 }
 
 class MainLMMViewModel
@@ -26,6 +27,7 @@ class MainLMMViewModel
     let actionsManager: ActionsManager
     let navigationManager: NavigationManager
     let newFacesManager: NewFacesManager
+    let notifications: NotificationService
     
     var likesYou: BehaviorRelay<[LMMProfile]> { return self.lmmManager.likesYou }
     var matches: BehaviorRelay<[LMMProfile]> { return self.lmmManager.matches }
@@ -45,6 +47,7 @@ class MainLMMViewModel
         self.actionsManager = input.actionsManager
         self.navigationManager = input.navigationManager
         self.newFacesManager = input.newFacesManager
+        self.notifications = input.notifications
     }
     
     func refresh(_ from: LMMType) -> Observable<Void>
@@ -58,5 +61,13 @@ class MainLMMViewModel
     func moveToProfile()
     {
         self.navigationManager.mainItem.accept(.profileAndPick)
+    }
+    
+    func registerPushesIfNeeded()
+    {
+        guard self.actionsManager.isLikedSomeone.value else { return }
+        guard !self.notifications.isRegistered && !self.notifications.isGranted else { return }
+
+        self.notifications.register()
     }
 }

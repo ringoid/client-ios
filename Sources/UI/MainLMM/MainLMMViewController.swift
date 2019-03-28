@@ -189,6 +189,8 @@ class MainLMMViewController: BaseViewController
             return
         }
         
+        self.viewModel?.registerPushesIfNeeded()
+        
         // TODO: move "finishViewActions" logic inside view model
         self.input.actionsManager.finishViewActions(for: self.profiles()?.value ?? [], source: self.type.value.sourceType())
         

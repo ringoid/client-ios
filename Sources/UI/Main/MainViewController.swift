@@ -159,7 +159,8 @@ class MainViewController: BaseViewController
             chatManager: self.input.chatManager,
             profileManager: self.input.profileManager,
             navigationManager: self.input.navigationManager,
-            newFacesManager: self.input.newFacesManager
+            newFacesManager: self.input.newFacesManager,
+            notifications: self.input.notifications
         )
        
         self.menuVCCache[.like] = vc

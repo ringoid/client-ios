@@ -32,9 +32,9 @@ enum FeedAction
 
 class ActionsManager
 {
-    var lastActionDate: BehaviorRelay<Date?> = BehaviorRelay<Date?>(value: nil)
-    
+    let lastActionDate: BehaviorRelay<Date?> = BehaviorRelay<Date?>(value: nil)
     let isInternetAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
+    let isLikedSomeone: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     fileprivate let db: DBService
     fileprivate let apiService: ApiService
@@ -67,6 +67,7 @@ class ActionsManager
         self.setupDateStorage()
         self.inqueueStoredActions()
         self.setupTimerTrigger()
+        self.setupBindings()
     }
     
     fileprivate func add(_ action: FeedAction, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
@@ -134,9 +135,9 @@ class ActionsManager
         self.startViewAction(profile, photo: photo)
         self.commit()
         
-        guard !self.notifications.isRegistered && !self.notifications.isGranted else { return }
+        guard !self.isLikedSomeone.value else { return }
         
-        self.notifications.register()
+        self.isLikedSomeone.accept(true)
     }
     
     func unlikeActionProtected(_ profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
@@ -263,6 +264,16 @@ class ActionsManager
     }
     
     // MARK: -
+    
+    fileprivate func setupBindings()
+    {
+        let likedState = UserDefaults.standard.bool(forKey: "isLikedSomeone")
+        self.isLikedSomeone.accept(likedState)
+        self.isLikedSomeone.asObservable().subscribe(onNext: { state in
+            UserDefaults.standard.setValue(likedState, forKey: "isLikedSomeone")
+            UserDefaults.standard.synchronize()
+        }).disposed(by: self.disposeBag)
+    }
     
     fileprivate func setupTimerTrigger()
     {
