@@ -226,7 +226,8 @@ class MainViewController: BaseViewController
             actionsManager: self.input.actionsManager,
             profileManager: self.input.profileManager,
             lmmManager: self.input.lmmManager,
-            navigationManager: self.input.navigationManager
+            navigationManager: self.input.navigationManager,
+            notifications: self.input.notifications
         )
         
         self.menuVCCache[.search] = vc

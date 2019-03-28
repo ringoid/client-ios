@@ -103,6 +103,9 @@ class ActionsManager
         self.lastActionDate.accept(nil)
         
         self.setupTimerTrigger()
+        
+        UserDefaults.standard.removeObject(forKey: "isLikedSomeone")
+        UserDefaults.standard.synchronize()
     }
     
     func finishViewActions(for profiles: [Profile], source: SourceFeedType)

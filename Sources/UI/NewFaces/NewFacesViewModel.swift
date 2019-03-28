@@ -17,6 +17,7 @@ struct NewFacesVMInput
     let profileManager: UserProfileManager
     let lmmManager: LMMManager
     let navigationManager: NavigationManager
+    let notifications: NotificationService
 }
 
 class NewFacesViewModel
@@ -29,6 +30,7 @@ class NewFacesViewModel
     let navigationManager: NavigationManager
     let actionsManager: ActionsManager
     let lmmManager: LMMManager
+    let notifications: NotificationService
     
     init(_ input: NewFacesVMInput)
     {
@@ -37,6 +39,7 @@ class NewFacesViewModel
         self.navigationManager = input.navigationManager
         self.actionsManager = input.actionsManager
         self.lmmManager = input.lmmManager
+        self.notifications = input.notifications
     }
     
     func refresh() -> Observable<Void>
@@ -72,5 +75,14 @@ class NewFacesViewModel
     func moveToProfile()
     {
         self.navigationManager.mainItem.accept(.profileAndPick)
+    }
+    
+    func registerPushesIfNeeded()
+    {
+        guard self.profileManager.photos.value.filter({ !$0.isBlocked }).count >  0 else { return }
+        guard self.actionsManager.isLikedSomeone.value else { return }
+        guard !self.notifications.isRegistered && !self.notifications.isGranted else { return }
+        
+        self.notifications.register()
     }
 }

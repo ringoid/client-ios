@@ -97,6 +97,8 @@ class NewFacesViewController: BaseViewController
             return
         }
         
+        self.viewModel?.registerPushesIfNeeded()
+                
         self.toggleActivity(.fetching)
         
         self.lastFetchCount = -1
