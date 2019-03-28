@@ -17,11 +17,10 @@ struct RemoteNotification
 protocol NotificationService
 {
     var notification: BehaviorRelay<RemoteNotification> { get }
-    var token: String? { get }
+    var token: BehaviorRelay<String?> { get }
     var isRegistered: Bool { get }
     var isGranted: Bool { get }
     
-    func update(token: String)
     func handle(notificationDict: [AnyHashable : Any])
     func register()
 }

@@ -277,6 +277,21 @@ class ApiServiceDefault: ApiService
         return RxAlamofire.request(.get, "web_url_error_status".localized(), parameters: [:], headers: [:]).string()
     }
     
+    func updatePush(_ token: String) -> Observable<Void>
+    {
+        var params: [String: Any] = [
+            "deviceToken": token
+        ]
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        return self.request(.post, path: "push/update_token", jsonBody: params).flatMap { _ -> Observable<Void> in
+            return .just(())
+        }
+    }
+    
     // MARK: - Basic
     
     fileprivate func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any], id: String? = nil) -> Observable<[String: Any]>

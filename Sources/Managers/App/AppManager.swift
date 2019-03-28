@@ -28,6 +28,7 @@ class AppManager
     var navigationManager: NavigationManager!
     var errorsManager: ErrorsManager!
     var promotionManager: PromotionManager!
+    var notificationsManager: NotificationsManager!
     
     func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
@@ -64,7 +65,7 @@ class AppManager
     
     func onGot(deviceToken: String)
     {
-        self.notifications.update(token: deviceToken)
+        self.notifications.token.accept(deviceToken)
     }
     
     func onGot(notificationDict: [AnyHashable : Any])
@@ -105,6 +106,7 @@ class AppManager
         self.navigationManager = NavigationManager()
         self.errorsManager = ErrorsManager(self.apiService, settings: self.settingsMananger)
         self.promotionManager = PromotionManager(launchOptions, api: self.apiService)
+        self.notificationsManager = NotificationsManager(self.notifications, api: self.apiService)
         
         ThemeManager.shared.storageService = self.defaultStorage
         LocaleManager.shared.storage = self.defaultStorage

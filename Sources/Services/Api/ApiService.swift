@@ -53,4 +53,6 @@ protocol ApiService
     func sendActions(_ actions: [ApiAction]) -> Observable<Date>
     
     func getStatusText() -> Observable<String>
+    
+    func updatePush(_ token: String) -> Observable<Void>
 }

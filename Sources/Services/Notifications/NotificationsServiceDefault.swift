@@ -13,7 +13,7 @@ import RxCocoa
 class NotificationsServiceDefault: NSObject, NotificationService
 {
     var notification: BehaviorRelay<RemoteNotification> = BehaviorRelay<RemoteNotification>(value: RemoteNotification(message: ""))
-    var token: String? = nil
+    var token: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     var isRegistered: Bool = false
     var isGranted: Bool = false
     
@@ -24,11 +24,6 @@ class NotificationsServiceDefault: NSObject, NotificationService
         UNUserNotificationCenter.current().delegate = self
         self.isRegistered = UIApplication.shared.isRegisteredForRemoteNotifications
         self.checkAndRegister()
-    }
-    
-    func update(token: String)
-    {
-        self.token = token
     }
     
     func handle(notificationDict: [AnyHashable : Any])

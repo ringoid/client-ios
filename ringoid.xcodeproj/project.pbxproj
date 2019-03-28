@@ -149,6 +149,8 @@
 		57ED486E224B82C10033EB0B /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED486C224B82C10033EB0B /* NotificationsService.swift */; };
 		57ED4870224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED486F224B82D30033EB0B /* NotificationsServiceDefault.swift */; };
 		57ED4871224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED486F224B82D30033EB0B /* NotificationsServiceDefault.swift */; };
+		57ED4874224D10060033EB0B /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED4873224D10050033EB0B /* NotificationsManager.swift */; };
+		57ED4875224D10060033EB0B /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED4873224D10050033EB0B /* NotificationsManager.swift */; };
 		57EE64BF221435E100246B45 /* SettingsEmailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64BE221435E100246B45 /* SettingsEmailCell.swift */; };
 		57EE64C1221478A600246B45 /* SettingsLegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64C0221478A600246B45 /* SettingsLegalViewController.swift */; };
 		57EE64C3221478EA00246B45 /* SettingsLegalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE64C2221478EA00246B45 /* SettingsLegalViewModel.swift */; };
@@ -424,6 +426,7 @@
 		57ED48692249FC070033EB0B /* Ringoid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ringoid.entitlements; sourceTree = "<group>"; };
 		57ED486C224B82C10033EB0B /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 		57ED486F224B82D30033EB0B /* NotificationsServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsServiceDefault.swift; sourceTree = "<group>"; };
+		57ED4873224D10050033EB0B /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		57EE64BE221435E100246B45 /* SettingsEmailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEmailCell.swift; sourceTree = "<group>"; };
 		57EE64C0221478A600246B45 /* SettingsLegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalViewController.swift; sourceTree = "<group>"; };
 		57EE64C2221478EA00246B45 /* SettingsLegalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalViewModel.swift; sourceTree = "<group>"; };
@@ -597,6 +600,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				57ED4872224D0FF50033EB0B /* Notifications */,
 				574A7DA422434EE30065AE56 /* Promotion */,
 				57386E49220C7A6D0000E5D9 /* UI */,
 				576FC1172201E00700BA5ABE /* Locale */,
@@ -1020,6 +1024,14 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		57ED4872224D0FF50033EB0B /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				57ED4873224D10050033EB0B /* NotificationsManager.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		57EE655B2216DC9200246B45 /* Sentry */ = {
 			isa = PBXGroup;
 			children = (
@@ -1395,6 +1407,7 @@
 				576FC1142201876A00BA5ABE /* DeviceService.swift in Sources */,
 				57585D3F21E354FA00038798 /* NewFacesManager.swift in Sources */,
 				57B863D521EE16E700B9CC70 /* VerticalGradientView.swift in Sources */,
+				57ED4874224D10060033EB0B /* NotificationsManager.swift in Sources */,
 				57B863D721EE179F00B9CC70 /* TouchThroughView.swift in Sources */,
 				574A7DA622434EFE0065AE56 /* PromotionManager.swift in Sources */,
 				57801A81222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */,
@@ -1533,6 +1546,7 @@
 				57EE64E72216711000246B45 /* Storyboards.swift in Sources */,
 				57EE655E2216DCA700246B45 /* SentryService.swift in Sources */,
 				57EE64E82216711000246B45 /* DeviceService.swift in Sources */,
+				57ED4875224D10060033EB0B /* NotificationsManager.swift in Sources */,
 				57EE64E92216711000246B45 /* NewFacesManager.swift in Sources */,
 				574A7DA722434EFE0065AE56 /* PromotionManager.swift in Sources */,
 				57801A82222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */,
