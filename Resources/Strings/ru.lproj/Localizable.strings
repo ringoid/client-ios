@@ -18,6 +18,7 @@
 "common_sex_male" = "Мужчина";
 "common_sex_female" = "Женщина";
 "common_uncancellable" = "Восстановления нет.";
+"common_clipboard" = "Скопировано в буфер";
 
 "error_common" = "Ой! Что-то пошло не так";
 

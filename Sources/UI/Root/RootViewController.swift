@@ -170,7 +170,12 @@ class RootViewController: BaseViewController {
                 self?.move(to: .auth)
                 self?.appManager.settingsMananger.reset()
             } else {
-                self?.move(to: .search)
+                if self?.appManager.settingsMananger.isFirstLaunch.value == true {
+                    self?.move(to: .search)
+                     self?.appManager.settingsMananger.isFirstLaunch.accept(false)
+                } else {
+                    self?.move(to: .main)
+                }
             }
         }).disposed(by: disposeBag)
     }

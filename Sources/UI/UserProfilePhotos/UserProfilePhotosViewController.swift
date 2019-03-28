@@ -264,7 +264,6 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
-        self.viewModel?.isFirstTime.accept(false)
         picker.dismiss(animated: true, completion: nil)
     }
 }

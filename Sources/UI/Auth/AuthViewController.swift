@@ -62,7 +62,6 @@ class AuthViewController: BaseViewController
         self.setupBindings()
         self.birthYearTextField.delegate = self
         self.birthYearTextField.becomeFirstResponder()
-        self.viewModel?.enableFirstTimeFlow()
     }
     
     override func updateTheme()

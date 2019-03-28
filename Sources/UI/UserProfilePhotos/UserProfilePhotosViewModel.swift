@@ -35,12 +35,7 @@ class UserProfilePhotosViewModel
     {
         return self.input.profileManager.lastPhotoId
     }
-    
-    var isFirstTime: BehaviorRelay<Bool>
-    {
-        return self.input.settingsManager.isFirstTimePhoto
-    }
-    
+        
     var isAuthorized: BehaviorRelay<Bool>
     {
         return self.input.settingsManager.isAuthorized

@@ -53,11 +53,6 @@ class AuthViewModel
         return self.apiService.createProfile(year: year, sex: sex, privateKey: privateKey, referralCode: referralCode)
     }
     
-    func enableFirstTimeFlow()
-    {
-        self.settingsManager.isFirstTimePhoto.accept(true)
-    }
-    
     func switchTheme()
     {
         let theme = ThemeManager.shared.theme.value

@@ -19,7 +19,7 @@ class SettingsManager
     let lmm: LMMManager
     let newFaces: NewFacesManager
     
-    let isFirstTimePhoto: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    let isFirstLaunch: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     var customerId: BehaviorRelay<String>
     {
@@ -59,7 +59,7 @@ class SettingsManager
         self.actions.reset()
         self.lmm.reset()
         self.newFaces.reset()
-        self.isFirstTimePhoto.accept(true)
+        self.isFirstLaunch.accept(true)
         self.db.reset()
         self.fs.reset()
     }
@@ -68,19 +68,19 @@ class SettingsManager
     
     fileprivate func loadSettings()
     {
-        self.storage.object("is_first_time").subscribe(onNext:{ [weak self] obj in
+        self.storage.object("is_first_launch").subscribe(onNext:{ [weak self] obj in
             guard let state = Bool.create(obj) else { return }
             
-            self?.isFirstTimePhoto.accept(state)
+            self?.isFirstLaunch.accept(state)
         }).disposed(by: self.disposeBag)
     }
     
     fileprivate func setupBindings()
     {
-        self.isFirstTimePhoto.asObservable().subscribe(onNext: { [weak self] state in
+        self.isFirstLaunch.asObservable().subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
             
-            self.storage.store(state, key: "is_first_time").subscribe().disposed(by: self.disposeBag)
+            self.storage.store(state, key: "is_first_launch").subscribe().disposed(by: self.disposeBag)
         }).disposed(by: self.disposeBag)
     }
 }

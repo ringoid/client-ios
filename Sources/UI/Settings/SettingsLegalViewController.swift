@@ -212,7 +212,14 @@ extension SettingsLegalViewController: UITableViewDataSource, UITableViewDelegat
             break
         #endif
             
-        case .customerId: break
+        case .customerId:
+            UIPasteboard.general.string = self.viewModel?.customerId.value ?? ""
+            
+            let alertVC = UIAlertController(title: nil, message: "common_clipboard".localized(), preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "button_close".localized(), style: .default, handler: nil))
+            
+            self.present(alertVC, animated: true, completion: nil)
+            break
         }
     }
 }
