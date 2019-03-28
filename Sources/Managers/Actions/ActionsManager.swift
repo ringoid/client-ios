@@ -411,9 +411,14 @@ extension FeedAction
 
 extension BlockReason
 {
-    static func reportResons() -> [BlockReason]
+    static func reportChatResons() -> [BlockReason]
     {
         return [.block, .inappropriate, .stolen, .spam, .criminal, .underaged, .harrasment]
+    }
+    
+    static func reportResons() -> [BlockReason]
+    {
+        return [.inappropriate, .stolen, .spam, .underaged]
     }
     
     func title() -> String

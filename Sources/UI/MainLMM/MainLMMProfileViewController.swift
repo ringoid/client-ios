@@ -127,6 +127,16 @@ class MainLMMProfileViewController: UIViewController
         self.preheater.startPreheating(with: [self.input.profile.orderedPhotos()[1].filepath().url()])
     }
     
+    func block(_ isChat: Bool)
+    {
+        guard self.input.actionsManager.checkConnectionState() else { return }
+        
+        weak var weakSelf = self
+        let profile = self.input.profile
+        self.onChatHide?(profile, profile.orderedPhotos()[self.currentIndex.value], weakSelf)
+        self.showBlockOptions(isChat)
+    }
+    
     // MARK: - Actions
     
     @IBAction func onChatSelected()
@@ -143,12 +153,7 @@ class MainLMMProfileViewController: UIViewController
     
     @IBAction func onBlock()
     {
-        guard self.input.actionsManager.checkConnectionState() else { return }
-        
-        weak var weakSelf = self
-        let profile = self.input.profile
-        self.onChatHide?(profile, profile.orderedPhotos()[self.currentIndex.value], weakSelf)
-        self.showBlockOptions()
+        self.block(false)
     }
     
     // MARK: -
@@ -177,7 +182,7 @@ class MainLMMProfileViewController: UIViewController
         }).disposed(by: self.diposeBag)
     }
     
-    fileprivate func showBlockOptions()
+    fileprivate func showBlockOptions(_ isChat: Bool)
     {
         UIManager.shared.blockModeEnabled.accept(true)
         onBlockOptionsWillShow?()
@@ -188,7 +193,7 @@ class MainLMMProfileViewController: UIViewController
             self.viewModel?.block(at: self.currentIndex.value, reason: BlockReason(rawValue: 0)!)
         }))
         alertVC.addAction(UIAlertAction(title: "block_profile_button_report".localized(), style: .default, handler: { _ in
-            self.showBlockReasonOptions()
+            self.showBlockReasonOptions(isChat)
         }))
         alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
             self.onBlockOptionsWillHide?()
@@ -198,13 +203,14 @@ class MainLMMProfileViewController: UIViewController
         self.present(alertVC, animated: true, completion: nil)
     }
     
-    fileprivate func showBlockReasonOptions()
+    fileprivate func showBlockReasonOptions(_ isChat: Bool)
     {
         onBlockOptionsWillShow?()
         
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        for reason in BlockReason.reportResons() {            
+        let reasons = isChat ? BlockReason.reportChatResons() : BlockReason.reportResons()
+        for reason in reasons {            
             alertVC.addAction(UIAlertAction(title: reason.title(), style: .default) { _ in
                 UIManager.shared.blockModeEnabled.accept(false)
                 self.viewModel?.block(at: self.currentIndex.value, reason: reason)

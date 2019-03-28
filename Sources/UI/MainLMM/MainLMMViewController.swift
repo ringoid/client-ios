@@ -336,7 +336,7 @@ class MainLMMViewController: BaseViewController
             , onClose: { [weak self] in
                 self?.hideChat(profileVC, profile: profile, photo: photo, indexPath: indexPath)
             }, onBlock: { [weak profileVC] in
-                profileVC?.onBlock()
+                profileVC?.block(true)
         })
   
         self.chatContainerView.embed(vc, to: self)
