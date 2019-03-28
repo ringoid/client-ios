@@ -50,7 +50,7 @@
 "lmm_tab_matches" = "Matches";
 "lmm_tab_messenger" = "Chats";
 
-"login_button" = "Continue to Upload Photo";
+"login_button" = "Continue";
 "login_terms" = "By tapping the button below, you confirm that you have read, understood, consent and agree to Ringoid's $terms$ and $policy$, and that you are of legal age and adult, as defined by the country or state from where you access Ringoid.";
 "login_year_of_birth_et_hint" = "Year of Birth";
 "login_variable_terms" = "Terms of Service";

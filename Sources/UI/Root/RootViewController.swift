@@ -16,6 +16,7 @@ fileprivate enum AppUIMode
     case unknown
     case auth
     case main
+    case search
     case userProfile
 }
 
@@ -66,6 +67,9 @@ class RootViewController: BaseViewController {
         case .main:
             self.embedMainVC()
             self.appManager.navigationManager.mainItem.accept(.profileAndFetch)
+        case .search:
+            self.embedMainVC()
+            self.appManager.navigationManager.mainItem.accept(.searchAndFetch)
         case .userProfile:
             self.embedMainVC()
             self.appManager.navigationManager.mainItem.accept(.profile)
@@ -166,8 +170,7 @@ class RootViewController: BaseViewController {
                 self?.move(to: .auth)
                 self?.appManager.settingsMananger.reset()
             } else {
-                self?.move(to: .main)
-                self?.appManager.navigationManager.mainItem.accept(.searchAndFetch)
+                self?.move(to: .search)
             }
         }).disposed(by: disposeBag)
     }
