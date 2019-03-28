@@ -292,7 +292,7 @@ class NewFacePhotoViewController: UIViewController
     
     fileprivate func showAddPhotoAlert()
     {
-        let alertVC = UIAlertController(title: nil, message: "profile_add_photo".localized(), preferredStyle: .alert)
+        let alertVC = UIAlertController(title: nil, message: "feed_explore_dialog_no_user_photo_description".localized(), preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "button_add_photo".localized(), style: .default, handler: { [weak self] _ in
             self?.input.navigationManager.mainItem.accept(.profileAndPick)
         }))
