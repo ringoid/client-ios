@@ -88,6 +88,8 @@ class PromotionManager
     
     fileprivate func send(_ referralCode: String)
     {
+        guard self.api.isAuthorized.value else { return }
+        
         self.api.claim(referralCode).subscribe(onNext: { [weak self] _ in
             self?.storeReferral(referralCode)
         }).disposed(by: self.disposeBag)
@@ -95,6 +97,7 @@ class PromotionManager
     
     fileprivate func storeReferral(_ code: String)
     {
+        log("Referral code claim success: \(code)", level: .high)
         UserDefaults.standard.removeObject(forKey: "referral_id")
         UserDefaults.standard.synchronize()
         self.valet.set(string: code, forKey: "referral_id")
