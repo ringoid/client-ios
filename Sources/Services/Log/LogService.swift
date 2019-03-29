@@ -49,7 +49,10 @@ class LogService
             timestamp: Date(),
             level: level
             )])
+        
+        #if DEBUG
         print("LOG(\(self.formatter.string(from: Date()))): \(message)")
+        #endif
     }
     
     func clear()

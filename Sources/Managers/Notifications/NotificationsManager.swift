@@ -32,6 +32,7 @@ class NotificationsManager
             guard let token = token else { return }
             guard let `self` = self else { return }
             
+            log("DEVICE TOKEN: \(token)", level: .high)
             self.api.updatePush(token).subscribe().disposed(by: self.disposeBag)
         }).disposed(by: self.disposeBag)
     }
