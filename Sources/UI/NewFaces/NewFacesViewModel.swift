@@ -22,7 +22,7 @@ struct NewFacesVMInput
 
 class NewFacesViewModel
 {
-    var profiles: BehaviorRelay<[NewFaceProfile]> { return self.newFacesManager.profiles }
+    let profiles: BehaviorRelay<[NewFaceProfile]> = BehaviorRelay<[NewFaceProfile]>(value: [])
     var isFetching : BehaviorRelay<Bool> { return self.newFacesManager.isFetching }
     
     let newFacesManager: NewFacesManager
@@ -32,6 +32,8 @@ class NewFacesViewModel
     let lmmManager: LMMManager
     let notifications: NotificationService
     
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
     init(_ input: NewFacesVMInput)
     {
         self.newFacesManager = input.newFacesManager
@@ -40,6 +42,8 @@ class NewFacesViewModel
         self.actionsManager = input.actionsManager
         self.lmmManager = input.lmmManager
         self.notifications = input.notifications
+        
+        self.setupBindings()
     }
     
     func refresh() -> Observable<Void>
@@ -84,5 +88,14 @@ class NewFacesViewModel
         guard !self.notifications.isRegistered && !self.notifications.isGranted else { return }
         
         self.notifications.register()
+    }
+    
+    // MARK: -
+    
+    fileprivate func setupBindings()
+    {
+        self.newFacesManager.profiles.subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] updatedProfiles in
+            self?.profiles.accept(updatedProfiles)
+        }).disposed(by: self.disposeBag)
     }
 }
