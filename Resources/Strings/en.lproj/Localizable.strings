@@ -61,6 +61,8 @@
 "profile_dialog_image_another_button_add" = "Add another photo";
 "profile_dialog_image_another_button_cancel" = "Discover new users";
 "profile_dialog_image_another_title" = "What's next?";
+"profile_dialog_image_blocked_button" = "Terms of Service";
+"profile_dialog_image_blocked_title" = "Your photo was deleted for violating Terms of Service";
 "profile_empty_images" = "Add photo to\nsee who likes you";
 "profile_empty_title" = "Profile";
 

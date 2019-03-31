@@ -18,8 +18,9 @@ class UserProfileManager
     let deviceService: DeviceService
     let storage: XStorageService
     
-    var photos: BehaviorRelay<[UserPhoto]> = BehaviorRelay<[UserPhoto]>(value: [])
-    var lastPhotoId: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+    let photos: BehaviorRelay<[UserPhoto]> = BehaviorRelay<[UserPhoto]>(value: [])
+    let lastPhotoId: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+    let isBlocked: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     var isPhotosAdded: Bool
     {
         return !self.photos.value.filter({ !$0.isBlocked }).isEmpty
@@ -154,14 +155,21 @@ class UserProfileManager
     
     fileprivate func merge(_ incoming: [ApiUserPhoto])
     {
+        var isBlokedRemotely = false
+        
         incoming.forEach({ remoteApiPhoto in
             let remoteId = remoteApiPhoto.originPhotoId
+            
             self.photos.value.forEach { localPhoto in
                 guard let localId = localPhoto.originId else { return }
 
                 if  remoteId == localId {
                     try? localPhoto.realm?.write {
                         self.fileService.rm(localPhoto.filepath())
+                        
+                        if !localPhoto.isBlocked && remoteApiPhoto.isBlocked {
+                            isBlokedRemotely = true
+                        }
                         
                         localPhoto.likes = remoteApiPhoto.likes
                         localPhoto.isBlocked = remoteApiPhoto.isBlocked
@@ -172,5 +180,7 @@ class UserProfileManager
                 }
             }
         })
+        
+        self.isBlocked.accept(isBlokedRemotely)
     }
 }

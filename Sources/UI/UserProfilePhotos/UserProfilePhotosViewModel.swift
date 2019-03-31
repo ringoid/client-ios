@@ -27,6 +27,10 @@ class UserProfilePhotosViewModel
     let input: UserProfilePhotosVCInput
     
     let photos: BehaviorRelay<[UserPhoto]> = BehaviorRelay<[UserPhoto]>(value: [])
+    var isBlocked: BehaviorRelay<Bool>
+    {
+        return self.input.profileManager.isBlocked
+    }
     
     var lastPhotoId: BehaviorRelay<String?>
     {

@@ -52,10 +52,15 @@ class UserProfilePhotosViewController: BaseViewController
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
+        
+        if self.viewModel?.isBlocked.value == true {
+            self.viewModel?.isBlocked.accept(false)
+            self.showBlockedAlert()
+        }
 
         guard let photos = self.viewModel?.photos.value else { return }
         
-        self.preheater.startPreheating(with: photos.compactMap({ $0.filepath().url() }))        
+        self.preheater.startPreheating(with: photos.compactMap({ $0.filepath().url() }))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -150,6 +155,11 @@ class UserProfilePhotosViewController: BaseViewController
             guard let `self` = self else { return }
             
             self.updatePages()
+            
+            if self.viewModel?.isBlocked.value == true {
+                self.viewModel?.isBlocked.accept(false)
+                self.showBlockedAlert()
+            }
         }).disposed(by: self.disposeBag)
     }
     
@@ -244,6 +254,17 @@ class UserProfilePhotosViewController: BaseViewController
         self.optionsBtn.isHidden = true
         self.addBtn.isHidden = true
         self.titleLabel.isHidden = true
+    }
+    
+    fileprivate func showBlockedAlert()
+    {
+        let alertVC = UIAlertController(title: nil, message: "profile_dialog_image_blocked_title".localized(), preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "profile_dialog_image_blocked_button".localized(), style: .default, handler: { _ in
+            UIApplication.shared.open(AppConfig.termsUrl, options: [:], completionHandler: nil)
+        }))
+        alertVC.addAction(UIAlertAction(title: "button_close", style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
 
