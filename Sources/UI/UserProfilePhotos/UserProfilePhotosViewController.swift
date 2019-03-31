@@ -25,6 +25,7 @@ class UserProfilePhotosViewController: BaseViewController
     fileprivate var lastClientPhotoId: String? = nil
     fileprivate let preheater = ImagePreheater()
     fileprivate var pickedPhoto: UIImage?
+    fileprivate var isViewShown: Bool = false
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
@@ -53,6 +54,8 @@ class UserProfilePhotosViewController: BaseViewController
     {
         super.viewDidAppear(animated)
         
+        self.isViewShown = true
+        
         if self.viewModel?.isBlocked.value == true {
             self.viewModel?.isBlocked.accept(false)
             self.showBlockedAlert()
@@ -61,6 +64,13 @@ class UserProfilePhotosViewController: BaseViewController
         guard let photos = self.viewModel?.photos.value else { return }
         
         self.preheater.startPreheating(with: photos.compactMap({ $0.filepath().url() }))
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+        
+        self.isViewShown = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -156,7 +166,7 @@ class UserProfilePhotosViewController: BaseViewController
             
             self.updatePages()
             
-            if self.viewModel?.isBlocked.value == true {
+            if self.viewModel?.isBlocked.value == true && self.isViewShown {
                 self.viewModel?.isBlocked.accept(false)
                 self.showBlockedAlert()
             }
@@ -262,7 +272,7 @@ class UserProfilePhotosViewController: BaseViewController
         alertVC.addAction(UIAlertAction(title: "profile_dialog_image_blocked_button".localized(), style: .default, handler: { _ in
             UIApplication.shared.open(AppConfig.termsUrl, options: [:], completionHandler: nil)
         }))
-        alertVC.addAction(UIAlertAction(title: "button_close", style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "button_close".localized(), style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
     }
