@@ -79,7 +79,7 @@ class UploaderServiceDefault: UploaderService
                     guard let filename = String.create(filenameObj) else { return }
                     
                     let path = FilePath(filename: filename, type: .temporary)
-                    guard let data = try? Data(contentsOf: path.url()) else { return }
+                    guard let url = path.url(), let data = try? Data(contentsOf: url) else { return }
                     
                    self.upload(data, to: URL(string: key)!).subscribe().disposed(by: self.disposeBag)
                 }).disposed(by: self.disposeBag)
@@ -90,7 +90,11 @@ class UploaderServiceDefault: UploaderService
     fileprivate func store(_ key: String, data: Data)
     {
         let path = FilePath.unique(.temporary)
-        try? data.write(to: path.url())
+        
+        if let url = path.url() {
+            try? data.write(to: url)
+        }
+        
         self.storage.object("stored_uploads").asObservable().subscribe(onNext: { [weak self] obj in
             guard let `self` = self else { return }
             

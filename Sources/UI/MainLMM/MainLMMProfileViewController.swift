@@ -124,7 +124,9 @@ class MainLMMProfileViewController: UIViewController
     {
         guard self.input.profile.photos.count >= 2 else { return }
         
-        self.preheater.startPreheating(with: [self.input.profile.orderedPhotos()[1].filepath().url()])
+        if let url = self.input.profile.orderedPhotos()[1].filepath().url() {
+            self.preheater.startPreheating(with: [url])
+        }
     }
     
     func block(_ isChat: Bool)
@@ -308,7 +310,7 @@ extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageView
     {
         guard let urls = self.viewModel?.input.profile.orderedPhotos().map({ $0.filepath().url() }) else { return }
         
-        self.preheater.startPreheating(with: urls)
+        self.preheater.startPreheating(with: urls.compactMap({ $0 }))
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController?

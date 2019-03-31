@@ -82,7 +82,9 @@ class UserProfileManager
         }).disposed(by: self.disposeBag)
                 
         if let id = photoId {
-            self.uploader.cancel(path.url())
+            guard let url = path.url() else { return }
+            
+            self.uploader.cancel(url)
             self.apiService.deletePhoto(id).subscribe().disposed(by: self.disposeBag)
         }
     }
@@ -142,7 +144,10 @@ class UserProfileManager
     fileprivate func storeTemporary(_ data: Data) -> FilePath
     {
         let path = FilePath.unique(.documents)
-        try? data.write(to: path.url())
+        
+        if let url = path.url() {
+            try? data.write(to: url)
+        }
         
         return path
     }

@@ -56,7 +56,10 @@ class ChatViewController: BaseViewController
             placeholder: .scaleAspectFill
         )
         let options = ImageLoadingOptions( contentModes: contentModes)
-        Nuke.loadImage(with: self.input.photo.filepath().url(), options: options, into: self.photoView)
+        
+        if let url = self.input.photo.filepath().url() {
+            Nuke.loadImage(with: url, options: options, into: self.photoView)
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         

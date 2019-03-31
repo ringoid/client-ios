@@ -19,9 +19,9 @@ class FileServiceDefault: FileService
     
     func rm(_ path: FilePath)
     {
-        guard path.type != .url else { return }
+        guard path.type != .url, let url = path.url() else { return }
         
-        try? self.fm.removeItem(at: path.url())
+        try? self.fm.removeItem(at: url)
     }
     
     func reset()

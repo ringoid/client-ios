@@ -55,7 +55,7 @@ class UserProfilePhotosViewController: BaseViewController
 
         guard let photos = self.viewModel?.photos.value else { return }
         
-        self.preheater.startPreheating(with: photos.map({ $0.filepath().url() }))        
+        self.preheater.startPreheating(with: photos.compactMap({ $0.filepath().url() }))        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)

@@ -89,8 +89,9 @@ class NewFaceProfileViewController: UIViewController
     {
         guard !self.input.profile.isInvalidated else { return }
         guard self.input.profile.photos.count >= 2 else { return }
+        guard let url = self.input.profile.orderedPhotos()[1].filepath().url() else { return }
         
-        self.preheater.startPreheating(with: [self.input.profile.orderedPhotos()[1].filepath().url()])
+        self.preheater.startPreheating(with: [url])
     }
     
     // MARK: - Actions
@@ -205,7 +206,7 @@ extension NewFaceProfileViewController: UIPageViewControllerDelegate, UIPageView
     {
         guard let urls = self.viewModel?.input.profile.orderedPhotos().map({ $0.filepath().url() }) else { return }
         
-        self.preheater.startPreheating(with: urls)
+        self.preheater.startPreheating(with: urls.compactMap({ $0 }))
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController?

@@ -28,11 +28,11 @@ let documentsDirectoryPath = FileManager.default.urls(for: .documentDirectory, i
 
 extension FilePath
 {
-    func url() -> URL
+    func url() -> URL?
     {
         switch self.type {
         case .url:
-            return URL(string: self.filename)!
+            return URL(string: self.filename)
         case .documents:
             return URL(fileURLWithPath: documentsDirectoryPath + self.filename)
         case .temporary:
