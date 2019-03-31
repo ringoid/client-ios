@@ -26,10 +26,7 @@ class UserProfilePhotosViewModel
 {
     let input: UserProfilePhotosVCInput
     
-    var photos: BehaviorRelay<[UserPhoto]>
-    {
-        return self.input.profileManager.photos
-    }
+    let photos: BehaviorRelay<[UserPhoto]> = BehaviorRelay<[UserPhoto]>(value: [])
     
     var lastPhotoId: BehaviorRelay<String?>
     {
@@ -41,9 +38,13 @@ class UserProfilePhotosViewModel
         return self.input.settingsManager.isAuthorized
     }
     
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
     init(_ input: UserProfilePhotosVCInput)
     {
         self.input = input
+        
+        self.setupBindings()
     }
     
     func add(_ photo: UIImage) -> Observable<UserPhoto>
@@ -75,5 +76,14 @@ class UserProfilePhotosViewModel
     func moveToSearch()
     {
         self.input.navigationManager.mainItem.accept(.searchAndFetch)
+    }
+    
+    // MARK: -
+    
+    fileprivate func setupBindings()
+    {
+        self.input.profileManager.photos.asObservable().subscribe(onNext: { [weak self] updatedPhotos in
+            self?.photos.accept(updatedPhotos.filter({ !$0.isBlocked }))
+        }).disposed(by: self.disposeBag)
     }
 }
