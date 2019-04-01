@@ -148,6 +148,19 @@ class SettingsViewController: BaseViewController
         
         self.present(vc, animated: true, completion: nil)
     }
+    
+    fileprivate func showSettingsAlert()
+    {
+        let alertVC = UIAlertController(title: nil, message: "settings_push_permission".localized(), preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "button_settings".localized(), style: .default, handler: { _ in
+            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(settingsUrl)
+            }
+        }))
+        alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
+    }
 }
 
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
@@ -166,6 +179,19 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
     {
         let option = self.options[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: option.cellIdentifier)!
+        
+        if let option = SettingsOptionType(rawValue: indexPath.row) {
+            switch option {
+            case .push:
+                (cell as? SettingsNotificationsCell)?.settingsManager = self.input.settingsManager
+                (cell as? SettingsNotificationsCell)?.onSettingsChangesRequired = { [weak self] in
+                    self?.showSettingsAlert()
+                }
+                break
+                
+            default: break
+            }
+        }
 
         return cell
     }

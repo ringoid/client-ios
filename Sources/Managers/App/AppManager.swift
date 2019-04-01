@@ -44,6 +44,8 @@ class AppManager
     func onBecomeActive()
     {
         self.promotionManager.sendReferraCodeIfNeeded()
+        self.settingsMananger.updateRemoteSettings()
+        self.notifications.isGranted.accept(UIApplication.shared.isRegisteredForRemoteNotifications)
     }
     
     func onResignActive()

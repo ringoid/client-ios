@@ -66,7 +66,7 @@ class MainLMMViewModel
     func registerPushesIfNeeded()
     {
         guard self.actionsManager.isLikedSomeone.value else { return }
-        guard !self.notifications.isRegistered && !self.notifications.isGranted else { return }
+        guard !self.notifications.isRegistered && !self.notifications.isGranted.value else { return }
 
         self.notifications.register()
     }

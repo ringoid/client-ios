@@ -13,6 +13,7 @@
 "button_later" = "Not now";
 "button_apply" = "Apply";
 "button_ok" = "OK";
+"button_settings" = "Settings";
 
 "common_pull_to_refresh" = "Pull to refresh";
 "common_sex_male" = "Male";
@@ -75,6 +76,7 @@
 "settings_title" = "Settings";
 "settings_theme_dark" = "Night Mode";
 "settings_push" = "Push notifications";
+"settings_push_permission" = "Ringoid does not have access to your Notifications. Tap Settings and turn on Notifications.";
 
 "settings_info_about" = "About";
 "settings_info_about_dialog_description" = "Copyright © Ringoid Ltd, 2018.\n\nRINGOID LTD is registered in England with Company No. 09427326 and VAT Reg No: GB 208660511. \n\nRegistered Office: 97 Friars Mead, London, E14 3JY, England.\n\nRingoid is a registered trademark of Ringoid Ltd.\n\nRingoid Ltd is trading as Ringoid.\n\nRingoid is registered with the UK\'s Information Commissioner\'s Office with registration number ZA455969 and operates within compliance of the EU General Data Protection Regulation 2018.\n\nEmail: support@ringoid.com\nWeb: http://ringoid.com";

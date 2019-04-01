@@ -14,8 +14,8 @@ class NotificationsServiceDefault: NSObject, NotificationService
 {
     var notification: BehaviorRelay<RemoteNotification> = BehaviorRelay<RemoteNotification>(value: RemoteNotification(message: ""))
     var token: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+    var isGranted: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     var isRegistered: Bool = false
-    var isGranted: Bool = false
     
     override init()
     {
@@ -36,7 +36,7 @@ class NotificationsServiceDefault: NSObject, NotificationService
     {
         UNUserNotificationCenter.current().requestAuthorization(options: [ .badge, .alert, .sound ]) { [weak self] (granted, error) in
             self?.isRegistered = true
-            self?.isGranted = granted
+            self?.isGranted.accept(granted)
             
             if error != nil || !granted
             {

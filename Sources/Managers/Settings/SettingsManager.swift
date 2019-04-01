@@ -32,6 +32,21 @@ class SettingsManager
         return self.api.isAuthorized
     }
     
+    var isNotificationsAllowed: Bool
+    {
+        get {
+            let allowedByUser = UserDefaults.standard.bool(forKey: "notificationsAllowedByUser")
+            let allowedBySystem = self.notifications.isGranted.value
+            
+            return allowedByUser && allowedBySystem
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: "notificationsAllowedByUser")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager, lmm: LMMManager, newFaces: NewFacesManager, notifications: NotificationService)
@@ -48,6 +63,15 @@ class SettingsManager
         self.loadSettings()
         self.updateRemoteSettings()
         self.setupBindings()
+    }
+    
+    func updateRemoteSettings()
+    {
+        self.api.updateSettings(
+            LocaleManager.shared.language.value.rawValue,
+            push: self.isNotificationsAllowed,
+            timezone: NSTimeZone.default.secondsFromGMT() / 3600
+            ).subscribe().disposed(by: self.disposeBag)
     }
     
     func logout()
@@ -85,14 +109,9 @@ class SettingsManager
             
             self.storage.store(state, key: "is_first_launch").subscribe().disposed(by: self.disposeBag)
         }).disposed(by: self.disposeBag)
-    }
-    
-    fileprivate func updateRemoteSettings()
-    {
-        self.api.updateSettings(
-            LocaleManager.shared.language.value.rawValue,
-            push: nil,
-            timezone: NSTimeZone.default.secondsFromGMT() / 3600
-        ).subscribe()
+        
+        self.notifications.isGranted.asObservable().subscribe(onNext: { [weak self] _ in
+            self?.updateRemoteSettings()
+        }).disposed(by: self.disposeBag)
     }
 }

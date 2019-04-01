@@ -85,7 +85,7 @@ class NewFacesViewModel
     {
         guard self.profileManager.photos.value.filter({ !$0.isBlocked }).count >  0 else { return }
         guard self.actionsManager.isLikedSomeone.value else { return }
-        guard !self.notifications.isRegistered && !self.notifications.isGranted else { return }
+        guard !self.notifications.isRegistered && !self.notifications.isGranted.value else { return }
         
         self.notifications.register()
     }

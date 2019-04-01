@@ -50,7 +50,9 @@ class AuthViewModel
         let privateKey = self.promotionManager.privateKey
         let referralCode = self.promotionManager.referralCode
         
-        return self.apiService.createProfile(year: year, sex: sex, privateKey: privateKey, referralCode: referralCode)
+        return self.apiService.createProfile(year: year, sex: sex, privateKey: privateKey, referralCode: referralCode).do(onNext: { [weak self] _ in
+            self?.settingsManager.updateRemoteSettings()
+        })
     }
     
     func switchTheme()

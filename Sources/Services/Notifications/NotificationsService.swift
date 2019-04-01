@@ -18,8 +18,8 @@ protocol NotificationService
 {
     var notification: BehaviorRelay<RemoteNotification> { get }
     var token: BehaviorRelay<String?> { get }
+    var isGranted: BehaviorRelay<Bool> { get }
     var isRegistered: Bool { get }
-    var isGranted: Bool { get }
     
     func handle(notificationDict: [AnyHashable : Any])
     func register()
