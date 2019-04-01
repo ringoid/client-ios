@@ -32,6 +32,7 @@ class NewFacesViewController: BaseViewController
     fileprivate var prevScrollingOffset: CGFloat = 0.0
     fileprivate var isScrollTopVisible: Bool = false
     fileprivate var isTabSwitched: Bool = false
+    fileprivate var visibleCells: [NewFacesCell] = []
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
@@ -256,10 +257,10 @@ class NewFacesViewController: BaseViewController
         let pageRange = lastItemsCount..<totalCount        
         self.lastFeedIds.append(contentsOf: profiles[pageRange].map({ $0.id }))
         
-        self.tableView.performBatchUpdates({
+        // Avoiding insertion inside UI cells events triggered update
+        DispatchQueue.main.async {
             self.tableView.insertRows(at: pageRange.map({ IndexPath(row: $0, section: 0) }), with: .none)
-        }, completion: nil)
-        
+        }
     }
     
     fileprivate func toggleActivity(_ state: NewFacesFeedActivityState)
@@ -298,8 +299,8 @@ class NewFacesViewController: BaseViewController
         let tableBottomOffset = contentOffset + self.tableView.bounds.height
         
         // Cells
-        self.tableView.visibleCells.forEach { cell in
-            guard let vc = (cell as? NewFacesCell)?.containerView.containedVC as? NewFaceProfileViewController else { return }
+        self.visibleCells.forEach { cell in
+            guard let vc = cell.containerView.containedVC as? NewFaceProfileViewController else { return }
             guard let index = self.tableView.indexPath(for: cell)?.row else { return }
             
             let cellTopOffset = CGFloat(index) * cell.bounds.height
@@ -393,6 +394,9 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
+        guard let newFacesCell = cell as? NewFacesCell else { return }
+        
+        self.visibleCells.append(newFacesCell)
         
         if let profiles = self.viewModel?.profiles.value, profiles.count != 0 {
             var distance = profiles.count - indexPath.row
@@ -431,7 +435,13 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
-        (cell as? NewFacesCell)?.containerView.remove()
+        guard let newFacesCell = cell as? NewFacesCell else { return }
+        
+        if let indexToRemove = self.visibleCells.index(of: newFacesCell) {
+            self.visibleCells.remove(at: indexToRemove)
+        }
+        
+        newFacesCell.containerView.remove()
     }
 }
 
@@ -476,8 +486,8 @@ extension NewFacesViewController: UIScrollViewDelegate
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
     {
-        self.tableView.visibleCells.forEach { cell in
-            guard let vc = (cell as? NewFacesCell)?.containerView.containedVC as? NewFaceProfileViewController else { return }
+        self.visibleCells.forEach { cell in
+            guard let vc = cell.containerView.containedVC as? NewFaceProfileViewController else { return }
            
             vc.preheatSecondPhoto()
         }
