@@ -18,6 +18,7 @@ class SettingsManager
     let actions: ActionsManager
     let lmm: LMMManager
     let newFaces: NewFacesManager
+    let notifications: NotificationService
     
     let isFirstLaunch: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
@@ -33,7 +34,7 @@ class SettingsManager
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager, lmm: LMMManager, newFaces: NewFacesManager)
+    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager, lmm: LMMManager, newFaces: NewFacesManager, notifications: NotificationService)
     {
         self.db = db
         self.api = api
@@ -42,8 +43,10 @@ class SettingsManager
         self.actions = actions
         self.lmm = lmm
         self.newFaces = newFaces
+        self.notifications = notifications
         
         self.loadSettings()
+        self.updateRemoteSettings()
         self.setupBindings()
     }
     
@@ -82,5 +85,14 @@ class SettingsManager
             
             self.storage.store(state, key: "is_first_launch").subscribe().disposed(by: self.disposeBag)
         }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func updateRemoteSettings()
+    {
+        self.api.updateSettings(
+            LocaleManager.shared.language.value.rawValue,
+            push: nil,
+            timezone: NSTimeZone.default.secondsFromGMT() / 3600
+        ).subscribe()
     }
 }
