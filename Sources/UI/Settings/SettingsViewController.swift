@@ -21,21 +21,23 @@ fileprivate struct SettingsOption
 
 fileprivate enum SettingsOptionType: Int
 {
-    case theme = 0
-    case language = 1
-    case legal = 2
-    case support = 3
-    case delete = 4
+    case push = 0
+    case theme = 1
+    case language = 2
+    case legal = 3
+    case support = 4
+    case delete = 5
 }
 
 #else
 
 fileprivate enum SettingsOptionType: Int
 {
-    case language = 0
-    case legal = 1
-    case support = 2
-    case delete = 3
+    case push = 0
+    case language = 1
+    case legal = 2
+    case support = 3
+    case delete = 4
 }
 
 #endif
@@ -46,6 +48,7 @@ class SettingsViewController: BaseViewController
     
      #if STAGE
     fileprivate let options = [
+        SettingsOption(cellIdentifier: "push_cell", height: 56.0),
         SettingsOption(cellIdentifier: "theme_cell", height: 56.0),
         SettingsOption(cellIdentifier: "language_cell", height: 56.0),
         SettingsOption(cellIdentifier: "legal_cell", height: 56.0),
@@ -54,6 +57,7 @@ class SettingsViewController: BaseViewController
     ]
     #else
     fileprivate let options = [
+        SettingsOption(cellIdentifier: "push_cell", height: 56.0),
         SettingsOption(cellIdentifier: "language_cell", height: 56.0),
         SettingsOption(cellIdentifier: "legal_cell", height: 56.0),
         SettingsOption(cellIdentifier: "support_cell", height: 56.0),
@@ -178,6 +182,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         guard let option = SettingsOptionType(rawValue: indexPath.row) else { return }
         
         switch option {
+        case .push: return            
             #if STAGE
         case .theme: return
             #endif
