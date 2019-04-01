@@ -55,4 +55,5 @@ protocol ApiService
     func getStatusText() -> Observable<String>
     
     func updatePush(_ token: String) -> Observable<Void>
+    func updateSettings(_ locale: String?, push: Bool?, timezone: Int?) -> Observable<Void>
 }

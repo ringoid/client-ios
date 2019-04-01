@@ -292,6 +292,31 @@ class ApiServiceDefault: ApiService
         }
     }
     
+    func updateSettings(_ locale: String? = nil, push: Bool? = nil, timezone: Int? = nil) -> Observable<Void>
+    {
+        var params: [String: Any] = [:]
+        
+        if let locale = locale {
+            params["locale"] = locale
+        }
+        
+        if let push = push {
+            params["push"] = push
+        }
+        
+        if let timezone = timezone {
+            params["timeZone"] = timezone
+        }
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        return self.request(.post, path: "auth/update_settings", jsonBody: params).flatMap { _ -> Observable<Void> in
+            return .just(())
+        }
+    }
+    
     // MARK: - Basic
     
     fileprivate func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any], id: String? = nil) -> Observable<[String: Any]>

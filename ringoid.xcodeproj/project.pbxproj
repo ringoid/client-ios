@@ -61,6 +61,8 @@
 		573A5C31222919470094A9FA /* ReachabilityServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */; };
 		574A7DA622434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574A7DA722434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
+		574F4ACA22520B230027A083 /* SettingsNotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */; };
+		574F4ACB22520B230027A083 /* SettingsNotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */; };
 		57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3521E3309300038798 /* NewFacesViewController.swift */; };
 		57585D3821E330B100038798 /* NewFaces.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D3721E330B100038798 /* NewFaces.storyboard */; };
 		57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3921E3499E00038798 /* ApiPhoto.swift */; };
@@ -342,6 +344,7 @@
 		573A5C2C2229184E0094A9FA /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityServiceDefault.swift; sourceTree = "<group>"; };
 		574A7DA522434EFE0065AE56 /* PromotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionManager.swift; sourceTree = "<group>"; };
+		574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsCell.swift; sourceTree = "<group>"; };
 		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
 		57585D3721E330B100038798 /* NewFaces.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewFaces.storyboard; sourceTree = "<group>"; };
 		57585D3921E3499E00038798 /* ApiPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPhoto.swift; sourceTree = "<group>"; };
@@ -915,6 +918,7 @@
 				573A5C0A2223C4520094A9FA /* SettingsLocaleHelpCell.swift */,
 				573A5C13222541FF0094A9FA /* SettingsDebugCell.swift */,
 				57801A83222E4378005A9731 /* SettingsDebugItemCell.swift */,
+				574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1443,6 +1447,7 @@
 				57ED4870224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
 				576FC10D21FF33EA00BA5ABE /* NavigationManager.swift in Sources */,
+				574F4ACA22520B230027A083 /* SettingsNotificationsCell.swift in Sources */,
 				57585D4C21E388EC00038798 /* UserProfilePhotosViewController.swift in Sources */,
 				57386E46220B33FE0000E5D9 /* SettingsDeleteCell.swift in Sources */,
 				57B863D121EDB16300B9CC70 /* MainLMMProfileViewController.swift in Sources */,
@@ -1582,6 +1587,7 @@
 				57ED4871224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */,
 				57EE65042216711000246B45 /* AuthViewModel.swift in Sources */,
 				57EE65052216711000246B45 /* SettingsThemeCell.swift in Sources */,
+				574F4ACB22520B230027A083 /* SettingsNotificationsCell.swift in Sources */,
 				57EE65062216711000246B45 /* Errors.swift in Sources */,
 				57EE65072216711000246B45 /* NavigationManager.swift in Sources */,
 				57EE65082216711000246B45 /* UserProfilePhotosViewController.swift in Sources */,
