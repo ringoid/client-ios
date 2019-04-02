@@ -13,7 +13,7 @@ class DeviceServiceDefault: DeviceService
 {
     fileprivate let resolutions: [Int: String] = [
         480: "480x640",
-        640: "640:852",
+        640: "640x852",
         720: "720x960",
         750: "750x1000",
         828: "828x1104",
