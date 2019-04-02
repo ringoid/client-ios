@@ -183,10 +183,16 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         if let option = SettingsOptionType(rawValue: indexPath.row) {
             switch option {
             case .push:
-                (cell as? SettingsNotificationsCell)?.settingsManager = self.input.settingsManager
-                (cell as? SettingsNotificationsCell)?.onSettingsChangesRequired = { [weak self] in
+                let notificationsCell = cell as? SettingsNotificationsCell
+                notificationsCell?.settingsManager = self.input.settingsManager
+                notificationsCell?.onSettingsChangesRequired = { [weak self] in
                     self?.showSettingsAlert()
                 }
+                notificationsCell?.onHeightUpdate = { [weak self] in
+                    self?.tableView.beginUpdates()
+                    self?.tableView.endUpdates()
+                }
+                
                 break
                 
             default: break
@@ -199,6 +205,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         let option = self.options[indexPath.row]
+        
+        if option.cellIdentifier == "push_cell" && self.input.settingsManager.isNotificationsAllowed {
+            return 88.0
+        }
         
         return option.height
     }

@@ -12,6 +12,7 @@ class SettingsNotificationsCell: BaseTableViewCell
 {
     @IBOutlet fileprivate weak var pushSwitch: UISwitch!
     @IBOutlet fileprivate weak var pushLabel: UILabel!
+    @IBOutlet fileprivate weak var detailsLabel: UILabel!
     
     var settingsManager: SettingsManager? {
         didSet {
@@ -20,10 +21,12 @@ class SettingsNotificationsCell: BaseTableViewCell
     }
     
     var onSettingsChangesRequired: (()->())?
+    var onHeightUpdate: (()->())?
     
     override func updateLocale()
     {
         self.pushLabel.text = "settings_push".localized()
+        self.detailsLabel.text = "settings_push_details".localized()
     }
     
     override func updateTheme()
@@ -44,6 +47,8 @@ class SettingsNotificationsCell: BaseTableViewCell
         
         self.settingsManager?.isNotificationsAllowed = self.pushSwitch.isOn
         self.settingsManager?.updateRemoteSettings()
+        self.onHeightUpdate?()
+        self.updateDetails()
     }
     
     // MARK: -
@@ -52,5 +57,15 @@ class SettingsNotificationsCell: BaseTableViewCell
     {
         let isEnabled = self.settingsManager?.isNotificationsAllowed ?? false
         self.pushSwitch.setOn(isEnabled, animated: isEnabled)
+        self.detailsLabel.alpha = self.settingsManager?.isNotificationsAllowed == true ? 1.0 : 0.0
+    }
+    
+    fileprivate func updateDetails()
+    {
+        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
+            self.detailsLabel.alpha = self.settingsManager?.isNotificationsAllowed == true ? 1.0 : 0.0
+        }
+
+        animator.startAnimation()
     }
 }
