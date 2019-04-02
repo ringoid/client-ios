@@ -155,7 +155,7 @@ class MainLMMProfileViewController: UIViewController
     
     @IBAction func onBlock()
     {
-        self.block(self.input.feedType == .messages)
+        self.block(false)
     }
     
     // MARK: -
