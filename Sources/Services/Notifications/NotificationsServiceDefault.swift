@@ -45,6 +45,7 @@ class NotificationsServiceDefault: NSObject, NotificationService
             
             DispatchQueue.main.async {
                 UIApplication.shared.registerForRemoteNotifications()
+                self?.isGranted.accept(granted)
             }
         }
     }

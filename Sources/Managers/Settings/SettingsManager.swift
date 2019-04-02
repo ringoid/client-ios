@@ -35,7 +35,7 @@ class SettingsManager
     var isNotificationsAllowed: Bool
     {
         get {
-            let allowedByUser = UserDefaults.standard.bool(forKey: "notificationsAllowedByUser")
+            let allowedByUser = (UserDefaults.standard.object(forKey: "notificationsAllowedByUser") as? Bool) ?? true
             let allowedBySystem = self.notifications.isGranted.value
             
             return allowedByUser && allowedBySystem
@@ -67,6 +67,8 @@ class SettingsManager
     
     func updateRemoteSettings()
     {
+        guard self.api.isAuthorized.value else { return }
+        
         self.api.updateSettings(
             LocaleManager.shared.language.value.rawValue,
             push: self.isNotificationsAllowed,
