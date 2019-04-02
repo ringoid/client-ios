@@ -77,7 +77,7 @@
 "settings_support" = "Написать в support@ringoid.com";
 "settings_title" = "Настройки";
 "settings_theme_dark" = "Ночной режим";
-"settings_push" = "Push-уведомлени";
+"settings_push" = "Push-уведомления";
 "settings_push_permission" = "Ringoid does not have access to your Notifications. Tap Settings and turn on Notifications.";
 "settings_push_permission" = "Ringoid не имеет доступа к Вашим Уведомлениям. Выберете Настройи и включените Уведомления";
 
