@@ -155,11 +155,28 @@ class NewFaceProfileViewController: UIViewController
         
         for reason in BlockReason.reportResons() {
             alertVC.addAction(UIAlertAction(title: reason.title(), style: .default) { _ in
-                UIManager.shared.blockModeEnabled.accept(false)
-                self.viewModel?.block(at: self.currentIndex.value, reason: reason)
+                self.showBlockReasonConfirmation(reason)
             })
         }
         
+        alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
+            UIManager.shared.blockModeEnabled.accept(false)
+        }))
+        
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func showBlockReasonConfirmation(_ reason: BlockReason)
+    {
+        let alertVC = UIAlertController(
+            title: nil,
+            message: "block_profile_alert_title".localized() + " " + reason.title(),
+            preferredStyle: .alert
+        )
+        alertVC.addAction(UIAlertAction(title: "block_profile_button_report".localized(), style: .default, handler: { _ in
+            UIManager.shared.blockModeEnabled.accept(false)
+            self.viewModel?.block(at: self.currentIndex.value, reason: reason)
+        }))
         alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
             UIManager.shared.blockModeEnabled.accept(false)
         }))

@@ -30,6 +30,7 @@
 
 "block_profile_button_block" = "Block";
 "block_profile_button_report" = "Report & Block";
+"block_profile_alert_title" = "Report reason:";
 
 "report_profile_button_0" = "Inappropriate message";
 "report_profile_button_1" = "Inappropriate photo";
