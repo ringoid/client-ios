@@ -7,16 +7,20 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class SettingsNotificationsCell: BaseTableViewCell
 {
+    fileprivate var disposeBag: DisposeBag = DisposeBag()
+    
     @IBOutlet fileprivate weak var pushSwitch: UISwitch!
     @IBOutlet fileprivate weak var pushLabel: UILabel!
     @IBOutlet fileprivate weak var detailsLabel: UILabel!
     
     var settingsManager: SettingsManager? {
         didSet {
-            self.updateUI()
+            self.setupBindings()
         }
     }
     
@@ -53,11 +57,20 @@ class SettingsNotificationsCell: BaseTableViewCell
     
     // MARK: -
     
+    fileprivate func setupBindings()
+    {
+        self.disposeBag = DisposeBag()
+        self.settingsManager?.notifications.isGranted.asObservable().subscribe(onNext: { [weak self] _ in
+            self?.updateUI()
+        }).disposed(by: self.disposeBag)
+    }
+    
     fileprivate func updateUI()
     {
         let isEnabled = self.settingsManager?.isNotificationsAllowed ?? false
         self.pushSwitch.setOn(isEnabled, animated: isEnabled)
         self.detailsLabel.alpha = self.settingsManager?.isNotificationsAllowed == true ? 1.0 : 0.0
+        self.onHeightUpdate?()
     }
     
     fileprivate func updateDetails()

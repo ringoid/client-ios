@@ -78,7 +78,6 @@
 "settings_title" = "Настройки";
 "settings_theme_dark" = "Ночной режим";
 "settings_push" = "Push-уведомления";
-"settings_push_permission" = "Ringoid не имеет доступа к Уведомлениям. Выберете Настройки и включите Уведомления";
 "settings_push_details" = "Один раз в день, если есть лайк, взаимная симпатия, сообщение, или новые люди";
 
 "settings_info_about" = "О Приложении";

@@ -76,7 +76,6 @@
 "settings_title" = "Settings";
 "settings_theme_dark" = "Night Mode";
 "settings_push" = "Push notifications";
-"settings_push_permission" = "Ringoid does not have access to your Notifications. Tap Settings and turn on Notifications.";
 "settings_push_details" = "Once per day if you have new like, match, message, or users";
 
 "settings_info_about" = "About";
