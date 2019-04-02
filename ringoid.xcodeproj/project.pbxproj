@@ -106,6 +106,8 @@
 		57801A88222FF04A005A9731 /* SettingsDebugLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A86222FF049005A9731 /* SettingsDebugLogViewController.swift */; };
 		57801AB12232A2B6005A9731 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801AB02232A2B6005A9731 /* ViewController.swift */; };
 		57801AB22232A2B6005A9731 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801AB02232A2B6005A9731 /* ViewController.swift */; };
+		578502E92253B0AE0056120A /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502E82253B0AE0056120A /* ImageService.swift */; };
+		578502EA2253B0AE0056120A /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502E82253B0AE0056120A /* ImageService.swift */; };
 		579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */; };
 		579CD7AE21F8603500C3AEE3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7AD21F8603500C3AEE3 /* Settings.storyboard */; };
 		579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
@@ -384,6 +386,7 @@
 		57801A83222E4378005A9731 /* SettingsDebugItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugItemCell.swift; sourceTree = "<group>"; };
 		57801A86222FF049005A9731 /* SettingsDebugLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugLogViewController.swift; sourceTree = "<group>"; };
 		57801AB02232A2B6005A9731 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		578502E82253B0AE0056120A /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		579CD7AD21F8603500C3AEE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -545,6 +548,7 @@
 		570D047C21DCED1800E0DCFB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				578502E72253B09F0056120A /* Image */,
 				57ED486B224B825E0033EB0B /* Notifications */,
 				573A5C2B2229183C0094A9FA /* Reachability */,
 				573A5C19222556A00094A9FA /* Log */,
@@ -882,6 +886,14 @@
 				576FC11F2201EBC400BA5ABE /* Localizable.strings */,
 			);
 			path = Strings;
+			sourceTree = "<group>";
+		};
+		578502E72253B09F0056120A /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				578502E82253B0AE0056120A /* ImageService.swift */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 		579CD7AF21F8626900C3AEE3 /* Settings */ = {
@@ -1510,6 +1522,7 @@
 				57B863EB21EE33D200B9CC70 /* ActionsManager.swift in Sources */,
 				57EE655D2216DCA700246B45 /* SentryService.swift in Sources */,
 				579CD7CF21FAE2D100C3AEE3 /* ChatManager.swift in Sources */,
+				578502E92253B0AE0056120A /* ImageService.swift in Sources */,
 				57386E4B220C7A7C0000E5D9 /* UIManager.swift in Sources */,
 				576FC11122001CD400BA5ABE /* ErrorsManager.swift in Sources */,
 				57EE6559221677DE00246B45 /* ApiServiceConfigProd.swift in Sources */,
@@ -1650,6 +1663,7 @@
 				57EE65392216711000246B45 /* MainViewModel.swift in Sources */,
 				57EE653A2216711000246B45 /* SettingsManager.swift in Sources */,
 				57EE653B2216711000246B45 /* ActionsManager.swift in Sources */,
+				578502EA2253B0AE0056120A /* ImageService.swift in Sources */,
 				57EE653C2216711000246B45 /* ChatManager.swift in Sources */,
 				57EE653D2216711000246B45 /* UIManager.swift in Sources */,
 				57EE653E2216711000246B45 /* ErrorsManager.swift in Sources */,

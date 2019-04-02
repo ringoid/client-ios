@@ -52,7 +52,7 @@ class MainLMMViewController: BaseViewController
     fileprivate var lastFeedIds: [String] = []
     fileprivate var lastUpdateFeedType: LMMType = .likesYou
     fileprivate var currentActivityState: LMMFeedActivityState = .initial
-    fileprivate let preheater = ImagePreheater()
+    fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var isTabSwitched: Bool = false
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!

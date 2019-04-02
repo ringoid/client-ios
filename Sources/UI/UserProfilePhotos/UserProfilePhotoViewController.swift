@@ -56,13 +56,7 @@ class UserProfilePhotoViewController: UIViewController
             return
         }
         
-        let contentModes = ImageLoadingOptions.ContentModes(
-            success: .scaleAspectFill,
-            failure: .scaleAspectFill,
-            placeholder: .scaleAspectFill
-        )
-        let options = ImageLoadingOptions( contentModes: contentModes)
-        Nuke.loadImage(with: url, options: options, into: photoView)
+        ImageService.shared.load(url, to: photoView)
     }
     
     fileprivate func updateBindings()

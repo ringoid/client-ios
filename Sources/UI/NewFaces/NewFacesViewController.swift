@@ -28,7 +28,7 @@ class NewFacesViewController: BaseViewController
     fileprivate var lastFetchCount: Int = -1
     fileprivate var photoIndexes: [String: Int] = [:]
     fileprivate var currentActivityState: NewFacesFeedActivityState = .initial
-    fileprivate let preheater = ImagePreheater()
+    fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var prevScrollingOffset: CGFloat = 0.0
     fileprivate var isScrollTopVisible: Bool = false
     fileprivate var isTabSwitched: Bool = false

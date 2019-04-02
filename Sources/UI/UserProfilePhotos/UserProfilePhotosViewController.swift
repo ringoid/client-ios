@@ -23,7 +23,7 @@ class UserProfilePhotosViewController: BaseViewController
     fileprivate var photosVCs: [UIViewController] = []
     fileprivate var currentIndex: Int = 0
     fileprivate var lastClientPhotoId: String? = nil
-    fileprivate let preheater = ImagePreheater()
+    fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var pickedPhoto: UIImage?
     fileprivate var isViewShown: Bool = false
     

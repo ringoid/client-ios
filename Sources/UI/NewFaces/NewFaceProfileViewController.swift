@@ -29,7 +29,7 @@ class NewFaceProfileViewController: UIViewController
     fileprivate var viewModel: NewFaceProfileViewModel?
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [NewFacePhotoViewController] = []
-    fileprivate let preheater = ImagePreheater()
+    fileprivate let preheater = ImagePreheater(destination: .diskCache)
     
     @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
