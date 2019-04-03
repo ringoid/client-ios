@@ -67,6 +67,7 @@
 "profile_dialog_image_another_title" = "Что дальше?";
 "profile_dialog_image_blocked_button" = "Условия использования";
 "profile_dialog_image_blocked_title" = "Фото удалено за нарушения Условий использования";
+"profile_dialog_image_delete_title" = "Удалить фото?";
 "profile_empty_images" = "Добавь фото, чтобы\nполучать лайки";
 "profile_empty_title" = "Профиль";
 

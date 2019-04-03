@@ -234,10 +234,36 @@ class UserProfilePhotosViewController: BaseViewController
     {
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "profile_button_delete_image".localized(), style: .destructive, handler: ({ _ in
-            self.showControls()
-            
             guard let photo = self.viewModel?.photos.value[self.currentIndex] else { return }
             
+            if photo.likes > 0 {
+                self.showDeletionConfirmationAlert()
+                
+                return
+            }
+            
+            self.showControls()
+            self.viewModel?.delete(photo)
+        })))
+        alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
+            self.showControls()
+        }))
+        
+        self.hideControls()
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func showDeletionConfirmationAlert()
+    {
+        let alertVC = UIAlertController(
+            title: "profile_dialog_image_delete_title".localized(),
+            message: "common_uncancellable".localized(),
+            preferredStyle: .alert
+        )
+        alertVC.addAction(UIAlertAction(title: "profile_button_delete_image".localized(), style: .default, handler: ({ _ in
+            guard let photo = self.viewModel?.photos.value[self.currentIndex] else { return }
+            
+            self.showControls()
             self.viewModel?.delete(photo)
         })))
         alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
