@@ -42,6 +42,7 @@ class SettingsManager
         }
         
         set {
+            log("App push setting updated: \(newValue)", level: .low)
             UserDefaults.standard.set(newValue, forKey: "notificationsAllowedByUser")
             UserDefaults.standard.synchronize()
         }
@@ -68,6 +69,11 @@ class SettingsManager
     func updateRemoteSettings()
     {
         guard self.api.isAuthorized.value else { return }
+        
+        log("Updating remote settings:", level: .low)
+        log("Locale: \(LocaleManager.shared.language.value.rawValue)", level: .low)
+        log("Pushes enabled: \(self.isNotificationsAllowed)", level: .low)
+        log("Timezone: \(NSTimeZone.default.secondsFromGMT() / 3600)", level: .low)
         
         self.api.updateSettings(
             LocaleManager.shared.language.value.rawValue,
@@ -112,7 +118,8 @@ class SettingsManager
             self.storage.store(state, key: "is_first_launch").subscribe().disposed(by: self.disposeBag)
         }).disposed(by: self.disposeBag)
         
-        self.notifications.isGranted.asObservable().subscribe(onNext: { [weak self] _ in
+        self.notifications.isGranted.asObservable().subscribe(onNext: { [weak self] state in
+            log("Permissions changed - pushes access granted: \(state)", level: .low)
             self?.updateRemoteSettings()
         }).disposed(by: self.disposeBag)
     }

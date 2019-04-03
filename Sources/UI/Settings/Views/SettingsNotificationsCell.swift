@@ -43,6 +43,7 @@ class SettingsNotificationsCell: BaseTableViewCell
     @IBAction func onValueChanged()
     {
         guard let isGranted = self.settingsManager?.notifications.isGranted.value, isGranted else {
+            self.settingsManager?.isNotificationsAllowed = true
             self.pushSwitch.setOn(false, animated: true)
             self.onSettingsChangesRequired?()
             
