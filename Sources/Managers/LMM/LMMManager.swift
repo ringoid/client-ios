@@ -13,12 +13,14 @@ fileprivate struct ChatProfileCache
 {
     let id: String
     let messagesCount: Int
+    let notSeen: Bool
     
     static func create(_ profile: LMMProfile) -> ChatProfileCache
     {
         return ChatProfileCache(
             id: profile.id,
-            messagesCount: profile.messages.count
+            messagesCount: profile.messages.count,
+            notSeen: profile.notSeen
         )
     }
 }
@@ -89,7 +91,11 @@ class LMMManager
     {
         log("LMM reloading process started", level: .high)
         self.isFetching.accept(true)
-        let chatCache = self.messages.value.filter({ !$0.notSeen }).map({ ChatProfileCache.create($0) })
+        let chatCache = (
+            self.messages.value +
+            self.likesYou.value +
+            self.matches.value
+        ).map({ ChatProfileCache.create($0) })
         
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
             
@@ -101,14 +107,12 @@ class LMMManager
             
             (messages + matches + localLikesYou).forEach { remoteProfile in
                 guard remoteProfile.messages.count != 0 else { return }
-                
-                let remoteState = remoteProfile.notSeen
                 remoteProfile.notSeen = true
                 
                 chatCache.forEach { localChatProfile in
                     if localChatProfile.id == remoteProfile.id {
                         if localChatProfile.messagesCount == remoteProfile.messages.count {
-                            remoteProfile.notSeen = remoteState
+                            remoteProfile.notSeen = localChatProfile.notSeen
                         } else {
                             remoteProfile.notSeen = true
                         }

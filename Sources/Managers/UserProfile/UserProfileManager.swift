@@ -110,6 +110,7 @@ class UserProfileManager
     
     fileprivate func setupBindings()
     {
+        self.db.fetchUserPhotos().subscribeOn(MainScheduler.instance).bind(to: self.photos).disposed(by: self.disposeBag)
         
         self.storage.object(self.photoKey).subscribe(onNext: { [weak self] obj in
             self?.lastPhotoId.accept(String.create(obj))
@@ -123,8 +124,6 @@ class UserProfileManager
             self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
             self.db.resetNewFaces().subscribe().disposed(by: self.disposeBag)
         }).disposed(by: self.disposeBag)
-        
-        self.db.fetchUserPhotos().subscribeOn(MainScheduler.instance).bind(to: self.photos).disposed(by: self.disposeBag)
     }
     
     fileprivate func setupLastPhotoBinding()
