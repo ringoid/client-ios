@@ -102,11 +102,16 @@ class LMMManager
             (messages + matches + localLikesYou).forEach { remoteProfile in
                 guard remoteProfile.messages.count != 0 else { return }
                 
+                let remoteState = remoteProfile.notSeen
                 remoteProfile.notSeen = true
                 
                 chatCache.forEach { localChatProfile in
                     if localChatProfile.id == remoteProfile.id {
-                        remoteProfile.notSeen = localChatProfile.messagesCount != remoteProfile.messages.count
+                        if localChatProfile.messagesCount == remoteProfile.messages.count {
+                            remoteProfile.notSeen = remoteState
+                        } else {
+                            remoteProfile.notSeen = true
+                        }
                     }
                 }
             }
