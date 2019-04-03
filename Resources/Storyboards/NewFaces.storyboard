@@ -104,6 +104,23 @@ discover users nearby</string>
                                     <action selector="onScrollTop" destination="m48-Io-6eu" eventType="touchUpInside" id="vwb-qk-Vd7"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5P-fA-3ZX">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fyV-MR-lVu">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="500"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="fyV-MR-lVu" secondAttribute="height" multiplier="3:4" id="bre-ax-5Oh"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="fyV-MR-lVu" firstAttribute="top" secondItem="f5P-fA-3ZX" secondAttribute="topMargin" id="J80-N1-jNg"/>
+                                    <constraint firstItem="fyV-MR-lVu" firstAttribute="leading" secondItem="f5P-fA-3ZX" secondAttribute="leading" id="tOs-c3-VTG"/>
+                                    <constraint firstAttribute="trailing" secondItem="fyV-MR-lVu" secondAttribute="trailing" id="wUQ-hF-jVK"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -112,11 +129,15 @@ discover users nearby</string>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="7aY-ua-nbS"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="DIr-zl-DwV"/>
                             <constraint firstItem="RcH-VU-hkW" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" constant="16" id="M0s-yz-w5X"/>
+                            <constraint firstAttribute="bottom" secondItem="f5P-fA-3ZX" secondAttribute="bottom" id="TVP-3o-yBY"/>
+                            <constraint firstItem="Dzb-Wx-JQu" firstAttribute="trailing" secondItem="f5P-fA-3ZX" secondAttribute="trailing" id="UYa-cj-LJ4"/>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="V4m-wZ-I6w"/>
                             <constraint firstAttribute="bottom" secondItem="Owz-cZ-1Sc" secondAttribute="bottom" id="WOb-4K-jM4"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="XVH-IB-ckJ"/>
                             <constraint firstItem="4Je-db-FTU" firstAttribute="top" secondItem="Dzb-Wx-JQu" secondAttribute="top" constant="37" id="bKq-go-6VW"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="eOj-9V-78m"/>
+                            <constraint firstItem="f5P-fA-3ZX" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="k2s-xp-RvI"/>
+                            <constraint firstItem="f5P-fA-3ZX" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" id="nm8-TI-5VR"/>
                             <constraint firstAttribute="trailing" secondItem="Owz-cZ-1Sc" secondAttribute="trailing" id="sVe-sm-wMe"/>
                             <constraint firstItem="4Je-db-FTU" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" constant="18" id="xmA-gD-zWl"/>
                         </constraints>
@@ -124,6 +145,9 @@ discover users nearby</string>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
+                        <outlet property="blockContainerView" destination="f5P-fA-3ZX" id="vdO-PE-D5C"/>
+                        <outlet property="blockPhotoAspectConstraint" destination="bre-ax-5Oh" id="6wq-eg-hVb"/>
+                        <outlet property="blockPhotoView" destination="fyV-MR-lVu" id="ZPl-Xu-U01"/>
                         <outlet property="emptyFeedActivityView" destination="Kt8-il-Lh0" id="oCN-Tl-uUi"/>
                         <outlet property="emptyFeedLabel" destination="CGR-G7-fOR" id="XU1-zR-aiG"/>
                         <outlet property="feedEndLabel" destination="slS-zl-bk2" id="fvP-9L-uZA"/>

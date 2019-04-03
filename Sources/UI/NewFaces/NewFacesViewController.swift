@@ -41,6 +41,9 @@ class NewFacesViewController: BaseViewController
     @IBOutlet fileprivate weak var loadingActivityView: UIActivityIndicatorView!
     @IBOutlet fileprivate weak var feedEndLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedActivityView: UIActivityIndicatorView!
+    @IBOutlet fileprivate weak var blockContainerView: UIView!
+    @IBOutlet fileprivate weak var blockPhotoView: UIImageView!
+    @IBOutlet fileprivate weak var blockPhotoAspectConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -59,6 +62,8 @@ class NewFacesViewController: BaseViewController
         self.tableView.estimatedRowHeight = rowHeight
         self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: UIScreen.main.bounds.height - rowHeight, right: 0.0)
         
+        self.blockPhotoAspectConstraint.constant = AppConfig.photoRatio
+        
         self.setupBindings()
         self.setupReloader()
     }
@@ -73,6 +78,7 @@ class NewFacesViewController: BaseViewController
     override func updateTheme()
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
+        self.blockContainerView.backgroundColor = BackgroundColor().uiColor()
     }
     
     override func updateLocale()
@@ -376,11 +382,23 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
             let profileVC = NewFaceProfileViewController.create(profile, actionsManager: self.input.actionsManager, profileManager: self.input.profileManager, navigationManager: self.input.navigationManager,  initialIndex: self.photoIndexes[profile.id] ?? 0)
             cell.containerView.embed(profileVC, to: self)
             
-            profileVC.onBlockOptionsWillShow = { [weak self, weak cell] in
+            profileVC.onBlockOptionsWillShow = { [weak self, weak cell, weak profile] index in
                 guard let `cell` = cell else { return }
                 guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
                 
                 self?.tableView.scrollToRow(at: cellIndexPath, at: .top, animated: true)
+                
+                guard let url = profile?.photos[index].filepath().url() else { return }
+                guard let photoView = self?.blockPhotoView else { return }
+                
+                ImageService.shared.load(url, to: photoView)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                    self?.blockContainerView.isHidden = false
+                })
+            }
+            
+            profileVC.onBlockOptionsWillHide = { [weak self] in
+                self?.blockContainerView.isHidden = true
             }
             
             let profileId = profile.id!
