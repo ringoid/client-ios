@@ -53,7 +53,9 @@ class NewFacesViewModel
         self.actionsManager.finishViewActions(for: self.profiles.value, source: .newFaces)
         
         return self.actionsManager.sendQueue().flatMap({ [weak self] _ -> Observable<Void> in
-            self!.lmmManager.refreshInBackground(.newFaces)
+            if self!.profileManager.photos.value.filter({ !$0.isBlocked }).count > 0 {
+                self!.lmmManager.refreshInBackground(.newFaces)
+            }
             
             return self!.newFacesManager.refresh()
         })
