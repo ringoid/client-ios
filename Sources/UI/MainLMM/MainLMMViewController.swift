@@ -61,6 +61,9 @@ class MainLMMViewController: BaseViewController
     @IBOutlet fileprivate weak var feedEndView: UIView!
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var emptyFeedActivityView: UIActivityIndicatorView!
+    @IBOutlet fileprivate weak var blockContainerView: UIView!
+    @IBOutlet fileprivate weak var blockPhotoView: UIImageView!
+    @IBOutlet fileprivate weak var blockPhotoAspectConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -83,6 +86,8 @@ class MainLMMViewController: BaseViewController
             bottom: UIScreen.main.bounds.height - cellHeight,
             right: 0.0
         )
+        
+        self.blockPhotoAspectConstraint.constant = AppConfig.photoRatio
 
         UIManager.shared.blockModeEnabled.accept(false)
         UIManager.shared.chatModeEnabled.accept(false)
@@ -102,6 +107,7 @@ class MainLMMViewController: BaseViewController
     override func updateTheme()
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
+        self.blockContainerView.backgroundColor = BackgroundColor().uiColor()
     }
     
     override func updateLocale()
@@ -529,18 +535,28 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
                 
                 self?.hideChat(weakProfileVC, profile: profile, photo: photo, indexPath: cellIndexPath)
             }
-            profileVC.onBlockOptionsWillShow = { [weak self, weak cell] in
+            profileVC.onBlockOptionsWillShow = { [weak self, weak cell, weak profile] index in
                 guard let `cell` = cell else { return }
                 guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
                 
                 self?.scrollTop(to: cellIndexPath.row, offset: 0.0, animated: true)
+                
+                guard let url = profile?.photos[index].filepath().url() else { return }
+                guard let photoView = self?.blockPhotoView else { return }
+                
+                ImageService.shared.load(url, to: photoView)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                    self?.blockContainerView.isHidden = false
+                })
             }
             
             profileVC.onBlockOptionsWillHide = { [weak self, weak cell] in
-                    guard let `cell` = cell else { return }
-                    guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
-                    
-                    self?.scrollTop(to: cellIndexPath.row, offset: 44.0, animated: false)
+                self?.blockContainerView.isHidden = true
+                
+                guard let `cell` = cell else { return }
+                guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
+                
+                self?.scrollTop(to: cellIndexPath.row, offset: 44.0, animated: false)
             }
             
             profileVC.currentIndex.asObservable().subscribe(onNext: { [weak self] index in

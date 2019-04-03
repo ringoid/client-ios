@@ -32,7 +32,7 @@ class MainLMMProfileViewController: UIViewController
     var currentIndex: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     var onChatShow: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
     var onChatHide: ((LMMProfile, Photo, MainLMMProfileViewController?) -> ())?
-    var onBlockOptionsWillShow: (() -> ())?
+    var onBlockOptionsWillShow: ((Int) -> ())?
     var onBlockOptionsWillHide: (() -> ())?
     
     fileprivate let diposeBag: DisposeBag = DisposeBag()
@@ -187,11 +187,12 @@ class MainLMMProfileViewController: UIViewController
     fileprivate func showBlockOptions(_ isChat: Bool)
     {
         UIManager.shared.blockModeEnabled.accept(true)
-        onBlockOptionsWillShow?()
+        onBlockOptionsWillShow?(self.currentIndex.value)
         
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "block_profile_button_block".localized(), style: .default, handler: { _ in
             UIManager.shared.blockModeEnabled.accept(false)
+            self.onBlockOptionsWillHide?()
             self.viewModel?.block(at: self.currentIndex.value, reason: BlockReason(rawValue: 0)!)
         }))
         alertVC.addAction(UIAlertAction(title: "block_profile_button_report".localized(), style: .default, handler: { _ in
@@ -207,8 +208,6 @@ class MainLMMProfileViewController: UIViewController
     
     fileprivate func showBlockReasonOptions(_ isChat: Bool)
     {
-        onBlockOptionsWillShow?()
-        
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let reasons = isChat ? BlockReason.reportChatResons() : BlockReason.reportResons()
@@ -235,6 +234,7 @@ class MainLMMProfileViewController: UIViewController
         )
         alertVC.addAction(UIAlertAction(title: "block_profile_button_report".localized(), style: .default, handler: { _ in
             UIManager.shared.blockModeEnabled.accept(false)
+            self.onBlockOptionsWillHide?()
             self.viewModel?.block(at: self.currentIndex.value, reason: reason)
         }))
         alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in

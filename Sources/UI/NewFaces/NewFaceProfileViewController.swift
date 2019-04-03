@@ -152,8 +152,6 @@ class NewFaceProfileViewController: UIViewController
     
     fileprivate func showBlockReasonOptions()
     {
-        self.onBlockOptionsWillShow?(self.currentIndex.value)
-        
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         for reason in BlockReason.reportResons() {

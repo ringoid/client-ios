@@ -281,6 +281,23 @@ see who likes you</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2sz-x1-syZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mmz-g3-KhV">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="500"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="mmz-g3-KhV" secondAttribute="height" multiplier="3:4" id="o3Y-zT-Xqf"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="mmz-g3-KhV" secondAttribute="trailing" id="F0w-Gc-rDh"/>
+                                    <constraint firstItem="mmz-g3-KhV" firstAttribute="leading" secondItem="2sz-x1-syZ" secondAttribute="leading" id="Gc7-Hu-E3Z"/>
+                                    <constraint firstItem="mmz-g3-KhV" firstAttribute="top" secondItem="2sz-x1-syZ" secondAttribute="topMargin" id="N0T-mT-u8l"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8X-YU-toI">
                                 <rect key="frame" x="16" y="517" width="84" height="84"/>
                                 <constraints>
@@ -298,15 +315,19 @@ see who likes you</string>
                         <constraints>
                             <constraint firstItem="pJn-VE-YRs" firstAttribute="centerX" secondItem="aDZ-sn-yKR" secondAttribute="centerX" id="2I2-H5-56P"/>
                             <constraint firstItem="kbx-tQ-FPO" firstAttribute="top" secondItem="aDZ-sn-yKR" secondAttribute="top" id="3Jo-e4-nRS"/>
+                            <constraint firstAttribute="trailing" secondItem="2sz-x1-syZ" secondAttribute="trailing" id="4IM-vM-RUj"/>
                             <constraint firstAttribute="bottom" secondItem="kbx-tQ-FPO" secondAttribute="bottom" id="8jo-ly-7Yp"/>
                             <constraint firstItem="Ey6-2A-Ohd" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="leading" id="KnO-mh-1R0"/>
                             <constraint firstItem="h51-ww-FZ6" firstAttribute="centerX" secondItem="aDZ-sn-yKR" secondAttribute="centerX" id="NTq-DH-wWu"/>
                             <constraint firstAttribute="bottom" secondItem="Ey6-2A-Ohd" secondAttribute="bottom" id="NbN-z8-AjE"/>
+                            <constraint firstItem="2sz-x1-syZ" firstAttribute="top" secondItem="aDZ-sn-yKR" secondAttribute="top" id="XHC-gs-BBK"/>
                             <constraint firstItem="pJn-VE-YRs" firstAttribute="centerY" secondItem="aDZ-sn-yKR" secondAttribute="centerY" id="XfT-5K-CPg"/>
                             <constraint firstItem="Q8X-YU-toI" firstAttribute="leading" secondItem="DRO-WM-fEC" secondAttribute="leading" constant="16" id="anz-kP-t7t"/>
+                            <constraint firstAttribute="bottom" secondItem="2sz-x1-syZ" secondAttribute="bottom" id="d3Z-hP-ypk"/>
                             <constraint firstItem="kbx-tQ-FPO" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="leading" id="fH6-My-2G0"/>
                             <constraint firstItem="DRO-WM-fEC" firstAttribute="bottom" secondItem="Q8X-YU-toI" secondAttribute="bottom" constant="66" id="hFO-hJ-lIq"/>
                             <constraint firstItem="h51-ww-FZ6" firstAttribute="centerY" secondItem="aDZ-sn-yKR" secondAttribute="centerY" id="lgG-BI-cWQ"/>
+                            <constraint firstItem="2sz-x1-syZ" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="leading" id="pmC-60-JfX"/>
                             <constraint firstItem="Ey6-2A-Ohd" firstAttribute="top" secondItem="aDZ-sn-yKR" secondAttribute="top" id="vkO-Ub-xiu"/>
                             <constraint firstAttribute="trailing" secondItem="kbx-tQ-FPO" secondAttribute="trailing" id="wLB-ID-jOj"/>
                             <constraint firstAttribute="trailing" secondItem="Ey6-2A-Ohd" secondAttribute="trailing" id="zib-Ne-dMX"/>
@@ -314,6 +335,9 @@ see who likes you</string>
                         <viewLayoutGuide key="safeArea" id="DRO-WM-fEC"/>
                     </view>
                     <connections>
+                        <outlet property="blockContainerView" destination="2sz-x1-syZ" id="UUA-X9-WdC"/>
+                        <outlet property="blockPhotoAspectConstraint" destination="o3Y-zT-Xqf" id="vYU-zK-PK2"/>
+                        <outlet property="blockPhotoView" destination="mmz-g3-KhV" id="gJD-xC-nVo"/>
                         <outlet property="chatContainerView" destination="Ey6-2A-Ohd" id="Fd7-eT-6cV"/>
                         <outlet property="emptyFeedActivityView" destination="pJn-VE-YRs" id="l9t-IH-Boy"/>
                         <outlet property="emptyFeedLabel" destination="h51-ww-FZ6" id="BKR-9v-s1U"/>
