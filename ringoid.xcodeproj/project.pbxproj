@@ -108,6 +108,8 @@
 		57801AB22232A2B6005A9731 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801AB02232A2B6005A9731 /* ViewController.swift */; };
 		578502E92253B0AE0056120A /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502E82253B0AE0056120A /* ImageService.swift */; };
 		578502EA2253B0AE0056120A /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502E82253B0AE0056120A /* ImageService.swift */; };
+		578502ED22561ADA0056120A /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502EC22561ADA0056120A /* SyncManager.swift */; };
+		578502EE22561ADA0056120A /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502EC22561ADA0056120A /* SyncManager.swift */; };
 		579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */; };
 		579CD7AE21F8603500C3AEE3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7AD21F8603500C3AEE3 /* Settings.storyboard */; };
 		579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
@@ -387,6 +389,7 @@
 		57801A86222FF049005A9731 /* SettingsDebugLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugLogViewController.swift; sourceTree = "<group>"; };
 		57801AB02232A2B6005A9731 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		578502E82253B0AE0056120A /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		578502EC22561ADA0056120A /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		579CD7AD21F8603500C3AEE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -607,6 +610,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				578502EB22561AC40056120A /* Sync */,
 				57ED4872224D0FF50033EB0B /* Notifications */,
 				574A7DA422434EE30065AE56 /* Promotion */,
 				57386E49220C7A6D0000E5D9 /* UI */,
@@ -894,6 +898,14 @@
 				578502E82253B0AE0056120A /* ImageService.swift */,
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		578502EB22561AC40056120A /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				578502EC22561ADA0056120A /* SyncManager.swift */,
+			);
+			path = Sync;
 			sourceTree = "<group>";
 		};
 		579CD7AF21F8626900C3AEE3 /* Settings */ = {
@@ -1478,6 +1490,7 @@
 				573A5C0E222409F10094A9FA /* EmptyFeed.swift in Sources */,
 				573A5C202226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
 				57585D3C21E34AFC00038798 /* ApiProfile.swift in Sources */,
+				578502ED22561ADA0056120A /* SyncManager.swift in Sources */,
 				579CD7B321F890A300C3AEE3 /* SettingsViewModel.swift in Sources */,
 				57EE64CF22153B1000246B45 /* SettingsLegalEmailCell.swift in Sources */,
 				570D04C621DFBD5A00E0DCFB /* DBService.swift in Sources */,
@@ -1619,6 +1632,7 @@
 				573A5C0F22240C160094A9FA /* EmptyFeed.swift in Sources */,
 				573A5C212226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
 				57EE65132216711000246B45 /* ApiBlockAction.swift in Sources */,
+				578502EE22561ADA0056120A /* SyncManager.swift in Sources */,
 				57EE65142216711000246B45 /* NewFacesViewModel.swift in Sources */,
 				57EE65152216711000246B45 /* ApiProfile.swift in Sources */,
 				57EE65162216711000246B45 /* SettingsViewModel.swift in Sources */,

@@ -29,6 +29,7 @@ class AppManager
     var errorsManager: ErrorsManager!
     var promotionManager: PromotionManager!
     var notificationsManager: NotificationsManager!
+    var syncManager: SyncManager!
     
     func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
@@ -109,6 +110,7 @@ class AppManager
         self.errorsManager = ErrorsManager(self.apiService, settings: self.settingsMananger)
         self.promotionManager = PromotionManager(launchOptions, api: self.apiService)
         self.notificationsManager = NotificationsManager(self.notifications, api: self.apiService)
+        self.syncManager = SyncManager(self.notifications, lmm: self.lmmManager, newFaces: self.newFacesManager, profile: self.profileManager, navigation: self.navigationManager)
         
         ThemeManager.shared.storageService = self.defaultStorage
         LocaleManager.shared.storage = self.defaultStorage

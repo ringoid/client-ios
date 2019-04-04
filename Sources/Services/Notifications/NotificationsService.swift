@@ -8,6 +8,7 @@
 
 import RxSwift
 import RxCocoa
+import UserNotifications
 
 struct RemoteNotification
 {
@@ -20,6 +21,7 @@ protocol NotificationService
     var token: BehaviorRelay<String?> { get }
     var isGranted: BehaviorRelay<Bool> { get }
     var isRegistered: Bool { get }
+    var responses: Observable<UNNotificationResponse>! { get }
     
     func handle(notificationDict: [AnyHashable : Any])
     func register()

@@ -15,7 +15,10 @@ class NotificationsServiceDefault: NSObject, NotificationService
     var notification: BehaviorRelay<RemoteNotification> = BehaviorRelay<RemoteNotification>(value: RemoteNotification(message: ""))
     var token: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     var isGranted: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var responses: Observable<UNNotificationResponse>!
     var isRegistered: Bool = false
+    
+    fileprivate var responseObserver: AnyObserver<UNNotificationResponse>?
     
     override init()
     {
@@ -24,6 +27,15 @@ class NotificationsServiceDefault: NSObject, NotificationService
         UNUserNotificationCenter.current().delegate = self
         self.isRegistered = UIApplication.shared.isRegisteredForRemoteNotifications
         self.checkAndRegister()
+        
+        
+        self.responses =  Observable<UNNotificationResponse>.create({ [weak self] observer -> Disposable in
+            
+            self?.responseObserver = observer
+            
+            return Disposables.create()
+        })
+        
     }
     
     func handle(notificationDict: [AnyHashable : Any])
@@ -66,7 +78,7 @@ extension NotificationsServiceDefault: UNUserNotificationCenterDelegate
 {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
     {
-        
+        self.responseObserver?.onNext(response)
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
