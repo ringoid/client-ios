@@ -66,6 +66,13 @@ class SettingsManager
         self.setupBindings()
     }
     
+    func updatePushToken()
+    {
+        guard let token = self.notifications.token.value else { return }
+        
+        self.api.updatePush(token).subscribe().disposed(by: self.disposeBag)
+    }
+    
     func updateRemoteSettings()
     {
         guard self.api.isAuthorized.value else { return }

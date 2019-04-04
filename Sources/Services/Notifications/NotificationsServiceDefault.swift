@@ -62,15 +62,29 @@ class NotificationsServiceDefault: NSObject, NotificationService
         }
     }
     
+    func store(_ token: String)
+    {
+        self.token.accept(token)
+        UserDefaults.standard.set(token, forKey: "push_token")
+        UserDefaults.standard.synchronize()
+    }
+    
     // MARK: -
     
-    func checkAndRegister()
+    fileprivate func checkAndRegister()
     {
         UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
             guard settings.authorizationStatus != .notDetermined else { return }
             
             self?.register()
         }
+    }
+    
+    fileprivate func loadStored()
+    {
+        guard let storedToken = UserDefaults.standard.string(forKey: "push_token") else { return }
+        
+        self.token.accept(storedToken)
     }
 }
 

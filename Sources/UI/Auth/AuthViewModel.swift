@@ -52,6 +52,7 @@ class AuthViewModel
         
         return self.apiService.createProfile(year: year, sex: sex, privateKey: privateKey, referralCode: referralCode).do(onNext: { [weak self] _ in
             self?.settingsManager.updateRemoteSettings()
+            self?.settingsManager.updatePushToken()
         })
     }
     

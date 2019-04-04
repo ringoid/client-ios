@@ -68,7 +68,7 @@ class AppManager
     
     func onGot(deviceToken: String)
     {
-        self.notifications.token.accept(deviceToken)
+        self.notifications.store(deviceToken)
     }
     
     func onGot(notificationDict: [AnyHashable : Any])
