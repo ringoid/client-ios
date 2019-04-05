@@ -138,6 +138,7 @@ class NewFaceProfileViewController: UIViewController
             self.onBlockOptionsWillHide?()
             UIManager.shared.blockModeEnabled.accept(false)
             self.viewModel?.block(at: self.currentIndex.value, reason: BlockReason(rawValue: 0)!)
+            AnalyticsManager.shared.send(.blocked(0, SourceFeedType.newFaces.rawValue, false))
         }))
         alertVC.addAction(UIAlertAction(title: "block_profile_button_report".localized(), style: .default, handler: { _ in
             self.showBlockReasonOptions()
@@ -179,6 +180,7 @@ class NewFaceProfileViewController: UIViewController
             self.onBlockOptionsWillHide?()
             UIManager.shared.blockModeEnabled.accept(false)
             self.viewModel?.block(at: self.currentIndex.value, reason: reason)
+            AnalyticsManager.shared.send(.blocked(reason.rawValue, SourceFeedType.newFaces.rawValue, false))
         }))
         alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
             self.onBlockOptionsWillHide?()

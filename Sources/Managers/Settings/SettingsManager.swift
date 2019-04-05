@@ -93,7 +93,9 @@ class SettingsManager
     {
         guard self.actions.checkConnectionState() else { return }
         
-        self.api.logout().subscribe().disposed(by: self.disposeBag)
+        self.api.logout().subscribe(onNext: { _ in
+            AnalyticsManager.shared.send(.profileDeleted)
+        }).disposed(by: self.disposeBag)
     }
     
     func reset()

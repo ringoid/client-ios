@@ -86,7 +86,9 @@ class UserProfileManager
             guard let url = path.url() else { return }
             
             self.uploader.cancel(url)
-            self.apiService.deletePhoto(id).subscribe().disposed(by: self.disposeBag)
+            self.apiService.deletePhoto(id).subscribe(onNext:{ _ in
+                AnalyticsManager.shared.send(.deletedPhoto)
+            }).disposed(by: self.disposeBag)
         }
     }
     

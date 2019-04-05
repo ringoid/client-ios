@@ -194,6 +194,7 @@ class MainLMMProfileViewController: UIViewController
             UIManager.shared.blockModeEnabled.accept(false)
             self.onBlockOptionsWillHide?()
             self.viewModel?.block(at: self.currentIndex.value, reason: BlockReason(rawValue: 0)!)
+            AnalyticsManager.shared.send(.blocked(0, self.input.feedType.sourceType().rawValue, isChat))
         }))
         alertVC.addAction(UIAlertAction(title: "block_profile_button_report".localized(), style: .default, handler: { _ in
             self.showBlockReasonOptions(isChat)
@@ -213,7 +214,7 @@ class MainLMMProfileViewController: UIViewController
         let reasons = isChat ? BlockReason.reportChatResons() : BlockReason.reportResons()
         for reason in reasons {            
             alertVC.addAction(UIAlertAction(title: reason.title(), style: .default) { _ in
-                self.showBlockReasonConfirmation(reason)
+                self.showBlockReasonConfirmation(reason, isChat: isChat)
             })
         }
         
@@ -225,7 +226,7 @@ class MainLMMProfileViewController: UIViewController
         self.present(alertVC, animated: true, completion: nil)
     }
     
-    fileprivate func showBlockReasonConfirmation(_ reason: BlockReason)
+    fileprivate func showBlockReasonConfirmation(_ reason: BlockReason, isChat: Bool)
     {
         let alertVC = UIAlertController(
             title: nil,
@@ -236,6 +237,7 @@ class MainLMMProfileViewController: UIViewController
             UIManager.shared.blockModeEnabled.accept(false)
             self.onBlockOptionsWillHide?()
             self.viewModel?.block(at: self.currentIndex.value, reason: reason)
+            AnalyticsManager.shared.send(.blocked(reason.rawValue, self.input.feedType.sourceType().rawValue, isChat))
         }))
         alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
             self.onBlockOptionsWillHide?()

@@ -45,6 +45,8 @@ class AuthViewController: BaseViewController
         
         super.viewDidLoad()
         
+        AnalyticsManager.shared.send(.signedUp)
+        
         #if STAGE
         self.themeBtn.isHidden = false
         #else

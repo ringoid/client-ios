@@ -56,7 +56,9 @@ class UploaderServiceDefault: UploaderService
             }
 
             return Disposables.create()
-        }).retry(3)
+        }).retry(3).do(onNext:{ _ in
+            AnalyticsManager.shared.send(.uploadedPhoto)
+        })
     }
     
     func cancel(_ url: URL)

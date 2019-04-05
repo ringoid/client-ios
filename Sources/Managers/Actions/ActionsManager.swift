@@ -138,6 +138,8 @@ class ActionsManager
         self.startViewAction(profile, photo: photo)
         self.commit()
         
+        AnalyticsManager.shared.send(.liked(source.rawValue))
+        
         guard !self.isLikedSomeone.value else { return }
         
         self.isLikedSomeone.accept(true)
@@ -149,6 +151,8 @@ class ActionsManager
         self.add(.unlike, profile: profile, photo: photo, source: source)
         self.startViewAction(profile, photo: photo)
         self.commit()
+        
+        AnalyticsManager.shared.send(.unliked(source.rawValue))
     }
     
     func blockActionProtected(_ reason: BlockReason, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
@@ -167,6 +171,8 @@ class ActionsManager
         self.add(.message(text: text), profile: profile, photo: photo, source: source)
         self.startViewChatAction(profile, photo: photo)
         self.commit()
+        
+        AnalyticsManager.shared.send(.messaged(source.rawValue))
     }
     
     func startViewAction(_ profile: ActionProfile, photo: ActionPhoto)
