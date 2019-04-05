@@ -45,7 +45,12 @@ class SettingsNotificationsCell: BaseTableViewCell
         guard let isGranted = self.settingsManager?.notifications.isGranted.value, isGranted else {
             self.settingsManager?.isNotificationsAllowed = true
             self.pushSwitch.setOn(false, animated: true)
-            self.onSettingsChangesRequired?()
+            
+            if let isRegistered = self.settingsManager?.notifications.isRegistered, !isRegistered {
+                self.settingsManager?.notifications.register()
+            } else {
+                self.onSettingsChangesRequired?()
+            }
             
             return
         }
@@ -61,7 +66,7 @@ class SettingsNotificationsCell: BaseTableViewCell
     fileprivate func setupBindings()
     {
         self.disposeBag = DisposeBag()
-        self.settingsManager?.notifications.isGranted.asObservable().subscribe(onNext: { [weak self] _ in
+        self.settingsManager?.notifications.isGranted.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             self?.updateUI()
         }).disposed(by: self.disposeBag)
     }
