@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>841192352943-npceioklhdlokcsnp95fvfvoog765g0c.apps.googleusercontent.com</string>
+	<string>691533652276-tvu2iu0qevrg01vho3hsmo63ictov3nb.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.841192352943-npceioklhdlokcsnp95fvfvoog765g0c</string>
+	<string>com.googleusercontent.apps.691533652276-tvu2iu0qevrg01vho3hsmo63ictov3nb</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>691533652276-fnotidm7dujc1s9knlfbblkugga3u3l6.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCZ2r_HlfYfY-WxEInRvTAANg5gSy2fhSg</string>
+	<string>AIzaSyA0Rbh7cNpcEzToAOf2WqYl2v19QEOqkqI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>841192352943</string>
+	<string>691533652276</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.ringoid.dating-st</string>
 	<key>PROJECT_ID</key>
-	<string>ringoid-ios-stage</string>
+	<string>ringoid-stage</string>
 	<key>STORAGE_BUCKET</key>
-	<string>ringoid-ios-stage.appspot.com</string>
+	<string>ringoid-stage.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:841192352943:ios:a47d6aadb7fe614e</string>
+	<string>1:691533652276:ios:a47d6aadb7fe614e</string>
 	<key>DATABASE_URL</key>
-	<string>https://ringoid-ios-stage.firebaseio.com</string>
+	<string>https://ringoid-stage.firebaseio.com</string>
 </dict>
 </plist>
