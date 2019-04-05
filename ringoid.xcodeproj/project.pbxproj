@@ -110,6 +110,14 @@
 		578502EA2253B0AE0056120A /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502E82253B0AE0056120A /* ImageService.swift */; };
 		578502ED22561ADA0056120A /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502EC22561ADA0056120A /* SyncManager.swift */; };
 		578502EE22561ADA0056120A /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502EC22561ADA0056120A /* SyncManager.swift */; };
+		578502F422564E860056120A /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502F322564E860056120A /* AnalyticsService.swift */; };
+		578502F522564E860056120A /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502F322564E860056120A /* AnalyticsService.swift */; };
+		578502F722564E9D0056120A /* FirebaseAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502F622564E9D0056120A /* FirebaseAnalytics.swift */; };
+		578502F822564E9D0056120A /* FirebaseAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502F622564E9D0056120A /* FirebaseAnalytics.swift */; };
+		578502FB225650680056120A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 578502FA225650680056120A /* GoogleService-Info.plist */; };
+		578502FE225655890056120A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 578502FD225655890056120A /* GoogleService-Info.plist */; };
+		57850300225725810056120A /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502FF225725810056120A /* AnalyticsManager.swift */; };
+		57850301225725810056120A /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502FF225725810056120A /* AnalyticsManager.swift */; };
 		579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */; };
 		579CD7AE21F8603500C3AEE3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7AD21F8603500C3AEE3 /* Settings.storyboard */; };
 		579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
@@ -390,6 +398,11 @@
 		57801AB02232A2B6005A9731 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		578502E82253B0AE0056120A /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		578502EC22561ADA0056120A /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
+		578502F322564E860056120A /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
+		578502F622564E9D0056120A /* FirebaseAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalytics.swift; sourceTree = "<group>"; };
+		578502FA225650680056120A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		578502FD225655890056120A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		578502FF225725810056120A /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		579CD7AD21F8603500C3AEE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -551,6 +564,7 @@
 		570D047C21DCED1800E0DCFB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				578502F222564E680056120A /* Analytics */,
 				578502E72253B09F0056120A /* Image */,
 				57ED486B224B825E0033EB0B /* Notifications */,
 				573A5C2B2229183C0094A9FA /* Reachability */,
@@ -610,6 +624,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				578502F122564E500056120A /* Analytics */,
 				578502EB22561AC40056120A /* Sync */,
 				57ED4872224D0FF50033EB0B /* Notifications */,
 				574A7DA422434EE30065AE56 /* Promotion */,
@@ -906,6 +921,41 @@
 				578502EC22561ADA0056120A /* SyncManager.swift */,
 			);
 			path = Sync;
+			sourceTree = "<group>";
+		};
+		578502F122564E500056120A /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				578502FF225725810056120A /* AnalyticsManager.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		578502F222564E680056120A /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				578502FC2256507A0056120A /* Stage */,
+				578502F9225650680056120A /* Prod */,
+				578502F322564E860056120A /* AnalyticsService.swift */,
+				578502F622564E9D0056120A /* FirebaseAnalytics.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		578502F9225650680056120A /* Prod */ = {
+			isa = PBXGroup;
+			children = (
+				578502FA225650680056120A /* GoogleService-Info.plist */,
+			);
+			path = Prod;
+			sourceTree = "<group>";
+		};
+		578502FC2256507A0056120A /* Stage */ = {
+			isa = PBXGroup;
+			children = (
+				578502FD225655890056120A /* GoogleService-Info.plist */,
+			);
+			path = Stage;
 			sourceTree = "<group>";
 		};
 		579CD7AF21F8626900C3AEE3 /* Settings */ = {
@@ -1208,6 +1258,7 @@
 				576FC11D2201EBC400BA5ABE /* Localizable.strings in Resources */,
 				570D04AA21DDCF3200E0DCFB /* Root.storyboard in Resources */,
 				570D047621DCE3DA00E0DCFB /* Assets.xcassets in Resources */,
+				578502FB225650680056120A /* GoogleService-Info.plist in Resources */,
 				57B863CC21ECD32100B9CC70 /* MainLMM.storyboard in Resources */,
 				57585D5021E45F1600038798 /* UserProfile.storyboard in Resources */,
 				579CD7AE21F8603500C3AEE3 /* Settings.storyboard in Resources */,
@@ -1226,6 +1277,7 @@
 				57EE65482216711000246B45 /* Localizable.strings in Resources */,
 				57EE65492216711000246B45 /* Root.storyboard in Resources */,
 				57EE654A2216711000246B45 /* Assets.xcassets in Resources */,
+				578502FE225655890056120A /* GoogleService-Info.plist in Resources */,
 				57EE654B2216711000246B45 /* MainLMM.storyboard in Resources */,
 				57EE654C2216711000246B45 /* UserProfile.storyboard in Resources */,
 				57EE654D2216711000246B45 /* Settings.storyboard in Resources */,
@@ -1316,6 +1368,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -1328,12 +1381,14 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Sentry/Sentry.framework",
 				"${BUILT_PRODUCTS_DIR}/Valet/Valet.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
@@ -1346,6 +1401,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sentry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Valet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1364,6 +1420,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Nuke/Nuke.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -1376,6 +1433,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Sentry/Sentry.framework",
 				"${BUILT_PRODUCTS_DIR}/Valet/Valet.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -1384,6 +1442,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nuke.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
@@ -1396,6 +1455,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sentry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Valet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1433,6 +1493,7 @@
 				57B863D321EDB18600B9CC70 /* MainLMMProfileViewModel.swift in Sources */,
 				57FB7BD321E74C3E00AAA29D /* Storyboards.swift in Sources */,
 				576FC1142201876A00BA5ABE /* DeviceService.swift in Sources */,
+				57850300225725810056120A /* AnalyticsManager.swift in Sources */,
 				57585D3F21E354FA00038798 /* NewFacesManager.swift in Sources */,
 				57B863D521EE16E700B9CC70 /* VerticalGradientView.swift in Sources */,
 				57ED4874224D10060033EB0B /* NotificationsManager.swift in Sources */,
@@ -1465,6 +1526,7 @@
 				579CD7C121F9A91700C3AEE3 /* ChatViewController.swift in Sources */,
 				57386E42220B2FB20000E5D9 /* SettingsLanguageCell.swift in Sources */,
 				573A5C2D2229184E0094A9FA /* ReachabilityService.swift in Sources */,
+				578502F722564E9D0056120A /* FirebaseAnalytics.swift in Sources */,
 				57B863FA21EF5D2A00B9CC70 /* ApiMessageAction.swift in Sources */,
 				570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */,
 				579CD7B621F8947000C3AEE3 /* SettingsThemeCell.swift in Sources */,
@@ -1499,6 +1561,7 @@
 				570D04BD21DE385E00E0DCFB /* DefaultStorageService.swift in Sources */,
 				570D04A521DD087100E0DCFB /* AppManager.swift in Sources */,
 				573A5C292227AD0D0094A9FA /* UserProfileCropOverlayView.swift in Sources */,
+				578502F422564E860056120A /* AnalyticsService.swift in Sources */,
 				57FB7BCC21E73D3C00AAA29D /* ContainerView.swift in Sources */,
 				573A5C262227AA080094A9FA /* UserProfilePhotoCropViewController.swift in Sources */,
 				57585D4421E3558800038798 /* Photo.swift in Sources */,
@@ -1575,6 +1638,7 @@
 				57EE64E52216711000246B45 /* Action.swift in Sources */,
 				57EE64E62216711000246B45 /* MainLMMProfileViewModel.swift in Sources */,
 				57EE64E72216711000246B45 /* Storyboards.swift in Sources */,
+				57850301225725810056120A /* AnalyticsManager.swift in Sources */,
 				57EE655E2216DCA700246B45 /* SentryService.swift in Sources */,
 				57EE64E82216711000246B45 /* DeviceService.swift in Sources */,
 				57ED4875224D10060033EB0B /* NotificationsManager.swift in Sources */,
@@ -1607,6 +1671,7 @@
 				57EE64FF2216711000246B45 /* AppDelegate.swift in Sources */,
 				57EE65002216711000246B45 /* ThemeManager.swift in Sources */,
 				573A5C2E2229184E0094A9FA /* ReachabilityService.swift in Sources */,
+				578502F822564E9D0056120A /* FirebaseAnalytics.swift in Sources */,
 				57EE65012216711000246B45 /* ChatViewController.swift in Sources */,
 				57EE65022216711000246B45 /* SettingsLanguageCell.swift in Sources */,
 				57EE65032216711000246B45 /* ApiMessageAction.swift in Sources */,
@@ -1641,6 +1706,7 @@
 				57EE65192216711000246B45 /* SettingsEmailCell.swift in Sources */,
 				57EE651A2216711000246B45 /* ApiLMMProfile.swift in Sources */,
 				573A5C2A2227AD0D0094A9FA /* UserProfileCropOverlayView.swift in Sources */,
+				578502F522564E860056120A /* AnalyticsService.swift in Sources */,
 				57EE651C2216711000246B45 /* DefaultStorageService.swift in Sources */,
 				573A5C272227AA080094A9FA /* UserProfilePhotoCropViewController.swift in Sources */,
 				57EE651D2216711000246B45 /* AppManager.swift in Sources */,

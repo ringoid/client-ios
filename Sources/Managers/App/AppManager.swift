@@ -33,6 +33,8 @@ class AppManager
     
     func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
+        _ = AnalyticsManager.shared
+        
         self.setupServices(launchOptions)
         self.setupManagers(launchOptions)
     }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>303396671021-0tjajvn4a8v4rq788ev0kr6jgnp4h4o6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.303396671021-0tjajvn4a8v4rq788ev0kr6jgnp4h4o6</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA3I2IgKSEcXQcI5GfPZxQ8iSrujVsKAoc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>303396671021</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ringoid.dating</string>
+	<key>PROJECT_ID</key>
+	<string>ringoid-prod-1009c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ringoid-prod-1009c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:303396671021:ios:19cade2c81e511ff</string>
+	<key>DATABASE_URL</key>
+	<string>https://ringoid-prod-1009c.firebaseio.com</string>
+</dict>
+</plist>

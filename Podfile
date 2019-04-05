@@ -16,6 +16,7 @@ def common_pods
 	pod 'DeviceKit', '~> 1.3'
 	pod 'Valet'
 	pod 'Branch'
+	pod 'Firebase/Core'
 end
 
 target 'ringoid' do
