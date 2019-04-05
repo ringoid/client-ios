@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 class AppManager
 {
@@ -34,7 +33,6 @@ class AppManager
     
     func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
-        FirebaseApp.configure()
         _ = AnalyticsManager.shared
         
         self.setupServices(launchOptions)
