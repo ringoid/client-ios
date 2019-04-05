@@ -140,9 +140,17 @@ class ActionsManager
         
         AnalyticsManager.shared.send(.liked(source.rawValue))
         
-        guard !self.isLikedSomeone.value else { return }
+        guard !self.isLikedSomeone.value else {
+            // Second like notifications access triggers
+            if !self.notifications.isRegistered && !self.notifications.isGranted.value {
+                self.notifications.register()
+            }
+            
+            return
+        }
         
         self.isLikedSomeone.accept(true)
+        
     }
     
     func unlikeActionProtected(_ profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
