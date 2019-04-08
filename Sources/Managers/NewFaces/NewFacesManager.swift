@@ -35,7 +35,7 @@ class NewFacesManager
     
     func refresh() -> Observable<Void>
     {
-        return self.purge().flatMap({ _ -> Observable<Void> in
+        return self.purge().asObservable().flatMap({ _ -> Observable<Void> in
             return self.fetch()
         })
     }
@@ -64,15 +64,15 @@ class NewFacesManager
                 return localProfile
             })
             
-            return self!.db.add(localProfiles)
-        }).delay(0.05, scheduler: MainScheduler.instance).do(onNext: { [weak self] _ in
+            return self!.db.add(localProfiles).asObservable()
+        }).delay(0.05, scheduler: MainScheduler.instance).single().do(onNext: { [weak self] _ in
             self?.isFetching.accept(false)
             }, onError: { [weak self] _ in
             self?.isFetching.accept(false)
         })
     }
     
-    func purge() -> Observable<Void>
+    func purge() -> Single<Void>
     {
         log("New faces: PURGE", level: .high)
         
@@ -94,7 +94,7 @@ class NewFacesManager
     
     fileprivate func setupBindings()
     {
-        self.db.fetchNewFaces().subscribeOn(MainScheduler.instance).bind(to: self.profiles).disposed(by: self.disposeBag)
+        self.db.newFaces().subscribeOn(MainScheduler.instance).bind(to: self.profiles).disposed(by: self.disposeBag)
     }
     
     fileprivate func filterExisting(_ incomingProfiles: [ApiProfile]) -> [ApiProfile]

@@ -60,7 +60,7 @@ class UserProfileManager
             }
             
             // Updating origin id
-            self!.db.fetchUserPhoto(filename).subscribe(onNext: { photo in
+            self!.db.userPhoto(filename).asObservable().subscribe(onNext: { photo in
                 guard let photo = photo else { return }
                 photo.write({ obj in
                     (obj as? UserPhoto)?.originId = apiPhotoPlaceholder.originId
@@ -69,7 +69,7 @@ class UserProfileManager
             }).disposed(by: self!.disposeBag)
         }).disposed(by: self.disposeBag)
         
-        return self.db.add(photo).map({ _ -> UserPhoto in
+        return self.db.add(photo).asObservable().map({ _ -> UserPhoto in
             return photo
         })
     }
@@ -78,7 +78,7 @@ class UserProfileManager
     {
         let photoId = photo.id ?? photo.originId
         let path = photo.filepath()
-        self.db.delete([photo]).subscribe(onNext: { [weak self] _ in
+        self.db.delete([photo]).subscribe(onSuccess: { [weak self] _ in
             self?.fileService.rm(path)
         }).disposed(by: self.disposeBag)
                 
@@ -112,7 +112,7 @@ class UserProfileManager
     
     fileprivate func setupBindings()
     {
-        self.db.fetchUserPhotos().subscribeOn(MainScheduler.instance).bind(to: self.photos).disposed(by: self.disposeBag)
+        self.db.userPhotos().subscribeOn(MainScheduler.instance).bind(to: self.photos).disposed(by: self.disposeBag)
         
         self.storage.object(self.photoKey).subscribe(onNext: { [weak self] obj in
             self?.lastPhotoId.accept(String.create(obj))

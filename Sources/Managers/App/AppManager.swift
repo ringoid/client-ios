@@ -36,7 +36,7 @@ class AppManager
         _ = AnalyticsManager.shared
         
         self.setupServices(launchOptions)
-        self.setupManagers(launchOptions)
+        self.setupManagers(launchOptions)        
     }
     
     func onTerminate()

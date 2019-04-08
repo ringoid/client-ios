@@ -79,7 +79,7 @@ class ActionsManager
     {
         let createdActions = actions.map({ $0.model(profile: profile, photo: photo, source: source) })
 
-        self.db.add(createdActions).subscribe(onNext: { [weak self] _ in
+        self.db.add(createdActions).subscribe(onSuccess: { [weak self] _ in
             self?.queue.append(contentsOf: createdActions)
         }).disposed(by: self.disposeBag)
     }
@@ -223,7 +223,7 @@ class ActionsManager
     
     func inqueueStoredActions()
     {
-        self.db.fetchActions().take(1).subscribe(onNext: { [weak self] actions in
+        self.db.actions().take(1).subscribe(onNext: { [weak self] actions in
             self?.queue.append(contentsOf: actions)
         }).disposed(by: self.disposeBag)
     }

@@ -96,7 +96,7 @@ class LMMManager
             self.likesYou.value +
             self.matches.value
         ).map({ ChatProfileCache.create($0) })
-        
+
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
             
             self!.purge()
@@ -120,8 +120,8 @@ class LMMManager
                 }
             }
             
-            return self!.db.add(localLikesYou + matches + messages)
-        }).delay(0.05, scheduler: MainScheduler.instance).do(
+            return self!.db.add(localLikesYou + matches + messages).asObservable()
+        }).asObservable().delay(0.05, scheduler: MainScheduler.instance).do(
             onNext: { [weak self] _ in
                 self?.isFetching.accept(false)
         },
@@ -141,7 +141,7 @@ class LMMManager
         
         return self.actionsManager.sendQueue().flatMap ({ [weak self] _ -> Observable<Void> in
             
-            return self!.refresh(from)
+            return self!.refresh(from).asObservable()
         }).do(onNext: { _ in
             if Date().timeIntervalSince(startDate) < 2.0 {
                 SentryService.shared.send(.waitingForResponseLLM)
@@ -156,9 +156,9 @@ class LMMManager
     
     fileprivate func setupBindings()
     {
-        self.db.fetchLikesYou().subscribeOn(MainScheduler.instance).bind(to: self.likesYou).disposed(by: self.disposeBag)
-        self.db.fetchMatches().subscribeOn(MainScheduler.instance).bind(to: self.matches).disposed(by: self.disposeBag)
-        self.db.fetchMessages().subscribeOn(MainScheduler.instance).bind(to: self.messages).disposed(by: self.disposeBag)        
+        self.db.likesYou().subscribeOn(MainScheduler.instance).bind(to: self.likesYou).disposed(by: self.disposeBag)
+        self.db.matches().subscribeOn(MainScheduler.instance).bind(to: self.matches).disposed(by: self.disposeBag)
+        self.db.messages().subscribeOn(MainScheduler.instance).bind(to: self.messages).disposed(by: self.disposeBag)        
     }
     
     func reset()
