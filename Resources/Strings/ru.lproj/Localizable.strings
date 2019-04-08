@@ -23,7 +23,7 @@
 
 "error_common" = "Ой! Что-то пошло не так";
 
-"debug_email_support_button_label" = "Написать в support@ringoid.com";
+"debug_email_support_button_label" = "Написать support@ringoid.com";
 
 "error_screen_no_network_connection" = "Нет интернета";
 "error_screen_no_network_connection_button_label" = "Повторить попытку";
@@ -48,7 +48,7 @@
 "feed_explore_dialog_no_user_photo_description" = "Добавь фото, чтобы получать лайки";
 "feed_explore_empty_no_data" = "Новых пока нет";
 "feed_likes_you_empty_no_data" = "Лайков ещё нет";
-"feed_matches_empty_no_data" = "Взаимных симпатий (совпадений) ещё нет";
+"feed_matches_empty_no_data" = "Взаимных лайков ещё нет";
 "feed_messages_empty_no_data" = "Сообщений ещё нет";
 
 "lmm_tab_likes" = "Ты нравишься";
@@ -56,7 +56,7 @@
 "lmm_tab_messenger" = "Чаты";
 
 "login_button" = "Продолжить";
-"login_terms" = "Нажимая на кнопку ниже, вы подтверждаете, что ознакомились, понимаете и принимаете $terms$ и $policy$ Рингоид, а также, что вы достигли совершеннолетия в соответствии с законодательством страны, в которой вы находитесь или запускаете Рингоид.";
+"login_terms" = "Нажимая на кнопку ниже, вы подтверждаете, что ознакомились, понимаете и принимаете $terms$ и $policy$ Ringoid, а также, что вы достигли совершеннолетия в соответствии с законодательством страны, в которой вы находитесь или запускаете Ringoid.";
 "login_year_of_birth_et_hint" = "Год рождения";
 "login_variable_terms" = "Условия использования";
 "login_variable_policy" = "Политику конфиденциальности";
@@ -71,19 +71,19 @@
 "profile_empty_images" = "Добавь фото, чтобы\nполучать лайки";
 "profile_empty_title" = "Профиль";
 
-"settings_account_delete" = "Удалить Профиль";
-"settings_account_delete_dialog_title" = "Удалить Профиль?";
+"settings_account_delete" = "Удалить аккаунт";
+"settings_account_delete_dialog_title" = "Удалить аккаунт?";
 "settings_app_info" = "Информация";
 "settings_language" = "Язык";
-"settings_language_help" = "Если вы хотите помочь и перевести Рингоид на родной язык, пожалуйста, напишите в support@ringoid.com";
-"settings_support" = "Написать в support@ringoid.com";
+"settings_language_help" = "Если вы хотите помочь и перевести Ringoid на родной язык, пожалуйста, напишите в support@ringoid.com";
+"settings_support" = "Написать support@ringoid.com";
 "settings_title" = "Настройки";
 "settings_theme_dark" = "Ночной режим";
 "settings_push" = "Push-уведомления";
 "settings_push_details" = "Один раз в день, если есть лайк, взаимная симпатия, сообщение, или новые люди";
 
-"settings_info_about" = "О Приложении";
-"settings_info_about_dialog_description" = "Copyright © Ringoid Ltd, 2018.\n\nRINGOID LTD is registered in England with Company No. 09427326 and VAT Reg No: GB 208660511. \n\nRegistered Office: 97 Friars Mead, London, E14 3JY, England.\n\nRingoid is a registered trademark of Ringoid Ltd.\n\nRingoid Ltd is trading as Ringoid.\n\nRingoid is registered with the UK\'s Information Commissioner\'s Office with registration number ZA455969 and operates within compliance of the EU General Data Protection Regulation 2018.\n\nEmail: support@ringoid.com\nWeb: http://ringoid.com";
+"settings_info_about" = "О приложении";
+"settings_info_about_dialog_description" = "Copyright © Ringoid Ltd, 2019.\n\nRINGOID LTD is registered in England with Company No. 09427326 and VAT Reg No: GB 208660511. \n\nRegistered Office: 97 Friars Mead, London, E14 3JY, England.\n\nRingoid is a registered trademark of Ringoid Ltd.\n\nRingoid Ltd is trading as Ringoid.\n\nRingoid is registered with the UK\'s Information Commissioner\'s Office with registration number ZA455969 and operates within compliance of the EU General Data Protection Regulation 2019.\n\nEmail: support@ringoid.com\nWeb: http://ringoid.com";
 "settings_info_customer_info" = "Идентификатор пользователя";
 "settings_info_email_officer" = "Написать в Отдел защиты данных";
 "settings_info_licenses" = "Лицензии открытого ПО";
