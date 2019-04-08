@@ -118,6 +118,8 @@
 		57850301225725810056120A /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578502FF225725810056120A /* AnalyticsManager.swift */; };
 		57850305225743A60056120A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57850304225743A50056120A /* GoogleService-Info.plist */; };
 		57850307225745380056120A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57850306225745380056120A /* GoogleService-Info.plist */; };
+		57850309225B53D40056120A /* MainEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57850308225B53D40056120A /* MainEffectsView.swift */; };
+		5785030A225B53D40056120A /* MainEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57850308225B53D40056120A /* MainEffectsView.swift */; };
 		579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */; };
 		579CD7AE21F8603500C3AEE3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7AD21F8603500C3AEE3 /* Settings.storyboard */; };
 		579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
@@ -403,6 +405,7 @@
 		578502FF225725810056120A /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		57850304225743A50056120A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		57850306225745380056120A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		57850308225B53D40056120A /* MainEffectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEffectsView.swift; sourceTree = "<group>"; };
 		579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		579CD7AD21F8603500C3AEE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -1123,6 +1126,7 @@
 			children = (
 				57FB7BC321E61BE400AAA29D /* MainViewController.swift */,
 				57FB7BC921E63D6800AAA29D /* MainViewModel.swift */,
+				57850308225B53D40056120A /* MainEffectsView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1470,6 +1474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57EE64C722150FD600246B45 /* SettingsLegalAboutCell.swift in Sources */,
+				57850309225B53D40056120A /* MainEffectsView.swift in Sources */,
 				57BEB67F2213F306000BD768 /* SettingsLocaleCell.swift in Sources */,
 				57EE64CB2215304000246B45 /* SettingsLegalTermsCell.swift in Sources */,
 				570D04AD21DDD2A900E0DCFB /* RootViewController.swift in Sources */,
@@ -1615,6 +1620,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57EE64D42216711000246B45 /* SettingsLegalAboutCell.swift in Sources */,
+				5785030A225B53D40056120A /* MainEffectsView.swift in Sources */,
 				57EE64D52216711000246B45 /* SettingsLocaleCell.swift in Sources */,
 				57EE64D62216711000246B45 /* SettingsLegalTermsCell.swift in Sources */,
 				57EE64D72216711000246B45 /* RootViewController.swift in Sources */,

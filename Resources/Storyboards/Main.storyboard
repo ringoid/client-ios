@@ -36,6 +36,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htN-cB-51n" customClass="MainEffectsView" customModule="Ringoid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="QYd-HC-afs">
                                 <rect key="frame" x="0.0" y="617" width="375" height="31"/>
                                 <subviews>
@@ -110,15 +114,19 @@
                             <constraint firstItem="uLq-rW-238" firstAttribute="trailing" secondItem="02Y-W9-hk1" secondAttribute="trailing" constant="25" id="93I-rR-S6Y"/>
                             <constraint firstItem="QYd-HC-afs" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="Bqv-WG-NUp"/>
                             <constraint firstAttribute="trailing" secondItem="ZFd-I1-dCK" secondAttribute="trailing" id="CEJ-uj-wFU"/>
+                            <constraint firstItem="htN-cB-51n" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="FCs-AF-JJv"/>
+                            <constraint firstAttribute="trailing" secondItem="htN-cB-51n" secondAttribute="trailing" id="FhK-dC-Yle"/>
                             <constraint firstItem="E8b-9J-Vw4" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="J9K-us-tve"/>
                             <constraint firstAttribute="trailing" secondItem="5V4-Yy-5nc" secondAttribute="trailing" id="MRg-GR-Frs"/>
                             <constraint firstAttribute="bottom" secondItem="ZFd-I1-dCK" secondAttribute="bottom" id="Qjc-t6-IL0"/>
+                            <constraint firstAttribute="bottom" secondItem="htN-cB-51n" secondAttribute="bottom" id="Qps-4C-BS6"/>
                             <constraint firstAttribute="bottom" secondItem="E8b-9J-Vw4" secondAttribute="bottom" id="U9q-bB-TTW"/>
                             <constraint firstItem="cD4-SP-HxY" firstAttribute="trailing" secondItem="WgY-Bd-4Qd" secondAttribute="trailing" constant="11" id="V9n-Vt-pGB"/>
                             <constraint firstItem="ZFd-I1-dCK" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="ZhW-CE-RaR"/>
                             <constraint firstAttribute="trailing" secondItem="E8b-9J-Vw4" secondAttribute="trailing" id="hcZ-sj-eTO"/>
                             <constraint firstItem="PZo-jV-0xV" firstAttribute="bottom" secondItem="QYd-HC-afs" secondAttribute="top" constant="50" id="i4t-Gf-cAe"/>
                             <constraint firstItem="PZo-jV-0xV" firstAttribute="bottom" secondItem="E8b-9J-Vw4" secondAttribute="top" constant="72" id="jS5-2i-i9y"/>
+                            <constraint firstItem="htN-cB-51n" firstAttribute="top" secondItem="GM2-8q-nY9" secondAttribute="top" id="jZm-uA-obf"/>
                             <constraint firstAttribute="trailing" secondItem="QYd-HC-afs" secondAttribute="trailing" id="uDB-st-wc8"/>
                             <constraint firstItem="ZFd-I1-dCK" firstAttribute="top" secondItem="GM2-8q-nY9" secondAttribute="top" id="yMd-wt-oZo"/>
                             <constraint firstItem="cD4-SP-HxY" firstAttribute="top" secondItem="WgY-Bd-4Qd" secondAttribute="top" constant="-6" id="zsJ-5h-0VD"/>
@@ -126,6 +134,7 @@
                         <viewLayoutGuide key="safeArea" id="PZo-jV-0xV"/>
                     </view>
                     <connections>
+                        <outlet property="effectsView" destination="htN-cB-51n" id="eaL-Um-c0a"/>
                         <outlet property="likeBtn" destination="uLq-rW-238" id="tPb-gd-o3B"/>
                         <outlet property="lmmNotSeenIndicatorView" destination="02Y-W9-hk1" id="Uiu-v3-0Rm"/>
                         <outlet property="profileBtn" destination="cD4-SP-HxY" id="8ZU-N8-BWV"/>

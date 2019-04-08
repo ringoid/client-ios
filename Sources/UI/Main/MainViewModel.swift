@@ -28,11 +28,6 @@ class MainViewModel
 {
     let input: MainVMInput
     
-    fileprivate let disposeBag: DisposeBag = DisposeBag()
-    fileprivate var notSeenLikesCount: Int = 0
-    fileprivate var notSeenMatchesCount: Int = 0
-    fileprivate var notSeenMessagesCount: Int = 0
-    
     var availablePhotosCount: Observable<Int>
     {
         return self.input.profileManager.photos.asObservable().map { photos -> Int in
@@ -48,7 +43,13 @@ class MainViewModel
         }
     }
     
-    var isNotSeenProfilesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    let incomingLikesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    let isNotSeenProfilesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var notSeenLikesCount: Int = 0
+    fileprivate var notSeenMatchesCount: Int = 0
+    fileprivate var notSeenMessagesCount: Int = 0
 
     init(_ input: MainVMInput)
     {
@@ -83,6 +84,11 @@ class MainViewModel
     {
         self.input.lmmManager.notSeenLikesYouCount.subscribe(onNext:{ [weak self] count in
             guard let `self` = self else { return }
+            
+            let diff = count - self.notSeenLikesCount
+            if diff > 0 {
+                self.incomingLikesCount.accept(diff)
+            }
             
             self.notSeenLikesCount = count
             self.isNotSeenProfilesAvailable.accept(count + self.notSeenMatchesCount + self.notSeenMessagesCount != 0)

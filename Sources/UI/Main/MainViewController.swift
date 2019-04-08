@@ -35,6 +35,7 @@ class MainViewController: BaseViewController
     @IBOutlet fileprivate weak var profileBtn: UIButton!
     @IBOutlet fileprivate weak var profileIndicatorView: UIView!
     @IBOutlet fileprivate weak var lmmNotSeenIndicatorView: UIView!
+    @IBOutlet fileprivate weak var effectsView: MainEffectsView!
     
     static func create() -> MainViewController
     {
@@ -47,8 +48,35 @@ class MainViewController: BaseViewController
     {
         super.viewDidLoad()
         
-        self.setupBindings()        
+        self.setupBindings()
+        
+        #if STAGE
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(showDebugLikes))
+        recognizer.numberOfTapsRequired = 3
+        self.likeBtn.gestureRecognizers = [recognizer]
+        #endif
     }
+    
+    #if STAGE
+    @objc func showDebugLikes()
+    {
+        let alertVC = UIAlertController(title: "Simulate likes", message: nil, preferredStyle: .alert)
+        alertVC.addTextField(configurationHandler: { textField in
+            textField.keyboardType = .numberPad
+        })
+        alertVC.addAction(UIAlertAction(title: "Simulate", style: .default, handler: { _ in
+            guard let text = alertVC.textFields?.first?.text, let count = Int(text) else { return }
+            
+            let size = self.likeBtn.bounds.size
+            let position = self.view.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), from: self.likeBtn)
+            self.effectsView.animateLikes(count, from: position)
+        }))
+        alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    #endif
     
     override func updateTheme()
     {
@@ -248,6 +276,14 @@ class MainViewController: BaseViewController
         
         self.viewModel?.isNotSeenProfilesAvailable.asObservable().subscribe(onNext: { [weak self] state in
             self?.lmmNotSeenIndicatorView.isHidden = !state
+        }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.incomingLikesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
+            guard let `self` = self else { return }
+            
+            let size = self.likeBtn.bounds.size
+            let position = self.view.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), from: self.likeBtn)
+            self.effectsView.animateLikes(count, from: position)
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
