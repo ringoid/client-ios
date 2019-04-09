@@ -24,7 +24,7 @@ class MainEffectsView: TouchThroughView
         cell.emissionRange = .pi / 16.0
         cell.lifetime = lifetime
         cell.birthRate = birthRate
-        cell.scale = 0.5
+        cell.scale = 0.8 / UIScreen.main.nativeScale
         cell.scaleRange = 0.1
         cell.scaleSpeed = 0.05
         cell.velocity = 100.0
@@ -72,7 +72,7 @@ class MainEffectsView: TouchThroughView
         cell.emissionRange = .pi / 16.0
         cell.lifetime = lifetime
         cell.birthRate = birthRate
-        cell.scale = 0.5
+        cell.scale = 0.8 / UIScreen.main.nativeScale
         cell.scaleRange = 0.1
         cell.scaleSpeed = 0.05
         cell.velocity = 100.0
@@ -120,7 +120,7 @@ class MainEffectsView: TouchThroughView
         cell.emissionRange = .pi / 16.0
         cell.lifetime = lifetime
         cell.birthRate = birthRate
-        cell.scale = 0.5
+        cell.scale = 0.8 / UIScreen.main.nativeScale
         cell.scaleRange = 0.1
         cell.scaleSpeed = 0.05
         cell.velocity = 100.0
