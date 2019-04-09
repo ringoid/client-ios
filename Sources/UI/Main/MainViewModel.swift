@@ -43,7 +43,21 @@ class MainViewModel
         }
     }
     
-    let incomingLikesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    var incomingLikesCount: Observable<Int>
+    {
+        return self.input.lmmManager.incomingLikesYouCount
+    }
+    
+    var incomingMatches: Observable<Int>
+    {
+        return self.input.lmmManager.incomingMatches
+    }
+    
+    var incomingMessages: Observable<Int>
+    {
+        return self.input.lmmManager.incomingMessages
+    }
+    
     let isNotSeenProfilesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
@@ -82,18 +96,6 @@ class MainViewModel
     
     fileprivate func setupBindings()
     {
-        self.input.lmmManager.notSeenLikesYouCount.subscribe(onNext:{ [weak self] count in
-            guard let `self` = self else { return }
-            
-            let diff = count - self.notSeenLikesCount
-            if diff > 0 {
-                self.incomingLikesCount.accept(diff)
-            }
-            
-            self.notSeenLikesCount = count
-            self.isNotSeenProfilesAvailable.accept(count + self.notSeenMatchesCount + self.notSeenMessagesCount != 0)
-        }).disposed(by: self.disposeBag)
-        
         self.input.lmmManager.notSeenMatchesCount.subscribe(onNext:{ [weak self] count in
             guard let `self` = self else { return }
             

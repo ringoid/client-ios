@@ -290,6 +290,24 @@ class MainViewController: BaseViewController
             self.effectsView.animateLikes(count, from: position)
         }).disposed(by: self.disposeBag)
         
+        self.viewModel?.incomingMatches.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
+            guard let `self` = self else { return }
+            
+            let size = self.likeBtn.bounds.size
+            let center = CGPoint(x: size.width - 47.0, y: size.height / 2.0)
+            let position = self.likeBtn.convert(center, to: nil)
+            self.effectsView.animateMatches(count, from: position)
+        }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.incomingMessages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
+            guard let `self` = self else { return }
+            
+            let size = self.likeBtn.bounds.size
+            let center = CGPoint(x: size.width - 47.0, y: size.height / 2.0)
+            let position = self.likeBtn.convert(center, to: nil)
+            self.effectsView.animateMessages(count, from: position)
+        }).disposed(by: self.disposeBag)
+        
         UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             let alpha:CGFloat = state ? 0.0 : 1.0            
             self?.lmmNotSeenIndicatorView.alpha = alpha

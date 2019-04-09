@@ -40,6 +40,8 @@ class LMMManager
     
     let isFetching: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
+    // Not seen counters
+    
     var notSeenLikesYouCount: Observable<Int>
     {
         return self.likesYou.asObservable().map { profiles -> Int in
@@ -74,6 +76,56 @@ class LMMManager
             })
             
             return notSeenCount
+        }
+    }
+    
+    // Incoming counters
+    
+    fileprivate var prevNotSeenLikes: [String] = []
+    var incomingLikesYouCount: Observable<Int>
+    {
+        return self.likesYou.asObservable().map { profiles -> Int in
+            let notSeenProfiles = profiles.filter({ $0.notSeen })
+            
+            defer {
+                if notSeenProfiles.count > 0 {
+                    self.prevNotSeenLikes = notSeenProfiles.map({ $0.id })
+                }
+            }
+
+            return notSeenProfiles.filter({ !self.prevNotSeenLikes.contains($0.id) }).count
+        }
+    }
+    
+    fileprivate var prevNotSeenMatches: [String] = []
+    var incomingMatches: Observable<Int>
+    {
+        return self.matches.asObservable().map { profiles -> Int in
+            let notSeenProfiles = profiles.filter({ $0.notSeen })
+            
+            defer {
+                if notSeenProfiles.count > 0 {
+                    self.prevNotSeenMatches = notSeenProfiles.map({ $0.id })
+                }
+            }
+            
+            return notSeenProfiles.filter({ !self.prevNotSeenMatches.contains($0.id) }).count
+        }
+    }
+    
+    fileprivate var prevNotSeenMessages: [String] = []
+    var incomingMessages: Observable<Int>
+    {
+        return self.messages.asObservable().map { profiles -> Int in
+            let notSeenProfiles = profiles.filter({ $0.notSeen })
+            
+            defer {
+                if notSeenProfiles.count > 0 {
+                    self.prevNotSeenMessages = notSeenProfiles.map({ $0.id })
+                }
+            }
+            
+            return notSeenProfiles.filter({ !self.prevNotSeenMessages.contains($0.id) }).count
         }
     }
     
