@@ -196,7 +196,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         let option = self.options[indexPath.row]
         
         if option.cellIdentifier == "push_cell" && self.input.settingsManager.isNotificationsAllowed {
-            return 88.0
+            return UIScreen.main.bounds.width < 374.0 ? 98.0 : 88.0
         }
         
         return option.height

@@ -77,7 +77,7 @@
                                                         <action selector="onValueChanged" destination="f9e-0a-til" eventType="valueChanged" id="pY0-bX-JzQ"/>
                                                     </connections>
                                                 </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Once per day if you have new like, match, message, or users" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5R-EC-EMK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Once per day if you have new like, match, message, or users" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5R-EC-EMK">
                                                     <rect key="frame" x="48" y="43" width="311" height="33"/>
                                                     <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="14"/>
                                                     <color key="textColor" red="0.5450980392" green="0.5450980392" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
@@ -221,10 +221,7 @@
                                                     <rect key="frame" x="19" y="15" width="11" height="15"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQT-Jc-7yY">
-                                                    <rect key="frame" x="48" y="15.5" width="117.5" height="14"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="k0f-lg-wjr"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="48" y="12.5" width="117.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="0.59607843137254901" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
