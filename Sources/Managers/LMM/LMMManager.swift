@@ -86,12 +86,6 @@ class LMMManager
     {
         return self.likesYou.asObservable().map { profiles -> Int in
             let notSeenProfiles = profiles.filter({ $0.notSeen })
-            
-            defer {
-                if notSeenProfiles.count > 0 {
-                    self.prevNotSeenLikes = notSeenProfiles.map({ $0.id })
-                }
-            }
 
             return notSeenProfiles.filter({ !self.prevNotSeenLikes.contains($0.id) }).count
         }
@@ -102,13 +96,7 @@ class LMMManager
     {
         return self.matches.asObservable().map { profiles -> Int in
             let notSeenProfiles = profiles.filter({ $0.notSeen })
-            
-            defer {
-                if notSeenProfiles.count > 0 {
-                    self.prevNotSeenMatches = notSeenProfiles.map({ $0.id })
-                }
-            }
-            
+
             return notSeenProfiles.filter({ !self.prevNotSeenMatches.contains($0.id) }).count
         }
     }
@@ -118,12 +106,6 @@ class LMMManager
     {
         return self.messages.asObservable().map { profiles -> Int in
             let notSeenProfiles = profiles.filter({ $0.notSeen })
-            
-            defer {
-                if notSeenProfiles.count > 0 {
-                    self.prevNotSeenMessages = notSeenProfiles.map({ $0.id })
-                }
-            }
             
             return notSeenProfiles.filter({ !self.prevNotSeenMessages.contains($0.id) }).count
         }
@@ -148,7 +130,11 @@ class LMMManager
             self.likesYou.value +
             self.matches.value
         ).map({ ChatProfileCache.create($0) })
-
+        
+        self.prevNotSeenLikes = self.likesYou.value.filter({ $0.notSeen }).map({ $0.id })
+        self.prevNotSeenMatches = self.matches.value.filter({ $0.notSeen }).map({ $0.id })
+        self.prevNotSeenMessages = self.messages.value.filter({ $0.notSeen }).map({ $0.id })
+        
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
             
             self!.purge()
