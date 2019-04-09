@@ -20,12 +20,13 @@ class MainEffectsView: TouchThroughView
         
         let cell = CAEmitterCell()
         cell.contents = UIImage(named: "feed_like_selected")!.cgImage
-        cell.emissionLongitude = -.pi / 2.0
-        cell.emissionRange = .pi / 8.0
+        cell.emissionLongitude = -.pi / 2.0 - .pi / 16.0
+        cell.emissionRange = .pi / 16.0
         cell.lifetime = lifetime
         cell.birthRate = birthRate
         cell.scale = 0.5
         cell.scaleRange = 0.1
+        cell.scaleSpeed = 0.05
         cell.velocity = 100.0
         cell.velocityRange = 50.0
         cell.alphaSpeed = -1.0 / lifetime
@@ -36,6 +37,104 @@ class MainEffectsView: TouchThroughView
         emitLayer.emitterPosition = from
         emitLayer.frame = self.bounds
         emitLayer.beginTime = CACurrentMediaTime()
+        emitLayer.seed = UInt32.random(in: 1000...9999)
+        emitLayer.emitterCells = [
+            cell
+        ]
+        
+        self.layer.addSublayer(emitLayer)
+        
+        let durationTimer = Timer(timeInterval: duration, repeats: false) { timer in
+            emitLayer.birthRate = 0.0
+            timer.invalidate()
+        }
+        
+        let removalTimer = Timer(timeInterval: duration + Double(lifetime) + 0.1, repeats: false) { timer in
+            emitLayer.removeFromSuperlayer()
+            timer.invalidate()
+        }
+        
+        RunLoop.main.add(durationTimer, forMode: .common)
+        RunLoop.main.add(removalTimer, forMode: .common)
+    }
+    
+    func animateMessages(_ count: Int, from: CGPoint)
+    {
+        guard count > 0 else { return }
+        
+        let duration: Double = 1.1 + Double(count) / 10.0
+        let birthRate: Float = Float(count) / Float(duration)
+        let lifetime: Float = 3.0
+        
+        let cell = CAEmitterCell()
+        cell.contents = UIImage(named: "feed_chat_unread")!.cgImage
+        cell.emissionLongitude = -.pi / 2.0 + .pi / 16.0
+        cell.emissionRange = .pi / 16.0
+        cell.lifetime = lifetime
+        cell.birthRate = birthRate
+        cell.scale = 0.5
+        cell.scaleRange = 0.1
+        cell.scaleSpeed = 0.05
+        cell.velocity = 100.0
+        cell.velocityRange = 50.0
+        cell.alphaSpeed = -1.0 / lifetime
+        cell.alphaRange = 0.1
+
+        let emitLayer: CAEmitterLayer = CAEmitterLayer()
+        emitLayer.emitterShape = .point
+        emitLayer.emitterPosition = from
+        emitLayer.frame = self.bounds
+        emitLayer.beginTime = CACurrentMediaTime()
+        emitLayer.seed = UInt32.random(in: 0...1000)
+        emitLayer.emitterCells = [
+            cell
+        ]
+        
+        self.layer.addSublayer(emitLayer)
+        
+        let durationTimer = Timer(timeInterval: duration, repeats: false) { timer in
+            emitLayer.birthRate = 0.0
+            timer.invalidate()
+        }
+        
+        let removalTimer = Timer(timeInterval: duration + Double(lifetime) + 0.1, repeats: false) { timer in
+            emitLayer.removeFromSuperlayer()
+            timer.invalidate()
+        }
+        
+        RunLoop.main.add(durationTimer, forMode: .common)
+        RunLoop.main.add(removalTimer, forMode: .common)
+    }
+    
+    func animateMatches(_ count: Int, from: CGPoint)
+    {
+        guard count > 0 else { return }
+        
+        let duration: Double = 0.9 + Double(count) / 10.0
+        let birthRate: Float = Float(count) / Float(duration)
+        let lifetime: Float = 3.0
+        
+        let cell = CAEmitterCell()
+        cell.contents = UIImage(named: "main_bar_like_selected")!.cgImage
+        cell.emissionLongitude = -.pi / 2.0
+        cell.emissionRange = .pi / 16.0
+        cell.lifetime = lifetime
+        cell.birthRate = birthRate
+        cell.scale = 0.5
+        cell.scaleRange = 0.1
+        cell.scaleSpeed = 0.05
+        cell.velocity = 100.0
+        cell.velocityRange = 50.0
+        cell.alphaSpeed = -1.0 / lifetime
+        cell.alphaRange = 0.1
+        cell.color = UIColor(red: 1.0, green: 153.0 / 255.0, blue: 1.0, alpha: 1.0).cgColor
+        
+        let emitLayer: CAEmitterLayer = CAEmitterLayer()
+        emitLayer.emitterShape = .point
+        emitLayer.emitterPosition = from
+        emitLayer.frame = self.bounds
+        emitLayer.beginTime = CACurrentMediaTime()
+        emitLayer.seed = UInt32.random(in: 9999...20000)
         emitLayer.emitterCells = [
             cell
         ]
