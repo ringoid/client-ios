@@ -62,6 +62,13 @@ class NotificationsServiceDefault: NSObject, NotificationService
         }
     }
     
+    func update()
+    {
+        UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in            
+            self?.isGranted.accept(settings.authorizationStatus == .authorized)
+        }
+    }
+    
     func store(_ token: String)
     {
         self.token.accept(token)

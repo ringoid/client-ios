@@ -25,5 +25,6 @@ protocol NotificationService
     
     func handle(notificationDict: [AnyHashable : Any])
     func register()
+    func update()
     func store(_ token: String)
 }
