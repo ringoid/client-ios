@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import MessageUI
+import DeviceKit
 
 fileprivate struct SettingsOption
 {
@@ -142,7 +143,11 @@ class SettingsViewController: BaseViewController
     {
         guard MFMailComposeViewController.canSendMail() else { return }
         
+        let device = Device()
+        let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? ""
+        
         let vc = MFMailComposeViewController()
+        vc.setSubject("Ringoid iOS  App \(appVersion), [\(device.description)], [\(device.systemVersion)]")
         vc.setToRecipients(["support@ringoid.com"])
         vc.mailComposeDelegate = self
         

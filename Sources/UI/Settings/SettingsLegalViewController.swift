@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import DeviceKit
 
 fileprivate struct SettingsLegalOption
 {
@@ -120,10 +121,12 @@ class SettingsLegalViewController: BaseViewController
     {
         guard MFMailComposeViewController.canSendMail() else { return }
         
+        let device = Device()
         let body: NSString = NSString(format: "settings_info_email_officer_mail_subject".localized() as NSString, self.viewModel?.customerId.value ?? "")
         
         let vc = MFMailComposeViewController()
         vc.setToRecipients(["data.protection@ringoid.com"])
+        vc.setSubject("Ringoid iOS  App \(self.viewModel?.build.value ?? ""), [\(device.description)], [\(device.systemVersion)]")
         vc.setMessageBody(body as String, isHTML: false)
         vc.mailComposeDelegate = self
         
