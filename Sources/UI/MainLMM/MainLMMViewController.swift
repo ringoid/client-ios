@@ -486,7 +486,7 @@ class MainLMMViewController: BaseViewController
             let cellTopOffset = CGFloat(index) * cell.bounds.height
             let cellBottomOffset = cellTopOffset + cell.bounds.height
             
-            vc.topVisibleBorderDistance = cellTopOffset - contentOffset - self.view.safeAreaInsets.top - 34.0
+            vc.topVisibleBorderDistance = cellTopOffset - contentOffset - self.view.safeAreaInsets.top - 12.0
             vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 42.0
         }
         
