@@ -120,8 +120,11 @@ class SettingsLegalViewController: BaseViewController
     {
         guard MFMailComposeViewController.canSendMail() else { return }
         
+        let body: NSString = NSString(format: "settings_info_email_officer_mail_subject".localized() as NSString, self.viewModel?.customerId.value ?? "")
+        
         let vc = MFMailComposeViewController()
         vc.setToRecipients(["data.protection@ringoid.com"])
+        vc.setMessageBody(body as String, isHTML: false)
         vc.mailComposeDelegate = self
         
         self.present(vc, animated: true, completion: nil)
