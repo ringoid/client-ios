@@ -134,18 +134,7 @@ class LMMManager
             self.matches.value
         ).map({ ChatProfileCache.create($0) })
         
-        let notSeenLikes = self.likesYou.value.filter({ $0.notSeen }).compactMap({ $0.id })
-        if notSeenLikes.count > 0 { self.prevNotSeenLikes = notSeenLikes }
-        
-        let notSeenMatches = self.matches.value.filter({ $0.notSeen }).compactMap({ $0.id })
-        if notSeenMatches.count > 0 { self.prevNotSeenMatches = notSeenMatches }
-        
-        let notSeenMessages = self.messages.value.filter({ $0.notSeen }).compactMap({ $0.id })
-        if notSeenMessages.count > 0 { self.prevNotSeenMessages = notSeenMessages }
-        
-        self.storage.store(self.prevNotSeenLikes, key: "prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
-        self.storage.store(self.prevNotSeenMatches, key: "prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
-        self.storage.store(self.prevNotSeenMessages, key: "prevNotSeenMessages").subscribe().disposed(by: self.disposeBag)
+        self.updateProfilesPrevState()
         
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
             
@@ -170,7 +159,9 @@ class LMMManager
                 }
             }
             
-            return self!.db.add(localLikesYou + matches + messages).asObservable()
+            return self!.db.add(localLikesYou + matches + messages).asObservable().do(onNext: { [weak self] _ in
+                self?.updateProfilesPrevState()
+            })
         }).asObservable().delay(0.05, scheduler: MainScheduler.instance).do(
             onNext: { [weak self] _ in
                 self?.isFetching.accept(false)
@@ -224,6 +215,22 @@ class LMMManager
         self.storage.object("prevNotSeenMessages").subscribe( onSuccess: { obj in
             self.prevNotSeenMessages = Array<String>.create(obj) ?? []
         }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func updateProfilesPrevState()
+    {
+        let notSeenLikes = self.likesYou.value.filter({ $0.notSeen }).compactMap({ $0.id })
+        if notSeenLikes.count > 0 { self.prevNotSeenLikes = notSeenLikes }
+        
+        let notSeenMatches = self.matches.value.filter({ $0.notSeen }).compactMap({ $0.id })
+        if notSeenMatches.count > 0 { self.prevNotSeenMatches = notSeenMatches }
+        
+        let notSeenMessages = self.messages.value.filter({ $0.notSeen }).compactMap({ $0.id })
+        if notSeenMessages.count > 0 { self.prevNotSeenMessages = notSeenMessages }
+        
+        self.storage.store(self.prevNotSeenLikes, key: "prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
+        self.storage.store(self.prevNotSeenMatches, key: "prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
+        self.storage.store(self.prevNotSeenMessages, key: "prevNotSeenMessages").subscribe().disposed(by: self.disposeBag)
     }
     
     func reset()

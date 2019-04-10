@@ -30,8 +30,9 @@ class ChatManager
         profile.write { obj in
             let lmmProfile = obj as? LMMProfile
             lmmProfile?.messages.append(message)
-            lmmProfile?.notSeen = false
         }
+        
+        self.db.forceMarkAsSeen(profile)
 
         let photoId = photo.id
         guard let actionProfile = profile.actionInstance(), let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first else { return }
@@ -46,8 +47,6 @@ class ChatManager
     
     func markAsRead(_ profile: LMMProfile)
     {
-        profile.write { [weak profile] _ in
-            profile?.notSeen = false
-        }
+        self.db.forceMarkAsSeen(profile)
     }
 }
