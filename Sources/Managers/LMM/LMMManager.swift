@@ -134,7 +134,7 @@ class LMMManager
             self.matches.value
         ).map({ ChatProfileCache.create($0) })
         
-        self.updateProfilesPrevState()
+        self.updateProfilesPrevState(false)
         
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
             
@@ -160,7 +160,7 @@ class LMMManager
             }
             
             return self!.db.add(localLikesYou + matches + messages).asObservable().do(onNext: { [weak self] _ in
-                self?.updateProfilesPrevState()
+                self?.updateProfilesPrevState(true)
             })
         }).asObservable().delay(0.05, scheduler: MainScheduler.instance).do(
             onNext: { [weak self] _ in
@@ -217,16 +217,16 @@ class LMMManager
         }).disposed(by: self.disposeBag)
     }
     
-    fileprivate func updateProfilesPrevState()
+    fileprivate func updateProfilesPrevState(_ avoidEmptyFeeds: Bool)
     {
         let notSeenLikes = self.likesYou.value.filter({ $0.notSeen }).compactMap({ $0.id })
-        if notSeenLikes.count > 0 { self.prevNotSeenLikes = notSeenLikes }
+        if notSeenLikes.count > 0 || !avoidEmptyFeeds { self.prevNotSeenLikes = notSeenLikes }
         
         let notSeenMatches = self.matches.value.filter({ $0.notSeen }).compactMap({ $0.id })
-        if notSeenMatches.count > 0 { self.prevNotSeenMatches = notSeenMatches }
+        if notSeenMatches.count > 0 || !avoidEmptyFeeds { self.prevNotSeenMatches = notSeenMatches }
         
         let notSeenMessages = self.messages.value.filter({ $0.notSeen }).compactMap({ $0.id })
-        if notSeenMessages.count > 0 { self.prevNotSeenMessages = notSeenMessages }
+        if notSeenMessages.count > 0 || !avoidEmptyFeeds { self.prevNotSeenMessages = notSeenMessages }
         
         self.storage.store(self.prevNotSeenLikes, key: "prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
         self.storage.store(self.prevNotSeenMatches, key: "prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
