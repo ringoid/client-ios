@@ -218,7 +218,7 @@ class RootViewController: BaseViewController {
     
     fileprivate func subscribeForDebugLog()
     {
-        LogService.shared.records.asObservable().subscribe(onNext: { [weak self] _ in
+        LogService.shared.records.observeOn(MainScheduler.instance).asObservable().subscribe(onNext: { [weak self] _ in
             self?.debugTextView.text = LogService.shared.asShortText()
         }).disposed(by: self.disposeBag)
     }
