@@ -473,12 +473,12 @@ class ApiServiceDefault: ApiService
     
     fileprivate func loadCredentials()
     {
-        self.storage.object("access_token").subscribe(onNext: { [weak self] token in
+        self.storage.object("access_token").subscribe(onSuccess: { [weak self] token in
             self?.accessToken = token as? String
             self?.isAuthorized.accept((token as? String) != nil)
         }).disposed(by: self.disposeBag)
         
-        self.storage.object("customer_id").subscribe(onNext: { [weak self] id in
+        self.storage.object("customer_id").subscribe(onSuccess: { [weak self] id in
             self?.customerId.accept(id as? String ?? "")
         }).disposed(by: self.disposeBag)
     }

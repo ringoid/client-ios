@@ -31,6 +31,7 @@ class LMMManager
     let apiService: ApiService
     let actionsManager: ActionsManager
     let deviceService: DeviceService
+    let storage: XStorageService
     
     fileprivate var disposeBag: DisposeBag = DisposeBag()
     
@@ -111,14 +112,16 @@ class LMMManager
         }
     }
     
-    init(_ db: DBService, api: ApiService, device: DeviceService, actionsManager: ActionsManager)
+    init(_ db: DBService, api: ApiService, device: DeviceService, actionsManager: ActionsManager, storage: XStorageService)
     {
         self.db = db
         self.apiService = api
         self.deviceService = device
         self.actionsManager = actionsManager
+        self.storage = storage
         
         self.setupBindings()
+        self.loadPrevState()
     }
     
     fileprivate func refresh(_ from: SourceFeedType) -> Observable<Void>
@@ -131,9 +134,18 @@ class LMMManager
             self.matches.value
         ).map({ ChatProfileCache.create($0) })
         
-        self.prevNotSeenLikes = self.likesYou.value.filter({ $0.notSeen }).map({ $0.id })
-        self.prevNotSeenMatches = self.matches.value.filter({ $0.notSeen }).map({ $0.id })
-        self.prevNotSeenMessages = self.messages.value.filter({ $0.notSeen }).map({ $0.id })
+        let notSeenLikes = self.likesYou.value.filter({ $0.notSeen }).compactMap({ $0.id })
+        if notSeenLikes.count > 0 { self.prevNotSeenLikes = notSeenLikes }
+        
+        let notSeenMatches = self.matches.value.filter({ $0.notSeen }).compactMap({ $0.id })
+        if notSeenMatches.count > 0 { self.prevNotSeenMatches = notSeenMatches }
+        
+        let notSeenMessages = self.messages.value.filter({ $0.notSeen }).compactMap({ $0.id })
+        if notSeenMessages.count > 0 { self.prevNotSeenMessages = notSeenMessages }
+        
+        self.storage.store(self.prevNotSeenLikes, key: "prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
+        self.storage.store(self.prevNotSeenMatches, key: "prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
+        self.storage.store(self.prevNotSeenMessages, key: "prevNotSeenMessages").subscribe().disposed(by: self.disposeBag)
         
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
             
@@ -199,8 +211,31 @@ class LMMManager
         self.db.messages().subscribeOn(MainScheduler.instance).bind(to: self.messages).disposed(by: self.disposeBag)        
     }
     
+    fileprivate func loadPrevState()
+    {
+        self.storage.object("prevNotSeenLikes").subscribe( onSuccess: { obj in
+            self.prevNotSeenLikes = Array<String>.create(obj) ?? []
+        }).disposed(by: self.disposeBag)
+        
+        self.storage.object("prevNotSeenMatches").subscribe( onSuccess: { obj in
+            self.prevNotSeenMatches = Array<String>.create(obj) ?? []
+        }).disposed(by: self.disposeBag)
+        
+        self.storage.object("prevNotSeenMessages").subscribe( onSuccess: { obj in
+            self.prevNotSeenMessages = Array<String>.create(obj) ?? []
+        }).disposed(by: self.disposeBag)
+    }
+    
     func reset()
     {
+        self.storage.remove("prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
+        self.storage.remove("prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
+        self.storage.remove("prevNotSeenMessages").subscribe().disposed(by: self.disposeBag)
+        
+        self.prevNotSeenLikes.removeAll()
+        self.prevNotSeenMatches.removeAll()
+        self.prevNotSeenMessages.removeAll()
+        
         self.disposeBag = DisposeBag()
         self.setupBindings()
     }

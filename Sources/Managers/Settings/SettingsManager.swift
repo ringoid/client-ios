@@ -112,7 +112,7 @@ class SettingsManager
     
     fileprivate func loadSettings()
     {
-        self.storage.object("is_first_launch").subscribe(onNext:{ [weak self] obj in
+        self.storage.object("is_first_launch").subscribe(onSuccess:{ [weak self] obj in
             guard let state = Bool.create(obj) else { return }
             
             self?.isFirstLaunch.accept(state)

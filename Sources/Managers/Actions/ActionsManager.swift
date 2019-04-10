@@ -328,7 +328,7 @@ class ActionsManager
     
     fileprivate func loadLastActionDate()
     {
-        self.storage.object("lastActionDate").subscribe(onNext: { obj in
+        self.storage.object("lastActionDate").subscribe(onSuccess: { obj in
             self.lastActionDate.accept(Date.create(obj))
         }).disposed(by: self.disposeBag)
     }

@@ -20,7 +20,7 @@ class ThemeManager
     var storageService: XStorageService?
     {
         didSet {
-            self.storageService?.object("theme_key").subscribe(onNext:{ value in
+            self.storageService?.object("theme_key").subscribe(onSuccess: { value in
                 guard let themeValue = value as? String else { return }
                 
                 self.theme.accept(ColorTheme(rawValue: themeValue) ?? .dark)

@@ -71,12 +71,12 @@ class UploaderServiceDefault: UploaderService
     
     fileprivate func uploadInterrupted()
     {
-        self.storage.object("stored_uploads").subscribe(onNext: { [weak self] obj in
+        self.storage.object("stored_uploads").subscribe(onSuccess: { [weak self] obj in
             guard let `self` = self else { return }
             guard let keys = [String].create(obj) else { return }
             
             keys.forEach { key in
-                self.storage.object(key).subscribe(onNext: { [weak self] filenameObj in
+                self.storage.object(key).subscribe(onSuccess: { [weak self] filenameObj in
                     guard let `self` = self else { return }
                     guard let filename = String.create(filenameObj) else { return }
                     

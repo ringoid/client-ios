@@ -10,9 +10,9 @@ import RxSwift
 
 protocol XStorageService
 {
-    func store(_ object: XStorageObject, key: String) -> Observable<Void>
-    func object(_ key: String) -> Observable<XStorageObject>
-    func remove(_ key: String) -> Observable<Void>
+    func store(_ object: XStorageObject, key: String) -> Single<Void>
+    func object(_ key: String) -> Single<XStorageObject>
+    func remove(_ key: String) -> Single<Void>
     
     func sync()
 }

@@ -114,7 +114,7 @@ class UserProfileManager
     {
         self.db.userPhotos().subscribeOn(MainScheduler.instance).bind(to: self.photos).disposed(by: self.disposeBag)
         
-        self.storage.object(self.photoKey).subscribe(onNext: { [weak self] obj in
+        self.storage.object(self.photoKey).subscribe(onSuccess: { [weak self] obj in
             self?.lastPhotoId.accept(String.create(obj))
             self?.setupLastPhotoBinding()
         }).disposed(by: self.disposeBag)

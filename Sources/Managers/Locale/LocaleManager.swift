@@ -56,7 +56,7 @@ class LocaleManager
     fileprivate func loadCustomLocaleIfNeeded()
     {
         self.storage?.object("custom_locale").subscribe(
-            onNext: { [weak self] obj in
+            onSuccess: { [weak self] obj in
                 let lang = Language(rawValue: String.create(obj)!) ?? .english
                 self?.language.accept(lang)
             }, onError: { [weak self] _ in
