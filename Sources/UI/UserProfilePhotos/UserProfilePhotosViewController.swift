@@ -165,8 +165,13 @@ class UserProfilePhotosViewController: BaseViewController
             guard let `self` = self else { return }
             
             self.updatePages()
+        }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.isBlocked.observeOn(MainScheduler.instance).asObservable().subscribe(onNext: { [weak self] state in
+            guard let `self` = self else { return }
+            guard state else { return }
             
-            if self.viewModel?.isBlocked.value == true && self.isViewShown {
+            if self.isViewShown {
                 self.viewModel?.isBlocked.accept(false)
                 self.showBlockedAlert()
             }
