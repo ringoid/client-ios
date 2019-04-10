@@ -10,8 +10,8 @@ import Foundation
 
 class ApiViewAction: ApiAction
 {
-    var viewCount: Int = 0
-    var viewTime: Int = 0
+    var viewCount: Int = 1
+    var viewTime: Int = 1
     
     override func json() -> [String: Any] {
         var jsonObj = super.json()

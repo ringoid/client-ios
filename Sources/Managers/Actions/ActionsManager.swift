@@ -351,8 +351,8 @@ extension Action {
         case .view:
             let viewAction = ApiViewAction()
             let data = self.viewData()
-            viewAction.viewCount = data?.viewCount ?? 0
-            viewAction.viewTime = data?.viewTime ?? 0
+            viewAction.viewCount = data?.viewCount ?? 1
+            viewAction.viewTime = data?.viewTime ?? 1
             apiAction = viewAction
             break
             
@@ -374,8 +374,8 @@ extension Action {
         case .viewChat:
             let viewChatAction = ApiViewChatAction()
             let data = self.viewChatData()
-            viewChatAction.viewChatCount = data?.viewChatCount ?? 0
-            viewChatAction.viewChatTime = data?.viewChatTime ?? 0
+            viewChatAction.viewChatCount = data?.viewChatCount ?? 1
+            viewChatAction.viewChatTime = data?.viewChatTime ?? 1
             apiAction = viewChatAction
             break
         }

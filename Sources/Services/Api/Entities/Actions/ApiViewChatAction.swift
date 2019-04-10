@@ -10,8 +10,8 @@ import Foundation
 
 class ApiViewChatAction: ApiAction
 {
-    var viewChatCount: Int = 0
-    var viewChatTime: Int = 0
+    var viewChatCount: Int = 1
+    var viewChatTime: Int = 1
     
     override func json() -> [String: Any] {
         var jsonObj = super.json()
