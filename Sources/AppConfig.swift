@@ -15,8 +15,8 @@ class AppConfig
     
     // MARK: - URLs
     
-    static let termsUrl: URL = URL(string: "http://ringoid.com/terms.html")!
-    static let policyUrl: URL = URL(string: "http://ringoid.com/privacy.html")!
-    static let licensesUrl: URL = URL(string: "http://ringoid.com/licenses-ios.html")!
+    static let termsUrl: URL = URL(string: "https://ringoid.com/terms.html")!
+    static let policyUrl: URL = URL(string: "https://ringoid.com/privacy.html")!
+    static let licensesUrl: URL = URL(string: "https://ringoid.com/licenses-ios.html")!
     static let appstoreUrl: URL = URL(string: "https://itunes.apple.com/us/app/ringoid-see-likes/id1453136158?ls=1&mt=8")!
 }
