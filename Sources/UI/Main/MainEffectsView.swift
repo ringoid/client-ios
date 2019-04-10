@@ -115,7 +115,7 @@ class MainEffectsView: TouchThroughView
         let lifetime: Float = 3.0
         
         let cell = CAEmitterCell()
-        cell.contents = UIImage(named: "main_bar_like_selected")!.cgImage
+        cell.contents = UIImage(named: "effect_match")!.cgImage
         cell.emissionLongitude = -.pi / 2.0
         cell.emissionRange = .pi / 16.0
         cell.lifetime = lifetime
