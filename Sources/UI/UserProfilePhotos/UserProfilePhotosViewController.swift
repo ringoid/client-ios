@@ -161,7 +161,7 @@ class UserProfilePhotosViewController: BaseViewController
     fileprivate func setupBindings()
     {
         self.viewModel = UserProfilePhotosViewModel(self.input)
-        self.viewModel?.photos.asObservable().subscribe(onNext: { [weak self] photos in
+        self.viewModel?.photos.observeOn(MainScheduler.instance).asObservable().subscribe(onNext: { [weak self] photos in
             guard let `self` = self else { return }
             
             self.updatePages()

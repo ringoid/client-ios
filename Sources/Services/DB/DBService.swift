@@ -158,10 +158,12 @@ class DBService
         if self.realm.isInWriteTransaction {
             object.orderPosition = self.currentOrderPosition
             self.currentOrderPosition += 1
+            self.checkObjectsForUpdates([object])
         } else {
             try? self.realm.write {
                 object.orderPosition = self.currentOrderPosition
                 self.currentOrderPosition += 1
+                self.checkObjectsForUpdates([object])
             }
         }
     }
