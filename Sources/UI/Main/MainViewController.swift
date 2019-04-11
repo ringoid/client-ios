@@ -269,7 +269,7 @@ class MainViewController: BaseViewController
     fileprivate func setupBindings()
     {
         self.viewModel = MainViewModel(self.input)
-        self.viewModel?.input.navigationManager.mainItem.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] item in
+        self.viewModel?.input.navigationManager.mainItem.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] item in
             self?.select(item.selectionState())
         }).disposed(by: self.disposeBag)
         

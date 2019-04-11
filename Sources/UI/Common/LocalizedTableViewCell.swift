@@ -37,11 +37,11 @@ class BaseTableViewCell: UITableViewCell
     
     fileprivate func setupBindings()
     {
-        LocaleManager.shared.language.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+        LocaleManager.shared.language.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             self?.updateLocale()
         }).disposed(by: self.disposeBag)
         
-        ThemeManager.shared.theme.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+        ThemeManager.shared.theme.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             self?.updateTheme()
         }).disposed(by: self.disposeBag)
     }

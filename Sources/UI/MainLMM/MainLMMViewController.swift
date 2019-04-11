@@ -148,7 +148,7 @@ class MainLMMViewController: BaseViewController
             self?.toggle(type)
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.isFetching.subscribeOn(MainScheduler.instance).asObservable().subscribe(onNext: { [weak self] state in
+        self.viewModel?.isFetching.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             if state {
                 MainLMMViewController.resetStates()
                 self?.feedEndView.isHidden = true
@@ -168,7 +168,7 @@ class MainLMMViewController: BaseViewController
     fileprivate func updateBindings()
     {
         self.feedDisposeBag = DisposeBag()
-        self.profiles()?.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+        self.profiles()?.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             self?.updateFeed(false)
         }).disposed(by: self.feedDisposeBag)
     }

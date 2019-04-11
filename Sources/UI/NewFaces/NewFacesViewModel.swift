@@ -96,7 +96,7 @@ class NewFacesViewModel
     
     fileprivate func setupBindings()
     {
-        self.newFacesManager.profiles.subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] updatedProfiles in
+        self.newFacesManager.profiles.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] updatedProfiles in
             self?.profiles.accept(updatedProfiles)
         }).disposed(by: self.disposeBag)
     }

@@ -111,7 +111,7 @@ class NewFacesViewController: BaseViewController
         self.lastFetchCount = -1
         self.photoIndexes.removeAll()
         
-        self.viewModel?.refresh().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+        self.viewModel?.refresh().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             self?.updateFeed()
             self?.tableView.panGestureRecognizer.isEnabled = true
             }, onError:{ [weak self] error in
@@ -156,13 +156,13 @@ class NewFacesViewController: BaseViewController
     fileprivate func setupBindings()
     {
         self.viewModel = NewFacesViewModel(self.input)
-        self.viewModel?.profiles.asObservable().subscribeOn(MainScheduler.instance).subscribe(onNext: { [weak self] updatedProfiles in
+        self.viewModel?.profiles.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] updatedProfiles in
             guard let `self` = self else { return }
             
             self.updateFeed()
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.isFetching.asObservable().subscribeOn(MainScheduler.instance).skip(1).subscribe(onNext: { [weak self] state in
+        self.viewModel?.isFetching.asObservable().observeOn(MainScheduler.instance).skip(1).subscribe(onNext: { [weak self] state in
             if state {
                 self?.toggleActivity(.fetching)
             } else {
