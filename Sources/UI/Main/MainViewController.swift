@@ -71,8 +71,8 @@ class MainViewController: BaseViewController
             let center = CGPoint(x: size.width - 47.0, y: size.height / 2.0 - 36.0)
             let position = self.likeBtn.convert(center, to: nil)
             self.effectsView.animateLikes(count, from: position)
-            self.effectsView.animateMatches(count, from: position)
-            self.effectsView.animateMessages(count, from: position)
+            self.effectsView.animateMatches(Int(Double(count) / 5.0), from: position)
+            self.effectsView.animateMessages(Int(Double(count) / 10.0), from: position)
         }))
         alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         

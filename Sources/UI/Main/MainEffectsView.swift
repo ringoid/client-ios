@@ -14,22 +14,23 @@ class MainEffectsView: TouchThroughView
     {
         guard count > 0 else { return }
         
-        let duration: Double = 1.0 + Double(count) / 10.0
+        let duration: Double = 1.0 + Double(count) / 5.25
         let birthRate: Float = Float(count) / Float(duration)
-        let lifetime: Float = 4.5
-        let velocity: CGFloat = UIScreen.main.bounds.height / 6.67
+        let lifetime: Float = 3.0
+        let velocity: CGFloat = UIScreen.main.bounds.height / 3.3
         
         let cell = CAEmitterCell()
-        cell.contents = UIImage(named: "feed_like_selected")!.cgImage
-        cell.emissionLongitude = -.pi / 2.0 - .pi * 0.025
-        cell.emissionRange = .pi / 12.0
+        cell.contents = UIImage(named: "effect_like")!.cgImage
+        cell.emissionLongitude = -.pi / 2.0 - .pi * 0.015
+        cell.emissionRange = .pi / 16.0
         cell.lifetime = lifetime
         cell.birthRate = birthRate
-        cell.scale = 0.4
+        cell.scale = 0.6
         cell.scaleRange = 0.1
         cell.scaleSpeed = 0.05
         cell.velocity = velocity
         cell.velocityRange = velocity / 4.0
+        cell.yAcceleration = velocity * 0.125
         cell.alphaSpeed = -1.0 / lifetime
         cell.alphaRange = 0.1
         
@@ -63,22 +64,23 @@ class MainEffectsView: TouchThroughView
     {
         guard count > 0 else { return }
         
-        let duration: Double = 1.1 + Double(count) / 10.0
+        let duration: Double = 1.1 + Double(count) / 4.75
         let birthRate: Float = Float(count) / Float(duration)
         let lifetime: Float = 3.5
-        let velocity: CGFloat = UIScreen.main.bounds.height / 6.67
+        let velocity: CGFloat = UIScreen.main.bounds.height / 4.0
         
         let cell = CAEmitterCell()
-        cell.contents = UIImage(named: "feed_chat_unread")!.cgImage
+        cell.contents = UIImage(named: "effect_message")!.cgImage
         cell.emissionLongitude = -.pi / 2.0 + .pi * 0.15
         cell.emissionRange = .pi / 16.0
         cell.lifetime = lifetime
         cell.birthRate = birthRate
-        cell.scale = 0.4
+        cell.scale = 0.6
         cell.scaleRange = 0.1
         cell.scaleSpeed = 0.05
         cell.velocity = velocity
         cell.velocityRange = velocity / 4.0
+        cell.yAcceleration = velocity * 0.125
         cell.alphaSpeed = -1.0 / lifetime
         cell.alphaRange = 0.1
 
@@ -112,10 +114,10 @@ class MainEffectsView: TouchThroughView
     {
         guard count > 0 else { return }
         
-        let duration: Double = 0.9 + Double(count) / 10.0
+        let duration: Double = 0.9 + Double(count) / 3.75
         let birthRate: Float = Float(count) / Float(duration)
         let lifetime: Float = 3.5
-        let velocity: CGFloat = UIScreen.main.bounds.height / 5.5
+        let velocity: CGFloat = UIScreen.main.bounds.height / 4.25
         
         let cell = CAEmitterCell()
         cell.contents = UIImage(named: "effect_match")!.cgImage
@@ -123,11 +125,12 @@ class MainEffectsView: TouchThroughView
         cell.emissionRange = .pi / 16.0
         cell.lifetime = lifetime
         cell.birthRate = birthRate
-        cell.scale = 0.4
+        cell.scale = 0.6
         cell.scaleRange = 0.1
         cell.scaleSpeed = 0.05
         cell.velocity = velocity
         cell.velocityRange = velocity / 4.0
+        cell.yAcceleration = velocity * 0.125
         cell.alphaSpeed = -1.0 / lifetime
         cell.alphaRange = 0.1
         cell.color = UIColor(red: 1.0, green: 153.0 / 255.0, blue: 1.0, alpha: 1.0).cgColor
