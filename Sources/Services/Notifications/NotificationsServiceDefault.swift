@@ -99,6 +99,7 @@ extension NotificationsServiceDefault: UNUserNotificationCenterDelegate
 {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
     {
+        AnalyticsManager.shared.send(.openedByPush)
         self.responseObserver?.onNext(response)
     }
     

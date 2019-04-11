@@ -86,8 +86,66 @@ class FirebaseAnalytics: AnalyticsService
                 "UUID": self.userId
                 ])
             break
+
+        case .likedFromLikes:
+            Analytics.logEvent("ACTION_USER_LIKE_PHOTO_FROM_LIKES", parameters: [
+                "UUID": self.userId
+                ])
+            break
+            
+        case .likedFromMatches:
+            Analytics.logEvent("ACTION_USER_LIKE_PHOTO_FROM_MATCHES", parameters: [
+                "UUID": self.userId
+                ])
+            break
+            
+        case .likedFromMessages:
+            Analytics.logEvent("ACTION_USER_LIKE_PHOTO_FROM_MESSAGES", parameters: [
+                "UUID": self.userId
+                ])
+            break
+            
+        case .unlikedFromLikes:
+            Analytics.logEvent("ACTION_USER_UNLIKE_PHOTO_FROM_LIKES", parameters: [
+                "UUID": self.userId
+                ])
+            break
+            
+        case .unlikedFromMatches:
+            Analytics.logEvent("ACTION_USER_UNLIKE_PHOTO_FROM_MATCHES", parameters: [
+                "UUID": self.userId
+                ])
+            break
+            
+        case .unlikedFromMessages:
+            Analytics.logEvent("ACTION_USER_UNLIKE_PHOTO_FROM_MESSAGES", parameters: [
+                "UUID": self.userId
+                ])
+            break
+            
+        case .messagedFromLikes:
+            Analytics.logEvent("ACTION_USER_MESSAGE_FROM_LIKES", parameters: [
+                "UUID": self.userId
+                ])
+            break
+            
+        case .messagedFromMatches:
+            Analytics.logEvent("ACTION_USER_MESSAGE_FROM_MATCHES", parameters: [
+                "UUID": self.userId
+                ])
+            break
+            
+        case .messagedFromMessages:
+            Analytics.logEvent("ACTION_USER_MESSAGE_FROM_MESSAGES", parameters: [
+                "UUID": self.userId
+                ])
+            break
+            
+        case .openedByPush:
+            Analytics.logEvent("PUSH_OPEN", parameters: [
+                "UUID": self.userId
+                ])
+            break
         }
-        
-        
     }
 }

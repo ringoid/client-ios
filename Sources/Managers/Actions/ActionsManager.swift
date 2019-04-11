@@ -140,6 +140,14 @@ class ActionsManager
         
         AnalyticsManager.shared.send(.liked(source.rawValue))
         
+        switch source {
+        case .whoLikedMe:  AnalyticsManager.shared.send(.likedFromLikes); break
+        case .matches: AnalyticsManager.shared.send(.likedFromMatches); break
+        case .messages: AnalyticsManager.shared.send(.likedFromMessages); break
+            
+        default: break
+        }
+        
         guard !self.isLikedSomeone.value else {
             // Second like notifications access triggers
             if !self.notifications.isRegistered && !self.notifications.isGranted.value {
@@ -161,6 +169,14 @@ class ActionsManager
         self.commit()
         
         AnalyticsManager.shared.send(.unliked(source.rawValue))
+        
+        switch source {
+        case .whoLikedMe:  AnalyticsManager.shared.send(.unlikedFromLikes); break
+        case .matches: AnalyticsManager.shared.send(.unlikedFromMatches); break
+        case .messages: AnalyticsManager.shared.send(.unlikedFromMessages); break
+            
+        default: break
+        }
     }
     
     func blockActionProtected(_ reason: BlockReason, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
@@ -181,6 +197,14 @@ class ActionsManager
         self.commit()
         
         AnalyticsManager.shared.send(.messaged(source.rawValue))
+        
+        switch source {
+        case .whoLikedMe:  AnalyticsManager.shared.send(.messagedFromLikes); break
+        case .matches: AnalyticsManager.shared.send(.messagedFromMatches); break
+        case .messages: AnalyticsManager.shared.send(.messagedFromMessages); break
+            
+        default: break
+        }
     }
     
     func startViewAction(_ profile: ActionProfile, photo: ActionPhoto)

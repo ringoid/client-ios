@@ -18,7 +18,17 @@ enum AnalyticsEvent
     case unliked(String);
     case messaged(String);
     case uploadedPhoto;
-    case deletedPhoto;    
+    case deletedPhoto;
+    case likedFromLikes;
+    case likedFromMatches;
+    case likedFromMessages;
+    case unlikedFromLikes;
+    case unlikedFromMatches;
+    case unlikedFromMessages;
+    case messagedFromLikes;
+    case messagedFromMatches;
+    case messagedFromMessages;
+    case openedByPush;
 }
 
 protocol AnalyticsService
