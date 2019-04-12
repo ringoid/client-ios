@@ -58,7 +58,6 @@ class MainLMMViewController: BaseViewController
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
     @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
-    @IBOutlet fileprivate weak var feedEndView: UIView!
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var emptyFeedActivityView: UIActivityIndicatorView!
     @IBOutlet fileprivate weak var blockContainerView: UIView!
@@ -151,7 +150,6 @@ class MainLMMViewController: BaseViewController
         self.viewModel?.isFetching.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             if state {
                 MainLMMViewController.resetStates()
-                self?.feedEndView.isHidden = true
                 self?.toggleActivity(.fetching)
                 self?.tableView.dataSource = EmptyFeed.shared
                 self?.tableView.reloadData()
@@ -249,7 +247,6 @@ class MainLMMViewController: BaseViewController
         
         let totalCount = updatedProfiles.count
         let isEmpty = updatedProfiles.isEmpty
-        self.feedEndView.isHidden = isEmpty
         
         if isEmpty && self.currentActivityState != .initial && self.currentActivityState != .fetching {
             self.toggleActivity(.empty)
@@ -488,14 +485,6 @@ class MainLMMViewController: BaseViewController
             
             vc.topVisibleBorderDistance = cellTopOffset - contentOffset - self.view.safeAreaInsets.top - 12.0
             vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 42.0
-        }
-        
-        // Footer
-        let globalFrame = self.feedEndView.convert(self.feedEndView.frame, to: self.view)
-        if globalFrame.origin.y + globalFrame.height > self.tableView.bounds.height - self.view.safeAreaInsets.bottom - 62.0 {
-            self.feedEndView.alpha = 0.0
-        } else {
-            self.feedEndView.alpha = 1.0
         }
     }
 }
