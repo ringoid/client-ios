@@ -39,7 +39,6 @@ class NewFacesViewController: BaseViewController
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
     @IBOutlet fileprivate weak var loadingActivityView: UIActivityIndicatorView!
-    @IBOutlet fileprivate weak var feedEndLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedActivityView: UIActivityIndicatorView!
     @IBOutlet fileprivate weak var blockContainerView: UIView!
     @IBOutlet fileprivate weak var blockPhotoView: UIImageView!
@@ -84,7 +83,6 @@ class NewFacesViewController: BaseViewController
     override func updateLocale()
     {
         self.titleLabel.text = "feed_explore_empty_title".localized()
-        self.feedEndLabel.text = "feed_footer_item_label".localized()
         
         self.toggleActivity(self.currentActivityState)
     }
@@ -128,17 +126,14 @@ class NewFacesViewController: BaseViewController
         guard let count = self.viewModel?.profiles.value.count, count > 0 else { return }
         
         self.loadingActivityView.startAnimating()
-        self.feedEndLabel.isHidden = true
         self.viewModel?.fetchNext().subscribe(
             onNext: { [weak self] _ in
                 self?.lastFetchCount = count
                 self?.loadingActivityView.stopAnimating()
-                self?.feedEndLabel.isHidden = false
             }, onError: { [weak self] error in
                 guard let `self` = self else { return }
                 
                 self.loadingActivityView.stopAnimating()
-                self.feedEndLabel.isHidden = false
                 showError(error, vc: self)
             }).disposed(by: self.disposeBag)
     }
@@ -192,7 +187,6 @@ class NewFacesViewController: BaseViewController
         let totalCount = profiles.count
         let isEmpty = totalCount == 0
         self.titleLabel.isHidden = !isEmpty
-        self.feedEndLabel.isHidden = isEmpty
         
         if isEmpty && self.currentActivityState != .initial && self.currentActivityState != .fetching {
             self.toggleActivity(.empty)
@@ -315,14 +309,6 @@ class NewFacesViewController: BaseViewController
             vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 42.0
         }
         
-        // Footer
-        let globalLabelFrame = self.feedEndLabel.convert(self.feedEndLabel.frame, to: self.view)
-        if globalLabelFrame.origin.y + globalLabelFrame.height > self.tableView.bounds.height - self.view.safeAreaInsets.bottom - 62.0 {
-            self.feedEndLabel.alpha = 0.0
-        } else {
-            self.feedEndLabel.alpha = 1.0
-        }
-        
         let globalIndicatorFrame = self.loadingActivityView.convert(self.loadingActivityView.frame, to: self.view)
         if globalIndicatorFrame.origin.y + globalIndicatorFrame.height > self.tableView.bounds.height - self.view.safeAreaInsets.bottom - 62.0 {
             self.loadingActivityView.alpha = 0.0
@@ -436,17 +422,14 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
 
         log("fetching next page", level: .high)
         self.loadingActivityView.startAnimating()
-        self.feedEndLabel.isHidden = true
         self.viewModel?.fetchNext().subscribe(
             onNext: { [weak self] _ in
                 self?.loadingActivityView.stopAnimating()
-                self?.feedEndLabel.isHidden = false
                 self?.lastFetchCount = totalCount
             }, onError: { [weak self] error in
                 guard let `self` = self else { return }
                 
-                self.loadingActivityView.stopAnimating()
-                self.feedEndLabel.isHidden = false
+                self.loadingActivityView.stopAnimating()                
                 showError(error, vc: self)
             }).disposed(by: self.disposeBag)
     }
