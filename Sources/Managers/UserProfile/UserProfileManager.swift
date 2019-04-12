@@ -76,6 +76,13 @@ class UserProfileManager
     
     func deletePhoto(_ photo: UserPhoto)
     {
+        guard let index = self.photos.value.index(of: photo) else { return }
+        
+        if index > 0 {
+            let prevPhoto = self.photos.value[index - 1]
+            self.lastPhotoId.accept(prevPhoto.id)
+        }
+        
         let photoId = photo.id ?? photo.originId
         let path = photo.filepath()
         self.db.delete([photo]).subscribe(onSuccess: { [weak self] _ in
@@ -86,7 +93,7 @@ class UserProfileManager
             guard let url = path.url() else { return }
             
             self.uploader.cancel(url)
-            self.apiService.deletePhoto(id).subscribe(onNext:{ _ in
+            self.apiService.deletePhoto(id).subscribe(onNext:{ [weak self] _ in
                 AnalyticsManager.shared.send(.deletedPhoto)
             }).disposed(by: self.disposeBag)
         }
