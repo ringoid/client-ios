@@ -134,7 +134,7 @@
                                     <constraint firstAttribute="height" constant="45" id="Wlv-EF-c3L"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                <state key="normal" title="Open Appstore">
+                                <state key="normal" title="Update the App">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -152,22 +152,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_screen_title" translatesAutoresizingMaskIntoConstraints="NO" id="izm-5S-ozp">
                                 <rect key="frame" x="135" y="370" width="105" height="32"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0X-hA-TBR">
-                                <rect key="frame" x="16" y="402" width="343" height="202"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please update the app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4E6-e7-56o">
-                                        <rect key="frame" x="79" y="90.5" width="185" height="21.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                        <color key="textColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="4E6-e7-56o" firstAttribute="centerY" secondItem="X0X-hA-TBR" secondAttribute="centerY" id="3N5-78-8BN"/>
-                                    <constraint firstItem="4E6-e7-56o" firstAttribute="centerX" secondItem="X0X-hA-TBR" secondAttribute="centerX" id="tLW-qg-4oL"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -175,19 +159,14 @@
                             <constraint firstItem="izm-5S-ozp" firstAttribute="top" secondItem="Nfq-Pe-SNY" secondAttribute="bottom" constant="25" id="Cq4-2Q-zbm"/>
                             <constraint firstItem="Nfq-Pe-SNY" firstAttribute="centerY" secondItem="7J1-0B-1zi" secondAttribute="centerY" constant="-50" id="E95-TU-jYM"/>
                             <constraint firstItem="Nfq-Pe-SNY" firstAttribute="centerX" secondItem="7J1-0B-1zi" secondAttribute="centerX" id="F3E-4a-Jee"/>
-                            <constraint firstItem="X0X-hA-TBR" firstAttribute="leading" secondItem="7J1-0B-1zi" secondAttribute="leadingMargin" id="KI4-FC-BxC"/>
-                            <constraint firstItem="Ffg-oh-dDS" firstAttribute="top" secondItem="X0X-hA-TBR" secondAttribute="bottom" id="M48-wq-u0q"/>
                             <constraint firstAttribute="trailing" secondItem="Ffg-oh-dDS" secondAttribute="trailing" constant="16" id="THc-gL-k26"/>
                             <constraint firstItem="Ffg-oh-dDS" firstAttribute="leading" secondItem="7J1-0B-1zi" secondAttribute="leading" constant="16" id="cQb-eN-Tbg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="X0X-hA-TBR" secondAttribute="trailing" id="f7u-ts-XEh"/>
                             <constraint firstItem="izm-5S-ozp" firstAttribute="centerX" secondItem="7J1-0B-1zi" secondAttribute="centerX" id="fQG-OG-VD1"/>
                             <constraint firstItem="izm-5S-ozp" firstAttribute="top" secondItem="Nfq-Pe-SNY" secondAttribute="bottom" constant="25" id="qYO-XT-2BQ"/>
-                            <constraint firstItem="X0X-hA-TBR" firstAttribute="top" secondItem="izm-5S-ozp" secondAttribute="bottom" id="vuN-Ty-odX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tKk-Xf-OFd"/>
                     </view>
                     <connections>
-                        <outlet property="infoLabel" destination="4E6-e7-56o" id="6dO-qf-qSi"/>
                         <outlet property="storeBtn" destination="Ffg-oh-dDS" id="eBi-Dc-mk6"/>
                     </connections>
                 </viewController>

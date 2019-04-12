@@ -11,7 +11,6 @@ import UIKit
 class UpdateVersionViewController: BaseViewController
 {
     @IBOutlet weak var storeBtn: UIButton!
-    @IBOutlet weak var infoLabel: UILabel!
     
     static func create() -> UpdateVersionViewController
     {
@@ -27,8 +26,7 @@ class UpdateVersionViewController: BaseViewController
     }
     
     override func updateLocale()
-    {
-        self.infoLabel.text = "error_screen_old_app_version".localized()
+    {        
         self.storeBtn.setTitle("error_screen_old_app_version_button_label".localized(), for: .normal)
     }
     

@@ -93,7 +93,7 @@ class UserProfileManager
             guard let url = path.url() else { return }
             
             self.uploader.cancel(url)
-            self.apiService.deletePhoto(id).subscribe(onNext:{ [weak self] _ in
+            self.apiService.deletePhoto(id).subscribe(onNext:{ in
                 AnalyticsManager.shared.send(.deletedPhoto)
             }).disposed(by: self.disposeBag)
         }

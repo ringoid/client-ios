@@ -27,8 +27,7 @@
 
 "error_screen_no_network_connection" = "Нет интернета";
 "error_screen_no_network_connection_button_label" = "Повторить попытку";
-"error_screen_old_app_version" = "Пожалуйста, обновите приложение";
-"error_screen_old_app_version_button_label" = "Открыть App Store";
+"error_screen_old_app_version_button_label" = "Обновить приложение";
 
 "block_profile_button_block" = "Заблокировать";
 "block_profile_button_report" = "Пожаловаться и Заблокировать";
