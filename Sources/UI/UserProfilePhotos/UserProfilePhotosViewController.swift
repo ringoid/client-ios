@@ -400,6 +400,7 @@ extension UserProfilePhotosViewController: UserProfilePhotoCropVCDelegate
         self.viewModel?.add(image).subscribe(onNext: ({ [weak self] photo in
             self?.viewModel?.lastPhotoId.accept(nil)
             self?.lastClientPhotoId = photo.clientId
+            self?.updatePages()
         }), onError: ({ [weak self] error in
             guard let `self` = self else { return }
             
