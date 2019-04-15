@@ -18,6 +18,7 @@ class AppManager
     var defaultStorage: XStorageService!
     var db: DBService!
     var notifications: NotificationService!
+    var location: LocationService!
     
     var actionsManager: ActionsManager!
     var profileManager: UserProfileManager!
@@ -30,6 +31,7 @@ class AppManager
     var promotionManager: PromotionManager!
     var notificationsManager: NotificationsManager!
     var syncManager: SyncManager!
+    var locationManager: LocationManager!
     
     func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
@@ -91,6 +93,7 @@ class AppManager
         self.uploader = UploaderServiceDefault(self.defaultStorage, fs: self.fileService)
         self.reachability = ReachabilityServiceDefault()
         self.notifications = NotificationsServiceDefault()
+        self.location = LocationServiceDefault()
         
         #if STAGE
         let apiConfig = ApiServiceConfigStage()
@@ -114,6 +117,7 @@ class AppManager
         self.promotionManager = PromotionManager(launchOptions, api: self.apiService)
         self.notificationsManager = NotificationsManager(self.notifications, api: self.apiService)
         self.syncManager = SyncManager(self.notifications, lmm: self.lmmManager, newFaces: self.newFacesManager, profile: self.profileManager, navigation: self.navigationManager)
+        self.locationManager = LocationManager(self.location, actions: self.actionsManager)
         
         ThemeManager.shared.storageService = self.defaultStorage
         LocaleManager.shared.storage = self.defaultStorage

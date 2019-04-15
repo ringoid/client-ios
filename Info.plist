@@ -86,6 +86,8 @@
 	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>To find profiles</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>

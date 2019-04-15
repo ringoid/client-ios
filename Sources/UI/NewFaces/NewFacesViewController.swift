@@ -102,6 +102,8 @@ class NewFacesViewController: BaseViewController
             return
         }
         
+        guard self.viewModel?.registerLocationsIfNeeded() == true else { return }
+        
         self.viewModel?.registerPushesIfNeeded()
                 
         self.toggleActivity(.fetching)

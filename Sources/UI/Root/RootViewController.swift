@@ -91,7 +91,8 @@ class RootViewController: BaseViewController {
             errorsManager: self.appManager.errorsManager,
             promotionManager: self.appManager.promotionManager,
             device: self.appManager.deviceService,
-            notifications: self.appManager.notifications
+            notifications: self.appManager.notifications,
+            location: self.appManager.locationManager
         )
         
         self.containerView.embed(vc, to: self)

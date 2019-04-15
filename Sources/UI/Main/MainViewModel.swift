@@ -22,6 +22,7 @@ struct MainVMInput
     let promotionManager: PromotionManager
     let device: DeviceService
     let notifications: NotificationService
+    let location: LocationManager
 }
 
 class MainViewModel

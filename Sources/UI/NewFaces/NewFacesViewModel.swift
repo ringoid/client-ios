@@ -18,6 +18,7 @@ struct NewFacesVMInput
     let lmmManager: LMMManager
     let navigationManager: NavigationManager
     let notifications: NotificationService
+    let location: LocationManager
 }
 
 class NewFacesViewModel
@@ -31,6 +32,7 @@ class NewFacesViewModel
     let actionsManager: ActionsManager
     let lmmManager: LMMManager
     let notifications: NotificationService
+    let location: LocationManager
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
@@ -42,6 +44,7 @@ class NewFacesViewModel
         self.actionsManager = input.actionsManager
         self.lmmManager = input.lmmManager
         self.notifications = input.notifications
+        self.location = input.location
         
         self.setupBindings()
     }
@@ -90,6 +93,15 @@ class NewFacesViewModel
         guard !self.notifications.isRegistered && !self.notifications.isGranted.value else { return }
         
         self.notifications.register()
+    }
+    
+    func registerLocationsIfNeeded() -> Bool
+    {
+        guard !self.location.isGranted else { return true }
+        
+        self.location.requestPermissionsIfNeeded()
+        
+        return false
     }
     
     // MARK: -
