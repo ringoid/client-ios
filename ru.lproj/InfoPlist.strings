@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  ringoid
+
+  Created by Victor Sukochev on 15/04/2019.
+  Copyright © 2019 Ringoid. All rights reserved.
+*/
+
+"users_sorted_by_distance" = "Users are sorted by distance.";
