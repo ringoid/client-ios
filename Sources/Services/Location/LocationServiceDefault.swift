@@ -14,6 +14,7 @@ class LocationServiceDefault: NSObject, LocationService
 {
     var locations: Observable<Location>!
     var isGranted: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var isDenied: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     fileprivate var locationsObserver: AnyObserver<Location>!
     fileprivate let lm: CLLocationManager = CLLocationManager()
@@ -50,6 +51,8 @@ extension LocationServiceDefault: CLLocationManagerDelegate
     {
         let isGrantedDesc = (status == .authorizedWhenInUse) ? "Granted" : "Not granted"
         log("Location manager status changed: \(isGrantedDesc)", level: .high)
+        
+        self.isDenied.accept(status == .denied)    
         
         guard status == .authorizedWhenInUse else { return }
         

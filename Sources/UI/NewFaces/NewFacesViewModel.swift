@@ -25,6 +25,7 @@ class NewFacesViewModel
 {
     let profiles: BehaviorRelay<[NewFaceProfile]> = BehaviorRelay<[NewFaceProfile]>(value: [])
     var isFetching : BehaviorRelay<Bool> { return self.newFacesManager.isFetching }
+    var isLocationDenied: Bool { return self.location.isDenied }
     
     let newFacesManager: NewFacesManager
     let profileManager: UserProfileManager

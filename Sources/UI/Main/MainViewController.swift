@@ -191,7 +191,8 @@ class MainViewController: BaseViewController
             profileManager: self.input.profileManager,
             navigationManager: self.input.navigationManager,
             newFacesManager: self.input.newFacesManager,
-            notifications: self.input.notifications
+            notifications: self.input.notifications,
+            location: self.input.location
         )
        
         self.menuVCCache[.like] = vc
@@ -238,7 +239,8 @@ class MainViewController: BaseViewController
             actionsManager: self.input.actionsManager,
             errorsManager: self.input.errorsManager,
             promotionManager: self.input.promotionManager,
-            device: self.input.device
+            device: self.input.device,
+            location: self.input.location
         )
         
         self.menuVCCache[.profile] = vc

@@ -110,6 +110,28 @@ class UserProfilePhotosViewController: BaseViewController
     {
         self.containerTableView.panGestureRecognizer.isEnabled = false
         
+        // Location
+        guard self.viewModel?.isLocationDenied != true else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                self.containerTableView.refreshControl?.endRefreshing()
+            })
+            
+            self.containerTableView.panGestureRecognizer.isEnabled = true
+            self.showLocationsSettingsAlert()
+            
+            return
+        }
+        
+        guard self.viewModel?.registerLocationsIfNeeded() == true else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                self.containerTableView.refreshControl?.endRefreshing()
+            })
+            
+            self.containerTableView.panGestureRecognizer.isEnabled = true
+            
+            return
+        }
+        
         // No internet
         guard self.input.actionsManager.checkConnectionState() else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
@@ -304,6 +326,19 @@ class UserProfilePhotosViewController: BaseViewController
             UIApplication.shared.open(AppConfig.termsUrl, options: [:], completionHandler: nil)
         }))
         alertVC.addAction(UIAlertAction(title: "button_close".localized(), style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func showLocationsSettingsAlert()
+    {
+        let alertVC = UIAlertController(title: nil, message: "settings_location_permission".localized(), preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "button_later".localized(), style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "button_settings".localized(), style: .default, handler: { _ in
+            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(settingsUrl)
+            }
+        }))
         
         self.present(alertVC, animated: true, completion: nil)
     }

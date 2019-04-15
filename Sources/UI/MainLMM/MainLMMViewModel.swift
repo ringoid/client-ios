@@ -18,6 +18,7 @@ struct MainLMMVMInput
     let navigationManager: NavigationManager
     let newFacesManager: NewFacesManager
     let notifications: NotificationService
+    let location: LocationManager
 }
 
 class MainLMMViewModel
@@ -28,6 +29,7 @@ class MainLMMViewModel
     let navigationManager: NavigationManager
     let newFacesManager: NewFacesManager
     let notifications: NotificationService
+    let location: LocationManager
     
     var likesYou: BehaviorRelay<[LMMProfile]> { return self.lmmManager.likesYou }
     var matches: BehaviorRelay<[LMMProfile]> { return self.lmmManager.matches }
@@ -40,6 +42,11 @@ class MainLMMViewModel
         return !self.profileManager.photos.value.isEmpty
     }
     
+    var isLocationDenied: Bool
+    {
+        return self.location.isDenied
+    }
+    
     init(_ input: MainLMMVMInput)
     {
         self.lmmManager = input.lmmManager
@@ -48,6 +55,7 @@ class MainLMMViewModel
         self.navigationManager = input.navigationManager
         self.newFacesManager = input.newFacesManager
         self.notifications = input.notifications
+        self.location = input.location
     }
     
     func refresh(_ from: LMMType) -> Observable<Void>
@@ -69,5 +77,14 @@ class MainLMMViewModel
         guard !self.notifications.isRegistered && !self.notifications.isGranted.value else { return }
 
         self.notifications.register()
+    }
+    
+    func registerLocationsIfNeeded() -> Bool
+    {
+        guard !self.location.isGranted else { return true }
+        
+        self.location.requestPermissionsIfNeeded()
+        
+        return false
     }
 }

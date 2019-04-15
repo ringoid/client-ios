@@ -186,6 +186,19 @@ class MainLMMViewController: BaseViewController
             self.tableView.refreshControl?.endRefreshing()
         }
         
+        guard self.viewModel?.isLocationDenied != true else {
+            self.showLocationsSettingsAlert()
+            self.tableView.panGestureRecognizer.isEnabled = true
+            
+            return
+        }
+        
+        guard self.viewModel?.registerLocationsIfNeeded() == true else {
+            self.tableView.panGestureRecognizer.isEnabled = true
+            
+            return
+        }
+        
         if self.viewModel?.isPhotosAdded == false {
             self.showAddPhotosOptions()
             self.tableView.panGestureRecognizer.isEnabled = true
@@ -487,6 +500,19 @@ class MainLMMViewController: BaseViewController
             vc.topVisibleBorderDistance = cellTopOffset - contentOffset - self.view.safeAreaInsets.top - 12.0
             vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 42.0
         }
+    }
+    
+    fileprivate func showLocationsSettingsAlert()
+    {
+        let alertVC = UIAlertController(title: nil, message: "settings_location_permission".localized(), preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "button_later".localized(), style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "button_settings".localized(), style: .default, handler: { _ in
+            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(settingsUrl)
+            }
+        }))
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
 

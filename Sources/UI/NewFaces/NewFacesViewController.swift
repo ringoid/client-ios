@@ -102,7 +102,18 @@ class NewFacesViewController: BaseViewController
             return
         }
         
-        guard self.viewModel?.registerLocationsIfNeeded() == true else { return }
+        guard self.viewModel?.isLocationDenied != true else {
+            self.showLocationsSettingsAlert()
+            self.tableView.panGestureRecognizer.isEnabled = true
+            
+            return
+        }
+        
+        guard self.viewModel?.registerLocationsIfNeeded() == true else {
+            self.tableView.panGestureRecognizer.isEnabled = true
+            
+            return
+        }
         
         self.viewModel?.registerPushesIfNeeded()
                 
@@ -345,6 +356,19 @@ class NewFacesViewController: BaseViewController
         }
         
         animator.startAnimation()
+    }
+    
+    fileprivate func showLocationsSettingsAlert()
+    {
+        let alertVC = UIAlertController(title: nil, message: "settings_location_permission".localized(), preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "button_later".localized(), style: .cancel, handler: nil))
+        alertVC.addAction(UIAlertAction(title: "button_settings".localized(), style: .default, handler: { _ in
+            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(settingsUrl)
+            }
+        }))
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
 

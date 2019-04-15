@@ -16,6 +16,11 @@ class LocationManager
         return self.location.isGranted.value
     }
     
+    var isDenied: Bool
+    {
+        return self.location.isDenied.value
+    }
+    
     fileprivate let location: LocationService
     fileprivate let actions: ActionsManager
     fileprivate let disposeBag: DisposeBag = DisposeBag()

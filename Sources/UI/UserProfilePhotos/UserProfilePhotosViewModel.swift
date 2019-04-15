@@ -20,6 +20,7 @@ struct UserProfilePhotosVCInput
     let errorsManager: ErrorsManager
     let promotionManager: PromotionManager
     let device: DeviceService
+    let location: LocationManager
 }
 
 class UserProfilePhotosViewModel
@@ -40,6 +41,11 @@ class UserProfilePhotosViewModel
     var isAuthorized: BehaviorRelay<Bool>
     {
         return self.input.settingsManager.isAuthorized
+    }
+    
+    var isLocationDenied: Bool
+    {
+        return self.input.location.isDenied
     }
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
@@ -80,6 +86,15 @@ class UserProfilePhotosViewModel
     func moveToSearch()
     {
         self.input.navigationManager.mainItem.accept(.searchAndFetch)
+    }
+    
+    func registerLocationsIfNeeded() -> Bool
+    {
+        guard !self.input.location.isGranted else { return true }
+        
+        self.input.location.requestPermissionsIfNeeded()
+        
+        return false
     }
     
     // MARK: -
