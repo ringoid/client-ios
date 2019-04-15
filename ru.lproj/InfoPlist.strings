@@ -6,4 +6,5 @@
   Copyright © 2019 Ringoid. All rights reserved.
 */
 
-"users_sorted_by_distance" = "Users are sorted by distance.";
+NSLocationWhenInUseUsageDescription = "Пользователи сортируются по дистанции.";
+NSPhotoLibraryUsageDescription = "Фотографии профиля";

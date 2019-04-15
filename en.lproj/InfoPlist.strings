@@ -5,3 +5,6 @@
   Created by Victor Sukochev on 15/04/2019.
   Copyright © 2019 Ringoid. All rights reserved.
 */
+
+NSLocationWhenInUseUsageDescription = "Users are sorted by distance.";
+NSPhotoLibraryUsageDescription = "Profile photos";

@@ -106,6 +106,8 @@
 		577DDADE2264830D001D7D24 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDADC2264830D001D7D24 /* LocationManager.swift */; };
 		577DDAE322649B5D001D7D24 /* ApiLocationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDAE222649B5D001D7D24 /* ApiLocationAction.swift */; };
 		577DDAE422649B5D001D7D24 /* ApiLocationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDAE222649B5D001D7D24 /* ApiLocationAction.swift */; };
+		577DDAE82264B3E3001D7D24 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 577DDAEB2264B3E3001D7D24 /* InfoPlist.strings */; };
+		577DDAE92264B3E3001D7D24 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 577DDAEB2264B3E3001D7D24 /* InfoPlist.strings */; };
 		57801A81222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */; };
 		57801A82222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */; };
 		57801A84222E4378005A9731 /* SettingsDebugItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A83222E4378005A9731 /* SettingsDebugItemCell.swift */; };
@@ -405,9 +407,9 @@
 		577DDAD522647963001D7D24 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		577DDAD822647975001D7D24 /* LocationServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServiceDefault.swift; sourceTree = "<group>"; };
 		577DDADC2264830D001D7D24 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		577DDADF226491DC001D7D24 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = ru; path = ru.lproj/Info.plist; sourceTree = "<group>"; };
-		577DDAE1226491E5001D7D24 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Info.plist; sourceTree = "<group>"; };
 		577DDAE222649B5D001D7D24 /* ApiLocationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLocationAction.swift; sourceTree = "<group>"; };
+		577DDAEA2264B3E3001D7D24 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		577DDAEC2264B3FD001D7D24 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateVersionViewController.swift; sourceTree = "<group>"; };
 		57801A83222E4378005A9731 /* SettingsDebugItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugItemCell.swift; sourceTree = "<group>"; };
 		57801A86222FF049005A9731 /* SettingsDebugLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugLogViewController.swift; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 				570D047221DCE3DA00E0DCFB /* Sources */,
 				57ED48692249FC070033EB0B /* Ringoid.entitlements */,
 				570D047B21DCE40200E0DCFB /* Info.plist */,
+				577DDAEB2264B3E3001D7D24 /* InfoPlist.strings */,
 				570D046C21DCE3DA00E0DCFB /* Resources */,
 				570D045821DCE32000E0DCFB /* Products */,
 				C06DF6A5A1156987FFA53DC0 /* Pods */,
@@ -1294,6 +1297,7 @@
 				57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */,
 				570D04AF21DDD34E00E0DCFB /* Auth.storyboard in Resources */,
 				576FC11D2201EBC400BA5ABE /* Localizable.strings in Resources */,
+				577DDAE82264B3E3001D7D24 /* InfoPlist.strings in Resources */,
 				570D04AA21DDCF3200E0DCFB /* Root.storyboard in Resources */,
 				570D047621DCE3DA00E0DCFB /* Assets.xcassets in Resources */,
 				57850307225745380056120A /* GoogleService-Info.plist in Resources */,
@@ -1313,6 +1317,7 @@
 				57EE65462216711000246B45 /* Main.storyboard in Resources */,
 				57EE65472216711000246B45 /* Auth.storyboard in Resources */,
 				57EE65482216711000246B45 /* Localizable.strings in Resources */,
+				577DDAE92264B3E3001D7D24 /* InfoPlist.strings in Resources */,
 				57EE65492216711000246B45 /* Root.storyboard in Resources */,
 				57EE654A2216711000246B45 /* Assets.xcassets in Resources */,
 				57850305225743A60056120A /* GoogleService-Info.plist in Resources */,
@@ -1813,6 +1818,15 @@
 				57BEB6802213FEA8000BD768 /* ru */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		577DDAEB2264B3E3001D7D24 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				577DDAEA2264B3E3001D7D24 /* en */,
+				577DDAEC2264B3FD001D7D24 /* ru */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -61,12 +61,13 @@ extension LocationServiceDefault: CLLocationManagerDelegate
     {
         guard let last = locations.last else { return }
         
-        log("Location updated", level: .high)
         
         let location = Location(
             latitude: last.coordinate.latitude,
             longitude: last.coordinate.longitude
         )
+        
+        log("Location updated (lat: \(location.latitude), lon:\(location.longitude))", level: .high)
         
         self.locationsObserver.onNext(location)
     }
