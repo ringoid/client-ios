@@ -16,6 +16,7 @@ enum ActionType: String
     case unlike = "UNLIKE"
     case message = "MESSAGE"
     case viewChat = "VIEW_CHAT"
+    case location = "LOCATION"
 }
 
 enum SourceFeedType: String
@@ -143,5 +144,33 @@ extension Action
         guard self.type == ActionType.viewChat.rawValue else { return }
         
         self.extraData = try? JSONSerialization.data(withJSONObject: ["viewChatCount": viewChatCount, "viewChatTimeMillis": viewChatTime])
+    }
+}
+
+// MARK: - Location
+
+extension Action
+{
+    func locationData() -> Location?
+    {
+        guard self.type == ActionType.location.rawValue else { return nil }
+        guard let jsonData = self.extraData, let jsonDict = (try? JSONSerialization.jsonObject(with: jsonData)) as? [String: Any] else { return nil }
+        guard let lat = jsonDict["lat"] as? Double else { return nil }
+        guard let lon = jsonDict["lon"] as? Double else { return nil }
+        
+        return Location(
+            latitude: lat,
+            longitude: lon
+        )
+    }
+    
+    func setLocationData(_ location: Location)
+    {
+        guard self.type == ActionType.location.rawValue else { return }
+        
+        self.extraData = try? JSONSerialization.data(withJSONObject: [
+            "lat": location.latitude,
+            "lon": location.longitude
+            ])
     }
 }

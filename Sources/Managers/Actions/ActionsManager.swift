@@ -84,6 +84,18 @@ class ActionsManager
         }).disposed(by: self.disposeBag)
     }
     
+    func addLocation(_ location: Location)
+    {
+        let createdAction = Action()
+        createdAction.actionTime = Date()
+        createdAction.type = ActionType.location.rawValue
+        createdAction.setLocationData(location)
+        
+        self.db.add(createdAction).subscribe(onSuccess: { [weak self] _ in
+            self?.queue.append(createdAction)
+        }).disposed(by: self.disposeBag)
+    }
+    
     func commit()
     {
         guard !self.queue.isEmpty else { return }
@@ -222,7 +234,7 @@ class ActionsManager
         self.viewActionsMap.removeValue(forKey: photo.id)
         
         let interval = Date().timeIntervalSince(date) * 1000.0
-        self.add(FeedAction.view(viewCount: 1, viewTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
+        self.add(.view(viewCount: 1, viewTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
         
         self.db.markProfileAsSeen(profile.id)
     }
@@ -402,9 +414,16 @@ extension Action {
             viewChatAction.viewChatTime = data?.viewChatTime ?? 1
             apiAction = viewChatAction
             break
+            
+        case .location:
+            let locationAction = ApiLocationAction()
+            let data = self.locationData()
+            locationAction.lon = data?.longitude ?? 0.0
+            locationAction.lat = data?.latitude ?? 0.0
+            apiAction = locationAction
         }
 
-        apiAction?.sourceFeed = self.sourceFeed
+        apiAction?.sourceFeed = self.sourceFeed ?? ""
         apiAction?.actionType = self.type
         apiAction?.targetPhotoId = self.photo?.id ?? ""
         apiAction?.targetUserId = self.profile?.id ?? ""

@@ -38,7 +38,7 @@ class LocationManager
     fileprivate func setupBindings()
     {
         self.location.locations.subscribe(onNext: { [weak self] loc in
-            
+            self?.actions.addLocation(loc)
         }).disposed(by: self.disposeBag)
     }
 }
