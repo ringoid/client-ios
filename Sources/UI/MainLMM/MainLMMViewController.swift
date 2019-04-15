@@ -233,6 +233,7 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func updateFeed(_ force: Bool)
     {
+        guard self.tableView.dataSource !== EmptyFeed.shared else { return }
         guard !self.isChatShown else { return } // Chat updates should not reload feed
         
         guard let updatedProfiles = self.profiles()?.value.filter({ !$0.isInvalidated }) else { return }

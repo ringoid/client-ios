@@ -14,17 +14,7 @@ class ImageService
     
     private init()
     {
-//        let dataLoader = DataLoader()
-//        dataLoader.
-//        
-//        let pipeline = ImagePipeline {
-//            $0.dataLoader = ...
-//                $0.dataLoadingQueue = ...
-//                $0.imageCache = ...
-//            ...
-//        }
-//        
-//        ImagePipeline.shared = pipeline
+
     }
     
     func load(_ url: URL, to: UIImageView)
