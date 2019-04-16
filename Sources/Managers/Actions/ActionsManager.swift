@@ -266,6 +266,7 @@ class ActionsManager
     
     func sendQueue() -> Observable<Void>
     {
+        guard self.apiService.isAuthorized.value else { return .error(createError("User not authorized", type: .hidden)) }
         guard !self.queue.isEmpty else { return .just(()) }
         
         // Delaying request if previous one still in progress

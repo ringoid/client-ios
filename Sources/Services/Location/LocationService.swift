@@ -22,5 +22,7 @@ protocol LocationService
     var isDenied: BehaviorRelay<Bool> { get }
     var initialTrigger: BehaviorRelay<Bool> { get }
     
+    var lastLocation: Location? { get }
+    
     func requestPermissionsIfNeeded()
 }

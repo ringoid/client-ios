@@ -21,6 +21,7 @@ struct AuthVMInput
     let apiService: ApiService
     let settingsManager: SettingsManager
     let promotionManager: PromotionManager
+    let locationManager: LocationManager
 }
 
 class AuthViewModel
@@ -31,12 +32,14 @@ class AuthViewModel
     let apiService: ApiService
     let settingsManager: SettingsManager
     let promotionManager: PromotionManager
+    let locationManager: LocationManager
     
     init(_ input: AuthVMInput)
     {
         self.apiService = input.apiService
         self.settingsManager = input.settingsManager
         self.promotionManager = input.promotionManager
+        self.locationManager = input.locationManager
     }
     
     func register() -> Observable<Void>
@@ -54,6 +57,7 @@ class AuthViewModel
             AnalyticsManager.shared.send(.profileCreated(year, sex.rawValue))
             self?.settingsManager.updateRemoteSettings()
             self?.settingsManager.updatePushToken()
+            self?.locationManager.sendLastLocationIfAvailable()
         })
     }
     

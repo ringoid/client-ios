@@ -105,7 +105,8 @@ class RootViewController: BaseViewController {
         vc.input = AuthVMInput(
             apiService: self.appManager.apiService,
             settingsManager: self.appManager.settingsMananger,
-            promotionManager: self.appManager.promotionManager
+            promotionManager: self.appManager.promotionManager,
+            locationManager: self.appManager.locationManager
         )
         
         self.containerView.embed(vc, to: self)

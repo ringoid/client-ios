@@ -16,6 +16,12 @@ class LocationServiceDefault: NSObject, LocationService
     var isGranted: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     var isDenied: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     var initialTrigger: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var lastLocation: Location?
+    {
+        guard let coordinate = self.lm.location?.coordinate else { return nil }
+        
+        return Location(latitude: coordinate.latitude, longitude: coordinate.longitude)
+    }
     
     fileprivate var prevStatus: CLAuthorizationStatus? = nil
     fileprivate var locationsObserver: AnyObserver<Location>!
@@ -39,9 +45,9 @@ class LocationServiceDefault: NSObject, LocationService
             return Disposables.create()
         })
         
-        self.lm.desiredAccuracy = 100
+        self.lm.desiredAccuracy = CLLocationManager.authorizationStatus() == .notDetermined ? 1000.0 : 1.0
         self.lm.delegate = self
-    }
+    }    
 }
 
 extension LocationServiceDefault: CLLocationManagerDelegate
@@ -91,6 +97,8 @@ extension LocationServiceDefault: CLLocationManagerDelegate
         if self.shouldTigger {
             self.initialTrigger.accept(true)
             self.shouldTigger = false
+            self.lm.desiredAccuracy = 1.0
+            self.lm.requestLocation()
         }
     }
 }

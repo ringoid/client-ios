@@ -31,6 +31,7 @@ class NotificationsManager
         self.notifications.token.asObservable().subscribe(onNext: { [weak self] token in
             guard let token = token else { return }
             guard let `self` = self else { return }
+            guard self.api.isAuthorized.value else { return }
             
             log("DEVICE TOKEN: \(token)", level: .high)
             self.api.updatePush(token).subscribe().disposed(by: self.disposeBag)

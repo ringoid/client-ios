@@ -43,6 +43,13 @@ class LocationManager
         self.location.requestPermissionsIfNeeded()
     }
     
+    func sendLastLocationIfAvailable()
+    {
+        guard let lastLocation = self.location.lastLocation else { return }
+        
+        self.actions.addLocation(lastLocation)
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
