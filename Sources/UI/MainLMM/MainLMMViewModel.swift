@@ -31,9 +31,9 @@ class MainLMMViewModel
     let notifications: NotificationService
     let location: LocationManager
     
-    var likesYou: BehaviorRelay<[LMMProfile]> { return self.lmmManager.likesYou }
-    var matches: BehaviorRelay<[LMMProfile]> { return self.lmmManager.matches }
-    var messages: BehaviorRelay<[LMMProfile]> { return self.lmmManager.messages }
+    let likesYou: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
+    let matches: BehaviorRelay<[LMMProfile]>  = BehaviorRelay<[LMMProfile]>(value: [])
+    let messages: BehaviorRelay<[LMMProfile]>  = BehaviorRelay<[LMMProfile]>(value: [])
     
     var isFetching: BehaviorRelay<Bool> { return self.lmmManager.isFetching }
     
@@ -47,6 +47,8 @@ class MainLMMViewModel
         return self.location.isDenied
     }
     
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
     init(_ input: MainLMMVMInput)
     {
         self.lmmManager = input.lmmManager
@@ -56,6 +58,8 @@ class MainLMMViewModel
         self.newFacesManager = input.newFacesManager
         self.notifications = input.notifications
         self.location = input.location
+        
+        self.setupBindings()
     }
     
     func refresh(_ from: LMMType) -> Observable<Void>
@@ -86,5 +90,22 @@ class MainLMMViewModel
         self.location.requestPermissionsIfNeeded()
         
         return false
+    }
+    
+    // MARK: -
+    
+    fileprivate func setupBindings()
+    {
+        self.lmmManager.likesYou.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+            self?.likesYou.accept(profiles)
+        }).disposed(by: self.disposeBag)
+        
+        self.lmmManager.matches.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+            self?.matches.accept(profiles)
+        }).disposed(by: self.disposeBag)
+        
+        self.lmmManager.messages.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+            self?.messages.accept(profiles)
+        }).disposed(by: self.disposeBag)
     }
 }
