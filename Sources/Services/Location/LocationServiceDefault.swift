@@ -39,7 +39,7 @@ class LocationServiceDefault: NSObject, LocationService
             return Disposables.create()
         })
         
-        self.lm.desiredAccuracy = 10000
+        self.lm.desiredAccuracy = 100
         self.lm.delegate = self
     }
 }
