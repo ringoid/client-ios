@@ -11,14 +11,19 @@ import RxCocoa
 
 class LocationManager
 {
-    var isGranted: Bool
+    var isGranted: BehaviorRelay<Bool>
     {
-        return self.location.isGranted.value
+        return self.location.isGranted
     }
     
     var isDenied: Bool
     {
         return self.location.isDenied.value
+    }
+    
+    var initialTrigger: BehaviorRelay<Bool>
+    {
+        return self.location.initialTrigger
     }
     
     fileprivate let location: LocationService

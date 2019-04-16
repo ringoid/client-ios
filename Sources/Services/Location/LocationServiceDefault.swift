@@ -15,9 +15,12 @@ class LocationServiceDefault: NSObject, LocationService
     var locations: Observable<Location>!
     var isGranted: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     var isDenied: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var initialTrigger: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
+    fileprivate var prevStatus: CLAuthorizationStatus? = nil
     fileprivate var locationsObserver: AnyObserver<Location>!
     fileprivate let lm: CLLocationManager = CLLocationManager()
+    fileprivate var shouldTigger: Bool = false
     
     func requestPermissionsIfNeeded()
     {
@@ -36,6 +39,7 @@ class LocationServiceDefault: NSObject, LocationService
             return Disposables.create()
         })
         
+        self.lm.desiredAccuracy = 10000
         self.lm.delegate = self
     }
 }
@@ -49,6 +53,16 @@ extension LocationServiceDefault: CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
     {
+        defer {
+            self.prevStatus = status
+        }
+        
+        if let prevStatus = self.prevStatus {
+            if prevStatus != status {
+                self.shouldTigger = true
+            }
+        }
+        
         let isGrantedDesc = (status == .authorizedWhenInUse) ? "Granted" : "Not granted"
         log("Location manager status changed: \(isGrantedDesc)", level: .high)
         
@@ -73,5 +87,10 @@ extension LocationServiceDefault: CLLocationManagerDelegate
         log("Location updated (lat: \(location.latitude), lon:\(location.longitude))", level: .high)
         
         self.locationsObserver.onNext(location)
+        
+        if self.shouldTigger {
+            self.initialTrigger.accept(true)
+            self.shouldTigger = false
+        }
     }
 }

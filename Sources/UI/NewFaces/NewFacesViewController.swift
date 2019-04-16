@@ -177,6 +177,12 @@ class NewFacesViewController: BaseViewController
                 self?.toggleActivity(.contentAvailable)
             }
         }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.initialLocationTrigger.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] value in
+            guard value else { return }
+            
+            self?.onReload()
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func setupReloader()

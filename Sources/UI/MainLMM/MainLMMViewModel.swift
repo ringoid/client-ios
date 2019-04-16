@@ -85,7 +85,7 @@ class MainLMMViewModel
     
     func registerLocationsIfNeeded() -> Bool
     {
-        guard !self.location.isGranted else { return true }
+        guard !self.location.isGranted.value else { return true }
         
         self.location.requestPermissionsIfNeeded()
         

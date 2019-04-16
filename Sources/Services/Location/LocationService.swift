@@ -20,6 +20,7 @@ protocol LocationService
     var locations: Observable<Location>! { get }
     var isGranted: BehaviorRelay<Bool> { get }
     var isDenied: BehaviorRelay<Bool> { get }
+    var initialTrigger: BehaviorRelay<Bool> { get }
     
     func requestPermissionsIfNeeded()
 }

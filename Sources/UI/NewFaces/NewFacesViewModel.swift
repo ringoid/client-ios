@@ -25,6 +25,7 @@ class NewFacesViewModel
 {
     let profiles: BehaviorRelay<[NewFaceProfile]> = BehaviorRelay<[NewFaceProfile]>(value: [])
     var isFetching : BehaviorRelay<Bool> { return self.newFacesManager.isFetching }
+    var initialLocationTrigger: BehaviorRelay<Bool> { return self.location.initialTrigger }
     var isLocationDenied: Bool { return self.location.isDenied }
     
     let newFacesManager: NewFacesManager
@@ -98,7 +99,7 @@ class NewFacesViewModel
     
     func registerLocationsIfNeeded() -> Bool
     {
-        guard !self.location.isGranted else { return true }
+        guard !self.location.isGranted.value else { return true }
         
         self.location.requestPermissionsIfNeeded()
         

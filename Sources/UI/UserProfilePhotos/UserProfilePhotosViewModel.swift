@@ -90,7 +90,7 @@ class UserProfilePhotosViewModel
     
     func registerLocationsIfNeeded() -> Bool
     {
-        guard !self.input.location.isGranted else { return true }
+        guard !self.input.location.isGranted.value else { return true }
         
         self.input.location.requestPermissionsIfNeeded()
         
