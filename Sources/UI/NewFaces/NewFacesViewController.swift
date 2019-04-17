@@ -137,6 +137,8 @@ class NewFacesViewController: BaseViewController
     {
         guard let count = self.viewModel?.profiles.value.count, count > 0 else { return }
         
+        log("fetching next page", level: .high)
+
         self.viewModel?.fetchNext().subscribe(
             onNext: { [weak self] _ in
                 self?.lastFetchCount = count
@@ -441,15 +443,7 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
             (totalCount - indexPath.row) <= 5
             else { return }
 
-        log("fetching next page", level: .high)
-        self.viewModel?.fetchNext().subscribe(
-            onNext: { [weak self] _ in
-                self?.lastFetchCount = totalCount
-            }, onError: { [weak self] error in
-                guard let `self` = self else { return }
-                                            
-                showError(error, vc: self)
-            }).disposed(by: self.disposeBag)
+        self.onFetchMore()
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath)
@@ -473,6 +467,12 @@ extension NewFacesViewController: UIScrollViewDelegate
     {
         let offset = scrollView.contentOffset.y
         self.updateVisibleCellsBorders(offset)
+        
+        // Bottom new page trigger
+        let bottomOffset = scrollView.contentSize.height - scrollView.bounds.height - scrollView.contentInset.bottom - scrollView.contentInset.top - offset
+        if bottomOffset < 0.0 && self.viewModel?.isFetching.value == false {
+            self.onFetchMore()
+        }        
         
         // Scroll to top FAB
         
