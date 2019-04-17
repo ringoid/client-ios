@@ -24,7 +24,7 @@
                                     <segue destination="5Bt-Xu-MH5" kind="embed" identifier="embed_lmm" id="758-j3-FOe"/>
                                 </connections>
                             </containerView>
-                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avd-pS-HNL" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avd-pS-HNL" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
@@ -114,7 +114,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82V-db-bgk">
-                                        <rect key="frame" x="293.5" y="25" width="6" height="6"/>
+                                        <rect key="frame" x="291.5" y="25" width="6" height="6"/>
                                         <color key="backgroundColor" red="1" green="0.01176470588" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="6" id="0xH-3e-iuq"/>
@@ -141,7 +141,7 @@
                                     <constraint firstItem="Y1R-St-pNy" firstAttribute="leading" secondItem="t6H-GQ-xYk" secondAttribute="trailing" id="Zwg-1Q-IhN"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerY" secondItem="30C-S0-bMA" secondAttribute="centerY" id="eBn-Oa-T8H"/>
                                     <constraint firstAttribute="trailing" secondItem="Y1R-St-pNy" secondAttribute="trailing" id="iZZ-Wm-K6t"/>
-                                    <constraint firstItem="82V-db-bgk" firstAttribute="leading" secondItem="Y1R-St-pNy" secondAttribute="leading" constant="60" id="rgj-Cw-iLZ"/>
+                                    <constraint firstItem="82V-db-bgk" firstAttribute="leading" secondItem="Y1R-St-pNy" secondAttribute="leading" constant="58" id="rgj-Cw-iLZ"/>
                                     <constraint firstItem="82V-db-bgk" firstAttribute="centerY" secondItem="1ef-im-3ec" secondAttribute="centerY" id="xjl-hW-g2k"/>
                                 </constraints>
                             </view>
