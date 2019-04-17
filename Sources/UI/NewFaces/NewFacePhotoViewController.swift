@@ -105,6 +105,8 @@ class NewFacePhotoViewController: UIViewController
     
     @IBAction func  onLike()
     {
+        UIManager.shared.feedsFabShouldBeHidden.accept(true)
+        
         guard self.input.profileManager.isPhotosAdded else {
             self.showAddPhotoAlert()
             
@@ -146,6 +148,8 @@ class NewFacePhotoViewController: UIViewController
     
     @IBAction func  onTap()
     {
+        UIManager.shared.feedsFabShouldBeHidden.accept(true)
+        
         guard self.input.profileManager.isPhotosAdded else {
             self.showAddPhotoAlert()
             

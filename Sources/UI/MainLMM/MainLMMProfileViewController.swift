@@ -331,6 +331,7 @@ extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageView
         guard let urls = self.viewModel?.input.profile.orderedPhotos().map({ $0.filepath().url() }) else { return }
         
         self.preheater.startPreheating(with: urls.compactMap({ $0 }))
+        UIManager.shared.feedsFabShouldBeHidden.accept(true)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController?

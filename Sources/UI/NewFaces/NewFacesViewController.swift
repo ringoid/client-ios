@@ -181,6 +181,12 @@ class NewFacesViewController: BaseViewController
             
             self?.onReload()
         }).disposed(by: self.disposeBag)
+        
+        UIManager.shared.feedsFabShouldBeHidden.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
+            guard state else { return }
+            
+            self?.hideScrollToTopOption()
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func setupReloader()
@@ -472,7 +478,7 @@ extension NewFacesViewController: UIScrollViewDelegate
         let bottomOffset = scrollView.contentSize.height - scrollView.bounds.height - scrollView.contentInset.bottom - scrollView.contentInset.top - offset
         if bottomOffset < 0.0 && self.viewModel?.isFetching.value == false {
             self.onFetchMore()
-        }        
+        }
         
         // Scroll to top FAB
         

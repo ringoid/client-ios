@@ -161,6 +161,12 @@ class MainLMMViewController: BaseViewController
                 self?.updateFeed(true)
             }
         }).disposed(by: self.disposeBag)
+        
+        UIManager.shared.feedsFabShouldBeHidden.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
+            guard state else { return }
+            
+            self?.hideScrollToTopOption()
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func updateBindings()
