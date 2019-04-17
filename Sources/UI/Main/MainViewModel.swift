@@ -97,6 +97,13 @@ class MainViewModel
     
     fileprivate func setupBindings()
     {
+        self.input.lmmManager.notSeenLikesYouCount.subscribe(onNext:{ [weak self] count in
+            guard let `self` = self else { return }
+            
+            self.notSeenLikesCount = count
+            self.isNotSeenProfilesAvailable.accept(count + self.notSeenMatchesCount + self.notSeenMessagesCount != 0)
+        }).disposed(by: self.disposeBag)
+        
         self.input.lmmManager.notSeenMatchesCount.subscribe(onNext:{ [weak self] count in
             guard let `self` = self else { return }
             
