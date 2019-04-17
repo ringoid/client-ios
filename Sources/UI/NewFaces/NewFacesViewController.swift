@@ -38,7 +38,6 @@ class NewFacesViewController: BaseViewController
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
-    @IBOutlet fileprivate weak var loadingActivityView: UIActivityIndicatorView!
     @IBOutlet fileprivate weak var emptyFeedActivityView: UIActivityIndicatorView!
     @IBOutlet fileprivate weak var blockContainerView: UIView!
     @IBOutlet fileprivate weak var blockPhotoView: UIImageView!
@@ -138,15 +137,12 @@ class NewFacesViewController: BaseViewController
     {
         guard let count = self.viewModel?.profiles.value.count, count > 0 else { return }
         
-        self.loadingActivityView.startAnimating()
         self.viewModel?.fetchNext().subscribe(
             onNext: { [weak self] _ in
                 self?.lastFetchCount = count
-                self?.loadingActivityView.stopAnimating()
             }, onError: { [weak self] error in
                 guard let `self` = self else { return }
                 
-                self.loadingActivityView.stopAnimating()
                 showError(error, vc: self)
             }).disposed(by: self.disposeBag)
     }
@@ -327,13 +323,6 @@ class NewFacesViewController: BaseViewController
             
             vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 42.0
         }
-        
-        let globalIndicatorFrame = self.loadingActivityView.convert(self.loadingActivityView.frame, to: self.view)
-        if globalIndicatorFrame.origin.y + globalIndicatorFrame.height > self.tableView.bounds.height - self.view.safeAreaInsets.bottom - 62.0 {
-            self.loadingActivityView.alpha = 0.0
-        } else {
-            self.loadingActivityView.alpha = 1.0
-        }
     }
     
     fileprivate func showScrollToTopOption()
@@ -453,15 +442,12 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
             else { return }
 
         log("fetching next page", level: .high)
-        self.loadingActivityView.startAnimating()
         self.viewModel?.fetchNext().subscribe(
             onNext: { [weak self] _ in
-                self?.loadingActivityView.stopAnimating()
                 self?.lastFetchCount = totalCount
             }, onError: { [weak self] error in
                 guard let `self` = self else { return }
-                
-                self.loadingActivityView.stopAnimating()                
+                                            
                 showError(error, vc: self)
             }).disposed(by: self.disposeBag)
     }
