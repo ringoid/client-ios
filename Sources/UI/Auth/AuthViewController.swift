@@ -159,17 +159,20 @@ class AuthViewController: BaseViewController
         let isDateValid = self.validateBirthYear()
         let isValidated = self.viewModel?.sex.value != nil && isDateValid
         
-        if self.birthYearTextField.text?.count == 0 {
-            self.birthYearContainerView.layer.borderColor = UIColor(red: 73.0 / 255.0, green: 73.0 / 255.0, blue: 73.0 / 255.0, alpha: 1.0).cgColor
-            self.birthErrorView.isHidden = true
-            self.birthValidView.isHidden = true
-        } else {
-            let validColor = UIColor(red: 100.0 / 255.0, green: 170.0 / 255.0, blue: 9.0 / 255.0, alpha: 1.0).cgColor
-            let invalidColor = UIColor(red: 1.0, green: 152.0 / 255.0, blue: 0.0, alpha: 1.0).cgColor
-            self.birthYearContainerView.layer.borderColor = isDateValid ? validColor : invalidColor
-            self.birthErrorView.isHidden = isDateValid
-            self.birthValidView.isHidden = !isDateValid
-        }
+        
+        // Will be returned later
+        
+//        if self.birthYearTextField.text?.count == 0 {
+//            self.birthYearContainerView.layer.borderColor = UIColor(red: 73.0 / 255.0, green: 73.0 / 255.0, blue: 73.0 / 255.0, alpha: 1.0).cgColor
+//            self.birthErrorView.isHidden = true
+//            self.birthValidView.isHidden = true
+//        } else {
+//            let validColor = UIColor(red: 100.0 / 255.0, green: 170.0 / 255.0, blue: 9.0 / 255.0, alpha: 1.0).cgColor
+//            let invalidColor = UIColor(red: 1.0, green: 152.0 / 255.0, blue: 0.0, alpha: 1.0).cgColor
+//            self.birthYearContainerView.layer.borderColor = isDateValid ? validColor : invalidColor
+//            self.birthErrorView.isHidden = isDateValid
+//            self.birthValidView.isHidden = !isDateValid
+//        }
         
         self.registerBtn.alpha = isValidated ? 1.0 : 0.5
         self.registerBtn.isEnabled = isValidated
@@ -183,7 +186,7 @@ class AuthViewController: BaseViewController
         let currentYear = calendar.component(.year, from: Date())
         let diff = currentYear - birthYear
         
-        return diff >= 18 && diff <= 70
+        return diff > 0 && diff < 100
     }
     
     fileprivate func updateSexState(_ sex: Sex?)
