@@ -29,6 +29,7 @@ enum ApiErrorType: String
 struct ApiError
 {
     let type: ApiErrorType
+    let error: Error?
 }
 
 protocol ApiService

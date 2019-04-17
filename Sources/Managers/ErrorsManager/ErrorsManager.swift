@@ -18,7 +18,7 @@ class ErrorsManager
     let somethingWentWrong: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     
     // For debug purpose
-    let simulatedError: BehaviorRelay<ApiError> = BehaviorRelay<ApiError>(value: ApiError(type: .unknown))
+    let simulatedError: BehaviorRelay<ApiError> = BehaviorRelay<ApiError>(value: ApiError(type: .unknown, error: nil))
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
@@ -76,7 +76,10 @@ class ErrorsManager
     {
         switch error.type {
         case .secureConnectionFailed, .connectionTimeout, .non200StatusCode:
-            SentryService.shared.send(.somethingWentWrong, params: ["Error": error.type.rawValue])
+            SentryService.shared.send(.somethingWentWrong, params: [
+                "Error": error.type.rawValue,
+                "Description": error.error?.localizedDescription ?? ""
+                ])
             log("ERROR: \(error.type)", level: .high)
             self.triggerSomethingWentWrong()
             

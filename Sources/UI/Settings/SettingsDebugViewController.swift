@@ -45,19 +45,19 @@ class SettingsDebugViewController: BaseViewController
                 self?.input.actionsManager.isInternetAvailable.accept(false)
             }),
             DebugErrorItem(title: "Internal Server Error", trigger: { [weak self] in
-                self?.input.errorsManager.simulatedError.accept(ApiError(type: .internalServerError))
+                self?.input.errorsManager.simulatedError.accept(ApiError(type: .internalServerError, error: nil))
             }),
             DebugErrorItem(title: "Invalid Access Token", trigger: { [weak self] in
-                self?.input.errorsManager.simulatedError.accept(ApiError(type: .invalidAccessTokenClientError))
+                self?.input.errorsManager.simulatedError.accept(ApiError(type: .invalidAccessTokenClientError, error: nil))
             }),
             DebugErrorItem(title: "Too Old App version", trigger: { [weak self] in
-                self?.input.errorsManager.simulatedError.accept(ApiError(type: .tooOldAppVersionClientError))
+                self?.input.errorsManager.simulatedError.accept(ApiError(type: .tooOldAppVersionClientError, error: nil))
             }),
             DebugErrorItem(title: "Response code not 200", trigger: { [weak self] in
-                self?.input.errorsManager.simulatedError.accept(ApiError(type: .non200StatusCode))
+                self?.input.errorsManager.simulatedError.accept(ApiError(type: .non200StatusCode, error: nil))
             }),
             DebugErrorItem(title: "Timeout", trigger: { [weak self] in
-                self?.input.errorsManager.simulatedError.accept(ApiError(type: .connectionTimeout))
+                self?.input.errorsManager.simulatedError.accept(ApiError(type: .connectionTimeout, error: nil))
             }),
         ]
         

@@ -20,7 +20,7 @@ class ApiServiceDefault: ApiService
     
     var isAuthorized: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     var customerId: BehaviorRelay<String> = BehaviorRelay<String>(value: "")
-    var error: BehaviorRelay<ApiError> = BehaviorRelay<ApiError>(value: ApiError(type: .unknown))
+    var error: BehaviorRelay<ApiError> = BehaviorRelay<ApiError>(value: ApiError(type: .unknown, error: nil))
 
     fileprivate var accessToken: String?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
@@ -340,7 +340,7 @@ class ApiServiceDefault: ApiService
             })
             .flatMap({ [weak self] (response, data) -> Observable<[String: Any]> in
                 guard response.statusCode == 200 else {
-                    self?.error.accept(ApiError(type: .non200StatusCode))
+                    self?.error.accept(ApiError(type: .non200StatusCode, error: nil))
                     
                     return .error(createError("Non 200 status code", type: .hidden))
                 }
@@ -411,7 +411,7 @@ class ApiServiceDefault: ApiService
                 }
                 
                 guard response.statusCode == 200 else {
-                    self?.error.accept(ApiError(type: .non200StatusCode))
+                    self?.error.accept(ApiError(type: .non200StatusCode, error: nil))
                     
                     return .error(createError("Non 200 status code", type: .hidden))
                 }
@@ -500,7 +500,7 @@ class ApiServiceDefault: ApiService
             let errorMessage = jsonDict["errorMessage"] as? String {
             
             if let apiErrorType = ApiErrorType(rawValue: errorCode) {
-                self.error.accept(ApiError(type: apiErrorType))
+                self.error.accept(ApiError(type: apiErrorType, error: nil))
                 
                 if apiErrorType == .wrongRequestParamsClientError {
                     throw createError("API error: \(errorMessage)", type: .wrongParams)
@@ -516,19 +516,19 @@ class ApiServiceDefault: ApiService
     fileprivate func checkConnectionError(_ error: NSError)
     {
         if error.code == NSURLErrorTimedOut {
-            self.error.accept(ApiError(type: .connectionTimeout))
+            self.error.accept(ApiError(type: .connectionTimeout, error: error))
         }
         
         if error.code == NSURLErrorNetworkConnectionLost {
-            self.error.accept(ApiError(type: .connectionLost))
+            self.error.accept(ApiError(type: .connectionLost, error: error))
         }
         
         if error.code == NSURLErrorNotConnectedToInternet {
-            self.error.accept(ApiError(type: .notConnectedToInternet))
+            self.error.accept(ApiError(type: .notConnectedToInternet, error: error))
         }
         
         if error.code == NSURLErrorSecureConnectionFailed {
-            self.error.accept(ApiError(type: .secureConnectionFailed))
+            self.error.accept(ApiError(type: .secureConnectionFailed, error: error))
         }
     }
 }
