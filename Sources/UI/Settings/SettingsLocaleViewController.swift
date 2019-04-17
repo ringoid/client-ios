@@ -108,7 +108,7 @@ extension SettingsLocaleViewController: UITableViewDataSource, UITableViewDelega
     {
         let index = indexPath.row
         if index == self.viewModel?.locales.count {
-            return 72.0
+            return 80.0
         }
         
         return 56.0
