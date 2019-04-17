@@ -184,9 +184,9 @@ class LMMManager
             
             return self!.refresh(from).asObservable()
         }).do(onNext: { _ in
-            if Date().timeIntervalSince(startDate) < 2.0 {
-                SentryService.shared.send(.waitingForResponseLLM)
-            }
+//            if Date().timeIntervalSince(startDate) < 2.0 {
+//                SentryService.shared.send(.waitingForResponseLLM)
+//            }
         })
     }
     
