@@ -405,10 +405,10 @@ class ApiServiceDefault: ApiService
                 log("DISPOSED: \(url)", level: .low)
             })
             .flatMap({ [weak self] (response, data) -> Observable<[String: Any]> in
-                if Date().timeIntervalSince(timestamp) > 2.0 {
-                    log("Request took more then 2000ms", level: .high)
-                    SentryService.shared.send(.responseGeneralDelay)
-                }
+//                if Date().timeIntervalSince(timestamp) > 2.0 {
+//                    log("Request took more then 2000ms", level: .high)
+//                    SentryService.shared.send(.responseGeneralDelay)
+//                }
                 
                 guard response.statusCode == 200 else {
                     self?.error.accept(ApiError(type: .non200StatusCode, error: nil))
