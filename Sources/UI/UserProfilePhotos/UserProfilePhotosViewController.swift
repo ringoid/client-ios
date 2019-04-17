@@ -143,6 +143,8 @@ class UserProfilePhotosViewController: BaseViewController
             return
         }
         
+        UIManager.shared.userProfileLikesVisible.accept(false)
+        
         self.viewModel?.refresh().subscribe(
             onError:{ [weak self] error in
                 guard let `self` = self else { return }
@@ -151,12 +153,14 @@ class UserProfilePhotosViewController: BaseViewController
                 showError(error, vc: self)
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                    UIManager.shared.userProfileLikesVisible.accept(true)
                     self.containerTableView.refreshControl?.endRefreshing()
                 })
             }, onCompleted:{ [weak self] in
                 self?.containerTableView.panGestureRecognizer.isEnabled = true
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                    UIManager.shared.userProfileLikesVisible.accept(true)
                     self?.containerTableView.refreshControl?.endRefreshing()
                 })
         }).disposed(by: self.disposeBag)

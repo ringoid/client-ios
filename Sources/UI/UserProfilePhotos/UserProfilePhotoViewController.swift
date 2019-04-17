@@ -83,5 +83,10 @@ class UserProfilePhotoViewController: UIViewController
             
             self?.likeLabel?.attributedText = NSAttributedString(string: "\(photo.likes)", attributes: attributes)
         }).disposed(by: self.disposeBag)
+        
+        UIManager.shared.userProfileLikesVisible.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
+            self?.likeView?.isHidden = !state
+            self?.likeLabel?.isHidden = !state
+        }).disposed(by: self.disposeBag)
     }
 }
