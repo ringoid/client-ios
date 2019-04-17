@@ -72,10 +72,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t4b-Hj-bQz">
-                                <rect key="frame" x="16" y="604" width="343" height="45"/>
+                                <rect key="frame" x="16" y="601" width="343" height="48"/>
                                 <color key="backgroundColor" red="0.26274509800000001" green="0.54901960780000003" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="z0l-aY-EhG"/>
+                                    <constraint firstAttribute="height" constant="48" id="z0l-aY-EhG"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <state key="normal" title="Retry">
@@ -128,10 +128,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ffg-oh-dDS">
-                                <rect key="frame" x="16" y="604" width="343" height="45"/>
+                                <rect key="frame" x="16" y="601" width="343" height="48"/>
                                 <color key="backgroundColor" red="0.26274509800000001" green="0.54901960780000003" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="Wlv-EF-c3L"/>
+                                    <constraint firstAttribute="height" constant="48" id="Wlv-EF-c3L"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <state key="normal" title="Update the app">

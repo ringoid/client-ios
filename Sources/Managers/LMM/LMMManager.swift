@@ -178,7 +178,7 @@ class LMMManager
     
     func refreshProtected(_ from: SourceFeedType) -> Observable<Void>
     {
-        let startDate = Date()
+        // let startDate = Date()
         
         return self.actionsManager.sendQueue().flatMap ({ [weak self] _ -> Observable<Void> in
             

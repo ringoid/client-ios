@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cO2-Ma-bvu" userLabel="BoYContainer">
-                                        <rect key="frame" x="82.5" y="92" width="210" height="49"/>
+                                        <rect key="frame" x="82.5" y="89" width="210" height="49"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Year of Birth" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CBF-BB-eko">
                                                 <rect key="frame" x="45" y="11" width="120" height="27"/>
@@ -62,7 +62,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bh1-NE-O5a" userLabel="MaleContainer">
-                                        <rect key="frame" x="83.5" y="153" width="98" height="98"/>
+                                        <rect key="frame" x="83.5" y="150" width="98" height="98"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_male_logo" translatesAutoresizingMaskIntoConstraints="NO" id="cA5-0H-fcR">
                                                 <rect key="frame" x="32" y="10" width="34" height="50"/>
@@ -91,10 +91,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FpE-Be-fZR">
-                                        <rect key="frame" x="83.5" y="153" width="98" height="98"/>
+                                        <rect key="frame" x="83.5" y="150" width="98" height="98"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39I-EI-ikh" userLabel="FemaleContainer">
-                                        <rect key="frame" x="191.5" y="153" width="98" height="98"/>
+                                        <rect key="frame" x="191.5" y="150" width="98" height="98"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_female_logo" translatesAutoresizingMaskIntoConstraints="NO" id="pXK-b7-zje">
                                                 <rect key="frame" x="31" y="12" width="36" height="50"/>
@@ -122,10 +122,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFs-C8-vnJ">
-                                        <rect key="frame" x="191.5" y="153" width="98" height="98"/>
+                                        <rect key="frame" x="191.5" y="150" width="98" height="98"/>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ytv-xm-SNC">
-                                        <rect key="frame" x="12" y="298" width="351" height="96"/>
+                                        <rect key="frame" x="12" y="295" width="351" height="96"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="96" id="aVS-su-Of8"/>
@@ -146,10 +146,10 @@
                                         </connections>
                                     </textView>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qfe-tw-Yjt">
-                                        <rect key="frame" x="16" y="402" width="343" height="45"/>
+                                        <rect key="frame" x="16" y="399" width="343" height="48"/>
                                         <color key="backgroundColor" red="0.2627450980392157" green="0.5490196078431373" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="559-0s-TQE"/>
+                                            <constraint firstAttribute="height" constant="48" id="559-0s-TQE"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <state key="normal" title="Continue to Upload Photo">
@@ -165,7 +165,7 @@
                                         </connections>
                                     </button>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="7xf-j8-IEa">
-                                        <rect key="frame" x="169" y="406" width="37" height="37"/>
+                                        <rect key="frame" x="169" y="404.5" width="37" height="37"/>
                                         <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </activityIndicatorView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLp-TM-j8c">
