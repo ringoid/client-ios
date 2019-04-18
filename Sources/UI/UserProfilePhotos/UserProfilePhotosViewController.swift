@@ -229,7 +229,7 @@ class UserProfilePhotosViewController: BaseViewController
         if let id = self.viewModel?.lastPhotoId.value
         {
             for (index, photo) in photos.enumerated() {
-                if photo.id == id { startIndex = index }
+                if photo.originId == id { startIndex = index }
             }
         } else if let clientId = self.lastClientPhotoId {
             for (index, photo) in photos.enumerated() {
