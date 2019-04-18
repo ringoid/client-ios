@@ -80,12 +80,14 @@ class UserProfileManager
     {
         guard let index = self.photos.value.index(of: photo) else { return }
         
+        let photoId = photo.id ?? photo.originId
+        
         if index > 0 {
             let prevPhoto = self.photos.value[index - 1]
-            self.lastPhotoId.accept(prevPhoto.id)
+            let prevPhotoId = prevPhoto.id ?? prevPhoto.originId
+            self.lastPhotoId.accept(prevPhotoId)
         }
         
-        let photoId = photo.id ?? photo.originId
         let path = photo.filepath()
         self.db.delete([photo]).subscribe(onSuccess: { [weak self] _ in
             self?.fileService.rm(path)

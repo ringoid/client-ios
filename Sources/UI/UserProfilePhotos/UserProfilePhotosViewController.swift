@@ -229,14 +229,18 @@ class UserProfilePhotosViewController: BaseViewController
         if let id = self.viewModel?.lastPhotoId.value
         {
             for (index, photo) in photos.enumerated() {
-                if photo.originId == id { startIndex = index }
+                let photoId = photo.id ?? photo.originId
+                if photoId == id { startIndex = index }
             }
         } else if let clientId = self.lastClientPhotoId {
             for (index, photo) in photos.enumerated() {
                 if photo.clientId == clientId { startIndex = index }
             }
         } else {
-            self.viewModel?.lastPhotoId.accept(photos.first?.id)
+            guard let photo = photos.first else { return }
+            
+            let photoId = photo.id ?? photo.originId
+            self.viewModel?.lastPhotoId.accept(photoId)
         }
         
         self.emptyFeedLabel.isHidden = !photos.isEmpty
@@ -355,8 +359,7 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
         guard let image = info[.originalImage] as? UIImage else { return }
         
         self.pickedPhoto = image
-        
-        
+
         guard let cropVC = Storyboards.userProfile().instantiateViewController(withIdentifier: "crop_vc") as? UserProfilePhotoCropViewController else { return }
         cropVC.sourceImage = image
         cropVC.delegate = self
@@ -397,7 +400,11 @@ extension UserProfilePhotosViewController: UIPageViewControllerDelegate, UIPageV
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
         self.currentIndex = index
-        self.viewModel?.lastPhotoId.accept(self.viewModel?.photos.value[index].originId)
+        
+        guard let photo = self.viewModel?.photos.value[index] else { return }
+        
+        let photoId = photo.id ?? photo.originId
+        self.viewModel?.lastPhotoId.accept(photoId)
         self.pageControl.currentPage = index
     }
 }
