@@ -17,6 +17,7 @@ def common_pods
 	pod 'Valet'
 	pod 'Branch'
 	pod 'Firebase/Core'
+	pod 'Firebase/Performance'
 end
 
 target 'ringoid' do
