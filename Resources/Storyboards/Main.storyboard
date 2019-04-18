@@ -124,6 +124,8 @@
                         <viewLayoutGuide key="safeArea" id="PZo-jV-0xV"/>
                     </view>
                     <connections>
+                        <outlet property="bottomShadowView" destination="E8b-9J-Vw4" id="aOM-N5-sbu"/>
+                        <outlet property="buttonsStackView" destination="QYd-HC-afs" id="6DN-vF-3cQ"/>
                         <outlet property="effectsView" destination="htN-cB-51n" id="eaL-Um-c0a"/>
                         <outlet property="likeBtn" destination="uLq-rW-238" id="tPb-gd-o3B"/>
                         <outlet property="lmmNotSeenIndicatorView" destination="02Y-W9-hk1" id="Uiu-v3-0Rm"/>

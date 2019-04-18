@@ -36,6 +36,8 @@ class MainViewController: BaseViewController
     @IBOutlet fileprivate weak var profileIndicatorView: UIView!
     @IBOutlet fileprivate weak var lmmNotSeenIndicatorView: UIView!
     @IBOutlet fileprivate weak var effectsView: MainEffectsView!
+    @IBOutlet fileprivate weak var buttonsStackView: UIView!
+    @IBOutlet fileprivate weak var bottomShadowView: UIView!
     
     static func create() -> MainViewController
     {
@@ -314,6 +316,13 @@ class MainViewController: BaseViewController
         UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             let alpha:CGFloat = state ? 0.0 : 1.0            
             self?.lmmNotSeenIndicatorView.alpha = alpha
+        }).disposed(by: self.disposeBag)
+        
+        UIManager.shared.chatModeEnabled.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
+            self?.buttonsStackView.isHidden = state
+            self?.profileIndicatorView.alpha = state ? 0.0 : 1.0
+            self?.lmmNotSeenIndicatorView.alpha = state ? 0.0 : 1.0
+            self?.bottomShadowView.isHidden = state
         }).disposed(by: self.disposeBag)
     }
 }
