@@ -13,9 +13,10 @@ import Nuke
 fileprivate enum NewFacesFeedActivityState
 {
     case initial;
-    case fetching
-    case empty
-    case contentAvailable
+    case reloading;
+    case fetching;
+    case empty;
+    case contentAvailable;
 }
 
 class NewFacesViewController: BaseViewController
@@ -116,7 +117,7 @@ class NewFacesViewController: BaseViewController
         
         self.viewModel?.registerPushesIfNeeded()
                 
-        self.toggleActivity(.fetching)
+        self.toggleActivity(.reloading)
         
         self.lastFetchCount = -1
         self.photoIndexes.removeAll()
@@ -297,8 +298,12 @@ class NewFacesViewController: BaseViewController
             self.emptyFeedLabel.isHidden = false
             break
             
-        case .fetching:
+        case .reloading:
             self.emptyFeedActivityView.startAnimating()
+            self.emptyFeedLabel.isHidden = true
+            break
+            
+        case .fetching:
             self.emptyFeedLabel.isHidden = true
             break
             
