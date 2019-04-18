@@ -41,6 +41,26 @@ class LMMManager
     
     let isFetching: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
+    fileprivate var likesYouCached: [LMMProfile] = []
+    fileprivate var matchesCached: [LMMProfile] = []
+    fileprivate var messagesCached: [LMMProfile] = []
+    var contentShouldBeHidden: Bool = false
+    {
+        didSet {
+            guard oldValue != self.contentShouldBeHidden else { return }
+            
+            if self.contentShouldBeHidden {
+                self.likesYou.accept([])
+                self.matches.accept([])
+                self.messages.accept([])
+            } else {
+                self.likesYou.accept(self.likesYouCached)
+                self.matches.accept(self.matchesCached)
+                self.messages.accept(self.messagesCached)
+            }
+        }
+    }
+    
     // Not seen counters
     
     var notSeenLikesYouCount: Observable<Int>
@@ -197,9 +217,29 @@ class LMMManager
     
     fileprivate func setupBindings()
     {
-        self.db.likesYou().subscribeOn(MainScheduler.instance).bind(to: self.likesYou).disposed(by: self.disposeBag)
-        self.db.matches().subscribeOn(MainScheduler.instance).bind(to: self.matches).disposed(by: self.disposeBag)
-        self.db.messages().subscribeOn(MainScheduler.instance).bind(to: self.messages).disposed(by: self.disposeBag)        
+        self.db.likesYou().subscribe(onNext: { [weak self] profiles in
+            self?.likesYouCached = profiles
+            
+            guard self?.contentShouldBeHidden == false else { return }
+            
+            self?.likesYou.accept(profiles)
+        }).disposed(by: self.disposeBag)
+
+        self.db.matches().subscribe(onNext: { [weak self] profiles in
+            self?.matchesCached = profiles
+            
+            guard self?.contentShouldBeHidden == false else { return }
+            
+            self?.matches.accept(profiles)
+        }).disposed(by: self.disposeBag)
+        
+        self.db.messages().subscribe(onNext: { [weak self] profiles in
+            self?.messagesCached = profiles
+            
+            guard self?.contentShouldBeHidden == false else { return }
+            
+            self?.messages.accept(profiles)
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func loadPrevState()
@@ -238,6 +278,10 @@ class LMMManager
         self.storage.remove("prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("prevNotSeenMessages").subscribe().disposed(by: self.disposeBag)
+        
+        self.likesYouCached.removeAll()
+        self.matchesCached.removeAll()
+        self.messagesCached.removeAll()
         
         self.prevNotSeenLikes.removeAll()
         self.prevNotSeenMatches.removeAll()

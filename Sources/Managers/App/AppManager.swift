@@ -107,9 +107,9 @@ class AppManager
     fileprivate func setupManagers(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
         self.actionsManager = ActionsManager(self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, reachability: self.reachability, notifications: self.notifications)
-        self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader, fileService: self.fileService, device: self.deviceService, storage: self.defaultStorage)
         self.newFacesManager = NewFacesManager(self.db, api: self.apiService, device: self.deviceService, actionsManager: self.actionsManager)
         self.lmmManager = LMMManager(self.db, api: self.apiService, device: self.deviceService, actionsManager: self.actionsManager, storage: self.defaultStorage)
+        self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader, fileService: self.fileService, device: self.deviceService, storage: self.defaultStorage, lmm: self.lmmManager)
         self.chatManager = ChatManager(self.db, actionsManager: self.actionsManager)
         self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, actions: self.actionsManager, lmm: self.lmmManager, newFaces: self.newFacesManager, notifications: self.notifications)
         self.navigationManager = NavigationManager()

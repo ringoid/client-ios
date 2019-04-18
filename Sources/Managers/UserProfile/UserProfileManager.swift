@@ -17,6 +17,7 @@ class UserProfileManager
     let fileService: FileService
     let deviceService: DeviceService
     let storage: XStorageService
+    let lmm: LMMManager
     
     let photos: BehaviorRelay<[UserPhoto]> = BehaviorRelay<[UserPhoto]>(value: [])
     let lastPhotoId: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
@@ -28,7 +29,7 @@ class UserProfileManager
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(_ db: DBService, api: ApiService, uploader: UploaderService, fileService: FileService, device: DeviceService, storage: XStorageService)
+    init(_ db: DBService, api: ApiService, uploader: UploaderService, fileService: FileService, device: DeviceService, storage: XStorageService, lmm: LMMManager)
     {
         self.db = db
         self.apiService = api
@@ -36,6 +37,7 @@ class UserProfileManager
         self.fileService = fileService
         self.deviceService = device
         self.storage = storage
+        self.lmm = lmm
         
         self.setupBindings()
     }
@@ -127,10 +129,14 @@ class UserProfileManager
         }).disposed(by: self.disposeBag)
         
         self.photos.subscribe(onNext:{ [weak self] photos in
-            guard photos.filter({ !$0.isBlocked }).count == 0 else { return }
             guard let `self` = self else { return }
-            
-            self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
+            guard photos.filter({ !$0.isBlocked }).count == 0 else {
+                self.lmm.contentShouldBeHidden = false
+                
+                return
+            }
+
+            self.lmm.contentShouldBeHidden = true
             self.db.resetNewFaces().subscribe().disposed(by: self.disposeBag)
         }).disposed(by: self.disposeBag)
     }
