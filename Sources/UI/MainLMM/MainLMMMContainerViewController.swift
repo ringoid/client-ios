@@ -38,6 +38,7 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet weak var optionsContainer: UIView!
     @IBOutlet weak var matchesBtnWidthLayout: NSLayoutConstraint!
     @IBOutlet weak var tabsCenterConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var topShadowView: UIView!
     
     override func viewDidLoad()
     {
@@ -103,12 +104,14 @@ class MainLMMContainerViewController: BaseViewController
         UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
                 self?.optionsContainer.alpha = state ? 0.0 : 1.0
+                self?.topShadowView.isHidden = state
             }).startAnimation()
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.chatModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
                 self?.optionsContainer.alpha = state ? 0.0 : 1.0
+                self?.topShadowView.isHidden = state
             }).startAnimation()
         }).disposed(by: self.disposeBag)
         

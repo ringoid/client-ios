@@ -173,6 +173,7 @@
                         <outlet property="matchesIndicatorView" destination="QY6-GC-5lz" id="udS-3Q-Kp3"/>
                         <outlet property="optionsContainer" destination="Ywr-Pj-xRP" id="7t7-9d-4A3"/>
                         <outlet property="tabsCenterConstraint" destination="KRt-C6-PGQ" id="Slx-CV-75P"/>
+                        <outlet property="topShadowView" destination="avd-pS-HNL" id="dfD-jO-yuU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6BI-HA-c0t" userLabel="First Responder" sceneMemberID="firstResponder"/>
