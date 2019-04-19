@@ -45,8 +45,10 @@ class LocationServiceDefault: NSObject, LocationService
             return Disposables.create()
         })
         
-        self.lm.desiredAccuracy = CLLocationManager.authorizationStatus() == .notDetermined ? 1000.0 : kCLLocationAccuracyBest
+        let status = CLLocationManager.authorizationStatus()
+        self.lm.desiredAccuracy = status == .notDetermined ? 1000.0 : kCLLocationAccuracyBest
         self.lm.delegate = self
+        self.isGranted.accept(status == .authorizedWhenInUse)
     }    
 }
 
