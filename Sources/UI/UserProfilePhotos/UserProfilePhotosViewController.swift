@@ -229,8 +229,7 @@ class UserProfilePhotosViewController: BaseViewController
         if let id = self.viewModel?.lastPhotoId.value
         {
             for (index, photo) in photos.enumerated() {
-                let photoId = photo.id ?? photo.originId
-                if photoId == id { startIndex = index }
+                if photo.originId == id { startIndex = index }
             }
         } else if let clientId = self.lastClientPhotoId {
             for (index, photo) in photos.enumerated() {
@@ -239,8 +238,7 @@ class UserProfilePhotosViewController: BaseViewController
         } else {
             guard let photo = photos.first else { return }
             
-            let photoId = photo.id ?? photo.originId
-            self.viewModel?.lastPhotoId.accept(photoId)
+            self.viewModel?.lastPhotoId.accept(photo.originId)
         }
         
         self.emptyFeedLabel.isHidden = !photos.isEmpty
@@ -403,8 +401,7 @@ extension UserProfilePhotosViewController: UIPageViewControllerDelegate, UIPageV
         
         guard let photo = self.viewModel?.photos.value[index] else { return }
         
-        let photoId = photo.id ?? photo.originId
-        self.viewModel?.lastPhotoId.accept(photoId)
+        self.viewModel?.lastPhotoId.accept(photo.originId)
         self.pageControl.currentPage = index
     }
 }

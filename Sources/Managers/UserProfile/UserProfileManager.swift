@@ -84,7 +84,7 @@ class UserProfileManager
         
         if index > 0 {
             let prevPhoto = self.photos.value[index - 1]
-            let prevPhotoId = prevPhoto.id ?? prevPhoto.originId
+            let prevPhotoId = prevPhoto.originId
             self.lastPhotoId.accept(prevPhotoId)
         }
         
