@@ -366,12 +366,15 @@ class ApiServiceDefault: ApiService
                 trace?.stop()
             })
             .flatMap({ [weak self] (response, data) -> Observable<[String: Any]> in
+                defer {
+                    trace?.stop()
+                }
+                
                 metric?.responseCode = response.statusCode
                 metric?.stop()
                 
                 guard response.statusCode == 200 else {
                     self?.error.accept(ApiError(type: .non200StatusCode, error: nil))
-                    trace?.stop()
                     
                     return .error(createError("Non 200 status code", type: .hidden))
                 }
@@ -386,7 +389,6 @@ class ApiServiceDefault: ApiService
                     log("FAILURE: url: \(url) error: \(error)", level: .low)
                     log("Duration: \(interval) ms", level: .low)
                     self?.retryMap.removeValue(forKey: requestId)
-                    trace?.stop()
                     
                     return .error(error)
                 }
@@ -394,7 +396,6 @@ class ApiServiceDefault: ApiService
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
                     guard retryCount < 5 else {
                         self?.retryMap.removeValue(forKey: requestId)
-                        trace?.stop()
                         
                         return .error(createError("Retry limit exceeded", type: .hidden))
                     }
@@ -417,7 +418,6 @@ class ApiServiceDefault: ApiService
                 log("SUCCESS: url: \(url)", level: .low)
                 log("Duration: \(interval) ms", level: .low)
                 self?.retryMap.removeValue(forKey: requestId)
-                trace?.stop()
                 
                 return .just(jsonDict)
             })
@@ -450,6 +450,10 @@ class ApiServiceDefault: ApiService
                 log("DISPOSED: \(url)", level: .low)
             })
             .flatMap({ [weak self] (response, data) -> Observable<[String: Any]> in
+                defer {
+                    trace?.stop()
+                }
+                
                 metric?.responseCode = response.statusCode
                 metric?.stop()
 //                if Date().timeIntervalSince(timestamp) > 2.0 {
@@ -459,8 +463,7 @@ class ApiServiceDefault: ApiService
                 
                 guard response.statusCode == 200 else {
                     self?.error.accept(ApiError(type: .non200StatusCode, error: nil))
-                    trace?.stop()
-                    
+
                     return .error(createError("Non 200 status code", type: .hidden))
                 }
                 
@@ -473,7 +476,6 @@ class ApiServiceDefault: ApiService
                     log("FAILURE: url: \(url) error: \(error)", level: .low)
                     log("Duration: \(interval) ms", level: .low)
                     self?.retryMap.removeValue(forKey: requestId)
-                    trace?.stop()
                     
                     return .error(error)
                 }
@@ -481,7 +483,6 @@ class ApiServiceDefault: ApiService
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
                     guard retryCount < 5 else {
                         self?.retryMap.removeValue(forKey: requestId)
-                        trace?.stop()
                         
                         return .error(createError("Retry limit exceeded", type: .hidden))
                     }
@@ -504,7 +505,6 @@ class ApiServiceDefault: ApiService
                 log("SUCCESS: url: \(url)", level: .low)
                 log("Duration: \(interval) ms", level: .low)
                 self?.retryMap.removeValue(forKey: requestId)
-                trace?.stop()
                 
                 return .just(jsonDict)
             })

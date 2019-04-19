@@ -10,6 +10,7 @@
 import RxSwift
 import RxAlamofire
 import Alamofire
+import FirebasePerformance
 
 class UploaderServiceDefault: UploaderService
 {
@@ -35,8 +36,14 @@ class UploaderServiceDefault: UploaderService
         self.activeUploads[to] = request.task
         self.store(to.absoluteString, data: data)
         
+        let trace = Performance.startTrace(name: "image upload")
+        let metric = HTTPMetric(url: to, httpMethod: .put)
+        
         return Observable<Void>.create({ [weak self] observer -> Disposable in            
                 request.responseData { response in
+                metric?.responseCode = response.response?.statusCode ?? 200
+                metric?.stop()
+                    
                 guard let `self` = self else { return }
                     
                 defer {
@@ -56,8 +63,13 @@ class UploaderServiceDefault: UploaderService
             }
 
             return Disposables.create()
+        }).do(onError: { _ in
+            trace?.incrementMetric("retry", by: 1)
         }).retry(3).do(onNext:{ _ in
+            trace?.stop()
             AnalyticsManager.shared.send(.uploadedPhoto)
+        }, onError: { _ in
+            trace?.stop()
         })
     }
     
