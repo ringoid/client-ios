@@ -114,8 +114,8 @@ see how many likes you get</string>
                                     <action selector="deletePhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="KYt-hL-B7c"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="gyn-28-5bi">
-                                <rect key="frame" x="16" y="80" width="7" height="37"/>
+                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="gyn-28-5bi">
+                                <rect key="frame" x="16" y="80" width="0.0" height="0.0"/>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.88299978599999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

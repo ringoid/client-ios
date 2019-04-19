@@ -157,8 +157,8 @@ discover users nearby</string>
                                     <segue destination="a3d-Xx-hZB" kind="embed" identifier="embed_pages" id="H5Q-fa-BBJ"/>
                                 </connections>
                             </containerView>
-                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="BxI-1L-kXF">
-                                <rect key="frame" x="16" y="-12" width="7" height="60"/>
+                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="BxI-1L-kXF">
+                                <rect key="frame" x="16" y="-12" width="0.0" height="60"/>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1t-jW-NWk">
                                 <rect key="frame" x="299" y="-12" width="76" height="60"/>

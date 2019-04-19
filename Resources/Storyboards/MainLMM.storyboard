@@ -351,8 +351,8 @@ see who likes you</string>
                                     <action selector="onChatSelected" destination="Nf7-hc-eWV" eventType="touchUpInside" id="d62-YA-ePo"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="mPS-Ki-Bpa">
-                                <rect key="frame" x="16" y="-12" width="7" height="60"/>
+                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="mPS-Ki-Bpa">
+                                <rect key="frame" x="16" y="-12" width="0.0" height="60"/>
                             </pageControl>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProfileID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVA-P0-T2F">
                                 <rect key="frame" x="16" y="630" width="70" height="21"/>
