@@ -13,6 +13,7 @@ import Alamofire
 import Sentry
 import DeviceKit
 import FirebasePerformance
+import Firebase
 
 class ApiServiceDefault: ApiService
 {
@@ -349,6 +350,7 @@ class ApiServiceDefault: ApiService
         
         let retryCount = (retryMap[requestId] ?? -1) + 1
         retryMap[requestId] = retryCount
+        let metric = HTTPMetric(url: URL(string: url)!, httpMethod: method.firebase())
         
         log("STARTED: \(method) \(url)", level: .low)
         
@@ -360,9 +362,13 @@ class ApiServiceDefault: ApiService
             }).retry(3)
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
+                metric?.stop()
                 trace?.stop()
             })
             .flatMap({ [weak self] (response, data) -> Observable<[String: Any]> in
+                metric?.responseCode = response.statusCode
+                metric?.stop()
+                
                 guard response.statusCode == 200 else {
                     self?.error.accept(ApiError(type: .non200StatusCode, error: nil))
                     trace?.stop()
@@ -426,6 +432,7 @@ class ApiServiceDefault: ApiService
         
         let retryCount = (retryMap[requestId] ?? -1) + 1
         retryMap[requestId] = retryCount
+        let metric = HTTPMetric(url: URL(string: url)!, httpMethod: .get)
         
         log("STARTED: GET \(url)", level: .low)
         
@@ -437,11 +444,14 @@ class ApiServiceDefault: ApiService
             }).retry(3)
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
+                metric?.stop()
                 trace?.stop()
             }, onDispose: {
                 log("DISPOSED: \(url)", level: .low)
             })
             .flatMap({ [weak self] (response, data) -> Observable<[String: Any]> in
+                metric?.responseCode = response.statusCode
+                metric?.stop()
 //                if Date().timeIntervalSince(timestamp) > 2.0 {
 //                    log("Request took more then 2000ms", level: .high)
 //                    SentryService.shared.send(.responseGeneralDelay)
@@ -576,6 +586,20 @@ class ApiServiceDefault: ApiService
         
         if error.code == NSURLErrorSecureConnectionFailed {
             self.error.accept(ApiError(type: .secureConnectionFailed, error: error))
+        }
+    }
+}
+
+fileprivate extension Alamofire.HTTPMethod
+{
+    func firebase() -> Firebase.HTTPMethod
+    {
+        switch self {
+        case .put: return .put
+        case .get: return .get
+        case .post: return .post
+        
+        default: return .get
         }
     }
 }
