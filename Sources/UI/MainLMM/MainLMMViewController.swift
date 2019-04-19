@@ -147,7 +147,7 @@ class MainLMMViewController: BaseViewController
             self?.toggle(type)
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.isFetching.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
+        self.viewModel?.isFetching.asObservable().skip(1).observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             if state {
                 MainLMMViewController.resetStates()
                 self?.toggleActivity(.fetching)
