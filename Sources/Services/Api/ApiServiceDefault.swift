@@ -12,6 +12,7 @@ import RxAlamofire
 import Alamofire
 import Sentry
 import DeviceKit
+import FirebasePerformance
 
 class ApiServiceDefault: ApiService
 {
@@ -59,7 +60,9 @@ class ApiServiceDefault: ApiService
             params["referralId"] = referralCode
         }
         
-        return self.request(.post, path: "auth/create_profile", jsonBody: params).flatMap { [weak self] jsonDict -> Observable<Void> in
+        let trace = Performance.startTrace(name: "auth/create_profile")
+        
+        return self.request(.post, path: "auth/create_profile", jsonBody: params, trace: trace).flatMap { [weak self] jsonDict -> Observable<Void> in
             guard let accessToken = jsonDict["accessToken"] as? String else {
                 let error = createError("Create profile: no token in response", type: .hidden)
                 
@@ -88,7 +91,9 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.request(.post, path: "auth/delete", jsonBody: params).flatMap { [weak self] _ -> Observable<Void> in
+        let trace = Performance.startTrace(name: "auth/delete")
+        
+        return self.request(.post, path: "auth/delete", jsonBody: params, trace: trace).flatMap { [weak self] _ -> Observable<Void> in
             self?.clearCredentials()
             
             return .just(())
@@ -110,7 +115,9 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.request(.post, path: "auth/claim", jsonBody: params).flatMap({ _ -> Observable<Void> in
+        let trace = Performance.startTrace(name: "auth/claim")
+        
+        return self.request(.post, path: "auth/claim", jsonBody: params, trace: trace).flatMap({ _ -> Observable<Void> in
             return .just(())
         })
     }
@@ -128,9 +135,11 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
+        let trace = Performance.startTrace(name: "feeds/get_lmm")
+        
         log("LMM source: \(source.rawValue)", level: .low)
         
-        return self.requestGET(path: "feeds/get_lmm", params: params)
+        return self.requestGET(path: "feeds/get_lmm", params: params, trace: trace)
             //.timeout(2.0, scheduler: MainScheduler.instance)
             .flatMap ({ jsonDict -> Observable<ApiLMMResult> in
             guard let likesYouArray = jsonDict["likesYou"] as? [[String: Any]] else {
@@ -173,7 +182,9 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.requestGET(path: "feeds/get_new_faces", params: params)            
+        let trace = Performance.startTrace(name: "feeds/get_new_faces")
+        
+        return self.requestGET(path: "feeds/get_new_faces", params: params, trace: trace)
             .flatMap { jsonDict -> Observable<[ApiProfile]> in
             guard let profilesArray = jsonDict["profiles"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong profiles data format", type: .hidden)
@@ -197,8 +208,10 @@ class ApiServiceDefault: ApiService
         if let accessToken = self.accessToken {
             params["accessToken"] = accessToken
         }
+        
+        let trace = Performance.startTrace(name: "image/get_presigned")
 
-        return self.request(.post, path: "image/get_presigned", jsonBody: params).flatMap { jsonDict -> Observable<ApiUserPhotoPlaceholder> in
+        return self.request(.post, path: "image/get_presigned", jsonBody: params, trace: trace).flatMap { jsonDict -> Observable<ApiUserPhotoPlaceholder> in
             guard let photo = ApiUserPhotoPlaceholder.parse(jsonDict) else {
                 let error = createError("ApiService: wrong photo data format", type: .hidden)
                 
@@ -221,7 +234,9 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.request(.post, path: "actions/actions", jsonBody: params).flatMap { jsonDict -> Observable<Date> in
+        let trace = Performance.startTrace(name: "actions/actions")
+        
+        return self.request(.post, path: "actions/actions", jsonBody: params, trace: trace).flatMap { jsonDict -> Observable<Date> in
             guard let lastActionTime = jsonDict["lastActionTime"] as? Int else {
                 let error = createError("ApiService: no lastActionTime field provided", type: .hidden)
                 
@@ -246,7 +261,9 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.requestGET(path: "image/get_own_photos", params: params).flatMap { jsonDict -> Observable<[ApiUserPhoto]> in
+        let trace = Performance.startTrace(name: "image/get_own_photos")
+        
+        return self.requestGET(path: "image/get_own_photos", params: params, trace: trace).flatMap { jsonDict -> Observable<[ApiUserPhoto]> in
             guard let photosArray = jsonDict["photos"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong photos data format", type: .hidden)
                 
@@ -267,7 +284,9 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.request(.post, path: "image/delete_photo", jsonBody: params).flatMap { _ -> Observable<Void> in
+        let trace = Performance.startTrace(name: "image/delete_photo")
+        
+        return self.request(.post, path: "image/delete_photo", jsonBody: params, trace: trace).flatMap { _ -> Observable<Void> in
             return .just(())
         }
     }
@@ -287,7 +306,8 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.request(.post, path: "push/update_token", jsonBody: params).flatMap { _ -> Observable<Void> in
+        let trace = Performance.startTrace(name: "push/update_token")
+        return self.request(.post, path: "push/update_token", jsonBody: params, trace: trace).flatMap { _ -> Observable<Void> in
             return .just(())
         }
     }
@@ -312,14 +332,15 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        return self.request(.post, path: "auth/update_settings", jsonBody: params).flatMap { _ -> Observable<Void> in
+        let trace = Performance.startTrace(name: "auth/update_settings")
+        return self.request(.post, path: "auth/update_settings", jsonBody: params, trace: trace).flatMap { _ -> Observable<Void> in
             return .just(())
         }
     }
     
     // MARK: - Basic
     
-    fileprivate func request(_ method: HTTPMethod, path: String, jsonBody: [String: Any], id: String? = nil) -> Observable<[String: Any]>
+    fileprivate func request(_ method: Alamofire.HTTPMethod, path: String, jsonBody: [String: Any], id: String? = nil, trace: Trace?) -> Observable<[String: Any]>
     {
         let requestId = id ?? UUID().uuidString
         let url = self.config.endpoint + "/" + path
@@ -334,13 +355,17 @@ class ApiServiceDefault: ApiService
         return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
             ])
-            .responseData().retry(3)
+            .responseData().do(onError: { _ in
+                trace?.incrementMetric("retry", by: 1)
+            }).retry(3)
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
+                trace?.stop()
             })
             .flatMap({ [weak self] (response, data) -> Observable<[String: Any]> in
                 guard response.statusCode == 200 else {
                     self?.error.accept(ApiError(type: .non200StatusCode, error: nil))
+                    trace?.stop()
                     
                     return .error(createError("Non 200 status code", type: .hidden))
                 }
@@ -355,12 +380,20 @@ class ApiServiceDefault: ApiService
                     log("FAILURE: url: \(url) error: \(error)", level: .low)
                     log("Duration: \(interval) ms", level: .low)
                     self?.retryMap.removeValue(forKey: requestId)
+                    trace?.stop()
                     
                     return .error(error)
                 }
                 
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
-                    guard retryCount < 5 else { self?.retryMap.removeValue(forKey: requestId); return .error(createError("Retry limit exceeded", type: .hidden)) }
+                    guard retryCount < 5 else {
+                        self?.retryMap.removeValue(forKey: requestId)
+                        trace?.stop()
+                        
+                        return .error(createError("Retry limit exceeded", type: .hidden))
+                    }
+                    
+                    trace?.incrementMetric("repeatRequestAfter", by: 1)
                     
                     #if STAGE
                     SentryService.shared.send(.repeatAfterDelay)
@@ -370,7 +403,7 @@ class ApiServiceDefault: ApiService
                     return Observable<Void>.just(())
                         .delay(RxTimeInterval(Double(repeatAfter) / 1000.0), scheduler: MainScheduler.instance)
                         .flatMap ({ _ -> Observable<[String: Any]> in
-                            return self!.request(method, path: path, jsonBody: jsonBody, id: requestId)
+                            return self!.request(method, path: path, jsonBody: jsonBody, id: requestId, trace: trace)
                     })
                 }
                 
@@ -378,12 +411,13 @@ class ApiServiceDefault: ApiService
                 log("SUCCESS: url: \(url)", level: .low)
                 log("Duration: \(interval) ms", level: .low)
                 self?.retryMap.removeValue(forKey: requestId)
+                trace?.stop()
                 
                 return .just(jsonDict)
             })
     }
     
-    fileprivate func requestGET(path: String, params: [String: Any], id: String? = nil) -> Observable<[String: Any]>
+    fileprivate func requestGET(path: String, params: [String: Any], id: String? = nil, trace: Trace?) -> Observable<[String: Any]>
     {
         let requestId = id ?? UUID().uuidString
         let url = self.config.endpoint + "/" + path
@@ -398,9 +432,12 @@ class ApiServiceDefault: ApiService
         return RxAlamofire.request(.get, url, parameters: params, headers: [
             "x-ringoid-ios-buildnum": buildVersion,
             ])
-            .responseData().retry(3)
+            .responseData().do(onError: { _ in
+                trace?.incrementMetric("retry", by: 1)
+            }).retry(3)
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
+                trace?.stop()
             }, onDispose: {
                 log("DISPOSED: \(url)", level: .low)
             })
@@ -412,6 +449,7 @@ class ApiServiceDefault: ApiService
                 
                 guard response.statusCode == 200 else {
                     self?.error.accept(ApiError(type: .non200StatusCode, error: nil))
+                    trace?.stop()
                     
                     return .error(createError("Non 200 status code", type: .hidden))
                 }
@@ -425,12 +463,20 @@ class ApiServiceDefault: ApiService
                     log("FAILURE: url: \(url) error: \(error)", level: .low)
                     log("Duration: \(interval) ms", level: .low)
                     self?.retryMap.removeValue(forKey: requestId)
+                    trace?.stop()
                     
                     return .error(error)
                 }
 
                 if let repeatAfter = jsonDict["repeatRequestAfter"] as? Int, repeatAfter >= 1 {
-                    guard retryCount < 5 else { self?.retryMap.removeValue(forKey: requestId); return .error(createError("Retry limit exceeded", type: .hidden)) }
+                    guard retryCount < 5 else {
+                        self?.retryMap.removeValue(forKey: requestId)
+                        trace?.stop()
+                        
+                        return .error(createError("Retry limit exceeded", type: .hidden))
+                    }
+                    
+                    trace?.incrementMetric("repeatRequestAfter", by: 1)
                     
                     #if STAGE
                     SentryService.shared.send(.repeatAfterDelay)
@@ -440,7 +486,7 @@ class ApiServiceDefault: ApiService
                     return Observable<Void>.just(())
                         .delay(RxTimeInterval(Double(repeatAfter) / 1000.0), scheduler: MainScheduler.instance)
                         .flatMap ({ _ -> Observable<[String: Any]> in
-                            return self!.requestGET(path: path, params: params, id: requestId)
+                            return self!.requestGET(path: path, params: params, id: requestId, trace: trace)
                         })
                 }
                 
@@ -448,6 +494,7 @@ class ApiServiceDefault: ApiService
                 log("SUCCESS: url: \(url)", level: .low)
                 log("Duration: \(interval) ms", level: .low)
                 self?.retryMap.removeValue(forKey: requestId)
+                trace?.stop()
                 
                 return .just(jsonDict)
             })
