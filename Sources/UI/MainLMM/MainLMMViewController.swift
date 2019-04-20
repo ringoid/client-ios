@@ -152,6 +152,7 @@ class MainLMMViewController: BaseViewController
                 MainLMMViewController.resetStates()
                 self?.toggleActivity(.fetching)
                 self?.tableView.dataSource = EmptyFeed.shared
+                self?.lastFeedIds.removeAll()
                 self?.tableView.reloadData()
                 UIManager.shared.lmmRefreshModeEnabled.accept(true)
             } else {
