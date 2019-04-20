@@ -351,6 +351,7 @@ class ApiServiceDefault: ApiService
         let retryCount = (retryMap[requestId] ?? -1) + 1
         retryMap[requestId] = retryCount
         let metric = HTTPMetric(url: URL(string: url)!, httpMethod: method.firebase())
+        metric?.start()
         
         log("STARTED: \(method) \(url)", level: .low)
         
@@ -433,6 +434,7 @@ class ApiServiceDefault: ApiService
         let retryCount = (retryMap[requestId] ?? -1) + 1
         retryMap[requestId] = retryCount
         let metric = HTTPMetric(url: URL(string: url)!, httpMethod: .get)
+        metric?.start()
         
         log("STARTED: GET \(url)", level: .low)
         
