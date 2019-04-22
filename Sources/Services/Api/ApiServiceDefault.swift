@@ -176,7 +176,7 @@ class ApiServiceDefault: ApiService
         var params: [String: Any] = [
             "resolution": resolution,
             "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970 * 1000.0),
-            "limit": 20
+            "limit": 50
         ]
         
         if let accessToken = self.accessToken {

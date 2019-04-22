@@ -451,7 +451,7 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
             let totalCount = self.viewModel?.profiles.value.count,
             totalCount != self.lastFetchCount,
             totalCount > 14,
-            (totalCount - indexPath.row) <= 5
+            (totalCount - indexPath.row) <= 10
             else { return }
 
         self.onFetchMore()

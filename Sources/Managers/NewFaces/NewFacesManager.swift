@@ -46,7 +46,8 @@ class NewFacesManager
             
             var localOrderPosition: Int = 0
             
-            let localProfiles = self!.filterExisting(profiles).map({ profile -> NewFaceProfile in
+            let uniqueProfiles = self!.filterDuplications(profiles)
+            let localProfiles = self!.filterExisting(uniqueProfiles).map({ profile -> NewFaceProfile in
                 let localPhotos = profile.photos.map({ photo -> Photo in
                     let localPhoto = Photo()
                     localPhoto.id = photo.id
@@ -107,5 +108,20 @@ class NewFacesManager
             
             return true
         })
+    }
+    
+    fileprivate func filterDuplications(_ incomingProfiles: [ApiProfile]) -> [ApiProfile]
+    {
+        var duplicationsMap: [String: Bool] = [:]
+        var result: [ApiProfile] = []
+        
+        incomingProfiles.forEach { profile in
+            guard duplicationsMap[profile.id] == nil else { return }
+            
+            duplicationsMap[profile.id] = true
+            result.append(profile)
+        }
+        
+        return result
     }
 }

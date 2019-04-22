@@ -6,5 +6,5 @@
   Copyright © 2019 Ringoid. All rights reserved.
 */
 
-NSLocationWhenInUseUsageDescription = "Пользователи сортируются по дистанции.";
+NSLocationWhenInUseUsageDescription = "Пользователи, которые рядом, могут отображатся ранее в Поиске.";
 NSPhotoLibraryUsageDescription = "Фотографии профиля";
