@@ -72,6 +72,11 @@ class UserProfileManager
         }).disposed(by: self.disposeBag)
         
         return self.db.add(photo).asObservable().map({ _ -> UserPhoto in
+            let updatedPhotos = self.photos.value
+            updatedPhotos[0..<(updatedPhotos.count - 1)].forEach({ oldPhoto in
+                self.db.updateOrder(oldPhoto)
+            })
+            
             return photo
         })
     }
