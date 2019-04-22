@@ -70,7 +70,7 @@ class MainViewController: BaseViewController
             guard let text = alertVC.textFields?.first?.text, let count = Int(text) else { return }
             
             let size = self.likeBtn.bounds.size
-            let center = CGPoint(x: size.width - 47.0, y: size.height / 2.0 - 36.0)
+            let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
             let position = self.likeBtn.convert(center, to: nil)
             self.effectsView.animateLikes(count, from: position)
             self.effectsView.animateMatches(Int(Double(count) / 5.0), from: position)
@@ -290,7 +290,7 @@ class MainViewController: BaseViewController
             guard let `self` = self else { return }
             
             let size = self.likeBtn.bounds.size
-            let center = CGPoint(x: size.width - 47.0, y: size.height / 2.0 - 36.0)
+            let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
             let position = self.likeBtn.convert(center, to: nil)
             self.effectsView.animateLikes(count, from: position)
         }).disposed(by: self.disposeBag)
@@ -299,7 +299,7 @@ class MainViewController: BaseViewController
             guard let `self` = self else { return }
             
             let size = self.likeBtn.bounds.size
-            let center = CGPoint(x: size.width - 47.0, y: size.height / 2.0 - 36.0)
+            let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
             let position = self.likeBtn.convert(center, to: nil)
             self.effectsView.animateMatches(count, from: position)
         }).disposed(by: self.disposeBag)
@@ -308,7 +308,7 @@ class MainViewController: BaseViewController
             guard let `self` = self else { return }
             
             let size = self.likeBtn.bounds.size
-            let center = CGPoint(x: size.width - 47.0, y: size.height / 2.0 - 36.0)
+            let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
             let position = self.likeBtn.convert(center, to: nil)
             self.effectsView.animateMessages(count, from: position)
         }).disposed(by: self.disposeBag)
