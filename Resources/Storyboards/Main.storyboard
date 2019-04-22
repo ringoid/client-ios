@@ -77,7 +77,6 @@
                                     <constraint firstItem="IC7-wg-nDT" firstAttribute="width" secondItem="uLq-rW-238" secondAttribute="width" id="TXh-BD-Ft6"/>
                                     <constraint firstItem="IC7-wg-nDT" firstAttribute="centerY" secondItem="cD4-SP-HxY" secondAttribute="centerY" id="fMf-68-3eY"/>
                                     <constraint firstItem="cD4-SP-HxY" firstAttribute="leading" secondItem="uLq-rW-238" secondAttribute="trailing" id="gIv-A7-NrX"/>
-                                    <constraint firstItem="uLq-rW-238" firstAttribute="top" secondItem="QYd-HC-afs" secondAttribute="top" constant="12" id="o4e-Bm-FV1"/>
                                     <constraint firstItem="uLq-rW-238" firstAttribute="leading" secondItem="QYd-HC-afs" secondAttribute="leading" id="yoB-OP-QvA"/>
                                 </constraints>
                             </stackView>
