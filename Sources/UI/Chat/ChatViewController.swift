@@ -102,24 +102,27 @@ class ChatViewController: BaseViewController
     {
         guard self.input.chatManager.actionsManager.checkConnectionState() else { return }
         
+        defer {
+            self.messageTextView.text = ""
+            self.inputHeightConstraint.constant = 40.0
+            self.view.layoutSubviews()
+        }
+        
         let text = self.messageTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        guard text.count > 0 else { return }
+        guard text.count > 0 else {
+            return
+        }
         
         let shouldCloseAutomatically = self.viewModel?.messages.value.count == 0
         
         self.viewModel?.send(text)
-        
-        self.messageTextView.text = ""
         
         guard !shouldCloseAutomatically else {
             self.onClose()
             
             return
         }
-        
-        self.inputHeightConstraint.constant = 40.0
-        self.view.layoutSubviews()
     }
     
     @IBAction func onBlock()
