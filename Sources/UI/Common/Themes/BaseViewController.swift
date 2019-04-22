@@ -34,7 +34,7 @@ class BaseViewController: UIViewController
     
     func updateTheme()
     {
-        
+        self.view.backgroundColor = BackgroundColor().uiColor()
     }
     
     // MARK: -

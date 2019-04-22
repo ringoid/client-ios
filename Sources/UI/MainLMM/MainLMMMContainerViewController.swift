@@ -59,6 +59,11 @@ class MainLMMContainerViewController: BaseViewController
         self.updateBtnSizes()
     }
     
+    override func updateTheme()
+    {
+        self.view.backgroundColor = BackgroundColor().uiColor()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "embed_lmm", let vc = segue.destination as? MainLMMViewController {
