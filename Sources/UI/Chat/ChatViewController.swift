@@ -58,6 +58,7 @@ class ChatViewController: BaseViewController
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         self.setupBindings()
+        self.textViewDidChange(self.messageTextView)
     }
     
     override func viewWillAppear(_ animated: Bool)
