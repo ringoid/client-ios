@@ -19,7 +19,7 @@ class ContainerView: TouchThroughView
         to.addChild(vc)
         
         vc.view.translatesAutoresizingMaskIntoConstraints = false
-        vc.view.frame = self.bounds
+        vc.view.frame = self.bounds        
         self.addSubview(vc.view)
         vc.view.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         vc.view.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
