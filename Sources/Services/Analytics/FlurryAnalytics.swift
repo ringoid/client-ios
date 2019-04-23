@@ -31,6 +31,11 @@ class FlurryAnalytics: AnalyticsService
             break
             
         case .profileCreated(let yob, let sex):
+            let calendar = Calendar.current
+            let currentYear = calendar.component(.year, from: Date())
+            
+            Flurry.setAge(Int32(currentYear - yob))
+            Flurry.setGender(sex)
             Flurry.logEvent("AUTH_USER_PROFILE_CREATED", withParameters: [
                 "UUID": self.userId,
                 "yearOfBirth": yob,
