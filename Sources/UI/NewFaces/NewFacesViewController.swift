@@ -34,6 +34,7 @@ class NewFacesViewController: BaseViewController
     fileprivate var isScrollTopVisible: Bool = false
     fileprivate var isTabSwitched: Bool = false
     fileprivate var visibleCells: [NewFacesCell] = []
+    fileprivate var shouldShowFetchActivityOnLocationPermission: Bool = false
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
@@ -103,6 +104,7 @@ class NewFacesViewController: BaseViewController
         }
         
         guard self.viewModel?.isLocationDenied != true else {
+            self.shouldShowFetchActivityOnLocationPermission = true
             self.showLocationsSettingsAlert()
             self.tableView.panGestureRecognizer.isEnabled = true
             
@@ -110,6 +112,7 @@ class NewFacesViewController: BaseViewController
         }
         
         guard self.viewModel?.registerLocationsIfNeeded() == true else {
+            self.shouldShowFetchActivityOnLocationPermission = true
             self.tableView.panGestureRecognizer.isEnabled = true
             
             return
@@ -175,6 +178,15 @@ class NewFacesViewController: BaseViewController
             } else {
                 self?.toggleActivity(.contentAvailable)
             }
+        }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.location.isGranted.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
+            guard state else { return }
+            guard let `self` = self else { return }
+            guard self.shouldShowFetchActivityOnLocationPermission else { return }
+            
+            self.shouldShowFetchActivityOnLocationPermission = false
+            self.toggleActivity(.fetching)
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.initialLocationTrigger.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] value in

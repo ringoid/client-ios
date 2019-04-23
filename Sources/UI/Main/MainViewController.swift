@@ -173,7 +173,9 @@ class MainViewController: BaseViewController
         guard let vc = self.getNewFacesVC() else { return }
         
         self.containerVC.embed(vc)
-        vc.onReload()
+        DispatchQueue.main.async {
+            vc.onReload()
+        }
     }
     
     fileprivate func embedMainLMM()
