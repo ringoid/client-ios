@@ -75,7 +75,7 @@ class MainLMMViewController: BaseViewController
         self.tableView.estimatedSectionHeaderHeight = 0.0
         self.tableView.estimatedSectionFooterHeight = 0.0
         
-        let cellHeight = UIScreen.main.bounds.width * AppConfig.photoRatio
+        let cellHeight = UIScreen.main.bounds.width * AppConfig.photoRatio + 10.0 * UIScreen.main.bounds.width / 375.0
         self.tableView.tableHeaderView = nil
         self.tableView.rowHeight = cellHeight
         self.tableView.estimatedRowHeight = cellHeight

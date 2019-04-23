@@ -57,7 +57,7 @@ class NewFacesViewController: BaseViewController
         self.tableView.estimatedSectionHeaderHeight = 0.0
         self.tableView.estimatedSectionFooterHeight = 0.0
         
-        let rowHeight = UIScreen.main.bounds.width * AppConfig.photoRatio
+        let rowHeight = UIScreen.main.bounds.width * AppConfig.photoRatio + 10.0 * UIScreen.main.bounds.width / 375.0
         self.tableView.rowHeight = rowHeight
         self.tableView.estimatedRowHeight = rowHeight
         self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: UIScreen.main.bounds.height - rowHeight, right: 0.0)

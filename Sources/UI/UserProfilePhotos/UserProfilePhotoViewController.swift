@@ -34,6 +34,9 @@ class UserProfilePhotoViewController: UIViewController
     {
         super.viewDidLoad()
         
+        self.photoView?.layer.masksToBounds = true
+        self.photoView?.layer.cornerRadius = 16.0 * UIScreen.main.bounds.width / 375.0
+        
         self.update()
         self.updateBindings()
         
