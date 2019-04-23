@@ -403,9 +403,9 @@ class ApiServiceDefault: ApiService
                     
                     trace?.incrementMetric("repeatRequestAfter", by: 1)
                     
-                    #if STAGE
-                    SentryService.shared.send(.repeatAfterDelay)
-                    #endif
+//                    #if STAGE
+//                    SentryService.shared.send(.repeatAfterDelay)
+//                    #endif
                     log("repeating after \(repeatAfter) \(url)", level: .low)
                     
                     return Observable<Void>.just(())
@@ -491,9 +491,9 @@ class ApiServiceDefault: ApiService
                     
                     trace?.incrementMetric("repeatRequestAfter", by: 1)
                     
-                    #if STAGE
-                    SentryService.shared.send(.repeatAfterDelay)
-                    #endif
+//                    #if STAGE
+//                    SentryService.shared.send(.repeatAfterDelay)
+//                    #endif
                     log("repeating after \(repeatAfter) \(url)", level: .low)
                     
                     return Observable<Void>.just(())
