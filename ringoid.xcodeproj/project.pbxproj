@@ -108,6 +108,8 @@
 		577DDAE422649B5D001D7D24 /* ApiLocationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDAE222649B5D001D7D24 /* ApiLocationAction.swift */; };
 		577DDAE82264B3E3001D7D24 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 577DDAEB2264B3E3001D7D24 /* InfoPlist.strings */; };
 		577DDAE92264B3E3001D7D24 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 577DDAEB2264B3E3001D7D24 /* InfoPlist.strings */; };
+		577DDAEE226EDAEB001D7D24 /* ChatTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDAED226EDAE8001D7D24 /* ChatTextView.swift */; };
+		577DDAEF226EDAED001D7D24 /* ChatTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDAED226EDAE8001D7D24 /* ChatTextView.swift */; };
 		57801A81222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */; };
 		57801A82222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */; };
 		57801A84222E4378005A9731 /* SettingsDebugItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A83222E4378005A9731 /* SettingsDebugItemCell.swift */; };
@@ -410,6 +412,7 @@
 		577DDAE222649B5D001D7D24 /* ApiLocationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLocationAction.swift; sourceTree = "<group>"; };
 		577DDAEA2264B3E3001D7D24 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		577DDAEC2264B3FD001D7D24 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		577DDAED226EDAE8001D7D24 /* ChatTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTextView.swift; sourceTree = "<group>"; };
 		57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateVersionViewController.swift; sourceTree = "<group>"; };
 		57801A83222E4378005A9731 /* SettingsDebugItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugItemCell.swift; sourceTree = "<group>"; };
 		57801A86222FF049005A9731 /* SettingsDebugLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugLogViewController.swift; sourceTree = "<group>"; };
@@ -1068,6 +1071,7 @@
 			isa = PBXGroup;
 			children = (
 				579CD7CE21FAE2D000C3AEE3 /* ChatManager.swift */,
+				577DDAED226EDAE8001D7D24 /* ChatTextView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1569,6 +1573,7 @@
 				577DDAD622647964001D7D24 /* LocationService.swift in Sources */,
 				576FC12222032D7E00BA5ABE /* BlockedProfile.swift in Sources */,
 				570D04CA21E32F4800E0DCFB /* AuthViewController.swift in Sources */,
+				577DDAEE226EDAEB001D7D24 /* ChatTextView.swift in Sources */,
 				57585D4921E35B8C00038798 /* NewFacesCell.swift in Sources */,
 				57FB7BD021E74AAC00AAA29D /* NewFaceProfileViewModel.swift in Sources */,
 				57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */,
@@ -1719,6 +1724,7 @@
 				577DDAD722647965001D7D24 /* LocationService.swift in Sources */,
 				57EE64F32216711000246B45 /* ApiUserPhoto.swift in Sources */,
 				57EE64F42216711000246B45 /* UploaderServiceDefault.swift in Sources */,
+				577DDAEF226EDAED001D7D24 /* ChatTextView.swift in Sources */,
 				57EE64F52216711000246B45 /* BlockedProfile.swift in Sources */,
 				57EE64F62216711000246B45 /* AuthViewController.swift in Sources */,
 				57EE64F72216711000246B45 /* NewFacesCell.swift in Sources */,
