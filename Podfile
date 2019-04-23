@@ -18,6 +18,7 @@ def common_pods
 	pod 'Branch'
 	pod 'Firebase/Core'
 	pod 'Firebase/Performance'
+	pod 'Flurry-iOS-SDK/FlurrySDK'
 end
 
 target 'ringoid' do

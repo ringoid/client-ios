@@ -238,7 +238,7 @@ class UserProfilePhotosViewController: BaseViewController
         } else {
             guard let photo = photos.first else { return }
             
-            self.viewModel?.lastPhotoId.accept(photo.originId)
+            self.viewModel?.lastPhotoId.accept(photo.originId)            
         }
         
         self.emptyFeedLabel.isHidden = !photos.isEmpty

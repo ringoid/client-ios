@@ -11,6 +11,7 @@ import Firebase
 import Fabric
 import Crashlytics
 import Sentry
+import Flurry_iOS_SDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Fabric.with([Crashlytics.self])
         SentryService.shared.setup()
+        Flurry.startSession(FlurryConfig.key, with: FlurrySessionBuilder())
         
         self.appManager.onFinishLaunching(launchOptions)
         

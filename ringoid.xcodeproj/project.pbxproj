@@ -110,6 +110,10 @@
 		577DDAE92264B3E3001D7D24 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 577DDAEB2264B3E3001D7D24 /* InfoPlist.strings */; };
 		577DDAEE226EDAEB001D7D24 /* ChatTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDAED226EDAE8001D7D24 /* ChatTextView.swift */; };
 		577DDAEF226EDAED001D7D24 /* ChatTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDAED226EDAE8001D7D24 /* ChatTextView.swift */; };
+		577DDAF1226F0B18001D7D24 /* FlurryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDAF0226F0B18001D7D24 /* FlurryConfig.swift */; };
+		577DDAF3226F0CA8001D7D24 /* FlurryConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDAF2226F0CA7001D7D24 /* FlurryConfig.swift */; };
+		577DDAF5226F0FB2001D7D24 /* FlurryAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDAF4226F0FB1001D7D24 /* FlurryAnalytics.swift */; };
+		577DDAF6226F0FB2001D7D24 /* FlurryAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577DDAF4226F0FB1001D7D24 /* FlurryAnalytics.swift */; };
 		57801A81222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */; };
 		57801A82222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */; };
 		57801A84222E4378005A9731 /* SettingsDebugItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57801A83222E4378005A9731 /* SettingsDebugItemCell.swift */; };
@@ -413,6 +417,9 @@
 		577DDAEA2264B3E3001D7D24 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		577DDAEC2264B3FD001D7D24 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		577DDAED226EDAE8001D7D24 /* ChatTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTextView.swift; sourceTree = "<group>"; };
+		577DDAF0226F0B18001D7D24 /* FlurryConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlurryConfig.swift; sourceTree = "<group>"; };
+		577DDAF2226F0CA7001D7D24 /* FlurryConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlurryConfig.swift; sourceTree = "<group>"; };
+		577DDAF4226F0FB1001D7D24 /* FlurryAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlurryAnalytics.swift; sourceTree = "<group>"; };
 		57801A80222BD39C005A9731 /* UpdateVersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateVersionViewController.swift; sourceTree = "<group>"; };
 		57801A83222E4378005A9731 /* SettingsDebugItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugItemCell.swift; sourceTree = "<group>"; };
 		57801A86222FF049005A9731 /* SettingsDebugLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDebugLogViewController.swift; sourceTree = "<group>"; };
@@ -980,6 +987,7 @@
 				578502F9225650680056120A /* Prod */,
 				578502F322564E860056120A /* AnalyticsService.swift */,
 				578502F622564E9D0056120A /* FirebaseAnalytics.swift */,
+				577DDAF4226F0FB1001D7D24 /* FlurryAnalytics.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -987,6 +995,7 @@
 		578502F9225650680056120A /* Prod */ = {
 			isa = PBXGroup;
 			children = (
+				577DDAF2226F0CA7001D7D24 /* FlurryConfig.swift */,
 				57850306225745380056120A /* GoogleService-Info.plist */,
 			);
 			path = Prod;
@@ -996,6 +1005,7 @@
 			isa = PBXGroup;
 			children = (
 				57850304225743A50056120A /* GoogleService-Info.plist */,
+				577DDAF0226F0B18001D7D24 /* FlurryConfig.swift */,
 			);
 			path = Stage;
 			sourceTree = "<group>";
@@ -1415,6 +1425,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Flurry-iOS-SDK/Flurry_iOS_SDK.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -1438,6 +1449,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flurry_iOS_SDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -1473,6 +1485,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Flurry-iOS-SDK/Flurry_iOS_SDK.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -1498,6 +1511,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flurry_iOS_SDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -1528,6 +1542,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				577DDAF3226F0CA8001D7D24 /* FlurryConfig.swift in Sources */,
 				57EE64C722150FD600246B45 /* SettingsLegalAboutCell.swift in Sources */,
 				57850309225B53D40056120A /* MainEffectsView.swift in Sources */,
 				57BEB67F2213F306000BD768 /* SettingsLocaleCell.swift in Sources */,
@@ -1557,6 +1572,7 @@
 				57585D3F21E354FA00038798 /* NewFacesManager.swift in Sources */,
 				57B863D521EE16E700B9CC70 /* VerticalGradientView.swift in Sources */,
 				57ED4874224D10060033EB0B /* NotificationsManager.swift in Sources */,
+				577DDAF5226F0FB2001D7D24 /* FlurryAnalytics.swift in Sources */,
 				57B863D721EE179F00B9CC70 /* TouchThroughView.swift in Sources */,
 				574A7DA622434EFE0065AE56 /* PromotionManager.swift in Sources */,
 				57801A81222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */,
@@ -1679,6 +1695,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				577DDAF1226F0B18001D7D24 /* FlurryConfig.swift in Sources */,
 				57EE64D42216711000246B45 /* SettingsLegalAboutCell.swift in Sources */,
 				5785030A225B53D40056120A /* MainEffectsView.swift in Sources */,
 				57EE64D52216711000246B45 /* SettingsLocaleCell.swift in Sources */,
@@ -1708,6 +1725,7 @@
 				57EE655E2216DCA700246B45 /* SentryService.swift in Sources */,
 				57EE64E82216711000246B45 /* DeviceService.swift in Sources */,
 				57ED4875224D10060033EB0B /* NotificationsManager.swift in Sources */,
+				577DDAF6226F0FB2001D7D24 /* FlurryAnalytics.swift in Sources */,
 				57EE64E92216711000246B45 /* NewFacesManager.swift in Sources */,
 				574A7DA722434EFE0065AE56 /* PromotionManager.swift in Sources */,
 				57801A82222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */,

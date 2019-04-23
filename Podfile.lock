@@ -51,6 +51,7 @@ PODS:
     - GoogleUtilities/Environment (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - Protobuf (~> 3.5)
+  - Flurry-iOS-SDK/FlurrySDK (9.3.1)
   - GoogleAppMeasurement (5.7.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
@@ -124,6 +125,7 @@ DEPENDENCIES:
   - Fabric
   - Firebase/Core
   - Firebase/Performance
+  - Flurry-iOS-SDK/FlurrySDK
   - Nuke
   - RxAlamofire
   - RxCocoa
@@ -146,6 +148,7 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebasePerformance
     - FirebaseRemoteConfig
+    - Flurry-iOS-SDK
     - GoogleAppMeasurement
     - GoogleToolboxForMac
     - GoogleUtilities
@@ -187,6 +190,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: bd6fc5a258884e206fd5c474ebe4f5b00e21770e
   FirebasePerformance: b97b1c301790b4fddc9fe675bca05b71c04e24a6
   FirebaseRemoteConfig: 7e11c65f0769c09bff6947997c209515058c5318
+  Flurry-iOS-SDK: 5d782d740c5e95389c327d38245b3db4bb471fd7
   GoogleAppMeasurement: 6cf307834da065863f9faf4c0de0a936d81dd832
   GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
@@ -206,6 +210,6 @@ SPEC CHECKSUMS:
   Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
   Valet: 4af0382d4a94db5c7861504f751884f653437d24
 
-PODFILE CHECKSUM: 7c3c53fc03a6ca4b812c54613ce8dca02d7b8dc0
+PODFILE CHECKSUM: 3ababcbc68f183ae16f1003b63a8a3116deb8612
 
 COCOAPODS: 1.6.0

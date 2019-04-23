@@ -13,7 +13,8 @@ class AnalyticsManager
     static let shared = AnalyticsManager()
     
     fileprivate let services: [AnalyticsService] = [
-        FirebaseAnalytics()
+        FirebaseAnalytics(),
+        FlurryAnalytics()
     ]
     
     private init() {}
