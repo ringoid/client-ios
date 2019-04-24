@@ -146,6 +146,61 @@ class FirebaseAnalytics: AnalyticsService
                 "UUID": self.userId
                 ])
             break
+            
+        case .pullToRefresh(let sourceFeed):
+            Analytics.logEvent("PULL_TO_REFRESH", parameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .firstSwipe(let sourceFeed):
+            Analytics.logEvent("AHA_FIRST_SWIPE", parameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .firstLikesYou(let sourceFeed):
+            Analytics.logEvent("AHA_FIRST_LIKES_YOU", parameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .firstMatch(let sourceFeed):
+            Analytics.logEvent("AHA_FIRST_MATCH", parameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .firstMessageSent(let sourceFeed):
+            Analytics.logEvent("AHA_FIRST_MESSAGE_SENT", parameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .firstMessageReceived(let sourceFeed):
+            Analytics.logEvent("AHA_FIRST_MESSAGE_RECEIVED", parameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .firstReplyReceived(let sourceFeed):
+            Analytics.logEvent("AHA_FIRST_REPLY_RECEIVED", parameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .photoAddedManually:
+            Analytics.logEvent("AHA_PHOTO_ADDED_MANUALLY", parameters: [
+                "UUID": self.userId,                
+                ])
+            break
         }
     }
 }

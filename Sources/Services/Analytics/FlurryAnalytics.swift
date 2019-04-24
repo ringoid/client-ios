@@ -150,6 +150,61 @@ class FlurryAnalytics: AnalyticsService
                 "UUID": self.userId
                 ])
             break
+            
+        case .pullToRefresh(let sourceFeed):
+            Flurry.logEvent("PULL_TO_REFRESH", withParameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .firstSwipe(let sourceFeed):
+            Flurry.logEvent("AHA_FIRST_SWIPE", withParameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .firstLikesYou(let sourceFeed):
+            Flurry.logEvent("AHA_FIRST_LIKES_YOU", withParameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .firstMatch(let sourceFeed):
+            Flurry.logEvent("AHA_FIRST_MATCH", withParameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .firstMessageSent(let sourceFeed):
+            Flurry.logEvent("AHA_FIRST_MESSAGE_SENT", withParameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .firstMessageReceived(let sourceFeed):
+            Flurry.logEvent("AHA_FIRST_MESSAGE_RECEIVED", withParameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .firstReplyReceived(let sourceFeed):
+            Flurry.logEvent("AHA_FIRST_REPLY_RECEIVED", withParameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .photoAddedManually:
+            Flurry.logEvent("AHA_PHOTO_ADDED_MANUALLY", withParameters: [
+                "UUID": self.userId,
+                ])
+            break
         }
     }
 }

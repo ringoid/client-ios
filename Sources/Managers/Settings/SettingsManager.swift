@@ -19,6 +19,7 @@ class SettingsManager
     let lmm: LMMManager
     let newFaces: NewFacesManager
     let notifications: NotificationService
+    let scenario: AnalyticsScenarioManager
     
     let isFirstLaunch: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
@@ -50,7 +51,7 @@ class SettingsManager
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager, lmm: LMMManager, newFaces: NewFacesManager, notifications: NotificationService)
+    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager, lmm: LMMManager, newFaces: NewFacesManager, notifications: NotificationService, scenario: AnalyticsScenarioManager)
     {
         self.db = db
         self.api = api
@@ -60,6 +61,7 @@ class SettingsManager
         self.lmm = lmm
         self.newFaces = newFaces
         self.notifications = notifications
+        self.scenario = scenario
         
         self.loadSettings()
         self.updateRemoteSettings()
@@ -109,6 +111,7 @@ class SettingsManager
         self.isFirstLaunch.accept(true)
         self.db.reset()
         self.fs.reset()
+        self.scenario.reset()
     }
     
     // MARK: -

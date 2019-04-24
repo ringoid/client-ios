@@ -29,6 +29,16 @@ enum AnalyticsEvent
     case messagedFromMatches;
     case messagedFromMessages;
     case openedByPush;
+    case pullToRefresh(String);
+    
+    case firstSwipe(String);
+    case firstLikesYou(String);
+    case firstMatch(String);
+    case firstMessageSent(String);
+    case firstMessageReceived(String);
+    case firstReplyReceived(String);
+    case photoAddedManually;
+    
 }
 
 protocol AnalyticsService
