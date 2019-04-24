@@ -259,6 +259,15 @@ class MainLMMViewController: BaseViewController
         
         guard let updatedProfiles = self.profiles()?.value.filter({ !$0.isInvalidated }) else { return }
         
+        // Analytics
+        if self.type.value == .likesYou && updatedProfiles.count > 0 {
+            self.input.scenario.checkLikesYou(self.type.value.sourceType())
+        }
+        
+        if self.type.value == .matches && updatedProfiles.count > 0 {
+            self.input.scenario.checkLikesYou(self.type.value.sourceType())
+        }
+        
         defer {
             self.lastFeedIds = updatedProfiles.map { $0.id }
             self.lastUpdateFeedType = self.type.value

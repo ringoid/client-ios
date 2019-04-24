@@ -13,15 +13,19 @@ class ChatManager
 {
     let db: DBService
     let actionsManager: ActionsManager
+    let scenario: AnalyticsScenarioManager
     
-    init(_ db: DBService, actionsManager: ActionsManager)
+    init(_ db: DBService, actionsManager: ActionsManager, scenario: AnalyticsScenarioManager)
     {
         self.db = db
         self.actionsManager = actionsManager
+        self.scenario = scenario
     }
     
     func send(_ text: String, profile: LMMProfile, photo: Photo, source: SourceFeedType)
     {
+        self.scenario.checkFirstMessageSent(source)
+        
         let message = Message()
         message.text = text
         message.wasYouSender = true
