@@ -34,7 +34,6 @@ class NewFacePhotoViewController: UIViewController
     @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var animationLikeView: UIImageView!
     @IBOutlet fileprivate weak var photoIdLabel: UILabel!
-    @IBOutlet fileprivate weak var bottomOffsetConstraint: NSLayoutConstraint!
     
     deinit
     {
@@ -52,10 +51,6 @@ class NewFacePhotoViewController: UIViewController
         assert( self.input != nil )
         
         super.viewDidLoad()
-        
-        self.photoView.layer.masksToBounds = true
-        self.photoView.layer.cornerRadius = 16.0 * UIScreen.main.bounds.width / 375.0
-        self.bottomOffsetConstraint.constant = 10.0 * UIScreen.main.bounds.width / 375.0
         
         self.likeBtn.isHidden = !self.isLikesAvailable()
         

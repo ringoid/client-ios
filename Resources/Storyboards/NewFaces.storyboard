@@ -217,7 +217,7 @@ discover users nearby</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fil-jT-HLM">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="657"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="666"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_like_selected" translatesAutoresizingMaskIntoConstraints="NO" id="8do-7J-kjV">
                                 <rect key="frame" x="169.5" y="317" width="36" height="33"/>
@@ -265,7 +265,7 @@ discover users nearby</string>
                             <constraint firstAttribute="trailing" secondItem="fil-jT-HLM" secondAttribute="trailing" id="GU7-M1-HC8"/>
                             <constraint firstItem="C4Q-m8-YTj" firstAttribute="top" secondItem="tGN-Za-agr" secondAttribute="top" id="LHL-O2-6Ts"/>
                             <constraint firstItem="8do-7J-kjV" firstAttribute="centerY" secondItem="tGN-Za-agr" secondAttribute="centerY" id="XdL-5i-Y4g"/>
-                            <constraint firstAttribute="bottom" secondItem="fil-jT-HLM" secondAttribute="bottom" constant="10" id="jVt-jF-y8y" userLabel="bottomOffset"/>
+                            <constraint firstAttribute="bottom" secondItem="fil-jT-HLM" secondAttribute="bottom" constant="1" id="jVt-jF-y8y"/>
                             <constraint firstAttribute="bottom" secondItem="C4Q-m8-YTj" secondAttribute="bottom" id="nyI-gn-UcO"/>
                             <constraint firstAttribute="trailing" secondItem="C4Q-m8-YTj" secondAttribute="trailing" id="xS0-un-9rn"/>
                         </constraints>
@@ -276,7 +276,6 @@ discover users nearby</string>
                     </view>
                     <connections>
                         <outlet property="animationLikeView" destination="8do-7J-kjV" id="JLs-GM-AXu"/>
-                        <outlet property="bottomOffsetConstraint" destination="jVt-jF-y8y" id="yLc-zH-v1f"/>
                         <outlet property="likeBtn" destination="BQE-2r-NTn" id="HU6-Yd-zKf"/>
                         <outlet property="photoIdLabel" destination="7cD-Y1-uy3" id="zcF-f2-iDq"/>
                         <outlet property="photoView" destination="fil-jT-HLM" id="sdS-da-hJd"/>
