@@ -89,12 +89,15 @@ class SettingsManager
             ).subscribe().disposed(by: self.disposeBag)
     }
     
-    func logout()
+    func logout(onError: (()->())?)
     {
         guard self.actions.checkConnectionState() else { return }
         
-        self.api.logout().subscribe(onNext: { _ in
+        self.api.logout().subscribe(
+        onNext: { _ in
             AnalyticsManager.shared.send(.profileDeleted)
+        }, onError: { _ in
+            onError?()
         }).disposed(by: self.disposeBag)
     }
     

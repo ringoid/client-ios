@@ -132,7 +132,10 @@ class SettingsViewController: BaseViewController
             preferredStyle: .alert
         )
         alertVC.addAction(UIAlertAction(title: "button_delete".localized(), style: .default, handler: ({ _ in
-            self.viewModel?.logout()
+            self.block()
+            self.viewModel?.logout(onError:{ [weak self] in
+                self?.unblock()
+            })
         })))
         alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: nil))
         

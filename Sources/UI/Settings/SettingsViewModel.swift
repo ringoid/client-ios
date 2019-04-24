@@ -26,8 +26,8 @@ class SettingsViewModel
         self.settingsManger = input.settingsManager
     }
     
-    func logout()
+    func logout(onError: (()->())?)
     {
-        self.settingsManger.logout()
+        self.settingsManger.logout(onError: onError)
     }
 }
