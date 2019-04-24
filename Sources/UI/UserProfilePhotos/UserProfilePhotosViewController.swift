@@ -379,7 +379,10 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
 
 extension UserProfilePhotosViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource
 {
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {}
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController])
+    {
+        self.input.scenario.checkPhotoSwipe(.profile)
+    }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController?
     {

@@ -14,10 +14,11 @@ struct MainLMMProfileVMInput
 {
     let profile: LMMProfile
     let feedType: LMMType
+    let initialIndex: Int
     let actionsManager: ActionsManager
     let profileManager: UserProfileManager
     let navigationManager: NavigationManager
-    let initialIndex: Int
+    let scenarioManager: AnalyticsScenarioManager
 }
 
 class MainLMMProfileViewModel

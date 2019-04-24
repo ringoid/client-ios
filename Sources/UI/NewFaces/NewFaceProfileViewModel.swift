@@ -11,10 +11,11 @@ import Foundation
 struct NewFaceProfileVMInput
 {
     let profile: Profile
+    let sourceType: SourceFeedType
     let actionsManager: ActionsManager
     let profileManager: UserProfileManager
     let navigationManager: NavigationManager
-    let sourceType: SourceFeedType
+    let scenarioManager: AnalyticsScenarioManager
 }
 
 class NewFaceProfileViewModel

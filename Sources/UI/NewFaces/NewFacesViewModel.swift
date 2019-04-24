@@ -19,6 +19,7 @@ struct NewFacesVMInput
     let navigationManager: NavigationManager
     let notifications: NotificationService
     let location: LocationManager
+    let scenario: AnalyticsScenarioManager
 }
 
 class NewFacesViewModel
