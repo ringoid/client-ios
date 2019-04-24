@@ -174,7 +174,7 @@ class MainViewController: BaseViewController
         
         self.containerVC.embed(vc)
         DispatchQueue.main.async {
-            vc.onReload()
+            vc.reload()
         }
     }
     
@@ -196,7 +196,8 @@ class MainViewController: BaseViewController
             navigationManager: self.input.navigationManager,
             newFacesManager: self.input.newFacesManager,
             notifications: self.input.notifications,
-            location: self.input.location
+            location: self.input.location,
+            scenario: self.input.scenario
         )
        
         self.menuVCCache[.like] = vc
@@ -244,7 +245,8 @@ class MainViewController: BaseViewController
             errorsManager: self.input.errorsManager,
             promotionManager: self.input.promotionManager,
             device: self.input.device,
-            location: self.input.location
+            location: self.input.location,
+            scenario: self.input.scenario
         )
         
         self.menuVCCache[.profile] = vc

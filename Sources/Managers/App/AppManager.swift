@@ -82,7 +82,6 @@ class AppManager
         self.notifications.handle(notificationDict: notificationDict)
     }
     
-    
     // MARK: -
     
     fileprivate func setupServices(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)

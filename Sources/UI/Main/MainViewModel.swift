@@ -23,6 +23,7 @@ struct MainVMInput
     let device: DeviceService
     let notifications: NotificationService
     let location: LocationManager
+    let scenario: AnalyticsScenarioManager
 }
 
 class MainViewModel

@@ -106,7 +106,13 @@ class UserProfilePhotosViewController: BaseViewController
         self.pickPhoto()
     }
     
-    @objc func reload()
+    @objc fileprivate func onReload()
+    {
+        AnalyticsManager.shared.send(.pullToRefresh(SourceFeedType.profile.rawValue))
+        self.reload()
+    }
+    
+    func reload()
     {
         self.containerTableView.panGestureRecognizer.isEnabled = false
         
@@ -172,6 +178,7 @@ class UserProfilePhotosViewController: BaseViewController
     {
         guard self.input.actionsManager.checkConnectionState() else { return }
         
+        self.input.scenario.checkPhotoAddedManually()
         self.pickPhoto()
     }
     
@@ -207,7 +214,7 @@ class UserProfilePhotosViewController: BaseViewController
     fileprivate func setupReloader()
     {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(reload), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(onReload), for: .valueChanged)
         self.containerTableView.refreshControl = refreshControl
     }
     

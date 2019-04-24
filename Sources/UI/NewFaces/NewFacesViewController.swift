@@ -88,15 +88,14 @@ class NewFacesViewController: BaseViewController
         self.toggleActivity(self.currentActivityState)
     }
     
-    // MARK: - Actions
-    @objc func onReload()
+    func reload()
     {
         self.tableView.panGestureRecognizer.isEnabled = false
-
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.tableView.refreshControl?.endRefreshing()
         }
-     
+        
         guard self.viewModel?.isFetching.value == false else {
             self.tableView.panGestureRecognizer.isEnabled = true
             
@@ -119,7 +118,7 @@ class NewFacesViewController: BaseViewController
         }
         
         self.viewModel?.registerPushesIfNeeded()
-                
+        
         self.toggleActivity(.reloading)
         
         self.lastFetchCount = -1
@@ -135,6 +134,13 @@ class NewFacesViewController: BaseViewController
                 self.tableView.panGestureRecognizer.isEnabled = true
                 showError(error, vc: self)
         }).disposed(by: self.disposeBag)
+    }
+    
+    // MARK: - Actions
+    @objc fileprivate func onReload()
+    {
+        AnalyticsManager.shared.send(.pullToRefresh(SourceFeedType.newFaces.rawValue))
+        self.reload()
     }
     
     func onFetchMore()

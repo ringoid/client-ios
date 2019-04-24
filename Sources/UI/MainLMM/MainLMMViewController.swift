@@ -187,6 +187,7 @@ class MainLMMViewController: BaseViewController
     
     @objc fileprivate func reload()
     {
+        AnalyticsManager.shared.send(.pullToRefresh(self.type.value.sourceType().rawValue))
         self.tableView.panGestureRecognizer.isEnabled = false
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {

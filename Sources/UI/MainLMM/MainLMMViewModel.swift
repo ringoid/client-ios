@@ -19,6 +19,7 @@ struct MainLMMVMInput
     let newFacesManager: NewFacesManager
     let notifications: NotificationService
     let location: LocationManager
+    let scenario: AnalyticsScenarioManager
 }
 
 class MainLMMViewModel

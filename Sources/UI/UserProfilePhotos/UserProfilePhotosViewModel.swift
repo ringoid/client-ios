@@ -21,6 +21,7 @@ struct UserProfilePhotosVCInput
     let promotionManager: PromotionManager
     let device: DeviceService
     let location: LocationManager
+    let scenario: AnalyticsScenarioManager
 }
 
 class UserProfilePhotosViewModel
