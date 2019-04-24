@@ -41,7 +41,6 @@ class MainLMMProfileViewController: UIViewController
     fileprivate var photosVCs: [NewFacePhotoViewController] = []
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
     
-    @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var messageBtn: UIButton!
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var messageBtnTopConstraint: NSLayoutConstraint!
@@ -72,7 +71,6 @@ class MainLMMProfileViewController: UIViewController
         self.messageBtn.setImage(UIImage(named: self.input.profile.state.iconName()), for: .normal)
         
         let input = NewFaceProfileVMInput(profile: self.input.profile, actionsManager: self.input.actionsManager, profileManager: self.input.profileManager, navigationManager: self.input.navigationManager, sourceType: self.input.feedType.sourceType())
-        self.pageControl.numberOfPages = self.input.profile.photos.count
         self.photosVCs = self.input.profile.orderedPhotos().map({ photo in
             let vc = NewFacePhotoViewController.create()
             vc.photo = photo
@@ -89,7 +87,6 @@ class MainLMMProfileViewController: UIViewController
         
         let vc = self.photosVCs[index]
         self.pagesVC?.setViewControllers([vc], direction: .forward, animated: false, completion: nil)
-        self.pageControl.currentPage = index
         self.currentIndex.accept(index)
         
         #if STAGE
@@ -167,7 +164,6 @@ class MainLMMProfileViewController: UIViewController
         UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             let isMessagingAvailable = self?.viewModel?.isMessaingAvailable.value ?? false
             
-            self?.pageControl.isHidden = state
             self?.messageBtn.isHidden = !isMessagingAvailable || state
             self?.optionsBtn.isHidden = state
         }).disposed(by: self.diposeBag)
@@ -175,7 +171,6 @@ class MainLMMProfileViewController: UIViewController
         UIManager.shared.chatModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             let isMessagingAvailable = self?.viewModel?.isMessaingAvailable.value ?? false
             
-            self?.pageControl.isHidden = state
             self?.messageBtn.isHidden = !isMessagingAvailable || state
         }).disposed(by: self.diposeBag)
         
@@ -254,7 +249,6 @@ class MainLMMProfileViewController: UIViewController
     
     fileprivate func handleTopBorderDistanceChange(_ value: CGFloat)
     {
-        self.pageControl.alpha = self.discreetOpacity(for: self.topOpacityFor(self.pageControl.frame, offset: value) ?? 1.0)
         self.optionsBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
         self.messageBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(self.messageBtn.frame, offset: value) ?? 1.0)
         
@@ -267,10 +261,6 @@ class MainLMMProfileViewController: UIViewController
     
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
     {
-        if let pageControlOpacity = self.bottomOpacityFor(self.pageControl.frame, offset: value) {
-            self.pageControl.alpha = self.discreetOpacity(for: pageControlOpacity)
-        }
-        
         if let optionBtnOpacity = self.bottomOpacityFor(self.optionsBtn.frame, offset: value) {
             self.optionsBtn.alpha = self.discreetOpacity(for: optionBtnOpacity)
         }
@@ -359,8 +349,7 @@ extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageView
         guard finished, completed else { return }
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
-        self.currentIndex.accept(index)
-        self.pageControl.currentPage = index
+        self.currentIndex.accept(index)        
     }
 }
 

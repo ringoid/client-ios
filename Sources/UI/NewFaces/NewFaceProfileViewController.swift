@@ -32,7 +32,6 @@ class NewFaceProfileViewController: UIViewController
     fileprivate var photosVCs: [NewFacePhotoViewController] = []
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
     
-    @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     
@@ -58,8 +57,6 @@ class NewFaceProfileViewController: UIViewController
         
         guard !self.input.profile.isInvalidated else { return }
         
-        self.pageControl.numberOfPages = self.input.profile.photos.count
-        self.pageControl.currentPage = self.currentIndex.value
         self.photosVCs = self.input.profile.orderedPhotos().map({ photo in
             let vc = NewFacePhotoViewController.create()
             vc.input = self.input
@@ -114,16 +111,7 @@ class NewFaceProfileViewController: UIViewController
             let alpha: CGFloat = state ? 0.0 : 1.0
             
             UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
-                self?.pageControl.alpha = alpha
                 self?.optionsBtn.alpha = alpha
-            }).startAnimation()
-        }).disposed(by: self.disposeBag)
-        
-        UIManager.shared.chatModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
-            let alpha: CGFloat = state ? 0.0 : 1.0
-            
-            UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
-                self?.pageControl.alpha = alpha
             }).startAnimation()
         }).disposed(by: self.disposeBag)
     }
@@ -192,7 +180,6 @@ class NewFaceProfileViewController: UIViewController
     
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
     {
-        self.pageControl.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.pageControl.frame, offset: value) ?? 1.0)
         self.optionsBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
         
         self.photosVCs.forEach { vc in
@@ -259,6 +246,5 @@ extension NewFaceProfileViewController: UIPageViewControllerDelegate, UIPageView
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
         self.currentIndex.accept(index)
-        self.pageControl.currentPage = index
     }
 }

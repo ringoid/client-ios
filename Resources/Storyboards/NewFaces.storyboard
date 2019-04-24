@@ -157,9 +157,6 @@ discover users nearby</string>
                                     <segue destination="a3d-Xx-hZB" kind="embed" identifier="embed_pages" id="H5Q-fa-BBJ"/>
                                 </connections>
                             </containerView>
-                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="BxI-1L-kXF">
-                                <rect key="frame" x="16" y="-12" width="0.0" height="60"/>
-                            </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1t-jW-NWk">
                                 <rect key="frame" x="299" y="-12" width="76" height="60"/>
                                 <constraints>
@@ -186,21 +183,17 @@ discover users nearby</string>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="DXW-7Y-3ph" secondAttribute="bottom" constant="16" id="Fwl-1E-JKd"/>
                             <constraint firstAttribute="trailing" secondItem="X1t-jW-NWk" secondAttribute="trailing" id="Le3-5c-RWL"/>
-                            <constraint firstItem="X1t-jW-NWk" firstAttribute="bottom" secondItem="BxI-1L-kXF" secondAttribute="bottom" id="QbY-f7-Ji4"/>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="WHJ-8A-QCL"/>
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="-12" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
                             <constraint firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" id="hMK-Ge-ajI"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="ms1-Iv-Xza"/>
-                            <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="BxI-1L-kXF" secondAttribute="top" id="pY4-4d-WmO"/>
-                            <constraint firstItem="BxI-1L-kXF" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="rJi-uN-WJL"/>
                             <constraint firstAttribute="trailing" secondItem="Jbu-JW-RgU" secondAttribute="trailing" id="x67-KR-aFy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QNT-if-MPg"/>
                     </view>
                     <connections>
                         <outlet property="optionsBtn" destination="X1t-jW-NWk" id="LoZ-fG-SZb"/>
-                        <outlet property="pageControl" destination="BxI-1L-kXF" id="Eyb-XU-wgc"/>
                         <outlet property="profileIdLabel" destination="DXW-7Y-3ph" id="4Nc-ug-lj1"/>
                     </connections>
                 </viewController>
@@ -217,7 +210,7 @@ discover users nearby</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fil-jT-HLM">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="666"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_like_selected" translatesAutoresizingMaskIntoConstraints="NO" id="8do-7J-kjV">
                                 <rect key="frame" x="169.5" y="317" width="36" height="33"/>
@@ -265,7 +258,7 @@ discover users nearby</string>
                             <constraint firstAttribute="trailing" secondItem="fil-jT-HLM" secondAttribute="trailing" id="GU7-M1-HC8"/>
                             <constraint firstItem="C4Q-m8-YTj" firstAttribute="top" secondItem="tGN-Za-agr" secondAttribute="top" id="LHL-O2-6Ts"/>
                             <constraint firstItem="8do-7J-kjV" firstAttribute="centerY" secondItem="tGN-Za-agr" secondAttribute="centerY" id="XdL-5i-Y4g"/>
-                            <constraint firstAttribute="bottom" secondItem="fil-jT-HLM" secondAttribute="bottom" constant="1" id="jVt-jF-y8y"/>
+                            <constraint firstAttribute="bottom" secondItem="fil-jT-HLM" secondAttribute="bottom" id="jVt-jF-y8y"/>
                             <constraint firstAttribute="bottom" secondItem="C4Q-m8-YTj" secondAttribute="bottom" id="nyI-gn-UcO"/>
                             <constraint firstAttribute="trailing" secondItem="C4Q-m8-YTj" secondAttribute="trailing" id="xS0-un-9rn"/>
                         </constraints>

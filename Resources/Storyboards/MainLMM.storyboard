@@ -351,9 +351,6 @@ see who likes you</string>
                                     <action selector="onChatSelected" destination="Nf7-hc-eWV" eventType="touchUpInside" id="d62-YA-ePo"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="mPS-Ki-Bpa">
-                                <rect key="frame" x="16" y="-12" width="0.0" height="60"/>
-                            </pageControl>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProfileID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVA-P0-T2F">
                                 <rect key="frame" x="16" y="630" width="70" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -379,12 +376,9 @@ see who likes you</string>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="centerX" secondItem="lGR-yG-LEW" secondAttribute="centerX" id="NaJ-Wi-l5L"/>
-                            <constraint firstItem="mPS-Ki-Bpa" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="SGF-af-fD4"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="118" id="UE3-94-yVQ" userLabel="MessageTopOffset"/>
-                            <constraint firstItem="lGR-yG-LEW" firstAttribute="bottom" secondItem="mPS-Ki-Bpa" secondAttribute="bottom" id="WBI-Jx-Y3u"/>
                             <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="-12" id="XAG-qi-5bb"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="gA6-9y-Jou"/>
-                            <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="mPS-Ki-Bpa" secondAttribute="top" id="jMf-vm-kBR"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
                             <constraint firstItem="cOc-LA-9UX" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="wXK-ay-mMI"/>
                             <constraint firstItem="qVA-P0-T2F" firstAttribute="centerY" secondItem="cOc-LA-9UX" secondAttribute="centerY" id="y1x-2e-RdV"/>
@@ -395,7 +389,6 @@ see who likes you</string>
                         <outlet property="messageBtn" destination="2Wc-Ed-6t2" id="CMh-0H-xuQ"/>
                         <outlet property="messageBtnTopConstraint" destination="UE3-94-yVQ" id="626-7A-0v6"/>
                         <outlet property="optionsBtn" destination="lGR-yG-LEW" id="Yk6-ZA-bUI"/>
-                        <outlet property="pageControl" destination="mPS-Ki-Bpa" id="nuR-eb-yLf"/>
                         <outlet property="profileIdLabel" destination="qVA-P0-T2F" id="lHS-cL-wGz"/>
                         <outlet property="seenLabel" destination="cOc-LA-9UX" id="6Hb-uX-gKP"/>
                     </connections>
