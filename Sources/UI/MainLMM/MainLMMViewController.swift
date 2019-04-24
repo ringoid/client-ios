@@ -368,7 +368,7 @@ class MainLMMViewController: BaseViewController
         }
         
         let vc = ChatViewController.create()
-        vc.input = ChatVMInput(profile: profile, photo: photo, chatManager: self.input.chatManager, source: self.type.value.sourceType()
+        vc.input = ChatVMInput(profile: profile, photo: photo, chatManager: self.input.chatManager, scenario: self.input.scenario, source: self.type.value.sourceType()
             , onClose: { [weak self] in
                 self?.hideChat(profileVC, profile: profile, photo: photo, indexPath: indexPath)
             }, onBlock: { [weak profileVC] in

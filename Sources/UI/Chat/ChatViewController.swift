@@ -139,8 +139,26 @@ class ChatViewController: BaseViewController
     {
         self.viewModel = ChatViewModel(self.input)
         
-        self.viewModel?.messages.asObservable().subscribe(onNext: { [weak self] _ in
-            self?.tableView.reloadData()
+        self.viewModel?.messages.asObservable().subscribe(onNext: { [weak self] updatedMessages in
+            guard let `self` = self else { return }
+            
+            // Analytics
+            var isMyMessageAppeared: Bool = false
+            for message in updatedMessages {
+                if !message.wasYouSender {
+                    self.input.scenario.checkFirstMessageReceived(self.input.source)
+                    
+                    if isMyMessageAppeared {
+                        self.input.scenario.checkFirstReplyReceived(self.input.source)
+                        
+                        break
+                    }
+                } else {
+                    isMyMessageAppeared = true
+                }
+            }
+            
+            self.tableView.reloadData()
         }).disposed(by: self.disposeBag)
     }
     

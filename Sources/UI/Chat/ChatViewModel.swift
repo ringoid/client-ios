@@ -14,6 +14,7 @@ struct ChatVMInput
     let profile: LMMProfile
     let photo: Photo
     let chatManager: ChatManager
+    let scenario: AnalyticsScenarioManager
     let source: SourceFeedType
     let onClose: (()->())?
     let onBlock: (()->())?
