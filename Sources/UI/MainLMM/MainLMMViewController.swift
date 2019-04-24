@@ -265,7 +265,7 @@ class MainLMMViewController: BaseViewController
         }
         
         if self.type.value == .matches && updatedProfiles.count > 0 {
-            self.input.scenario.checkLikesYou(self.type.value.sourceType())
+            self.input.scenario.checkFirstMatch(self.type.value.sourceType())
         }
         
         defer {

@@ -198,7 +198,7 @@ class NewFacesViewController: BaseViewController
         self.viewModel?.initialLocationTrigger.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] value in
             guard value else { return }
             
-            self?.onReload()
+            self?.reload()
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.feedsFabShouldBeHidden.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
