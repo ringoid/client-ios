@@ -52,11 +52,11 @@ class MainViewController: BaseViewController
         
         self.setupBindings()
         
-        #if STAGE
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(showDebugLikes))
-        recognizer.numberOfTapsRequired = 3
-        self.likeBtn.gestureRecognizers = [recognizer]
-        #endif
+//        #if STAGE
+//        let recognizer = UITapGestureRecognizer(target: self, action: #selector(showDebugLikes))
+//        recognizer.numberOfTapsRequired = 3
+//        self.likeBtn.gestureRecognizers = [recognizer]
+//        #endif
     }
     
     #if STAGE
