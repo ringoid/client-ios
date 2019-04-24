@@ -29,7 +29,6 @@ class UserProfilePhotosViewController: BaseViewController
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
-    @IBOutlet fileprivate weak var pageControl: UIPageControl!
     @IBOutlet fileprivate weak var deleteBtn: UIButton!
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var addBtn: UIButton!
@@ -249,7 +248,6 @@ class UserProfilePhotosViewController: BaseViewController
         }
         
         self.emptyFeedLabel.isHidden = !photos.isEmpty
-        self.pageControl.numberOfPages = photos.count
         self.photosVCs = photos.map({ photo in
             let vc = UserProfilePhotoViewController.create()
             vc.photo = photo
@@ -266,7 +264,6 @@ class UserProfilePhotosViewController: BaseViewController
         }
         
         self.currentIndex = startIndex
-        self.pageControl.currentPage = startIndex
         self.deleteBtn.isHidden = photos.isEmpty
     }
     
@@ -316,7 +313,6 @@ class UserProfilePhotosViewController: BaseViewController
     
     fileprivate func showControls()
     {
-        self.pageControl.isHidden = false
         self.deleteBtn.isHidden = false
         self.optionsBtn.isHidden = false
         self.addBtn.isHidden = false
@@ -325,7 +321,6 @@ class UserProfilePhotosViewController: BaseViewController
     
     fileprivate func hideControls()
     {
-        self.pageControl.isHidden = true
         self.deleteBtn.isHidden = true
         self.optionsBtn.isHidden = true
         self.addBtn.isHidden = true
@@ -411,8 +406,7 @@ extension UserProfilePhotosViewController: UIPageViewControllerDelegate, UIPageV
         
         guard let photo = self.viewModel?.photos.value[index] else { return }
         
-        self.viewModel?.lastPhotoId.accept(photo.originId)
-        self.pageControl.currentPage = index
+        self.viewModel?.lastPhotoId.accept(photo.originId)        
     }
 }
 

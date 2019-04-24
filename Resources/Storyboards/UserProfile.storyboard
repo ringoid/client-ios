@@ -114,14 +114,10 @@ see how many likes you get</string>
                                     <action selector="deletePhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="KYt-hL-B7c"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="gyn-28-5bi">
-                                <rect key="frame" x="16" y="80" width="0.0" height="0.0"/>
-                            </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.88299978599999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="4hG-ZS-M4a"/>
-                            <constraint firstItem="gyn-28-5bi" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="60" id="4sN-UV-dza"/>
                             <constraint firstItem="32r-W0-czT" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="60" id="EDx-rN-Hng"/>
                             <constraint firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" id="EeI-Bh-ckx"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="J5p-mc-dZY"/>
@@ -135,7 +131,6 @@ see how many likes you get</string>
                             <constraint firstItem="0Ze-nT-pEZ" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="gjJ-L8-PF8"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerY" secondItem="q5L-So-vMI" secondAttribute="centerY" id="h1K-ko-wtW"/>
                             <constraint firstItem="R3C-Zv-Ixf" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="j5U-ve-N2a"/>
-                            <constraint firstItem="gyn-28-5bi" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" constant="16" id="ngM-uQ-jNB"/>
                             <constraint firstAttribute="trailing" secondItem="R3C-Zv-Ixf" secondAttribute="trailing" id="pCc-QK-Puc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Yc6-CF-qSL"/>
@@ -146,7 +141,6 @@ see how many likes you get</string>
                         <outlet property="deleteBtn" destination="32r-W0-czT" id="qDq-QL-d5e"/>
                         <outlet property="emptyFeedLabel" destination="c03-Vj-oKe" id="HhA-IN-Ey8"/>
                         <outlet property="optionsBtn" destination="0Ze-nT-pEZ" id="xcA-G9-NaZ"/>
-                        <outlet property="pageControl" destination="gyn-28-5bi" id="KYH-ae-ET6"/>
                         <outlet property="titleLabel" destination="UJu-F3-4rH" id="DNT-SD-cx5"/>
                         <segue destination="XPN-ma-d0Q" kind="show" identifier="crop_vc" animates="NO" id="VNg-gg-Pqo"/>
                     </connections>
