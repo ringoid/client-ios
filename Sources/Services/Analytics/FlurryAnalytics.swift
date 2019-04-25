@@ -14,8 +14,8 @@ class FlurryAnalytics: AnalyticsService
     
     init()
     {
-        self.userId = UserDefaults.standard.string(forKey: "analytics_key") ?? UUID().uuidString
-        UserDefaults.standard.setValue(self.userId, forKey: "analytics_key")
+        self.userId = UserDefaults.standard.string(forKey: "analytics_flurry_key") ?? UUID().uuidString
+        UserDefaults.standard.setValue(self.userId, forKey: "analytics_flurry_key")
         UserDefaults.standard.synchronize()
         
        Flurry.setUserID(self.userId)
@@ -206,5 +206,12 @@ class FlurryAnalytics: AnalyticsService
                 ])
             break
         }
+    }
+    
+    func reset()
+    {
+        self.userId = UUID().uuidString
+        UserDefaults.standard.setValue(self.userId, forKey: "analytics_flurry_key")
+        UserDefaults.standard.synchronize()
     }
 }

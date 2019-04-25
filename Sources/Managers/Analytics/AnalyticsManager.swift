@@ -23,4 +23,9 @@ class AnalyticsManager
     {
         self.services.forEach({  $0.send(event) })
     }
+    
+    func reset()
+    {
+        self.services.forEach({ $0.reset() })
+    }
 }

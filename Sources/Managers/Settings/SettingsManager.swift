@@ -112,6 +112,8 @@ class SettingsManager
         self.db.reset()
         self.fs.reset()
         self.scenario.reset()
+        
+        AnalyticsManager.shared.reset()
     }
     
     // MARK: -

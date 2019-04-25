@@ -14,8 +14,8 @@ class FirebaseAnalytics: AnalyticsService
     
     init()
     {
-        self.userId = UserDefaults.standard.string(forKey: "analytics_key") ?? UUID().uuidString
-        UserDefaults.standard.setValue(self.userId, forKey: "analytics_key")
+        self.userId = UserDefaults.standard.string(forKey: "analytics_firebase_key") ?? UUID().uuidString
+        UserDefaults.standard.setValue(self.userId, forKey: "analytics_firebase_key")
         UserDefaults.standard.synchronize()
         
         AnalyticsConfiguration.shared().setAnalyticsCollectionEnabled(true)
@@ -198,9 +198,16 @@ class FirebaseAnalytics: AnalyticsService
             
         case .photoAddedManually:
             Analytics.logEvent("AHA_PHOTO_ADDED_MANUALLY", parameters: [
-                "UUID": self.userId,                
+                "UUID": self.userId,
                 ])
             break
         }
+    }
+    
+    func reset()
+    {
+        self.userId = UUID().uuidString
+        UserDefaults.standard.setValue(self.userId, forKey: "analytics_firebase_key")
+        UserDefaults.standard.synchronize()
     }
 }

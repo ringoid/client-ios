@@ -44,4 +44,5 @@ enum AnalyticsEvent
 protocol AnalyticsService
 {
     func send(_ event: AnalyticsEvent)
+    func reset()
 }
