@@ -110,7 +110,7 @@ class NewFacePhotoViewController: UIViewController
             return
         }
         
-        guard self.isLikesAvailable() else {
+        if self.input.sourceType == .messages || self.input.sourceType == .matches {
             self.onChatBlock?()
             
             return
@@ -128,8 +128,12 @@ class NewFacePhotoViewController: UIViewController
                 photo: actionPhoto,
                 source: input.sourceType
             )
-
-            self.input.transitionManager.removeAsLiked(input.profile)
+            
+            if input.sourceType == .whoLikedMe, let lmmProfile = input.profile as? LMMProfile {
+                self.input.transitionManager.move(lmmProfile, to: .matches)
+            } else {
+                self.input.transitionManager.removeAsLiked(input.profile)
+            }
         }
     }
         
@@ -152,19 +156,19 @@ class NewFacePhotoViewController: UIViewController
         self.disposeBag = DisposeBag()
     }
     
-    fileprivate func isLikesAvailable() -> Bool
-    {
-        guard let type = self.input?.sourceType else { return false }
-        
-        switch type {
-        case .whoLikedMe: return true
-        case .matches: return false
-        case .messages: return false
-        case .newFaces: return true
-        case .profile: return false
-        case .chat: return false
-        }
-    }
+//    fileprivate func isLikesAvailable() -> Bool
+//    {
+//        guard let type = self.input?.sourceType else { return false }
+//
+//        switch type {
+//        case .whoLikedMe: return true
+//        case .matches: return false
+//        case .messages: return false
+//        case .newFaces: return true
+//        case .profile: return false
+//        case .chat: return false
+//        }
+//    }
     
     fileprivate func playLikeAnimation(_ completion: (()->())?)
     {

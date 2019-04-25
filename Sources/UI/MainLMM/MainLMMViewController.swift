@@ -291,15 +291,19 @@ class MainLMMViewController: BaseViewController
         if totalCount == self.lastFeedIds.count - 1, self.lastFeedIds.count > 1, self.lastUpdateFeedType == self.type.value {
             var diffCount: Int = 0
             var diffIndex: Int = 0
+            var j: Int = 0
             
             for i in 0..<totalCount {
                 let profile = updatedProfiles[i]
                 if profile.isInvalidated { break } // Deprecated profiles
-                
-                if profile.id != self.lastFeedIds[i] {
+
+                if profile.id != self.lastFeedIds[j] {
                     diffIndex = i
-                    diffCount += 1
+                    diffCount += 1                    
+                    j = j + 1
                 }
+                
+                j = j + 1
             }
             
             // Blocking scenario confirmed

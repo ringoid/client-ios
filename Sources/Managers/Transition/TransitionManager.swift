@@ -11,9 +11,9 @@ import RxCocoa
 
 class TransitionManager
 {
-    let db: DBService
+    fileprivate let db: DBService
     
-    let disposeBag: DisposeBag = DisposeBag()
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     init(_ db: DBService)
     {
@@ -30,6 +30,7 @@ class TransitionManager
         profile.write({ obj in
             (obj as? LMMProfile)?.type = to.feedType().rawValue
         })
+        self.db.forceUpdateLMM()
     }
 }
 

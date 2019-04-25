@@ -105,6 +105,13 @@ class DBService
             }
         }
     }
+    
+    func forceUpdateLMM()
+    {
+        self.updateLikesYou()
+        self.updateMatches()
+        self.updateMessages()
+    }
 
     // MARK: - User
     
