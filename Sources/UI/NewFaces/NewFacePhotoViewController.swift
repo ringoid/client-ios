@@ -178,7 +178,7 @@ class NewFacePhotoViewController: UIViewController
             self.activeDisappearAnimator?.finishAnimation(at: .end)
         }
         
-        let duration = 0.4
+        let duration = 0.35
         let appearAnimator = UIViewPropertyAnimator(duration: duration / 2.0, curve: .easeIn) {
             self.animationLikeView.alpha = 1.0
             self.animationLikeView.transform = .init(scaleX: 3.0, y: 3.0)
@@ -187,10 +187,6 @@ class NewFacePhotoViewController: UIViewController
         let disappearAnimator = UIViewPropertyAnimator(duration: duration / 2.0, curve: .easeIn) {
             self.animationLikeView.alpha = 0.0
             self.animationLikeView.transform = .identity            
-        }
-        
-        let photoAnimator = UIViewPropertyAnimator(duration: duration / 2.0, curve: .easeIn) {
-            self.photoView.alpha = 0.0
         }
         
         self.activeAppearAnimator = appearAnimator
@@ -205,7 +201,6 @@ class NewFacePhotoViewController: UIViewController
         }
         
         appearAnimator.startAnimation()
-        photoAnimator.startAnimation()
     }
     
     @objc fileprivate func onAppBecomeActive()
