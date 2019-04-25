@@ -120,6 +120,7 @@ class ChatViewController: BaseViewController
         self.viewModel?.send(text)
         
         guard !shouldCloseAutomatically else {
+            self.input.transition.move(input.profile, to: .messages)
             self.onClose()
             
             return
