@@ -296,6 +296,7 @@ class MainLMMViewController: BaseViewController
             for i in 0..<totalCount {
                 let profile = updatedProfiles[i]
                 if profile.isInvalidated { break } // Deprecated profiles
+                if j >= self.lastFeedIds.count { break }
 
                 if profile.id != self.lastFeedIds[j] {
                     diffIndex = i
