@@ -217,25 +217,7 @@ discover users nearby</string>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4Q-m8-YTj">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQE-2r-NTn">
-                                        <rect key="frame" x="299" y="127" width="76" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="QFJ-RU-rhY"/>
-                                            <constraint firstAttribute="width" constant="76" id="fIR-xj-IPZ"/>
-                                        </constraints>
-                                        <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" image="feed_like"/>
-                                        <connections>
-                                            <action selector="onLike" destination="CPb-Zo-KOu" eventType="touchUpInside" id="W3D-gT-hTo"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="BQE-2r-NTn" secondAttribute="trailing" id="Tvk-IW-GbN"/>
-                                    <constraint firstItem="BQE-2r-NTn" firstAttribute="top" secondItem="C4Q-m8-YTj" secondAttribute="top" constant="127" id="dXk-GV-DKq"/>
-                                </constraints>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PhotoID" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cD-Y1-uy3">
                                 <rect key="frame" x="293.5" y="630" width="65.5" height="21"/>
@@ -269,7 +251,6 @@ discover users nearby</string>
                     </view>
                     <connections>
                         <outlet property="animationLikeView" destination="8do-7J-kjV" id="JLs-GM-AXu"/>
-                        <outlet property="likeBtn" destination="BQE-2r-NTn" id="HU6-Yd-zKf"/>
                         <outlet property="photoIdLabel" destination="7cD-Y1-uy3" id="zcF-f2-iDq"/>
                         <outlet property="photoView" destination="fil-jT-HLM" id="sdS-da-hJd"/>
                     </connections>
@@ -293,7 +274,6 @@ discover users nearby</string>
         </scene>
     </scenes>
     <resources>
-        <image name="feed_like" width="36" height="33"/>
         <image name="feed_like_selected" width="36" height="33"/>
         <image name="feed_options" width="32" height="12"/>
         <image name="feed_scroll_top" width="65" height="65"/>

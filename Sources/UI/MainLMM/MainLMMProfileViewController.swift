@@ -251,12 +251,6 @@ class MainLMMProfileViewController: UIViewController
     {
         self.optionsBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
         self.messageBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(self.messageBtn.frame, offset: value) ?? 1.0)
-        
-        self.photosVCs.forEach { vc in
-            guard let likeBtn = vc.likeBtn else { return }
-            
-            likeBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(likeBtn.frame, offset: value) ?? 1.0 )
-        }
     }
     
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
@@ -267,14 +261,6 @@ class MainLMMProfileViewController: UIViewController
         
         if let messageBtnOpacity = self.bottomOpacityFor(self.messageBtn.frame, offset: value) {
             self.messageBtn.alpha = self.discreetOpacity(for: messageBtnOpacity)
-        }
-        
-        self.photosVCs.forEach { vc in
-            guard let likeBtn = vc.likeBtn else { return }
-            
-            if let likeBtnOpacity = self.bottomOpacityFor(likeBtn.frame, offset: value) {
-                likeBtn.alpha = self.discreetOpacity(for: likeBtnOpacity)
-            }
         }
     }
     

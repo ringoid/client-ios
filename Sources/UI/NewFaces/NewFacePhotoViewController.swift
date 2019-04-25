@@ -30,7 +30,6 @@ class NewFacePhotoViewController: UIViewController
     fileprivate weak var activeAppearAnimator: UIViewPropertyAnimator?
     fileprivate weak var activeDisappearAnimator: UIViewPropertyAnimator?
     
-    @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var animationLikeView: UIImageView!
     @IBOutlet fileprivate weak var photoIdLabel: UILabel!
@@ -51,9 +50,7 @@ class NewFacePhotoViewController: UIViewController
         assert( self.input != nil )
         
         super.viewDidLoad()
-        
-        self.likeBtn.isHidden = !self.isLikesAvailable()
-        
+
         self.updateBindings()
         self.update()
         
@@ -102,49 +99,6 @@ class NewFacePhotoViewController: UIViewController
     }
     
     // MARK: - Actions
-    
-    @IBAction func  onLike()
-    {
-        UIManager.shared.feedsFabShouldBeHidden.accept(true)
-        
-        guard self.input.profileManager.isPhotosAdded else {
-            self.showAddPhotoAlert()
-            
-            return
-        }
-        
-        guard self.input?.actionsManager.checkConnectionState() == true else { return }
-        
-        guard self.isLikesAvailable() else { return }
-        guard let input = self.input, let photoId = self.photo?.id else { return }
-        guard let actionProfile = input.profile.actionInstance() else { return }
-        guard let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first else { return }
-        
-        if actionPhoto.isLiked {
-            input.actionsManager.unlikeActionProtected(
-                actionProfile,
-                photo: actionPhoto,
-                source: input.sourceType
-            )
-            
-            try? self.photo?.realm?.write({ [weak self] in
-                self?.photo?.isLiked = false
-            })
-        } else {
-            self.playLikeAnimation { [weak self] in
-                input.actionsManager.likeActionProtected(
-                    actionProfile,
-                    photo: actionPhoto,
-                    source: input.sourceType
-                )
-                    
-                    try? self?.photo?.realm?.write({
-                        self?.photo?.isLiked = true
-                    })
-            }
-        }
-    }
-
     
     @IBAction func  onTap()
     {
@@ -198,21 +152,6 @@ class NewFacePhotoViewController: UIViewController
     fileprivate func updateBindings()
     {
         self.disposeBag = DisposeBag()
-        
-        self.photo?.rx.observe(Photo.self, "isLiked").subscribe(onNext: { [weak self] _ in
-            let imgName = self?.photo?.isLiked == true ? "feed_like_selected" : "feed_like"
-            self?.likeBtn.setImage(UIImage(named: imgName), for: .normal)
-        }).disposed(by: self.disposeBag)
-        
-        UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
-            let isLikesAvailable = self?.isLikesAvailable() ?? false
-            self?.likeBtn.isHidden = !isLikesAvailable || state
-        }).disposed(by: self.disposeBag)
-        
-        UIManager.shared.chatModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
-            let isLikesAvailable = self?.isLikesAvailable() ?? false
-            self?.likeBtn.isHidden = !isLikesAvailable || state
-        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func isLikesAvailable() -> Bool
@@ -231,8 +170,6 @@ class NewFacePhotoViewController: UIViewController
     
     fileprivate func playLikeAnimation(_ completion: (()->())?)
     {
-        self.likeBtn.setImage(UIImage(named: "feed_like_selected"), for: .normal)
-        
         if self.activeAppearAnimator?.isRunning == true {
             self.activeAppearAnimator?.stopAnimation(true)
             self.activeAppearAnimator?.finishAnimation(at: .start)
@@ -247,13 +184,15 @@ class NewFacePhotoViewController: UIViewController
         let appearAnimator = UIViewPropertyAnimator(duration: duration / 2.0, curve: .easeIn) {
             self.animationLikeView.alpha = 1.0
             self.animationLikeView.transform = .init(scaleX: 3.0, y: 3.0)
-            self.likeBtn.transform = .init(scaleX: 1.2, y: 1.2)
         }
         
         let disappearAnimator = UIViewPropertyAnimator(duration: duration / 2.0, curve: .easeIn) {
             self.animationLikeView.alpha = 0.0
-            self.animationLikeView.transform = .identity
-            self.likeBtn.transform = .identity
+            self.animationLikeView.transform = .identity            
+        }
+        
+        let photoAnimator = UIViewPropertyAnimator(duration: duration / 2.0, curve: .easeIn) {
+            self.photoView.alpha = 0.0
         }
         
         self.activeAppearAnimator = appearAnimator
@@ -268,6 +207,7 @@ class NewFacePhotoViewController: UIViewController
         }
         
         appearAnimator.startAnimation()
+        photoAnimator.startAnimation()
     }
     
     @objc fileprivate func onAppBecomeActive()
