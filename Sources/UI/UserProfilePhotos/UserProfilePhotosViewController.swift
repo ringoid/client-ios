@@ -175,6 +175,13 @@ class UserProfilePhotosViewController: BaseViewController
     
     @IBAction func addPhoto()
     {
+        guard self.viewModel?.isLocationDenied != true else {
+            self.showLocationsSettingsAlert()
+            
+            return
+        }
+        
+        guard self.viewModel?.registerLocationsIfNeeded() == true else { return }
         guard self.input.actionsManager.checkConnectionState() else { return }
         
         self.input.scenario.checkPhotoAddedManually()
