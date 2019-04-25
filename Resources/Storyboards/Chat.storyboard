@@ -164,7 +164,8 @@
                                     <constraint firstAttribute="height" constant="44" id="0WU-rR-IKU"/>
                                     <constraint firstAttribute="width" constant="44" id="bph-7x-TdX"/>
                                 </constraints>
-                                <state key="normal" image="chat_close"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="common_back"/>
                                 <connections>
                                     <action selector="onClose" destination="7Sb-wa-NBj" eventType="touchUpInside" id="Yr3-rM-d48"/>
                                 </connections>
@@ -226,8 +227,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chat_close" width="26" height="26"/>
         <image name="chat_send" width="25" height="22"/>
+        <image name="common_back" width="11" height="20"/>
         <image name="feed_options" width="32" height="12"/>
     </resources>
 </document>
