@@ -12,12 +12,14 @@ import RxCocoa
 class TransitionManager
 {
     fileprivate let db: DBService
+    fileprivate let lmm: LMMManager
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(_ db: DBService)
+    init(_ db: DBService, lmm: LMMManager)
     {
         self.db = db
+        self.lmm = lmm
     }
     
     func removeAsLiked(_ profile: Profile)
@@ -27,6 +29,12 @@ class TransitionManager
     
     func move(_ profile: LMMProfile, to: LMMType)
     {
+        switch to {
+        case .likesYou: self.db.updateOrder(lmm.likesYou.value)
+        case .matches: self.db.updateOrder(lmm.matches.value)
+        case .messages: self.db.updateOrder(lmm.messages.value)
+        }
+        
         profile.write({ obj in
             (obj as? LMMProfile)?.type = to.feedType().rawValue
         })

@@ -177,15 +177,26 @@ class DBService
     
     func updateOrder(_ object: DBServiceObject)
     {
+        self.updateOrder([object])
+    }
+    
+    func updateOrder(_ objects: [DBServiceObject])
+    {
         if self.realm.isInWriteTransaction {
-            object.orderPosition = self.currentOrderPosition
-            self.currentOrderPosition += 1
-            self.checkObjectsForUpdates([object])
-        } else {
-            try? self.realm.write {
+            objects.forEach { object in
                 object.orderPosition = self.currentOrderPosition
                 self.currentOrderPosition += 1
-                self.checkObjectsForUpdates([object])
+            }
+ 
+            self.checkObjectsForUpdates(objects)
+        } else {
+            try? self.realm.write {
+                objects.forEach { object in
+                    object.orderPosition = self.currentOrderPosition
+                    self.currentOrderPosition += 1
+                }
+                
+                self.checkObjectsForUpdates(objects)
             }
         }
     }

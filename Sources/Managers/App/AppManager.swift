@@ -120,7 +120,7 @@ class AppManager
         self.notificationsManager = NotificationsManager(self.notifications, api: self.apiService)
         self.syncManager = SyncManager(self.notifications, lmm: self.lmmManager, newFaces: self.newFacesManager, profile: self.profileManager, navigation: self.navigationManager)
         self.locationManager = LocationManager(self.location, actions: self.actionsManager)
-        self.transitionManager = TransitionManager(self.db)
+        self.transitionManager = TransitionManager(self.db, lmm: self.lmmManager)
         
         ThemeManager.shared.storageService = self.defaultStorage
         LocaleManager.shared.storage = self.defaultStorage
