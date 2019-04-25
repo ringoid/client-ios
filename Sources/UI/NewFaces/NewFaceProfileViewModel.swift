@@ -16,6 +16,7 @@ struct NewFaceProfileVMInput
     let profileManager: UserProfileManager
     let navigationManager: NavigationManager
     let scenarioManager: AnalyticsScenarioManager
+    let transitionManager: TransitionManager
 }
 
 class NewFaceProfileViewModel

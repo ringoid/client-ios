@@ -47,11 +47,28 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     @IBOutlet fileprivate weak var seenLabel: UILabel!
     
-    static func create(_ profile: LMMProfile, feedType: LMMType, initialIndex: Int, actionsManager: ActionsManager, profileManager: UserProfileManager, navigationManager: NavigationManager, scenarioManager: AnalyticsScenarioManager ) -> MainLMMProfileViewController
+    static func create(_ profile: LMMProfile,
+                       feedType: LMMType,
+                       initialIndex: Int,
+                       actionsManager: ActionsManager,
+                       profileManager: UserProfileManager,
+                       navigationManager: NavigationManager,
+                       scenarioManager: AnalyticsScenarioManager,
+                       transitionManager: TransitionManager
+        ) -> MainLMMProfileViewController
     {
         let storyboard = Storyboards.mainLMM()
         let vc = storyboard.instantiateViewController(withIdentifier: "lmm_profile") as! MainLMMProfileViewController
-        vc.input = MainLMMProfileVMInput(profile: profile, feedType: feedType, initialIndex: initialIndex, actionsManager: actionsManager, profileManager: profileManager, navigationManager: navigationManager, scenarioManager: scenarioManager)
+        vc.input = MainLMMProfileVMInput(
+            profile: profile,
+            feedType: feedType,
+            initialIndex: initialIndex,
+            actionsManager: actionsManager,
+            profileManager: profileManager,
+            navigationManager: navigationManager,
+            scenarioManager: scenarioManager,
+            transitionManager: transitionManager
+        )
         
         return vc
     }
@@ -70,7 +87,15 @@ class MainLMMProfileViewController: UIViewController
         self.updateMessageBtnOffset()
         self.messageBtn.setImage(UIImage(named: self.input.profile.state.iconName()), for: .normal)
         
-        let input = NewFaceProfileVMInput(profile: self.input.profile, sourceType: self.input.feedType.sourceType(), actionsManager: self.input.actionsManager, profileManager: self.input.profileManager, navigationManager: self.input.navigationManager, scenarioManager: self.input.scenarioManager)
+        let input = NewFaceProfileVMInput(
+            profile: self.input.profile,
+            sourceType: self.input.feedType.sourceType(),
+            actionsManager: self.input.actionsManager,
+            profileManager: self.input.profileManager,
+            navigationManager: self.input.navigationManager,
+            scenarioManager: self.input.scenarioManager,
+            transitionManager: self.input.transitionManager
+        )
         self.photosVCs = self.input.profile.orderedPhotos().map({ photo in
             let vc = NewFacePhotoViewController.create()
             vc.photo = photo

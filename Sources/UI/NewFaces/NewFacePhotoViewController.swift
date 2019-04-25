@@ -128,10 +128,8 @@ class NewFacePhotoViewController: UIViewController
                 photo: actionPhoto,
                 source: input.sourceType
             )
-            
-            self.photo?.write({ obj in
-                (obj as? Photo)?.isLiked = true
-            })
+
+            self.input.transitionManager.removeAsLiked(input.profile)
         }
     }
         

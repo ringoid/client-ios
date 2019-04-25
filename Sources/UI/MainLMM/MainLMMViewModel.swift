@@ -20,6 +20,7 @@ struct MainLMMVMInput
     let notifications: NotificationService
     let location: LocationManager
     let scenario: AnalyticsScenarioManager
+    let transition: TransitionManager
 }
 
 class MainLMMViewModel

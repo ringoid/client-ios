@@ -554,7 +554,15 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
             let profile = profiles[index]
             let profileId = profile.id!
             let photoIndex: Int = MainLMMViewController.feedsState[self.type.value]?.photos[profileId] ?? 0
-            let profileVC = MainLMMProfileViewController.create(profile, feedType: self.type.value, initialIndex: photoIndex, actionsManager: self.input.actionsManager, profileManager: self.input.profileManager, navigationManager: self.input.navigationManager, scenarioManager: self.input.scenario)
+            let profileVC = MainLMMProfileViewController.create(profile,
+                                                                feedType: self.type.value,
+                                                                initialIndex: photoIndex,
+                                                                actionsManager: self.input.actionsManager,
+                                                                profileManager: self.input.profileManager,
+                                                                navigationManager: self.input.navigationManager,
+                                                                scenarioManager: self.input.scenario,
+                                                                transitionManager: self.input.transition
+            )
             weak var weakProfileVC = profileVC
             profileVC.onChatShow = { [weak self, weak cell] profile, photo, vc in
                 guard let `cell` = cell else { return }

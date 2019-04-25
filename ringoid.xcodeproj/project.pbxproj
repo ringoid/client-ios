@@ -33,6 +33,8 @@
 		57149D63221C493400F636A4 /* ApiServiceConfigStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D049D21DCFD3300E0DCFB /* ApiServiceConfigStage.swift */; };
 		573663BC227062120041C5DB /* AnalyticsScenarioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573663BB227062120041C5DB /* AnalyticsScenarioManager.swift */; };
 		573663BD227062120041C5DB /* AnalyticsScenarioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573663BB227062120041C5DB /* AnalyticsScenarioManager.swift */; };
+		573663C32271B7810041C5DB /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573663C22271B7810041C5DB /* TransitionManager.swift */; };
+		573663C42271B7810041C5DB /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573663C22271B7810041C5DB /* TransitionManager.swift */; };
 		57386E40220B27C00000E5D9 /* LocalizedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E3F220B27C00000E5D9 /* LocalizedTableViewCell.swift */; };
 		57386E42220B2FB20000E5D9 /* SettingsLanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E41220B2FB20000E5D9 /* SettingsLanguageCell.swift */; };
 		57386E44220B33120000E5D9 /* SettingsLegalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E43220B33120000E5D9 /* SettingsLegalCell.swift */; };
@@ -361,6 +363,7 @@
 		570D04C921E32F4800E0DCFB /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		57149D5F221AD32D00F636A4 /* SettingsLegalCustomerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalCustomerCell.swift; sourceTree = "<group>"; };
 		573663BB227062120041C5DB /* AnalyticsScenarioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScenarioManager.swift; sourceTree = "<group>"; };
+		573663C22271B7810041C5DB /* TransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		57386E3F220B27C00000E5D9 /* LocalizedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedTableViewCell.swift; sourceTree = "<group>"; };
 		57386E41220B2FB20000E5D9 /* SettingsLanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLanguageCell.swift; sourceTree = "<group>"; };
 		57386E43220B33120000E5D9 /* SettingsLegalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalCell.swift; sourceTree = "<group>"; };
@@ -661,6 +664,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				573663C12271B7650041C5DB /* Transition */,
 				577DDADB22648301001D7D24 /* Location */,
 				578502F122564E500056120A /* Analytics */,
 				578502EB22561AC40056120A /* Sync */,
@@ -757,6 +761,14 @@
 				570D04C921E32F4800E0DCFB /* AuthViewModel.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		573663C12271B7650041C5DB /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				573663C22271B7810041C5DB /* TransitionManager.swift */,
+			);
+			path = Transition;
 			sourceTree = "<group>";
 		};
 		57386E49220C7A6D0000E5D9 /* UI */ = {
@@ -1668,6 +1680,7 @@
 				57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */,
 				57585D5721E4925600038798 /* FileService.swift in Sources */,
 				570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */,
+				573663C32271B7810041C5DB /* TransitionManager.swift in Sources */,
 				57B863CA21ECD1DC00B9CC70 /* MainLMMViewModel.swift in Sources */,
 				579CD7C321F9A93E00C3AEE3 /* ChatViewModel.swift in Sources */,
 				57585D7221E5055D00038798 /* BaseViewController.swift in Sources */,
@@ -1823,6 +1836,7 @@
 				57EE65272216711000246B45 /* ActionPhoto.swift in Sources */,
 				57EE65282216711000246B45 /* LMMManager.swift in Sources */,
 				57EE65292216711000246B45 /* ApiPhoto.swift in Sources */,
+				573663C42271B7810041C5DB /* TransitionManager.swift in Sources */,
 				57149D61221AD32D00F636A4 /* SettingsLegalCustomerCell.swift in Sources */,
 				57EE652A2216711000246B45 /* FileService.swift in Sources */,
 				57EE652B2216711000246B45 /* ApiServiceConfig.swift in Sources */,

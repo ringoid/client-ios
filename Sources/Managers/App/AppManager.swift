@@ -33,6 +33,7 @@ class AppManager
     var syncManager: SyncManager!
     var locationManager: LocationManager!
     var scenarioManager: AnalyticsScenarioManager!
+    var transitionManager: TransitionManager!
     
     func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
@@ -119,6 +120,7 @@ class AppManager
         self.notificationsManager = NotificationsManager(self.notifications, api: self.apiService)
         self.syncManager = SyncManager(self.notifications, lmm: self.lmmManager, newFaces: self.newFacesManager, profile: self.profileManager, navigation: self.navigationManager)
         self.locationManager = LocationManager(self.location, actions: self.actionsManager)
+        self.transitionManager = TransitionManager(self.db)
         
         ThemeManager.shared.storageService = self.defaultStorage
         LocaleManager.shared.storage = self.defaultStorage

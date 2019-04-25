@@ -93,7 +93,8 @@ class RootViewController: BaseViewController {
             device: self.appManager.deviceService,
             notifications: self.appManager.notifications,
             location: self.appManager.locationManager,
-            scenario: self.appManager.scenarioManager
+            scenario: self.appManager.scenarioManager,
+            transition: self.appManager.transitionManager
         )
         
         self.containerView.embed(vc, to: self)

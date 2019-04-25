@@ -197,7 +197,8 @@ class MainViewController: BaseViewController
             newFacesManager: self.input.newFacesManager,
             notifications: self.input.notifications,
             location: self.input.location,
-            scenario: self.input.scenario
+            scenario: self.input.scenario,
+            transition: self.input.transition
         )
        
         self.menuVCCache[.like] = vc
@@ -268,7 +269,8 @@ class MainViewController: BaseViewController
             navigationManager: self.input.navigationManager,
             notifications: self.input.notifications,
             location: self.input.location,
-            scenario: self.input.scenario
+            scenario: self.input.scenario,
+            transition: self.input.transition
         )
         
         self.menuVCCache[.search] = vc
