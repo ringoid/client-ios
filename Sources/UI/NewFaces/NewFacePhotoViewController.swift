@@ -100,7 +100,7 @@ class NewFacePhotoViewController: UIViewController
     
     // MARK: - Actions
     
-    @IBAction func  onTap()
+    @IBAction func  onTap(_ recognizer: UIGestureRecognizer)
     {
         UIManager.shared.feedsFabShouldBeHidden.accept(true)
         
@@ -116,6 +116,8 @@ class NewFacePhotoViewController: UIViewController
             return
         }
         
+        let tapPoint = recognizer.location(in: self.view)
+        
         guard let input = self.input, let photoId = self.photo?.id else { return }
         
         guard let actionProfile = input.profile.actionInstance() else { return }
@@ -129,10 +131,10 @@ class NewFacePhotoViewController: UIViewController
         
         if input.sourceType == .whoLikedMe, let lmmProfile = input.profile as? LMMProfile {
             self.input.transitionManager.move(lmmProfile, to: .matches)
-            GlobalAnimationManager.shared.playIconAnimation(UIImage(named: "effect_like")!, from: self.view)
+            GlobalAnimationManager.shared.playIconAnimation(UIImage(named: "effect_match")!, from: self.view, point: tapPoint)
         } else {
             self.input.transitionManager.removeAsLiked(input.profile)
-            GlobalAnimationManager.shared.playIconAnimation(UIImage(named: "effect_like")!, from: self.view)
+            GlobalAnimationManager.shared.playIconAnimation(UIImage(named: "effect_like")!, from: self.view, point: tapPoint)
         }
     }
         

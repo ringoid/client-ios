@@ -21,36 +21,32 @@ class GlobalAnimationManager
         animationBlock?(animationView)
     }
     
-    func playIconAnimation(_ icon: UIImage, from: UIView)
+    func playIconAnimation(_ icon: UIImage, from: UIView, point: CGPoint)
     {
-        let center = CGPoint(
-            x: from.bounds.width / 2.0,
-            y: from.bounds.height / 2.0
-        )
+        let duration: Double = 1.0
         
-        let duration: Double = 0.2
         let startTransform = CATransform3DMakeAffineTransform(CGAffineTransform(scaleX: 0.5, y: 0.5))
-        let endTransform = CATransform3DMakeAffineTransform(CGAffineTransform(scaleX: 2.0, y: 2.0))
+        let endTransform = CATransform3DMakeAffineTransform(CGAffineTransform(scaleX: 3.5, y: 3.5).concatenating(CGAffineTransform(translationX: 200.0 * sin(CGFloat.random(in: 0.0...2 * .pi)) , y: -400.0)))
         
         let iconLayer: CALayer = CALayer()
         iconLayer.frame = CGRect(x: 0.0, y: 0.0, width: icon.size.width, height: icon.size.height)
         iconLayer.contents = icon.cgImage
         iconLayer.transform = startTransform
         
-        let absoluteCenter = self.animationView.convert(center, from: from)
+        let absoluteCenter = self.animationView.convert(point, from: from)
         iconLayer.position = absoluteCenter
         
         self.animationView.layer.addSublayer(iconLayer)
         
         let scaleAnimation = CABasicAnimation(keyPath: "transform")
         scaleAnimation.duration = duration
-        scaleAnimation.timingFunction = CAMediaTimingFunction(name: .easeIn)
+        scaleAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
         scaleAnimation.fromValue = startTransform
         scaleAnimation.toValue = endTransform
         
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
         opacityAnimation.duration = duration
-        opacityAnimation.timingFunction = CAMediaTimingFunction(name: .easeIn)
+        opacityAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
         opacityAnimation.fromValue = 1.0
         opacityAnimation.toValue = 0.0
 

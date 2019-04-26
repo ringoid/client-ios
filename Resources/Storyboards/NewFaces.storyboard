@@ -258,7 +258,7 @@ discover users nearby</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hn8-Xt-EOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="gMH-LG-MIb">
                     <connections>
-                        <action selector="onTap" destination="CPb-Zo-KOu" id="W0j-OY-Gab"/>
+                        <action selector="onTap:" destination="CPb-Zo-KOu" id="sEm-2u-ryW"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
