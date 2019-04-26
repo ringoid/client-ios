@@ -121,6 +121,9 @@ class ChatViewController: BaseViewController
         
         guard !shouldCloseAutomatically else {
             self.input.transition.move(input.profile, to: .messages)
+            GlobalAnimationManager.shared.playDropDownIconAnimation(UIImage(named: "feed_effect_message")!
+                , from: self.photoView
+                , point: CGPoint(x: self.photoView.bounds.width / 2.0, y: self.photoView.bounds.height / 2.0))
             self.onClose()
             
             return
