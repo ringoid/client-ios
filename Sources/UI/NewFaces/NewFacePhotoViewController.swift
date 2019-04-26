@@ -118,22 +118,21 @@ class NewFacePhotoViewController: UIViewController
         
         guard let input = self.input, let photoId = self.photo?.id else { return }
         
-        self.playLikeAnimation { [weak self] in
-            guard let `self` = self else { return }
-            guard let actionProfile = input.profile.actionInstance() else { return }
-            guard let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first else { return }
-            
-            input.actionsManager.likeActionProtected(
-                actionProfile,
-                photo: actionPhoto,
-                source: input.sourceType
-            )
-            
-            if input.sourceType == .whoLikedMe, let lmmProfile = input.profile as? LMMProfile {
-                self.input.transitionManager.move(lmmProfile, to: .matches)
-            } else {
-                self.input.transitionManager.removeAsLiked(input.profile)
-            }
+        guard let actionProfile = input.profile.actionInstance() else { return }
+        guard let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first else { return }
+        
+        input.actionsManager.likeActionProtected(
+            actionProfile,
+            photo: actionPhoto,
+            source: input.sourceType
+        )
+        
+        if input.sourceType == .whoLikedMe, let lmmProfile = input.profile as? LMMProfile {
+            self.input.transitionManager.move(lmmProfile, to: .matches)
+            GlobalAnimationManager.shared.playIconAnimation(UIImage(named: "effect_like")!, from: self.view)
+        } else {
+            self.input.transitionManager.removeAsLiked(input.profile)
+            GlobalAnimationManager.shared.playIconAnimation(UIImage(named: "effect_like")!, from: self.view)
         }
     }
         
@@ -155,58 +154,7 @@ class NewFacePhotoViewController: UIViewController
     {
         self.disposeBag = DisposeBag()
     }
-    
-//    fileprivate func isLikesAvailable() -> Bool
-//    {
-//        guard let type = self.input?.sourceType else { return false }
-//
-//        switch type {
-//        case .whoLikedMe: return true
-//        case .matches: return false
-//        case .messages: return false
-//        case .newFaces: return true
-//        case .profile: return false
-//        case .chat: return false
-//        }
-//    }
-    
-    fileprivate func playLikeAnimation(_ completion: (()->())?)
-    {
-        if self.activeAppearAnimator?.isRunning == true {
-            self.activeAppearAnimator?.stopAnimation(true)
-            self.activeAppearAnimator?.finishAnimation(at: .start)
-        }
-        
-        if self.activeDisappearAnimator?.isRunning == true {
-            self.activeDisappearAnimator?.stopAnimation(true)
-            self.activeDisappearAnimator?.finishAnimation(at: .end)
-        }
-        
-        let duration = 0.35
-        let appearAnimator = UIViewPropertyAnimator(duration: duration / 2.0, curve: .easeIn) {
-            self.animationLikeView.alpha = 1.0
-            self.animationLikeView.transform = .init(scaleX: 3.0, y: 3.0)
-        }
-        
-        let disappearAnimator = UIViewPropertyAnimator(duration: duration / 2.0, curve: .easeIn) {
-            self.animationLikeView.alpha = 0.0
-            self.animationLikeView.transform = .identity            
-        }
-        
-        self.activeAppearAnimator = appearAnimator
-        self.activeDisappearAnimator = disappearAnimator
-        
-        appearAnimator.addCompletion { _ in
-            disappearAnimator.startAnimation()
-        }
-        
-        disappearAnimator.addCompletion { _ in
-            completion?()
-        }
-        
-        appearAnimator.startAnimation()
-    }
-    
+ 
     @objc fileprivate func onAppBecomeActive()
     {
         guard self.isVisible else { return }

@@ -50,6 +50,8 @@ class MainViewController: BaseViewController
     {
         super.viewDidLoad()
         
+        GlobalAnimationManager.shared.animationView = self.effectsView
+        
         self.setupBindings()
         
 //        #if STAGE

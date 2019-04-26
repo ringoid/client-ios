@@ -35,6 +35,10 @@
 		573663BD227062120041C5DB /* AnalyticsScenarioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573663BB227062120041C5DB /* AnalyticsScenarioManager.swift */; };
 		573663C32271B7810041C5DB /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573663C22271B7810041C5DB /* TransitionManager.swift */; };
 		573663C42271B7810041C5DB /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573663C22271B7810041C5DB /* TransitionManager.swift */; };
+		573663C72272D8870041C5DB /* GlobalAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573663C62272D8870041C5DB /* GlobalAnimationManager.swift */; };
+		573663C82272D8870041C5DB /* GlobalAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573663C62272D8870041C5DB /* GlobalAnimationManager.swift */; };
+		573663CA2272E6510041C5DB /* CAAnimationClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573663C92272E6500041C5DB /* CAAnimationClosure.swift */; };
+		573663CB2272E6510041C5DB /* CAAnimationClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573663C92272E6500041C5DB /* CAAnimationClosure.swift */; };
 		57386E40220B27C00000E5D9 /* LocalizedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E3F220B27C00000E5D9 /* LocalizedTableViewCell.swift */; };
 		57386E42220B2FB20000E5D9 /* SettingsLanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E41220B2FB20000E5D9 /* SettingsLanguageCell.swift */; };
 		57386E44220B33120000E5D9 /* SettingsLegalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57386E43220B33120000E5D9 /* SettingsLegalCell.swift */; };
@@ -364,6 +368,8 @@
 		57149D5F221AD32D00F636A4 /* SettingsLegalCustomerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalCustomerCell.swift; sourceTree = "<group>"; };
 		573663BB227062120041C5DB /* AnalyticsScenarioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsScenarioManager.swift; sourceTree = "<group>"; };
 		573663C22271B7810041C5DB /* TransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
+		573663C62272D8870041C5DB /* GlobalAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalAnimationManager.swift; sourceTree = "<group>"; };
+		573663C92272E6500041C5DB /* CAAnimationClosure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAAnimationClosure.swift; sourceTree = "<group>"; };
 		57386E3F220B27C00000E5D9 /* LocalizedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedTableViewCell.swift; sourceTree = "<group>"; };
 		57386E41220B2FB20000E5D9 /* SettingsLanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLanguageCell.swift; sourceTree = "<group>"; };
 		57386E43220B33120000E5D9 /* SettingsLegalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLegalCell.swift; sourceTree = "<group>"; };
@@ -651,6 +657,7 @@
 		570D049F21DD01FB00E0DCFB /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				573663C92272E6500041C5DB /* CAAnimationClosure.swift */,
 				570D04A021DD021E00E0DCFB /* Errors.swift */,
 				570D04C021DF4E1F00E0DCFB /* Alerts.swift */,
 				57585D5321E48E3700038798 /* Image.swift */,
@@ -664,6 +671,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				573663C52272D8700041C5DB /* GlobalAnimationManager */,
 				573663C12271B7650041C5DB /* Transition */,
 				577DDADB22648301001D7D24 /* Location */,
 				578502F122564E500056120A /* Analytics */,
@@ -769,6 +777,14 @@
 				573663C22271B7810041C5DB /* TransitionManager.swift */,
 			);
 			path = Transition;
+			sourceTree = "<group>";
+		};
+		573663C52272D8700041C5DB /* GlobalAnimationManager */ = {
+			isa = PBXGroup;
+			children = (
+				573663C62272D8870041C5DB /* GlobalAnimationManager.swift */,
+			);
+			path = GlobalAnimationManager;
 			sourceTree = "<group>";
 		};
 		57386E49220C7A6D0000E5D9 /* UI */ = {
@@ -1653,6 +1669,7 @@
 				577DDAD922647975001D7D24 /* LocationServiceDefault.swift in Sources */,
 				573A5C202226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
 				57585D3C21E34AFC00038798 /* ApiProfile.swift in Sources */,
+				573663C72272D8870041C5DB /* GlobalAnimationManager.swift in Sources */,
 				578502ED22561ADA0056120A /* SyncManager.swift in Sources */,
 				579CD7B321F890A300C3AEE3 /* SettingsViewModel.swift in Sources */,
 				57EE64CF22153B1000246B45 /* SettingsLegalEmailCell.swift in Sources */,
@@ -1708,6 +1725,7 @@
 				577DDAE322649B5D001D7D24 /* ApiLocationAction.swift in Sources */,
 				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,
 				579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */,
+				573663CA2272E6510041C5DB /* CAAnimationClosure.swift in Sources */,
 				57EE64C922152AC400246B45 /* SettingsLegalPolicyCell.swift in Sources */,
 				57386E44220B33120000E5D9 /* SettingsLegalCell.swift in Sources */,
 				573A5C0B2223C4520094A9FA /* SettingsLocaleHelpCell.swift in Sources */,
@@ -1809,6 +1827,7 @@
 				577DDADA22647975001D7D24 /* LocationServiceDefault.swift in Sources */,
 				573A5C212226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
 				57EE65132216711000246B45 /* ApiBlockAction.swift in Sources */,
+				573663C82272D8870041C5DB /* GlobalAnimationManager.swift in Sources */,
 				578502EE22561ADA0056120A /* SyncManager.swift in Sources */,
 				57EE65142216711000246B45 /* NewFacesViewModel.swift in Sources */,
 				57EE65152216711000246B45 /* ApiProfile.swift in Sources */,
@@ -1864,6 +1883,7 @@
 				577DDAE422649B5D001D7D24 /* ApiLocationAction.swift in Sources */,
 				57EE653F2216711000246B45 /* ApiService.swift in Sources */,
 				57EE65402216711000246B45 /* SettingsViewController.swift in Sources */,
+				573663CB2272E6510041C5DB /* CAAnimationClosure.swift in Sources */,
 				57EE65412216711000246B45 /* SettingsLegalPolicyCell.swift in Sources */,
 				57EE65422216711000246B45 /* SettingsLegalCell.swift in Sources */,
 				573A5C0C2223C8470094A9FA /* SettingsLocaleHelpCell.swift in Sources */,
