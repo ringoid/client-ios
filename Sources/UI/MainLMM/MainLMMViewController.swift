@@ -20,7 +20,6 @@ enum LMMType: String
 fileprivate struct FeedState
 {
     var offset: CGFloat = 0.0
-    var photos: [String: Int] = [:]
 }
 
 fileprivate enum LMMFeedActivityState
@@ -41,6 +40,7 @@ class MainLMMViewController: BaseViewController
         .matches: FeedState(),
         .messages: FeedState()
     ]
+    fileprivate static var photoIndexes: [String: Int] = [:]
     fileprivate var isDragged: Bool = false    
     
     fileprivate var viewModel: MainLMMViewModel?
@@ -440,10 +440,11 @@ class MainLMMViewController: BaseViewController
     
     static func resetStates()
     {
+        MainLMMViewController.photoIndexes = [:]
         MainLMMViewController.feedsState = [
-            .likesYou: FeedState(offset: 0.0, photos: [:]),
-            .matches: FeedState(offset: 0.0, photos: [:]),
-            .messages: FeedState(offset: 0.0, photos: [:])
+            .likesYou: FeedState(offset: 0.0),
+            .matches: FeedState(offset: 0.0),
+            .messages: FeedState(offset: 0.0)
         ]
     }
     
@@ -564,7 +565,7 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
         if  let profiles = self.profiles()?.value, profiles.count > index {
             let profile = profiles[index]
             let profileId = profile.id!
-            let photoIndex: Int = MainLMMViewController.feedsState[self.type.value]?.photos[profileId] ?? 0
+            let photoIndex: Int = MainLMMViewController.photoIndexes[profileId] ?? 0
             let profileVC = MainLMMProfileViewController.create(profile,
                                                                 feedType: self.type.value,
                                                                 initialIndex: photoIndex,
@@ -614,7 +615,7 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
             profileVC.currentIndex.asObservable().subscribe(onNext: { [weak self] index in
                 guard let `self` = self else { return }
                 
-                MainLMMViewController.feedsState[self.type.value]?.photos[profileId] = index
+                MainLMMViewController.photoIndexes[profileId] = index
             }).disposed(by: self.disposeBag)
             
             cell.containerView.embed(profileVC, to: self)

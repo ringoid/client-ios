@@ -11,6 +11,8 @@ import RxCocoa
 
 class TransitionManager
 {
+    var isTransitioning: Bool = false
+    
     fileprivate let db: DBService
     fileprivate let lmm: LMMManager
     
@@ -24,11 +26,14 @@ class TransitionManager
     
     func removeAsLiked(_ profile: Profile)
     {
+        self.isTransitioning = true
         self.db.delete([profile]).subscribe().disposed(by: self.disposeBag)
     }
     
     func move(_ profile: LMMProfile, to: LMMType)
     {
+        self.isTransitioning = true
+        
         switch to {
         case .likesYou: self.db.updateOrder(lmm.likesYou.value)
         case .matches: self.db.updateOrder(lmm.matches.value)
