@@ -12,9 +12,11 @@ import RxCocoa
 class TransitionManager
 {
     var isTransitioning: Bool = false
+    var destination: Observable<SourceFeedType>!
     
     fileprivate let db: DBService
     fileprivate let lmm: LMMManager
+    fileprivate var destinationObserver: AnyObserver<SourceFeedType>!
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
@@ -22,6 +24,12 @@ class TransitionManager
     {
         self.db = db
         self.lmm = lmm
+        
+        self.destination = Observable<SourceFeedType>.create({ [weak self] observer -> Disposable in
+            self?.destinationObserver = observer
+            
+            return Disposables.create()
+        })
     }
     
     func removeAsLiked(_ profile: Profile)
@@ -33,6 +41,7 @@ class TransitionManager
     func move(_ profile: LMMProfile, to: LMMType)
     {
         self.isTransitioning = true
+        self.destinationObserver.onNext(to.sourceType())        
         
         switch to {
         case .likesYou: self.db.updateOrder(lmm.likesYou.value)

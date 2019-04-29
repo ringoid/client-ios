@@ -168,6 +168,12 @@ class MainLMMViewController: BaseViewController
             
             self?.hideScrollToTopOption()
         }).disposed(by: self.disposeBag)
+        
+        self.input.transition.destination.subscribe(onNext: { feedType in
+            guard let lmmType = feedType.lmmType() else { return }
+            
+            MainLMMViewController.feedsState[lmmType] = FeedState()
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func updateBindings()
@@ -697,6 +703,19 @@ extension MainLMMViewController: UIScrollViewDelegate
             self.prevScrollingOffset = offset
             
             return
+        }
+    }
+}
+
+extension SourceFeedType
+{
+    func lmmType() -> LMMType?
+    {
+        switch self {
+        case .whoLikedMe: return .likesYou
+        case .matches: return .matches
+        case .messages: return .messages
+        default: return nil
         }
     }
 }
