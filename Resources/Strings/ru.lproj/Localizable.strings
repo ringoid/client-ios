@@ -43,7 +43,7 @@
 
 "feed_explore_empty_title" = "Поиск";
 
-"feed_explore_dialog_no_user_photo_description" = "Добавь фото, чтобы посылать лайки";
+"feed_explore_dialog_no_user_photo_description" = "Добавь фото, чтобы получать лайки";
 "feed_explore_empty_no_data" = "Новых пока нет";
 "feed_likes_you_empty_no_data" = "Лайков ещё нет";
 "feed_matches_empty_no_data" = "Взаимных лайков ещё нет";
