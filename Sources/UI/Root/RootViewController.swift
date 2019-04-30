@@ -66,7 +66,7 @@ class RootViewController: BaseViewController {
             self.embedAuthVC()
         case .main:
             self.embedMainVC()
-            self.appManager.navigationManager.mainItem.accept(.profileAndFetch)
+            self.appManager.navigationManager.mainItem.accept(.likeAndFetch)
         case .search:
             self.embedMainVC()
             self.appManager.navigationManager.mainItem.accept(.searchAndFetch)

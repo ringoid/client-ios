@@ -18,6 +18,7 @@ enum SelectionState {
     case searchAndFetch
     case profileAndPick
     case profileAndFetch
+    case likeAndFetch
 }
 
 class MainViewController: BaseViewController
@@ -161,6 +162,13 @@ class MainViewController: BaseViewController
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedNewFacesAndFetch()
             break
+            
+        case .likeAndFetch:
+            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.embedMainLMMAndFetch()
+            break
         }
     }
     
@@ -182,28 +190,7 @@ class MainViewController: BaseViewController
     
     fileprivate func embedMainLMM()
     {
-        if let vc = self.menuVCCache[.like] {
-            self.containerVC.embed(vc)
-            
-            return
-        }
-        
-        let storyboard = Storyboards.mainLMM()
-        guard let vc = storyboard.instantiateInitialViewController() as? MainLMMContainerViewController else { return }
-        vc.input = MainLMMVMInput(
-            lmmManager: self.input.lmmManager,
-            actionsManager: self.input.actionsManager,
-            chatManager: self.input.chatManager,
-            profileManager: self.input.profileManager,
-            navigationManager: self.input.navigationManager,
-            newFacesManager: self.input.newFacesManager,
-            notifications: self.input.notifications,
-            location: self.input.location,
-            scenario: self.input.scenario,
-            transition: self.input.transition
-        )
-       
-        self.menuVCCache[.like] = vc
+        guard let vc = self.getMainLMMVC() else { return }
         self.containerVC.embed(vc)
     }
     
@@ -230,6 +217,45 @@ class MainViewController: BaseViewController
         self.containerVC.embed(vc)
         
         vc.reload()
+    }
+    
+    fileprivate func embedMainLMMAndFetch()
+    {
+        guard let vc = self.getMainLMMVC() else { return }
+        
+        self.containerVC.embed(vc)
+        
+        DispatchQueue.main.async {
+            vc.reload()
+        }
+    }
+    
+    fileprivate func getMainLMMVC() -> MainLMMContainerViewController?
+    {
+        if let vc = self.menuVCCache[.like] {
+            self.containerVC.embed(vc)
+            
+            return nil
+        }
+        
+        let storyboard = Storyboards.mainLMM()
+        guard let vc = storyboard.instantiateInitialViewController() as? MainLMMContainerViewController else { return nil }
+        vc.input = MainLMMVMInput(
+            lmmManager: self.input.lmmManager,
+            actionsManager: self.input.actionsManager,
+            chatManager: self.input.chatManager,
+            profileManager: self.input.profileManager,
+            navigationManager: self.input.navigationManager,
+            newFacesManager: self.input.newFacesManager,
+            notifications: self.input.notifications,
+            location: self.input.location,
+            scenario: self.input.scenario,
+            transition: self.input.transition
+        )
+        
+        self.menuVCCache[.like] = vc
+        
+        return vc
     }
     
     fileprivate func getUserProfileVC() -> UserProfilePhotosViewController?
@@ -355,6 +381,7 @@ extension MainNavigationItem
         case .profileAndFetch: return .profileAndFetch
         case .profileAndPick: return .profileAndPick
         case .searchAndFetch: return .searchAndFetch
+        case .likeAndFetch: return .likeAndFetch
         }
     }
 }

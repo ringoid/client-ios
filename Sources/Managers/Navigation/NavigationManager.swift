@@ -18,6 +18,8 @@ enum MainNavigationItem
     case searchAndFetch
     case profileAndFetch
     case profileAndPick
+    
+    case likeAndFetch
 }
 
 class NavigationManager

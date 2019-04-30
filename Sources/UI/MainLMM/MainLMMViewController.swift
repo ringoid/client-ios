@@ -192,7 +192,7 @@ class MainLMMViewController: BaseViewController
         self.tableView.refreshControl = refreshControl
     }
     
-    @objc fileprivate func reload()
+    @objc func reload()
     {
         AnalyticsManager.shared.send(.pullToRefresh(self.type.value.sourceType().rawValue))
         self.tableView.panGestureRecognizer.isEnabled = false

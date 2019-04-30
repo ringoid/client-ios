@@ -73,6 +73,11 @@ class MainLMMContainerViewController: BaseViewController
         }
     }
     
+    func reload()
+    {
+        self.lmmVC?.reload()
+    }
+    
     // MARK: - Actions
     
     @IBAction func onLikesYouSelected()
