@@ -33,6 +33,11 @@ class ChatViewController: BaseViewController
         return storyboard.instantiateInitialViewController() as! ChatViewController
     }
     
+    static func resetCache()
+    {
+        ChatViewController.messagesCache.removeAll()
+    }
+    
     deinit
     {
         NotificationCenter.default.removeObserver(self)

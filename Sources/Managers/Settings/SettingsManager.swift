@@ -113,6 +113,9 @@ class SettingsManager
         self.fs.reset()
         self.scenario.reset()
         
+        // TODO: separate UI layers
+        ChatViewController.resetCache()
+        
         AnalyticsManager.shared.reset()
     }
     
