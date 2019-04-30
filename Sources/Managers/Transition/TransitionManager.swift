@@ -51,6 +51,7 @@ class TransitionManager
         
         profile.write({ obj in
             (obj as? LMMProfile)?.type = to.feedType().rawValue
+            (obj as? LMMProfile)?.notSeen = false
         })
         self.db.forceUpdateLMM()
     }
