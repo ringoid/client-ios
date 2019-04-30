@@ -75,7 +75,7 @@ class ErrorsManager
     fileprivate func handleConnectionError(_ error: ApiError)
     {
         switch error.type {
-        case .secureConnectionFailed, .connectionTimeout, .non200StatusCode:
+        case .secureConnectionFailed, .non200StatusCode:
             SentryService.shared.send(.somethingWentWrong, params: [
                 "Error": error.type.rawValue,
                 "Description": error.error?.localizedDescription ?? ""
