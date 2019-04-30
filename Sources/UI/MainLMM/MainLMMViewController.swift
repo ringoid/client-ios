@@ -157,7 +157,8 @@ class MainLMMViewController: BaseViewController
                 UIManager.shared.lmmRefreshModeEnabled.accept(true)
             } else {
                 UIManager.shared.lmmRefreshModeEnabled.accept(false)
-                self?.toggleActivity(.contentAvailable)
+                let isEmpty = self?.profiles()?.value.count == 0
+                self?.toggleActivity(isEmpty ? .empty : .contentAvailable)
                 self?.tableView.dataSource = self
                 self?.updateFeed(true)
             }
@@ -285,8 +286,12 @@ class MainLMMViewController: BaseViewController
         let totalCount = updatedProfiles.count
         let isEmpty = updatedProfiles.isEmpty
         
-        if isEmpty && self.currentActivityState != .initial && self.currentActivityState != .fetching {
-            self.toggleActivity(.empty)
+        if isEmpty && self.currentActivityState != .fetching {
+            if self.currentActivityState == .contentAvailable {
+                self.toggleActivity(.initial)
+            } else if self.currentActivityState != .initial{
+                self.toggleActivity(.empty)
+            }
         }
         
         if !isEmpty {
