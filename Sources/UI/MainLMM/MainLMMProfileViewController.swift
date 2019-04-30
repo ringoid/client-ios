@@ -85,7 +85,12 @@ class MainLMMProfileViewController: UIViewController
         guard !self.input.profile.isInvalidated else { return }
         
         self.updateMessageBtnOffset()
-        self.messageBtn.setImage(UIImage(named: self.input.profile.state.iconName()), for: .normal)
+        
+        if let iconName =  self.input.profile.state.iconName() {
+            self.messageBtn.setImage(UIImage(named: iconName), for: .normal)
+        } else {
+            self.messageBtn.setImage(nil, for: .normal)
+        }
         
         let input = NewFaceProfileVMInput(
             profile: self.input.profile,
@@ -133,7 +138,12 @@ class MainLMMProfileViewController: UIViewController
     
     func showNotChatControls()
     {
-        self.messageBtn.setImage(UIImage(named: self.input.profile.state.iconName()), for: .normal)
+        if let iconName =  self.input.profile.state.iconName() {
+            self.messageBtn.setImage(UIImage(named: iconName), for: .normal)
+        } else {
+            self.messageBtn.setImage(nil, for: .normal)
+        }
+        
         UIManager.shared.chatModeEnabled.accept(false)
     }
     
@@ -364,13 +374,11 @@ extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageView
 
 extension MessagingState
 {
-    func iconName() -> String
+    func iconName() -> String?
     {
         switch self {
-        case .empty: return "feed_messages_empty"
-        case .outcomingOnly: return "feed_messages"
-        case .chatRead: return "feed_chat_read"
         case .chatUnread: return "feed_chat_unread"
+        default: return nil
         }
     }
 }

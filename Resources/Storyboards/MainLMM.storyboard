@@ -339,7 +339,7 @@ see who likes you</string>
                                     <action selector="onBlock" destination="Nf7-hc-eWV" eventType="touchUpInside" id="IY0-9P-tsM"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Wc-Ed-6t2">
+                            <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Wc-Ed-6t2">
                                 <rect key="frame" x="307" y="118" width="60" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="JgA-rf-4Mi"/>
