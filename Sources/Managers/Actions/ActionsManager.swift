@@ -47,6 +47,7 @@ class ActionsManager
     fileprivate var queue: [Action] = []
     fileprivate var sendingActions: [Action] = []
     fileprivate var triggerTimer: Timer?
+    fileprivate var viewMap: [String: Bool] = [:]
     
     deinit
     {
@@ -110,6 +111,8 @@ class ActionsManager
         self.disposeBag = DisposeBag()
         self.sendingActions.removeAll()
         self.queue.removeAll()
+        self.viewMap.removeAll()
+        self.viewActionsMap.removeAll()
         
         self.setupDateStorage()
         self.lastActionDate.accept(nil)
@@ -118,6 +121,11 @@ class ActionsManager
         
         UserDefaults.standard.removeObject(forKey: "isLikedSomeone")
         UserDefaults.standard.synchronize()
+    }
+    
+    func isViewed(_ profileId: String) -> Bool
+    {
+        return self.viewMap[profileId] ?? false
     }
     
     func finishViewActions(for profiles: [Profile], source: SourceFeedType)
@@ -224,6 +232,7 @@ class ActionsManager
         guard viewActionsMap[photo.id] == nil else { return }
         
         self.viewActionsMap[photo.id] = Date()
+        self.viewMap[profile.id] = true
     }
     
     func stopViewAction(_ profile: ActionProfile, photo: ActionPhoto, sourceType: SourceFeedType)
