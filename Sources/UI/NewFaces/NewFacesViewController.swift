@@ -182,7 +182,8 @@ class NewFacesViewController: BaseViewController
             if state {
                 self?.toggleActivity(.fetching)
             } else {
-                self?.toggleActivity(.contentAvailable)
+                let isEmpty = self?.viewModel?.profiles.value.count == 0
+                self?.toggleActivity(isEmpty ? .empty : .contentAvailable)
             }
         }).disposed(by: self.disposeBag)
         
@@ -230,8 +231,12 @@ class NewFacesViewController: BaseViewController
         let isEmpty = totalCount == 0
         self.titleLabel.isHidden = !isEmpty
         
-        if isEmpty && self.currentActivityState != .initial && self.currentActivityState != .fetching {
-            self.toggleActivity(.empty)
+        if isEmpty && self.currentActivityState != .fetching {
+            if self.currentActivityState == .contentAvailable {
+                 self.toggleActivity(.initial)
+            } else if self.currentActivityState != .initial{
+               self.toggleActivity(.empty)
+            }
         }
         
         if !isEmpty {
