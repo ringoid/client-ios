@@ -225,8 +225,9 @@ class NewFacesViewController: BaseViewController
             
             let offset = self.tableView.contentOffset.y
             self.updateVisibleCellsBorders(offset)
+            self.input.transition.afterTransition = false
         }
-
+        
         let totalCount = profiles.count
         let isEmpty = totalCount == 0
         self.titleLabel.isHidden = !isEmpty

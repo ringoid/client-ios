@@ -107,6 +107,7 @@ class ChatViewController: BaseViewController
             self.messageTextView.text = ""
             self.inputHeightConstraint.constant = 40.0
             self.view.layoutSubviews()
+            ChatViewController.messagesCache.removeValue(forKey: self.input.profile.id)
         }
         
         let text = self.messageTextView.text.trimmingCharacters(in: .whitespacesAndNewlines)

@@ -281,6 +281,7 @@ class MainLMMViewController: BaseViewController
             
             let offset = self.tableView.contentOffset.y
             self.updateVisibleCellsBorders(offset)
+            self.input.transition.afterTransition = false
         }
         
         let totalCount = updatedProfiles.count
@@ -299,7 +300,7 @@ class MainLMMViewController: BaseViewController
         }
 
         // Checking for blocking scenario
-        if totalCount == self.lastFeedIds.count - 1, self.lastFeedIds.count > 1, self.lastUpdateFeedType == self.type.value {
+        if totalCount == self.lastFeedIds.count - 1, (self.lastFeedIds.count > 1 || self.input.transition.afterTransition), self.lastUpdateFeedType == self.type.value {
             var diffCount: Int = 0
             var diffIndex: Int = 0
             var j: Int = 0
@@ -623,9 +624,7 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
                 self?.scrollTop(to: cellIndexPath.row, offset: 44.0, animated: false)
             }
             
-            profileVC.currentIndex.asObservable().subscribe(onNext: { [weak self] index in
-                guard let `self` = self else { return }
-                
+            profileVC.currentIndex.asObservable().subscribe(onNext: { index in
                 MainLMMViewController.photoIndexes[profileId] = index
             }).disposed(by: self.disposeBag)
             

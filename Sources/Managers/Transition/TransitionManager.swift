@@ -11,7 +11,7 @@ import RxCocoa
 
 class TransitionManager
 {
-    var isTransitioning: Bool = false
+    var afterTransition: Bool = false
     var destination: Observable<SourceFeedType>!
     
     fileprivate let db: DBService
@@ -34,13 +34,13 @@ class TransitionManager
     
     func removeAsLiked(_ profile: Profile)
     {
-        self.isTransitioning = true
+        self.afterTransition = true
         self.db.delete([profile]).subscribe().disposed(by: self.disposeBag)
     }
     
     func move(_ profile: LMMProfile, to: LMMType)
     {
-        self.isTransitioning = true
+        self.afterTransition = true
         self.destinationObserver.onNext(to.sourceType())        
         
         switch to {
