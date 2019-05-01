@@ -26,7 +26,7 @@ class GlobalAnimationManager
         let duration: Double = 1.0
         
         let startTransform = CATransform3DMakeAffineTransform(CGAffineTransform(scaleX: 0.5, y: 0.5))
-        let endTransform = CATransform3DMakeAffineTransform(CGAffineTransform(scaleX: 3.5 * scaleFactor, y: 3.5 * scaleFactor).concatenating(CGAffineTransform(translationX: 200.0 * sin(CGFloat.random(in: 0.0...2 * .pi)) , y: -400.0)))
+        let endTransform = CATransform3DMakeAffineTransform(CGAffineTransform(scaleX: 2.5 * scaleFactor, y: 2.5 * scaleFactor).concatenating(CGAffineTransform(translationX: 20.0 * sin(CGFloat.random(in: 0.0...2 * .pi)) , y: -400.0)))
         
         let iconLayer: CALayer = CALayer()
         iconLayer.frame = CGRect(x: 0.0, y: 0.0, width: icon.size.width, height: icon.size.height)

@@ -131,7 +131,7 @@ class NewFacePhotoViewController: UIViewController
         
         if input.sourceType == .whoLikedMe, let lmmProfile = input.profile as? LMMProfile {
             self.input.transitionManager.move(lmmProfile, to: .matches)
-            GlobalAnimationManager.shared.playFlyUpIconAnimation(UIImage(named: "feed_effect_match")!, from: self.view, point: tapPoint, scaleFactor: 0.5)
+            GlobalAnimationManager.shared.playFlyUpIconAnimation(UIImage(named: "feed_effect_match")!, from: self.view, point: tapPoint, scaleFactor: 0.75)
         } else {
             self.input.transitionManager.removeAsLiked(input.profile)
             GlobalAnimationManager.shared.playFlyUpIconAnimation(UIImage(named: "feed_effect_like")!, from: self.view, point: tapPoint)
