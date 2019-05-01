@@ -52,14 +52,14 @@ discover users nearby</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWH-RX-sVo" customClass="ContainerView" customModule="Ringoid" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="358"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="359"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="hWH-RX-sVo" firstAttribute="leading" secondItem="mzS-Ei-i2k" secondAttribute="leading" id="0d3-8E-1XK"/>
-                                                <constraint firstAttribute="bottom" secondItem="hWH-RX-sVo" secondAttribute="bottom" id="9ya-ec-i1S"/>
+                                                <constraint firstAttribute="bottom" secondItem="hWH-RX-sVo" secondAttribute="bottom" constant="-1" id="9ya-ec-i1S"/>
                                                 <constraint firstItem="hWH-RX-sVo" firstAttribute="top" secondItem="mzS-Ei-i2k" secondAttribute="top" id="aB3-EF-woy"/>
                                                 <constraint firstAttribute="trailing" secondItem="hWH-RX-sVo" secondAttribute="trailing" id="iCE-Ta-0Dy"/>
                                             </constraints>
