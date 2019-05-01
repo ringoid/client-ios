@@ -18,6 +18,6 @@ class ChatTextView: UITextView
             return false
         }
         
-        return true
+        return super.canPerformAction(action, withSender: sender)
     }
 }
