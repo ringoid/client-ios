@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class AppManager
 {
@@ -35,12 +37,15 @@ class AppManager
     var scenarioManager: AnalyticsScenarioManager!
     var transitionManager: TransitionManager!
     
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
     func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
         _ = AnalyticsManager.shared
         
         self.setupServices(launchOptions)
-        self.setupManagers(launchOptions)        
+        self.setupManagers(launchOptions)
+        self.setupBindings()
     }
     
     func onTerminate()
@@ -124,5 +129,12 @@ class AppManager
         
         ThemeManager.shared.storageService = self.defaultStorage
         LocaleManager.shared.storage = self.defaultStorage
+    }
+    
+    fileprivate func setupBindings()
+    {
+        self.apiService.customerId.asObservable().subscribe(onNext: { customerId in
+            SentryService.shared.customerId = customerId
+        }).disposed(by: self.disposeBag)
     }
 }
