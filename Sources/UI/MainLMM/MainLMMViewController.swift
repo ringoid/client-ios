@@ -477,7 +477,7 @@ class MainLMMViewController: BaseViewController
     {
         let alertVC = UIAlertController(
             title: nil,
-            message: "feed_explore_dialog_no_user_photo_description".localized(),
+            message: "feed_lmm_dialog_no_user_photo_description".localized(),
             preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "button_add_photo".localized(), style: .default, handler: { [weak self] _ in
             self?.viewModel?.moveToProfile()
