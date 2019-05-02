@@ -9,11 +9,10 @@
 import RxSwift
 import RxCocoa
 
-fileprivate let selectedFont = UIFont.systemFont(ofSize: 18.0, weight: .bold
-)
-fileprivate let unselectedFont = UIFont.systemFont(ofSize: 17.0, weight: .regular)
-fileprivate let selectedColor = UIColor.white
-fileprivate let unselectedColor = UIColor(
+let lmmSelectedFont = UIFont.systemFont(ofSize: 18.0, weight: .bold)
+let lmmUnselectedFont = UIFont.systemFont(ofSize: 17.0, weight: .regular)
+let lmmSelectedColor = UIColor.white
+let lmmUnselectedColor = UIColor(
     red: 219.0 / 255.0,
     green: 219.0 / 255.0,
     blue: 219.0 / 255.0,
@@ -141,30 +140,30 @@ class MainLMMContainerViewController: BaseViewController
         
         switch type {
         case .likesYou:
-            self.likeYouBtn.setTitleColor(selectedColor, for: .normal)
-            self.likeYouBtn.titleLabel?.font = selectedFont
-            self.matchesBtn.setTitleColor(unselectedColor, for: .normal)
-            self.matchesBtn.titleLabel?.font = unselectedFont
-            self.chatBtn.setTitleColor(unselectedColor, for: .normal)
-            self.chatBtn.titleLabel?.font = unselectedFont
+            self.likeYouBtn.setTitleColor(lmmSelectedColor, for: .normal)
+            self.likeYouBtn.titleLabel?.font = lmmSelectedFont
+            self.matchesBtn.setTitleColor(lmmUnselectedColor, for: .normal)
+            self.matchesBtn.titleLabel?.font = lmmUnselectedFont
+            self.chatBtn.setTitleColor(lmmUnselectedColor, for: .normal)
+            self.chatBtn.titleLabel?.font = lmmUnselectedFont
             break
             
         case .matches:
-            self.matchesBtn.setTitleColor(selectedColor, for: .normal)
-            self.matchesBtn.titleLabel?.font = selectedFont
-            self.likeYouBtn.setTitleColor(unselectedColor, for: .normal)
-            self.likeYouBtn.titleLabel?.font = unselectedFont
-            self.chatBtn.setTitleColor(unselectedColor, for: .normal)
-            self.chatBtn.titleLabel?.font = unselectedFont
+            self.matchesBtn.setTitleColor(lmmSelectedColor, for: .normal)
+            self.matchesBtn.titleLabel?.font = lmmSelectedFont
+            self.likeYouBtn.setTitleColor(lmmUnselectedColor, for: .normal)
+            self.likeYouBtn.titleLabel?.font = lmmUnselectedFont
+            self.chatBtn.setTitleColor(lmmUnselectedColor, for: .normal)
+            self.chatBtn.titleLabel?.font = lmmUnselectedFont
             break
             
         case .hellos:
-            self.chatBtn.setTitleColor(selectedColor, for: .normal)
-            self.chatBtn.titleLabel?.font = selectedFont
-            self.likeYouBtn.setTitleColor(unselectedColor, for: .normal)
-            self.likeYouBtn.titleLabel?.font = unselectedFont
-            self.matchesBtn.setTitleColor(unselectedColor, for: .normal)
-            self.matchesBtn.titleLabel?.font = unselectedFont
+            self.chatBtn.setTitleColor(lmmSelectedColor, for: .normal)
+            self.chatBtn.titleLabel?.font = lmmSelectedFont
+            self.likeYouBtn.setTitleColor(lmmUnselectedColor, for: .normal)
+            self.likeYouBtn.titleLabel?.font = lmmUnselectedFont
+            self.matchesBtn.setTitleColor(lmmUnselectedColor, for: .normal)
+            self.matchesBtn.titleLabel?.font = lmmUnselectedFont
             break
             
         default: return
@@ -178,21 +177,21 @@ class MainLMMContainerViewController: BaseViewController
         let matchesWidth = ("lmm_tab_matches".localized() as NSString).boundingRect(
             with: CGSize(width: 300.0, height: 200.0),
             options: .usesLineFragmentOrigin,
-            attributes: [.font: unselectedFont],
+            attributes: [.font: lmmUnselectedFont],
             context: nil
             ).width
         
         let likesWidth = ("lmm_tab_likes".localized() as NSString).boundingRect(
             with: CGSize(width: 300.0, height: 200.0),
             options: .usesLineFragmentOrigin,
-            attributes: [.font: unselectedFont],
+            attributes: [.font: lmmUnselectedFont],
             context: nil
             ).width
         
         let chatsWidth = ("lmm_tab_hellos".localized() as NSString).boundingRect(
             with: CGSize(width: 300.0, height: 200.0),
             options: .usesLineFragmentOrigin,
-            attributes: [.font: unselectedFont],
+            attributes: [.font: lmmUnselectedFont],
             context: nil
             ).width
         

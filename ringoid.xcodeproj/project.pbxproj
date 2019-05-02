@@ -187,6 +187,8 @@
 		57BEB67B2213D7E6000BD768 /* SettingsLocaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67A2213D7E6000BD768 /* SettingsLocaleViewController.swift */; };
 		57BEB67D2213D806000BD768 /* SettingsLocaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */; };
 		57BEB67F2213F306000BD768 /* SettingsLocaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */; };
+		57E23141227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */; };
+		57E23142227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */; };
 		57ED486D224B82C10033EB0B /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED486C224B82C10033EB0B /* NotificationsService.swift */; };
 		57ED486E224B82C10033EB0B /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED486C224B82C10033EB0B /* NotificationsService.swift */; };
 		57ED4870224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ED486F224B82D30033EB0B /* NotificationsServiceDefault.swift */; };
@@ -489,6 +491,7 @@
 		57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleViewModel.swift; sourceTree = "<group>"; };
 		57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleCell.swift; sourceTree = "<group>"; };
 		57BEB6802213FEA8000BD768 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMessagesContainerViewController.swift; sourceTree = "<group>"; };
 		57ED48692249FC070033EB0B /* Ringoid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ringoid.entitlements; sourceTree = "<group>"; };
 		57ED486C224B82C10033EB0B /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
 		57ED486F224B82D30033EB0B /* NotificationsServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsServiceDefault.swift; sourceTree = "<group>"; };
@@ -1148,6 +1151,7 @@
 				57B863D021EDB16300B9CC70 /* MainLMMProfileViewController.swift */,
 				57B863D221EDB18600B9CC70 /* MainLMMProfileViewModel.swift */,
 				57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */,
+				57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */,
 			);
 			path = MainLMM;
 			sourceTree = "<group>";
@@ -1606,6 +1610,7 @@
 				57FB7BD321E74C3E00AAA29D /* Storyboards.swift in Sources */,
 				576FC1142201876A00BA5ABE /* DeviceService.swift in Sources */,
 				57850300225725810056120A /* AnalyticsManager.swift in Sources */,
+				57E23141227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift in Sources */,
 				573663BC227062120041C5DB /* AnalyticsScenarioManager.swift in Sources */,
 				57585D3F21E354FA00038798 /* NewFacesManager.swift in Sources */,
 				57B863D521EE16E700B9CC70 /* VerticalGradientView.swift in Sources */,
@@ -1764,6 +1769,7 @@
 				57EE64E62216711000246B45 /* MainLMMProfileViewModel.swift in Sources */,
 				57EE64E72216711000246B45 /* Storyboards.swift in Sources */,
 				57850301225725810056120A /* AnalyticsManager.swift in Sources */,
+				57E23142227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift in Sources */,
 				573663BD227062120041C5DB /* AnalyticsScenarioManager.swift in Sources */,
 				57EE655E2216DCA700246B45 /* SentryService.swift in Sources */,
 				57EE64E82216711000246B45 /* DeviceService.swift in Sources */,
