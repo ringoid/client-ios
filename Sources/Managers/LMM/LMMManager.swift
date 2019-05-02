@@ -156,13 +156,13 @@ class LMMManager
         
         self.updateProfilesPrevState(false)
         
-        return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
+        return self.apiService.getLMHIS(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
             
             self!.purge()
             
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)
             let matches = createProfiles(result.matches, type: .matches)
-            let hellos = createProfiles(result.messages, type: .hellos)
+            let hellos = createProfiles(result.hellos, type: .hellos)
             
             (hellos + matches + localLikesYou).forEach { remoteProfile in
                 guard remoteProfile.messages.count != 0 else { return }

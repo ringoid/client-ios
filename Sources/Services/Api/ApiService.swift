@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-typealias ApiLMMResult = (likesYou: [ApiLMMProfile],  matches: [ApiLMMProfile], messages: [ApiLMMProfile])
+typealias ApiLMMResult = (likesYou: [ApiLMMProfile],  matches: [ApiLMMProfile], hellos: [ApiLMMProfile])
 
 enum ApiErrorType: String
 {
@@ -45,7 +45,7 @@ protocol ApiService
     
     func getNewFaces(_ resolution: String, lastActionDate: Date?) -> Observable<[ApiProfile]>
     
-    func getLMM(_ resolution: String, lastActionDate: Date?, source: SourceFeedType) -> Observable<ApiLMMResult>
+    func getLMHIS(_ resolution: String, lastActionDate: Date?, source: SourceFeedType) -> Observable<ApiLMMResult>
     
     func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhotoPlaceholder>
     func getUserOwnPhotos(_ resolution: String) -> Observable<[ApiUserPhoto]>
