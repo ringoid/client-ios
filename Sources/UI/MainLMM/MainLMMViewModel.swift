@@ -35,7 +35,7 @@ class MainLMMViewModel
     
     let likesYou: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     let matches: BehaviorRelay<[LMMProfile]>  = BehaviorRelay<[LMMProfile]>(value: [])
-    let messages: BehaviorRelay<[LMMProfile]>  = BehaviorRelay<[LMMProfile]>(value: [])
+    let hellos: BehaviorRelay<[LMMProfile]>  = BehaviorRelay<[LMMProfile]>(value: [])
     
     var isFetching: BehaviorRelay<Bool> { return self.lmmManager.isFetching }
     
@@ -106,8 +106,8 @@ class MainLMMViewModel
             self?.matches.accept(profiles)
         }).disposed(by: self.disposeBag)
         
-        self.lmmManager.messages.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
-            self?.messages.accept(profiles)
+        self.lmmManager.hellos.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+            self?.hellos.accept(profiles)
         }).disposed(by: self.disposeBag)
     }
 }

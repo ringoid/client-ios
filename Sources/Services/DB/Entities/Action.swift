@@ -24,7 +24,9 @@ enum SourceFeedType: String
     case newFaces = "new_faces"
     case whoLikedMe = "who_liked_me"
     case matches = "matches"
-    case messages = "messages"
+    case hellos = "hellos"
+    case inbox = "inbox"
+    case sent = "sent"
     case profile = "profile"
     case chat = "chat"
 }

@@ -320,7 +320,7 @@ class DBService
     
     fileprivate func updateMessages()
     {
-        let predicate = NSPredicate(format: "type = %d AND isDeleted = false", FeedType.messages.rawValue)
+        let predicate = NSPredicate(format: "type = %d AND isDeleted = false", FeedType.hellos.rawValue)
         let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition")
         
         self.messagesObserver?.onNext(profiles.toArray())
@@ -349,7 +349,7 @@ class DBService
             if let profile = object as? LMMProfile {
                 if profile.type == FeedType.likesYou.rawValue { shouldUpdateLikesYou = true }
                 if profile.type == FeedType.matches.rawValue { shouldUpdateMatches = true }
-                if profile.type == FeedType.messages.rawValue { shouldUpdateMessages = true }
+                if profile.type == FeedType.hellos.rawValue { shouldUpdateMessages = true }
             }
         }
         

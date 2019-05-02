@@ -110,7 +110,7 @@ class NewFacePhotoViewController: UIViewController
             return
         }
         
-        if self.input.sourceType == .messages || self.input.sourceType == .matches {
+        if self.input.sourceType == .hellos || self.input.sourceType == .matches {
             self.onChatBlock?()
             
             return
@@ -194,7 +194,9 @@ extension LMMType
         switch self {
         case .likesYou: return .whoLikedMe
         case .matches: return .matches
-        case .messages: return .messages
+        case .hellos: return .hellos
+        case .inbox: return .inbox
+        case .sent: return .sent
         }
     }
 }

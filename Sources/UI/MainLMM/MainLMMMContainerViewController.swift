@@ -52,7 +52,7 @@ class MainLMMContainerViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.chatBtn.setTitle("lmm_tab_messenger".localized(), for: .normal)
+        self.chatBtn.setTitle("lmm_tab_hellos".localized(), for: .normal)
         self.likeYouBtn.setTitle("lmm_tab_likes".localized(), for: .normal)
         self.matchesBtn.setTitle("lmm_tab_matches".localized(), for: .normal)
         
@@ -92,7 +92,7 @@ class MainLMMContainerViewController: BaseViewController
     
     @IBAction func onChatSelected()
     {
-        self.toggle(.messages)
+        self.toggle(.hellos)
     }
     
     // MARK: -
@@ -107,7 +107,7 @@ class MainLMMContainerViewController: BaseViewController
             self?.matchesIndicatorView.isHidden = count == 0
         }).disposed(by: self.disposeBag)
         
-        self.input.lmmManager.notSeenMessagesCount.subscribe(onNext: { [weak self] count in
+        self.input.lmmManager.notSeenHellosCount.subscribe(onNext: { [weak self] count in
             self?.chatIndicatorView.isHidden = count == 0
         }).disposed(by: self.disposeBag)
         
@@ -158,7 +158,7 @@ class MainLMMContainerViewController: BaseViewController
             self.chatBtn.titleLabel?.font = unselectedFont
             break
             
-        case .messages:
+        case .hellos:
             self.chatBtn.setTitleColor(selectedColor, for: .normal)
             self.chatBtn.titleLabel?.font = selectedFont
             self.likeYouBtn.setTitleColor(unselectedColor, for: .normal)
@@ -166,6 +166,8 @@ class MainLMMContainerViewController: BaseViewController
             self.matchesBtn.setTitleColor(unselectedColor, for: .normal)
             self.matchesBtn.titleLabel?.font = unselectedFont
             break
+            
+        default: return
         }
         
         self.lmmVC?.type.accept(type)
@@ -187,7 +189,7 @@ class MainLMMContainerViewController: BaseViewController
             context: nil
             ).width
         
-        let chatsWidth = ("lmm_tab_messenger".localized() as NSString).boundingRect(
+        let chatsWidth = ("lmm_tab_hellos".localized() as NSString).boundingRect(
             with: CGSize(width: 300.0, height: 200.0),
             options: .usesLineFragmentOrigin,
             attributes: [.font: unselectedFont],

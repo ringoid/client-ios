@@ -14,7 +14,9 @@ enum LMMType: String
 {
     case likesYou = "likesYou"
     case matches = "matches"
-    case messages = "message"
+    case hellos = "hellos"
+    case inbox = "inbox"
+    case sent = "sent"
 }
 
 fileprivate struct FeedState
@@ -38,7 +40,9 @@ class MainLMMViewController: BaseViewController
     fileprivate static var feedsState: [LMMType: FeedState] = [
         .likesYou: FeedState(),
         .matches: FeedState(),
-        .messages: FeedState()
+        .hellos: FeedState(),
+        .inbox: FeedState(),
+        .sent: FeedState()
     ]
     fileprivate static var photoIndexes: [String: Int] = [:]
     fileprivate var isDragged: Bool = false    
@@ -254,8 +258,10 @@ class MainLMMViewController: BaseViewController
         case .matches:
             return self.viewModel?.matches
             
-        case .messages:
-            return self.viewModel?.messages
+        case .hellos:
+            return self.viewModel?.hellos
+            
+        default: return nil
         }
     }
     
@@ -461,7 +467,7 @@ class MainLMMViewController: BaseViewController
         MainLMMViewController.feedsState = [
             .likesYou: FeedState(offset: 0.0),
             .matches: FeedState(offset: 0.0),
-            .messages: FeedState(offset: 0.0)
+            .hellos: FeedState(offset: 0.0)
         ]
     }
     
@@ -527,7 +533,9 @@ class MainLMMViewController: BaseViewController
         switch self.type.value {
         case .likesYou: return "feed_likes_you_empty_no_data".localized()
         case .matches: return "feed_matches_empty_no_data".localized()
-        case .messages: return "feed_messages_empty_no_data".localized()
+        case .hellos: return "feed_hellos_empty_no_data".localized()
+        case .inbox: return "feed_inbox_empty_no_data".localized()
+        case .sent: return "feed_sent_empty_no_data".localized()
         }
     }
     
@@ -723,7 +731,7 @@ extension SourceFeedType
         switch self {
         case .whoLikedMe: return .likesYou
         case .matches: return .matches
-        case .messages: return .messages
+        case .hellos: return .hellos
         default: return nil
         }
     }

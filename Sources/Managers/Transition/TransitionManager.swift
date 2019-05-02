@@ -46,7 +46,8 @@ class TransitionManager
         switch to {
         case .likesYou: self.db.updateOrder(lmm.likesYou.value)
         case .matches: self.db.updateOrder(lmm.matches.value)
-        case .messages: self.db.updateOrder(lmm.messages.value)
+        case .hellos: self.db.updateOrder(lmm.hellos.value)
+        default: return
         }
         
         profile.write({ obj in
@@ -62,14 +63,11 @@ extension LMMType
     func feedType() -> FeedType
     {
         switch self {
-        case .likesYou:
-            return .likesYou
-            
-        case .matches:
-            return .matches
-            
-        case .messages:
-            return .messages
+        case .likesYou: return .likesYou
+        case .matches: return .matches
+        case .hellos: return .hellos
+        case .inbox: return .inbox
+        case .sent: return .sent
         }
     }
 }

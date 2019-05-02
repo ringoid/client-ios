@@ -113,7 +113,7 @@ class MainViewModel
             self.isNotSeenProfilesAvailable.accept(count + self.notSeenLikesCount + self.notSeenMessagesCount != 0)
         }).disposed(by: self.disposeBag)
         
-        self.input.lmmManager.notSeenMessagesCount.subscribe(onNext:{ [weak self] count in
+        self.input.lmmManager.notSeenHellosCount.subscribe(onNext:{ [weak self] count in
             guard let `self` = self else { return }
             
             self.notSeenMessagesCount = count
