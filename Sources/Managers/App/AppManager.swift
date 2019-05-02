@@ -9,6 +9,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import FBSDKCoreKit
 
 class AppManager
 {
@@ -43,6 +44,9 @@ class AppManager
     {
         _ = AnalyticsManager.shared
         
+        let application = UIApplication.shared
+        FBSDKApplicationDelegate.sharedInstance()?.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         self.setupServices(launchOptions)
         self.setupManagers(launchOptions)
         self.setupBindings()
@@ -66,9 +70,21 @@ class AppManager
         self.actionsManager.commit()
     }
     
-    func onOpen(_ url: URL, sourceApplication: String?, annotation: Any) -> Bool
+    func onOpen(_ url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool
     {
-        return self.promotionManager.handleOpen(url, sourceApplication:sourceApplication, annotation:annotation)
+        let application = UIApplication.shared
+        if FBSDKApplicationDelegate.sharedInstance()!.application(application, open: url, options: options) {
+            return true
+        }
+        
+        guard let sourceApp = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+            let annotation = options[UIApplication.OpenURLOptionsKey.annotation] else { return false }
+        
+        if FBSDKApplicationDelegate.sharedInstance()!.application(application, open: url, sourceApplication: sourceApp, annotation: annotation) {
+            return true
+        }
+        
+        return self.promotionManager.handleOpen(url, sourceApplication:sourceApp, annotation:annotation)
     }
     
     func onUserActivity(userActivity: NSUserActivity, restorationHandler: ([UIUserActivityRestoring]?) -> Void) -> Bool

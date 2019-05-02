@@ -1,5 +1,11 @@
 PODS:
   - Alamofire (4.8.1)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
   - Branch (0.25.11):
     - Branch/Core (= 0.25.11)
   - Branch/Core (0.25.11)
@@ -7,6 +13,8 @@ PODS:
     - Fabric (~> 1.9.0)
   - DeviceKit (1.11.0)
   - Fabric (1.9.0)
+  - FBSDKCoreKit (4.40.0):
+    - Bolts (~> 1.9)
   - Firebase/Core (5.18.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.7.0)
@@ -123,6 +131,7 @@ DEPENDENCIES:
   - Crashlytics
   - DeviceKit (~> 1.3)
   - Fabric
+  - FBSDKCoreKit
   - Firebase/Core
   - Firebase/Performance
   - Flurry-iOS-SDK/FlurrySDK
@@ -137,10 +146,12 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Bolts
     - Branch
     - Crashlytics
     - DeviceKit
     - Fabric
+    - FBSDKCoreKit
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
@@ -179,10 +190,12 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Branch: 3cc6dcfd726db42ced22c418c0fb09aa5e90a847
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   DeviceKit: a3a86f8dddbe1317a9a243cdf9646858bf135dce
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  FBSDKCoreKit: ae214474b25033399c131dc81d258e412582a2ba
   Firebase: 02f3281965c075426141a0ce1277e9de6649cab9
   FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
   FirebaseAnalytics: 23851fe602c872130a2c5c55040b302120346cc2
@@ -210,6 +223,6 @@ SPEC CHECKSUMS:
   Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
   Valet: 4af0382d4a94db5c7861504f751884f653437d24
 
-PODFILE CHECKSUM: 3ababcbc68f183ae16f1003b63a8a3116deb8612
+PODFILE CHECKSUM: 3ef3adf6815490dbb3948ea54e3266c6a1065943
 
 COCOAPODS: 1.6.0
