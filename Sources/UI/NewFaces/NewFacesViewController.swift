@@ -308,12 +308,8 @@ class NewFacesViewController: BaseViewController
         
         // Paging case
         let pageRange = lastItemsCount..<totalCount        
-        self.lastFeedIds.append(contentsOf: profiles[pageRange].map({ $0.id }))
-        
-        // Avoiding insertion inside UI cells events triggered update
-        DispatchQueue.main.async {
-            self.tableView.insertRows(at: pageRange.map({ IndexPath(row: $0, section: 0) }), with: .none)
-        }
+        self.lastFeedIds.append(contentsOf: profiles[pageRange].map({ $0.id }))        
+        self.tableView.insertRows(at: pageRange.map({ IndexPath(row: $0, section: 0) }), with: .none)
     }
     
     fileprivate func toggleActivity(_ state: NewFacesFeedActivityState)
