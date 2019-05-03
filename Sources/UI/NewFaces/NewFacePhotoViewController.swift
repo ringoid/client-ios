@@ -36,6 +36,8 @@ class NewFacePhotoViewController: UIViewController
     
     deinit
     {
+        if let url = self.photo?.filepath().url() { ImageService.shared.cancel(url) }
+        
         NotificationCenter.default.removeObserver(self)
     }
     

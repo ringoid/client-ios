@@ -73,6 +73,10 @@ class MainLMMProfileViewController: UIViewController
         return vc
     }
     
+    deinit {
+        self.preheater.stopPreheating()
+    }
+    
     override func viewDidLoad()
     {
         assert(self.input != nil)
