@@ -63,6 +63,7 @@ class AppManager
         self.settingsMananger.updateRemoteSettings()
         
         self.notifications.update()
+        FBSDKAppEvents.activateApp()
     }
     
     func onResignActive()
