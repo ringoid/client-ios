@@ -9,9 +9,9 @@
 import RxSwift
 import RxCocoa
 
-fileprivate let selectedFont = UIFont.systemFont(ofSize: 18.0, weight: .bold
+fileprivate var selectedFont = UIFont.systemFont(ofSize: 18.0, weight: .bold
 )
-fileprivate let unselectedFont = UIFont.systemFont(ofSize: 17.0, weight: .regular)
+fileprivate var unselectedFont = UIFont.systemFont(ofSize: 17.0, weight: .regular)
 fileprivate let selectedColor = UIColor.white
 fileprivate let unselectedColor = UIColor(
     red: 219.0 / 255.0,
@@ -139,7 +139,7 @@ class MainLMMContainerViewController: BaseViewController
         guard self.input.chatManager.actionsManager.checkConnectionState() else { return }
         
         MainLMMContainerViewController.feedTypeCache = type
-        
+
         switch type {
         case .likesYou:
             self.likeYouBtn.setTitleColor(selectedColor, for: .normal)
@@ -195,7 +195,16 @@ class MainLMMContainerViewController: BaseViewController
             context: nil
             ).width
         
-        self.matchesBtnWidthLayout.constant = matchesWidth + 26.0
+        if likesWidth + matchesWidth + chatsWidth > UIScreen.main.bounds.width - 50.0
+        {
+            unselectedFont = UIFont.systemFont(ofSize: 15.0, weight: .regular)
+            selectedFont = UIFont.systemFont(ofSize: 16.0, weight: .bold)
+            
+            self.updateBtnSizes()
+            return
+        }
+        
+        self.matchesBtnWidthLayout.constant = matchesWidth + 20.0
         self.tabsCenterConstraint.constant = (likesWidth - chatsWidth) / 2.0
         self.messagesIndicatorConstraint.constant = chatsWidth + 10.0
         self.view.layoutSubviews()
