@@ -141,7 +141,7 @@
                                     <constraint firstItem="Y1R-St-pNy" firstAttribute="leading" secondItem="t6H-GQ-xYk" secondAttribute="trailing" id="Zwg-1Q-IhN"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerY" secondItem="30C-S0-bMA" secondAttribute="centerY" id="eBn-Oa-T8H"/>
                                     <constraint firstAttribute="trailing" secondItem="Y1R-St-pNy" secondAttribute="trailing" id="iZZ-Wm-K6t"/>
-                                    <constraint firstItem="82V-db-bgk" firstAttribute="leading" secondItem="Y1R-St-pNy" secondAttribute="leading" constant="58" id="rgj-Cw-iLZ"/>
+                                    <constraint firstItem="82V-db-bgk" firstAttribute="leading" secondItem="Y1R-St-pNy" secondAttribute="leading" constant="58" id="rgj-Cw-iLZ" userLabel="ChatIndicatorOffset"/>
                                     <constraint firstItem="82V-db-bgk" firstAttribute="centerY" secondItem="1ef-im-3ec" secondAttribute="centerY" id="xjl-hW-g2k"/>
                                 </constraints>
                             </view>
@@ -171,6 +171,7 @@
                         <outlet property="matchesBtn" destination="t6H-GQ-xYk" id="TUl-ED-bSc"/>
                         <outlet property="matchesBtnWidthLayout" destination="bXK-SU-xmC" id="Kyg-Sy-DCl"/>
                         <outlet property="matchesIndicatorView" destination="QY6-GC-5lz" id="udS-3Q-Kp3"/>
+                        <outlet property="messagesIndicatorConstraint" destination="rgj-Cw-iLZ" id="SvZ-yz-xW3"/>
                         <outlet property="optionsContainer" destination="Ywr-Pj-xRP" id="7t7-9d-4A3"/>
                         <outlet property="tabsCenterConstraint" destination="KRt-C6-PGQ" id="Slx-CV-75P"/>
                         <outlet property="topShadowView" destination="avd-pS-HNL" id="dfD-jO-yuU"/>

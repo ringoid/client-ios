@@ -38,6 +38,7 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet weak var optionsContainer: UIView!
     @IBOutlet weak var matchesBtnWidthLayout: NSLayoutConstraint!
     @IBOutlet weak var tabsCenterConstraint: NSLayoutConstraint!
+    @IBOutlet weak var messagesIndicatorConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var topShadowView: UIView!
     
     override func viewDidLoad()
@@ -194,8 +195,9 @@ class MainLMMContainerViewController: BaseViewController
             context: nil
             ).width
         
-        self.matchesBtnWidthLayout.constant = matchesWidth + 20.0
+        self.matchesBtnWidthLayout.constant = matchesWidth + 26.0
         self.tabsCenterConstraint.constant = (likesWidth - chatsWidth) / 2.0
+        self.messagesIndicatorConstraint.constant = chatsWidth + 10.0
         self.view.layoutSubviews()
     }
 }

@@ -50,7 +50,7 @@
 
 "lmm_tab_likes" = "Likes You";
 "lmm_tab_matches" = "Matches";
-"lmm_tab_messenger" = "Chats";
+"lmm_tab_messenger" = "Inbox";
 
 "login_button" = "Agree and Continue";
 "login_terms" = "By tapping the Agree and Continue button, you confirm that you have read, understood, consent and agree to Ringoid's $terms$ and $policy$, and that you are of legal age and adult, as defined by the country or state from where you access Ringoid.";
