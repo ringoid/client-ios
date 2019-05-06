@@ -36,6 +36,8 @@ class MainLMMViewModel
     let likesYou: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     let matches: BehaviorRelay<[LMMProfile]>  = BehaviorRelay<[LMMProfile]>(value: [])
     let hellos: BehaviorRelay<[LMMProfile]>  = BehaviorRelay<[LMMProfile]>(value: [])
+    let inbox: BehaviorRelay<[LMMProfile]>  = BehaviorRelay<[LMMProfile]>(value: [])
+    let sent: BehaviorRelay<[LMMProfile]>  = BehaviorRelay<[LMMProfile]>(value: [])
     
     var isFetching: BehaviorRelay<Bool> { return self.lmmManager.isFetching }
     
@@ -108,6 +110,14 @@ class MainLMMViewModel
         
         self.lmmManager.hellos.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
             self?.hellos.accept(profiles)
+        }).disposed(by: self.disposeBag)
+        
+        self.lmmManager.inbox.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+            self?.inbox.accept(profiles)
+        }).disposed(by: self.disposeBag)
+        
+        self.lmmManager.sent.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+            self?.sent.accept(profiles)
         }).disposed(by: self.disposeBag)
     }
 }

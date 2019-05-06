@@ -261,7 +261,11 @@ class MainLMMViewController: BaseViewController
         case .hellos:
             return self.viewModel?.hellos
             
-        default: return nil
+        case .inbox:
+            return self.viewModel?.inbox
+            
+        case .sent:
+            return self.viewModel?.sent
         }
     }
     
