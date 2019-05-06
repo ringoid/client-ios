@@ -280,10 +280,12 @@ class NewFacesViewController: BaseViewController
             
             // Diff should be last item
             if totalCount > 0 {
+            self.tableView.isUserInteractionEnabled = false
             self.tableView.scrollToRow(at:  IndexPath(row: totalCount - 1, section: 0), at: .top, animated: true)
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                self.tableView.isUserInteractionEnabled = true
                 self.tableView.performBatchUpdates({
                     self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
                 }, completion: nil)
@@ -308,12 +310,8 @@ class NewFacesViewController: BaseViewController
         
         // Paging case
         let pageRange = lastItemsCount..<totalCount        
-        self.lastFeedIds.append(contentsOf: profiles[pageRange].map({ $0.id }))
-        
-        // Avoiding insertion inside UI cells events triggered update
-        DispatchQueue.main.async {
-            self.tableView.insertRows(at: pageRange.map({ IndexPath(row: $0, section: 0) }), with: .none)
-        }
+        self.lastFeedIds.append(contentsOf: profiles[pageRange].map({ $0.id }))        
+        self.tableView.insertRows(at: pageRange.map({ IndexPath(row: $0, section: 0) }), with: .none)
     }
     
     fileprivate func toggleActivity(_ state: NewFacesFeedActivityState)
@@ -502,6 +500,12 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
         }
         
         newFacesCell.containerView.remove()
+        
+        if let profiles = self.viewModel?.profiles.value, profiles.count != 0, indexPath.row < profiles.count {
+            if let url = profiles[indexPath.row].orderedPhotos().first?.filepath().url() {
+                self.preheater.stopPreheating(with: [url])
+            }
+        }
     }
 }
 

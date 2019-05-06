@@ -335,10 +335,12 @@ class MainLMMViewController: BaseViewController
                 return
             } else if diffCount == 0 { // Last profile should be removed
                 if totalCount > 0 {
+                    self.tableView.isUserInteractionEnabled = false
                     self.tableView.scrollToRow(at:  IndexPath(row: totalCount - 1, section: 0), at: .top, animated: true)
                 }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                    self.tableView.isUserInteractionEnabled = true
                     self.tableView.performBatchUpdates({
                         self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
                     }, completion: nil)

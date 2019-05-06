@@ -173,7 +173,9 @@ class RootViewController: BaseViewController {
         self.appManager.apiService.isAuthorized.asObservable().subscribe ({ [weak self] event in
             if event.element != true {
                 self?.move(to: .auth)
-                self?.appManager.settingsMananger.reset()
+                DispatchQueue.main.async {
+                    self?.appManager.settingsMananger.reset()
+                }
             } else {
                 if self?.appManager.settingsMananger.isFirstLaunch.value == true {
                     self?.move(to: .search)

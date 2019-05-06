@@ -109,9 +109,9 @@ class SettingsManager
         self.lmm.reset()
         self.newFaces.reset()
         self.isFirstLaunch.accept(true)
-        self.db.reset()
         self.fs.reset()
         self.scenario.reset()
+        self.db.reset()
         
         // TODO: separate UI layers
         ChatViewController.resetCache()

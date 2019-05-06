@@ -12,20 +12,29 @@ class ImageService
 {
     static let shared = ImageService()
     
+    fileprivate var taskMap: [URL: ImageTask] = [:]
+    
     private init()
     {
-
+        ImagePipeline.shared = ImagePipeline {
+            $0.isProgressiveDecodingEnabled = true
+        }
     }
     
     func load(_ url: URL, to: UIImageView)
     {
-        let contentModes = ImageLoadingOptions.ContentModes(
-            success: .scaleAspectFill,
-            failure: .scaleAspectFill,
-            placeholder: .scaleAspectFill
-        )
+        let task = ImagePipeline.shared.loadImage(with: url, progress: { (response, _, _) in
+            to.image = response?.image
+        }) { (response, _) in
+            to.image = response?.image
+        }
+        
+        self.taskMap[url] = task
+    }
     
-        let options = ImageLoadingOptions( contentModes: contentModes)
-        Nuke.loadImage(with: url, options: options, into: to)
+    func cancel(_ url: URL)
+    {
+        self.taskMap[url]?.cancel()
+        self.taskMap.removeValue(forKey: url)
     }
 }

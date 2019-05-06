@@ -9,10 +9,10 @@
 import RxSwift
 import RxCocoa
 
-let lmmSelectedFont = UIFont.systemFont(ofSize: 18.0, weight: .bold)
-let lmmUnselectedFont = UIFont.systemFont(ofSize: 17.0, weight: .regular)
-let lmmSelectedColor = UIColor.white
-let lmmUnselectedColor = UIColor(
+var lmmSelectedFont = UIFont.systemFont(ofSize: 18.0, weight: .bold)
+var lmmUnselectedFont = UIFont.systemFont(ofSize: 17.0, weight: .regular)
+var lmmSelectedColor = UIColor.white
+var lmmUnselectedColor = UIColor(
     red: 219.0 / 255.0,
     green: 219.0 / 255.0,
     blue: 219.0 / 255.0,
@@ -37,6 +37,7 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet weak var optionsContainer: UIView!
     @IBOutlet weak var matchesBtnWidthLayout: NSLayoutConstraint!
     @IBOutlet weak var tabsCenterConstraint: NSLayoutConstraint!
+    @IBOutlet weak var messagesIndicatorConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var topShadowView: UIView!
     
     override func viewDidLoad()
@@ -137,7 +138,7 @@ class MainLMMContainerViewController: BaseViewController
         guard self.input.chatManager.actionsManager.checkConnectionState() else { return }
         
         MainLMMContainerViewController.feedTypeCache = type
-        
+
         switch type {
         case .likesYou:
             self.likeYouBtn.setTitleColor(lmmSelectedColor, for: .normal)
@@ -195,8 +196,18 @@ class MainLMMContainerViewController: BaseViewController
             context: nil
             ).width
         
+        if likesWidth + matchesWidth + chatsWidth > UIScreen.main.bounds.width - 50.0
+        {
+            lmmUnselectedFont = UIFont.systemFont(ofSize: 15.0, weight: .regular)
+            lmmSelectedFont = UIFont.systemFont(ofSize: 16.0, weight: .bold)
+            
+            self.updateBtnSizes()
+            return
+        }
+        
         self.matchesBtnWidthLayout.constant = matchesWidth + 20.0
         self.tabsCenterConstraint.constant = (likesWidth - chatsWidth) / 2.0
+        self.messagesIndicatorConstraint.constant = chatsWidth + 10.0
         self.view.layoutSubviews()
     }
 }

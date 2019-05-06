@@ -33,5 +33,6 @@ class ContainerView: TouchThroughView
     {
         self.containedVC?.view.removeFromSuperview()
         self.containedVC?.removeFromParent()
+        self.containedVC = nil
     }
 }
