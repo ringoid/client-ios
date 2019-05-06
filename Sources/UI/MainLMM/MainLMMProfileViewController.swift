@@ -203,14 +203,14 @@ class MainLMMProfileViewController: UIViewController
         UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
             
-            self.messageBtn.isHidden = self.input.feedType != .hellos || state
+            self.messageBtn.isHidden = self.input.feedType != .inbox || state
             self.optionsBtn.isHidden = state
         }).disposed(by: self.diposeBag)
         
         UIManager.shared.chatModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
             
-            self.messageBtn.isHidden = self.input.feedType != .hellos || state
+            self.messageBtn.isHidden = self.input.feedType != .inbox || state
         }).disposed(by: self.diposeBag)
     }
     
