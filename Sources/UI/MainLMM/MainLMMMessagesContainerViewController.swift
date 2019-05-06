@@ -21,7 +21,6 @@ class MainLMMMessagesContainerViewController: BaseViewController
     @IBOutlet weak var inboxBtn: UIButton!
     @IBOutlet weak var sentBtn: UIButton!
     @IBOutlet weak var inboxIndicatorView: UIView!
-    @IBOutlet weak var sentIndicatorView: UIView!
     @IBOutlet weak var optionsContainer: UIView!
     @IBOutlet fileprivate weak var topShadowView: UIView!
     
@@ -31,15 +30,14 @@ class MainLMMMessagesContainerViewController: BaseViewController
         
         super.viewDidLoad()
         
-        self.toggle(MainLMMContainerViewController.feedTypeCache)
+        self.toggle(MainLMMMessagesContainerViewController.feedTypeCache)
         self.setupBindings()
     }
     
     override func updateLocale()
     {
-        self.chatBtn.setTitle("lmm_tab_hellos".localized(), for: .normal)
-        self.likeYouBtn.setTitle("lmm_tab_likes".localized(), for: .normal)
-        self.matchesBtn.setTitle("lmm_tab_matches".localized(), for: .normal)
+        self.inboxBtn.setTitle("lmm_tab_inbox".localized(), for: .normal)
+        self.sentBtn.setTitle("lmm_tab_sent".localized(), for: .normal)
         
         self.updateBtnSizes()
     }
@@ -84,16 +82,8 @@ class MainLMMMessagesContainerViewController: BaseViewController
     
     fileprivate func setupBindings()
     {
-        self.input.lmmManager.notSeenLikesYouCount.subscribe(onNext: { [weak self] count in
-            self?.likesYouIndicatorView.isHidden = count == 0
-        }).disposed(by: self.disposeBag)
-        
-        self.input.lmmManager.notSeenMatchesCount.subscribe(onNext: { [weak self] count in
-            self?.matchesIndicatorView.isHidden = count == 0
-        }).disposed(by: self.disposeBag)
-        
-        self.input.lmmManager.notSeenHellosCount.subscribe(onNext: { [weak self] count in
-            self?.chatIndicatorView.isHidden = count == 0
+        self.input.lmmManager.notSeenInboxCount.subscribe(onNext: { [weak self] count in
+            self?.inboxIndicatorView.isHidden = count == 0
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
@@ -112,9 +102,7 @@ class MainLMMMessagesContainerViewController: BaseViewController
         
         UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             let alpha: CGFloat = state ? 0.0 : 1.0
-            self?.likesYouIndicatorView.alpha = alpha
-            self?.matchesIndicatorView.alpha = alpha
-            self?.chatIndicatorView.alpha = alpha
+            self?.inboxIndicatorView.alpha = alpha
         }).disposed(by: self.disposeBag)
     }
     
@@ -122,7 +110,7 @@ class MainLMMMessagesContainerViewController: BaseViewController
     {
         guard self.input.chatManager.actionsManager.checkConnectionState() else { return }
         
-        MainLMMContainerViewController.feedTypeCache = type
+        MainLMMMessagesContainerViewController.feedTypeCache = type
         
         switch type {
         case .likesYou:

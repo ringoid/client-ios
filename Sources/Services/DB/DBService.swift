@@ -26,8 +26,14 @@ class DBService
     fileprivate var matchesObservable: Observable<[LMMProfile]>!
     fileprivate var matchesObserver: AnyObserver<[LMMProfile]>?
     
-    fileprivate var messagesObservable: Observable<[LMMProfile]>!
-    fileprivate var messagesObserver: AnyObserver<[LMMProfile]>?
+    fileprivate var hellosObservable: Observable<[LMMProfile]>!
+    fileprivate var hellosObserver: AnyObserver<[LMMProfile]>?
+    
+    fileprivate var inboxObservable: Observable<[LMMProfile]>!
+    fileprivate var inboxObserver: AnyObserver<[LMMProfile]>?
+    
+    fileprivate var sentObservable: Observable<[LMMProfile]>!
+    fileprivate var sentObserver: AnyObserver<[LMMProfile]>?
     
     fileprivate var userPhotosObservable: Observable<[UserPhoto]>!
     fileprivate var userPhotosObserver: AnyObserver<[UserPhoto]>?
@@ -61,9 +67,19 @@ class DBService
         return self.matchesObservable
     }
     
-    func messages() -> Observable<[LMMProfile]>
+    func hellos() -> Observable<[LMMProfile]>
     {
-        return self.messagesObservable
+        return self.hellosObservable
+    }
+    
+    func inbox() -> Observable<[LMMProfile]>
+    {
+        return self.inboxObservable
+    }
+    
+    func sent() -> Observable<[LMMProfile]>
+    {
+        return self.sentObservable
     }
     
     func blockProfile(_ id: String)
@@ -242,7 +258,9 @@ class DBService
         self.newFacesObserver?.onNext([])
         self.likesYouObserver?.onNext([])
         self.matchesObserver?.onNext([])
-        self.messagesObserver?.onNext([])
+        self.hellosObserver?.onNext([])
+        self.inboxObserver?.onNext([])
+        self.sentObserver?.onNext([])
         self.userPhotosObserver?.onNext([])
         
         try? self.realm.write {
@@ -279,8 +297,29 @@ class DBService
             return Disposables.create()
         })
         
-        self.messagesObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
-            self?.messagesObserver = observer
+        self.hellosObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
+            self?.hellosObserver = observer
+            self?.updateMessages()
+            
+            return Disposables.create()
+        })
+        
+        self.hellosObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
+            self?.hellosObserver = observer
+            self?.updateMessages()
+            
+            return Disposables.create()
+        })
+        
+        self.inboxObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
+            self?.inboxObserver = observer
+            self?.updateMessages()
+            
+            return Disposables.create()
+        })
+        
+        self.sentObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
+            self?.sentObserver = observer
             self?.updateMessages()
             
             return Disposables.create()
@@ -318,12 +357,28 @@ class DBService
         self.matchesObserver?.onNext(profiles.toArray())
     }
     
-    fileprivate func updateMessages()
+    fileprivate func updateHellos()
     {
         let predicate = NSPredicate(format: "type = %d AND isDeleted = false", FeedType.hellos.rawValue)
         let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition")
         
-        self.messagesObserver?.onNext(profiles.toArray())
+        self.hellosObserver?.onNext(profiles.toArray())
+    }
+    
+    fileprivate func updateInbox()
+    {
+        let predicate = NSPredicate(format: "type = %d AND isDeleted = false", FeedType.inbox.rawValue)
+        let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition")
+        
+        self.inboxObserver?.onNext(profiles.toArray())
+    }
+    
+    fileprivate func updateSent()
+    {
+        let predicate = NSPredicate(format: "type = %d AND isDeleted = false", FeedType.sent.rawValue)
+        let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition")
+        
+        self.sentObserver?.onNext(profiles.toArray())
     }
     
     fileprivate func updateUserPhotos()
@@ -338,7 +393,9 @@ class DBService
     {
         var shouldUpdateNewFaces: Bool = false
         var shouldUpdateLikesYou: Bool = false
-        var shouldUpdateMessages: Bool = false
+        var shouldUpdateHellos: Bool = false
+        var shouldUpdateInbox: Bool = false
+        var shouldUpdateSent: Bool = false
         var shouldUpdateMatches: Bool = false
         var shouldUpdateUserPhotos: Bool = false
         
@@ -349,14 +406,18 @@ class DBService
             if let profile = object as? LMMProfile {
                 if profile.type == FeedType.likesYou.rawValue { shouldUpdateLikesYou = true }
                 if profile.type == FeedType.matches.rawValue { shouldUpdateMatches = true }
-                if profile.type == FeedType.hellos.rawValue { shouldUpdateMessages = true }
+                if profile.type == FeedType.hellos.rawValue { shouldUpdateHellos = true }
+                if profile.type == FeedType.inbox.rawValue { shouldUpdateInbox = true }
+                if profile.type == FeedType.sent.rawValue { shouldUpdateSent = true }
             }
         }
         
         if shouldUpdateNewFaces { self.updateNewFaces() }
         if shouldUpdateLikesYou { self.updateLikesYou() }
-        if shouldUpdateMessages { self.updateMessages() }
+        if shouldUpdateHellos { self.updateHellos() }
         if shouldUpdateMatches { self.updateMatches() }
+        if shouldUpdateInbox { self.updateInbox() }
+        if shouldUpdateSent { self.updateSent() }
         if shouldUpdateUserPhotos { self.updateUserPhotos() }
     }
     

@@ -71,13 +71,28 @@
                                             <action selector="onChatSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="cnL-Sh-td3"/>
                                         </connections>
                                     </button>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SbS-gn-Kxp">
+                                        <rect key="frame" x="176.5" y="29" width="6" height="6"/>
+                                        <color key="backgroundColor" red="1" green="0.01176470588" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="6" id="6qT-WB-a0R"/>
+                                            <constraint firstAttribute="width" constant="6" id="uda-wD-ADv"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="US5-ov-TT8" firstAttribute="leading" secondItem="7Ab-C4-OvU" secondAttribute="trailing" id="4BE-iX-mPc"/>
+                                    <constraint firstItem="SbS-gn-Kxp" firstAttribute="top" secondItem="7Ab-C4-OvU" secondAttribute="top" constant="9" id="FNo-28-x7R"/>
                                     <constraint firstAttribute="bottom" secondItem="7Ab-C4-OvU" secondAttribute="bottom" id="LNx-Ec-HKz"/>
                                     <constraint firstAttribute="bottom" secondItem="US5-ov-TT8" secondAttribute="bottom" id="Num-1b-PpV"/>
                                     <constraint firstItem="7Ab-C4-OvU" firstAttribute="leading" secondItem="uD7-tV-e49" secondAttribute="leading" id="Sw5-jj-jJV"/>
+                                    <constraint firstItem="SbS-gn-Kxp" firstAttribute="trailing" secondItem="7Ab-C4-OvU" secondAttribute="trailing" constant="-5" id="fLZ-Jl-RTk"/>
                                     <constraint firstAttribute="trailing" secondItem="US5-ov-TT8" secondAttribute="trailing" id="okV-t6-tBd"/>
                                     <constraint firstItem="US5-ov-TT8" firstAttribute="width" secondItem="7Ab-C4-OvU" secondAttribute="width" id="rRH-G1-1mb"/>
                                 </constraints>
@@ -102,6 +117,7 @@
                     </view>
                     <connections>
                         <outlet property="inboxBtn" destination="7Ab-C4-OvU" id="bQA-5g-GF6"/>
+                        <outlet property="inboxIndicatorView" destination="SbS-gn-Kxp" id="6zm-0Q-Hgb"/>
                         <outlet property="optionsContainer" destination="uD7-tV-e49" id="UEi-6n-fH8"/>
                         <outlet property="sentBtn" destination="US5-ov-TT8" id="bP9-z9-Rik"/>
                         <outlet property="topShadowView" destination="lKO-p0-TEO" id="Mt0-LE-2fp"/>
