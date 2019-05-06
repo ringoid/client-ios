@@ -14,6 +14,7 @@ enum MainNavigationItem
     case search
     case like
     case profile
+    case messages
     
     case searchAndFetch
     case profileAndFetch

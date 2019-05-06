@@ -21,7 +21,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caf-rw-3yU">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
-                                    <segue destination="5Bt-Xu-MH5" kind="embed" id="ioG-ig-n4r"/>
+                                    <segue destination="5Bt-Xu-MH5" kind="embed" identifier="embed_lmm" id="ioG-ig-n4r"/>
                                 </connections>
                             </containerView>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKO-p0-TEO" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
@@ -52,6 +52,7 @@
                                             <color key="titleShadowColor" white="0.0" alpha="0.24761879279999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
+                                            <action selector="onInboxSelected" destination="w5H-77-xlm" eventType="touchUpInside" id="wzY-5R-SZa"/>
                                             <action selector="onLikesYouSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="ayr-Js-P3g"/>
                                         </connections>
                                     </button>
@@ -69,6 +70,7 @@
                                         </state>
                                         <connections>
                                             <action selector="onChatSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="cnL-Sh-td3"/>
+                                            <action selector="onSentSelected" destination="w5H-77-xlm" eventType="touchUpInside" id="C8j-Kc-2y8"/>
                                         </connections>
                                     </button>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SbS-gn-Kxp">

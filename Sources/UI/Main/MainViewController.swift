@@ -14,6 +14,7 @@ enum SelectionState {
     case search
     case like
     case profile
+    case messages
     
     case searchAndFetch
     case profileAndPick
@@ -34,6 +35,7 @@ class MainViewController: BaseViewController
     @IBOutlet fileprivate weak var searchBtn: UIButton!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
     @IBOutlet fileprivate weak var profileBtn: UIButton!
+    @IBOutlet fileprivate weak var messagesBtn: UIButton!
     @IBOutlet fileprivate weak var profileIndicatorView: UIView!
     @IBOutlet fileprivate weak var lmmNotSeenIndicatorView: UIView!
     @IBOutlet fileprivate weak var effectsView: MainEffectsView!
@@ -114,6 +116,11 @@ class MainViewController: BaseViewController
         self.viewModel?.moveToProfile()
     }
     
+    @IBAction func onMessagesSelected()
+    {
+        self.viewModel?.moveToMessages()
+    }
+    
     // MARK: -
     
     fileprivate func select(_ to: SelectionState)
@@ -125,6 +132,7 @@ class MainViewController: BaseViewController
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.embedNewFaces()
             break
             
@@ -132,20 +140,31 @@ class MainViewController: BaseViewController
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.embedMainLMM()
             break
             
         case .profile:
+            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
             self.embedUserProfile()
             break
             
+        case .messages:
+            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.messagesBtn.setImage(UIImage(named: "main_bar_messages_selected"), for: .normal)
+            self.embedMessages()
+            break
+            
         case .profileAndPick:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
+            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.embedUserProfileAndPick()
             break
             
@@ -153,6 +172,7 @@ class MainViewController: BaseViewController
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
+            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.embedUserProfileAndFetch()
             break
             
@@ -160,6 +180,7 @@ class MainViewController: BaseViewController
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.embedNewFacesAndFetch()
             break
             
@@ -167,6 +188,7 @@ class MainViewController: BaseViewController
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.embedMainLMMAndFetch()
             break
         }
@@ -191,6 +213,12 @@ class MainViewController: BaseViewController
     fileprivate func embedMainLMM()
     {
         guard let vc = self.getMainLMMVC() else { return }
+        self.containerVC.embed(vc)
+    }
+    
+    fileprivate func embedMessages()
+    {
+        guard let vc = self.getMessages() else { return }
         self.containerVC.embed(vc)
     }
     
@@ -254,6 +282,34 @@ class MainViewController: BaseViewController
         )
         
         self.menuVCCache[.like] = vc
+        
+        return vc
+    }
+    
+    fileprivate func getMessages() -> MainLMMMessagesContainerViewController?
+    {
+        if let vc = self.menuVCCache[.messages] {
+            self.containerVC.embed(vc)
+            
+            return nil
+        }
+        
+        let storyboard = Storyboards.mainLMM()
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "messages_vc") as? MainLMMMessagesContainerViewController else { return nil }
+        vc.input = MainLMMVMInput(
+            lmmManager: self.input.lmmManager,
+            actionsManager: self.input.actionsManager,
+            chatManager: self.input.chatManager,
+            profileManager: self.input.profileManager,
+            navigationManager: self.input.navigationManager,
+            newFacesManager: self.input.newFacesManager,
+            notifications: self.input.notifications,
+            location: self.input.location,
+            scenario: self.input.scenario,
+            transition: self.input.transition
+        )
+        
+        self.menuVCCache[.messages] = vc
         
         return vc
     }
@@ -377,6 +433,7 @@ extension MainNavigationItem
         case .search: return .search
         case .like: return .like
         case .profile: return .profile
+        case .messages: return .messages
         
         case .profileAndFetch: return .profileAndFetch
         case .profileAndPick: return .profileAndPick

@@ -90,6 +90,11 @@ class MainViewModel
         self.input.navigationManager.mainItem.accept(.like)
     }
     
+    func moveToMessages()
+    {
+        self.input.navigationManager.mainItem.accept(.messages)
+    }
+    
     func moveToProfile()
     {
         self.input.navigationManager.mainItem.accept(.profile)

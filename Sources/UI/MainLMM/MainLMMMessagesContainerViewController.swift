@@ -37,6 +37,7 @@ class MainLMMMessagesContainerViewController: BaseViewController
     override func updateLocale()
     {
         self.inboxBtn.setTitle("lmm_tab_inbox".localized(), for: .normal)
+        self.sentBtn.setTitle("lmm_tab_sent".localized(), for: .normal)
     }
     
     override func updateTheme()
@@ -60,19 +61,14 @@ class MainLMMMessagesContainerViewController: BaseViewController
     
     // MARK: - Actions
     
-    @IBAction func onLikesYouSelected()
+    @IBAction func onInboxSelected()
     {
-        self.toggle(.likesYou)
+        self.toggle(.inbox)
     }
     
-    @IBAction func onMatchesSelected()
+    @IBAction func onSentSelected()
     {
-        self.toggle(.matches)
-    }
-    
-    @IBAction func onChatSelected()
-    {
-        self.toggle(.hellos)
+        self.toggle(.sent)
     }
     
     // MARK: -

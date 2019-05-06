@@ -72,6 +72,7 @@
                                         <state key="normal" image="main_bar_messages"/>
                                         <connections>
                                             <action selector="onLikeSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="zPE-y2-8cm"/>
+                                            <action selector="onMessagesSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="vUT-KC-bMg"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IC7-wg-nDT">
@@ -139,6 +140,7 @@
                         <outlet property="effectsView" destination="htN-cB-51n" id="eaL-Um-c0a"/>
                         <outlet property="likeBtn" destination="cD4-SP-HxY" id="1U3-57-3RL"/>
                         <outlet property="lmmNotSeenIndicatorView" destination="02Y-W9-hk1" id="Uiu-v3-0Rm"/>
+                        <outlet property="messagesBtn" destination="zq7-Ta-nx8" id="QiA-qo-XwS"/>
                         <outlet property="profileBtn" destination="IC7-wg-nDT" id="oBS-rI-j7m"/>
                         <outlet property="profileIndicatorView" destination="WgY-Bd-4Qd" id="C6e-2O-R9W"/>
                         <outlet property="searchBtn" destination="uLq-rW-238" id="rSh-3X-8n6"/>
