@@ -406,7 +406,7 @@ class MainViewController: BaseViewController
             let size = self.likeBtn.bounds.size
             let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
             let position = self.likeBtn.convert(center, to: nil)
-            self.effectsView.animateMessages(count, from: position)
+            self.effectsView.animateHello(count, from: position)
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.incomingInbox.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
