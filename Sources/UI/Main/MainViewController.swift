@@ -38,6 +38,7 @@ class MainViewController: BaseViewController
     @IBOutlet fileprivate weak var messagesBtn: UIButton!
     @IBOutlet fileprivate weak var profileIndicatorView: UIView!
     @IBOutlet fileprivate weak var lmmNotSeenIndicatorView: UIView!
+    @IBOutlet fileprivate weak var messagesNotSeenIndicatorView: UIView!
     @IBOutlet fileprivate weak var effectsView: MainEffectsView!
     @IBOutlet fileprivate weak var buttonsStackView: UIView!
     @IBOutlet fileprivate weak var bottomShadowView: UIView!
@@ -377,6 +378,10 @@ class MainViewController: BaseViewController
             self?.lmmNotSeenIndicatorView.isHidden = !state
         }).disposed(by: self.disposeBag)
         
+        self.viewModel?.isNotSeenInboxAvailable.asObservable().subscribe(onNext: { [weak self] state in
+            self?.messagesNotSeenIndicatorView.isHidden = !state
+        }).disposed(by: self.disposeBag)
+        
         self.viewModel?.incomingLikesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
@@ -395,7 +400,7 @@ class MainViewController: BaseViewController
             self.effectsView.animateMatches(count, from: position)
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.incomingMessages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
+        self.viewModel?.incomingHellos.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
             let size = self.likeBtn.bounds.size
@@ -407,12 +412,14 @@ class MainViewController: BaseViewController
         UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             let alpha:CGFloat = state ? 0.0 : 1.0            
             self?.lmmNotSeenIndicatorView.alpha = alpha
+            self?.messagesNotSeenIndicatorView.alpha = alpha
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.chatModeEnabled.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             self?.buttonsStackView.isHidden = state
             self?.profileIndicatorView.alpha = state ? 0.0 : 1.0
             self?.lmmNotSeenIndicatorView.alpha = state ? 0.0 : 1.0
+            self?.messagesNotSeenIndicatorView.alpha = state ? 0.0 : 1.0
             self?.bottomShadowView.isHidden = state
         }).disposed(by: self.disposeBag)
         
@@ -420,6 +427,7 @@ class MainViewController: BaseViewController
             self?.buttonsStackView.isHidden = state
             self?.profileIndicatorView.alpha = state ? 0.0 : 1.0
             self?.lmmNotSeenIndicatorView.alpha = state ? 0.0 : 1.0
+            self?.messagesNotSeenIndicatorView.alpha = state ? 0.0 : 1.0
             self?.bottomShadowView.isHidden = state
         }).disposed(by: self.disposeBag)
     }

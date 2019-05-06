@@ -49,7 +49,6 @@ class TransitionManager
         case .hellos: self.db.updateOrder(lmm.hellos.value)
         case .inbox: self.db.updateOrder(lmm.inbox.value)
         case .sent: self.db.updateOrder(lmm.sent.value)
-        default: return
         }
         
         profile.write({ obj in

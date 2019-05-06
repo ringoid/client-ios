@@ -144,7 +144,7 @@ class LMMManager
     }
     
     fileprivate var prevNotSeenHellos: [String] = []
-    var incomingMessages: Observable<Int>
+    var incomingHellos: Observable<Int>
     {
         return self.hellos.asObservable().map { profiles -> Int in
             let notSeenProfiles = profiles.filter({ $0.notSeen })
