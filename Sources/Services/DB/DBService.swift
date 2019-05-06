@@ -82,6 +82,13 @@ class DBService
         return self.sentObservable
     }
     
+    func lmmDuplicates(_ id: String) -> Single<[LMMProfile]>
+    {
+        let predicate = NSPredicate(format: "id = %@ AND isDeleted = false", id)
+        
+        return .just(Array(self.realm.objects(LMMProfile.self).filter(predicate)))
+    }
+    
     func blockProfile(_ id: String)
     {
         let blockedProfile = BlockedProfile()
@@ -121,6 +128,7 @@ class DBService
             }
         }
     }
+    
     
     func forceUpdateLMM()
     {

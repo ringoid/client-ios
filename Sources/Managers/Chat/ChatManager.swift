@@ -15,6 +15,8 @@ class ChatManager
     let actionsManager: ActionsManager
     let scenario: AnalyticsScenarioManager
     
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
     init(_ db: DBService, actionsManager: ActionsManager, scenario: AnalyticsScenarioManager)
     {
         self.db = db
@@ -31,12 +33,17 @@ class ChatManager
         message.wasYouSender = true
         message.orderPosition = profile.messages.sorted(byKeyPath: "orderPosition").last?.orderPosition ?? 0
 
-        profile.write { obj in
-            let lmmProfile = obj as? LMMProfile
-            lmmProfile?.messages.append(message)
-        }
+        self.db.lmmDuplicates(profile.id).subscribe(onSuccess: { profiles in
+            profiles.forEach {
+                $0.write { obj in
+                    let lmmProfile = obj as? LMMProfile
+                    lmmProfile?.messages.append(message)
+                }
+                
+                self.db.forceMarkAsSeen($0)
+            }
+        }).disposed(by: self.disposeBag)
         
-        self.db.forceMarkAsSeen(profile)
 
         let photoId = photo.id
         guard let actionProfile = profile.actionInstance(), let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first else { return }
