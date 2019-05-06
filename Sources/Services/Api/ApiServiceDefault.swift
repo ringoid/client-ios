@@ -156,7 +156,19 @@ class ApiServiceDefault: ApiService
             }
             
             guard let hellosArray = jsonDict["hellos"] as? [[String: Any]] else {
-                let error = createError("ApiService: wrong messages profiles data format", type: .hidden)
+                let error = createError("ApiService: wrong hellos profiles data format", type: .hidden)
+                
+                return .error(error)
+            }
+                
+            guard let inboxArray = jsonDict["inbox"] as? [[String: Any]] else {
+                let error = createError("ApiService: wrong inbox profiles data format", type: .hidden)
+                
+                return .error(error)
+            }
+            
+            guard let sentArray = jsonDict["sent"] as? [[String: Any]] else {
+                let error = createError("ApiService: wrong sent profiles data format", type: .hidden)
                 
                 return .error(error)
             }
@@ -164,7 +176,9 @@ class ApiServiceDefault: ApiService
             return .just((
                 likesYou: likesYouArray.compactMap({ApiLMMProfile.lmmParse($0)}),
                 matches: matchesArray.compactMap({ApiLMMProfile.lmmParse($0)}),
-                hellos: hellosArray.compactMap({ApiLMMProfile.lmmParse($0)})
+                hellos: hellosArray.compactMap({ApiLMMProfile.lmmParse($0)}),
+                inbox: inboxArray.compactMap({ApiLMMProfile.lmmParse($0)}),
+                sent: sentArray.compactMap({ApiLMMProfile.lmmParse($0)})
             ))
             }).do(onError: { error in
                 log("ERROR: feeds/get_lmm: \(error)", level: .high)

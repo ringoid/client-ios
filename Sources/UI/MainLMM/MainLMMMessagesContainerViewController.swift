@@ -37,9 +37,6 @@ class MainLMMMessagesContainerViewController: BaseViewController
     override func updateLocale()
     {
         self.inboxBtn.setTitle("lmm_tab_inbox".localized(), for: .normal)
-        self.sentBtn.setTitle("lmm_tab_sent".localized(), for: .normal)
-        
-        self.updateBtnSizes()
     }
     
     override func updateTheme()
@@ -113,64 +110,23 @@ class MainLMMMessagesContainerViewController: BaseViewController
         MainLMMMessagesContainerViewController.feedTypeCache = type
         
         switch type {
-        case .likesYou:
-            self.likeYouBtn.setTitleColor(lmmSelectedColor, for: .normal)
-            self.likeYouBtn.titleLabel?.font = lmmSelectedFont
-            self.matchesBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.matchesBtn.titleLabel?.font = lmmUnselectedFont
-            self.chatBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.chatBtn.titleLabel?.font = lmmUnselectedFont
+        case .inbox:
+            self.inboxBtn.setTitleColor(lmmSelectedColor, for: .normal)
+            self.inboxBtn.titleLabel?.font = lmmSelectedFont
+            self.sentBtn.setTitleColor(lmmUnselectedColor, for: .normal)
+            self.sentBtn.titleLabel?.font = lmmUnselectedFont
             break
             
-        case .matches:
-            self.matchesBtn.setTitleColor(lmmSelectedColor, for: .normal)
-            self.matchesBtn.titleLabel?.font = lmmSelectedFont
-            self.likeYouBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.likeYouBtn.titleLabel?.font = lmmUnselectedFont
-            self.chatBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.chatBtn.titleLabel?.font = lmmUnselectedFont
+        case .sent:
+            self.sentBtn.setTitleColor(lmmSelectedColor, for: .normal)
+            self.sentBtn.titleLabel?.font = lmmSelectedFont
+            self.inboxBtn.setTitleColor(lmmUnselectedColor, for: .normal)
+            self.inboxBtn.titleLabel?.font = lmmUnselectedFont
             break
-            
-        case .hellos:
-            self.chatBtn.setTitleColor(lmmSelectedColor, for: .normal)
-            self.chatBtn.titleLabel?.font = lmmSelectedFont
-            self.likeYouBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.likeYouBtn.titleLabel?.font = lmmUnselectedFont
-            self.matchesBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.matchesBtn.titleLabel?.font = lmmUnselectedFont
-            break
-            
+
         default: return
         }
         
         self.lmmVC?.type.accept(type)
-    }
-    
-    fileprivate func updateBtnSizes()
-    {
-        let matchesWidth = ("lmm_tab_matches".localized() as NSString).boundingRect(
-            with: CGSize(width: 300.0, height: 200.0),
-            options: .usesLineFragmentOrigin,
-            attributes: [.font: lmmUnselectedFont],
-            context: nil
-            ).width
-        
-        let likesWidth = ("lmm_tab_likes".localized() as NSString).boundingRect(
-            with: CGSize(width: 300.0, height: 200.0),
-            options: .usesLineFragmentOrigin,
-            attributes: [.font: lmmUnselectedFont],
-            context: nil
-            ).width
-        
-        let chatsWidth = ("lmm_tab_hellos".localized() as NSString).boundingRect(
-            with: CGSize(width: 300.0, height: 200.0),
-            options: .usesLineFragmentOrigin,
-            attributes: [.font: lmmUnselectedFont],
-            context: nil
-            ).width
-        
-        self.matchesBtnWidthLayout.constant = matchesWidth + 20.0
-        self.tabsCenterConstraint.constant = (likesWidth - chatsWidth) / 2.0
-        self.view.layoutSubviews()
     }
 }

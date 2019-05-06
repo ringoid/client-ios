@@ -126,7 +126,7 @@ class DBService
     {
         self.updateLikesYou()
         self.updateMatches()
-        self.updateMessages()
+        self.updateHellos()
     }
 
     // MARK: - User
@@ -299,28 +299,21 @@ class DBService
         
         self.hellosObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
             self?.hellosObserver = observer
-            self?.updateMessages()
-            
-            return Disposables.create()
-        })
-        
-        self.hellosObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
-            self?.hellosObserver = observer
-            self?.updateMessages()
+            self?.updateHellos()
             
             return Disposables.create()
         })
         
         self.inboxObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
             self?.inboxObserver = observer
-            self?.updateMessages()
+            self?.updateInbox()
             
             return Disposables.create()
         })
         
         self.sentObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
             self?.sentObserver = observer
-            self?.updateMessages()
+            self?.updateSent()
             
             return Disposables.create()
         })
