@@ -47,6 +47,8 @@ class TransitionManager
         case .likesYou: self.db.updateOrder(lmm.likesYou.value)
         case .matches: self.db.updateOrder(lmm.matches.value)
         case .hellos: self.db.updateOrder(lmm.hellos.value)
+        case .inbox: self.db.updateOrder(lmm.inbox.value)
+        case .sent: self.db.updateOrder(lmm.sent.value)
         default: return
         }
         

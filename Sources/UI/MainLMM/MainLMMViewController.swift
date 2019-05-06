@@ -185,6 +185,12 @@ class MainLMMViewController: BaseViewController
     {
         self.feedDisposeBag = DisposeBag()
         self.profiles()?.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            if let type = self?.type.value, type == .inbox || type == .sent {
+                self?.updateFeed(true)
+                
+                return
+            }
+            
             self?.updateFeed(false)
         }).disposed(by: self.feedDisposeBag)
     }

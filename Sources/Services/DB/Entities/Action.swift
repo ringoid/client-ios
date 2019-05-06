@@ -28,7 +28,6 @@ enum SourceFeedType: String
     case inbox = "inbox"
     case sent = "sent"
     case profile = "profile"
-    case chat = "chat"
 }
 
 class Action: DBServiceObject

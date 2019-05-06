@@ -29,6 +29,13 @@ class NewFacePhotoViewController: UIViewController
     
     fileprivate weak var activeAppearAnimator: UIViewPropertyAnimator?
     fileprivate weak var activeDisappearAnimator: UIViewPropertyAnimator?
+
+    fileprivate let chatSources: [SourceFeedType] = [
+        .hellos,
+        .matches,
+        .inbox,
+        .sent
+    ]
     
     @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var animationLikeView: UIImageView!
@@ -112,12 +119,12 @@ class NewFacePhotoViewController: UIViewController
             return
         }
         
-        if self.input.sourceType == .hellos || self.input.sourceType == .matches {
+        if self.chatSources.contains(self.input.sourceType) {
             self.onChatBlock?()
             
             return
         }
-        
+
         let tapPoint = recognizer.location(in: self.view)
         
         guard let input = self.input, let photoId = self.photo?.id else { return }
@@ -131,12 +138,20 @@ class NewFacePhotoViewController: UIViewController
             source: input.sourceType
         )
         
-        if input.sourceType == .whoLikedMe, let lmmProfile = input.profile as? LMMProfile {
-            self.input.transitionManager.move(lmmProfile, to: .matches)
-            GlobalAnimationManager.shared.playFlyUpIconAnimation(UIImage(named: "feed_effect_match")!, from: self.view, point: tapPoint, scaleFactor: 0.75)
-        } else {
+        switch input.sourceType {
+            
+        case .whoLikedMe:
+            if let lmmProfile = input.profile as? LMMProfile {
+                self.input.transitionManager.move(lmmProfile, to: .matches)
+                GlobalAnimationManager.shared.playFlyUpIconAnimation(UIImage(named: "feed_effect_match")!, from: self.view, point: tapPoint, scaleFactor: 0.75)
+            }
+            
+        case .newFaces:
             self.input.transitionManager.removeAsLiked(input.profile)
             GlobalAnimationManager.shared.playFlyUpIconAnimation(UIImage(named: "feed_effect_like")!, from: self.view, point: tapPoint)
+            break
+            
+        default: return
         }
     }
         
