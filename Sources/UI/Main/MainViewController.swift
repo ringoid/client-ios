@@ -409,6 +409,15 @@ class MainViewController: BaseViewController
             self.effectsView.animateMessages(count, from: position)
         }).disposed(by: self.disposeBag)
         
+        self.viewModel?.incomingInbox.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
+            guard let `self` = self else { return }
+            
+            let size = self.messagesBtn.bounds.size
+            let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
+            let position = self.messagesBtn.convert(center, to: nil)
+            self.effectsView.animateMessages(count, from: position)
+        }).disposed(by: self.disposeBag)
+        
         UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             let alpha:CGFloat = state ? 0.0 : 1.0            
             self?.lmmNotSeenIndicatorView.alpha = alpha

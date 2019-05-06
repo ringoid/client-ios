@@ -61,6 +61,11 @@ class MainViewModel
         return self.input.lmmManager.incomingHellos
     }
     
+    var incomingInbox: Observable<Int>
+    {
+        return self.input.lmmManager.incomingInbox
+    }
+    
     let isNotSeenProfilesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     let isNotSeenInboxAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
