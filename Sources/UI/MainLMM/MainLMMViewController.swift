@@ -484,7 +484,9 @@ class MainLMMViewController: BaseViewController
         MainLMMViewController.feedsState = [
             .likesYou: FeedState(offset: 0.0),
             .matches: FeedState(offset: 0.0),
-            .hellos: FeedState(offset: 0.0)
+            .hellos: FeedState(offset: 0.0),
+            .inbox: FeedState(offset: 0.0),
+            .sent: FeedState(offset: 0.0)
         ]
     }
     
