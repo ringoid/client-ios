@@ -23,7 +23,14 @@ class SentryService
     static let shared = SentryService()
     
     var customerId: String? = nil
-    
+    {
+        didSet {
+            guard let id = self.customerId else { return }
+            
+            Client.shared?.user = User(userId: id)
+        }
+    }
+
     private init() {}
     
     func setup()
@@ -42,15 +49,9 @@ class SentryService
     
     func send(_ sentryEvent: SentryEvent, params: [String: String] = [:])
     {
-        var tags: [String: String] = params
-        
-        if let customerId = self.customerId {
-            tags["customerId"] = customerId
-        }
-        
         let event = Event(level: sentryEvent.level)
         event.message = sentryEvent.rawValue
-        event.tags = tags
+        event.tags = params
         Client.shared?.send(event: event, completion: nil)
     }
 }
