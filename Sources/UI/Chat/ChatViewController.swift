@@ -131,8 +131,15 @@ class ChatViewController: BaseViewController
         
         guard !shouldCloseAutomatically else {
             switch self.input.source {
-            case .matches: self.input.transition.move(input.profile, to: .sent)
-            case .hellos: self.input.transition.move(input.profile, to: .sent)
+            case .matches:
+                self.input.transition.move(input.profile, to: .sent)
+                break
+                
+            case .hellos:
+                self.input.transition.move(input.profile, to: .sent)
+                self.input.transition.moveDuplicate(input.profile, to: .inbox)
+                break
+                
             default: break
             }
             

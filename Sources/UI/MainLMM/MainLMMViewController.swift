@@ -749,6 +749,8 @@ extension SourceFeedType
         case .whoLikedMe: return .likesYou
         case .matches: return .matches
         case .hellos: return .hellos
+        case .inbox: return .inbox
+        case .sent: return .sent
         default: return nil
         }
     }

@@ -53,3 +53,24 @@ extension LMMProfile
         return .outcomingOnly
     }
 }
+
+extension LMMProfile
+{
+    func duplicate() -> LMMProfile
+    {
+        let profile = LMMProfile()
+        profile.id = self.id
+        profile.photos.append(objectsIn: self.photos)
+        profile.messages.append(objectsIn: self.messages)
+        
+        if self.realm?.isInWriteTransaction == true {
+            self.realm?.add(profile)
+        } else {
+            try? self.realm?.write { [weak self] in
+                self?.realm?.add(profile)
+            }
+        }
+        
+        return profile
+    }
+}

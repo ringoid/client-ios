@@ -136,6 +136,12 @@ class DBService
         self.updateMatches()
         self.updateHellos()
     }
+    
+    func forceUpdateMessages()
+    {
+        self.updateInbox()
+        self.updateSent()
+    }
 
     // MARK: - User
     

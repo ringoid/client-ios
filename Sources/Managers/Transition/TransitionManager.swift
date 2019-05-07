@@ -41,7 +41,9 @@ class TransitionManager
     func move(_ profile: LMMProfile, to: LMMType)
     {
         self.afterTransition = true
-        self.destinationObserver.onNext(to.sourceType())        
+        self.destinationObserver.onNext(to.sourceType())
+        
+        guard let from = FeedType(rawValue: profile.type) else { return }
         
         switch to {
         case .likesYou: self.db.updateOrder(lmm.likesYou.value)
@@ -55,7 +57,55 @@ class TransitionManager
             (obj as? LMMProfile)?.type = to.feedType().rawValue
             (obj as? LMMProfile)?.notSeen = false
         })
-        self.db.forceUpdateLMM()
+        
+        switch to {
+        case .likesYou, .matches, .hellos: self.db.forceUpdateLMM()
+        case .inbox, .sent: self.db.forceUpdateMessages()
+        }
+        
+        guard from != to.feedType() else { return }
+        
+        switch from {
+        case .likesYou, .matches, .hellos: self.db.forceUpdateLMM()
+        case .inbox, .sent: self.db.forceUpdateMessages()
+        case .unknown: return
+        }
+    }
+    
+    func moveDuplicate(_ profile: LMMProfile, to: LMMType)
+    {
+        self.afterTransition = true
+        self.destinationObserver.onNext(to.sourceType())
+        
+        guard let from = FeedType(rawValue: profile.type) else { return }
+        
+        switch to {
+        case .likesYou: self.db.updateOrder(lmm.likesYou.value)
+        case .matches: self.db.updateOrder(lmm.matches.value)
+        case .hellos: self.db.updateOrder(lmm.hellos.value)
+        case .inbox: self.db.updateOrder(lmm.inbox.value)
+        case .sent: self.db.updateOrder(lmm.sent.value)
+        }
+        
+        let duplicate = profile.duplicate()
+        
+        duplicate.write({ obj in
+            (obj as? LMMProfile)?.type = to.feedType().rawValue
+            (obj as? LMMProfile)?.notSeen = false
+        })
+        
+        switch to {
+        case .likesYou, .matches, .hellos: self.db.forceUpdateLMM()
+        case .inbox, .sent: self.db.forceUpdateMessages()
+        }
+        
+        guard from != to.feedType() else { return }
+        
+        switch from {
+        case .likesYou, .matches, .hellos: self.db.forceUpdateLMM()
+        case .inbox, .sent: self.db.forceUpdateMessages()
+        case .unknown: return
+        }
     }
 }
 
