@@ -199,7 +199,7 @@ class LMMManager
             let inbox = createProfiles(result.inbox, type: .inbox)
             let sent = createProfiles(result.sent, type: .sent)
             
-            (hellos + matches + localLikesYou + inbox + sent).forEach { remoteProfile in
+            (matches + inbox + sent).forEach { remoteProfile in
                 guard remoteProfile.messages.count != 0 else { return }
                 remoteProfile.notSeen = true
                 
