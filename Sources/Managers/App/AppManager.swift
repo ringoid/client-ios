@@ -39,6 +39,7 @@ class AppManager
     var transitionManager: TransitionManager!
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var resignDate: Date? = nil
     
     func onFinishLaunching(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
@@ -64,10 +65,16 @@ class AppManager
         
         self.notifications.update()
         FBSDKAppEvents.activateApp()
+        
+        if let resignDate = self.resignDate, Date().timeIntervalSince(resignDate) > 300.0 {
+            self.lmmManager.refreshInBackground(.profile)
+            self.profileManager.refreshInBackground()
+        }
     }
     
     func onResignActive()
     {
+        self.resignDate = Date()
         self.actionsManager.commit()
     }
     

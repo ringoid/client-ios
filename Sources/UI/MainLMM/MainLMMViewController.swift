@@ -351,9 +351,14 @@ class MainLMMViewController: BaseViewController
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                     self.tableView.isUserInteractionEnabled = true
-                    self.tableView.performBatchUpdates({
-                        self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
-                    }, completion: nil)
+                    
+                    if self.profiles()?.value.count == totalCount - 1 {
+                        self.tableView.performBatchUpdates({
+                            self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
+                        }, completion: nil)
+                    } else {
+                        self.tableView.reloadData()
+                    }
                 }
                 
                 return
