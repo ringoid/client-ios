@@ -112,8 +112,82 @@ class NewFacesViewModel
     
     fileprivate func setupBindings()
     {
-        self.newFacesManager.profiles.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] updatedProfiles in
-            self?.profiles.accept(updatedProfiles)
+        
+        // New faces
+        self.newFacesManager.profiles.subscribe(onNext: { [weak self] updatedProfiles in
+            guard let `self` = self else { return }
+            
+            var lmhisMap: [String: Bool] = [:]
+            (
+                self.lmmManager.likesYou.value +
+                    self.lmmManager.matches.value +
+                    self.lmmManager.hellos.value +
+                    self.lmmManager.inbox.value +
+                    self.lmmManager.sent.value
+            ).forEach({ profile in
+                lmhisMap[profile.id] = true
+            })
+            
+            self.profiles.accept(updatedProfiles.filter({ lmhisMap[$0.id] == nil }))
+        }).disposed(by: self.disposeBag)
+        
+        // LMHIS
+        self.lmmManager.likesYou.subscribe(onNext: { [weak self] lmhisProfiles in
+            guard let `self` = self else { return }
+            
+            var lmhisMap: [String: Bool] = [:]
+            lmhisProfiles.forEach({ profile in
+                lmhisMap[profile.id] = true
+            })
+            
+            self.profiles.accept(self.newFacesManager.profiles.value.filter({ lmhisMap[$0.id] == nil }))
+        }).disposed(by: self.disposeBag)
+        
+        self.lmmManager.matches.subscribe(onNext: { [weak self] lmhisProfiles in
+            guard let `self` = self else { return }
+            
+            var lmhisMap: [String: Bool] = [:]
+            lmhisProfiles.forEach({ profile in
+                lmhisMap[profile.id] = true
+            })
+            
+            self.profiles.accept(self.newFacesManager.profiles.value.filter({ lmhisMap[$0.id] == nil }))
+        }).disposed(by: self.disposeBag)
+        
+        
+        self.lmmManager.hellos.subscribe(onNext: { [weak self] lmhisProfiles in
+            guard let `self` = self else { return }
+            
+            var lmhisMap: [String: Bool] = [:]
+            lmhisProfiles.forEach({ profile in
+                lmhisMap[profile.id] = true
+            })
+            
+            self.profiles.accept(self.newFacesManager.profiles.value.filter({ lmhisMap[$0.id] == nil }))
+        }).disposed(by: self.disposeBag)
+        
+        
+        self.lmmManager.inbox.subscribe(onNext: { [weak self] lmhisProfiles in
+            guard let `self` = self else { return }
+            
+            var lmhisMap: [String: Bool] = [:]
+            lmhisProfiles.forEach({ profile in
+                lmhisMap[profile.id] = true
+            })
+            
+            self.profiles.accept(self.newFacesManager.profiles.value.filter({ lmhisMap[$0.id] == nil }))
+        }).disposed(by: self.disposeBag)
+        
+        
+        self.lmmManager.sent.subscribe(onNext: { [weak self] lmhisProfiles in
+            guard let `self` = self else { return }
+            
+            var lmhisMap: [String: Bool] = [:]
+            lmhisProfiles.forEach({ profile in
+                lmhisMap[profile.id] = true
+            })
+            
+            self.profiles.accept(self.newFacesManager.profiles.value.filter({ lmhisMap[$0.id] == nil }))
         }).disposed(by: self.disposeBag)
     }
 }
