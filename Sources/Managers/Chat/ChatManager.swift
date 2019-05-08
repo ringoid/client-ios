@@ -14,6 +14,7 @@ class ChatManager
     let db: DBService
     let actionsManager: ActionsManager
     let scenario: AnalyticsScenarioManager
+    let lastSentProfileId: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
@@ -54,6 +55,8 @@ class ChatManager
             photo: actionPhoto,
             source: source
         )
+        
+        self.lastSentProfileId.accept(profile.id)
     }
     
     func markAsRead(_ profile: LMMProfile)

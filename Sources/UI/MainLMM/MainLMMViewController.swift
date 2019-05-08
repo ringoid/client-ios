@@ -179,6 +179,13 @@ class MainLMMViewController: BaseViewController
             
             MainLMMViewController.feedsState[lmmType] = FeedState()
         }).disposed(by: self.disposeBag)
+        
+        self.input.chatManager.lastSentProfileId.subscribe(onNext: { [weak self] profileId in
+            guard let id = profileId else { return }
+            
+            MainLMMViewController.feedsState[.sent] = FeedState()
+            self?.input.lmmManager.topOrder(id, type: .sent)
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func updateBindings()
