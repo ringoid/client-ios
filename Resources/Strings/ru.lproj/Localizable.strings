@@ -49,6 +49,8 @@
 "feed_likes_you_empty_no_data" = "Лайков ещё нет";
 "feed_matches_empty_no_data" = "Взаимных лайков ещё нет";
 "feed_hellos_empty_no_data" = "Сообщений ещё нет";
+"feed_inbox_empty_no_data" = "Входящих ещё нет";
+"feed_sent_empty_no_data" = "Отправленных ещё нет";
 
 "lmm_tab_likes" = "Ты нравишься";
 "lmm_tab_matches" = "Взаимно";

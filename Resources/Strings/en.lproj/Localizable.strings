@@ -47,6 +47,8 @@
 "feed_likes_you_empty_no_data" = "No likes yet";
 "feed_matches_empty_no_data" = "No mutual likes yet";
 "feed_hellos_empty_no_data" = "No messages yet";
+"feed_inbox_empty_no_data" = "No messages yet";
+"feed_sent_empty_no_data" = "No messages yet";
 
 "lmm_tab_likes" = "Likes You";
 "lmm_tab_matches" = "Matches";
