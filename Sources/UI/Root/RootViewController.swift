@@ -181,7 +181,7 @@ class RootViewController: BaseViewController {
                     self?.move(to: .search)
                      self?.appManager.settingsMananger.isFirstLaunch.accept(false)
                 } else {
-                    self?.move(to: .main)
+                    self?.move(to: .search)
                 }
             }
         }).disposed(by: disposeBag)

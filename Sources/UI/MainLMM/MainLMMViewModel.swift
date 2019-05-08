@@ -68,7 +68,6 @@ class MainLMMViewModel
     
     func refresh(_ from: LMMType) -> Observable<Void>
     {
-        self.newFacesManager.purgeInBackground()
         self.profileManager.refreshInBackground()
         
         return self.lmmManager.refreshProtected(from.sourceType())

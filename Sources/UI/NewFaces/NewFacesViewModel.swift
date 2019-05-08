@@ -50,7 +50,7 @@ class NewFacesViewModel
         self.notifications = input.notifications
         self.location = input.location
         
-        self.setupBindings()
+        self.setupBindings()        
     }
     
     func refresh() -> Observable<Void>

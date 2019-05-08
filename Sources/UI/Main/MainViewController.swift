@@ -25,7 +25,7 @@ enum SelectionState {
 class MainViewController: BaseViewController
 {
     var input: MainVMInput!
-    var defaultState: SelectionState = .like
+    var defaultState: SelectionState = .searchAndFetch
     
     fileprivate var viewModel: MainViewModel?
     fileprivate var containerVC: ContainerViewController!
