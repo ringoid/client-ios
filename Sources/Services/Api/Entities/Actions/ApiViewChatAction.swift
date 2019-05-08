@@ -16,7 +16,7 @@ class ApiViewChatAction: ApiAction
     override func json() -> [String: Any] {
         var jsonObj = super.json()
         jsonObj["viewChatCount"] = self.viewChatCount
-        jsonObj["viewChatTimeMillis"] = self.viewChatTime
+        jsonObj["viewChatTimeMillis"] = (self.viewChatTime > 0) ? self.viewChatTime : 1
         
         return jsonObj
     }
