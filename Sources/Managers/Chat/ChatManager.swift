@@ -32,13 +32,14 @@ class ChatManager
         let message = Message()
         message.text = text
         message.wasYouSender = true
-        message.orderPosition = profile.messages.sorted(byKeyPath: "orderPosition").last?.orderPosition ?? 0
-
+        
         self.db.lmmDuplicates(profile.id).subscribe(onSuccess: { profiles in
             profiles.forEach {
                 $0.write { obj in
                     let lmmProfile = obj as? LMMProfile
-                    lmmProfile?.messages.append(message)
+                    let duplicateMessage = message.duplicate()
+                    duplicateMessage.orderPosition = lmmProfile?.messages.sorted(byKeyPath: "orderPosition").last?.orderPosition ?? 0
+                    lmmProfile?.messages.append(duplicateMessage)
                 }
                 
                 self.db.forceMarkAsSeen($0)
