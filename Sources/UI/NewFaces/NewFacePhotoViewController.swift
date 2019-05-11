@@ -142,13 +142,13 @@ class NewFacePhotoViewController: UIViewController
             
         case .whoLikedMe:
             if let lmmProfile = input.profile as? LMMProfile {
-                self.input.transitionManager.move(lmmProfile, to: .matches)
                 GlobalAnimationManager.shared.playFlyUpIconAnimation(UIImage(named: "feed_effect_match")!, from: self.view, point: tapPoint, scaleFactor: 0.75)
+                self.input.transitionManager.move(lmmProfile, to: .matches)
             }
             
         case .newFaces:
-            self.input.transitionManager.removeAsLiked(input.profile)
             GlobalAnimationManager.shared.playFlyUpIconAnimation(UIImage(named: "feed_effect_like")!, from: self.view, point: tapPoint)
+            self.input.transitionManager.removeAsLiked(input.profile)
             break
             
         default: return
