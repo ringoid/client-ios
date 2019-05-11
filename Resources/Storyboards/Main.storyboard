@@ -68,7 +68,6 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="main_bar_messages"/>
                                         <connections>
-                                            <action selector="onLikeSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="zPE-y2-8cm"/>
                                             <action selector="onMessagesSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="vUT-KC-bMg"/>
                                         </connections>
                                     </button>
