@@ -31,6 +31,7 @@ class MainViewController: BaseViewController
     fileprivate var containerVC: ContainerViewController!
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var menuVCCache: [SelectionState: UIViewController] = [:]
+    fileprivate var prevState: SelectionState? = nil
     
     @IBOutlet fileprivate weak var searchBtn: UIButton!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
@@ -127,6 +128,10 @@ class MainViewController: BaseViewController
     fileprivate func select(_ to: SelectionState)
     {
         self.input.actionsManager.commit()
+        
+        if let prevState = self.prevState, prevState == to { return }
+        
+        self.prevState = to
         
         switch to {
         case .search:
