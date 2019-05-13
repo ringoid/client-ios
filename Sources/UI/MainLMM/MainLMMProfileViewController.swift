@@ -40,6 +40,7 @@ class MainLMMProfileViewController: UIViewController
     fileprivate var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [NewFacePhotoViewController] = []
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
+    fileprivate var preheaterTimer: Timer?
     
     @IBOutlet fileprivate weak var messageBtn: UIButton!
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
@@ -74,6 +75,9 @@ class MainLMMProfileViewController: UIViewController
     }
     
     deinit {
+        self.preheaterTimer?.invalidate()
+        self.preheaterTimer = nil
+        
         self.preheater.stopPreheating()
     }
     
@@ -85,6 +89,7 @@ class MainLMMProfileViewController: UIViewController
         
         // TODO: Move logic inside view model
         self.setupBindings()
+        self.setupPreheaterTimer()
         
         guard !self.input.profile.isInvalidated else { return }
         
@@ -332,6 +337,19 @@ class MainLMMProfileViewController: UIViewController
     fileprivate func discreetOpacity(for opacity: CGFloat) -> CGFloat
     {
         return opacity < 0.5 ? 0.0 : 1.0
+    }
+    
+    fileprivate func setupPreheaterTimer()
+    {
+        self.preheaterTimer?.invalidate()
+        self.preheaterTimer = nil
+        
+        let timer = Timer(timeInterval: 0.75, repeats: false) { [weak self] _ in
+            self?.preheatSecondPhoto()
+        }
+        
+        self.preheaterTimer = timer
+        RunLoop.main.add(timer, forMode: .common)
     }
 }
 
