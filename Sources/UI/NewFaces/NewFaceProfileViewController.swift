@@ -33,6 +33,7 @@ class NewFaceProfileViewController: UIViewController
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var preheaterTimer: Timer?
     fileprivate var pagesTimer: Timer?
+    fileprivate var isPagesShown: Bool = false
     
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
@@ -130,6 +131,10 @@ class NewFaceProfileViewController: UIViewController
             self?.pagesControl.alpha = 1.0
         })
         
+        animator.addCompletion { [weak self] _ in
+            self?.isPagesShown = true
+        }
+        
         animator.startAnimation()
     }
     
@@ -222,6 +227,10 @@ class NewFaceProfileViewController: UIViewController
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
     {
         self.optionsBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
+        
+        if self.isPagesShown  {
+            self.pagesControl.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
+        }
     }
     
     fileprivate func bottomOpacityFor(_ frame: CGRect, offset: CGFloat) -> CGFloat?
