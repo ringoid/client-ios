@@ -559,6 +559,7 @@ extension NewFacesViewController: UIScrollViewDelegate
             guard let vc = cell.containerView.containedVC as? NewFaceProfileViewController else { return }
            
             vc.preheatSecondPhoto()
+            vc.showPages()
         }
     }
 }

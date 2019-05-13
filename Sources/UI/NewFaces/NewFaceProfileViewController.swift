@@ -32,9 +32,11 @@ class NewFaceProfileViewController: UIViewController
     fileprivate var photosVCs: [NewFacePhotoViewController] = []
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var preheaterTimer: Timer?
+    fileprivate var pagesTimer: Timer?
     
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
+    @IBOutlet fileprivate weak var pagesControl: UIPageControl!
     
     static func create(_ profile: NewFaceProfile,
                        initialIndex: Int,
@@ -66,6 +68,9 @@ class NewFaceProfileViewController: UIViewController
         self.preheaterTimer?.invalidate()
         self.preheaterTimer = nil
         
+        self.pagesTimer?.invalidate()
+        self.pagesTimer = nil
+        
         self.preheater.stopPreheating()
     }
     
@@ -77,6 +82,7 @@ class NewFaceProfileViewController: UIViewController
         
         self.setupBindings()
         self.setupPreheaterTimer()
+        self.setupPagesTimer()
         // TODO: Move all logic inside view model
         
         guard !self.input.profile.isInvalidated else { return }
@@ -91,6 +97,8 @@ class NewFaceProfileViewController: UIViewController
         
         let vc = self.photosVCs[self.currentIndex.value]
         self.pagesVC?.setViewControllers([vc], direction: .forward, animated: false, completion: nil)
+        self.pagesControl.numberOfPages = self.input.profile.orderedPhotos().count
+        self.pagesControl.currentPage = self.currentIndex.value
         
         #if STAGE
         self.profileIdLabel.text = "Profile: " +  String(self.input.profile.id.suffix(4))
@@ -114,6 +122,15 @@ class NewFaceProfileViewController: UIViewController
         guard let url = self.input.profile.orderedPhotos()[1].filepath().url() else { return }
         
         self.preheater.startPreheating(with: [url])
+    }
+    
+    func showPages()
+    {
+        let animator = UIViewPropertyAnimator(duration: 0.2, curve: .easeIn, animations: { [weak self] in
+            self?.pagesControl.alpha = 1.0
+        })
+        
+        animator.startAnimation()
     }
     
     // MARK: - Actions
@@ -239,6 +256,19 @@ class NewFaceProfileViewController: UIViewController
         self.preheaterTimer = timer
         RunLoop.main.add(timer, forMode: .common)
     }
+    
+    fileprivate func setupPagesTimer()
+    {
+        self.pagesTimer?.invalidate()
+        self.pagesTimer = nil
+        
+        let timer = Timer(timeInterval: 1.75, repeats: false) { [weak self] _ in
+            self?.showPages()
+        }
+        
+        self.pagesTimer = timer
+        RunLoop.main.add(timer, forMode: .common)
+    }
 }
 
 extension NewFaceProfileViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource
@@ -278,6 +308,7 @@ extension NewFaceProfileViewController: UIPageViewControllerDelegate, UIPageView
         guard finished, completed else { return }
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
+        self.pagesControl.currentPage = index
         self.currentIndex.accept(index)
     }
 }
