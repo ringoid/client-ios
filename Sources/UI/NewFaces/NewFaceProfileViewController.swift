@@ -32,8 +32,6 @@ class NewFaceProfileViewController: UIViewController
     fileprivate var photosVCs: [NewFacePhotoViewController] = []
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var preheaterTimer: Timer?
-    fileprivate var pagesTimer: Timer?
-    fileprivate var isPagesShown: Bool = false
     
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
@@ -68,10 +66,7 @@ class NewFaceProfileViewController: UIViewController
     deinit {
         self.preheaterTimer?.invalidate()
         self.preheaterTimer = nil
-        
-        self.pagesTimer?.invalidate()
-        self.pagesTimer = nil
-        
+
         self.preheater.stopPreheating()
     }
     
@@ -82,8 +77,7 @@ class NewFaceProfileViewController: UIViewController
         super.viewDidLoad()
         
         self.setupBindings()
-        self.setupPreheaterTimer()
-        self.setupPagesTimer()
+        self.setupPreheaterTimer()        
         // TODO: Move all logic inside view model
         
         guard !self.input.profile.isInvalidated else { return }
@@ -123,19 +117,6 @@ class NewFaceProfileViewController: UIViewController
         guard let url = self.input.profile.orderedPhotos()[1].filepath().url() else { return }
         
         self.preheater.startPreheating(with: [url])
-    }
-    
-    func showPages()
-    {
-        let animator = UIViewPropertyAnimator(duration: 0.2, curve: .easeIn, animations: { [weak self] in
-            self?.pagesControl.alpha = 1.0
-        })
-        
-        animator.addCompletion { [weak self] _ in
-            self?.isPagesShown = true
-        }
-        
-        animator.startAnimation()
     }
     
     // MARK: - Actions
@@ -227,10 +208,7 @@ class NewFaceProfileViewController: UIViewController
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
     {
         self.optionsBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
-        
-        if self.isPagesShown  {
-            self.pagesControl.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
-        }
+        self.pagesControl.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
     }
     
     fileprivate func bottomOpacityFor(_ frame: CGRect, offset: CGFloat) -> CGFloat?
@@ -263,19 +241,6 @@ class NewFaceProfileViewController: UIViewController
         }
         
         self.preheaterTimer = timer
-        RunLoop.main.add(timer, forMode: .common)
-    }
-    
-    fileprivate func setupPagesTimer()
-    {
-        self.pagesTimer?.invalidate()
-        self.pagesTimer = nil
-        
-        let timer = Timer(timeInterval: 1.75, repeats: false) { [weak self] _ in
-            self?.showPages()
-        }
-        
-        self.pagesTimer = timer
         RunLoop.main.add(timer, forMode: .common)
     }
 }

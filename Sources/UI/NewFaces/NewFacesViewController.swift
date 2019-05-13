@@ -558,8 +558,7 @@ extension NewFacesViewController: UIScrollViewDelegate
         self.visibleCells.forEach { cell in
             guard let vc = cell.containerView.containedVC as? NewFaceProfileViewController else { return }
            
-            vc.preheatSecondPhoto()
-            vc.showPages()
+            vc.preheatSecondPhoto()        
         }
     }
 }
