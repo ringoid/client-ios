@@ -505,12 +505,6 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
         }
         
         newFacesCell.containerView.remove()
-        
-        if let profiles = self.viewModel?.profiles.value, profiles.count != 0, indexPath.row < profiles.count {
-            if let url = profiles[indexPath.row].orderedPhotos().first?.filepath().url() {
-                self.preheater.stopPreheating(with: [url])
-            }
-        }
     }
 }
 
