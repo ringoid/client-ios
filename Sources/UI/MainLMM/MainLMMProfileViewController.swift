@@ -47,6 +47,7 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var messageBtnTopConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     @IBOutlet fileprivate weak var seenLabel: UILabel!
+    @IBOutlet fileprivate weak var pagesControl: UIPageControl!
     
     static func create(_ profile: LMMProfile,
                        feedType: LMMType,
@@ -127,6 +128,9 @@ class MainLMMProfileViewController: UIViewController
         let vc = self.photosVCs[index]
         self.pagesVC?.setViewControllers([vc], direction: .forward, animated: false, completion: nil)
         self.currentIndex.accept(index)
+        
+        self.pagesControl.numberOfPages = self.input.profile.orderedPhotos().count
+        self.pagesControl.currentPage = index
         
         #if STAGE
         self.profileIdLabel.text = "Profile: " + String(self.input.profile.id.suffix(4))
@@ -390,6 +394,7 @@ extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageView
         guard finished, completed else { return }
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
+        self.pagesControl.currentPage = index
         self.currentIndex.accept(index)
     }
 }
