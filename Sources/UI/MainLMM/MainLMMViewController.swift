@@ -138,6 +138,7 @@ class MainLMMViewController: BaseViewController
         self.hideScrollToTopOption()
         let topOffset = self.view.safeAreaInsets.top + self.tableView.contentInset.top
         self.tableView.setContentOffset(CGPoint(x: 0.0, y: -topOffset), animated: false)
+        MainLMMViewController.feedsState[self.type.value]?.offset = 0.0
         self.input.actionsManager.commit()
     }
     
@@ -723,6 +724,8 @@ extension MainLMMViewController: UIScrollViewDelegate
         
         if offset > -1.0 * self.tableView.contentInset.top {
             MainLMMViewController.feedsState[self.type.value]?.offset = offset
+        } else {
+            MainLMMViewController.feedsState[self.type.value]?.offset = 0.0
         }
         
         // Scroll to top FAB
