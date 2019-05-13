@@ -335,7 +335,6 @@ class NewFacesViewController: BaseViewController
             
         case .fetching:
             self.emptyFeedLabel.isHidden = true
-            self.ringoidTitleLabel.isHidden = true
             break
             
         case .empty:
