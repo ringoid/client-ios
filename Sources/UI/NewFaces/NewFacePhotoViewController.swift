@@ -31,7 +31,7 @@ class NewFacePhotoViewController: UIViewController
     fileprivate weak var activeDisappearAnimator: UIViewPropertyAnimator?
 
     fileprivate let chatSources: [SourceFeedType] = [
-        .hellos,
+        .messages,
         .matches,
         .inbox,
         .sent
@@ -211,7 +211,7 @@ extension LMMType
         switch self {
         case .likesYou: return .whoLikedMe
         case .matches: return .matches
-        case .hellos: return .hellos
+        case .messages: return .messages
         case .inbox: return .inbox
         case .sent: return .sent
         }

@@ -48,7 +48,7 @@ class TransitionManager
         switch to {
         case .likesYou: self.db.updateOrder(lmm.likesYou.value)
         case .matches: self.db.updateOrder(lmm.matches.value)
-        case .hellos: self.db.updateOrder(lmm.hellos.value)
+        case .messages: self.db.updateOrder(lmm.messages.value)
         case .inbox: self.db.updateOrder(lmm.inbox.value)
         case .sent: self.db.updateOrder(lmm.sent.value)
         }
@@ -59,14 +59,14 @@ class TransitionManager
         })
         
         switch to {
-        case .likesYou, .matches, .hellos: self.db.forceUpdateLMM()
+        case .likesYou, .matches, .messages: self.db.forceUpdateLMM()
         case .inbox, .sent: self.db.forceUpdateMessages()
         }
         
         guard from != to.feedType() else { return }
         
         switch from {
-        case .likesYou, .matches, .hellos: self.db.forceUpdateLMM()
+        case .likesYou, .matches, .messages: self.db.forceUpdateLMM()
         case .inbox, .sent: self.db.forceUpdateMessages()
         case .unknown: return
         }
@@ -82,7 +82,7 @@ class TransitionManager
         switch to {
         case .likesYou: self.db.updateOrder(lmm.likesYou.value)
         case .matches: self.db.updateOrder(lmm.matches.value)
-        case .hellos: self.db.updateOrder(lmm.hellos.value)
+        case .messages: self.db.updateOrder(lmm.messages.value)
         case .inbox: self.db.updateOrder(lmm.inbox.value)
         case .sent: self.db.updateOrder(lmm.sent.value)
         }
@@ -95,14 +95,14 @@ class TransitionManager
         })
         
         switch to {
-        case .likesYou, .matches, .hellos: self.db.forceUpdateLMM()
+        case .likesYou, .matches, .messages: self.db.forceUpdateLMM()
         case .inbox, .sent: self.db.forceUpdateMessages()
         }
         
         guard from != to.feedType() else { return }
         
         switch from {
-        case .likesYou, .matches, .hellos: self.db.forceUpdateLMM()
+        case .likesYou, .matches, .messages: self.db.forceUpdateLMM()
         case .inbox, .sent: self.db.forceUpdateMessages()
         case .unknown: return
         }
@@ -116,7 +116,7 @@ extension LMMType
         switch self {
         case .likesYou: return .likesYou
         case .matches: return .matches
-        case .hellos: return .hellos
+        case .messages: return .messages
         case .inbox: return .inbox
         case .sent: return .sent
         }

@@ -13,7 +13,7 @@ enum FeedType: Int
     case unknown = 0
     case likesYou = 1
     case matches = 2
-    case hellos = 3
+    case messages = 3
     case inbox = 4
     case sent = 5
 }

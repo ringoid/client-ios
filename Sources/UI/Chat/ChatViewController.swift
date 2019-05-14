@@ -17,8 +17,7 @@ class ChatViewController: BaseViewController
     
     fileprivate var viewModel: ChatViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
-    fileprivate let singleMessageSources: [SourceFeedType] = [
-        .hellos,
+    fileprivate let singleMessageSources: [SourceFeedType] = [    
         .matches,        
     ]
     
@@ -132,14 +131,9 @@ class ChatViewController: BaseViewController
         guard !shouldCloseAutomatically else {
             switch self.input.source {
             case .matches:
-                self.input.transition.move(input.profile, to: .sent)
+                self.input.transition.move(input.profile, to: .messages)
                 break
-                
-            case .hellos:
-                self.input.transition.move(input.profile, to: .sent)
-                self.input.transition.moveDuplicate(input.profile, to: .inbox)
-                break
-                
+
             default: break
             }
             

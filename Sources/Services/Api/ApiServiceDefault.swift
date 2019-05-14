@@ -124,6 +124,55 @@ class ApiServiceDefault: ApiService
     }
     
     // MARK: - Feeds
+    func getLMM(_ resolution: String, lastActionDate: Date?, source: SourceFeedType) -> Observable<ApiLMMResult>
+    {
+        var params: [String: Any] = [
+            "resolution": resolution,
+            "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970 * 1000.0),
+            "source": source.rawValue
+        ]
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        let trace = Performance.startTrace(name: "feeds/get_lmm")
+        
+        log("LMHIS source: \(source.rawValue)", level: .low)
+        
+        return self.requestGET(path: "feeds/get_lmm", params: params, trace: trace)
+            //.timeout(2.0, scheduler: MainScheduler.instance)
+            .flatMap ({ jsonDict -> Observable<ApiLMMResult> in
+                guard let likesYouArray = jsonDict["likesYou"] as? [[String: Any]] else {
+                    let error = createError("ApiService: wrong likesYou profiles data format", type: .hidden)
+                    
+                    return .error(error)
+                }
+                
+                guard let matchesArray = jsonDict["matches"] as? [[String: Any]] else {
+                    let error = createError("ApiService: wrong matches profiles data format", type: .hidden)
+                    
+                    return .error(error)
+                }
+                
+                guard let messagesArray = jsonDict["messages"] as? [[String: Any]] else {
+                    let error = createError("ApiService: wrong messages profiles data format", type: .hidden)
+                    
+                    return .error(error)
+                }
+                
+                return .just((
+                    likesYou: likesYouArray.compactMap({ApiLMMProfile.lmmParse($0)}),
+                    matches: matchesArray.compactMap({ApiLMMProfile.lmmParse($0)}),
+                    messages: messagesArray.compactMap({ApiLMMProfile.lmmParse($0)}),
+                    inbox: [],
+                    sent: []
+                ))
+            }).do(onError: { error in
+                log("ERROR: feeds/get_lmm: \(error)", level: .high)
+            })
+    }
+    
     func getLMHIS(_ resolution: String, lastActionDate: Date?, source: SourceFeedType) -> Observable<ApiLMMResult>
     {
         var params: [String: Any] = [
@@ -176,7 +225,7 @@ class ApiServiceDefault: ApiService
             return .just((
                 likesYou: likesYouArray.compactMap({ApiLMMProfile.lmmParse($0)}),
                 matches: matchesArray.compactMap({ApiLMMProfile.lmmParse($0)}),
-                hellos: hellosArray.compactMap({ApiLMMProfile.lmmParse($0)}),
+                messages: hellosArray.compactMap({ApiLMMProfile.lmmParse($0)}),
                 inbox: inboxArray.compactMap({ApiLMMProfile.lmmParse($0)}),
                 sent: sentArray.compactMap({ApiLMMProfile.lmmParse($0)})
             ))

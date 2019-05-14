@@ -391,13 +391,13 @@ class MainViewController: BaseViewController
             self.effectsView.animateMatches(count, from: position)
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.incomingHellos.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
+        self.viewModel?.incomingMessages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
             let size = self.likeBtn.bounds.size
             let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
             let position = self.likeBtn.convert(center, to: nil)
-            self.effectsView.animateHello(count, from: position)
+            self.effectsView.animateMessages(count, from: position)
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in

@@ -14,7 +14,7 @@ enum LMMType: String
 {
     case likesYou = "likesYou"
     case matches = "matches"
-    case hellos = "hellos"
+    case messages = "messages"
     case inbox = "inbox"
     case sent = "sent"
 }
@@ -40,7 +40,7 @@ class MainLMMViewController: BaseViewController
     fileprivate static var feedsState: [LMMType: FeedState] = [
         .likesYou: FeedState(),
         .matches: FeedState(),
-        .hellos: FeedState(),
+        .messages: FeedState(),
         .inbox: FeedState(),
         .sent: FeedState()
     ]
@@ -272,8 +272,8 @@ class MainLMMViewController: BaseViewController
         case .matches:
             return self.viewModel?.matches
             
-        case .hellos:
-            return self.viewModel?.hellos
+        case .messages:
+            return self.viewModel?.messages
             
         case .inbox:
             return self.viewModel?.inbox
@@ -492,7 +492,7 @@ class MainLMMViewController: BaseViewController
         MainLMMViewController.feedsState = [
             .likesYou: FeedState(offset: 0.0),
             .matches: FeedState(offset: 0.0),
-            .hellos: FeedState(offset: 0.0),
+            .messages: FeedState(offset: 0.0),
             .inbox: FeedState(offset: 0.0),
             .sent: FeedState(offset: 0.0)
         ]
@@ -560,7 +560,7 @@ class MainLMMViewController: BaseViewController
         switch self.type.value {
         case .likesYou: return "feed_likes_you_empty_no_data".localized()
         case .matches: return "feed_matches_empty_no_data".localized()
-        case .hellos: return "feed_hellos_empty_no_data".localized()
+        case .messages: return "feed_messages_empty_no_data".localized()
         case .inbox: return "feed_inbox_empty_no_data".localized()
         case .sent: return "feed_sent_empty_no_data".localized()
         }
@@ -760,7 +760,7 @@ extension SourceFeedType
         switch self {
         case .whoLikedMe: return .likesYou
         case .matches: return .matches
-        case .hellos: return .hellos
+        case .messages: return .messages
         case .inbox: return .inbox
         case .sent: return .sent
         default: return nil

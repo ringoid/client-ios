@@ -37,7 +37,7 @@ class LMMManager
     
     var likesYou: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     var matches: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
-    var hellos: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
+    var messages: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     var inbox: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     var sent: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     
@@ -45,7 +45,7 @@ class LMMManager
     
     fileprivate var likesYouCached: [LMMProfile] = []
     fileprivate var matchesCached: [LMMProfile] = []
-    fileprivate var hellosCached: [LMMProfile] = []
+    fileprivate var messagesCached: [LMMProfile] = []
     fileprivate var inboxCached: [LMMProfile] = []
     fileprivate var sentCached: [LMMProfile] = []
     var contentShouldBeHidden: Bool = false
@@ -56,13 +56,13 @@ class LMMManager
             if self.contentShouldBeHidden {
                 self.likesYou.accept([])
                 self.matches.accept([])
-                self.hellos.accept([])
+                self.messages.accept([])
                 self.inbox.accept([])
                 self.sent.accept([])
             } else {
                 self.likesYou.accept(self.likesYouCached)
                 self.matches.accept(self.matchesCached)
-                self.hellos.accept(self.hellosCached)
+                self.messages.accept(self.messagesCached)
                 self.inbox.accept(self.inboxCached)
                 self.sent.accept(self.sentCached)
             }
@@ -95,9 +95,9 @@ class LMMManager
         }
     }
     
-    var notSeenHellosCount: Observable<Int>
+    var notSeenMessagesCount: Observable<Int>
     {
-        return self.hellos.asObservable().map { profiles -> Int in
+        return self.messages.asObservable().map { profiles -> Int in
             var notSeenCount: Int = 0
             profiles.forEach({ profile in
                 guard !profile.isInvalidated else { return }
@@ -143,13 +143,13 @@ class LMMManager
         }
     }
     
-    fileprivate var prevNotSeenHellos: [String] = []
-    var incomingHellos: Observable<Int>
+    fileprivate var prevNotSeenMessages: [String] = []
+    var incomingMessages: Observable<Int>
     {
-        return self.hellos.asObservable().map { profiles -> Int in
+        return self.messages.asObservable().map { profiles -> Int in
             let notSeenProfiles = profiles.filter({ $0.notSeen })
             
-            return notSeenProfiles.filter({ !self.prevNotSeenHellos.contains($0.id) }).count
+            return notSeenProfiles.filter({ !self.prevNotSeenMessages.contains($0.id) }).count
         }
     }
     
@@ -180,7 +180,7 @@ class LMMManager
         log("LMM reloading process started", level: .high)
         self.isFetching.accept(true)
         let chatCache = (
-            self.hellos.value +
+            self.messages.value +
             self.likesYou.value +
             self.matches.value +
             self.inbox.value +
@@ -189,17 +189,17 @@ class LMMManager
         
         self.updateProfilesPrevState(false)
         
-        return self.apiService.getLMHIS(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
+        return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
             
             self!.purge()
             
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)
             let matches = createProfiles(result.matches, type: .matches)
-            let hellos = createProfiles(result.hellos, type: .hellos)
+            let messages = createProfiles(result.messages, type: .messages)
             let inbox = createProfiles(result.inbox, type: .inbox)
             let sent = createProfiles(result.sent, type: .sent)
             
-            (matches + inbox + sent).forEach { remoteProfile in
+            (matches + messages).forEach { remoteProfile in
                 guard remoteProfile.messages.count != 0 else { return }
                 remoteProfile.notSeen = true
                 
@@ -214,7 +214,7 @@ class LMMManager
                 }
             }
             
-            return self!.db.add(localLikesYou + matches + hellos + inbox + sent).asObservable().do(onNext: { [weak self] _ in
+            return self!.db.add(localLikesYou + matches + messages + inbox + sent).asObservable().do(onNext: { [weak self] _ in
                 self?.updateProfilesPrevState(true)
             })
         }).asObservable().delay(0.05, scheduler: MainScheduler.instance).do(
@@ -279,12 +279,12 @@ class LMMManager
             self?.matches.accept(profiles)
         }).disposed(by: self.disposeBag)
         
-        self.db.hellos().subscribe(onNext: { [weak self] profiles in
-            self?.hellosCached = profiles
+        self.db.messages().subscribe(onNext: { [weak self] profiles in
+            self?.messagesCached = profiles
             
             guard self?.contentShouldBeHidden == false else { return }
             
-            self?.hellos.accept(profiles)
+            self?.messages.accept(profiles)
         }).disposed(by: self.disposeBag)
         
         self.db.inbox().subscribe(onNext: { [weak self] profiles in
@@ -314,8 +314,8 @@ class LMMManager
             self.prevNotSeenMatches = Array<String>.create(obj) ?? []
         }).disposed(by: self.disposeBag)
         
-        self.storage.object("prevNotSeenHellos").subscribe( onSuccess: { obj in
-            self.prevNotSeenHellos = Array<String>.create(obj) ?? []
+        self.storage.object("prevNotSeenMessages").subscribe( onSuccess: { obj in
+            self.prevNotSeenMessages = Array<String>.create(obj) ?? []
         }).disposed(by: self.disposeBag)
         
         self.storage.object("prevNotSeenInbox").subscribe( onSuccess: { obj in
@@ -331,15 +331,15 @@ class LMMManager
         let notSeenMatches = self.matches.value.filter({ $0.notSeen }).compactMap({ $0.id })
         if notSeenMatches.count > 0 || !avoidEmptyFeeds { self.prevNotSeenMatches = notSeenMatches }
         
-        let notSeenHellos = self.hellos.value.filter({ $0.notSeen }).compactMap({ $0.id })
-        if notSeenHellos.count > 0 || !avoidEmptyFeeds { self.prevNotSeenHellos = notSeenHellos }
+        let notSeenMessages = self.messages.value.filter({ $0.notSeen }).compactMap({ $0.id })
+        if notSeenMessages.count > 0 || !avoidEmptyFeeds { self.prevNotSeenMessages = notSeenMessages }
         
         let notSeenInbox = self.inbox.value.filter({ $0.notSeen }).compactMap({ $0.id })
         if notSeenInbox.count > 0 || !avoidEmptyFeeds { self.prevNotSeenInbox = notSeenInbox }
         
         self.storage.store(self.prevNotSeenLikes, key: "prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
         self.storage.store(self.prevNotSeenMatches, key: "prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
-        self.storage.store(self.prevNotSeenHellos, key: "prevNotSeenHellos").subscribe().disposed(by: self.disposeBag)
+        self.storage.store(self.prevNotSeenMessages, key: "prevNotSeenMessages").subscribe().disposed(by: self.disposeBag)
         self.storage.store(self.prevNotSeenInbox, key: "prevNotSeenInbox").subscribe().disposed(by: self.disposeBag)
     }
     
@@ -352,13 +352,13 @@ class LMMManager
         
         self.likesYouCached.removeAll()
         self.matchesCached.removeAll()
-        self.hellosCached.removeAll()
+        self.messagesCached.removeAll()
         self.inboxCached.removeAll()
         self.sentCached.removeAll()
         
         self.prevNotSeenLikes.removeAll()
         self.prevNotSeenMatches.removeAll()
-        self.prevNotSeenHellos.removeAll()
+        self.prevNotSeenMessages.removeAll()
         self.prevNotSeenInbox.removeAll()
         
         self.disposeBag = DisposeBag()

@@ -26,8 +26,8 @@ class DBService
     fileprivate var matchesObservable: Observable<[LMMProfile]>!
     fileprivate var matchesObserver: AnyObserver<[LMMProfile]>?
     
-    fileprivate var hellosObservable: Observable<[LMMProfile]>!
-    fileprivate var hellosObserver: AnyObserver<[LMMProfile]>?
+    fileprivate var messagesObservable: Observable<[LMMProfile]>!
+    fileprivate var messagesObserver: AnyObserver<[LMMProfile]>?
     
     fileprivate var inboxObservable: Observable<[LMMProfile]>!
     fileprivate var inboxObserver: AnyObserver<[LMMProfile]>?
@@ -67,9 +67,9 @@ class DBService
         return self.matchesObservable
     }
     
-    func hellos() -> Observable<[LMMProfile]>
+    func messages() -> Observable<[LMMProfile]>
     {
-        return self.hellosObservable
+        return self.messagesObservable
     }
     
     func inbox() -> Observable<[LMMProfile]>
@@ -104,9 +104,7 @@ class DBService
         guard let lmmProfile = self.realm.objects(LMMProfile.self).filter(predicate).first else { return }
         guard lmmProfile.notSeen else { return }
         
-        guard lmmProfile.type == FeedType.likesYou.rawValue ||
-        lmmProfile.type == FeedType.matches.rawValue ||
-        lmmProfile.type == FeedType.hellos.rawValue else { return }
+        guard lmmProfile.type == FeedType.likesYou.rawValue  else { return }
         
         if self.realm.isInWriteTransaction {
             lmmProfile.notSeen = false
@@ -137,7 +135,7 @@ class DBService
     {
         self.updateLikesYou()
         self.updateMatches()
-        self.updateHellos()
+        self.updateMessages()
     }
     
     func forceUpdateMessages()
@@ -275,7 +273,7 @@ class DBService
         self.newFacesObserver?.onNext([])
         self.likesYouObserver?.onNext([])
         self.matchesObserver?.onNext([])
-        self.hellosObserver?.onNext([])
+        self.messagesObserver?.onNext([])
         self.inboxObserver?.onNext([])
         self.sentObserver?.onNext([])
         self.userPhotosObserver?.onNext([])
@@ -314,9 +312,9 @@ class DBService
             return Disposables.create()
         })
         
-        self.hellosObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
-            self?.hellosObserver = observer
-            self?.updateHellos()
+        self.messagesObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
+            self?.messagesObserver = observer
+            self?.updateMessages()
             
             return Disposables.create()
         })
@@ -367,12 +365,12 @@ class DBService
         self.matchesObserver?.onNext(profiles.toArray())
     }
     
-    fileprivate func updateHellos()
+    fileprivate func updateMessages()
     {
-        let predicate = NSPredicate(format: "type = %d AND isDeleted = false", FeedType.hellos.rawValue)
+        let predicate = NSPredicate(format: "type = %d AND isDeleted = false", FeedType.messages.rawValue)
         let profiles = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition")
         
-        self.hellosObserver?.onNext(profiles.toArray())
+        self.messagesObserver?.onNext(profiles.toArray())
     }
     
     fileprivate func updateInbox()
@@ -403,7 +401,7 @@ class DBService
     {
         var shouldUpdateNewFaces: Bool = false
         var shouldUpdateLikesYou: Bool = false
-        var shouldUpdateHellos: Bool = false
+        var shouldUpdateMessages: Bool = false
         var shouldUpdateInbox: Bool = false
         var shouldUpdateSent: Bool = false
         var shouldUpdateMatches: Bool = false
@@ -416,7 +414,7 @@ class DBService
             if let profile = object as? LMMProfile {
                 if profile.type == FeedType.likesYou.rawValue { shouldUpdateLikesYou = true }
                 if profile.type == FeedType.matches.rawValue { shouldUpdateMatches = true }
-                if profile.type == FeedType.hellos.rawValue { shouldUpdateHellos = true }
+                if profile.type == FeedType.messages.rawValue { shouldUpdateMessages = true }
                 if profile.type == FeedType.inbox.rawValue { shouldUpdateInbox = true }
                 if profile.type == FeedType.sent.rawValue { shouldUpdateSent = true }
             }
@@ -424,7 +422,7 @@ class DBService
         
         if shouldUpdateNewFaces { self.updateNewFaces() }
         if shouldUpdateLikesYou { self.updateLikesYou() }
-        if shouldUpdateHellos { self.updateHellos() }
+        if shouldUpdateMessages { self.updateMessages() }
         if shouldUpdateMatches { self.updateMatches() }
         if shouldUpdateInbox { self.updateInbox() }
         if shouldUpdateSent { self.updateSent() }

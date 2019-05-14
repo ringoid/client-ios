@@ -128,7 +128,7 @@ class NewFacesViewModel
         }).disposed(by: self.disposeBag)
         
         
-        self.lmmManager.hellos.subscribe(onNext: { [weak self] _ in
+        self.lmmManager.messages.subscribe(onNext: { [weak self] _ in
             self?.updateProfiles()
         }).disposed(by: self.disposeBag)
         
@@ -151,7 +151,7 @@ class NewFacesViewModel
         (
             self.lmmManager.likesYou.value +
                 self.lmmManager.matches.value +
-                self.lmmManager.hellos.value +
+                self.lmmManager.messages.value +
                 self.lmmManager.inbox.value +
                 self.lmmManager.sent.value
             ).forEach({ profile in

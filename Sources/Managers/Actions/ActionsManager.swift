@@ -163,7 +163,7 @@ class ActionsManager
         switch source {
         case .whoLikedMe:  AnalyticsManager.shared.send(.likedFromLikes); break
         case .matches: AnalyticsManager.shared.send(.likedFromMatches); break
-        case .hellos: AnalyticsManager.shared.send(.likedFromMessages); break
+        case .messages: AnalyticsManager.shared.send(.likedFromMessages); break
             
         default: break
         }
@@ -193,7 +193,7 @@ class ActionsManager
         switch source {
         case .whoLikedMe:  AnalyticsManager.shared.send(.unlikedFromLikes); break
         case .matches: AnalyticsManager.shared.send(.unlikedFromMatches); break
-        case .hellos: AnalyticsManager.shared.send(.unlikedFromMessages); break
+        case .messages: AnalyticsManager.shared.send(.unlikedFromMessages); break
             
         default: break
         }
@@ -221,7 +221,7 @@ class ActionsManager
         switch source {
         case .whoLikedMe:  AnalyticsManager.shared.send(.messagedFromLikes); break
         case .matches: AnalyticsManager.shared.send(.messagedFromMatches); break
-        case .hellos: AnalyticsManager.shared.send(.messagedFromMessages); break
+        case .messages: AnalyticsManager.shared.send(.messagedFromMessages); break
             
         default: break
         }
