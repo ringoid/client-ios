@@ -36,10 +36,8 @@ class MainViewController: BaseViewController
     @IBOutlet fileprivate weak var searchBtn: UIButton!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
     @IBOutlet fileprivate weak var profileBtn: UIButton!
-    @IBOutlet fileprivate weak var messagesBtn: UIButton!
     @IBOutlet fileprivate weak var profileIndicatorView: UIView!
     @IBOutlet fileprivate weak var lmmNotSeenIndicatorView: UIView!
-    @IBOutlet fileprivate weak var messagesNotSeenIndicatorView: UIView!
     @IBOutlet fileprivate weak var effectsView: MainEffectsView!
     @IBOutlet fileprivate weak var buttonsStackView: UIView!
     @IBOutlet fileprivate weak var bottomShadowView: UIView!
@@ -138,7 +136,6 @@ class MainViewController: BaseViewController
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
-            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.embedNewFaces()
             break
             
@@ -146,12 +143,10 @@ class MainViewController: BaseViewController
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
-            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.embedMainLMM()
             break
             
         case .profile:
-            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
@@ -162,7 +157,6 @@ class MainViewController: BaseViewController
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
-            self.messagesBtn.setImage(UIImage(named: "main_bar_messages_selected"), for: .normal)
             self.embedMessages()
             break
             
@@ -170,7 +164,6 @@ class MainViewController: BaseViewController
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
-            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.embedUserProfileAndPick()
             break
             
@@ -178,7 +171,6 @@ class MainViewController: BaseViewController
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
-            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.embedUserProfileAndFetch()
             break
             
@@ -186,7 +178,6 @@ class MainViewController: BaseViewController
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
-            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.embedNewFacesAndFetch()
             break
             
@@ -194,7 +185,6 @@ class MainViewController: BaseViewController
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
-            self.messagesBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.embedMainLMMAndFetch()
             break
         }
@@ -383,10 +373,6 @@ class MainViewController: BaseViewController
             self?.lmmNotSeenIndicatorView.isHidden = !state
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.isNotSeenInboxAvailable.asObservable().subscribe(onNext: { [weak self] state in
-            self?.messagesNotSeenIndicatorView.isHidden = !state
-        }).disposed(by: self.disposeBag)
-        
         self.viewModel?.incomingLikesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
@@ -414,34 +400,22 @@ class MainViewController: BaseViewController
             self.effectsView.animateHello(count, from: position)
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.incomingInbox.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
-            guard let `self` = self else { return }
-            
-            let size = self.messagesBtn.bounds.size
-            let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
-            let position = self.messagesBtn.convert(center, to: nil)
-            self.effectsView.animateMessages(count, from: position)
-        }).disposed(by: self.disposeBag)
-        
         UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             let alpha:CGFloat = state ? 0.0 : 1.0            
             self?.lmmNotSeenIndicatorView.alpha = alpha
-            self?.messagesNotSeenIndicatorView.alpha = alpha
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.chatModeEnabled.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             self?.buttonsStackView.isHidden = state
             self?.profileIndicatorView.alpha = state ? 0.0 : 1.0
             self?.lmmNotSeenIndicatorView.alpha = state ? 0.0 : 1.0
-            self?.messagesNotSeenIndicatorView.alpha = state ? 0.0 : 1.0
             self?.bottomShadowView.isHidden = state
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.blockModeEnabled.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             self?.buttonsStackView.isHidden = state
             self?.profileIndicatorView.alpha = state ? 0.0 : 1.0
-            self?.lmmNotSeenIndicatorView.alpha = state ? 0.0 : 1.0
-            self?.messagesNotSeenIndicatorView.alpha = state ? 0.0 : 1.0
+            self?.lmmNotSeenIndicatorView.alpha = state ? 0.0 : 1.0            
             self?.bottomShadowView.isHidden = state
         }).disposed(by: self.disposeBag)
     }

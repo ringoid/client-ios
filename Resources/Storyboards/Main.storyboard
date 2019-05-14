@@ -45,7 +45,7 @@
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLq-rW-238">
-                                        <rect key="frame" x="0.0" y="0.0" width="123.5" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="155.5" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="J7Y-VQ-XLa"/>
                                         </constraints>
@@ -57,7 +57,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cD4-SP-HxY">
-                                        <rect key="frame" x="123.5" y="0.0" width="64" height="60"/>
+                                        <rect key="frame" x="155.5" y="0.0" width="64" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="64" id="nLB-r2-vLA"/>
                                         </constraints>
@@ -67,16 +67,8 @@
                                             <action selector="onLikeSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="GFB-fN-jRK"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zq7-Ta-nx8">
-                                        <rect key="frame" x="187.5" y="0.0" width="64" height="60"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="31" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" image="main_bar_messages"/>
-                                        <connections>
-                                            <action selector="onMessagesSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="vUT-KC-bMg"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IC7-wg-nDT">
-                                        <rect key="frame" x="251.5" y="0.0" width="123.5" height="60"/>
+                                        <rect key="frame" x="219.5" y="0.0" width="155.5" height="60"/>
                                         <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="main_bar_profile"/>
@@ -89,16 +81,15 @@
                                     <constraint firstItem="IC7-wg-nDT" firstAttribute="width" secondItem="uLq-rW-238" secondAttribute="width" id="0ZY-kH-w8Q"/>
                                     <constraint firstAttribute="trailing" secondItem="IC7-wg-nDT" secondAttribute="trailing" id="QNy-hT-FMB"/>
                                     <constraint firstItem="cD4-SP-HxY" firstAttribute="leading" secondItem="uLq-rW-238" secondAttribute="trailing" id="gIv-A7-NrX"/>
-                                    <constraint firstItem="zq7-Ta-nx8" firstAttribute="width" secondItem="cD4-SP-HxY" secondAttribute="width" id="iON-Fx-eLw"/>
                                     <constraint firstItem="uLq-rW-238" firstAttribute="leading" secondItem="QYd-HC-afs" secondAttribute="leading" id="yoB-OP-QvA"/>
                                 </constraints>
                             </stackView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_bar_no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="WgY-Bd-4Qd">
-                                <rect key="frame" x="289.5" y="635" width="3" height="10"/>
+                                <rect key="frame" x="257.5" y="635" width="3" height="10"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02Y-W9-hk1">
-                                <rect key="frame" x="166.5" y="635" width="6" height="6"/>
+                                <rect key="frame" x="198.5" y="635" width="6" height="6"/>
                                 <color key="backgroundColor" red="1" green="0.01176470588" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="6" id="8eu-6v-817"/>
@@ -110,24 +101,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBQ-LM-k9f">
-                                <rect key="frame" x="232.5" y="635" width="6" height="6"/>
-                                <color key="backgroundColor" red="1" green="0.01176470588" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="6" id="Wlf-Ay-Gjn"/>
-                                    <constraint firstAttribute="width" constant="6" id="wWn-DC-wnG"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="QYd-HC-afs" secondAttribute="bottom" id="9Yo-yT-drm"/>
-                            <constraint firstItem="QYd-HC-afs" firstAttribute="top" secondItem="FBQ-LM-k9f" secondAttribute="top" constant="-28" id="9gf-HE-bKe"/>
                             <constraint firstAttribute="trailing" secondItem="ZFd-I1-dCK" secondAttribute="trailing" id="CEJ-uj-wFU"/>
                             <constraint firstAttribute="trailing" secondItem="QYd-HC-afs" secondAttribute="trailing" id="DVv-Ea-hMC"/>
                             <constraint firstItem="htN-cB-51n" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="FCs-AF-JJv"/>
@@ -139,7 +116,6 @@
                             <constraint firstItem="WgY-Bd-4Qd" firstAttribute="leading" secondItem="IC7-wg-nDT" secondAttribute="leading" constant="38" id="Rvp-R3-LPL"/>
                             <constraint firstItem="IC7-wg-nDT" firstAttribute="top" secondItem="WgY-Bd-4Qd" secondAttribute="top" constant="-28" id="S7b-4Y-37Y"/>
                             <constraint firstAttribute="bottom" secondItem="E8b-9J-Vw4" secondAttribute="bottom" id="U9q-bB-TTW"/>
-                            <constraint firstItem="FBQ-LM-k9f" firstAttribute="centerX" secondItem="zq7-Ta-nx8" secondAttribute="centerX" constant="16" id="X9i-Hs-Rqz"/>
                             <constraint firstItem="ZFd-I1-dCK" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="ZhW-CE-RaR"/>
                             <constraint firstItem="cD4-SP-HxY" firstAttribute="top" secondItem="02Y-W9-hk1" secondAttribute="top" constant="-28" id="aMj-Bg-S0J"/>
                             <constraint firstItem="QYd-HC-afs" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="b5h-B3-qAm"/>
@@ -157,8 +133,6 @@
                         <outlet property="effectsView" destination="htN-cB-51n" id="eaL-Um-c0a"/>
                         <outlet property="likeBtn" destination="cD4-SP-HxY" id="1U3-57-3RL"/>
                         <outlet property="lmmNotSeenIndicatorView" destination="02Y-W9-hk1" id="Uiu-v3-0Rm"/>
-                        <outlet property="messagesBtn" destination="zq7-Ta-nx8" id="QiA-qo-XwS"/>
-                        <outlet property="messagesNotSeenIndicatorView" destination="FBQ-LM-k9f" id="61d-NX-eWk"/>
                         <outlet property="profileBtn" destination="IC7-wg-nDT" id="oBS-rI-j7m"/>
                         <outlet property="profileIndicatorView" destination="WgY-Bd-4Qd" id="C6e-2O-R9W"/>
                         <outlet property="searchBtn" destination="uLq-rW-238" id="rSh-3X-8n6"/>
@@ -186,7 +160,6 @@
     </scenes>
     <resources>
         <image name="main_bar_like" width="29" height="27"/>
-        <image name="main_bar_messages" width="29" height="22"/>
         <image name="main_bar_no_photo" width="3" height="10"/>
         <image name="main_bar_profile" width="27" height="31"/>
         <image name="main_bar_search" width="28" height="29"/>
