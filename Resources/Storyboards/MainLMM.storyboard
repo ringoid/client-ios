@@ -472,7 +472,7 @@ see who likes you</string>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProfileID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVA-P0-T2F">
-                                <rect key="frame" x="16" y="630" width="70" height="21"/>
+                                <rect key="frame" x="16" y="614" width="70" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -480,7 +480,7 @@ see who likes you</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOc-LA-9UX">
-                                <rect key="frame" x="317.5" y="630" width="41.5" height="21"/>
+                                <rect key="frame" x="167" y="598" width="41.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -488,25 +488,25 @@ see who likes you</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="duK-qX-ktj">
-                                <rect key="frame" x="187.5" y="659" width="0.0" height="0.0"/>
+                                <rect key="frame" x="187.5" y="667" width="0.0" height="0.0"/>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="qVA-P0-T2F" secondAttribute="bottom" constant="16" id="2lx-Bq-mkW"/>
+                            <constraint firstAttribute="bottom" secondItem="qVA-P0-T2F" secondAttribute="bottom" constant="32" id="2lx-Bq-mkW"/>
                             <constraint firstAttribute="trailing" secondItem="lGR-yG-LEW" secondAttribute="trailing" id="3dD-ad-k8o"/>
+                            <constraint firstItem="cOc-LA-9UX" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="6Uy-2i-XPh"/>
                             <constraint firstItem="qVA-P0-T2F" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="Cw3-cN-Upn"/>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="centerX" secondItem="lGR-yG-LEW" secondAttribute="centerX" id="NaJ-Wi-l5L"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="duK-qX-ktj" secondAttribute="bottom" constant="8" id="SYR-al-KFo"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="duK-qX-ktj" secondAttribute="bottom" id="SYR-al-KFo"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="118" id="UE3-94-yVQ" userLabel="MessageTopOffset"/>
                             <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="-12" id="XAG-qi-5bb"/>
                             <constraint firstItem="duK-qX-ktj" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="YhF-UI-eSx"/>
-                            <constraint firstAttribute="trailing" secondItem="cOc-LA-9UX" secondAttribute="trailing" constant="16" id="aCc-rR-g5h"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="gA6-9y-Jou"/>
+                            <constraint firstAttribute="bottom" secondItem="cOc-LA-9UX" secondAttribute="bottom" constant="48" id="nNU-gW-keG"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
-                            <constraint firstItem="qVA-P0-T2F" firstAttribute="centerY" secondItem="cOc-LA-9UX" secondAttribute="centerY" id="y1x-2e-RdV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dlp-dl-iCM"/>
                     </view>
