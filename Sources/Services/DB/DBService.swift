@@ -104,7 +104,8 @@ class DBService
         guard let lmmProfile = self.realm.objects(LMMProfile.self).filter(predicate).first else { return }
         guard lmmProfile.notSeen else { return }
         
-        guard lmmProfile.type == FeedType.likesYou.rawValue  else { return }
+        guard lmmProfile.type == FeedType.likesYou.rawValue ||
+            lmmProfile.type == FeedType.matches.rawValue else { return }
         
         if self.realm.isInWriteTransaction {
             lmmProfile.notSeen = false

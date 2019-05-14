@@ -8,7 +8,6 @@
 
 import UIKit
 
-fileprivate let chatLabelMaxWidth: CGFloat = 211.0
 fileprivate let chatLabelFont: UIFont = UIFont.systemFont(ofSize: 15.0, weight: .medium)
 
 class ChatBaseCell: UITableViewCell
@@ -50,6 +49,8 @@ class ChatBaseCell: UITableViewCell
 
 fileprivate func contentSize(_ text: String) -> CGSize
 {
+    let chatLabelMaxWidth = UIScreen.main.bounds.width * 0.7
+    
     return (text as NSString).boundingRect(
         with: CGSize(width: chatLabelMaxWidth, height: 999.0),
         options: .usesLineFragmentOrigin,

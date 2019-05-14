@@ -43,7 +43,7 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHy-pP-KSv" customClass="ChatTextView" customModule="Ringoid" customModuleProvider="target">
-                                <rect key="frame" x="16" y="627" width="295" height="40"/>
+                                <rect key="frame" x="16" y="632" width="295" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -108,10 +108,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iPA-GY-O3g">
-                                                    <rect key="frame" x="108" y="6.5" width="237" height="45"/>
+                                                    <rect key="frame" x="115" y="6.5" width="245" height="45"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello!" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9f-eP-Rf0">
-                                                    <rect key="frame" x="125" y="18.5" width="211" height="21"/>
+                                                    <rect key="frame" x="132" y="18.5" width="211" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="rCF-jL-9DE"/>
                                                         <constraint firstAttribute="width" constant="211" id="rkU-gj-Vel"/>
@@ -124,11 +124,11 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="p9f-eP-Rf0" firstAttribute="bottom" secondItem="iPA-GY-O3g" secondAttribute="bottom" constant="-12" id="8L9-c5-xEG"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="p9f-eP-Rf0" secondAttribute="trailing" constant="24" id="8iC-90-II3"/>
+                                                <constraint firstAttribute="trailing" secondItem="p9f-eP-Rf0" secondAttribute="trailing" constant="32" id="8iC-90-II3"/>
                                                 <constraint firstItem="p9f-eP-Rf0" firstAttribute="top" secondItem="iPA-GY-O3g" secondAttribute="top" constant="12" id="AXu-fT-xNw"/>
                                                 <constraint firstItem="p9f-eP-Rf0" firstAttribute="centerY" secondItem="rD1-Kd-xHb" secondAttribute="centerY" id="HBS-HX-vhV"/>
                                                 <constraint firstItem="p9f-eP-Rf0" firstAttribute="leading" secondItem="iPA-GY-O3g" secondAttribute="leading" constant="17" id="h6d-vC-LKL"/>
-                                                <constraint firstItem="p9f-eP-Rf0" firstAttribute="trailing" secondItem="iPA-GY-O3g" secondAttribute="trailing" constant="-9" id="hdM-0w-jdP"/>
+                                                <constraint firstItem="p9f-eP-Rf0" firstAttribute="trailing" secondItem="iPA-GY-O3g" secondAttribute="trailing" constant="-17" id="hdM-0w-jdP"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -191,7 +191,7 @@
                             <constraint firstItem="qPj-U6-bjV" firstAttribute="leading" secondItem="FHy-pP-KSv" secondAttribute="trailing" id="LvF-KT-ih6"/>
                             <constraint firstItem="Y4U-O2-Qkv" firstAttribute="top" secondItem="H5L-B8-AIS" secondAttribute="top" id="RzV-1T-Bl8"/>
                             <constraint firstItem="FHy-pP-KSv" firstAttribute="height" secondItem="cjc-8j-yFq" secondAttribute="height" id="WzV-LV-1kM"/>
-                            <constraint firstItem="cjc-8j-yFq" firstAttribute="centerY" secondItem="FHy-pP-KSv" secondAttribute="centerY" id="aWE-YM-4XF"/>
+                            <constraint firstItem="cjc-8j-yFq" firstAttribute="centerY" secondItem="FHy-pP-KSv" secondAttribute="centerY" constant="-5" id="aWE-YM-4XF"/>
                             <constraint firstItem="H3p-mh-W6s" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" id="aci-Wx-0fT"/>
                             <constraint firstItem="H3p-mh-W6s" firstAttribute="top" secondItem="H5L-B8-AIS" secondAttribute="top" id="bOZ-8A-LAk"/>
                             <constraint firstItem="qPj-U6-bjV" firstAttribute="bottom" secondItem="cjc-8j-yFq" secondAttribute="bottom" id="cEO-Vx-F7u"/>
