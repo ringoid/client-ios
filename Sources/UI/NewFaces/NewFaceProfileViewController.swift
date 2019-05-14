@@ -77,7 +77,7 @@ class NewFaceProfileViewController: UIViewController
         super.viewDidLoad()
         
         self.setupBindings()
-        self.setupPreheaterTimer()        
+        //self.setupPreheaterTimer()        
         // TODO: Move all logic inside view model
         
         guard !self.input.profile.isInvalidated else { return }

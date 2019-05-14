@@ -90,7 +90,7 @@ class MainLMMProfileViewController: UIViewController
         
         // TODO: Move logic inside view model
         self.setupBindings()
-        self.setupPreheaterTimer()
+        //self.setupPreheaterTimer()
         
         guard !self.input.profile.isInvalidated else { return }
         
