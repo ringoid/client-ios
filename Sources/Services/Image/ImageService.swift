@@ -23,6 +23,13 @@ class ImageService
     
     func load(_ url: URL, thumbnailUrl: URL?, to: UIImageView)
     {
+        let request = ImageRequest(url: url)
+        if let cachedImage = ImageCache.shared[request] {
+            to.image = cachedImage
+            
+            return
+        }
+        
         guard let thumbnailUrl = thumbnailUrl else {
             let mainTask = ImagePipeline.shared.loadImage(with: url, progress: nil, completion: { (response, _) in
                 to.image = response?.image
