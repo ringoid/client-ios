@@ -52,7 +52,7 @@
 
 "lmm_tab_likes" = "Likes You";
 "lmm_tab_matches" = "Matches";
-"lmm_tab_hellos" = "Chats";
+"lmm_tab_messages" = "Inbox";
 "lmm_tab_inbox" = "Inbox";
 "lmm_tab_sent" = "Sent";
 
