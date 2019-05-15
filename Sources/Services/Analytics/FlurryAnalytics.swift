@@ -35,7 +35,7 @@ class FlurryAnalytics: AnalyticsService
             let currentYear = calendar.component(.year, from: Date())
             
             Flurry.setAge(Int32(currentYear - yob))
-            Flurry.setGender(sex)
+            Flurry.setGender(sex == "male" ? "m" : "f")
             Flurry.logEvent("AUTH_USER_PROFILE_CREATED", withParameters: [
                 "UUID": self.userId,
                 "yearOfBirth": yob,
