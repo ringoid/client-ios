@@ -366,7 +366,7 @@ class NewFacesViewController: BaseViewController
             let cellTopOffset = CGFloat(index) * cell.bounds.height
             let cellBottomOffset = cellTopOffset + cell.bounds.height
             
-            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 42.0
+            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 72.0
         }
     }
     
