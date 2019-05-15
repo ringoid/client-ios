@@ -45,7 +45,7 @@
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLq-rW-238">
-                                        <rect key="frame" x="0.0" y="0.0" width="155.5" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="145.5" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="J7Y-VQ-XLa"/>
                                         </constraints>
@@ -57,9 +57,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cD4-SP-HxY">
-                                        <rect key="frame" x="155.5" y="0.0" width="64" height="60"/>
+                                        <rect key="frame" x="145.5" y="0.0" width="84" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="64" id="nLB-r2-vLA"/>
+                                            <constraint firstAttribute="width" constant="84" id="nLB-r2-vLA"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="29" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="main_bar_like"/>
@@ -68,7 +68,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IC7-wg-nDT">
-                                        <rect key="frame" x="219.5" y="0.0" width="155.5" height="60"/>
+                                        <rect key="frame" x="229.5" y="0.0" width="145.5" height="60"/>
                                         <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="main_bar_profile"/>
@@ -85,7 +85,7 @@
                                 </constraints>
                             </stackView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_bar_no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="WgY-Bd-4Qd">
-                                <rect key="frame" x="257.5" y="635" width="3" height="10"/>
+                                <rect key="frame" x="267.5" y="635" width="3" height="10"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02Y-W9-hk1">
