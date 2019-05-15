@@ -66,8 +66,6 @@ class NewFaceProfileViewController: UIViewController
     deinit {
         self.preheaterTimer?.invalidate()
         self.preheaterTimer = nil
-
-        self.preheater.stopPreheating()
     }
     
     override func viewDidLoad()

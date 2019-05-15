@@ -78,8 +78,6 @@ class MainLMMProfileViewController: UIViewController
     deinit {
         self.preheaterTimer?.invalidate()
         self.preheaterTimer = nil
-        
-        self.preheater.stopPreheating()
     }
     
     override func viewDidLoad()
@@ -170,7 +168,7 @@ class MainLMMProfileViewController: UIViewController
     {
         guard self.input.profile.photos.count >= 2 else { return }
         
-        if let url = self.input.profile.orderedPhotos()[1].filepath().url() {
+        if let url = self.input.profile.orderedPhotos()[1].thumbnailFilepath().url() {
             self.preheater.startPreheating(with: [url])
         }
     }
