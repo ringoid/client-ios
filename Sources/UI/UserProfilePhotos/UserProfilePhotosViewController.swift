@@ -33,6 +33,8 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var addBtn: UIButton!
     @IBOutlet fileprivate weak var containerTableView: UITableView!
+    @IBOutlet fileprivate weak var pagesControl: UIPageControl!
+    @IBOutlet fileprivate weak var pagesTopConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -44,6 +46,10 @@ class UserProfilePhotosViewController: BaseViewController
         self.containerTableView.rowHeight = height
         self.containerTableView.contentInset = UIEdgeInsets(top: 56.0, left: 0.0, bottom: 0.0, right: 0.0)
         self.containerTableView.reloadData()
+        
+        self.pagesControl.numberOfPages = self.viewModel?.photos.value.count ?? 0
+        self.pagesControl.currentPage = 0
+        self.pagesTopConstraint.constant = height + 24.0
         
         self.setupBindings()
         self.setupReloader()
@@ -271,6 +277,8 @@ class UserProfilePhotosViewController: BaseViewController
         }
         
         self.currentIndex = startIndex
+        self.pagesControl.numberOfPages = photos.count
+        self.pagesControl.currentPage = startIndex
         self.deleteBtn.isHidden = photos.isEmpty
     }
     
@@ -324,6 +332,7 @@ class UserProfilePhotosViewController: BaseViewController
         self.optionsBtn.isHidden = false
         self.addBtn.isHidden = false
         self.titleLabel.isHidden = false
+        self.pagesControl.isHidden = false
     }
     
     fileprivate func hideControls()
@@ -332,6 +341,7 @@ class UserProfilePhotosViewController: BaseViewController
         self.optionsBtn.isHidden = true
         self.addBtn.isHidden = true
         self.titleLabel.isHidden = true
+        self.pagesControl.isHidden = true
     }
     
     fileprivate func showBlockedAlert()
@@ -410,6 +420,7 @@ extension UserProfilePhotosViewController: UIPageViewControllerDelegate, UIPageV
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
         self.currentIndex = index
+        self.pagesControl.currentPage = index
         
         guard let photo = self.viewModel?.photos.value[index] else { return }
         

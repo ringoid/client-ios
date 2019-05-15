@@ -102,6 +102,9 @@ see how many likes you get</string>
                                     <action selector="addPhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="63R-hS-DlC"/>
                                 </connections>
                             </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pzg-eZ-8Og">
+                                <rect key="frame" x="187.5" y="20" width="0.0" height="0.0"/>
+                            </pageControl>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="32r-W0-czT">
                                 <rect key="frame" x="299" y="80" width="76" height="56"/>
                                 <constraints>
@@ -117,6 +120,7 @@ see how many likes you get</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.88299978599999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Pzg-eZ-8Og" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" id="1qb-Vr-aDl" userLabel="PagesTop"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="4hG-ZS-M4a"/>
                             <constraint firstItem="32r-W0-czT" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="60" id="EDx-rN-Hng"/>
                             <constraint firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" id="EeI-Bh-ckx"/>
@@ -131,6 +135,7 @@ see how many likes you get</string>
                             <constraint firstItem="0Ze-nT-pEZ" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="gjJ-L8-PF8"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerY" secondItem="q5L-So-vMI" secondAttribute="centerY" id="h1K-ko-wtW"/>
                             <constraint firstItem="R3C-Zv-Ixf" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="j5U-ve-N2a"/>
+                            <constraint firstItem="Pzg-eZ-8Og" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="lmb-XL-cwr"/>
                             <constraint firstAttribute="trailing" secondItem="R3C-Zv-Ixf" secondAttribute="trailing" id="pCc-QK-Puc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Yc6-CF-qSL"/>
@@ -141,6 +146,8 @@ see how many likes you get</string>
                         <outlet property="deleteBtn" destination="32r-W0-czT" id="qDq-QL-d5e"/>
                         <outlet property="emptyFeedLabel" destination="c03-Vj-oKe" id="HhA-IN-Ey8"/>
                         <outlet property="optionsBtn" destination="0Ze-nT-pEZ" id="xcA-G9-NaZ"/>
+                        <outlet property="pagesControl" destination="Pzg-eZ-8Og" id="SO3-57-aFu"/>
+                        <outlet property="pagesTopConstraint" destination="1qb-Vr-aDl" id="YPv-qn-fr3"/>
                         <outlet property="titleLabel" destination="UJu-F3-4rH" id="DNT-SD-cx5"/>
                         <segue destination="XPN-ma-d0Q" kind="show" identifier="crop_vc" animates="NO" id="VNg-gg-Pqo"/>
                     </connections>
