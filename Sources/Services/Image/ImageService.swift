@@ -45,7 +45,7 @@ class ImageService
                 to.addSubview(thumbView)
                 to.image = response?.image
                 
-                let animator = UIViewPropertyAnimator(duration: 0.2, curve: .linear, animations: {
+                let animator = UIViewPropertyAnimator(duration: 0.5, curve: .linear, animations: {
                     thumbView.alpha = 0.0
                 })
                 

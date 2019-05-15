@@ -41,7 +41,14 @@ class DBService
     init()
     {
         let version: UInt64 = 4
-        let config = Realm.Configuration(schemaVersion: version, deleteRealmIfMigrationNeeded: true)
+        let config = Realm.Configuration(schemaVersion: version, migrationBlock: { (migration, oldVersion) in
+            if oldVersion < 4 {
+                migration.enumerateObjects(ofType: Photo.className(), { (_, newObject) in
+                    newObject?["thumbnailPath"] = ""
+                    newObject?["thumbnailPathType"] = 0
+                })
+            }
+        }, deleteRealmIfMigrationNeeded: false)
         
         self.realm = try! Realm(configuration: config)
         self.currentOrderPosition = UserDefaults.standard.integer(forKey: "db_service_order_position_key")
