@@ -11,6 +11,7 @@ import Foundation
 struct ApiPhoto
 {
     let url: String
+    let thumbnailUrl: String
     let id: String
 }
 
@@ -20,7 +21,8 @@ extension ApiPhoto
     {
         guard let id = dict["photoId"] as? String else { return nil }
         guard let url = dict["photoUri"] as? String else { return nil }
+        guard let thumbnailPhotoUri = dict["thumbnailPhotoUri"] as? String else { return nil }
 
-        return ApiPhoto(url: url, id: id)
+        return ApiPhoto(url: url, thumbnailUrl: thumbnailPhotoUri, id: id)
     }
 }

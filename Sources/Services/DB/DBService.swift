@@ -40,7 +40,7 @@ class DBService
     
     init()
     {
-        let version: UInt64 = 3
+        let version: UInt64 = 4
         let config = Realm.Configuration(schemaVersion: version, deleteRealmIfMigrationNeeded: true)
         
         self.realm = try! Realm(configuration: config)

@@ -138,7 +138,7 @@ class ApiServiceDefault: ApiService
         
         let trace = Performance.startTrace(name: "feeds/get_lmm")
         
-        log("LMHIS source: \(source.rawValue)", level: .low)
+        log("LMM source: \(source.rawValue)", level: .low)
         
         return self.requestGET(path: "feeds/get_lmm", params: params, trace: trace)
             //.timeout(2.0, scheduler: MainScheduler.instance)

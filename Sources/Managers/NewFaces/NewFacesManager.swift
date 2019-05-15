@@ -52,6 +52,7 @@ class NewFacesManager
                     let localPhoto = Photo()
                     localPhoto.id = photo.id
                     localPhoto.setFilepath(FilePath(filename: photo.url, type: .url))
+                    localPhoto.setThumbnailFilepath(FilePath(filename: photo.thumbnailUrl, type: .url))
                     localPhoto.orderPosition = localOrderPosition
                     localOrderPosition += 1
                     

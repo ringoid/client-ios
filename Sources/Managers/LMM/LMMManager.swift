@@ -376,6 +376,8 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
             localPhoto.id = photo.id
             localPhoto.path = photo.url
             localPhoto.pathType = FileType.url.rawValue
+            localPhoto.thumbnailPath = photo.thumbnailUrl
+            localPhoto.thumbnailPathType = FileType.url.rawValue
             localPhoto.orderPosition = localOrderPosition
             localOrderPosition += 1
             

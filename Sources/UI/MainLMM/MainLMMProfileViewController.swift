@@ -91,6 +91,7 @@ class MainLMMProfileViewController: UIViewController
         // TODO: Move logic inside view model
         self.setupBindings()
         //self.setupPreheaterTimer()
+        self.preheatSecondPhoto()
         
         guard !self.input.profile.isInvalidated else { return }
         
@@ -368,7 +369,7 @@ extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageView
     {
         self.input.scenarioManager.checkPhotoSwipe(self.input.feedType.sourceType())
         
-        guard let urls = self.viewModel?.input.profile.orderedPhotos().map({ $0.filepath().url() }) else { return }
+        guard let urls = self.viewModel?.input.profile.orderedPhotos().map({ $0.thumbnailFilepath().url() }) else { return }
         
         self.preheater.startPreheating(with: urls.compactMap({ $0 }))
         UIManager.shared.feedsFabShouldBeHidden.accept(true)

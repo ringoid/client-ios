@@ -21,15 +21,45 @@ class ImageService
         }
     }
     
-    func load(_ url: URL, to: UIImageView)
+    func load(_ url: URL, thumbnailUrl: URL?, to: UIImageView)
     {
-        let task = ImagePipeline.shared.loadImage(with: url, progress: { (response, _, _) in
-            to.image = response?.image
-        }) { (response, _) in
-            to.image = response?.image
+        guard let thumbnailUrl = thumbnailUrl else {
+            let mainTask = ImagePipeline.shared.loadImage(with: url, progress: nil, completion: { (response, _) in
+                to.image = response?.image
+            })
+            
+            self.taskMap[url] = mainTask
+            
+            return
         }
         
-        self.taskMap[url] = task
+        let thumbnailTask = ImagePipeline.shared.loadImage(with: thumbnailUrl, progress: { (response, _, _) in
+            to.image = response?.image
+        }) { (thumbnailResponse, _) in
+            to.image = thumbnailResponse?.image
+            
+            let mainTask = ImagePipeline.shared.loadImage(with: url, progress: nil, completion: { (response, _) in
+                let thumbView = UIImageView(frame: to.bounds)
+                thumbView.image = thumbnailResponse?.image
+                thumbView.contentMode = .scaleAspectFill
+                to.addSubview(thumbView)
+                to.image = response?.image
+                
+                let animator = UIViewPropertyAnimator(duration: 0.2, curve: .linear, animations: {
+                    thumbView.alpha = 0.0
+                })
+                
+                animator.addCompletion({ _ in
+                    thumbView.removeFromSuperview()
+                })
+                
+                animator.startAnimation()
+            })
+            
+            self.taskMap[url] = mainTask
+        }
+        
+        self.taskMap[url] = thumbnailTask
     }
     
     func cancel(_ url: URL)

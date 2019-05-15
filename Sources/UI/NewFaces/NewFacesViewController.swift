@@ -450,7 +450,7 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
                 guard let url = profile?.photos[index].filepath().url() else { return }
                 guard let photoView = self?.blockPhotoView else { return }
                 
-                ImageService.shared.load(url, to: photoView)
+                ImageService.shared.load(url, thumbnailUrl: nil, to: photoView)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                     self?.blockContainerView.isHidden = false
                 })
@@ -480,7 +480,7 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
             distance = distance < 0 ? 0 : distance
             distance = distance > 4 ? 4 : distance
             
-            let urls = profiles[indexPath.row..<(indexPath.row + distance)].compactMap({ $0.orderedPhotos().first?.filepath().url() })
+            let urls = profiles[indexPath.row..<(indexPath.row + distance)].compactMap({ $0.orderedPhotos().first?.thumbnailFilepath().url() })
             self.preheater.startPreheating(with: urls)
         }
         
@@ -551,14 +551,5 @@ extension NewFacesViewController: UIScrollViewDelegate
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     {
         _ = self.input.actionsManager.checkConnectionState()
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
-    {
-        self.visibleCells.forEach { cell in
-            guard let vc = cell.containerView.containedVC as? NewFaceProfileViewController else { return }
-           
-            vc.preheatSecondPhoto()        
-        }
     }
 }

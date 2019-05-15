@@ -160,13 +160,13 @@ class NewFacePhotoViewController: UIViewController
     fileprivate func update()
     {
         guard let photoView = self.photoView else { return }
-        guard let url = self.photo?.filepath().url() else {
+        guard let url = self.photo?.filepath().url(), let thumbnailUrl = self.photo?.thumbnailFilepath().url() else {
             photoView.image = nil
             
             return
         }
         
-        ImageService.shared.load(url, to: photoView)
+        ImageService.shared.load(url, thumbnailUrl: thumbnailUrl, to: photoView)
     }
     
     fileprivate func updateBindings()

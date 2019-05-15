@@ -54,7 +54,7 @@ class UserProfilePhotoViewController: UIViewController
             return
         }
         
-        ImageService.shared.load(url, to: photoView)
+        ImageService.shared.load(url, thumbnailUrl: nil, to: photoView)
     }
     
     fileprivate func updateBindings()

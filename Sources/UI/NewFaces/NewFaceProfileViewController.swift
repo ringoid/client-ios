@@ -77,7 +77,8 @@ class NewFaceProfileViewController: UIViewController
         super.viewDidLoad()
         
         self.setupBindings()
-        //self.setupPreheaterTimer()        
+        //self.setupPreheaterTimer()
+        self.preheatSecondPhoto()
         // TODO: Move all logic inside view model
         
         guard !self.input.profile.isInvalidated else { return }
@@ -114,7 +115,7 @@ class NewFaceProfileViewController: UIViewController
     {
         guard !self.input.profile.isInvalidated else { return }
         guard self.input.profile.photos.count >= 2 else { return }
-        guard let url = self.input.profile.orderedPhotos()[1].filepath().url() else { return }
+        guard let url = self.input.profile.orderedPhotos()[1].thumbnailFilepath().url() else { return }
         
         self.preheater.startPreheating(with: [url])
     }
@@ -251,7 +252,7 @@ extension NewFaceProfileViewController: UIPageViewControllerDelegate, UIPageView
     {
         self.input.scenarioManager.checkPhotoSwipe(self.input.sourceType)
         
-        guard let urls = self.viewModel?.input.profile.orderedPhotos().map({ $0.filepath().url() }) else { return }
+        guard let urls = self.viewModel?.input.profile.orderedPhotos().map({ $0.thumbnailFilepath().url() }) else { return }
         
         self.preheater.startPreheating(with: urls.compactMap({ $0 }))
         UIManager.shared.feedsFabShouldBeHidden.accept(true)

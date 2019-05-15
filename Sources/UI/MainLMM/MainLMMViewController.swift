@@ -649,7 +649,7 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
                 guard let url = profile?.photos[index].filepath().url() else { return }
                 guard let photoView = self?.blockPhotoView else { return }
                 
-                ImageService.shared.load(url, to: photoView)
+                ImageService.shared.load(url, thumbnailUrl: nil, to: photoView)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                     self?.blockContainerView.isHidden = false
                 })
@@ -681,7 +681,7 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
             distance = distance < 0 ? 0 : distance
             distance = distance > 4 ? 4 : distance
             
-            let urls = profiles[indexPath.row..<(indexPath.row + distance)].compactMap({ $0.orderedPhotos().first?.filepath().url() })
+            let urls = profiles[indexPath.row..<(indexPath.row + distance)].compactMap({ $0.orderedPhotos().first?.thumbnailFilepath().url() })
             self.preheater.startPreheating(with: urls)
         }
     }
@@ -706,13 +706,7 @@ extension MainLMMViewController: UIScrollViewDelegate
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView)
     {
-        self.isDragged = false        
-        
-        self.tableView.visibleCells.forEach { cell in
-            guard let vc = (cell as? MainLMMCell)?.containerView.containedVC as? MainLMMProfileViewController else { return }
-            
-            vc.preheatSecondPhoto()
-        }
+        self.isDragged = false
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView)
