@@ -287,6 +287,11 @@ class NewFacesViewController: BaseViewController
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                 self.tableView.isUserInteractionEnabled = true
+                
+                guard let profiles = self.viewModel?.profiles.value, profiles.count == totalCount else { return }
+                
+                self.lastFeedIds = profiles.map({ $0.id })
+                
                 self.tableView.performBatchUpdates({
                     self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
                 }, completion: nil)
