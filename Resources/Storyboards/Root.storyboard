@@ -22,6 +22,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NaU-f3-T96">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhs-6J-66M" customClass="ContainerView" customModule="Ringoid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.35643193493150682" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="lhs-6J-66M" firstAttribute="leading" secondItem="NaU-f3-T96" secondAttribute="leading" id="6Ms-bO-G2C"/>
+                                    <constraint firstItem="lhs-6J-66M" firstAttribute="top" secondItem="NaU-f3-T96" secondAttribute="top" id="clh-0T-jm3"/>
+                                    <constraint firstAttribute="bottom" secondItem="lhs-6J-66M" secondAttribute="bottom" id="x2L-jg-KFJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="lhs-6J-66M" secondAttribute="trailing" id="y2R-fd-Hzs"/>
+                                </constraints>
+                            </view>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qkI-rc-FWt">
                                 <rect key="frame" x="0.0" y="427" width="375" height="160"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.76795269691780821" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -39,15 +55,21 @@
                             <constraint firstAttribute="trailing" secondItem="6Fk-T6-FB9" secondAttribute="trailing" id="GG3-PK-1wo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qkI-rc-FWt" secondAttribute="bottom" constant="80" id="HAK-66-3RD"/>
                             <constraint firstItem="6Fk-T6-FB9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="VbO-L7-oVe"/>
+                            <constraint firstItem="NaU-f3-T96" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="WKN-kU-z3F"/>
                             <constraint firstAttribute="trailing" secondItem="qkI-rc-FWt" secondAttribute="trailing" id="XnK-gK-WhV"/>
+                            <constraint firstAttribute="bottom" secondItem="NaU-f3-T96" secondAttribute="bottom" id="aL9-As-gzT"/>
                             <constraint firstItem="6Fk-T6-FB9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dts-lS-8hT"/>
                             <constraint firstAttribute="bottom" secondItem="6Fk-T6-FB9" secondAttribute="bottom" id="iP6-Xz-qfk"/>
+                            <constraint firstItem="NaU-f3-T96" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uBQ-L1-IZL"/>
+                            <constraint firstAttribute="trailing" secondItem="NaU-f3-T96" secondAttribute="trailing" id="zQi-of-MUU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="containerView" destination="6Fk-T6-FB9" id="kWi-Ef-hVP"/>
                         <outlet property="debugTextView" destination="qkI-rc-FWt" id="JDn-4A-RqH"/>
+                        <outlet property="modalBackgroundView" destination="NaU-f3-T96" id="ofu-F0-n8y"/>
+                        <outlet property="modalContainerView" destination="lhs-6J-66M" id="8Px-SQ-P6E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -37,6 +37,7 @@ class AppManager
     var locationManager: LocationManager!
     var scenarioManager: AnalyticsScenarioManager!
     var transitionManager: TransitionManager!
+    var modalUIManager: ModalUIManager!
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var resignDate: Date? = nil
@@ -150,6 +151,7 @@ class AppManager
         self.syncManager = SyncManager(self.notifications, lmm: self.lmmManager, newFaces: self.newFacesManager, profile: self.profileManager, navigation: self.navigationManager)
         self.locationManager = LocationManager(self.location, actions: self.actionsManager)
         self.transitionManager = TransitionManager(self.db, lmm: self.lmmManager)
+        self.modalUIManager = ModalUIManager()
         
         ThemeManager.shared.storageService = self.defaultStorage
         LocaleManager.shared.storage = self.defaultStorage

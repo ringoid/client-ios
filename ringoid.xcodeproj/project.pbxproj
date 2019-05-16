@@ -67,6 +67,8 @@
 		573A5C2E2229184E0094A9FA /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C2C2229184E0094A9FA /* ReachabilityService.swift */; };
 		573A5C30222919460094A9FA /* ReachabilityServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */; };
 		573A5C31222919470094A9FA /* ReachabilityServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */; };
+		573D115D228D97D700CD9C2D /* ModalUIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D115C228D97D700CD9C2D /* ModalUIManager.swift */; };
+		573D115E228D97D700CD9C2D /* ModalUIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D115C228D97D700CD9C2D /* ModalUIManager.swift */; };
 		574A7DA622434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574A7DA722434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574F4ACA22520B230027A083 /* SettingsNotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */; };
@@ -389,6 +391,7 @@
 		573A5C282227AD0D0094A9FA /* UserProfileCropOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCropOverlayView.swift; sourceTree = "<group>"; };
 		573A5C2C2229184E0094A9FA /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityServiceDefault.swift; sourceTree = "<group>"; };
+		573D115C228D97D700CD9C2D /* ModalUIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalUIManager.swift; sourceTree = "<group>"; };
 		574A7DA522434EFE0065AE56 /* PromotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionManager.swift; sourceTree = "<group>"; };
 		574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsCell.swift; sourceTree = "<group>"; };
 		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
@@ -794,6 +797,7 @@
 			isa = PBXGroup;
 			children = (
 				57386E4A220C7A7C0000E5D9 /* UIManager.swift */,
+				573D115C228D97D700CD9C2D /* ModalUIManager.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1721,6 +1725,7 @@
 				57585D4221E3555E00038798 /* Profile.swift in Sources */,
 				57B863C821ECD17B00B9CC70 /* MainLMMViewController.swift in Sources */,
 				57BEB67D2213D806000BD768 /* SettingsLocaleViewModel.swift in Sources */,
+				573D115D228D97D700CD9C2D /* ModalUIManager.swift in Sources */,
 				576FC1192201E0EF00BA5ABE /* LocaleManager.swift in Sources */,
 				570D04BA21DE322200E0DCFB /* XStorageObject.swift in Sources */,
 				57EE64C3221478EA00246B45 /* SettingsLegalViewModel.swift in Sources */,
@@ -1880,6 +1885,7 @@
 				57EE65302216711000246B45 /* ApiMessage.swift in Sources */,
 				57EE65312216711000246B45 /* UserProfilePhotosViewModel.swift in Sources */,
 				57EE65322216711000246B45 /* Profile.swift in Sources */,
+				573D115E228D97D700CD9C2D /* ModalUIManager.swift in Sources */,
 				57EE65332216711000246B45 /* MainLMMViewController.swift in Sources */,
 				57EE65342216711000246B45 /* SettingsLocaleViewModel.swift in Sources */,
 				57EE65352216711000246B45 /* LocaleManager.swift in Sources */,

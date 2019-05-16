@@ -31,12 +31,15 @@ class RootViewController: BaseViewController {
     
     @IBOutlet fileprivate weak var containerView: ContainerView!
     @IBOutlet fileprivate weak var debugTextView: UITextView!
+    @IBOutlet fileprivate weak var modalContainerView: ContainerView!
+    @IBOutlet fileprivate weak var modalBackgroundView: UIView!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         self.appManager = (UIApplication.shared.delegate as! AppDelegate).appManager
+        self.setupModalManager()
         self.subscribeToAuthState()
         self.subscribeToNoConnectionState()
         self.subscribeToOldVersionState()
@@ -227,6 +230,13 @@ class RootViewController: BaseViewController {
         LogService.shared.records.observeOn(MainScheduler.instance).asObservable().subscribe(onNext: { [weak self] _ in
             self?.debugTextView.text = LogService.shared.asShortText()
         }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func setupModalManager()
+    {
+        self.appManager.modalUIManager.containerVC = self
+        self.appManager.modalUIManager.containerView = self.modalContainerView
+        self.appManager.modalUIManager.backgroundView = self.modalBackgroundView
     }
 }
 
