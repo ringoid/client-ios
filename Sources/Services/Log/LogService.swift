@@ -9,6 +9,8 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Fabric
+import Crashlytics
 
 func log(_ message: String, level: LogLevel)
 {
@@ -49,6 +51,8 @@ class LogService
             timestamp: Date(),
             level: level
             )])
+        
+        CLSLogv("%@", getVaList([message]))
         
         #if DEBUG
         print("LOG(\(self.formatter.string(from: Date()))): \(message)")
