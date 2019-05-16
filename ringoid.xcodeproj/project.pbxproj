@@ -69,6 +69,12 @@
 		573A5C31222919470094A9FA /* ReachabilityServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */; };
 		573D115D228D97D700CD9C2D /* ModalUIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D115C228D97D700CD9C2D /* ModalUIManager.swift */; };
 		573D115E228D97D700CD9C2D /* ModalUIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D115C228D97D700CD9C2D /* ModalUIManager.swift */; };
+		573D1160228D9E5000CD9C2D /* Feedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 573D115F228D9E5000CD9C2D /* Feedback.storyboard */; };
+		573D1161228D9E5000CD9C2D /* Feedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 573D115F228D9E5000CD9C2D /* Feedback.storyboard */; };
+		573D1165228DA0A500CD9C2D /* SettingsFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D1164228DA0A500CD9C2D /* SettingsFeedbackViewController.swift */; };
+		573D1166228DA0A500CD9C2D /* SettingsFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D1164228DA0A500CD9C2D /* SettingsFeedbackViewController.swift */; };
+		573D1169228DA38E00CD9C2D /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D1168228DA38E00CD9C2D /* FeedbackManager.swift */; };
+		573D116A228DA38E00CD9C2D /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D1168228DA38E00CD9C2D /* FeedbackManager.swift */; };
 		574A7DA622434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574A7DA722434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574F4ACA22520B230027A083 /* SettingsNotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */; };
@@ -392,6 +398,9 @@
 		573A5C2C2229184E0094A9FA /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityServiceDefault.swift; sourceTree = "<group>"; };
 		573D115C228D97D700CD9C2D /* ModalUIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalUIManager.swift; sourceTree = "<group>"; };
+		573D115F228D9E5000CD9C2D /* Feedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feedback.storyboard; sourceTree = "<group>"; };
+		573D1164228DA0A500CD9C2D /* SettingsFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFeedbackViewController.swift; sourceTree = "<group>"; };
+		573D1168228DA38E00CD9C2D /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		574A7DA522434EFE0065AE56 /* PromotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionManager.swift; sourceTree = "<group>"; };
 		574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsCell.swift; sourceTree = "<group>"; };
 		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
@@ -598,6 +607,7 @@
 		570D047321DCE3DA00E0DCFB /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				573D1163228DA08300CD9C2D /* Feedback */,
 				57FB7BD121E74C1000AAA29D /* Storyboards */,
 				57585D6521E4FEAB00038798 /* Common */,
 				579CD7BF21F9A90800C3AEE3 /* Chat */,
@@ -677,6 +687,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				573D1167228DA37F00CD9C2D /* FeedbackMananger */,
 				573663C52272D8700041C5DB /* GlobalAnimationManager */,
 				573663C12271B7650041C5DB /* Transition */,
 				577DDADB22648301001D7D24 /* Location */,
@@ -720,6 +731,7 @@
 				57B863CB21ECD32100B9CC70 /* MainLMM.storyboard */,
 				579CD7AD21F8603500C3AEE3 /* Settings.storyboard */,
 				579CD7BD21F99EDE00C3AEE3 /* Chat.storyboard */,
+				573D115F228D9E5000CD9C2D /* Feedback.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -817,6 +829,22 @@
 				573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		573D1163228DA08300CD9C2D /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				573D1164228DA0A500CD9C2D /* SettingsFeedbackViewController.swift */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		573D1167228DA37F00CD9C2D /* FeedbackMananger */ = {
+			isa = PBXGroup;
+			children = (
+				573D1168228DA38E00CD9C2D /* FeedbackManager.swift */,
+			);
+			path = FeedbackMananger;
 			sourceTree = "<group>";
 		};
 		574A7DA422434EE30065AE56 /* Promotion */ = {
@@ -1353,6 +1381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */,
+				573D1160228D9E5000CD9C2D /* Feedback.storyboard in Resources */,
 				570D04AF21DDD34E00E0DCFB /* Auth.storyboard in Resources */,
 				576FC11D2201EBC400BA5ABE /* Localizable.strings in Resources */,
 				577DDAE82264B3E3001D7D24 /* InfoPlist.strings in Resources */,
@@ -1373,6 +1402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57EE65462216711000246B45 /* Main.storyboard in Resources */,
+				573D1161228D9E5000CD9C2D /* Feedback.storyboard in Resources */,
 				57EE65472216711000246B45 /* Auth.storyboard in Resources */,
 				57EE65482216711000246B45 /* Localizable.strings in Resources */,
 				577DDAE92264B3E3001D7D24 /* InfoPlist.strings in Resources */,
@@ -1642,6 +1672,7 @@
 				576FC12A22086B6C00BA5ABE /* ApiUserPhoto.swift in Sources */,
 				57585D6021E4BF4900038798 /* UploaderServiceDefault.swift in Sources */,
 				577DDAD622647964001D7D24 /* LocationService.swift in Sources */,
+				573D1165228DA0A500CD9C2D /* SettingsFeedbackViewController.swift in Sources */,
 				576FC12222032D7E00BA5ABE /* BlockedProfile.swift in Sources */,
 				570D04CA21E32F4800E0DCFB /* AuthViewController.swift in Sources */,
 				577DDAEE226EDAEB001D7D24 /* ChatTextView.swift in Sources */,
@@ -1655,6 +1686,7 @@
 				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
 				576FC10A21FEC9FF00BA5ABE /* ActionProfile.swift in Sources */,
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
+				573D1169228DA38E00CD9C2D /* FeedbackManager.swift in Sources */,
 				57585D7021E500FD00038798 /* ThemeManager.swift in Sources */,
 				579CD7C121F9A91700C3AEE3 /* ChatViewController.swift in Sources */,
 				57386E42220B2FB20000E5D9 /* SettingsLanguageCell.swift in Sources */,
@@ -1802,6 +1834,7 @@
 				57EE64F12216711000246B45 /* LocalizedTableViewCell.swift in Sources */,
 				57EE64F22216711000246B45 /* XStorageService.swift in Sources */,
 				577DDAD722647965001D7D24 /* LocationService.swift in Sources */,
+				573D1166228DA0A500CD9C2D /* SettingsFeedbackViewController.swift in Sources */,
 				57EE64F32216711000246B45 /* ApiUserPhoto.swift in Sources */,
 				57EE64F42216711000246B45 /* UploaderServiceDefault.swift in Sources */,
 				577DDAEF226EDAED001D7D24 /* ChatTextView.swift in Sources */,
@@ -1815,6 +1848,7 @@
 				57EE64FB2216711000246B45 /* ChatLeftCell.swift in Sources */,
 				57EE64FC2216711000246B45 /* LMMProfile.swift in Sources */,
 				57EE64FD2216711000246B45 /* ApiServiceDefault.swift in Sources */,
+				573D116A228DA38E00CD9C2D /* FeedbackManager.swift in Sources */,
 				57EE64FE2216711000246B45 /* ActionProfile.swift in Sources */,
 				57EE64FF2216711000246B45 /* AppDelegate.swift in Sources */,
 				57EE65002216711000246B45 /* ThemeManager.swift in Sources */,
