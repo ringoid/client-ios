@@ -89,10 +89,13 @@ class NewFaceProfileViewController: UIViewController
             return vc
         })
         
-        let vc = self.photosVCs[self.currentIndex.value]
-        self.pagesVC?.setViewControllers([vc], direction: .forward, animated: false, completion: nil)
-        self.pagesControl.numberOfPages = self.input.profile.orderedPhotos().count
-        self.pagesControl.currentPage = self.currentIndex.value
+        let count = self.input.profile.orderedPhotos().count        
+        if self.currentIndex.value < count {
+            let vc = self.photosVCs[self.currentIndex.value]
+            self.pagesVC?.setViewControllers([vc], direction: .forward, animated: false, completion: nil)
+            self.pagesControl.numberOfPages = count
+            self.pagesControl.currentPage = self.currentIndex.value
+        }
         
         #if STAGE
         self.profileIdLabel.text = "Profile: " +  String(self.input.profile.id.suffix(4))
