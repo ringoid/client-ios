@@ -19,19 +19,19 @@ class ModalUIManager
         self.containerView.embed(vc, to: containerVC)
         
         if animated {
-            let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeIn) {
+            let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeIn) {
                 self.backgroundView.alpha = 1.0
             }
             animator.startAnimation()
         } else {
-            self.backgroundView.alpha = 1.0            
+            self.backgroundView.alpha = 1.0
         }
     }
     
     func hide(animated: Bool)
     {
         if animated {
-            let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeIn) {
+            let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeIn) {
                 self.backgroundView.alpha = 0.0
             }
             animator.addCompletion { _ in

@@ -21,6 +21,8 @@ class SettingsFeedbackViewController: BaseViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        self.textView.becomeFirstResponder()
     }
     
     override func updateLocale()

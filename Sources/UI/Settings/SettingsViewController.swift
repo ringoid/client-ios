@@ -27,7 +27,8 @@ fileprivate enum SettingsOptionType: Int
     case language = 2
     case legal = 3
     case support = 4
-    case delete = 5
+    case suggest = 5
+    case delete = 6
 }
 
 #else
@@ -38,7 +39,8 @@ fileprivate enum SettingsOptionType: Int
     case language = 1
     case legal = 2
     case support = 3
-    case delete = 4
+    case suggest = 4
+    case delete = 5
 }
 
 #endif
@@ -54,6 +56,7 @@ class SettingsViewController: BaseViewController
         SettingsOption(cellIdentifier: "language_cell", height: 56.0),
         SettingsOption(cellIdentifier: "legal_cell", height: 56.0),
         SettingsOption(cellIdentifier: "support_cell", height: 56.0),
+        SettingsOption(cellIdentifier: "suggest_cell", height: 56.0),
         SettingsOption(cellIdentifier: "delete_cell", height: 96.0)
     ]
     #else
@@ -62,6 +65,7 @@ class SettingsViewController: BaseViewController
         SettingsOption(cellIdentifier: "language_cell", height: 56.0),
         SettingsOption(cellIdentifier: "legal_cell", height: 56.0),
         SettingsOption(cellIdentifier: "support_cell", height: 56.0),
+        SettingsOption(cellIdentifier: "suggest_cell", height: 56.0),
         SettingsOption(cellIdentifier: "delete_cell", height: 96.0)
     ]
     #endif
@@ -229,6 +233,11 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
             
         case .support:
             self.showSupportUI()
+            break
+            
+        case .suggest:
+            self.dismiss(animated: true, completion: nil)
+            FeedbackManager.shared.showFromSettings()
             break
             
         case .delete:

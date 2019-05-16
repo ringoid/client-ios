@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dK7-of-ave">
-                                <rect key="frame" x="37.5" y="153.5" width="300" height="360"/>
+                                <rect key="frame" x="37.5" y="80" width="300" height="260"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggest improvements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJS-2x-tg1">
                                         <rect key="frame" x="16" y="16" width="176.5" height="21"/>
@@ -28,21 +28,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9o-wk-cwq">
-                                        <rect key="frame" x="72" y="314" width="48" height="30"/>
+                                        <rect key="frame" x="72" y="214" width="48" height="30"/>
                                         <state key="normal" title="Cancel"/>
                                         <connections>
                                             <action selector="cancelAction" destination="JJL-AT-Gb7" eventType="touchUpInside" id="7S3-LN-7eO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5N-hx-MfX">
-                                        <rect key="frame" x="171" y="314" width="57" height="30"/>
+                                        <rect key="frame" x="171" y="214" width="57" height="30"/>
                                         <state key="normal" title="Suggest"/>
                                         <connections>
                                             <action selector="sendAction" destination="JJL-AT-Gb7" eventType="touchUpInside" id="qnB-Ig-kEq"/>
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JG5-Fx-OZi">
-                                        <rect key="frame" x="16" y="53" width="268" height="229"/>
+                                        <rect key="frame" x="16" y="53" width="268" height="129"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -59,7 +59,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="JG5-Fx-OZi" firstAttribute="top" secondItem="OJS-2x-tg1" secondAttribute="bottom" constant="16" id="1iC-Jg-k91"/>
-                                    <constraint firstAttribute="height" constant="360" id="8j9-nQ-EGG"/>
+                                    <constraint firstAttribute="height" constant="260" id="8j9-nQ-EGG"/>
                                     <constraint firstItem="V9o-wk-cwq" firstAttribute="leading" secondItem="dK7-of-ave" secondAttribute="leading" constant="72" id="8yN-8o-yb8"/>
                                     <constraint firstAttribute="trailing" secondItem="JG5-Fx-OZi" secondAttribute="trailing" constant="16" id="AQu-Gm-SIu"/>
                                     <constraint firstAttribute="bottom" secondItem="b5N-hx-MfX" secondAttribute="bottom" constant="16" id="FJE-0p-sbv"/>
@@ -80,7 +80,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="dK7-of-ave" firstAttribute="centerY" secondItem="J6a-hh-3bX" secondAttribute="centerY" id="i7O-tQ-SI1"/>
+                            <constraint firstItem="dK7-of-ave" firstAttribute="top" secondItem="Xeo-iS-irQ" secondAttribute="top" constant="60" id="ZVQ-sx-SNP"/>
                             <constraint firstItem="dK7-of-ave" firstAttribute="centerX" secondItem="J6a-hh-3bX" secondAttribute="centerX" id="wzS-yo-10W"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xeo-iS-irQ"/>

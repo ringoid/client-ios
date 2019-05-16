@@ -75,6 +75,8 @@
 		573D1166228DA0A500CD9C2D /* SettingsFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D1164228DA0A500CD9C2D /* SettingsFeedbackViewController.swift */; };
 		573D1169228DA38E00CD9C2D /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D1168228DA38E00CD9C2D /* FeedbackManager.swift */; };
 		573D116A228DA38E00CD9C2D /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D1168228DA38E00CD9C2D /* FeedbackManager.swift */; };
+		573D116C228DACEF00CD9C2D /* SettingsSuggestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D116B228DACEF00CD9C2D /* SettingsSuggestCell.swift */; };
+		573D116D228DACEF00CD9C2D /* SettingsSuggestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D116B228DACEF00CD9C2D /* SettingsSuggestCell.swift */; };
 		574A7DA622434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574A7DA722434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574F4ACA22520B230027A083 /* SettingsNotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */; };
@@ -401,6 +403,7 @@
 		573D115F228D9E5000CD9C2D /* Feedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feedback.storyboard; sourceTree = "<group>"; };
 		573D1164228DA0A500CD9C2D /* SettingsFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFeedbackViewController.swift; sourceTree = "<group>"; };
 		573D1168228DA38E00CD9C2D /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
+		573D116B228DACEF00CD9C2D /* SettingsSuggestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSuggestCell.swift; sourceTree = "<group>"; };
 		574A7DA522434EFE0065AE56 /* PromotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionManager.swift; sourceTree = "<group>"; };
 		574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsCell.swift; sourceTree = "<group>"; };
 		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
@@ -1116,6 +1119,7 @@
 				573A5C13222541FF0094A9FA /* SettingsDebugCell.swift */,
 				57801A83222E4378005A9731 /* SettingsDebugItemCell.swift */,
 				574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */,
+				573D116B228DACEF00CD9C2D /* SettingsSuggestCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1675,6 +1679,7 @@
 				573D1165228DA0A500CD9C2D /* SettingsFeedbackViewController.swift in Sources */,
 				576FC12222032D7E00BA5ABE /* BlockedProfile.swift in Sources */,
 				570D04CA21E32F4800E0DCFB /* AuthViewController.swift in Sources */,
+				573D116C228DACEF00CD9C2D /* SettingsSuggestCell.swift in Sources */,
 				577DDAEE226EDAEB001D7D24 /* ChatTextView.swift in Sources */,
 				57585D4921E35B8C00038798 /* NewFacesCell.swift in Sources */,
 				57FB7BD021E74AAC00AAA29D /* NewFaceProfileViewModel.swift in Sources */,
@@ -1837,6 +1842,7 @@
 				573D1166228DA0A500CD9C2D /* SettingsFeedbackViewController.swift in Sources */,
 				57EE64F32216711000246B45 /* ApiUserPhoto.swift in Sources */,
 				57EE64F42216711000246B45 /* UploaderServiceDefault.swift in Sources */,
+				573D116D228DACEF00CD9C2D /* SettingsSuggestCell.swift in Sources */,
 				577DDAEF226EDAED001D7D24 /* ChatTextView.swift in Sources */,
 				57EE64F52216711000246B45 /* BlockedProfile.swift in Sources */,
 				57EE64F62216711000246B45 /* AuthViewController.swift in Sources */,
