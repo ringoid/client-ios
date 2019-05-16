@@ -526,7 +526,9 @@ extension NewFacesViewController: UIScrollViewDelegate
         // Bottom new page trigger
         let bottomOffset = scrollView.contentSize.height - scrollView.bounds.height - scrollView.contentInset.bottom - scrollView.contentInset.top - offset
         if bottomOffset < 0.0 && self.viewModel?.isFetching.value == false {
-            self.onFetchMore()
+            if let profiles = self.viewModel?.profiles.value, profiles.count > 2 {
+                self.onFetchMore()
+            }
         }
         
         // Scroll to top FAB
