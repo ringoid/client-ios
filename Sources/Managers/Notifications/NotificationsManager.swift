@@ -33,8 +33,8 @@ class NotificationsManager
             guard let `self` = self else { return }
             guard self.api.isAuthorized.value else { return }
             
-            log("DEVICE TOKEN: \(token)", level: .high)
-            self.api.updatePush(token).subscribe().disposed(by: self.disposeBag)
+            log("FCM TOKEN: \(token)", level: .high)
+            //self.api.updatePush(token).subscribe().disposed(by: self.disposeBag)
         }).disposed(by: self.disposeBag)
     }
 }

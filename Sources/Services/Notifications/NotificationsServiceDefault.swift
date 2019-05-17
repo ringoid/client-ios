@@ -9,6 +9,7 @@
 import UserNotifications
 import RxSwift
 import RxCocoa
+import Firebase
 
 class NotificationsServiceDefault: NSObject, NotificationService
 {
@@ -23,6 +24,8 @@ class NotificationsServiceDefault: NSObject, NotificationService
     override init()
     {
         super.init()
+        
+        Messaging.messaging().delegate = self
         
         UNUserNotificationCenter.current().delegate = self
         self.isRegistered = UIApplication.shared.isRegisteredForRemoteNotifications
@@ -69,11 +72,9 @@ class NotificationsServiceDefault: NSObject, NotificationService
         }
     }
     
-    func store(_ token: String)
+    func store(_ token: Data)
     {
-        self.token.accept(token)
-        UserDefaults.standard.set(token, forKey: "push_token")
-        UserDefaults.standard.synchronize()
+        Messaging.messaging().apnsToken = token
     }
     
     // MARK: -
@@ -106,5 +107,15 @@ extension NotificationsServiceDefault: UNUserNotificationCenterDelegate
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
     {
         
+    }
+}
+
+extension NotificationsServiceDefault: MessagingDelegate
+{
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String)
+    {
+        self.token.accept(fcmToken)
+        UserDefaults.standard.set(fcmToken, forKey: "push_token")
+        UserDefaults.standard.synchronize()
     }
 }

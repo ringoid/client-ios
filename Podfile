@@ -18,6 +18,7 @@ def common_pods
 	pod 'Branch'
 	pod 'Firebase/Core'
 	pod 'Firebase/Performance'
+	pod 'Firebase/Messaging'
 	pod 'Flurry-iOS-SDK/FlurrySDK'
 	pod 'FBSDKCoreKit'
 end

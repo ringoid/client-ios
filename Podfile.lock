@@ -20,6 +20,9 @@ PODS:
     - FirebaseAnalytics (= 5.7.0)
   - Firebase/CoreOnly (5.18.0):
     - FirebaseCore (= 5.3.1)
+  - Firebase/Messaging (5.18.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (= 3.3.2)
   - Firebase/Performance (5.18.0):
     - Firebase/Core
     - FirebasePerformance (= 2.2.3)
@@ -35,12 +38,21 @@ PODS:
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
+  - FirebaseAnalyticsInterop (1.2.0)
   - FirebaseCore (5.3.1):
     - GoogleUtilities/Logger (~> 5.2)
   - FirebaseInstanceID (3.7.0):
     - FirebaseCore (~> 5.2)
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/UserDefaults (~> 5.2)
+  - FirebaseMessaging (3.3.2):
+    - FirebaseAnalyticsInterop (~> 1.1)
+    - FirebaseCore (~> 5.2)
+    - FirebaseInstanceID (~> 3.6)
+    - GoogleUtilities/Environment (~> 5.3)
+    - GoogleUtilities/Reachability (~> 5.3)
+    - GoogleUtilities/UserDefaults (~> 5.3)
+    - Protobuf (~> 3.1)
   - FirebasePerformance (2.2.3):
     - FirebaseAnalytics (~> 5.6)
     - FirebaseInstanceID (~> 3.5)
@@ -133,6 +145,7 @@ DEPENDENCIES:
   - Fabric
   - FBSDKCoreKit
   - Firebase/Core
+  - Firebase/Messaging
   - Firebase/Performance
   - Flurry-iOS-SDK/FlurrySDK
   - Nuke
@@ -155,8 +168,10 @@ SPEC REPOS:
     - Firebase
     - FirebaseABTesting
     - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
     - FirebaseCore
     - FirebaseInstanceID
+    - FirebaseMessaging
     - FirebasePerformance
     - FirebaseRemoteConfig
     - Flurry-iOS-SDK
@@ -199,8 +214,10 @@ SPEC CHECKSUMS:
   Firebase: 02f3281965c075426141a0ce1277e9de6649cab9
   FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
   FirebaseAnalytics: 23851fe602c872130a2c5c55040b302120346cc2
+  FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
   FirebaseCore: 52f851b30e11360f1e67cf04b1edfebf0a47a2d3
   FirebaseInstanceID: bd6fc5a258884e206fd5c474ebe4f5b00e21770e
+  FirebaseMessaging: d740150547f7686b33799f6489f5b69a4706631b
   FirebasePerformance: b97b1c301790b4fddc9fe675bca05b71c04e24a6
   FirebaseRemoteConfig: 7e11c65f0769c09bff6947997c209515058c5318
   Flurry-iOS-SDK: 5d782d740c5e95389c327d38245b3db4bb471fd7
@@ -223,6 +240,6 @@ SPEC CHECKSUMS:
   Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
   Valet: 4af0382d4a94db5c7861504f751884f653437d24
 
-PODFILE CHECKSUM: 3ef3adf6815490dbb3948ea54e3266c6a1065943
+PODFILE CHECKSUM: 161999f879787e624febba6450bb9150ca479922
 
 COCOAPODS: 1.6.0

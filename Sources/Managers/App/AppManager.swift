@@ -103,7 +103,7 @@ class AppManager
     
     // Pushes: -
     
-    func onGot(deviceToken: String)
+    func onGot(deviceToken: Data)
     {
         self.notifications.store(deviceToken)
     }
