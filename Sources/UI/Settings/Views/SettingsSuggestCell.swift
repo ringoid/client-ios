@@ -20,6 +20,6 @@ class SettingsSuggestCell: BaseTableViewCell
     
     override func updateLocale()
     {
-        self.titleLabel.text = "Suggest improvements"//"settings_support".localized()
+        self.titleLabel.text = "feedback_suggest_improvements".localized()
     }
 }

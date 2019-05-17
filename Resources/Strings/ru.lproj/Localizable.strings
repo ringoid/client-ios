@@ -14,6 +14,7 @@
 "button_apply" = "Применить";
 "button_ok" = "OK";
 "button_settings" = "Настройки";
+"button_suggest" = "Предложить";
 
 "common_pull_to_refresh" = "Потяни, чтобы обновить";
 "common_sex_male" = "Мужчина";
@@ -96,3 +97,5 @@
 "settings_info_terms" = "Условия использования";
 
 "web_url_error_status" = "https://ringoid.com/status-ru.html";
+
+"feedback_suggest_improvements" = "Предложить улучшения";

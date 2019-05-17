@@ -30,7 +30,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.10094713184931502" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="lhs-6J-66M" firstAttribute="leading" secondItem="NaU-f3-T96" secondAttribute="leading" id="6Ms-bO-G2C"/>
                                     <constraint firstItem="lhs-6J-66M" firstAttribute="top" secondItem="NaU-f3-T96" secondAttribute="top" id="clh-0T-jm3"/>

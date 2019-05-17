@@ -14,6 +14,7 @@
 "button_apply" = "Apply";
 "button_ok" = "OK";
 "button_settings" = "Settings";
+"button_suggest" = "Suggest";
 
 "common_pull_to_refresh" = "Pull to refresh";
 "common_sex_male" = "Male";
@@ -94,3 +95,5 @@
 "settings_info_terms" = "Terms of Service";
 
 "web_url_error_status" = "https://ringoid.com/status.html";
+
+"feedback_suggest_improvements" = "Suggest improvements";

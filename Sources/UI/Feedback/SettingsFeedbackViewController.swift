@@ -17,17 +17,31 @@ class SettingsFeedbackViewController: BaseViewController
     @IBOutlet fileprivate weak var textView: UITextView!
     @IBOutlet fileprivate weak var cancelBtn: UIButton!
     @IBOutlet fileprivate weak var sendBtn: UIButton!
+    @IBOutlet fileprivate weak var bottomSeparatorConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var midSeparatorConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
+        self.bottomSeparatorConstraint.constant = 0.5
+        self.midSeparatorConstraint.constant = 0.5
+        
+        self.textView.layer.borderColor = UIColor.lightGray.cgColor
+        self.textView.layer.borderWidth = 1.0
+        self.textView.layer.cornerRadius = 4.0
         self.textView.becomeFirstResponder()
+    }
+    
+    override func updateTheme() {
+        
     }
     
     override func updateLocale()
     {
-        
+        self.titleLabel.text = "feedback_suggest_improvements".localized()
+        self.cancelBtn.setTitle("button_cancel".localized(), for: .normal)
+        self.sendBtn.setTitle("button_suggest".localized(), for: .normal)
     }
     
     // MARK: - Actionss
