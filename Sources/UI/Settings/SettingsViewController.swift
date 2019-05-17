@@ -128,6 +128,7 @@ class SettingsViewController: BaseViewController
         self.viewModel = SettingsViewModel(self.input)
     }
     
+    /*
     fileprivate func showLogoutAlert()
     {
         let alertVC = UIAlertController(
@@ -145,6 +146,7 @@ class SettingsViewController: BaseViewController
         
         self.present(alertVC, animated: true, completion: nil)
     }
+ */
     
     fileprivate func showSupportUI()
     {
@@ -241,7 +243,15 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
             break
             
         case .delete:
-            self.showLogoutAlert()
+            let parent = self.parent
+            let settingsManager = self.input.settingsManager
+            self.dismiss(animated: true, completion: nil)
+            FeedbackManager.shared.showDeletion { [weak self] in
+                parent?.block()
+                settingsManager.logout(onError: {
+                    parent?.unblock()
+                })
+            }
             break
         }
     }

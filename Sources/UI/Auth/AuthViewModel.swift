@@ -59,7 +59,7 @@ class AuthViewModel
         return self.apiService.createProfile(year: year, sex: sex, privateKey: privateKey, referralCode: referralCode).do(onNext: { [weak self] _ in
             AnalyticsManager.shared.send(.profileCreated(year, sex.rawValue))
             self?.settingsManager.updateRemoteSettings()
-            self?.settingsManager.updatePushToken()
+            //self?.settingsManager.updatePushToken()
             self?.locationManager.sendLastLocationIfAvailable()
             self?.profileManager.gender.accept(sex)
             self?.profileManager.yob.accept(year)

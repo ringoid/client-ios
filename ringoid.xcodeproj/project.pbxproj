@@ -77,6 +77,8 @@
 		573D116A228DA38E00CD9C2D /* FeedbackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D1168228DA38E00CD9C2D /* FeedbackManager.swift */; };
 		573D116C228DACEF00CD9C2D /* SettingsSuggestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D116B228DACEF00CD9C2D /* SettingsSuggestCell.swift */; };
 		573D116D228DACEF00CD9C2D /* SettingsSuggestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D116B228DACEF00CD9C2D /* SettingsSuggestCell.swift */; };
+		573D116F228EC8B400CD9C2D /* DeletionFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D116E228EC8B400CD9C2D /* DeletionFeedbackViewController.swift */; };
+		573D1170228EC8B400CD9C2D /* DeletionFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D116E228EC8B400CD9C2D /* DeletionFeedbackViewController.swift */; };
 		574A7DA622434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574A7DA722434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574F4ACA22520B230027A083 /* SettingsNotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */; };
@@ -404,6 +406,7 @@
 		573D1164228DA0A500CD9C2D /* SettingsFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFeedbackViewController.swift; sourceTree = "<group>"; };
 		573D1168228DA38E00CD9C2D /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		573D116B228DACEF00CD9C2D /* SettingsSuggestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSuggestCell.swift; sourceTree = "<group>"; };
+		573D116E228EC8B400CD9C2D /* DeletionFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletionFeedbackViewController.swift; sourceTree = "<group>"; };
 		574A7DA522434EFE0065AE56 /* PromotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionManager.swift; sourceTree = "<group>"; };
 		574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsCell.swift; sourceTree = "<group>"; };
 		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
@@ -838,6 +841,7 @@
 			isa = PBXGroup;
 			children = (
 				573D1164228DA0A500CD9C2D /* SettingsFeedbackViewController.swift */,
+				573D116E228EC8B400CD9C2D /* DeletionFeedbackViewController.swift */,
 			);
 			path = Feedback;
 			sourceTree = "<group>";
@@ -1738,6 +1742,7 @@
 				573A5C262227AA080094A9FA /* UserProfilePhotoCropViewController.swift in Sources */,
 				57585D4421E3558800038798 /* Photo.swift in Sources */,
 				57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */,
+				573D116F228EC8B400CD9C2D /* DeletionFeedbackViewController.swift in Sources */,
 				57B863CF21ECD98F00B9CC70 /* MainLMMCell.swift in Sources */,
 				57801A84222E4378005A9731 /* SettingsDebugItemCell.swift in Sources */,
 				57B863FC21EF5DDF00B9CC70 /* ApiViewChatAction.swift in Sources */,
@@ -1901,6 +1906,7 @@
 				573A5C272227AA080094A9FA /* UserProfilePhotoCropViewController.swift in Sources */,
 				57EE651D2216711000246B45 /* AppManager.swift in Sources */,
 				57EE651E2216711000246B45 /* ContainerView.swift in Sources */,
+				573D1170228EC8B400CD9C2D /* DeletionFeedbackViewController.swift in Sources */,
 				57EE651F2216711000246B45 /* Photo.swift in Sources */,
 				57801A85222E4379005A9731 /* SettingsDebugItemCell.swift in Sources */,
 				57EE65202216711000246B45 /* DBServiceObject.swift in Sources */,

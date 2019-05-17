@@ -46,10 +46,28 @@ class FeedbackManager
         self.modalManager.show(vc, animated: true)
     }
     
+    func showDeletion(_ onDelete: (()->())?)
+    {
+        let vc = Storyboards.feedback().instantiateViewController(withIdentifier: "deletion_feedback_vc") as! DeletionFeedbackViewController
+        vc.onDelete = { [weak self] text in
+            self?.send(text, source: .deleteAccount)
+            self?.modalManager.hide(animated: true)
+            onDelete?()
+        }
+        
+        vc.onCancel = { [weak self] in
+            self?.modalManager.hide(animated: true)
+        }
+        
+        self.modalManager.show(vc, animated: true)
+    }
+    
     // MARK: -
     
     fileprivate func send(_ text: String, source: FeedbackSource)
-    {        
+    {
+        guard text.count > 0 else { return }
+        
         let daysPassed: Int = Int(Date().timeIntervalSince(self.profileManager.creationDate.value) / (60.0 * 60.0 * 24.0))
         let gender = self.profileManager.gender.value == .male ? "Male" : "Female"
         let template =
