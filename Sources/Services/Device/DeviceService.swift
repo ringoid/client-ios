@@ -12,4 +12,5 @@ protocol DeviceService
 {
     var photoResolution: String { get }
     var deviceName: String { get }
+    var appVersion: String { get }
 }

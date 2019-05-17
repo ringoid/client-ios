@@ -155,7 +155,11 @@ class AppManager
         
         ThemeManager.shared.storageService = self.defaultStorage
         LocaleManager.shared.storage = self.defaultStorage
+        
         FeedbackManager.shared.modalManager = self.modalUIManager
+        FeedbackManager.shared.apiService = self.apiService
+        FeedbackManager.shared.profileManager = self.profileManager
+        FeedbackManager.shared.deviceService = self.deviceService
     }
     
     fileprivate func setupBindings()

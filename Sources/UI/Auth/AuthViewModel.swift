@@ -22,6 +22,7 @@ struct AuthVMInput
     let settingsManager: SettingsManager
     let promotionManager: PromotionManager
     let locationManager: LocationManager
+    let profileManager: UserProfileManager
 }
 
 class AuthViewModel
@@ -33,6 +34,7 @@ class AuthViewModel
     let settingsManager: SettingsManager
     let promotionManager: PromotionManager
     let locationManager: LocationManager
+    let profileManager: UserProfileManager
     
     init(_ input: AuthVMInput)
     {
@@ -40,6 +42,7 @@ class AuthViewModel
         self.settingsManager = input.settingsManager
         self.promotionManager = input.promotionManager
         self.locationManager = input.locationManager
+        self.profileManager = input.profileManager
     }
     
     func register() -> Observable<Void>
@@ -58,6 +61,9 @@ class AuthViewModel
             self?.settingsManager.updateRemoteSettings()
             self?.settingsManager.updatePushToken()
             self?.locationManager.sendLastLocationIfAvailable()
+            self?.profileManager.gender.accept(sex)
+            self?.profileManager.yob.accept(year)
+            self?.profileManager.creationDate.accept(Date())
         })
     }
     

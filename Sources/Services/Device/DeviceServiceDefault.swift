@@ -41,4 +41,9 @@ class DeviceServiceDefault: DeviceService
     {
         return Device().description
     }
+    
+    var appVersion: String
+    {
+        return (Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as?  String) ?? "0"
+    }
 }

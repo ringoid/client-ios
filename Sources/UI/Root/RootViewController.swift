@@ -111,7 +111,8 @@ class RootViewController: BaseViewController {
             apiService: self.appManager.apiService,
             settingsManager: self.appManager.settingsMananger,
             promotionManager: self.appManager.promotionManager,
-            locationManager: self.appManager.locationManager
+            locationManager: self.appManager.locationManager,
+            profileManager: self.appManager.profileManager
         )
         
         self.containerView.embed(vc, to: self)
