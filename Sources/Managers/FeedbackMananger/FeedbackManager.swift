@@ -68,18 +68,23 @@ class FeedbackManager
     {
         guard text.count > 0 else { return }
         
+        let calendar = Calendar.current
         let daysPassed: Int = Int(Date().timeIntervalSince(self.profileManager.creationDate.value) / (60.0 * 60.0 * 24.0))
+        let age = calendar.component(.year, from: Date()) - self.profileManager.yob.value
         let gender = self.profileManager.gender.value == .male ? "Male" : "Female"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        let creationStr = dateFormatter.string(from: self.profileManager.creationDate.value)
         let template =
 """
-*\(gender)* YearOfBirth (\(self.profileManager.yob.value)) from `\(source.rawValue)`
+*\(gender)* \(self.profileManager.yob.value) (\(age)) from `\(source.rawValue)`
 
 > "\(text)"
 
 iOS \(self.deviceService.appVersion)
 \(self.deviceService.deviceName)
 
-`\(self.apiService.customerId.value)` createdAt (\(daysPassed) days ago)
+`\(self.apiService.customerId.value)` \(creationStr) (\(daysPassed) days ago)
 """
         
         let params: [String: Any] = [
