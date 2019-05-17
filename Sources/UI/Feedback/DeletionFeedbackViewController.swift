@@ -14,6 +14,8 @@ class DeletionFeedbackViewController: BaseViewController
     var onDelete: ((String)->())?
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var noUndoLabel: UILabel!
+    @IBOutlet fileprivate weak var suggestLabel: UILabel!
     @IBOutlet fileprivate weak var textView: UITextView!
     @IBOutlet fileprivate weak var cancelBtn: UIButton!
     @IBOutlet fileprivate weak var deleteBtn: UIButton!
@@ -37,7 +39,9 @@ class DeletionFeedbackViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.titleLabel.text = "feedback_suggest_improvements".localized()
+        self.titleLabel.text = "settings_account_delete_dialog_title".localized()
+        self.noUndoLabel.text = "common_uncancellable".localized()
+        self.suggestLabel.text = "feedback_suggest_improvements".localized()
         self.cancelBtn.setTitle("button_cancel".localized(), for: .normal)
         self.deleteBtn.setTitle("button_delete".localized(), for: .normal)
     }
