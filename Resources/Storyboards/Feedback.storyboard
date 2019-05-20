@@ -114,7 +114,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dK7-of-ave" firstAttribute="top" secondItem="Xeo-iS-irQ" secondAttribute="top" constant="60" id="ZVQ-sx-SNP"/>
                             <constraint firstItem="dK7-of-ave" firstAttribute="centerX" secondItem="J6a-hh-3bX" secondAttribute="centerX" id="wzS-yo-10W"/>
@@ -256,7 +256,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="oUX-lF-V5m" firstAttribute="centerX" secondItem="rL0-95-McW" secondAttribute="centerX" id="fLv-Bs-NMP"/>
                             <constraint firstItem="oUX-lF-V5m" firstAttribute="top" secondItem="2aA-U2-mqb" secondAttribute="top" constant="16" id="uXn-kF-E8r"/>

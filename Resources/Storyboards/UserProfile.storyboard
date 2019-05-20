@@ -87,7 +87,7 @@ see how many likes you get</string>
                                 <inset key="imageEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="profile_settings"/>
                                 <connections>
-                                    <segue destination="yQa-yl-S9g" kind="presentation" identifier="settings_vc" id="Emm-PL-Vpz"/>
+                                    <action selector="showSettings" destination="aaf-t7-SOT" eventType="touchUpInside" id="l6W-Fe-rNv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R3C-Zv-Ixf">
@@ -155,14 +155,6 @@ see how many likes you get</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8C-Tc-6v7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="56.799999999999997" y="65.217391304347828"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="W2M-U6-eCU">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="yQa-yl-S9g" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ilL-3d-G5h" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="607" y="-461"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="khy-Gj-Sd6">

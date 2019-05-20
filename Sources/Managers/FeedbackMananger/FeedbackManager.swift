@@ -31,24 +31,26 @@ class FeedbackManager
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    func showFromSettings()
+    func showSuggestion(_ from: UIViewController)
     {
         let vc = Storyboards.feedback().instantiateViewController(withIdentifier: "settings_feedback_vc") as! SettingsFeedbackViewController
+        vc.modalPresentationStyle = .overFullScreen
         vc.onSend = { [weak self] text in
             self?.send(text, source: .settings)
             self?.modalManager.hide(animated: true)
         }
         
         vc.onCancel = { [weak self] in
-            self?.modalManager.hide(animated: true)
+            
         }
         
-        self.modalManager.show(vc, animated: true)
+        from.present(vc, animated: true, completion: nil)
     }
     
-    func showDeletion(_ onDelete: (()->())?)
+    func showDeletion(_ onDelete: (()->())?, from: UIViewController)
     {
         let vc = Storyboards.feedback().instantiateViewController(withIdentifier: "deletion_feedback_vc") as! DeletionFeedbackViewController
+        vc.modalPresentationStyle = .fullScreen
         vc.onDelete = { [weak self] text in
             self?.send(text, source: .deleteAccount)
             self?.modalManager.hide(animated: true)
@@ -56,10 +58,10 @@ class FeedbackManager
         }
         
         vc.onCancel = { [weak self] in
-            self?.modalManager.hide(animated: true)
+            
         }
         
-        self.modalManager.show(vc, animated: true)
+        from.present(vc, animated: true, completion: nil)
     }
     
     // MARK: -

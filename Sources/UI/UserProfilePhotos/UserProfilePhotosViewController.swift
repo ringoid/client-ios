@@ -80,16 +80,6 @@ class UserProfilePhotosViewController: BaseViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if segue.identifier == SegueIds.settingsVC,
-            let vc = (segue.destination as? UINavigationController)?.viewControllers.first as? SettingsViewController {
-            vc.input = SettingsVMInput(
-                settingsManager: self.input.settingsManager,
-                actionsManager: self.input.actionsManager,
-                errorsManager: self.input.errorsManager,
-                device: self.input.device
-            )
-        }
-        
         if segue.identifier == SegueIds.cropVC, let vc = segue.destination as? UserProfilePhotoCropViewController {
             vc.sourceImage = self.pickedPhoto
             vc.delegate = self
@@ -199,6 +189,21 @@ class UserProfilePhotosViewController: BaseViewController
         guard self.input.actionsManager.checkConnectionState() else { return }
         
         self.showDeletionAlert()
+    }
+    
+    @IBAction func showSettings()
+    {
+        let storyboard = Storyboards.settings()
+        guard let navVC = storyboard.instantiateInitialViewController() else { return }
+        guard let vc = (navVC as? UINavigationController)?.viewControllers.first as? SettingsViewController else { return }
+        vc.input = SettingsVMInput(
+            settingsManager: self.input.settingsManager,
+            actionsManager: self.input.actionsManager,
+            errorsManager: self.input.errorsManager,
+            device: self.input.device
+        )
+        
+        ModalUIManager.shared.show(vc, animated: true)
     }
     
     // MARK: -

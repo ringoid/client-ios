@@ -118,7 +118,7 @@ class SettingsViewController: BaseViewController
     
     @IBAction func onBack()
     {
-        self.dismiss(animated: true, completion: nil)
+        ModalUIManager.shared.hide(animated: true)
     }
     
     // MARK: -
@@ -238,20 +238,18 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
             break
             
         case .suggest:
-            self.dismiss(animated: true, completion: nil)
-            FeedbackManager.shared.showFromSettings()
+            FeedbackManager.shared.showSuggestion(self)
             break
             
         case .delete:
-            let parent = self.parent
             let settingsManager = self.input.settingsManager
-            self.dismiss(animated: true, completion: nil)
-            FeedbackManager.shared.showDeletion { [weak self] in
-                parent?.block()
-                settingsManager.logout(onError: {
-                    parent?.unblock()
+            FeedbackManager.shared.showDeletion({ [weak self] in
+                self?.block()
+                settingsManager.logout(onError: { [weak self] in
+                    self?.unblock()
                 })
-            }
+
+            }, from: self)
             break
         }
     }

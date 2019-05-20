@@ -49,6 +49,7 @@ class SettingsFeedbackViewController: BaseViewController
     @IBAction func cancelAction()
     {
         self.onCancel?()
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func sendAction()

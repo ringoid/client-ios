@@ -14,6 +14,10 @@ class ModalUIManager
     var containerView: ContainerView!
     var containerVC: UIViewController!
     
+    static let shared: ModalUIManager = ModalUIManager()
+    
+    private init() {}
+    
     func show(_ vc: UIViewController, animated: Bool)
     {
         self.containerView.embed(vc, to: containerVC)

@@ -235,9 +235,9 @@ class RootViewController: BaseViewController {
     
     fileprivate func setupModalManager()
     {
-        self.appManager.modalUIManager.containerVC = self
-        self.appManager.modalUIManager.containerView = self.modalContainerView
-        self.appManager.modalUIManager.backgroundView = self.modalBackgroundView
+        ModalUIManager.shared.containerVC = self
+        ModalUIManager.shared.containerView = self.modalContainerView
+        ModalUIManager.shared.backgroundView = self.modalBackgroundView
     }
 }
 
