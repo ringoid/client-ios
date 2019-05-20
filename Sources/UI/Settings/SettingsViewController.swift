@@ -180,27 +180,6 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
     {
         let option = self.options[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: option.cellIdentifier)!
-        
-        if let option = SettingsOptionType(rawValue: indexPath.row) {
-            switch option {
-            case .push:
-                let notificationsCell = cell as? SettingsNotificationsCell
-                notificationsCell?.settingsManager = self.input.settingsManager
-                notificationsCell?.onSettingsChangesRequired = {
-                    if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-                        UIApplication.shared.open(settingsUrl)
-                    }
-                }
-                notificationsCell?.onHeightUpdate = { [weak self] in
-                    self?.tableView.beginUpdates()
-                    self?.tableView.endUpdates()
-                }
-                
-                break
-                
-            default: break
-            }
-        }
 
         return cell
     }
@@ -221,7 +200,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         guard let option = SettingsOptionType(rawValue: indexPath.row) else { return }
         
         switch option {
-        case .push: return            
+        case .push:
+            self.performSegue(withIdentifier: SegueIds.pushes, sender: nil)
+            break
+            
             #if STAGE
         case .theme: return
             #endif
@@ -269,5 +251,6 @@ extension SettingsViewController
     {
         static let locale = "locale_vc"
         static let legal = "legal_vc"
+        static let pushes = "pushes_vc"
     }
 }

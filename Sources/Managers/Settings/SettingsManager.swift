@@ -128,6 +128,8 @@ class SettingsManager
             
             self?.isFirstLaunch.accept(state)
         }).disposed(by: self.disposeBag)
+        
+        
     }
     
     fileprivate func setupBindings()

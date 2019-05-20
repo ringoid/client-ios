@@ -83,6 +83,8 @@
 		574A7DA722434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574F4ACA22520B230027A083 /* SettingsNotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */; };
 		574F4ACB22520B230027A083 /* SettingsNotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */; };
+		57528C712292BCE4003F01E3 /* SettingsNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57528C702292BCE4003F01E3 /* SettingsNotificationsViewController.swift */; };
+		57528C722292BCE4003F01E3 /* SettingsNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57528C702292BCE4003F01E3 /* SettingsNotificationsViewController.swift */; };
 		57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3521E3309300038798 /* NewFacesViewController.swift */; };
 		57585D3821E330B100038798 /* NewFaces.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D3721E330B100038798 /* NewFaces.storyboard */; };
 		57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3921E3499E00038798 /* ApiPhoto.swift */; };
@@ -409,6 +411,7 @@
 		573D116E228EC8B400CD9C2D /* DeletionFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletionFeedbackViewController.swift; sourceTree = "<group>"; };
 		574A7DA522434EFE0065AE56 /* PromotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionManager.swift; sourceTree = "<group>"; };
 		574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsCell.swift; sourceTree = "<group>"; };
+		57528C702292BCE4003F01E3 /* SettingsNotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsViewController.swift; sourceTree = "<group>"; };
 		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
 		57585D3721E330B100038798 /* NewFaces.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewFaces.storyboard; sourceTree = "<group>"; };
 		57585D3921E3499E00038798 /* ApiPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPhoto.swift; sourceTree = "<group>"; };
@@ -1100,6 +1103,7 @@
 				57EE64C2221478EA00246B45 /* SettingsLegalViewModel.swift */,
 				573A5C162225440B0094A9FA /* SettingsDebugViewController.swift */,
 				57801A86222FF049005A9731 /* SettingsDebugLogViewController.swift */,
+				57528C702292BCE4003F01E3 /* SettingsNotificationsViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1784,6 +1788,7 @@
 				57EE6559221677DE00246B45 /* ApiServiceConfigProd.swift in Sources */,
 				577DDAE322649B5D001D7D24 /* ApiLocationAction.swift in Sources */,
 				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,
+				57528C712292BCE4003F01E3 /* SettingsNotificationsViewController.swift in Sources */,
 				579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */,
 				573663CA2272E6510041C5DB /* CAAnimationClosure.swift in Sources */,
 				57EE64C922152AC400246B45 /* SettingsLegalPolicyCell.swift in Sources */,
@@ -1948,6 +1953,7 @@
 				57EE653E2216711000246B45 /* ErrorsManager.swift in Sources */,
 				577DDAE422649B5D001D7D24 /* ApiLocationAction.swift in Sources */,
 				57EE653F2216711000246B45 /* ApiService.swift in Sources */,
+				57528C722292BCE4003F01E3 /* SettingsNotificationsViewController.swift in Sources */,
 				57EE65402216711000246B45 /* SettingsViewController.swift in Sources */,
 				573663CB2272E6510041C5DB /* CAAnimationClosure.swift in Sources */,
 				57EE65412216711000246B45 /* SettingsLegalPolicyCell.swift in Sources */,

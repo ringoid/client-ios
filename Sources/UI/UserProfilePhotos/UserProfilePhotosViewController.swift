@@ -203,7 +203,7 @@ class UserProfilePhotosViewController: BaseViewController
             device: self.input.device
         )
         
-        ModalUIManager.shared.show(vc, animated: true)
+        ModalUIManager.shared.show(navVC, animated: true)
     }
     
     // MARK: -
