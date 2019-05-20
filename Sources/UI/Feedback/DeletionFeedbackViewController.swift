@@ -41,7 +41,7 @@ class DeletionFeedbackViewController: BaseViewController
     {
         self.titleLabel.text = "settings_account_delete_dialog_title".localized()
         self.noUndoLabel.text = "common_uncancellable".localized()
-        self.suggestLabel.text = "feedback_suggest_improvements".localized()
+        self.suggestLabel.text = "feedback_before_deletion".localized()
         self.cancelBtn.setTitle("button_cancel".localized(), for: .normal)
         self.deleteBtn.setTitle("button_delete".localized(), for: .normal)
     }

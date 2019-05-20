@@ -73,7 +73,7 @@ class FeedbackManager
         let age = calendar.component(.year, from: Date()) - self.profileManager.yob.value
         let gender = self.profileManager.gender.value == .male ? "Male" : "Female"
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+        dateFormatter.dateFormat = "yyyy-mm-dd"
         let creationStr = dateFormatter.string(from: self.profileManager.creationDate.value)
         let template =
 """
