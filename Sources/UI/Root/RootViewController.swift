@@ -106,6 +106,8 @@ class RootViewController: BaseViewController {
     fileprivate func embedAuthVC()
     {
         self.presentedViewController?.dismiss(animated: false, completion: nil)
+        ModalUIManager.shared.hide(animated: false)
+        
         let vc = AuthViewController.create()
         vc.input = AuthVMInput(
             apiService: self.appManager.apiService,
