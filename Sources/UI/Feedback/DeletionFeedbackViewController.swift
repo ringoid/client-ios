@@ -56,8 +56,7 @@ class DeletionFeedbackViewController: BaseViewController
     
     @IBAction func deleteAction()
     {
-        if let text = self.textView.text {
-            self.onDelete?(text)
-        }
+        self.dismiss(animated: true, completion: nil)
+        self.onDelete?(self.textView.text ?? "")        
     }
 }

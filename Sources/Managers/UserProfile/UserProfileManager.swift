@@ -27,9 +27,9 @@ class UserProfileManager
         return !self.photos.value.filter({ !$0.isBlocked }).isEmpty
     }
     
-    var gender: BehaviorRelay<Sex> =  BehaviorRelay<Sex>(value: .male)
-    var yob: BehaviorRelay<Int> =  BehaviorRelay<Int>(value: 1999)
-    var creationDate: BehaviorRelay<Date> = BehaviorRelay<Date>(value: Date())
+    var gender: BehaviorRelay<Sex?> =  BehaviorRelay<Sex?>(value: nil)
+    var yob: BehaviorRelay<Int?> =  BehaviorRelay<Int?>(value: nil)
+    var creationDate: BehaviorRelay<Date?> = BehaviorRelay<Date?>(value: nil)
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
@@ -153,16 +153,22 @@ class UserProfileManager
         }).disposed(by: self.disposeBag)
         
         self.gender.subscribe(onNext: { value in
+            guard let value = value else { return }
+            
             UserDefaults.standard.setValue(value.rawValue, forKey: "profile_sex")
             UserDefaults.standard.synchronize()
         }).disposed(by: self.disposeBag)
         
         self.yob.subscribe(onNext: { value in
+            guard let value = value else { return }
+            
             UserDefaults.standard.setValue(value, forKey: "profile_yob")
             UserDefaults.standard.synchronize()
         }).disposed(by: self.disposeBag)
         
         self.creationDate.subscribe(onNext: { value in
+            guard let value = value else { return }
+            
             UserDefaults.standard.setValue(value.timeIntervalSince1970, forKey: "profile_creation_date")
             UserDefaults.standard.synchronize()
         }).disposed(by: self.disposeBag)
@@ -227,15 +233,17 @@ class UserProfileManager
     
     fileprivate func loadProfileInfo()
     {
-        let sexStr = UserDefaults.standard.string(forKey: "profile_sex") ?? "male"
-        if let genderValue = Sex(rawValue: sexStr) {
+       
+        if  let sexStr = UserDefaults.standard.string(forKey: "profile_sex"), let genderValue = Sex(rawValue: sexStr) {
             self.gender.accept(genderValue)
         }
         
         let yobValue = UserDefaults.standard.integer(forKey: "profile_yob")
-        self.yob.accept(yobValue)
+        self.yob.accept(yobValue != 0 ? yobValue : nil)
         
-        let creationTimestamp = UserDefaults.standard.double(forKey: "profile_creation_date")
-        self.creationDate.accept(Date(timeIntervalSince1970: creationTimestamp))
+        let creationTimestamp = UserDefaults.standard.double(forKey: "profile_creation_date")        
+        if creationTimestamp > 1.0 {
+            self.creationDate.accept(Date(timeIntervalSince1970: creationTimestamp))
+        }
     }
 }

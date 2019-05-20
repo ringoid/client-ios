@@ -37,7 +37,6 @@ class FeedbackManager
         vc.modalPresentationStyle = .overFullScreen
         vc.onSend = { [weak self] text in
             self?.send(text, source: .settings)
-            self?.modalManager.hide(animated: true)
         }
         
         vc.onCancel = { [weak self] in
@@ -53,7 +52,6 @@ class FeedbackManager
         vc.modalPresentationStyle = .fullScreen
         vc.onDelete = { [weak self] text in
             self?.send(text, source: .deleteAccount)
-            self?.modalManager.hide(animated: true)
             onDelete?()
         }
         
@@ -70,28 +68,30 @@ class FeedbackManager
     {
         guard text.count > 0 else { return }
         
-        let calendar = Calendar.current
-        let daysPassed: Int = Int(Date().timeIntervalSince(self.profileManager.creationDate.value) / (60.0 * 60.0 * 24.0))
-        let age = calendar.component(.year, from: Date()) - self.profileManager.yob.value
-        let gender = self.profileManager.gender.value == .male ? "Male" : "Female"
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-mm-dd"
-        let creationStr = dateFormatter.string(from: self.profileManager.creationDate.value)
-        let template =
-"""
-*\(gender)* \(self.profileManager.yob.value) (\(age)) from `\(source.rawValue)`
-
-> "\(text)"
-
-iOS \(self.deviceService.appVersion)
-\(self.deviceService.deviceName)
-
-`\(self.apiService.customerId.value)` \(creationStr) (\(daysPassed) days ago)
-"""
+        var reportText: String = ""
         
+        if let gender = self.profileManager.gender.value, let yob = self.profileManager.yob.value {
+            let age =  Calendar.current.component(.year, from: Date()) - yob
+            reportText.append("*\(age) \(gender == .male ? "M" : "F")* ")
+        }
+        
+        reportText.append("from `\(source.rawValue)`\n\n")
+        reportText.append("> \"\(text.replacingOccurrences(of: "\n", with: "\n>"))\"\n")
+        reportText.append("iOS \(self.deviceService.appVersion)\n\(self.deviceService.deviceName)\n\n")
+        reportText.append("`\(self.apiService.customerId.value)`")
+        
+        if let creationDate = self.profileManager.creationDate.value {
+            let daysPassed: Int = Int(Date().timeIntervalSince(creationDate) / (60.0 * 60.0 * 24.0))
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let creationStr = dateFormatter.string(from: creationDate)
+            
+            reportText.append(" createdAt \(creationStr) (\(daysPassed) days ago)")
+        }
+
         let params: [String: Any] = [
             "channel": "CJDASTGTC",
-            "text": template,
+            "text": reportText,
         ]
         
         RxAlamofire.request(.post, "https://slack.com/api/chat.postMessage", parameters: params, encoding: JSONEncoding.default, headers: [

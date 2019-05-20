@@ -56,6 +56,7 @@ class SettingsFeedbackViewController: BaseViewController
     {
         if let text = self.textView.text {
             self.onSend?(text)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
