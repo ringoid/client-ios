@@ -20,6 +20,10 @@ protocol NotificationService
     var notification: BehaviorRelay<RemoteNotification> { get }
     var token: BehaviorRelay<String?> { get }
     var isGranted: BehaviorRelay<Bool> { get }
+    var isEveningEnabled: BehaviorRelay<Bool> { get }
+    var isLikeEnabled: BehaviorRelay<Bool> { get }
+    var isMatchEnabled: BehaviorRelay<Bool> { get }
+    var isMessageEnabled: BehaviorRelay<Bool> { get }
     var isRegistered: Bool { get }
     var responses: Observable<UNNotificationResponse>! { get }
     

@@ -86,9 +86,12 @@ class SettingsManager
         
         self.api.updateSettings(
             LocaleManager.shared.language.value.rawValue,
-            push: self.isNotificationsAllowed,
+            eveningPush: self.notifications.isEveningEnabled.value,
+            likePush: self.notifications.isLikeEnabled.value,
+            matchPush: self.notifications.isMatchEnabled.value,
+            messagePush: self.notifications.isMessageEnabled.value,
             timezone: NSTimeZone.default.secondsFromGMT() / 3600
-            ).subscribe().disposed(by: self.disposeBag)
+        ).subscribe().disposed(by: self.disposeBag)
     }
     
     func logout(onError: (()->())?)

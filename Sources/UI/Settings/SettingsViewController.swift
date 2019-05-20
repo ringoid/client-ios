@@ -187,11 +187,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         let option = self.options[indexPath.row]
-        
-        if option.cellIdentifier == "push_cell" && self.input.settingsManager.isNotificationsAllowed {
-            return UIScreen.main.bounds.width < 374.0 ? 98.0 : 88.0
-        }
-        
+
         return option.height
     }
     

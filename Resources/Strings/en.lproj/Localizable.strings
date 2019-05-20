@@ -94,6 +94,12 @@
 "settings_info_privacy" = "Privacy Policy";
 "settings_info_terms" = "Terms of Service";
 
+"settings_notifications" = "Push notifications";
+"settings_notifications_evening" = "Evening Notification";
+"settings_notifications_like" = "New Like";
+"settings_notifications_match" = "New Match";
+"settings_notifications_message" = "New Message";
+
 "web_url_error_status" = "https://ringoid.com/status.html";
 
 "feedback_suggest_improvements" = "Suggest Improvements";

@@ -376,7 +376,7 @@ class ApiServiceDefault: ApiService
         }
     }
     
-    func updateSettings(_ locale: String? = nil, push: Bool? = nil, timezone: Int? = nil) -> Observable<Void>
+    func updateSettings(_ locale: String? = nil, eveningPush: Bool, likePush: Bool, matchPush: Bool, messagePush: Bool, timezone: Int? = nil) -> Observable<Void>
     {
         var params: [String: Any] = [:]
         
@@ -384,9 +384,11 @@ class ApiServiceDefault: ApiService
             params["locale"] = locale
         }
         
-        if let push = push {
-            params["push"] = push
-        }
+        params["push"] = eveningPush
+        params["pushNewLike"] = likePush
+        params["pushNewMatch"] = matchPush
+        params["pushNewMessage"] = matchPush
+        
         
         if let timezone = timezone {
             params["timeZone"] = timezone

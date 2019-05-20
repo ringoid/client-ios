@@ -16,9 +16,14 @@ class NotificationsServiceDefault: NSObject, NotificationService
     var notification: BehaviorRelay<RemoteNotification> = BehaviorRelay<RemoteNotification>(value: RemoteNotification(message: ""))
     var token: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     var isGranted: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var isEveningEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var isLikeEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var isMatchEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var isMessageEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     var responses: Observable<UNNotificationResponse>!
     var isRegistered: Bool = false
     
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var responseObserver: AnyObserver<UNNotificationResponse>?
     
     override init()
@@ -29,8 +34,10 @@ class NotificationsServiceDefault: NSObject, NotificationService
         
         UNUserNotificationCenter.current().delegate = self
         self.isRegistered = UIApplication.shared.isRegisteredForRemoteNotifications
-        self.checkAndRegister()
         
+        self.loadStored()
+        self.setupBindings()
+        self.checkAndRegister()
         
         self.responses =  Observable<UNNotificationResponse>.create({ [weak self] observer -> Disposable in
             
@@ -79,6 +86,29 @@ class NotificationsServiceDefault: NSObject, NotificationService
     
     // MARK: -
     
+    fileprivate func setupBindings()
+    {
+        self.isEveningEnabled.subscribe(onNext: { value in
+            UserDefaults.standard.set(value, forKey: "is_evening_enabled")
+            UserDefaults.standard.synchronize()
+        }).disposed(by: self.disposeBag)
+        
+        self.isLikeEnabled.subscribe(onNext: { value in
+            UserDefaults.standard.set(value, forKey: "is_like_enabled")
+            UserDefaults.standard.synchronize()
+        }).disposed(by: self.disposeBag)
+        
+        self.isMatchEnabled.subscribe(onNext: { value in
+            UserDefaults.standard.set(value, forKey: "is_match_enabled")
+            UserDefaults.standard.synchronize()
+        }).disposed(by: self.disposeBag)
+        
+        self.isMessageEnabled.subscribe(onNext: { value in
+            UserDefaults.standard.set(value, forKey: "is_message_enabled")
+            UserDefaults.standard.synchronize()
+        }).disposed(by: self.disposeBag)
+    }
+    
     fileprivate func checkAndRegister()
     {
         UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
@@ -90,9 +120,14 @@ class NotificationsServiceDefault: NSObject, NotificationService
     
     fileprivate func loadStored()
     {
-        guard let storedToken = UserDefaults.standard.string(forKey: "push_token") else { return }
+        if let storedToken = UserDefaults.standard.string(forKey: "push_token") {
+            self.token.accept(storedToken)
+        }
         
-        self.token.accept(storedToken)
+        self.isEveningEnabled.accept(UserDefaults.standard.bool(forKey: "is_evening_enabled"))
+        self.isLikeEnabled.accept(UserDefaults.standard.bool(forKey: "is_like_enabled"))
+        self.isMatchEnabled.accept(UserDefaults.standard.bool(forKey: "is_match_enabled"))
+        self.isMessageEnabled.accept(UserDefaults.standard.bool(forKey: "is_message_enabled"))
     }
 }
 

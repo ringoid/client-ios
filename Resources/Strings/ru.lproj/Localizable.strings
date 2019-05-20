@@ -96,6 +96,12 @@
 "settings_info_privacy" = "Политика конфиденциальности";
 "settings_info_terms" = "Условия использования";
 
+"settings_notifications" = "Push notifications";
+"settings_notifications_evening" = "Вечернее уведомление";
+"settings_notifications_like" = "Новый лайк";
+"settings_notifications_match" = "Новая взаимность";
+"settings_notifications_message" = "Новое сообщение";
+
 "web_url_error_status" = "https://ringoid.com/status-ru.html";
 
 "feedback_suggest_improvements" = "Предложить улучшения";
