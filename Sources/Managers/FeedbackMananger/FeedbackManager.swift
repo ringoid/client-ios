@@ -39,10 +39,6 @@ class FeedbackManager
             self?.send(text, source: .settings)
         }
         
-        vc.onCancel = { [weak self] in
-            
-        }
-        
         from.present(vc, animated: true, completion: nil)
     }
     
@@ -54,11 +50,7 @@ class FeedbackManager
             self?.send(text, source: .deleteAccount)
             onDelete?()
         }
-        
-        vc.onCancel = { [weak self] in
-            
-        }
-        
+
         from.present(vc, animated: true, completion: nil)
     }
     
@@ -76,7 +68,7 @@ class FeedbackManager
         }
         
         reportText.append("from `\(source.rawValue)`\n\n")
-        reportText.append("> \"\(text.replacingOccurrences(of: "\n", with: "\n>"))\"\n")
+        reportText.append("> \"\(text.replacingOccurrences(of: "\n", with: "\n>"))\"\n\n")
         reportText.append("iOS \(self.deviceService.appVersion)\n\(self.deviceService.deviceName)\n\n")
         reportText.append("`\(self.apiService.customerId.value)`")
         

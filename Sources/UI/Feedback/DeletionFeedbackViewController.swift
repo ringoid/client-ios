@@ -10,7 +10,6 @@ import UIKit
 
 class DeletionFeedbackViewController: BaseViewController
 {
-    var onCancel: (()->())?
     var onDelete: ((String)->())?
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
@@ -49,8 +48,7 @@ class DeletionFeedbackViewController: BaseViewController
     // MARK: - Actionss
     
     @IBAction func cancelAction()
-    {
-        self.onCancel?()
+    {        
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -9,8 +9,7 @@
 import UIKit
 
 class SettingsFeedbackViewController: BaseViewController
-{
-    var onCancel: (()->())?
+{    
     var onSend: ((String)->())?
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
@@ -47,8 +46,7 @@ class SettingsFeedbackViewController: BaseViewController
     // MARK: - Actionss
     
     @IBAction func cancelAction()
-    {
-        self.onCancel?()
+    {        
         self.dismiss(animated: true, completion: nil)
     }
     
