@@ -370,8 +370,8 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        let trace = Performance.startTrace(name: "push/update_token")
-        return self.request(.post, path: "push/update_token", jsonBody: params, trace: trace).flatMap { _ -> Observable<Void> in
+        let trace = Performance.startTrace(name: "push/update_fmc_token")
+        return self.request(.post, path: "push/update_fmc_token", jsonBody: params, trace: trace).flatMap { _ -> Observable<Void> in
             return .just(())
         }
     }
