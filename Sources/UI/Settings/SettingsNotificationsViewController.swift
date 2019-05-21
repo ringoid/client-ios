@@ -51,6 +51,8 @@ class SettingsNotificationsViewController: BaseViewController
         assert(self.input != nil)
         
         super.viewDidLoad()
+        
+        self.setupBindings()
     }
     
     // MARK: - Actions
@@ -58,6 +60,17 @@ class SettingsNotificationsViewController: BaseViewController
     @IBAction func onBack()
     {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: -
+    
+    fileprivate func setupBindings()
+    {
+        self.input.notifications.isGranted.asObservable().subscribe(onNext: { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }).disposed(by: self.disposeBag)
     }
 }
 
@@ -78,33 +91,32 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
         let option = self.options[indexPath.row]
         let type = SettingsNotificationsOptionType(rawValue: indexPath.row)!
         let cell = tableView.dequeueReusableCell(withIdentifier: option.cellIdentifier) as! SettingsSwitchableCell
-        /*
+        
+        let isEnabledBySystem = self.input.notifications.isGranted.value
+        
+        switch type {
+        case .evening: cell.valueSwitch.isOn = self.input.notifications.isEveningEnabled.value && isEnabledBySystem
+        case .like: cell.valueSwitch.isOn = self.input.notifications.isLikeEnabled.value && isEnabledBySystem
+        case .match: cell.valueSwitch.isOn = self.input.notifications.isMatchEnabled.value && isEnabledBySystem
+        case .message: cell.valueSwitch.isOn = self.input.notifications.isMessageEnabled.value && isEnabledBySystem
+        }
+        
         cell.onValueChanged = { [weak self] valueSwitch in
+            guard let `self` = self else { return }
+            
             switch type {
-            case .evening:
-                self?.input.notifications.isEveningEnabled.accept(valueSwitch.isOn)
-                break
-                
-            case .like:
-                self?.input.notifications.isEveningEnabled.accept(valueSwitch.isOn)
-                break
-                
-            case .evening:
-                self?.input.notifications.isEveningEnabled.accept(valueSwitch.isOn)
-                break
-                
-            case .evening:
-                self?.input.notifications.isEveningEnabled.accept(valueSwitch.isOn)
-                break
+            case .evening: self.input.notifications.isEveningEnabled.accept(valueSwitch.isOn)
+            case .like:  self.input.notifications.isLikeEnabled.accept(valueSwitch.isOn)
+            case .match:  self.input.notifications.isMatchEnabled.accept(valueSwitch.isOn)
+            case .message:  self.input.notifications.isMessageEnabled.accept(valueSwitch.isOn)
             }
-        }*/
-//        
-//        switch type {
-//        case .evening: self.input.notifications.isEveningEnabled.bind(to: cell.valueSwitch.rx.isOn).disposed(by: self.disposeBag)
-//        case .like: self.input.notifications.isLikeEnabled.bind(to: cell.valueSwitch.rx.isOn).disposed(by: self.disposeBag)
-//        case .match: self.input.notifications.isMatchEnabled.bind(to: cell.valueSwitch.rx.isOn).disposed(by: self.disposeBag)
-//        case .message: self.input.notifications.isMessageEnabled.bind(to: cell.valueSwitch.rx.isOn).disposed(by: self.disposeBag)
-//        }
+                
+            if !self.input.notifications.isGranted.value {
+                if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(settingsUrl)
+                }
+            }
+        }
         
         return cell
     }
