@@ -93,6 +93,8 @@
 		57528C7B2292E786003F01E3 /* SettingsNotificationsMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57528C792292E786003F01E3 /* SettingsNotificationsMatchCell.swift */; };
 		57528C7D2292E79F003F01E3 /* SettingsNotificationsMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57528C7C2292E79F003F01E3 /* SettingsNotificationsMessageCell.swift */; };
 		57528C7E2292E79F003F01E3 /* SettingsNotificationsMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57528C7C2292E79F003F01E3 /* SettingsNotificationsMessageCell.swift */; };
+		57528C802292EF29003F01E3 /* SettingsSwitchableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57528C7F2292EF29003F01E3 /* SettingsSwitchableCell.swift */; };
+		57528C812292EF29003F01E3 /* SettingsSwitchableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57528C7F2292EF29003F01E3 /* SettingsSwitchableCell.swift */; };
 		57585D3621E3309300038798 /* NewFacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3521E3309300038798 /* NewFacesViewController.swift */; };
 		57585D3821E330B100038798 /* NewFaces.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57585D3721E330B100038798 /* NewFaces.storyboard */; };
 		57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D3921E3499E00038798 /* ApiPhoto.swift */; };
@@ -424,6 +426,7 @@
 		57528C762292E761003F01E3 /* SettingsNotificationsLikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsLikeCell.swift; sourceTree = "<group>"; };
 		57528C792292E786003F01E3 /* SettingsNotificationsMatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsMatchCell.swift; sourceTree = "<group>"; };
 		57528C7C2292E79F003F01E3 /* SettingsNotificationsMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsMessageCell.swift; sourceTree = "<group>"; };
+		57528C7F2292EF29003F01E3 /* SettingsSwitchableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitchableCell.swift; sourceTree = "<group>"; };
 		57585D3521E3309300038798 /* NewFacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesViewController.swift; sourceTree = "<group>"; };
 		57585D3721E330B100038798 /* NewFaces.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewFaces.storyboard; sourceTree = "<group>"; };
 		57585D3921E3499E00038798 /* ApiPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPhoto.swift; sourceTree = "<group>"; };
@@ -1144,6 +1147,7 @@
 				57528C762292E761003F01E3 /* SettingsNotificationsLikeCell.swift */,
 				57528C792292E786003F01E3 /* SettingsNotificationsMatchCell.swift */,
 				57528C7C2292E79F003F01E3 /* SettingsNotificationsMessageCell.swift */,
+				57528C7F2292EF29003F01E3 /* SettingsSwitchableCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1727,6 +1731,7 @@
 				570D04CB21E32F4800E0DCFB /* AuthViewModel.swift in Sources */,
 				579CD7B621F8947000C3AEE3 /* SettingsThemeCell.swift in Sources */,
 				57ED4870224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */,
+				57528C802292EF29003F01E3 /* SettingsSwitchableCell.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
 				576FC10D21FF33EA00BA5ABE /* NavigationManager.swift in Sources */,
 				574F4ACA22520B230027A083 /* SettingsNotificationsCell.swift in Sources */,
@@ -1896,6 +1901,7 @@
 				57EE65022216711000246B45 /* SettingsLanguageCell.swift in Sources */,
 				57EE65032216711000246B45 /* ApiMessageAction.swift in Sources */,
 				57ED4871224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */,
+				57528C812292EF29003F01E3 /* SettingsSwitchableCell.swift in Sources */,
 				57EE65042216711000246B45 /* AuthViewModel.swift in Sources */,
 				57EE65052216711000246B45 /* SettingsThemeCell.swift in Sources */,
 				574F4ACB22520B230027A083 /* SettingsNotificationsCell.swift in Sources */,

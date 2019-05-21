@@ -91,8 +91,12 @@ class SettingsViewController: BaseViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if segue.identifier == "legal_vc", let vc = segue.destination as? SettingsLegalViewController {
+        if segue.identifier == SegueIds.legal, let vc = segue.destination as? SettingsLegalViewController {
             vc.input = self.input
+        }
+        
+        if segue.identifier == SegueIds.pushes, let vc = segue.destination as? SettingsNotificationsViewController {
+            vc.input = SettingsNotificationsInput(notifications: self.input.settingsManager.notifications)
         }
     }
     

@@ -8,10 +8,9 @@
 
 import UIKit
 
-class SettingsNotificationsMatchCell: BaseTableViewCell
+class SettingsNotificationsMatchCell: SettingsSwitchableCell
 {
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var valueSwitch: UISwitch!
     
     override func updateTheme()
     {
