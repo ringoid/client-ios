@@ -95,7 +95,12 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
         let isEnabledBySystem = self.input.notifications.isGranted.value
         
         switch type {
-        case .evening: cell.valueSwitch.isOn = self.input.notifications.isEveningEnabled.value && isEnabledBySystem
+        case .evening:
+            let isOn = self.input.notifications.isEveningEnabled.value && isEnabledBySystem
+            cell.valueSwitch.isOn = isOn
+            (cell as? SettingsNotificationsEveningCell)?.detailsLabel.isHidden = !isOn
+            break
+            
         case .like: cell.valueSwitch.isOn = self.input.notifications.isLikeEnabled.value && isEnabledBySystem
         case .match: cell.valueSwitch.isOn = self.input.notifications.isMatchEnabled.value && isEnabledBySystem
         case .message: cell.valueSwitch.isOn = self.input.notifications.isMessageEnabled.value && isEnabledBySystem
