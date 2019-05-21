@@ -122,6 +122,8 @@ class SettingsViewController: BaseViewController
     
     @IBAction func onBack()
     {
+        self.input.settingsManager.updateRemoteSettings()
+        
         ModalUIManager.shared.hide(animated: true)
     }
     
@@ -131,27 +133,7 @@ class SettingsViewController: BaseViewController
     {
         self.viewModel = SettingsViewModel(self.input)
     }
-    
-    /*
-    fileprivate func showLogoutAlert()
-    {
-        let alertVC = UIAlertController(
-            title: "settings_account_delete_dialog_title".localized(),
-            message: "common_uncancellable".localized(),
-            preferredStyle: .alert
-        )
-        alertVC.addAction(UIAlertAction(title: "button_delete".localized(), style: .default, handler: ({ _ in
-            self.block()
-            self.viewModel?.logout(onError:{ [weak self] in
-                self?.unblock()
-            })
-        })))
-        alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: nil))
-        
-        self.present(alertVC, animated: true, completion: nil)
-    }
- */
-    
+
     fileprivate func showSupportUI()
     {
         guard MFMailComposeViewController.canSendMail() else { return }

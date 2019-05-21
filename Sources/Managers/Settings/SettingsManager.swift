@@ -86,10 +86,10 @@ class SettingsManager
         
         self.api.updateSettings(
             LocaleManager.shared.language.value.rawValue,
-            eveningPush: self.notifications.isEveningEnabled.value,
-            likePush: self.notifications.isLikeEnabled.value,
-            matchPush: self.notifications.isMatchEnabled.value,
-            messagePush: self.notifications.isMessageEnabled.value,
+            eveningPush: self.notifications.isEveningEnabled.value && self.notifications.isGranted.value,
+            likePush: self.notifications.isLikeEnabled.value && self.notifications.isGranted.value,
+            matchPush: self.notifications.isMatchEnabled.value && self.notifications.isGranted.value,
+            messagePush: self.notifications.isMessageEnabled.value && self.notifications.isGranted.value,
             timezone: NSTimeZone.default.secondsFromGMT() / 3600
         ).subscribe().disposed(by: self.disposeBag)
     }
