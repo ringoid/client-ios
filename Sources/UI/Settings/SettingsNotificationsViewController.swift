@@ -12,7 +12,7 @@ import RxCocoa
 
 struct SettingsNotificationsInput
 {
-    let notifications: NotificationService
+    let settingsManager: SettingsManager
 }
 
 fileprivate struct SettingsNotificationsOption
@@ -66,7 +66,7 @@ class SettingsNotificationsViewController: BaseViewController
     
     fileprivate func setupBindings()
     {
-        self.input.notifications.isGranted.asObservable().subscribe(onNext: { [weak self] _ in
+        self.input.settingsManager.notifications.isGranted.asObservable().subscribe(onNext: { [weak self] _ in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -92,28 +92,29 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
         let type = SettingsNotificationsOptionType(rawValue: indexPath.row)!
         let cell = tableView.dequeueReusableCell(withIdentifier: option.cellIdentifier) as! SettingsSwitchableCell
         
-        let isEnabledBySystem = self.input.notifications.isGranted.value
+        let notifications = self.input.settingsManager.notifications
+        let isEnabledBySystem = notifications.isGranted.value
         
         switch type {
         case .evening:
-            let isOn = self.input.notifications.isEveningEnabled.value && isEnabledBySystem
+            let isOn = notifications.isEveningEnabled.value && isEnabledBySystem
             cell.valueSwitch.isOn = isOn
             (cell as? SettingsNotificationsEveningCell)?.detailsLabel.isHidden = !isOn
             break
             
-        case .like: cell.valueSwitch.isOn = self.input.notifications.isLikeEnabled.value && isEnabledBySystem
-        case .match: cell.valueSwitch.isOn = self.input.notifications.isMatchEnabled.value && isEnabledBySystem
-        case .message: cell.valueSwitch.isOn = self.input.notifications.isMessageEnabled.value && isEnabledBySystem
+        case .like: cell.valueSwitch.isOn = notifications.isLikeEnabled.value && isEnabledBySystem
+        case .match: cell.valueSwitch.isOn = notifications.isMatchEnabled.value && isEnabledBySystem
+        case .message: cell.valueSwitch.isOn = notifications.isMessageEnabled.value && isEnabledBySystem
         }
         
         cell.onValueChanged = { [weak self] valueSwitch in
             guard let `self` = self else { return }
             
-            if !self.input.notifications.isGranted.value {
+            if !notifications.isGranted.value {
                 valueSwitch.setOn(false, animated: true)
                 
-                if !self.input.notifications.isRegistered  {
-                    self.input.notifications.register()
+                if !notifications.isRegistered  {
+                    notifications.register()
                 } else {
                     if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
                         UIApplication.shared.open(settingsUrl)
@@ -121,11 +122,13 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
                 }
             } else {
                 switch type {
-                case .evening: self.input.notifications.isEveningEnabled.accept(valueSwitch.isOn)
-                case .like:  self.input.notifications.isLikeEnabled.accept(valueSwitch.isOn)
-                case .match:  self.input.notifications.isMatchEnabled.accept(valueSwitch.isOn)
-                case .message:  self.input.notifications.isMessageEnabled.accept(valueSwitch.isOn)
+                case .evening: notifications.isEveningEnabled.accept(valueSwitch.isOn)
+                case .like: notifications.isLikeEnabled.accept(valueSwitch.isOn)
+                case .match: notifications.isMatchEnabled.accept(valueSwitch.isOn)
+                case .message: notifications.isMessageEnabled.accept(valueSwitch.isOn)
                 }
+                
+                self.input.settingsManager.updateRemoteSettings()
                 
                 self.tableView.beginUpdates()
                 self.tableView.endUpdates()
@@ -140,7 +143,7 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
         let option = self.options[indexPath.row]
         
         if let type = SettingsNotificationsOptionType(rawValue: indexPath.row), type == .evening,
-            self.input.notifications.isEveningEnabled.value && self.input.notifications.isGranted.value{
+            self.input.settingsManager.notifications.isEveningEnabled.value && self.input.settingsManager.notifications.isGranted.value{
             return 96.0
         }
         

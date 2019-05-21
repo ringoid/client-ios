@@ -96,7 +96,7 @@ class SettingsViewController: BaseViewController
         }
         
         if segue.identifier == SegueIds.pushes, let vc = segue.destination as? SettingsNotificationsViewController {
-            vc.input = SettingsNotificationsInput(notifications: self.input.settingsManager.notifications)
+            vc.input = SettingsNotificationsInput(settingsManager: self.input.settingsManager)
         }
     }
     
