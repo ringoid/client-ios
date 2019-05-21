@@ -32,6 +32,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="81a-d2-QCu"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Cancel"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
@@ -50,13 +51,14 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="x6j-tX-uOg"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <state key="normal" title="Suggest"/>
                                         <connections>
                                             <action selector="sendAction" destination="JJL-AT-Gb7" eventType="touchUpInside" id="qnB-Ig-kEq"/>
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JG5-Fx-OZi">
-                                        <rect key="frame" x="16" y="53" width="268" height="147"/>
+                                        <rect key="frame" x="16" y="53" width="268" height="139"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -105,11 +107,11 @@
                                     <constraint firstItem="OJS-2x-tg1" firstAttribute="top" secondItem="dK7-of-ave" secondAttribute="top" constant="16" id="iku-NP-6Wd"/>
                                     <constraint firstItem="Mx6-Y7-KLV" firstAttribute="top" secondItem="tbX-c8-G8j" secondAttribute="top" id="jxe-4X-RXi"/>
                                     <constraint firstAttribute="bottom" secondItem="tbX-c8-G8j" secondAttribute="bottom" id="oaZ-IX-y1a"/>
-                                    <constraint firstItem="V9o-wk-cwq" firstAttribute="top" secondItem="JG5-Fx-OZi" secondAttribute="bottom" constant="16" id="tt4-uW-USL"/>
+                                    <constraint firstItem="V9o-wk-cwq" firstAttribute="top" secondItem="JG5-Fx-OZi" secondAttribute="bottom" constant="24" id="tt4-uW-USL"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="12"/>
+                                        <integer key="value" value="13"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -156,6 +158,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="AOL-Fm-Q5z"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Cancel"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
@@ -174,13 +177,14 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="oZc-ik-cvx"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <state key="normal" title="Delete"/>
                                         <connections>
                                             <action selector="deleteAction" destination="15u-ip-SM6" eventType="touchUpInside" id="t69-hP-Tgu"/>
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Osm-ah-rMX">
-                                        <rect key="frame" x="16" y="103.5" width="268" height="156.5"/>
+                                        <rect key="frame" x="16" y="100.5" width="268" height="151.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -208,14 +212,14 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no undo." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ig0-Pg-mgx">
-                                        <rect key="frame" x="94" y="41" width="112.5" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="97.5" y="41" width="105.5" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before you leave, can you please suggest how to improve Ringoid" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGP-SK-9x1">
-                                        <rect key="frame" x="16" y="62" width="268" height="33.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="16" y="61" width="268" height="31.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -226,7 +230,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Osm-ah-rMX" secondAttribute="trailing" constant="16" id="5uV-2S-xlX"/>
                                     <constraint firstItem="Ig0-Pg-mgx" firstAttribute="top" secondItem="PMC-5u-vJg" secondAttribute="bottom" constant="4" id="7Jg-kE-mk4"/>
                                     <constraint firstItem="ycK-tu-g9B" firstAttribute="centerX" secondItem="oUX-lF-V5m" secondAttribute="centerX" id="9UV-LT-jjC"/>
-                                    <constraint firstItem="RlT-y4-wFe" firstAttribute="top" secondItem="Osm-ah-rMX" secondAttribute="bottom" constant="16" id="BFF-9l-9WC"/>
+                                    <constraint firstItem="RlT-y4-wFe" firstAttribute="top" secondItem="Osm-ah-rMX" secondAttribute="bottom" constant="24" id="BFF-9l-9WC"/>
                                     <constraint firstAttribute="height" constant="320" id="BZM-cB-IJ1"/>
                                     <constraint firstAttribute="trailing" secondItem="g0G-ld-lAo" secondAttribute="trailing" id="Feq-zy-QNp"/>
                                     <constraint firstAttribute="bottom" secondItem="ycK-tu-g9B" secondAttribute="bottom" id="G9Q-NW-dpb"/>
@@ -251,7 +255,7 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="12"/>
+                                        <integer key="value" value="13"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
