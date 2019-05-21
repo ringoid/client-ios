@@ -36,7 +36,12 @@ class FeedbackManager
         let vc = Storyboards.feedback().instantiateViewController(withIdentifier: "settings_feedback_vc") as! SettingsFeedbackViewController
         vc.modalPresentationStyle = .overFullScreen
         vc.onSend = { [weak self] text in
+            guard text.count > 0 else { return }
+            
             self?.send(text, source: .settings)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                self?.showThanksAlert(from)
+            })
         }
         
         from.present(vc, animated: true, completion: nil)
@@ -89,5 +94,12 @@ class FeedbackManager
         RxAlamofire.request(.post, "https://slack.com/api/chat.postMessage", parameters: params, encoding: JSONEncoding.default, headers: [
             "Authorization": "Bearer xoxp-457467555377-521724314999-637621413061-869a987bacc19dc81fb258a633b34100",
             ]).subscribe().disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func showThanksAlert(_ from: UIViewController)
+    {
+        let alertVC = UIAlertController(title: nil, message: "feedback_thanks_alert".localized(), preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "button_ok".localized(), style: .default, handler: nil))
+        from.present(alertVC, animated: true, completion: nil)
     }
 }
