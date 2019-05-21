@@ -104,17 +104,26 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
         cell.onValueChanged = { [weak self] valueSwitch in
             guard let `self` = self else { return }
             
-            switch type {
-            case .evening: self.input.notifications.isEveningEnabled.accept(valueSwitch.isOn)
-            case .like:  self.input.notifications.isLikeEnabled.accept(valueSwitch.isOn)
-            case .match:  self.input.notifications.isMatchEnabled.accept(valueSwitch.isOn)
-            case .message:  self.input.notifications.isMessageEnabled.accept(valueSwitch.isOn)
-            }
-                
             if !self.input.notifications.isGranted.value {
-                if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(settingsUrl)
+                valueSwitch.setOn(false, animated: true)
+                
+                if !self.input.notifications.isRegistered  {
+                    self.input.notifications.register()
+                } else {
+                    if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(settingsUrl)
+                    }
                 }
+            } else {
+                switch type {
+                case .evening: self.input.notifications.isEveningEnabled.accept(valueSwitch.isOn)
+                case .like:  self.input.notifications.isLikeEnabled.accept(valueSwitch.isOn)
+                case .match:  self.input.notifications.isMatchEnabled.accept(valueSwitch.isOn)
+                case .message:  self.input.notifications.isMessageEnabled.accept(valueSwitch.isOn)
+                }
+                
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
             }
         }
         
@@ -124,6 +133,11 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         let option = self.options[indexPath.row]
+        
+        if let type = SettingsNotificationsOptionType(rawValue: indexPath.row), type == .evening,
+            self.input.notifications.isEveningEnabled.value && self.input.notifications.isGranted.value{
+            return 96.0
+        }
         
         return option.height
     }

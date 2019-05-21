@@ -16,10 +16,10 @@ class NotificationsServiceDefault: NSObject, NotificationService
     var notification: BehaviorRelay<RemoteNotification> = BehaviorRelay<RemoteNotification>(value: RemoteNotification(message: ""))
     var token: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     var isGranted: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
-    var isEveningEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
-    var isLikeEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
-    var isMatchEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
-    var isMessageEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var isEveningEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
+    var isLikeEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
+    var isMatchEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
+    var isMessageEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     var responses: Observable<UNNotificationResponse>!
     var isRegistered: Bool = false
     
@@ -124,10 +124,21 @@ class NotificationsServiceDefault: NSObject, NotificationService
             self.token.accept(storedToken)
         }
         
-        self.isEveningEnabled.accept(UserDefaults.standard.bool(forKey: "is_evening_enabled"))
-        self.isLikeEnabled.accept(UserDefaults.standard.bool(forKey: "is_like_enabled"))
-        self.isMatchEnabled.accept(UserDefaults.standard.bool(forKey: "is_match_enabled"))
-        self.isMessageEnabled.accept(UserDefaults.standard.bool(forKey: "is_message_enabled"))
+        if UserDefaults.standard.object(forKey: "is_evening_enabled") != nil {
+            self.isEveningEnabled.accept(UserDefaults.standard.bool(forKey: "is_evening_enabled"))
+        }
+        
+        if UserDefaults.standard.object(forKey: "is_like_enabled") != nil {
+            self.isLikeEnabled.accept(UserDefaults.standard.bool(forKey: "is_like_enabled"))
+        }
+        
+        if UserDefaults.standard.object(forKey: "is_match_enabled") != nil {
+            self.isMatchEnabled.accept(UserDefaults.standard.bool(forKey: "is_match_enabled"))
+        }
+        
+        if UserDefaults.standard.object(forKey: "is_message_enabled") != nil {
+            self.isMessageEnabled.accept(UserDefaults.standard.bool(forKey: "is_message_enabled"))
+        }
     }
 }
 

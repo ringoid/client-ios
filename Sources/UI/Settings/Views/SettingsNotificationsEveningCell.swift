@@ -7,10 +7,25 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class SettingsNotificationsEveningCell: SettingsSwitchableCell
 {
+
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
+    
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailsLabel: UILabel!
+    
+    override func awakeFromNib()
+    {
+        super.awakeFromNib()
+        
+        self.valueSwitch.rx.isOn.asObservable().subscribe(onNext: { [weak self] value in
+            self?.detailsLabel.isHidden = !value
+        }).disposed(by: self.disposeBag)
+    }
     
     override func updateTheme()
     {
@@ -21,5 +36,6 @@ class SettingsNotificationsEveningCell: SettingsSwitchableCell
     override func updateLocale()
     {
         self.titleLabel.text = "settings_notifications_evening".localized()
+        self.detailsLabel.text = "settings_push_details".localized()
     }
 }
