@@ -184,7 +184,7 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Osm-ah-rMX">
-                                        <rect key="frame" x="16" y="100.5" width="268" height="151.5"/>
+                                        <rect key="frame" x="16" y="108.5" width="268" height="143.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -212,13 +212,13 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no undo." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ig0-Pg-mgx">
-                                        <rect key="frame" x="97.5" y="41" width="105.5" height="16"/>
+                                        <rect key="frame" x="97.5" y="45" width="105.5" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before you leave, can you please suggest how to improve Ringoid" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGP-SK-9x1">
-                                        <rect key="frame" x="16" y="61" width="268" height="31.5"/>
+                                        <rect key="frame" x="16" y="69" width="268" height="31.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -228,7 +228,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="tfx-pu-jaU" secondAttribute="trailing" id="5XN-VN-oLE"/>
                                     <constraint firstAttribute="trailing" secondItem="Osm-ah-rMX" secondAttribute="trailing" constant="16" id="5uV-2S-xlX"/>
-                                    <constraint firstItem="Ig0-Pg-mgx" firstAttribute="top" secondItem="PMC-5u-vJg" secondAttribute="bottom" constant="4" id="7Jg-kE-mk4"/>
+                                    <constraint firstItem="Ig0-Pg-mgx" firstAttribute="top" secondItem="PMC-5u-vJg" secondAttribute="bottom" constant="8" id="7Jg-kE-mk4"/>
                                     <constraint firstItem="ycK-tu-g9B" firstAttribute="centerX" secondItem="oUX-lF-V5m" secondAttribute="centerX" id="9UV-LT-jjC"/>
                                     <constraint firstItem="RlT-y4-wFe" firstAttribute="top" secondItem="Osm-ah-rMX" secondAttribute="bottom" constant="24" id="BFF-9l-9WC"/>
                                     <constraint firstAttribute="height" constant="320" id="BZM-cB-IJ1"/>
@@ -251,7 +251,7 @@
                                     <constraint firstItem="PMC-5u-vJg" firstAttribute="centerX" secondItem="oUX-lF-V5m" secondAttribute="centerX" id="qJz-cv-vLO"/>
                                     <constraint firstAttribute="trailing" secondItem="sGP-SK-9x1" secondAttribute="trailing" constant="16" id="ta3-MY-HNp"/>
                                     <constraint firstAttribute="bottom" secondItem="tfx-pu-jaU" secondAttribute="bottom" id="vRT-qb-Uwt"/>
-                                    <constraint firstItem="sGP-SK-9x1" firstAttribute="top" secondItem="Ig0-Pg-mgx" secondAttribute="bottom" constant="4" id="vzk-nZ-MjE"/>
+                                    <constraint firstItem="sGP-SK-9x1" firstAttribute="top" secondItem="Ig0-Pg-mgx" secondAttribute="bottom" constant="8" id="vzk-nZ-MjE"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
