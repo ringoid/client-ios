@@ -31,6 +31,7 @@ class DeletionFeedbackViewController: BaseViewController
         self.textView.layer.borderColor = UIColor.lightGray.cgColor
         self.textView.layer.borderWidth = 1.0
         self.textView.layer.cornerRadius = 4.0
+        self.textView.text = UserDefaults.standard.string(forKey: "deletion_feedback_text")
         self.textView.becomeFirstResponder()
     }
     
@@ -48,12 +49,17 @@ class DeletionFeedbackViewController: BaseViewController
     // MARK: - Actionss
     
     @IBAction func cancelAction()
-    {        
+    {
+        UserDefaults.standard.set(self.textView.text, forKey: "deletion_feedback_text")
+        UserDefaults.standard.synchronize()
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func deleteAction()
     {
+        UserDefaults.standard.set("", forKey: "deletion_feedback_text")
+        UserDefaults.standard.synchronize()
+        
         self.dismiss(animated: true, completion: nil)
         self.onDelete?(self.textView.text ?? "")        
     }
