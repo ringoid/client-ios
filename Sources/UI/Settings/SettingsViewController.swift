@@ -202,18 +202,22 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
             break
             
         case .suggest:
-            FeedbackManager.shared.showSuggestion(self)
+            if self.input.actionsManager.checkConnectionState() {
+                FeedbackManager.shared.showSuggestion(self)
+            }
             break
             
         case .delete:
-            let settingsManager = self.input.settingsManager
-            FeedbackManager.shared.showDeletion({ [weak self] in
-                self?.block()
-                settingsManager.logout(onError: { [weak self] in
-                    self?.unblock()
-                })
-
-            }, from: self)
+            if self.input.actionsManager.checkConnectionState() {
+                let settingsManager = self.input.settingsManager
+                FeedbackManager.shared.showDeletion({ [weak self] in
+                    self?.block()
+                    settingsManager.logout(onError: { [weak self] in
+                        self?.unblock()
+                    })
+                    
+                    }, from: self)
+            }
             break
         }
     }
