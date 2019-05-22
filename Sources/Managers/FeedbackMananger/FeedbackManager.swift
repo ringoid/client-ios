@@ -93,7 +93,9 @@ class FeedbackManager
         
         RxAlamofire.request(.post, "https://slack.com/api/chat.postMessage", parameters: params, encoding: JSONEncoding.default, headers: [
             "Authorization": "Bearer xoxp-457467555377-521724314999-637621413061-869a987bacc19dc81fb258a633b34100",
-            ]).subscribe().disposed(by: self.disposeBag)
+            ]).subscribe(onError: { _ in
+                SentryService.shared.send(.feedbackFailed, params: ["text": text])
+            }).disposed(by: self.disposeBag)
     }
     
     fileprivate func showThanksAlert(_ from: UIViewController)

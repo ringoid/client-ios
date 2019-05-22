@@ -10,6 +10,7 @@ import Sentry
 
 enum SentryEvent: String
 {
+    case feedbackFailed = "Feedback request failed"
     case repeatAfterDelay = "Repeat after delay"
     case internalError = "Internal Server Error"
     case responseGeneralDelay = "Waiting for response longer than expected 2000 ms"
@@ -51,7 +52,7 @@ class SentryService
     {
         let event = Event(level: sentryEvent.level)
         event.message = sentryEvent.rawValue
-        event.tags = params
+        event.extra = params
         Client.shared?.send(event: event, completion: nil)
     }
 }
@@ -61,6 +62,7 @@ extension SentryEvent
     var level: SentrySeverity
     {
         switch self {
+        case .feedbackFailed: return .error
         case .repeatAfterDelay: return .warning
         case .internalError: return .error
         case .responseGeneralDelay: return .error
