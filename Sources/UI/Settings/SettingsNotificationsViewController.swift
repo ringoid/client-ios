@@ -55,6 +55,24 @@ class SettingsNotificationsViewController: BaseViewController
         self.setupBindings()
     }
     
+    override func updateTheme()
+    {
+        let theme = ThemeManager.shared.theme.value
+        let darkThemeSeparatorColor = UIColor(red: 64.0 / 255.0, green: 64.0 / 255.0, blue: 64.0 / 255.0, alpha: 1.0)
+        
+        UIView.animate(withDuration: 0.1) {
+            self.tableView.separatorColor = (theme == .dark) ? darkThemeSeparatorColor : .lightGray
+            self.view.backgroundColor = BackgroundColor().uiColor()
+            self.titleLabel.textColor = ContentColor().uiColor()
+            self.backBtn.tintColor = ContentColor().uiColor()
+        }
+    }
+    
+    override func updateLocale()
+    {
+        self.titleLabel.text = "settings_push".localized()
+    }
+    
     // MARK: - Actions
     
     @IBAction func onBack()

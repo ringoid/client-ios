@@ -18,7 +18,7 @@ class SettingsNotificationsCell: BaseTableViewCell
 
     override func updateLocale()
     {
-        self.pushLabel.text = "settings_notifications".localized()
+        self.pushLabel.text = "settings_push".localized()
     }
     
     override func updateTheme()
