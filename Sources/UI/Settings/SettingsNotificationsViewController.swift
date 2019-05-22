@@ -34,7 +34,7 @@ class SettingsNotificationsViewController: BaseViewController
     var input: SettingsNotificationsInput!
     
     fileprivate let options = [
-        SettingsNotificationsOption(cellIdentifier: "evening_cell", height: 56.0),
+        SettingsNotificationsOption(cellIdentifier: "evening_cell", height: 96.0),
         SettingsNotificationsOption(cellIdentifier: "like_cell", height: 56.0),
         SettingsNotificationsOption(cellIdentifier: "match_cell", height: 56.0),
         SettingsNotificationsOption(cellIdentifier: "message_cell", height: 56.0),
@@ -96,12 +96,7 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
         let isEnabledBySystem = notifications.isGranted.value
         
         switch type {
-        case .evening:
-            let isOn = notifications.isEveningEnabled.value && isEnabledBySystem
-            cell.valueSwitch.isOn = isOn
-            (cell as? SettingsNotificationsEveningCell)?.detailsLabel.isHidden = !isOn
-            break
-            
+        case .evening: cell.valueSwitch.isOn = notifications.isEveningEnabled.value && isEnabledBySystem
         case .like: cell.valueSwitch.isOn = notifications.isLikeEnabled.value && isEnabledBySystem
         case .match: cell.valueSwitch.isOn = notifications.isMatchEnabled.value && isEnabledBySystem
         case .message: cell.valueSwitch.isOn = notifications.isMessageEnabled.value && isEnabledBySystem
@@ -141,12 +136,7 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         let option = self.options[indexPath.row]
-        
-        if let type = SettingsNotificationsOptionType(rawValue: indexPath.row), type == .evening,
-            self.input.settingsManager.notifications.isEveningEnabled.value && self.input.settingsManager.notifications.isGranted.value{
-            return 96.0
-        }
-        
+
         return option.height
     }
 }
