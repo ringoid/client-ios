@@ -23,10 +23,10 @@ fileprivate struct SettingsNotificationsOption
 
 fileprivate enum SettingsNotificationsOptionType: Int
 {
-    case evening = 0
-    case like = 1
-    case match = 2
-    case message = 3
+    case message = 0
+    case match = 1
+    case like = 2
+    case evening = 3
 }
 
 class SettingsNotificationsViewController: BaseViewController
@@ -34,10 +34,10 @@ class SettingsNotificationsViewController: BaseViewController
     var input: SettingsNotificationsInput!
     
     fileprivate let options = [
-        SettingsNotificationsOption(cellIdentifier: "evening_cell", height: 96.0),
-        SettingsNotificationsOption(cellIdentifier: "like_cell", height: 56.0),
-        SettingsNotificationsOption(cellIdentifier: "match_cell", height: 56.0),
         SettingsNotificationsOption(cellIdentifier: "message_cell", height: 56.0),
+        SettingsNotificationsOption(cellIdentifier: "match_cell", height: 56.0),
+        SettingsNotificationsOption(cellIdentifier: "like_cell", height: 56.0),
+        SettingsNotificationsOption(cellIdentifier: "evening_cell", height: 96.0),
     ]
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
