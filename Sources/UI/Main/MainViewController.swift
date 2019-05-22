@@ -22,6 +22,14 @@ enum SelectionState {
     case likeAndFetch
 }
 
+fileprivate enum RemoteFeedType: String
+{
+    case unknown = "unknown"
+    case likesYou = "NEW_LIKE_PUSH_TYPE"
+    case matches = "NEW_MATCH_PUSH_TYPE"
+    case messages = "NEW_MESSAGE_PUSH_TYPE"
+}
+
 class MainViewController: BaseViewController
 {
     var input: MainVMInput!
@@ -29,6 +37,7 @@ class MainViewController: BaseViewController
     
     fileprivate var viewModel: MainViewModel?
     fileprivate var containerVC: ContainerViewController!
+    fileprivate weak var containedVC: UIViewController?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var menuVCCache: [SelectionState: UIViewController] = [:]
     fileprivate var prevState: SelectionState? = nil
@@ -200,6 +209,7 @@ class MainViewController: BaseViewController
     {
         guard let vc = self.getNewFacesVC() else { return }
         
+        self.containedVC = vc
         self.containerVC.embed(vc)
         DispatchQueue.main.async {
             vc.reload()
@@ -209,12 +219,14 @@ class MainViewController: BaseViewController
     fileprivate func embedMainLMM()
     {
         guard let vc = self.getMainLMMVC() else { return }
+        self.containedVC = vc
         self.containerVC.embed(vc)
     }
     
     fileprivate func embedMessages()
     {
         guard let vc = self.getMessages() else { return }
+        self.containedVC = vc
         self.containerVC.embed(vc)
     }
     
@@ -222,6 +234,7 @@ class MainViewController: BaseViewController
     {
         guard let vc = self.getUserProfileVC() else { return }
         
+        self.containedVC = vc
         self.containerVC.embed(vc)
     }
     
@@ -229,6 +242,7 @@ class MainViewController: BaseViewController
     {
         guard let vc = self.getUserProfileVC() else { return }
         
+        self.containedVC = vc
         self.containerVC.embed(vc)
         
         vc.showPhotoPicker()
@@ -238,6 +252,7 @@ class MainViewController: BaseViewController
     {
         guard let vc = self.getUserProfileVC() else { return }
         
+        self.containedVC = vc
         self.containerVC.embed(vc)
         
         vc.reload()
@@ -247,6 +262,7 @@ class MainViewController: BaseViewController
     {
         guard let vc = self.getMainLMMVC() else { return }
         
+        self.containedVC = vc
         self.containerVC.embed(vc)
         
         DispatchQueue.main.async {
@@ -257,6 +273,7 @@ class MainViewController: BaseViewController
     fileprivate func getMainLMMVC() -> MainLMMContainerViewController?
     {
         if let vc = self.menuVCCache[.like] {
+            self.containedVC = vc
             self.containerVC.embed(vc)
             
             return nil
@@ -417,6 +434,35 @@ class MainViewController: BaseViewController
             self?.profileIndicatorView.alpha = state ? 0.0 : 1.0
             self?.lmmNotSeenIndicatorView.alpha = state ? 0.0 : 1.0            
             self?.bottomShadowView.isHidden = state
+        }).disposed(by: self.disposeBag)
+        
+        self.input.notifications.responses.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { response in
+            let userInfo = response.notification.request.content.userInfo
+            guard let typeStr = userInfo["type"] as? String else {
+                self.input.navigationManager.mainItem.accept(.searchAndFetch)
+                
+                return
+            }
+            
+            guard let type = RemoteFeedType(rawValue: typeStr) else { return }
+            
+            switch type {
+            case .unknown: break
+            case .likesYou: self.input.navigationManager.mainItem.accept(.likeAndFetch)
+            case .matches:
+                self.input.navigationManager.mainItem.accept(.like)
+                DispatchQueue.main.async {                
+                    (self.containedVC as? MainLMMContainerViewController)?.toggle(.matches)
+                    (self.containedVC as? MainLMMContainerViewController)?.reload()
+                }
+            case .messages:
+                self.input.navigationManager.mainItem.accept(.like)
+                DispatchQueue.main.async {
+                    (self.containedVC as? MainLMMContainerViewController)?.toggle(.messages)
+                    (self.containedVC as? MainLMMContainerViewController)?.reload()
+                }
+            }
+            
         }).disposed(by: self.disposeBag)
     }
 }

@@ -148,6 +148,7 @@ extension NotificationsServiceDefault: UNUserNotificationCenterDelegate
     {
         AnalyticsManager.shared.send(.openedByPush)
         self.responseObserver?.onNext(response)
+        completionHandler()
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)

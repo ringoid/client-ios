@@ -133,7 +133,7 @@ class MainLMMContainerViewController: BaseViewController
         }).disposed(by: self.disposeBag)
     }
     
-    fileprivate func toggle(_ type: LMMType)
+    func toggle(_ type: LMMType)
     {
         guard self.input.chatManager.actionsManager.checkConnectionState() else { return }
         
