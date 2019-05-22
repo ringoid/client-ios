@@ -25,8 +25,8 @@ class DeletionFeedbackViewController: BaseViewController
     {
         super.viewDidLoad()
         
-        self.bottomSeparatorConstraint.constant = 0.5
-        self.midSeparatorConstraint.constant = 0.5
+        self.bottomSeparatorConstraint.constant = 1.0
+        self.midSeparatorConstraint.constant = 1.0
         
         self.textView.layer.borderColor = UIColor.lightGray.cgColor
         self.textView.layer.borderWidth = 1.0

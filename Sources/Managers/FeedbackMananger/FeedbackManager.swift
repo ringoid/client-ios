@@ -50,7 +50,7 @@ class FeedbackManager
     func showDeletion(_ onDelete: (()->())?, from: UIViewController)
     {
         let vc = Storyboards.feedback().instantiateViewController(withIdentifier: "deletion_feedback_vc") as! DeletionFeedbackViewController
-        vc.modalPresentationStyle = .fullScreen
+        vc.modalPresentationStyle = .overFullScreen
         vc.onDelete = { [weak self] text in
             self?.send(text, source: .deleteAccount)
             onDelete?()

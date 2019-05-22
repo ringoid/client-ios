@@ -361,6 +361,12 @@ class LMMManager
         self.prevNotSeenMessages.removeAll()
         self.prevNotSeenInbox.removeAll()
         
+        self.likesYou.accept([])
+        self.matches.accept([])
+        self.messages.accept([])
+        self.inbox.accept([])
+        self.sent.accept([])
+        
         self.disposeBag = DisposeBag()
         self.setupBindings()
     }
