@@ -13,6 +13,7 @@ class SettingsFeedbackViewController: BaseViewController
     var onSend: ((String)->())?
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var infoLabel: UILabel!
     @IBOutlet fileprivate weak var textView: UITextView!
     @IBOutlet fileprivate weak var cancelBtn: UIButton!
     @IBOutlet fileprivate weak var sendBtn: UIButton!
@@ -40,6 +41,7 @@ class SettingsFeedbackViewController: BaseViewController
     override func updateLocale()
     {
         self.titleLabel.text = "feedback_suggest_improvements".localized()
+        self.infoLabel.text = "feedback_make_ringoid_better".localized()
         self.cancelBtn.setTitle("button_cancel".localized(), for: .normal)
         self.sendBtn.setTitle("button_suggest".localized(), for: .normal)
     }

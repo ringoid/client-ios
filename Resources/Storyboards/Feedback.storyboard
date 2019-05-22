@@ -36,6 +36,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to make Ringoid better?" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMM-Mt-ozc">
+                                        <rect key="frame" x="16" y="53" width="268" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9o-wk-cwq">
                                         <rect key="frame" x="0.0" y="216" width="150" height="44"/>
                                         <constraints>
@@ -67,7 +73,7 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JG5-Fx-OZi">
-                                        <rect key="frame" x="16" y="53" width="268" height="139"/>
+                                        <rect key="frame" x="16" y="77" width="268" height="115"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -98,9 +104,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="b5N-hx-MfX" firstAttribute="width" secondItem="V9o-wk-cwq" secondAttribute="width" id="17a-cj-cno"/>
-                                    <constraint firstItem="JG5-Fx-OZi" firstAttribute="top" secondItem="OJS-2x-tg1" secondAttribute="bottom" constant="16" id="1iC-Jg-k91"/>
                                     <constraint firstItem="tbX-c8-G8j" firstAttribute="centerX" secondItem="dK7-of-ave" secondAttribute="centerX" id="2cL-wV-H5C"/>
                                     <constraint firstAttribute="trailing" secondItem="Mx6-Y7-KLV" secondAttribute="trailing" id="5Z7-Rd-JFm"/>
+                                    <constraint firstItem="JG5-Fx-OZi" firstAttribute="top" secondItem="aMM-Mt-ozc" secondAttribute="bottom" constant="8" id="7bQ-9n-Epr"/>
                                     <constraint firstItem="OJS-2x-tg1" firstAttribute="centerX" secondItem="dK7-of-ave" secondAttribute="centerX" id="8bt-Ev-v3N"/>
                                     <constraint firstAttribute="height" constant="260" id="8j9-nQ-EGG"/>
                                     <constraint firstAttribute="trailing" secondItem="JG5-Fx-OZi" secondAttribute="trailing" constant="16" id="AQu-Gm-SIu"/>
@@ -108,6 +114,7 @@
                                     <constraint firstItem="lT7-a3-UWY" firstAttribute="top" secondItem="dK7-of-ave" secondAttribute="top" id="IVs-5W-AnX"/>
                                     <constraint firstAttribute="trailing" secondItem="lT7-a3-UWY" secondAttribute="trailing" id="QVa-Wa-Kw8"/>
                                     <constraint firstItem="V9o-wk-cwq" firstAttribute="top" secondItem="Mx6-Y7-KLV" secondAttribute="top" id="S66-oL-wFE"/>
+                                    <constraint firstAttribute="trailing" secondItem="aMM-Mt-ozc" secondAttribute="trailing" constant="16" id="SSa-2i-yx0"/>
                                     <constraint firstItem="JG5-Fx-OZi" firstAttribute="leading" secondItem="dK7-of-ave" secondAttribute="leading" constant="16" id="SoM-1n-fJZ"/>
                                     <constraint firstItem="b5N-hx-MfX" firstAttribute="leading" secondItem="V9o-wk-cwq" secondAttribute="trailing" id="TQt-9T-Af1"/>
                                     <constraint firstAttribute="width" constant="300" id="VCW-Vr-Qxi"/>
@@ -119,7 +126,9 @@
                                     <constraint firstItem="OJS-2x-tg1" firstAttribute="top" secondItem="dK7-of-ave" secondAttribute="top" constant="16" id="iku-NP-6Wd"/>
                                     <constraint firstItem="lT7-a3-UWY" firstAttribute="leading" secondItem="dK7-of-ave" secondAttribute="leading" id="ini-Ek-RP3"/>
                                     <constraint firstItem="Mx6-Y7-KLV" firstAttribute="top" secondItem="tbX-c8-G8j" secondAttribute="top" id="jxe-4X-RXi"/>
+                                    <constraint firstItem="aMM-Mt-ozc" firstAttribute="leading" secondItem="dK7-of-ave" secondAttribute="leading" constant="16" id="kKV-fU-Kx1"/>
                                     <constraint firstAttribute="bottom" secondItem="tbX-c8-G8j" secondAttribute="bottom" id="oaZ-IX-y1a"/>
+                                    <constraint firstItem="aMM-Mt-ozc" firstAttribute="top" secondItem="OJS-2x-tg1" secondAttribute="bottom" constant="16" id="pbF-a2-TJw"/>
                                     <constraint firstItem="V9o-wk-cwq" firstAttribute="top" secondItem="JG5-Fx-OZi" secondAttribute="bottom" constant="24" id="tt4-uW-USL"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -139,6 +148,7 @@
                     <connections>
                         <outlet property="bottomSeparatorConstraint" destination="tzE-Pw-hdj" id="n23-Kx-ig8"/>
                         <outlet property="cancelBtn" destination="V9o-wk-cwq" id="hei-u9-Zeh"/>
+                        <outlet property="infoLabel" destination="aMM-Mt-ozc" id="HtV-5S-3Id"/>
                         <outlet property="midSeparatorConstraint" destination="rsQ-Il-vei" id="MRb-x9-h0A"/>
                         <outlet property="sendBtn" destination="b5N-hx-MfX" id="JDK-QW-aFt"/>
                         <outlet property="textView" destination="JG5-Fx-OZi" id="jbM-AQ-BMp"/>
@@ -206,7 +216,7 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Osm-ah-rMX">
-                                        <rect key="frame" x="16" y="108.5" width="268" height="143.5"/>
+                                        <rect key="frame" x="16" y="124.5" width="268" height="127.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -240,7 +250,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Before you leave, can you please suggest how to improve Ringoid" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGP-SK-9x1">
-                                        <rect key="frame" x="16" y="69" width="268" height="31.5"/>
+                                        <rect key="frame" x="16" y="85" width="268" height="31.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -277,7 +287,7 @@
                                     <constraint firstAttribute="trailing" secondItem="fmT-Tb-gm1" secondAttribute="trailing" id="rIg-fF-2sd"/>
                                     <constraint firstAttribute="trailing" secondItem="sGP-SK-9x1" secondAttribute="trailing" constant="16" id="ta3-MY-HNp"/>
                                     <constraint firstAttribute="bottom" secondItem="tfx-pu-jaU" secondAttribute="bottom" id="vRT-qb-Uwt"/>
-                                    <constraint firstItem="sGP-SK-9x1" firstAttribute="top" secondItem="Ig0-Pg-mgx" secondAttribute="bottom" constant="8" id="vzk-nZ-MjE"/>
+                                    <constraint firstItem="sGP-SK-9x1" firstAttribute="top" secondItem="Ig0-Pg-mgx" secondAttribute="bottom" constant="24" id="vzk-nZ-MjE"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
