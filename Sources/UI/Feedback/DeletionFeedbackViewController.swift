@@ -52,6 +52,9 @@ class DeletionFeedbackViewController: BaseViewController
     {
         UserDefaults.standard.set(self.textView.text, forKey: "deletion_feedback_text")
         UserDefaults.standard.synchronize()
+        
+        self.textView.resignFirstResponder()
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -60,7 +63,9 @@ class DeletionFeedbackViewController: BaseViewController
         UserDefaults.standard.set("", forKey: "deletion_feedback_text")
         UserDefaults.standard.synchronize()
         
+        self.onDelete?(self.textView.text ?? "")
+        self.textView.resignFirstResponder()
+        
         self.dismiss(animated: true, completion: nil)
-        self.onDelete?(self.textView.text ?? "")        
     }
 }

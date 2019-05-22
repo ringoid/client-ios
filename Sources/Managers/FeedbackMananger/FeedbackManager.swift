@@ -44,7 +44,7 @@ class FeedbackManager
             })
         }
         
-        from.present(vc, animated: true, completion: nil)
+        from.present(vc, animated: false, completion: nil)
     }
     
     func showDeletion(_ onDelete: (()->())?, from: UIViewController)
@@ -56,7 +56,7 @@ class FeedbackManager
             onDelete?()
         }
 
-        from.present(vc, animated: true, completion: nil)
+        from.present(vc, animated: false, completion: nil)
     }
     
     // MARK: -

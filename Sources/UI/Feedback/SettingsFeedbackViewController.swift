@@ -50,6 +50,9 @@ class SettingsFeedbackViewController: BaseViewController
     {
         UserDefaults.standard.set(self.textView.text, forKey: "suggestion_feedback_text")
         UserDefaults.standard.synchronize()
+        
+        self.textView.resignFirstResponder()
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -60,6 +63,9 @@ class SettingsFeedbackViewController: BaseViewController
         
         if let text = self.textView.text {
             self.onSend?(text)
+            
+            self.textView.resignFirstResponder()
+            
             self.dismiss(animated: true, completion: nil)
         }
     }
