@@ -63,7 +63,7 @@ class FeedbackManager
     
     fileprivate func send(_ text: String, source: FeedbackSource)
     {
-        guard text.count > 0 else { return }
+        guard text.trimmingCharacters(in: .whitespacesAndNewlines).count > 0 else { return }
         
         var reportText: String = ""
         
