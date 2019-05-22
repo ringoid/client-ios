@@ -387,7 +387,7 @@ class ApiServiceDefault: ApiService
         params["push"] = eveningPush
         params["pushNewLike"] = likePush
         params["pushNewMatch"] = matchPush
-        params["pushNewMessage"] = matchPush
+        params["pushNewMessage"] = messagePush
         
         
         if let timezone = timezone {
