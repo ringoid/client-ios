@@ -48,6 +48,7 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     @IBOutlet fileprivate weak var seenLabel: UILabel!
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
+    @IBOutlet fileprivate weak var statusView: UIView!
     
     static func create(_ profile: LMMProfile,
                        feedType: LMMType,
@@ -137,6 +138,16 @@ class MainLMMProfileViewController: UIViewController
         self.seenLabel.text = self.viewModel?.input.profile.notSeen == true ? "Not seen" : "Seen"
         self.seenLabel.isHidden = false
         #endif
+        
+        self.statusView.layer.borderWidth = 0.5
+        self.statusView.layer.borderColor = UIColor.black.withAlphaComponent(0.25).cgColor
+        
+        if let status = OnlineStatus(rawValue: self.input.profile.status), status != .unknown {
+            self.statusView.backgroundColor = status.color()
+            self.statusView.isHidden = false
+        } else {
+            self.statusView.isHidden = true
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -295,6 +306,7 @@ class MainLMMProfileViewController: UIViewController
         self.optionsBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
         self.messageBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(self.messageBtn.frame, offset: value) ?? 1.0)
         self.pagesControl.alpha = self.discreetOpacity(for: self.topOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
+        self.statusView.alpha = self.discreetOpacity(for: self.topOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
     }
     
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
@@ -309,6 +321,10 @@ class MainLMMProfileViewController: UIViewController
         
         if let pagesControlOpacity = self.bottomOpacityFor(self.pagesControl.frame, offset: value) {
             self.pagesControl.alpha = self.discreetOpacity(for: pagesControlOpacity)
+        }
+        
+        if let statusViewControlOpacity = self.bottomOpacityFor(self.statusView.frame, offset: value) {
+            self.statusView.alpha = self.discreetOpacity(for: statusViewControlOpacity)
         }
     }
     

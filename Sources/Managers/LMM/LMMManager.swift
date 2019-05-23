@@ -407,6 +407,8 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         localProfile.defaultSortingOrderPosition = profile.defaultSortingOrderPosition
         localProfile.photos.append(objectsIn: localPhotos)
         localProfile.messages.append(objectsIn: localMessages)
+        localProfile.status = ([OnlineStatus.offline, OnlineStatus.recent, OnlineStatus.online][Int.random(in: 0...2)]).rawValue
+        localProfile.statusText = "Some text"
         
         return localProfile
     })
