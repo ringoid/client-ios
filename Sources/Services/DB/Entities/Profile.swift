@@ -8,10 +8,21 @@
 
 import RealmSwift
 
+enum OnlineStatus: Int
+{
+    case unknown = 0
+    case offline = 1
+    case recent = 2
+    case online = 3
+}
+
 class Profile: DBServiceObject
 {
     @objc dynamic var id: String!
     let photos: List<Photo> = List<Photo>()
+    
+    @objc dynamic var status: Int = 0
+    @objc dynamic var statusText: String!
     
     func orderedPhotos() -> [Photo]
     {

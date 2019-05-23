@@ -39,7 +39,7 @@ class NewFacePhotoViewController: UIViewController
     
     @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var animationLikeView: UIImageView!
-    @IBOutlet fileprivate weak var photoIdLabel: UILabel!
+    @IBOutlet fileprivate weak var photoIdLabel: UILabel!    
     
     deinit
     {

@@ -61,7 +61,9 @@ class NewFacesManager
                 
                 let localProfile = NewFaceProfile()
                 localProfile.id = profile.id
-                localProfile.photos.append(objectsIn: localPhotos)
+                localProfile.photos.append(objectsIn: localPhotos)                
+                localProfile.status = ([OnlineStatus.offline, OnlineStatus.recent, OnlineStatus.online][Int.random(in: 0...2)]).rawValue
+                localProfile.statusText = "Some text"
                 
                 return localProfile
             })

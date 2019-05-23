@@ -36,6 +36,7 @@ class NewFaceProfileViewController: UIViewController
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
+    @IBOutlet fileprivate weak var statusView: UIView!
     
     static func create(_ profile: NewFaceProfile,
                        initialIndex: Int,
@@ -101,6 +102,16 @@ class NewFaceProfileViewController: UIViewController
         self.profileIdLabel.text = "Profile: " +  String(self.input.profile.id.suffix(4))
         self.profileIdLabel.isHidden = false
         #endif
+        
+        self.statusView.layer.borderWidth = 0.5
+        self.statusView.layer.borderColor = UIColor.black.withAlphaComponent(0.25).cgColor
+        
+        if let status = OnlineStatus(rawValue: self.input.profile.status), status != .unknown {
+            self.statusView.backgroundColor = status.color()
+            self.statusView.isHidden = false
+        } else {
+            self.statusView.isHidden = true
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -211,6 +222,7 @@ class NewFaceProfileViewController: UIViewController
     {
         self.optionsBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
         self.pagesControl.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
+        self.statusView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
     }
     
     fileprivate func bottomOpacityFor(_ frame: CGRect, offset: CGFloat) -> CGFloat?
@@ -286,5 +298,18 @@ extension NewFaceProfileViewController: UIPageViewControllerDelegate, UIPageView
         
         self.pagesControl.currentPage = index
         self.currentIndex.accept(index)
+    }
+}
+
+extension OnlineStatus
+{
+    func color() -> UIColor
+    {
+        switch self {
+        case .unknown: return .red
+        case .offline: return .white
+        case .recent: return .yellow
+        case .online: return .green
+        }
     }
 }

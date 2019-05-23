@@ -40,12 +40,24 @@ class DBService
     
     init()
     {
-        let version: UInt64 = 4
+        let version: UInt64 = 5
         let config = Realm.Configuration(schemaVersion: version, migrationBlock: { (migration, oldVersion) in
             if oldVersion < 4 {
                 migration.enumerateObjects(ofType: Photo.className(), { (_, newObject) in
                     newObject?["thumbnailPath"] = ""
                     newObject?["thumbnailPathType"] = 0
+                })
+            }
+            
+            if oldVersion < 5 {
+                migration.enumerateObjects(ofType: NewFaceProfile.className(), { (_, newObject) in
+                    newObject?["status"] = 0
+                    newObject?["statusTexts"] = ""
+                })
+                
+                migration.enumerateObjects(ofType: LMMProfile.className(), { (_, newObject) in
+                    newObject?["status"] = 0
+                    newObject?["statusTexts"] = ""
                 })
             }
         }, deleteRealmIfMigrationNeeded: false)
