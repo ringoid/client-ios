@@ -210,6 +210,21 @@ class MainLMMViewController: BaseViewController
         self.tableView.refreshControl = refreshControl
     }
     
+    func prepareForNavigation()
+    {
+        self.presentedViewController?.dismiss(animated: false, completion: nil)
+        
+        self.isChatShown = false
+        self.chatContainerView.isHidden = true
+        self.chatContainerView.remove()
+        self.blockContainerView.isHidden = true
+        
+        self.onScrollTop()
+        
+        UIManager.shared.blockModeEnabled.accept(false)
+        UIManager.shared.chatModeEnabled.accept(false)
+    }
+    
     @objc func reload()
     {
         AnalyticsManager.shared.send(.pullToRefresh(self.type.value.sourceType().rawValue))

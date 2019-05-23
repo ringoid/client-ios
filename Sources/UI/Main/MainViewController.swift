@@ -453,24 +453,30 @@ class MainViewController: BaseViewController
             case .likesYou:
                 self.input.navigationManager.mainItem.accept(.like)
                 DispatchQueue.main.async {
-                    (self.containedVC as? MainLMMContainerViewController)?.toggle(.likesYou)
-                    (self.containedVC as? MainLMMContainerViewController)?.reload()
+                    let vc = self.containedVC as? MainLMMContainerViewController
+                    vc?.toggle(.likesYou)
+                    vc?.prepareForNavigation()
+                    vc?.reload()
                 }
                 break
                 
             case .matches:
                 self.input.navigationManager.mainItem.accept(.like)
-                DispatchQueue.main.async {                
-                    (self.containedVC as? MainLMMContainerViewController)?.toggle(.matches)
-                    (self.containedVC as? MainLMMContainerViewController)?.reload()
+                DispatchQueue.main.async {
+                    let vc = self.containedVC as? MainLMMContainerViewController
+                    vc?.toggle(.matches)
+                    vc?.prepareForNavigation()
+                    vc?.reload()
                 }
                 break
                 
             case .messages:
                 self.input.navigationManager.mainItem.accept(.like)
                 DispatchQueue.main.async {
-                    (self.containedVC as? MainLMMContainerViewController)?.toggle(.messages)
-                    (self.containedVC as? MainLMMContainerViewController)?.reload()
+                    let vc = self.containedVC as? MainLMMContainerViewController
+                    vc?.toggle(.messages)
+                    vc?.prepareForNavigation()
+                    vc?.reload()
                 }
                 break
             }

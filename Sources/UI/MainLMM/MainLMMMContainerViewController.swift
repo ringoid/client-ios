@@ -78,6 +78,13 @@ class MainLMMContainerViewController: BaseViewController
         }
     }
     
+    func prepareForNavigation()
+    {
+        DispatchQueue.main.async {
+            self.lmmVC?.prepareForNavigation()
+        }
+    }
+    
     func reload()
     {
         self.lmmVC?.reload()
