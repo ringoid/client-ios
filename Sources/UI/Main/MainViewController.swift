@@ -291,7 +291,8 @@ class MainViewController: BaseViewController
             notifications: self.input.notifications,
             location: self.input.location,
             scenario: self.input.scenario,
-            transition: self.input.transition
+            transition: self.input.transition,
+            settings: self.input.settingsManager
         )
         
         self.menuVCCache[.like] = vc
@@ -319,7 +320,8 @@ class MainViewController: BaseViewController
             notifications: self.input.notifications,
             location: self.input.location,
             scenario: self.input.scenario,
-            transition: self.input.transition
+            transition: self.input.transition,
+            settings: self.input.settingsManager
         )
         
         self.menuVCCache[.messages] = vc

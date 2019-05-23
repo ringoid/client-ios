@@ -98,6 +98,8 @@
 "settings_notifications_like" = "New Like";
 "settings_notifications_match" = "New Match";
 "settings_notifications_message" = "New Message";
+"settings_notifications_banner_title" = "See when you've got new like, match or message";
+"settings_notifications_banner_subtitle" = "Enable push notification";
 
 "web_url_error_status" = "https://ringoid.com/status.html";
 

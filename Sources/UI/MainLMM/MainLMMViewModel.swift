@@ -21,6 +21,7 @@ struct MainLMMVMInput
     let location: LocationManager
     let scenario: AnalyticsScenarioManager
     let transition: TransitionManager
+    let settings: SettingsManager
 }
 
 class MainLMMViewModel

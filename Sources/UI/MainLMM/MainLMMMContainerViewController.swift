@@ -39,6 +39,9 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet weak var tabsCenterConstraint: NSLayoutConstraint!
     @IBOutlet weak var messagesIndicatorConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var topShadowView: UIView!
+    @IBOutlet fileprivate weak var notificationsBannerView: UIView!
+    @IBOutlet fileprivate weak var notificationsBannerLabel: UILabel!
+    @IBOutlet fileprivate weak var notificationsBannerSubLabel: UILabel!
     
     override func viewDidLoad()
     {
@@ -55,6 +58,8 @@ class MainLMMContainerViewController: BaseViewController
         self.chatBtn.setTitle("lmm_tab_messages".localized(), for: .normal)
         self.likeYouBtn.setTitle("lmm_tab_likes".localized(), for: .normal)
         self.matchesBtn.setTitle("lmm_tab_matches".localized(), for: .normal)
+        self.notificationsBannerLabel.text = "settings_notifications_banner_title".localized()
+        self.notificationsBannerSubLabel.text = "settings_notifications_banner_subtitle".localized()
         
         self.updateBtnSizes()
     }
@@ -95,6 +100,31 @@ class MainLMMContainerViewController: BaseViewController
         self.toggle(.messages)
     }
     
+    @IBAction fileprivate func onBannerTap()
+    {
+        self.input.notifications.isLikeEnabled.accept(true)
+        self.input.notifications.isMatchEnabled.accept(true)
+        self.input.notifications.isMessageEnabled.accept(true)
+        self.input.notifications.isEveningEnabled.accept(true)
+        self.input.settings.updateRemoteSettings()
+        
+        self.onBannerClose()
+    }
+    
+    @IBAction fileprivate func onBannerClose()
+    {
+        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeIn) { [weak self] in
+            self?.notificationsBannerView.alpha = 0.0
+        }
+        
+        animator.addCompletion { [weak self] _ in
+            self?.notificationsBannerView.isHidden = true
+            self?.notificationsBannerView.alpha = 1.0
+        }
+        
+        animator.startAnimation()
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
@@ -131,6 +161,12 @@ class MainLMMContainerViewController: BaseViewController
             self?.matchesIndicatorView.alpha = alpha
             self?.chatIndicatorView.alpha = alpha
         }).disposed(by: self.disposeBag)
+        
+        self.input.notifications.isGranted.subscribe(onNext:{ [weak self] _ in
+                guard let `self` = self else { return }
+
+                self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value
+            }).disposed(by: self.disposeBag)
     }
     
     func toggle(_ type: LMMType)
