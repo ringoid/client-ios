@@ -448,19 +448,29 @@ class MainViewController: BaseViewController
             
             switch type {
             case .unknown: break
-            case .likesYou: self.input.navigationManager.mainItem.accept(.likeAndFetch)
+            case .likesYou:
+                self.input.navigationManager.mainItem.accept(.like)
+                DispatchQueue.main.async {
+                    (self.containedVC as? MainLMMContainerViewController)?.toggle(.likesYou)
+                    (self.containedVC as? MainLMMContainerViewController)?.reload()
+                }
+                break
+                
             case .matches:
                 self.input.navigationManager.mainItem.accept(.like)
                 DispatchQueue.main.async {                
                     (self.containedVC as? MainLMMContainerViewController)?.toggle(.matches)
                     (self.containedVC as? MainLMMContainerViewController)?.reload()
                 }
+                break
+                
             case .messages:
                 self.input.navigationManager.mainItem.accept(.like)
                 DispatchQueue.main.async {
                     (self.containedVC as? MainLMMContainerViewController)?.toggle(.messages)
                     (self.containedVC as? MainLMMContainerViewController)?.reload()
                 }
+                break
             }
             
         }).disposed(by: self.disposeBag)
