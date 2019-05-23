@@ -148,8 +148,18 @@ class MainLMMContainerViewController: BaseViewController
         
         UIManager.shared.chatModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
-                self?.optionsContainer.alpha = state ? 0.0 : 1.0
-                self?.topShadowView.isHidden = state
+                guard let `self` = self else { return }
+                
+                self.optionsContainer.alpha = state ? 0.0 : 1.0
+                self.topShadowView.isHidden = state
+                
+                if state {
+                    self.notificationsBannerView.isHidden = true
+                } else {
+                    if self.input.notifications.isRegistered {
+                        self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value
+                    }
+                }
             }).startAnimation()
         }).disposed(by: self.disposeBag)
         
