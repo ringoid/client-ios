@@ -88,6 +88,8 @@ class NewFacesManager
     
     func reset()
     {
+        self.profiles.accept([])
+        
         self.disposeBag = DisposeBag()
         self.setupBindings()
     }
