@@ -102,11 +102,9 @@ class MainLMMContainerViewController: BaseViewController
     
     @IBAction fileprivate func onBannerTap()
     {
-        self.input.notifications.isLikeEnabled.accept(true)
-        self.input.notifications.isMatchEnabled.accept(true)
-        self.input.notifications.isMessageEnabled.accept(true)
-        self.input.notifications.isEveningEnabled.accept(true)
-        self.input.settings.updateRemoteSettings()
+        if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(settingsUrl)
+        }
         
         self.onBannerClose()
     }
@@ -162,11 +160,12 @@ class MainLMMContainerViewController: BaseViewController
             self?.chatIndicatorView.alpha = alpha
         }).disposed(by: self.disposeBag)
         
-        self.input.notifications.isGranted.subscribe(onNext:{ [weak self] _ in
-                guard let `self` = self else { return }
-
-                self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value
-            }).disposed(by: self.disposeBag)
+        self.input.notifications.isGranted.observeOn(MainScheduler.instance).subscribe(onNext:{ [weak self] _ in
+            guard let `self` = self else { return }
+            guard self.input.notifications.isRegistered else { return }
+            
+            self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value
+        }).disposed(by: self.disposeBag)
     }
     
     func toggle(_ type: LMMType)
