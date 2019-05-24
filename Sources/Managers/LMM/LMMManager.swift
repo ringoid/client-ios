@@ -407,10 +407,22 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         localProfile.defaultSortingOrderPosition = profile.defaultSortingOrderPosition
         localProfile.photos.append(objectsIn: localPhotos)
         localProfile.messages.append(objectsIn: localMessages)
-        localProfile.status = ([OnlineStatus.offline, OnlineStatus.recent, OnlineStatus.online][Int.random(in: 0...2)]).rawValue
-        localProfile.statusText = ["100 km", "1 km", "20 km"][Int.random(in: 0...2)]
+        localProfile.status = (profile.status?.onlineStatus() ?? .unknown).rawValue
+        localProfile.distanceText = profile.distanceText ?? ""
         
         return localProfile
     })
+}
+
+extension ApiProfileStatus
+{
+    func onlineStatus() -> OnlineStatus
+    {
+        switch self {
+        case .unknown: return .unknown
+        case .away: return .away
+        case .online: return .online
+        }
+    }
 }
 

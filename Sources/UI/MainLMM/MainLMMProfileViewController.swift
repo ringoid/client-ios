@@ -150,8 +150,8 @@ class MainLMMProfileViewController: UIViewController
             self.statusView.isHidden = true
         }
         
-        if let statusText = self.input.profile.statusText, statusText.count > 0 {
-            self.distanceLabel.text = "> " + statusText
+        if let distanceText = self.input.profile.distanceText, distanceText.count > 0 {
+            self.distanceLabel.text = distanceText
             self.distanceLabel.isHidden = false
         } else {
             self.distanceLabel.isHidden = true

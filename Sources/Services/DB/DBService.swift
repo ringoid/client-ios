@@ -53,11 +53,13 @@ class DBService
                 migration.enumerateObjects(ofType: NewFaceProfile.className(), { (_, newObject) in
                     newObject?["status"] = 0
                     newObject?["statusText"] = ""
+                    newObject?["distanceText"] = ""
                 })
                 
                 migration.enumerateObjects(ofType: LMMProfile.className(), { (_, newObject) in
                     newObject?["status"] = 0
                     newObject?["statusText"] = ""
+                    newObject?["distanceText"] = ""
                 })
             }
         }, deleteRealmIfMigrationNeeded: false)
