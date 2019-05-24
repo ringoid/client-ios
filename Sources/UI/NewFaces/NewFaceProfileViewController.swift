@@ -37,6 +37,7 @@ class NewFaceProfileViewController: UIViewController
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
     @IBOutlet fileprivate weak var statusView: UIView!
+    @IBOutlet fileprivate weak var statusLabel: UILabel!
     @IBOutlet fileprivate weak var distanceLabel: UILabel!
     
     static func create(_ profile: NewFaceProfile,
@@ -107,19 +108,7 @@ class NewFaceProfileViewController: UIViewController
         self.statusView.layer.borderWidth = 0.5
         self.statusView.layer.borderColor = UIColor.black.withAlphaComponent(0.25).cgColor
         
-        if let status = OnlineStatus(rawValue: self.input.profile.status), status != .unknown {
-            self.statusView.backgroundColor = status.color()
-            self.statusView.isHidden = false
-        } else {
-            self.statusView.isHidden = true
-        }
-        
-        if let distanceText = self.input.profile.distanceText, distanceText.count > 0 {
-            self.distanceLabel.text = distanceText
-            self.distanceLabel.isHidden = false
-        } else {
-            self.distanceLabel.isHidden = true
-        }
+        self.applyStatuses()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -232,6 +221,7 @@ class NewFaceProfileViewController: UIViewController
         self.pagesControl.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
         self.statusView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
         self.distanceLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.distanceLabel.frame, offset: value) ?? 1.0)
+        self.statusLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusLabel.frame, offset: value) ?? 1.0)
     }
     
     fileprivate func bottomOpacityFor(_ frame: CGRect, offset: CGFloat) -> CGFloat?
@@ -265,6 +255,30 @@ class NewFaceProfileViewController: UIViewController
         
         self.preheaterTimer = timer
         RunLoop.main.add(timer, forMode: .common)
+    }
+    
+    fileprivate func applyStatuses()
+    {
+        if let status = OnlineStatus(rawValue: self.input.profile.status), status != .unknown {
+            self.statusView.backgroundColor = status.color()
+            self.statusView.isHidden = false
+        } else {
+            self.statusView.isHidden = true
+        }
+        
+        if let statusText = self.input.profile.statusText, statusText.count > 0 {
+            self.statusLabel.text = statusText
+            self.statusLabel.isHidden = false
+        } else {
+            self.statusLabel.isHidden = true
+        }
+        
+        if let distanceText = self.input.profile.distanceText, distanceText.count > 0 {
+            self.distanceLabel.text = distanceText
+            self.distanceLabel.isHidden = false
+        } else {
+            self.distanceLabel.isHidden = true
+        }
     }
 }
 

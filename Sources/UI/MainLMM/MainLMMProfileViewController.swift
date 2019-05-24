@@ -49,6 +49,7 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var seenLabel: UILabel!
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
     @IBOutlet fileprivate weak var statusView: UIView!
+    @IBOutlet fileprivate weak var statusLabel: UILabel!
     @IBOutlet fileprivate weak var distanceLabel: UILabel!
     
     static func create(_ profile: LMMProfile,
@@ -143,19 +144,7 @@ class MainLMMProfileViewController: UIViewController
         self.statusView.layer.borderWidth = 0.5
         self.statusView.layer.borderColor = UIColor.black.withAlphaComponent(0.25).cgColor
         
-        if let status = OnlineStatus(rawValue: self.input.profile.status), status != .unknown {
-            self.statusView.backgroundColor = status.color()
-            self.statusView.isHidden = false
-        } else {
-            self.statusView.isHidden = true
-        }
-        
-        if let distanceText = self.input.profile.distanceText, distanceText.count > 0 {
-            self.distanceLabel.text = distanceText
-            self.distanceLabel.isHidden = false
-        } else {
-            self.distanceLabel.isHidden = true
-        }
+        self.applyStatuses()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -316,6 +305,7 @@ class MainLMMProfileViewController: UIViewController
         self.pagesControl.alpha = self.discreetOpacity(for: self.topOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
         self.statusView.alpha = self.discreetOpacity(for: self.topOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
         self.distanceLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.distanceLabel.frame, offset: value) ?? 1.0)
+        self.statusLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.statusLabel.frame, offset: value) ?? 1.0)
     }
     
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
@@ -338,6 +328,10 @@ class MainLMMProfileViewController: UIViewController
         
         if let distanceControlOpacity = self.bottomOpacityFor(self.distanceLabel.frame, offset: value) {
             self.distanceLabel.alpha = self.discreetOpacity(for: distanceControlOpacity)
+        }
+        
+        if let statusLabelControlOpacity = self.bottomOpacityFor(self.statusLabel.frame, offset: value) {
+            self.statusLabel.alpha = self.discreetOpacity(for: statusLabelControlOpacity)
         }
     }
     
@@ -387,6 +381,30 @@ class MainLMMProfileViewController: UIViewController
         
         self.preheaterTimer = timer
         RunLoop.main.add(timer, forMode: .common)
+    }
+    
+    fileprivate func applyStatuses()
+    {
+        if let status = OnlineStatus(rawValue: self.input.profile.status), status != .unknown {
+            self.statusView.backgroundColor = status.color()
+            self.statusView.isHidden = false
+        } else {
+            self.statusView.isHidden = true
+        }
+        
+        if let statusText = self.input.profile.statusText, statusText.count > 0 {
+            self.statusLabel.text = statusText
+            self.statusLabel.isHidden = false
+        } else {
+            self.statusLabel.isHidden = true
+        }
+        
+        if let distanceText = self.input.profile.distanceText, distanceText.count > 0 {
+            self.distanceLabel.text = distanceText
+            self.distanceLabel.isHidden = false
+        } else {
+            self.distanceLabel.isHidden = true
+        }
     }
 }
 

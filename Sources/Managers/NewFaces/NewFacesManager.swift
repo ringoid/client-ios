@@ -63,6 +63,7 @@ class NewFacesManager
                 localProfile.id = profile.id
                 localProfile.photos.append(objectsIn: localPhotos)                
                 localProfile.status = (profile.status?.onlineStatus() ?? .unknown).rawValue
+                localProfile.statusText = profile.lastOnlineText ?? ""
                 localProfile.distanceText = profile.distanceText ?? ""
                 
                 return localProfile

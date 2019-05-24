@@ -408,6 +408,7 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         localProfile.photos.append(objectsIn: localPhotos)
         localProfile.messages.append(objectsIn: localMessages)
         localProfile.status = (profile.status?.onlineStatus() ?? .unknown).rawValue
+        localProfile.statusText = profile.lastOnlineText ?? ""
         localProfile.distanceText = profile.distanceText ?? ""
         
         return localProfile

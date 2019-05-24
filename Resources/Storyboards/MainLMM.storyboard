@@ -508,6 +508,14 @@ see who likes you</string>
                                     <segue destination="gqb-l2-0Wt" kind="embed" identifier="embed_pages" id="ztS-ZW-J5g"/>
                                 </connections>
                             </containerView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InC-ES-1Or">
+                                <rect key="frame" x="36" y="15.5" width="50" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGR-yG-LEW">
                                 <rect key="frame" x="299" y="-12" width="76" height="60"/>
                                 <constraints>
@@ -590,6 +598,8 @@ see who likes you</string>
                             <constraint firstItem="duK-qX-ktj" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="YhF-UI-eSx"/>
                             <constraint firstItem="eDJ-qT-P4s" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="20" id="bgx-sm-BG8"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="gA6-9y-Jou"/>
+                            <constraint firstItem="InC-ES-1Or" firstAttribute="centerY" secondItem="eDJ-qT-P4s" secondAttribute="centerY" id="hGV-Og-Njq"/>
+                            <constraint firstItem="InC-ES-1Or" firstAttribute="leading" secondItem="eDJ-qT-P4s" secondAttribute="trailing" constant="8" id="iL5-si-XiA"/>
                             <constraint firstAttribute="bottom" secondItem="nFG-N4-HJi" secondAttribute="bottom" constant="32" id="jre-a2-fsn"/>
                             <constraint firstAttribute="bottom" secondItem="cOc-LA-9UX" secondAttribute="bottom" constant="48" id="nNU-gW-keG"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
@@ -605,6 +615,7 @@ see who likes you</string>
                         <outlet property="pagesControl" destination="duK-qX-ktj" id="eZo-wT-gvH"/>
                         <outlet property="profileIdLabel" destination="qVA-P0-T2F" id="lHS-cL-wGz"/>
                         <outlet property="seenLabel" destination="cOc-LA-9UX" id="6Hb-uX-gKP"/>
+                        <outlet property="statusLabel" destination="InC-ES-1Or" id="AZL-iZ-hJK"/>
                         <outlet property="statusView" destination="eDJ-qT-P4s" id="1tB-AI-68b"/>
                     </connections>
                 </viewController>
