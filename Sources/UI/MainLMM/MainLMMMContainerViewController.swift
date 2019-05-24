@@ -114,13 +114,18 @@ class MainLMMContainerViewController: BaseViewController
             UIApplication.shared.open(settingsUrl)
         }
         
-        self.onBannerClose()
+        self.closeBanner()
     }
     
     @IBAction fileprivate func onBannerClose()
     {
         self.isBannerClosedManually = true
         
+        self.closeBanner()
+    }
+    
+    fileprivate func closeBanner()
+    {
         let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeIn) { [weak self] in
             self?.notificationsBannerView.alpha = 0.0
         }
