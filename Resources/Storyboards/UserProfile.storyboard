@@ -117,6 +117,27 @@ see how many likes you get</string>
                                     <action selector="deletePhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="KYt-hL-B7c"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ct4-pd-6bj">
+                                <rect key="frame" x="36" y="97.5" width="50" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
+                            <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qh3-mN-wQe">
+                                <rect key="frame" x="16" y="102" width="12" height="12"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="W2S-Zc-KdH"/>
+                                    <constraint firstAttribute="width" constant="12" id="Xq6-TO-Vfy"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.88299978599999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -124,6 +145,7 @@ see how many likes you get</string>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="4hG-ZS-M4a"/>
                             <constraint firstItem="32r-W0-czT" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="60" id="EDx-rN-Hng"/>
                             <constraint firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" id="EeI-Bh-ckx"/>
+                            <constraint firstItem="Qh3-mN-wQe" firstAttribute="centerY" secondItem="32r-W0-czT" secondAttribute="centerY" id="HpT-Ds-AQd"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="J5p-mc-dZY"/>
                             <constraint firstAttribute="trailing" secondItem="32r-W0-czT" secondAttribute="trailing" id="K8k-hh-C28"/>
                             <constraint firstItem="czw-ci-QbL" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="LPJ-xp-Qg7"/>
@@ -131,12 +153,15 @@ see how many likes you get</string>
                             <constraint firstItem="0Ze-nT-pEZ" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="N6N-mF-D0H"/>
                             <constraint firstAttribute="trailing" secondItem="czw-ci-QbL" secondAttribute="trailing" id="NuO-3f-hgg"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="Q1a-Y0-U7m"/>
+                            <constraint firstItem="ct4-pd-6bj" firstAttribute="leading" secondItem="Qh3-mN-wQe" secondAttribute="trailing" constant="8" id="QgN-ka-zPI"/>
+                            <constraint firstItem="Qh3-mN-wQe" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" constant="16" id="SUx-wr-dio"/>
                             <constraint firstItem="czw-ci-QbL" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="SZt-tn-ia5"/>
                             <constraint firstItem="0Ze-nT-pEZ" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="gjJ-L8-PF8"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerY" secondItem="q5L-So-vMI" secondAttribute="centerY" id="h1K-ko-wtW"/>
                             <constraint firstItem="R3C-Zv-Ixf" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="j5U-ve-N2a"/>
                             <constraint firstItem="Pzg-eZ-8Og" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="lmb-XL-cwr"/>
                             <constraint firstAttribute="trailing" secondItem="R3C-Zv-Ixf" secondAttribute="trailing" id="pCc-QK-Puc"/>
+                            <constraint firstItem="ct4-pd-6bj" firstAttribute="centerY" secondItem="Qh3-mN-wQe" secondAttribute="centerY" id="szD-ZH-LJ3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Yc6-CF-qSL"/>
                     </view>
@@ -148,6 +173,8 @@ see how many likes you get</string>
                         <outlet property="optionsBtn" destination="0Ze-nT-pEZ" id="xcA-G9-NaZ"/>
                         <outlet property="pagesControl" destination="Pzg-eZ-8Og" id="SO3-57-aFu"/>
                         <outlet property="pagesTopConstraint" destination="1qb-Vr-aDl" id="YPv-qn-fr3"/>
+                        <outlet property="statusLabel" destination="ct4-pd-6bj" id="4Pk-p6-3Tj"/>
+                        <outlet property="statusView" destination="Qh3-mN-wQe" id="VOD-VX-wE6"/>
                         <outlet property="titleLabel" destination="UJu-F3-4rH" id="DNT-SD-cx5"/>
                         <segue destination="XPN-ma-d0Q" kind="show" identifier="crop_vc" animates="NO" id="VNg-gg-Pqo"/>
                     </connections>

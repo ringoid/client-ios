@@ -315,7 +315,7 @@ class ApiServiceDefault: ApiService
     
     // MARK: - User profile
     
-    func getUserOwnPhotos(_ resolution: String) -> Observable<[ApiUserPhoto]>
+    func getUserOwnPhotos(_ resolution: String) -> Observable<ApiUserProfile>
     {
         var params: [String: Any] = [
             "resolution": resolution
@@ -327,14 +327,20 @@ class ApiServiceDefault: ApiService
         
         let trace = Performance.startTrace(name: "image/get_own_photos")
         
-        return self.requestGET(path: "image/get_own_photos", params: params, trace: trace).flatMap { jsonDict -> Observable<[ApiUserPhoto]> in
+        return self.requestGET(path: "image/get_own_photos", params: params, trace: trace).flatMap { jsonDict -> Observable<ApiUserProfile> in
             guard let photosArray = jsonDict["photos"] as? [[String: Any]] else {
                 let error = createError("ApiService: wrong photos data format", type: .hidden)
                 
                 return .error(error)
             }
+
+            let statusStr: String = jsonDict["lastOnlineFlag"] as? String ?? ""
             
-            return .just(photosArray.compactMap({ ApiUserPhoto.parse($0) }))
+            return .just(ApiUserProfile(photosArray.compactMap({ ApiUserPhoto.parse($0) }),
+                                        status: ApiProfileStatus(rawValue: statusStr),
+                                        statusText: jsonDict["lastOnlineText"] as? String,
+                                        distanceText: jsonDict["distanceText"] as? String
+            ))
         }
     }
     

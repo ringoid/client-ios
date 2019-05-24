@@ -12,6 +12,7 @@ enum ApiProfileStatus: String
 {
     case online = "online"
     case away = "away"
+    case offline = "offline"
     case unknown = "unknown"
 }
 

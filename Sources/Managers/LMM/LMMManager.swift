@@ -421,6 +421,7 @@ extension ApiProfileStatus
     {
         switch self {
         case .unknown: return .unknown
+        case .offline: return .offline
         case .away: return .away
         case .online: return .online
         }

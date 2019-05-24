@@ -343,6 +343,7 @@ extension OnlineStatus
     {
         switch self {
         case .unknown: return .red
+        case .offline: return .clear
         case .away: return UIColor(red: 1.0, green: 230.0 / 255.0, blue: 64.0 / 255.0, alpha: 1.0)
         case .online: return UIColor(red: 102.0 / 255.0, green: 1.0, blue: 64.0 / 255.0, alpha: 1.0)
         }

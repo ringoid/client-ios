@@ -11,8 +11,9 @@ import RealmSwift
 enum OnlineStatus: Int
 {
     case unknown = 0
-    case away = 1
-    case online = 2
+    case offline = 1
+    case away = 2
+    case online = 3
 }
 
 class Profile: DBServiceObject

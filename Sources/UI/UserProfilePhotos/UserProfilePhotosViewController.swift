@@ -35,6 +35,8 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var containerTableView: UITableView!
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
     @IBOutlet fileprivate weak var pagesTopConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var statusView: UIView!
+    @IBOutlet fileprivate weak var statusLabel: UILabel!
     
     override func viewDidLoad()
     {
@@ -224,6 +226,24 @@ class UserProfilePhotosViewController: BaseViewController
             if self.isViewShown {
                 self.viewModel?.isBlocked.accept(false)
                 self.showBlockedAlert()
+            }
+        }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.status.observeOn(MainScheduler.init()).subscribe(onNext: { [weak self] onlineStatus in
+            if let status = onlineStatus, status != .unknown {
+                self?.statusView.backgroundColor = status.color()
+                self?.statusView.isHidden = false
+            } else {
+                self?.statusView.isHidden = true
+            }
+        }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.statusText.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] onlineText in
+            if let text = onlineText, text.localized() != "unknown", text.count > 0 {
+                self?.statusLabel.text = text
+                self?.statusLabel.isHidden = false
+            } else {
+                self?.statusLabel.isHidden = true
             }
         }).disposed(by: self.disposeBag)
     }

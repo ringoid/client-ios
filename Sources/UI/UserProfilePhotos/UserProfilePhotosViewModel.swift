@@ -34,6 +34,21 @@ class UserProfilePhotosViewModel
         return self.input.profileManager.isBlocked
     }
     
+    var status: BehaviorRelay<OnlineStatus?>
+    {
+        return self.input.profileManager.status
+    }
+    
+    var statusText: BehaviorRelay<String?>
+    {
+        return self.input.profileManager.statusText
+    }
+    
+    var distanceText: BehaviorRelay<String?>
+    {
+        return self.input.profileManager.distanceText
+    }
+    
     var lastPhotoId: BehaviorRelay<String?>
     {
         return self.input.profileManager.lastPhotoId

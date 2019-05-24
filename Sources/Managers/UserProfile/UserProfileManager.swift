@@ -31,6 +31,10 @@ class UserProfileManager
     var yob: BehaviorRelay<Int?> =  BehaviorRelay<Int?>(value: nil)
     var creationDate: BehaviorRelay<Date?> = BehaviorRelay<Date?>(value: nil)
     
+    var status: BehaviorRelay<OnlineStatus?> = BehaviorRelay<OnlineStatus?>(value: nil)
+    var statusText: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+    var distanceText: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+    
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     init(_ db: DBService, api: ApiService, uploader: UploaderService, fileService: FileService, device: DeviceService, storage: XStorageService, lmm: LMMManager)
@@ -115,8 +119,11 @@ class UserProfileManager
     
     func refresh() -> Observable<Void>
     {
-        return self.apiService.getUserOwnPhotos(self.deviceService.photoResolution).flatMap({ [weak self] photos -> Observable<Void> in
-            self?.merge(photos)
+        return self.apiService.getUserOwnPhotos(self.deviceService.photoResolution).flatMap({ [weak self] profile -> Observable<Void> in
+            self?.merge(profile.photos)
+            self?.status.accept(profile.status?.onlineStatus())
+            self?.statusText.accept(profile.statusText)
+            self?.distanceText.accept(profile.distanceText) 
             
             return .just(())
         })
