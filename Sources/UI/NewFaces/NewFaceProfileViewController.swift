@@ -268,14 +268,14 @@ class NewFaceProfileViewController: UIViewController
             self.statusView.isHidden = true
         }
         
-        if let statusText = self.input.profile.statusText, statusText.count > 0 {
+        if let statusText = self.input.profile.statusText, statusText.lowercased() != "unknown",  statusText.count > 0 {
             self.statusLabel.text = statusText
             self.statusLabel.isHidden = false
         } else {
             self.statusLabel.isHidden = true
         }
         
-        if let distanceText = self.input.profile.distanceText, distanceText.count > 0 {
+        if let distanceText = self.input.profile.distanceText, distanceText.lowercased() != "unknown",  distanceText.count > 0 {
             self.distanceLabel.text = distanceText
             let textWidth = (distanceText as NSString).boundingRect(
                 with: CGSize(width: 999.0, height: 999.0),
@@ -289,9 +289,7 @@ class NewFaceProfileViewController: UIViewController
         } else {
             self.distanceLabel.isHidden = true
             self.locationIconView.isHidden = true
-        }
-        
-        
+        }                
     }
 }
 
