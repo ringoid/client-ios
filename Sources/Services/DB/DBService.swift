@@ -52,12 +52,12 @@ class DBService
             if oldVersion < 5 {
                 migration.enumerateObjects(ofType: NewFaceProfile.className(), { (_, newObject) in
                     newObject?["status"] = 0
-                    newObject?["statusTexts"] = ""
+                    newObject?["statusText"] = ""
                 })
                 
                 migration.enumerateObjects(ofType: LMMProfile.className(), { (_, newObject) in
                     newObject?["status"] = 0
-                    newObject?["statusTexts"] = ""
+                    newObject?["statusText"] = ""
                 })
             }
         }, deleteRealmIfMigrationNeeded: false)
