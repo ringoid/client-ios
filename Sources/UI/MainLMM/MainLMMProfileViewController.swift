@@ -51,6 +51,8 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var statusView: UIView!
     @IBOutlet fileprivate weak var statusLabel: UILabel!
     @IBOutlet fileprivate weak var distanceLabel: UILabel!
+    @IBOutlet fileprivate weak var locationIconView: UIView!
+    @IBOutlet fileprivate weak var iconOffsetConstraint: NSLayoutConstraint!
     
     static func create(_ profile: LMMProfile,
                        feedType: LMMType,
@@ -401,9 +403,18 @@ class MainLMMProfileViewController: UIViewController
         
         if let distanceText = self.input.profile.distanceText, distanceText.count > 0 {
             self.distanceLabel.text = distanceText
+            let textWidth = (distanceText as NSString).boundingRect(
+                with: CGSize(width: 999.0, height: 999.0),
+                options: .usesLineFragmentOrigin,
+                attributes: [NSAttributedString.Key.font: self.distanceLabel.font],
+                context: nil
+                ).size.width
+            self.iconOffsetConstraint.constant = textWidth + 24.0
             self.distanceLabel.isHidden = false
+            self.locationIconView.isHidden = false
         } else {
             self.distanceLabel.isHidden = true
+            self.locationIconView.isHidden = true
         }
     }
 }

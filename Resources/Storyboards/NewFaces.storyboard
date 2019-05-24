@@ -221,6 +221,13 @@ discover users nearby</string>
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_location" translatesAutoresizingMaskIntoConstraints="NO" id="p52-p6-qqu">
+                                <rect key="frame" x="262" y="617.5" width="14" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="14" id="FRB-Tm-A7Q"/>
+                                    <constraint firstAttribute="height" constant="14" id="kLh-DL-07k"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -231,12 +238,14 @@ discover users nearby</string>
                             <constraint firstItem="ahE-Zb-Two" firstAttribute="centerX" secondItem="gCQ-GT-2id" secondAttribute="centerX" id="Mk2-w0-p53"/>
                             <constraint firstAttribute="bottom" secondItem="6xI-zA-a7z" secondAttribute="bottom" constant="32" id="PXz-WM-qKz"/>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="WHJ-8A-QCL"/>
+                            <constraint firstItem="6xI-zA-a7z" firstAttribute="centerY" secondItem="p52-p6-qqu" secondAttribute="centerY" id="XmM-Oy-f55"/>
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="-12" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
                             <constraint firstItem="HGV-Wh-HTU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="fz3-iX-AyN"/>
                             <constraint firstItem="bby-nO-FSI" firstAttribute="leading" secondItem="HGV-Wh-HTU" secondAttribute="trailing" constant="8" id="gP0-Dm-LGE"/>
                             <constraint firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" id="hMK-Ge-ajI"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="ms1-Iv-Xza"/>
+                            <constraint firstAttribute="trailing" secondItem="p52-p6-qqu" secondAttribute="trailing" constant="99" id="qXd-TD-zCq" userLabel="iconOffset"/>
                             <constraint firstItem="bby-nO-FSI" firstAttribute="centerY" secondItem="HGV-Wh-HTU" secondAttribute="centerY" id="qne-Zl-Aoo"/>
                             <constraint firstItem="HGV-Wh-HTU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="20" id="vEn-VW-j7M"/>
                             <constraint firstAttribute="trailing" secondItem="Jbu-JW-RgU" secondAttribute="trailing" id="x67-KR-aFy"/>
@@ -245,6 +254,8 @@ discover users nearby</string>
                     </view>
                     <connections>
                         <outlet property="distanceLabel" destination="6xI-zA-a7z" id="2xA-2a-sQM"/>
+                        <outlet property="iconOffsetConstraint" destination="qXd-TD-zCq" id="jvP-5L-eKG"/>
+                        <outlet property="locationIconView" destination="p52-p6-qqu" id="KDf-fj-PSM"/>
                         <outlet property="optionsBtn" destination="X1t-jW-NWk" id="LoZ-fG-SZb"/>
                         <outlet property="pagesControl" destination="ahE-Zb-Two" id="5Uz-7h-eYN"/>
                         <outlet property="profileIdLabel" destination="DXW-7Y-3ph" id="4Nc-ug-lj1"/>
@@ -329,6 +340,7 @@ discover users nearby</string>
         </scene>
     </scenes>
     <resources>
+        <image name="common_location" width="56" height="56"/>
         <image name="feed_like_selected" width="36" height="33"/>
         <image name="feed_options" width="32" height="12"/>
         <image name="feed_scroll_top" width="65" height="65"/>

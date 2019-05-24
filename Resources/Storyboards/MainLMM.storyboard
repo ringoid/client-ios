@@ -565,6 +565,13 @@ see who likes you</string>
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_location" translatesAutoresizingMaskIntoConstraints="NO" id="lEH-hc-Jn1">
+                                <rect key="frame" x="261" y="617.5" width="14" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="14" id="qop-tA-rGS"/>
+                                    <constraint firstAttribute="height" constant="14" id="xHh-C0-GRc"/>
+                                </constraints>
+                            </imageView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="duK-qX-ktj">
                                 <rect key="frame" x="187.5" y="667" width="0.0" height="0.0"/>
                             </pageControl>
@@ -592,6 +599,7 @@ see who likes you</string>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="centerX" secondItem="lGR-yG-LEW" secondAttribute="centerX" id="NaJ-Wi-l5L"/>
+                            <constraint firstItem="nFG-N4-HJi" firstAttribute="centerY" secondItem="lEH-hc-Jn1" secondAttribute="centerY" id="PVe-cR-lPM"/>
                             <constraint firstAttribute="bottomMargin" secondItem="duK-qX-ktj" secondAttribute="bottom" id="SYR-al-KFo"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="118" id="UE3-94-yVQ" userLabel="MessageTopOffset"/>
                             <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="-12" id="XAG-qi-5bb"/>
@@ -602,6 +610,7 @@ see who likes you</string>
                             <constraint firstItem="InC-ES-1Or" firstAttribute="leading" secondItem="eDJ-qT-P4s" secondAttribute="trailing" constant="8" id="iL5-si-XiA"/>
                             <constraint firstAttribute="bottom" secondItem="nFG-N4-HJi" secondAttribute="bottom" constant="32" id="jre-a2-fsn"/>
                             <constraint firstAttribute="bottom" secondItem="cOc-LA-9UX" secondAttribute="bottom" constant="48" id="nNU-gW-keG"/>
+                            <constraint firstAttribute="trailing" secondItem="lEH-hc-Jn1" secondAttribute="trailing" constant="100" id="ndM-ed-fRg" userLabel="iconOffset"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
                             <constraint firstItem="eDJ-qT-P4s" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="zuL-7R-2xV"/>
                         </constraints>
@@ -609,6 +618,8 @@ see who likes you</string>
                     </view>
                     <connections>
                         <outlet property="distanceLabel" destination="nFG-N4-HJi" id="zdA-V6-Yml"/>
+                        <outlet property="iconOffsetConstraint" destination="ndM-ed-fRg" id="uDe-1Y-Vi5"/>
+                        <outlet property="locationIconView" destination="lEH-hc-Jn1" id="E0j-b6-RO2"/>
                         <outlet property="messageBtn" destination="2Wc-Ed-6t2" id="CMh-0H-xuQ"/>
                         <outlet property="messageBtnTopConstraint" destination="UE3-94-yVQ" id="626-7A-0v6"/>
                         <outlet property="optionsBtn" destination="lGR-yG-LEW" id="Yk6-ZA-bUI"/>
@@ -634,6 +645,7 @@ see who likes you</string>
     </scenes>
     <resources>
         <image name="chat_close" width="26" height="26"/>
+        <image name="common_location" width="56" height="56"/>
         <image name="feed_messages_empty" width="36" height="35"/>
         <image name="feed_options" width="32" height="12"/>
         <image name="feed_scroll_top" width="65" height="65"/>
