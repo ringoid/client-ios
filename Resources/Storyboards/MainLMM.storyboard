@@ -558,7 +558,7 @@ see who likes you</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt; 100 km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFG-N4-HJi">
-                                <rect key="frame" x="287" y="614" width="72" height="21"/>
+                                <rect key="frame" x="287" y="621" width="72" height="14"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -566,7 +566,7 @@ see who likes you</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_location" translatesAutoresizingMaskIntoConstraints="NO" id="lEH-hc-Jn1">
-                                <rect key="frame" x="261" y="617.5" width="14" height="14"/>
+                                <rect key="frame" x="261" y="621" width="14" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="14" id="qop-tA-rGS"/>
                                     <constraint firstAttribute="height" constant="14" id="xHh-C0-GRc"/>
@@ -594,6 +594,7 @@ see who likes you</string>
                             <constraint firstAttribute="trailing" secondItem="nFG-N4-HJi" secondAttribute="trailing" constant="16" id="1ik-5Y-RaJ"/>
                             <constraint firstAttribute="bottom" secondItem="qVA-P0-T2F" secondAttribute="bottom" constant="96" id="2lx-Bq-mkW"/>
                             <constraint firstAttribute="trailing" secondItem="lGR-yG-LEW" secondAttribute="trailing" id="3dD-ad-k8o"/>
+                            <constraint firstItem="nFG-N4-HJi" firstAttribute="height" secondItem="lEH-hc-Jn1" secondAttribute="height" id="6B6-yV-AjS"/>
                             <constraint firstItem="cOc-LA-9UX" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="6Uy-2i-XPh"/>
                             <constraint firstItem="qVA-P0-T2F" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="Cw3-cN-Upn"/>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>

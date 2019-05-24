@@ -224,6 +224,7 @@ class NewFaceProfileViewController: UIViewController
         self.statusView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
         self.distanceLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.distanceLabel.frame, offset: value) ?? 1.0)
         self.statusLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusLabel.frame, offset: value) ?? 1.0)
+        self.locationIconView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.locationIconView.frame, offset: value) ?? 1.0)
     }
     
     fileprivate func bottomOpacityFor(_ frame: CGRect, offset: CGFloat) -> CGFloat?
@@ -289,7 +290,7 @@ class NewFaceProfileViewController: UIViewController
         } else {
             self.distanceLabel.isHidden = true
             self.locationIconView.isHidden = true
-        }                
+        }
     }
 }
 

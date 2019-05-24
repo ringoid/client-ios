@@ -308,6 +308,7 @@ class MainLMMProfileViewController: UIViewController
         self.statusView.alpha = self.discreetOpacity(for: self.topOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
         self.distanceLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.distanceLabel.frame, offset: value) ?? 1.0)
         self.statusLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.statusLabel.frame, offset: value) ?? 1.0)
+        self.locationIconView.alpha = self.discreetOpacity(for: self.topOpacityFor(self.locationIconView.frame, offset: value) ?? 1.0)
     }
     
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
@@ -334,6 +335,10 @@ class MainLMMProfileViewController: UIViewController
         
         if let statusLabelControlOpacity = self.bottomOpacityFor(self.statusLabel.frame, offset: value) {
             self.statusLabel.alpha = self.discreetOpacity(for: statusLabelControlOpacity)
+        }
+        
+        if let locationIconControlOpacity = self.bottomOpacityFor(self.locationIconView.frame, offset: value) {
+            self.locationIconView.alpha = self.discreetOpacity(for: locationIconControlOpacity)
         }
     }
     

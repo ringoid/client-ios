@@ -206,7 +206,7 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt; 100 km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xI-zA-a7z">
-                                <rect key="frame" x="287" y="614" width="72" height="21"/>
+                                <rect key="frame" x="287" y="621" width="72" height="14"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -222,7 +222,7 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_location" translatesAutoresizingMaskIntoConstraints="NO" id="p52-p6-qqu">
-                                <rect key="frame" x="262" y="617.5" width="14" height="14"/>
+                                <rect key="frame" x="262" y="621" width="14" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="14" id="FRB-Tm-A7Q"/>
                                     <constraint firstAttribute="height" constant="14" id="kLh-DL-07k"/>
@@ -248,6 +248,7 @@ discover users nearby</string>
                             <constraint firstAttribute="trailing" secondItem="p52-p6-qqu" secondAttribute="trailing" constant="99" id="qXd-TD-zCq" userLabel="iconOffset"/>
                             <constraint firstItem="bby-nO-FSI" firstAttribute="centerY" secondItem="HGV-Wh-HTU" secondAttribute="centerY" id="qne-Zl-Aoo"/>
                             <constraint firstItem="HGV-Wh-HTU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="20" id="vEn-VW-j7M"/>
+                            <constraint firstItem="6xI-zA-a7z" firstAttribute="height" secondItem="p52-p6-qqu" secondAttribute="height" id="wRJ-VW-dXH"/>
                             <constraint firstAttribute="trailing" secondItem="Jbu-JW-RgU" secondAttribute="trailing" id="x67-KR-aFy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QNT-if-MPg"/>

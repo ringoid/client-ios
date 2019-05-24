@@ -230,6 +230,12 @@ class UserProfilePhotosViewController: BaseViewController
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.status.observeOn(MainScheduler.init()).subscribe(onNext: { [weak self] onlineStatus in
+            guard let count = self?.viewModel?.photos.value.count, count > 0 else {
+                self?.statusView.isHidden = true
+                
+                return
+            }
+            
             if let status = onlineStatus, status != .unknown {
                 self?.statusView.backgroundColor = status.color()
                 self?.statusView.isHidden = false
@@ -239,6 +245,12 @@ class UserProfilePhotosViewController: BaseViewController
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.statusText.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] onlineText in
+            guard let count = self?.viewModel?.photos.value.count, count > 0 else {
+                self?.statusLabel.isHidden = true
+                
+                return
+            }
+            
             if let text = onlineText, text.localized() != "unknown", text.count > 0 {
                 self?.statusLabel.text = text
                 self?.statusLabel.isHidden = false
