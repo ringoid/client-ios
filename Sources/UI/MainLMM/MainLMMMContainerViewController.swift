@@ -27,6 +27,7 @@ class MainLMMContainerViewController: BaseViewController
     
     fileprivate var lmmVC: MainLMMViewController?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var isBannerClosedManually: Bool = false
     
     @IBOutlet weak var likeYouBtn: UIButton!
     @IBOutlet weak var matchesBtn: UIButton!
@@ -118,6 +119,8 @@ class MainLMMContainerViewController: BaseViewController
     
     @IBAction fileprivate func onBannerClose()
     {
+        self.isBannerClosedManually = true
+        
         let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeIn) { [weak self] in
             self?.notificationsBannerView.alpha = 0.0
         }
@@ -160,11 +163,11 @@ class MainLMMContainerViewController: BaseViewController
                 self.optionsContainer.alpha = state ? 0.0 : 1.0
                 self.topShadowView.isHidden = state
                 
-                if state {
+                if state  {
                     self.notificationsBannerView.isHidden = true
                 } else {
                     if self.input.notifications.isRegistered {
-                        self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value
+                        self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value || self.isBannerClosedManually
                     }
                 }
             }).startAnimation()
@@ -181,7 +184,7 @@ class MainLMMContainerViewController: BaseViewController
             guard let `self` = self else { return }
             guard self.input.notifications.isRegistered else { return }
             
-            self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value
+            self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value || self.isBannerClosedManually
         }).disposed(by: self.disposeBag)
     }
     
