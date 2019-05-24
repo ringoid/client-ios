@@ -76,7 +76,7 @@ discover users nearby</string>
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ringoid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyq-7S-asZ">
-                                <rect key="frame" x="16" y="28" width="75.5" height="27.5"/>
+                                <rect key="frame" x="150" y="28" width="75.5" height="27.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -120,7 +120,6 @@ discover users nearby</string>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="7aY-ua-nbS"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="DIr-zl-DwV"/>
                             <constraint firstItem="RcH-VU-hkW" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" constant="16" id="M0s-yz-w5X"/>
-                            <constraint firstItem="lyq-7S-asZ" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" constant="16" id="T4H-7Z-1oN"/>
                             <constraint firstAttribute="bottom" secondItem="f5P-fA-3ZX" secondAttribute="bottom" id="TVP-3o-yBY"/>
                             <constraint firstItem="lyq-7S-asZ" firstAttribute="top" secondItem="Dzb-Wx-JQu" secondAttribute="top" constant="8" id="U8X-nV-cMW"/>
                             <constraint firstItem="Dzb-Wx-JQu" firstAttribute="trailing" secondItem="f5P-fA-3ZX" secondAttribute="trailing" id="UYa-cj-LJ4"/>
@@ -130,6 +129,7 @@ discover users nearby</string>
                             <constraint firstItem="4Je-db-FTU" firstAttribute="top" secondItem="Dzb-Wx-JQu" secondAttribute="top" constant="37" id="bKq-go-6VW"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="eOj-9V-78m"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="k2s-xp-RvI"/>
+                            <constraint firstItem="lyq-7S-asZ" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="kV7-MA-pfj"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" id="nm8-TI-5VR"/>
                             <constraint firstAttribute="trailing" secondItem="Owz-cZ-1Sc" secondAttribute="trailing" id="sVe-sm-wMe"/>
                             <constraint firstItem="4Je-db-FTU" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" constant="18" id="xmA-gD-zWl"/>
@@ -198,7 +198,7 @@ discover users nearby</string>
                                 <rect key="frame" x="187.5" y="667" width="0.0" height="0.0"/>
                             </pageControl>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProfileID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXW-7Y-3ph">
-                                <rect key="frame" x="16" y="582" width="70" height="21"/>
+                                <rect key="frame" x="16" y="550" width="70" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -225,7 +225,7 @@ discover users nearby</string>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="6xI-zA-a7z" secondAttribute="trailing" constant="16" id="4Cg-uk-jNZ"/>
-                            <constraint firstAttribute="bottom" secondItem="DXW-7Y-3ph" secondAttribute="bottom" constant="64" id="Fwl-1E-JKd"/>
+                            <constraint firstAttribute="bottom" secondItem="DXW-7Y-3ph" secondAttribute="bottom" constant="96" id="Fwl-1E-JKd"/>
                             <constraint firstAttribute="bottom" secondItem="ahE-Zb-Two" secondAttribute="bottom" id="LF8-et-HfT"/>
                             <constraint firstAttribute="trailing" secondItem="X1t-jW-NWk" secondAttribute="trailing" id="Le3-5c-RWL"/>
                             <constraint firstItem="ahE-Zb-Two" firstAttribute="centerX" secondItem="gCQ-GT-2id" secondAttribute="centerX" id="Mk2-w0-p53"/>
@@ -275,7 +275,7 @@ discover users nearby</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PhotoID" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cD-Y1-uy3">
-                                <rect key="frame" x="293.5" y="582" width="65.5" height="21"/>
+                                <rect key="frame" x="293.5" y="550" width="65.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -291,7 +291,7 @@ discover users nearby</string>
                             <constraint firstItem="C4Q-m8-YTj" firstAttribute="leading" secondItem="tGN-Za-agr" secondAttribute="leading" id="A7n-yT-icv"/>
                             <constraint firstItem="fil-jT-HLM" firstAttribute="top" secondItem="tGN-Za-agr" secondAttribute="top" id="B67-78-WwJ"/>
                             <constraint firstItem="8do-7J-kjV" firstAttribute="centerX" secondItem="tGN-Za-agr" secondAttribute="centerX" id="Ek6-RU-PU1"/>
-                            <constraint firstAttribute="bottom" secondItem="7cD-Y1-uy3" secondAttribute="bottom" constant="64" id="Elm-ci-4kQ"/>
+                            <constraint firstAttribute="bottom" secondItem="7cD-Y1-uy3" secondAttribute="bottom" constant="96" id="Elm-ci-4kQ"/>
                             <constraint firstAttribute="trailing" secondItem="fil-jT-HLM" secondAttribute="trailing" id="GU7-M1-HC8"/>
                             <constraint firstItem="C4Q-m8-YTj" firstAttribute="top" secondItem="tGN-Za-agr" secondAttribute="top" id="LHL-O2-6Ts"/>
                             <constraint firstItem="8do-7J-kjV" firstAttribute="centerY" secondItem="tGN-Za-agr" secondAttribute="centerY" id="XdL-5i-Y4g"/>
