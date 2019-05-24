@@ -37,6 +37,7 @@ class NewFaceProfileViewController: UIViewController
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
     @IBOutlet fileprivate weak var statusView: UIView!
+    @IBOutlet fileprivate weak var distanceLabel: UILabel!
     
     static func create(_ profile: NewFaceProfile,
                        initialIndex: Int,
@@ -111,6 +112,13 @@ class NewFaceProfileViewController: UIViewController
             self.statusView.isHidden = false
         } else {
             self.statusView.isHidden = true
+        }
+        
+        if let statusText = self.input.profile.statusText, statusText.count > 0 {
+            self.distanceLabel.text = "> " + statusText
+            self.distanceLabel.isHidden = false
+        } else {
+            self.distanceLabel.isHidden = true
         }
     }
     
@@ -223,6 +231,7 @@ class NewFaceProfileViewController: UIViewController
         self.optionsBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
         self.pagesControl.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
         self.statusView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
+        self.distanceLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.distanceLabel.frame, offset: value) ?? 1.0)
     }
     
     fileprivate func bottomOpacityFor(_ frame: CGRect, offset: CGFloat) -> CGFloat?

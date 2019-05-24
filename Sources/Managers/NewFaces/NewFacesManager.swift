@@ -63,7 +63,7 @@ class NewFacesManager
                 localProfile.id = profile.id
                 localProfile.photos.append(objectsIn: localPhotos)                
                 localProfile.status = ([OnlineStatus.offline, OnlineStatus.recent, OnlineStatus.online][Int.random(in: 0...2)]).rawValue
-                localProfile.statusText = "Some text"
+                localProfile.statusText = [ "100 km", "1 km", "20 km"][Int.random(in: 0...2)]
                 
                 return localProfile
             })

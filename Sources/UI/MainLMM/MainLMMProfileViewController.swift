@@ -49,6 +49,7 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var seenLabel: UILabel!
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
     @IBOutlet fileprivate weak var statusView: UIView!
+    @IBOutlet fileprivate weak var distanceLabel: UILabel!
     
     static func create(_ profile: LMMProfile,
                        feedType: LMMType,
@@ -147,6 +148,13 @@ class MainLMMProfileViewController: UIViewController
             self.statusView.isHidden = false
         } else {
             self.statusView.isHidden = true
+        }
+        
+        if let statusText = self.input.profile.statusText, statusText.count > 0 {
+            self.distanceLabel.text = "> " + statusText
+            self.distanceLabel.isHidden = false
+        } else {
+            self.distanceLabel.isHidden = true
         }
     }
     
@@ -307,6 +315,7 @@ class MainLMMProfileViewController: UIViewController
         self.messageBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(self.messageBtn.frame, offset: value) ?? 1.0)
         self.pagesControl.alpha = self.discreetOpacity(for: self.topOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
         self.statusView.alpha = self.discreetOpacity(for: self.topOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
+        self.distanceLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.distanceLabel.frame, offset: value) ?? 1.0)
     }
     
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
@@ -325,6 +334,10 @@ class MainLMMProfileViewController: UIViewController
         
         if let statusViewControlOpacity = self.bottomOpacityFor(self.statusView.frame, offset: value) {
             self.statusView.alpha = self.discreetOpacity(for: statusViewControlOpacity)
+        }
+        
+        if let distanceControlOpacity = self.bottomOpacityFor(self.distanceLabel.frame, offset: value) {
+            self.distanceLabel.alpha = self.discreetOpacity(for: distanceControlOpacity)
         }
     }
     
