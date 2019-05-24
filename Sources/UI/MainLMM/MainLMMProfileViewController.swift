@@ -143,9 +143,8 @@ class MainLMMProfileViewController: UIViewController
         self.seenLabel.isHidden = false
         #endif
         
-        self.statusView.layer.borderWidth = 0.5
-        self.statusView.layer.borderColor = UIColor.black.withAlphaComponent(0.25).cgColor
-        
+        self.statusView.layer.borderWidth = 1.0
+        self.statusView.layer.borderColor = UIColor.lightGray.cgColor  
         self.applyStatuses()
     }
     

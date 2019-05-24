@@ -53,6 +53,9 @@ class UserProfilePhotosViewController: BaseViewController
         self.pagesControl.currentPage = 0
         self.pagesTopConstraint.constant = height + 24.0
         
+        self.statusView.layer.borderWidth = 1.0
+        self.statusView.layer.borderColor = UIColor.lightGray.cgColor  
+        
         self.setupBindings()
         self.setupReloader()
     }
