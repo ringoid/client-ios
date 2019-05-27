@@ -36,5 +36,9 @@ class NotificationsManager
             log("FCM TOKEN: \(token)", level: .high)
             self.api.updatePush(token).subscribe().disposed(by: self.disposeBag)
         }).disposed(by: self.disposeBag)
+        
+        self.notifications.foregroundNotifications.subscribe(onNext: { _ in
+            print("FOREGROUND PUSH")
+        }).disposed(by: self.disposeBag)
     }
 }

@@ -21,10 +21,12 @@ class NotificationsServiceDefault: NSObject, NotificationService
     var isMatchEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     var isMessageEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     var responses: Observable<UNNotificationResponse>!
+    var foregroundNotifications: Observable<UNNotification>!
     var isRegistered: Bool = false
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var responseObserver: AnyObserver<UNNotificationResponse>?
+    fileprivate var foregoundNotificationsObserver: AnyObserver<UNNotification>?
     
     override init()
     {
@@ -42,6 +44,13 @@ class NotificationsServiceDefault: NSObject, NotificationService
         self.responses =  Observable<UNNotificationResponse>.create({ [weak self] observer -> Disposable in
             
             self?.responseObserver = observer
+            
+            return Disposables.create()
+        })
+        
+        self.foregroundNotifications = Observable<UNNotification>.create({ [weak self] observer -> Disposable in
+            
+            self?.foregoundNotificationsObserver = observer
             
             return Disposables.create()
         })
@@ -153,7 +162,9 @@ extension NotificationsServiceDefault: UNUserNotificationCenterDelegate
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
     {
+        guard UIApplication.shared.applicationState == .active else { return }
         
+        self.foregoundNotificationsObserver?.onNext(notification)
     }
 }
 

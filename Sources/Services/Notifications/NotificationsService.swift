@@ -26,6 +26,7 @@ protocol NotificationService
     var isMessageEnabled: BehaviorRelay<Bool> { get }
     var isRegistered: Bool { get }
     var responses: Observable<UNNotificationResponse>! { get }
+    var foregroundNotifications: Observable<UNNotification>! { get }
     
     func handle(notificationDict: [AnyHashable : Any])
     func register()
