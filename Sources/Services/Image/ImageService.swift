@@ -36,6 +36,7 @@ class ImageService
         guard let thumbnailUrl = thumbnailUrl else {
             let disposeBag: DisposeBag = DisposeBag()
             ImagePipeline.shared.rx.loadImage(with: url).asObservable()
+                .retryOnConnect(timeout: 10.0)
                 .retry(3)
                 .subscribe(onNext: { response in
                 to.image = response.image
@@ -50,12 +51,14 @@ class ImageService
         var thumbnailResponse: ImageResponse? = nil
         
         ImagePipeline.shared.rx.loadImage(with: thumbnailUrl).asObservable()
+            .retryOnConnect(timeout: 10.0)
             .retry(3)
             .flatMap({ response -> Observable<ImageResponse> in
                 to.image = response.image
                 thumbnailResponse = response
                 
                 return ImagePipeline.shared.rx.loadImage(with: request).asObservable()
+                    .retryOnConnect(timeout: 10.0)
                     .retry(3)
             }).subscribe(onNext: { response in
                 let thumbView = UIImageView(frame: to.bounds)
