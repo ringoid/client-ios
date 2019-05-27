@@ -8,7 +8,7 @@ def common_pods
 	pod 'RxRealm'
 	pod 'RxCocoa'
 	pod 'RxAlamofire'
-	pod 'Nuke'
+	pod 'RxNuke'
 	pod 'Fabric'
 	pod 'Crashlytics'
 	pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '4.1.0'

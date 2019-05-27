@@ -7,12 +7,15 @@
 //
 
 import Nuke
+import RxNuke
+import RxSwift
+import RxCocoa
 
 class ImageService
 {
     static let shared = ImageService()
     
-    fileprivate var taskMap: [URL: ImageTask] = [:]
+    fileprivate var taskMap: [URL: DisposeBag] = [:]
     
     private init()
     {
@@ -31,26 +34,35 @@ class ImageService
         }
         
         guard let thumbnailUrl = thumbnailUrl else {
-            let mainTask = ImagePipeline.shared.loadImage(with: url, progress: nil, completion: { (response, _) in
-                to.image = response?.image
-            })
+            let disposeBag: DisposeBag = DisposeBag()
+            ImagePipeline.shared.rx.loadImage(with: url).asObservable()
+                .retry(3)
+                .subscribe(onNext: { response in
+                to.image = response.image
+            }).disposed(by: disposeBag)
             
-            self.taskMap[url] = mainTask
+            self.taskMap[url] = disposeBag
             
             return
         }
         
-        let thumbnailTask = ImagePipeline.shared.loadImage(with: thumbnailUrl, progress: { (response, _, _) in
-            to.image = response?.image
-        }) { (thumbnailResponse, _) in
-            to.image = thumbnailResponse?.image
-            
-            let mainTask = ImagePipeline.shared.loadImage(with: url, progress: nil, completion: { (response, _) in
+        let disposeBag: DisposeBag = DisposeBag()
+        var thumbnailResponse: ImageResponse? = nil
+        
+        ImagePipeline.shared.rx.loadImage(with: thumbnailUrl).asObservable()
+            .retry(3)
+            .flatMap({ response -> Observable<ImageResponse> in
+                to.image = response.image
+                thumbnailResponse = response
+                
+                return ImagePipeline.shared.rx.loadImage(with: request).asObservable()
+                    .retry(3)
+            }).subscribe(onNext: { response in
                 let thumbView = UIImageView(frame: to.bounds)
                 thumbView.image = thumbnailResponse?.image
                 thumbView.contentMode = .scaleAspectFill
                 to.addSubview(thumbView)
-                to.image = response?.image
+                to.image = response.image
                 
                 let animator = UIViewPropertyAnimator(duration: 0.5, curve: .linear, animations: {
                     thumbView.alpha = 0.0
@@ -61,17 +73,13 @@ class ImageService
                 })
                 
                 animator.startAnimation()
-            })
-            
-            self.taskMap[url] = mainTask
-        }
+            }).disposed(by: disposeBag)
         
-        self.taskMap[url] = thumbnailTask
+        self.taskMap[url] = disposeBag
     }
     
     func cancel(_ url: URL)
     {
-        self.taskMap[url]?.cancel()
         self.taskMap.removeValue(forKey: url)
     }
 }
