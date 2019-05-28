@@ -43,7 +43,7 @@ class LocationServiceDefault: NSObject, LocationService
             self?.locationsObserver = observer
             
             return Disposables.create()
-        })
+        }).share()
         
         let status = CLLocationManager.authorizationStatus()
         self.lm.desiredAccuracy = status == .notDetermined ? 1000.0 : kCLLocationAccuracyBest

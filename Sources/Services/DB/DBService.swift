@@ -328,49 +328,49 @@ class DBService
             self?.updateNewFaces()
             
             return Disposables.create()
-        })
+        }).share()
         
         self.likesYouObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
             self?.likesYouObserver = observer
             self?.updateLikesYou()
             
             return Disposables.create()
-        })
+        }).share()
         
         self.matchesObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
             self?.matchesObserver = observer
             self?.updateMatches()
             
             return Disposables.create()
-        })
+        }).share()
         
         self.messagesObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
             self?.messagesObserver = observer
             self?.updateMessages()
             
             return Disposables.create()
-        })
+        }).share()
         
         self.inboxObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
             self?.inboxObserver = observer
             self?.updateInbox()
             
             return Disposables.create()
-        })
+        }).share()
         
         self.sentObservable = Observable<[LMMProfile]>.create({ [weak self] observer -> Disposable in
             self?.sentObserver = observer
             self?.updateSent()
             
             return Disposables.create()
-        })
+        }).share()
         
         self.userPhotosObservable = Observable<[UserPhoto]>.create({ [weak self] observer -> Disposable in
             self?.userPhotosObserver = observer
             self?.updateUserPhotos()
             
             return Disposables.create()
-        })
+        }).share()
     }
     
     fileprivate func updateNewFaces()
