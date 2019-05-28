@@ -253,7 +253,7 @@ discover users nearby</string>
                             <constraint firstAttribute="bottom" secondItem="DXW-7Y-3ph" secondAttribute="bottom" constant="96" id="Fwl-1E-JKd"/>
                             <constraint firstAttribute="bottom" secondItem="ahE-Zb-Two" secondAttribute="bottom" id="LF8-et-HfT"/>
                             <constraint firstAttribute="trailing" secondItem="X1t-jW-NWk" secondAttribute="trailing" id="Le3-5c-RWL"/>
-                            <constraint firstItem="Woq-Wa-eWS" firstAttribute="leading" secondItem="nVK-G6-Y9R" secondAttribute="trailing" constant="8" id="Ljd-U2-Uze"/>
+                            <constraint firstItem="Woq-Wa-eWS" firstAttribute="leading" secondItem="nVK-G6-Y9R" secondAttribute="trailing" constant="8" id="Ljd-U2-Uze" userLabel="GenderOffset"/>
                             <constraint firstItem="ahE-Zb-Two" firstAttribute="centerX" secondItem="gCQ-GT-2id" secondAttribute="centerX" id="Mk2-w0-p53"/>
                             <constraint firstAttribute="bottom" secondItem="6xI-zA-a7z" secondAttribute="bottom" constant="32" id="PXz-WM-qKz"/>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="WHJ-8A-QCL"/>
@@ -275,6 +275,7 @@ discover users nearby</string>
                     <connections>
                         <outlet property="ageLabel" destination="Woq-Wa-eWS" id="6mo-eK-Nmi"/>
                         <outlet property="distanceLabel" destination="6xI-zA-a7z" id="2xA-2a-sQM"/>
+                        <outlet property="genderOffsetConstraint" destination="Ljd-U2-Uze" id="fwn-L6-r2N"/>
                         <outlet property="genderView" destination="nVK-G6-Y9R" id="WxU-fj-f7r"/>
                         <outlet property="iconOffsetConstraint" destination="qXd-TD-zCq" id="jvP-5L-eKG"/>
                         <outlet property="locationIconView" destination="p52-p6-qqu" id="KDf-fj-PSM"/>

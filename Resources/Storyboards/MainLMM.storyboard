@@ -634,7 +634,7 @@ see who likes you</string>
                             <constraint firstItem="nFG-N4-HJi" firstAttribute="height" secondItem="lEH-hc-Jn1" secondAttribute="height" id="6B6-yV-AjS"/>
                             <constraint firstItem="cOc-LA-9UX" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="6Uy-2i-XPh"/>
                             <constraint firstItem="qVA-P0-T2F" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="Cw3-cN-Upn"/>
-                            <constraint firstItem="pQ2-em-YLp" firstAttribute="leading" secondItem="98v-39-l5G" secondAttribute="trailing" constant="8" id="Eaf-4X-Oy8"/>
+                            <constraint firstItem="pQ2-em-YLp" firstAttribute="leading" secondItem="98v-39-l5G" secondAttribute="trailing" constant="8" id="Eaf-4X-Oy8" userLabel="GenderOffset"/>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="centerX" secondItem="lGR-yG-LEW" secondAttribute="centerX" id="NaJ-Wi-l5L"/>
@@ -661,6 +661,7 @@ see who likes you</string>
                     <connections>
                         <outlet property="ageLabel" destination="pQ2-em-YLp" id="9Ve-t8-YHW"/>
                         <outlet property="distanceLabel" destination="nFG-N4-HJi" id="zdA-V6-Yml"/>
+                        <outlet property="genderOffsetConstraint" destination="Eaf-4X-Oy8" id="vkB-cK-4Ow"/>
                         <outlet property="genderView" destination="98v-39-l5G" id="tKh-9S-bVi"/>
                         <outlet property="iconOffsetConstraint" destination="ndM-ed-fRg" id="uDe-1Y-Vi5"/>
                         <outlet property="locationIconView" destination="lEH-hc-Jn1" id="E0j-b6-RO2"/>
