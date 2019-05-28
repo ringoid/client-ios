@@ -290,6 +290,7 @@ class MainLMMViewController: BaseViewController
         
         if MainLMMViewController.updatedFeeds.contains(type) {
             self.updateBtn.isHidden = false
+            self.updateBtn.alpha = 1.0
         }
     }
     
@@ -431,9 +432,11 @@ class MainLMMViewController: BaseViewController
             
             if cachedOffset > 75.0 && totalCount > 0 {
                 self.scrollTopBtn.alpha = 1.0
+                self.updateBtn.alpha = 1.0
                 self.isScrollTopVisible = true
             } else {
                 self.scrollTopBtn.alpha = 0.0
+                self.updateBtn.alpha = 0.0
                 self.isScrollTopVisible = false
             }
         }
@@ -494,6 +497,7 @@ class MainLMMViewController: BaseViewController
         
         let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
             self.scrollTopBtn.alpha = 1.0
+            self.updateBtn.alpha = 1.0
         }
         animator.addCompletion { _ in
             self.isScrollTopVisible = true
@@ -770,6 +774,7 @@ extension MainLMMViewController: UIScrollViewDelegate
         
         if offset - self.prevScrollingOffset > midTrashhold {
             self.hideScrollToTopOption()
+            self.updateBtn.alpha = 0.0
             self.prevScrollingOffset = offset
             
             return
