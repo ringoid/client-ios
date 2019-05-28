@@ -52,7 +52,7 @@
 "feed_messages_empty_no_data" = "Сообщений ещё нет";
 "feed_inbox_empty_no_data" = "Входящих ещё нет";
 "feed_sent_empty_no_data" = "Отправленных ещё нет";
-"feed_tap_to_refresh" = "Нажмите чтобы обновить";
+"feed_tap_to_refresh" = "Нажми, чтобы обновить";
 
 "lmm_tab_likes" = "Ты нравишься";
 "lmm_tab_matches" = "Взаимно";

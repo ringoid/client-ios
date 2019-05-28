@@ -42,6 +42,10 @@ class MainViewController: BaseViewController
     fileprivate var menuVCCache: [SelectionState: UIViewController] = [:]
     fileprivate var prevState: SelectionState? = nil
     
+    fileprivate var preshownLikesCount: Int = 0
+    fileprivate var preshownMatchesCount: Int = 0
+    fileprivate var preshownMessagesCount: Int = 0
+    
     @IBOutlet fileprivate weak var searchBtn: UIButton!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
     @IBOutlet fileprivate weak var profileBtn: UIButton!
@@ -395,28 +399,87 @@ class MainViewController: BaseViewController
         self.viewModel?.incomingLikesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
+            let countToShow: Int = count - self.preshownLikesCount
+            if countToShow > 0 {
+                self.preshownLikesCount = 0
+            } else {
+                self.preshownLikesCount -= count
+                
+                return
+            }
+            
             let size = self.likeBtn.bounds.size
             let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
             let position = self.likeBtn.convert(center, to: nil)
-            self.effectsView.animateLikes(count, from: position)
+            self.effectsView.animateLikes(countToShow, from: position)
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.incomingMatches.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
+            let countToShow: Int = count - self.preshownMatchesCount
+            if countToShow > 0 {
+                self.preshownMatchesCount = 0
+            } else {
+                self.preshownMatchesCount -= count
+                
+                return
+            }
+            
             let size = self.likeBtn.bounds.size
             let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
             let position = self.likeBtn.convert(center, to: nil)
-            self.effectsView.animateMatches(count, from: position)
+            self.effectsView.animateMatches(countToShow, from: position)
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.incomingMessages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
+            let countToShow: Int = count - self.preshownMessagesCount
+            if countToShow > 0 {
+                self.preshownMessagesCount = 0
+            } else {
+                self.preshownMessagesCount -= count
+                
+                return
+            }
+            
             let size = self.likeBtn.bounds.size
             let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
             let position = self.likeBtn.convert(center, to: nil)
-            self.effectsView.animateMessages(count, from: position)
+            self.effectsView.animateMessages(countToShow, from: position)
+        }).disposed(by: self.disposeBag)
+        
+        self.input.notifications.foregroundNotifications.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] notification in
+            guard let `self` = self else { return }
+            
+            let userInfo = notification.request.content.userInfo
+            guard let typeStr = userInfo["type"] as? String else { return }
+            guard let remoteFeed = RemoteFeedType(rawValue: typeStr) else { return }
+            
+            let size = self.likeBtn.bounds.size
+            let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
+            let position = self.likeBtn.convert(center, to: nil)
+            
+            switch remoteFeed {
+            case .likesYou:
+                self.preshownLikesCount += 1
+                self.effectsView.animateLikes(1, from: position)
+                break
+                
+            case .matches:
+                self.preshownMatchesCount += 1
+                self.effectsView.animateMatches(1, from: position)
+                break
+                
+            case .messages:
+                self.preshownMessagesCount += 1
+                self.effectsView.animateMessages(1, from: position)
+                break
+                
+            default: return
+            }
+            
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
