@@ -53,7 +53,7 @@ class NotificationsServiceDefault: NSObject, NotificationService
             self?.foregoundNotificationsObserver = observer
             
             return Disposables.create()
-        })
+        }).share()
         
     }
     
