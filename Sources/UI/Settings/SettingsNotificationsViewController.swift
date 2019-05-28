@@ -70,7 +70,7 @@ class SettingsNotificationsViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.titleLabel.text = "settings_push".localized()
+        self.titleLabel.text = "settings_push".localized()        
     }
     
     // MARK: - Actions

@@ -10,15 +10,6 @@ import RxSwift
 import RxCocoa
 import Nuke
 
-enum LMMType: String
-{
-    case likesYou = "likesYou"
-    case matches = "matches"
-    case messages = "messages"
-    case inbox = "inbox"
-    case sent = "sent"
-}
-
 fileprivate struct FeedState
 {
     var offset: CGFloat = 0.0
@@ -36,7 +27,7 @@ class MainLMMViewController: BaseViewController
 {
     var input: MainLMMVMInput!
     var type: BehaviorRelay<LMMType> = BehaviorRelay<LMMType>(value: .likesYou)
-
+    
     fileprivate static var feedsState: [LMMType: FeedState] = [
         .likesYou: FeedState(),
         .matches: FeedState(),
@@ -44,7 +35,9 @@ class MainLMMViewController: BaseViewController
         .inbox: FeedState(),
         .sent: FeedState()
     ]
+    
     fileprivate static var photoIndexes: [String: Int] = [:]
+    fileprivate static var updatedFeeds: Set<LMMType> =  Set<LMMType>()
     fileprivate var isDragged: Bool = false    
     
     fileprivate var viewModel: MainLMMViewModel?
@@ -67,6 +60,7 @@ class MainLMMViewController: BaseViewController
     @IBOutlet fileprivate weak var blockContainerView: UIView!
     @IBOutlet fileprivate weak var blockPhotoView: UIImageView!
     @IBOutlet fileprivate weak var blockPhotoAspectConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var updateBtn: UIButton!
     
     override func viewDidLoad()
     {
@@ -116,6 +110,8 @@ class MainLMMViewController: BaseViewController
     override func updateLocale()
     {
         self.toggleActivity(self.currentActivityState)
+        
+        self.updateBtn.setTitle("feed_tap_to_refresh".localized(), for: .normal)
     }
     
     fileprivate var isInitialLayout: Bool = true    
@@ -140,6 +136,11 @@ class MainLMMViewController: BaseViewController
         self.tableView.setContentOffset(CGPoint(x: 0.0, y: -topOffset), animated: false)
         MainLMMViewController.feedsState[self.type.value]?.offset = 0.0
         self.input.actionsManager.commit()
+    }
+    
+    @IBAction func onRefresh()
+    {
+        self.reload()
     }
     
     // MARK: -
@@ -187,6 +188,12 @@ class MainLMMViewController: BaseViewController
             MainLMMViewController.feedsState[.sent] = FeedState()
             self?.input.lmmManager.topOrder(id, type: .sent)
         }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.updatedFeed.subscribe(onNext: { value in
+            guard let value = value else { return }
+            
+            MainLMMViewController.updatedFeeds.insert(value)
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func updateBindings()
@@ -228,6 +235,10 @@ class MainLMMViewController: BaseViewController
     @objc func reload()
     {
         AnalyticsManager.shared.send(.pullToRefresh(self.type.value.sourceType().rawValue))
+        
+        MainLMMViewController.updatedFeeds.removeAll()
+        self.updateBtn.isHidden = true
+        
         self.tableView.panGestureRecognizer.isEnabled = false
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -276,6 +287,10 @@ class MainLMMViewController: BaseViewController
         
         self.isTabSwitched = true
         self.updateBindings()
+        
+        if MainLMMViewController.updatedFeeds.contains(type) {
+            self.updateBtn.isHidden = false
+        }
     }
     
     fileprivate func profiles() -> BehaviorRelay<[LMMProfile]>?

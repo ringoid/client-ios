@@ -454,6 +454,25 @@ see who likes you</string>
                                     <action selector="onScrollTop" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="58u-6c-Gm0"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHe-x4-G7n">
+                                <rect key="frame" x="77.5" y="571" width="220" height="36"/>
+                                <color key="backgroundColor" red="0.38077474790157917" green="0.42653614335648204" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="fgn-ZN-wjl"/>
+                                    <constraint firstAttribute="height" constant="36" id="nss-Ns-DMg"/>
+                                </constraints>
+                                <state key="normal" title="Tap to refresh">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="18"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onRefresh" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="2cY-GH-9uQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -464,6 +483,8 @@ see who likes you</string>
                             <constraint firstItem="Ey6-2A-Ohd" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="leading" id="KnO-mh-1R0"/>
                             <constraint firstItem="h51-ww-FZ6" firstAttribute="centerX" secondItem="aDZ-sn-yKR" secondAttribute="centerX" id="NTq-DH-wWu"/>
                             <constraint firstAttribute="bottom" secondItem="Ey6-2A-Ohd" secondAttribute="bottom" id="NbN-z8-AjE"/>
+                            <constraint firstItem="gHe-x4-G7n" firstAttribute="centerX" secondItem="aDZ-sn-yKR" secondAttribute="centerX" id="O3p-Dz-nGu"/>
+                            <constraint firstItem="DRO-WM-fEC" firstAttribute="bottom" secondItem="gHe-x4-G7n" secondAttribute="bottom" constant="60" id="UKi-5H-GZx"/>
                             <constraint firstItem="2sz-x1-syZ" firstAttribute="top" secondItem="aDZ-sn-yKR" secondAttribute="top" id="XHC-gs-BBK"/>
                             <constraint firstItem="pJn-VE-YRs" firstAttribute="centerY" secondItem="aDZ-sn-yKR" secondAttribute="centerY" id="XfT-5K-CPg"/>
                             <constraint firstItem="Q8X-YU-toI" firstAttribute="leading" secondItem="DRO-WM-fEC" secondAttribute="leading" constant="16" id="anz-kP-t7t"/>
@@ -487,6 +508,7 @@ see who likes you</string>
                         <outlet property="emptyFeedLabel" destination="h51-ww-FZ6" id="BKR-9v-s1U"/>
                         <outlet property="scrollTopBtn" destination="Q8X-YU-toI" id="E1j-Er-aIg"/>
                         <outlet property="tableView" destination="kbx-tQ-FPO" id="Gw2-gy-S9q"/>
+                        <outlet property="updateBtn" destination="gHe-x4-G7n" id="eeY-uy-yP3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fIe-ZE-Buy" userLabel="First Responder" sceneMemberID="firstResponder"/>

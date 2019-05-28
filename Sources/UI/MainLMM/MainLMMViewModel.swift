@@ -24,6 +24,15 @@ struct MainLMMVMInput
     let settings: SettingsManager
 }
 
+enum LMMType: String
+{
+    case likesYou = "likesYou"
+    case matches = "matches"
+    case messages = "messages"
+    case inbox = "inbox"
+    case sent = "sent"
+}
+
 class MainLMMViewModel
 {
     let lmmManager: LMMManager
@@ -50,6 +59,16 @@ class MainLMMViewModel
     var isLocationDenied: Bool
     {
         return self.location.isDenied
+    }
+    
+    var updatedFeed: Observable<LMMType?>
+    {
+        return self.notifications.foregroundNotifications.map({ notification -> LMMType? in
+            let userInfo = notification.request.content.userInfo
+            guard let typeStr = userInfo["type"] as? String else { return nil }
+            
+            return RemoteFeedType(rawValue: typeStr)?.lmmType()
+        })
     }
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
@@ -119,5 +138,19 @@ class MainLMMViewModel
         self.lmmManager.sent.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
             self?.sent.accept(profiles)
         }).disposed(by: self.disposeBag)
+    }
+}
+
+extension RemoteFeedType
+{
+    func lmmType() -> LMMType?
+    {
+        switch self {
+        case .likesYou: return .likesYou
+        case .matches: return .matches
+        case .messages: return .inbox
+            
+        default: return nil
+        }
     }
 }

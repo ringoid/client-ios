@@ -22,7 +22,7 @@ enum SelectionState {
     case likeAndFetch
 }
 
-fileprivate enum RemoteFeedType: String
+enum RemoteFeedType: String
 {
     case unknown = "unknown"
     case likesYou = "NEW_LIKE_PUSH_TYPE"
