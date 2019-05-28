@@ -222,7 +222,7 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Woq-Wa-eWS">
-                                <rect key="frame" x="16" y="617.5" width="21.5" height="21"/>
+                                <rect key="frame" x="40" y="617.5" width="21.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -236,15 +236,24 @@ discover users nearby</string>
                                     <constraint firstAttribute="height" constant="14" id="kLh-DL-07k"/>
                                 </constraints>
                             </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_gender_female" translatesAutoresizingMaskIntoConstraints="NO" id="nVK-G6-Y9R">
+                                <rect key="frame" x="16" y="620" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="HUg-Ac-VCK"/>
+                                    <constraint firstAttribute="width" constant="16" id="bcH-N0-ZgS"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="nVK-G6-Y9R" firstAttribute="centerY" secondItem="Woq-Wa-eWS" secondAttribute="centerY" id="2Lc-GN-Qig"/>
                             <constraint firstAttribute="trailing" secondItem="6xI-zA-a7z" secondAttribute="trailing" constant="16" id="4Cg-uk-jNZ"/>
                             <constraint firstItem="6xI-zA-a7z" firstAttribute="centerY" secondItem="Woq-Wa-eWS" secondAttribute="centerY" id="B6P-wZ-P1U"/>
-                            <constraint firstItem="Woq-Wa-eWS" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="EYk-1s-2f7"/>
+                            <constraint firstItem="nVK-G6-Y9R" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="EfM-hT-D6n"/>
                             <constraint firstAttribute="bottom" secondItem="DXW-7Y-3ph" secondAttribute="bottom" constant="96" id="Fwl-1E-JKd"/>
                             <constraint firstAttribute="bottom" secondItem="ahE-Zb-Two" secondAttribute="bottom" id="LF8-et-HfT"/>
                             <constraint firstAttribute="trailing" secondItem="X1t-jW-NWk" secondAttribute="trailing" id="Le3-5c-RWL"/>
+                            <constraint firstItem="Woq-Wa-eWS" firstAttribute="leading" secondItem="nVK-G6-Y9R" secondAttribute="trailing" constant="8" id="Ljd-U2-Uze"/>
                             <constraint firstItem="ahE-Zb-Two" firstAttribute="centerX" secondItem="gCQ-GT-2id" secondAttribute="centerX" id="Mk2-w0-p53"/>
                             <constraint firstAttribute="bottom" secondItem="6xI-zA-a7z" secondAttribute="bottom" constant="32" id="PXz-WM-qKz"/>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="WHJ-8A-QCL"/>
@@ -266,6 +275,7 @@ discover users nearby</string>
                     <connections>
                         <outlet property="ageLabel" destination="Woq-Wa-eWS" id="6mo-eK-Nmi"/>
                         <outlet property="distanceLabel" destination="6xI-zA-a7z" id="2xA-2a-sQM"/>
+                        <outlet property="genderView" destination="nVK-G6-Y9R" id="WxU-fj-f7r"/>
                         <outlet property="iconOffsetConstraint" destination="qXd-TD-zCq" id="jvP-5L-eKG"/>
                         <outlet property="locationIconView" destination="p52-p6-qqu" id="KDf-fj-PSM"/>
                         <outlet property="optionsBtn" destination="X1t-jW-NWk" id="LoZ-fG-SZb"/>
@@ -353,6 +363,7 @@ discover users nearby</string>
     </scenes>
     <resources>
         <image name="common_location" width="56" height="56"/>
+        <image name="feed_gender_female" width="42" height="64"/>
         <image name="feed_like_selected" width="36" height="33"/>
         <image name="feed_options" width="32" height="12"/>
         <image name="feed_scroll_top" width="65" height="65"/>

@@ -54,6 +54,7 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var locationIconView: UIView!
     @IBOutlet fileprivate weak var iconOffsetConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var ageLabel: UILabel!
+    @IBOutlet fileprivate weak var genderView: UIImageView!
     
     static func create(_ profile: LMMProfile,
                        feedType: LMMType,
@@ -430,12 +431,16 @@ class MainLMMProfileViewController: UIViewController
         
         guard age > 17 else {
             self.ageLabel.isHidden = true
+            self.genderView.isHidden = true
             
             return
         }
         
         self.ageLabel.text = "\(age)"
+        let iconName = self.input.profileManager.gender.value == .male ? "feed_gender_female" : "feed_gender_male"
+        self.genderView.image = UIImage(named: iconName)
         self.ageLabel.isHidden = false
+        self.genderView.isHidden = false
     }
 }
 
