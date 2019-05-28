@@ -14,13 +14,13 @@ class ApiLMMProfile: ApiProfile
     let notSeen: Bool
     let messages: [ApiMessage]
     
-    init(id: String, defaultSortingOrderPosition: Int, notSeen: Bool, messages: [ApiMessage], photos: [ApiPhoto], status: ApiProfileStatus?, distanceText: String?, lastOnlineText: String?)
+    init(id: String, age: Int, defaultSortingOrderPosition: Int, notSeen: Bool, messages: [ApiMessage], photos: [ApiPhoto], status: ApiProfileStatus?, distanceText: String?, lastOnlineText: String?)
     {
         self.defaultSortingOrderPosition = defaultSortingOrderPosition
         self.notSeen = notSeen
         self.messages = messages
 
-        super.init(id: id, photos: photos, status: status, distanceText: distanceText, lastOnlineText: lastOnlineText)
+        super.init(id: id, age: age, photos: photos, status: status, distanceText: distanceText, lastOnlineText: lastOnlineText)
     }
 }
 
@@ -29,6 +29,7 @@ extension ApiLMMProfile
     static func lmmParse(_ dict: [String: Any]) -> ApiLMMProfile?
     {
         guard let id = dict["userId"] as? String else { return nil }
+        guard let age = dict["age"] as? Int else { return nil }
         guard let defaultSortingOrderPosition = dict["defaultSortingOrderPosition"] as? Int else { return nil }
         guard let notSeen = dict["notSeen"] as? Bool else { return nil }
         guard let messagesArray = dict["messages"] as? [[String: Any]] else { return nil }
@@ -37,6 +38,7 @@ extension ApiLMMProfile
         let statusStr: String = dict["lastOnlineFlag"] as? String ?? ""
         
         return ApiLMMProfile(id: id,
+                             age: age,
                              defaultSortingOrderPosition: defaultSortingOrderPosition,
                              notSeen: notSeen, messages: messagesArray.compactMap({ ApiMessage.parse($0) }),
                              photos: photosArray.compactMap({ ApiPhoto.parse($0) }),

@@ -19,14 +19,16 @@ enum ApiProfileStatus: String
 class ApiProfile
 {
     let id: String
+    let age: Int
     let photos: [ApiPhoto]
     let status: ApiProfileStatus?
     let distanceText: String?
     let lastOnlineText: String?
     
-    init(id: String, photos: [ApiPhoto], status: ApiProfileStatus?, distanceText: String?, lastOnlineText: String?)
+    init(id: String, age: Int, photos: [ApiPhoto], status: ApiProfileStatus?, distanceText: String?, lastOnlineText: String?)
     {
         self.id = id
+        self.age = age
         self.photos = photos
         self.status = status
         self.distanceText = distanceText
@@ -39,11 +41,13 @@ extension ApiProfile
     static func parse(_ dict: [String: Any]) -> ApiProfile?
     {
         guard let id = dict["userId"] as? String else { return nil }
+        guard let age = dict["age"] as? Int else { return nil }
         guard let photosArray = dict["photos"] as? [[String: Any]] else { return nil }
         
         let statusStr: String = dict["lastOnlineFlag"] as? String ?? ""
 
         return ApiProfile(id: id,
+                          age: age,
                           photos:  photosArray.compactMap({ ApiPhoto.parse($0) }),
                           status: ApiProfileStatus(rawValue: statusStr),
                           distanceText: dict["distanceText"] as? String,

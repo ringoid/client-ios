@@ -19,6 +19,7 @@ enum OnlineStatus: Int
 class Profile: DBServiceObject
 {
     @objc dynamic var id: String!
+    @objc dynamic var age: Int = 0
     let photos: List<Photo> = List<Photo>()
     
     @objc dynamic var status: Int = 0

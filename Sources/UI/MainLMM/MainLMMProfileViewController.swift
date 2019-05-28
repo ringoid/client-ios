@@ -53,6 +53,7 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var distanceLabel: UILabel!
     @IBOutlet fileprivate weak var locationIconView: UIView!
     @IBOutlet fileprivate weak var iconOffsetConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var ageLabel: UILabel!
     
     static func create(_ profile: LMMProfile,
                        feedType: LMMType,
@@ -146,6 +147,7 @@ class MainLMMProfileViewController: UIViewController
         self.statusView.layer.borderWidth = 1.0
         self.statusView.layer.borderColor = UIColor.lightGray.cgColor  
         self.applyStatuses()
+        self.applyAge()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -420,6 +422,20 @@ class MainLMMProfileViewController: UIViewController
             self.distanceLabel.isHidden = true
             self.locationIconView.isHidden = true
         }
+    }
+    
+    fileprivate func applyAge()
+    {
+        let age = self.input.profile.age
+        
+        guard age > 17 else {
+            self.ageLabel.isHidden = true
+            
+            return
+        }
+        
+        self.ageLabel.text = "\(age)"
+        self.ageLabel.isHidden = false
     }
 }
 

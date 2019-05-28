@@ -403,6 +403,7 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         let localProfile = LMMProfile()
         localProfile.type = type.rawValue
         localProfile.id = profile.id
+        localProfile.age = profile.age
         localProfile.notSeen = profile.notSeen
         localProfile.defaultSortingOrderPosition = profile.defaultSortingOrderPosition
         localProfile.photos.append(objectsIn: localPhotos)
