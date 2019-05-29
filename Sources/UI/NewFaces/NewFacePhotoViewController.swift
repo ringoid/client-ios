@@ -61,7 +61,6 @@ class NewFacePhotoViewController: UIViewController
         super.viewDidLoad()
 
         self.updateBindings()
-        self.update()
         
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeInactive), name: UIApplication.willResignActiveNotification, object: nil)
@@ -70,6 +69,13 @@ class NewFacePhotoViewController: UIViewController
         self.photoIdLabel.text = "Photo: " + String(self.photo?.id.suffix(4) ?? "")
         self.photoIdLabel.isHidden = false
         #endif
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        self.update()
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -176,6 +182,8 @@ class NewFacePhotoViewController: UIViewController
  
     @objc fileprivate func onAppBecomeActive()
     {
+        self.update()
+        
         guard self.isVisible else { return }
         guard let profile = self.input?.profile.actionInstance(), let photo = self.photo?.actionInstance() else { return }
         
