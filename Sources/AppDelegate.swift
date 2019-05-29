@@ -69,15 +69,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         log("failed to get DeviceToken: \(error)", level: .high)
     }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
-    {
-        self.appManager.onGot(notificationDict: userInfo)
-        
-//        if UIApplication.shared.applicationState != .background {
-//            completionHandler(.noData)
-//            return
-//        }
-    }
 }
 
