@@ -193,6 +193,13 @@ class MainLMMViewController: BaseViewController
             guard let value = value else { return }
             
             MainLMMViewController.updatedFeeds.insert(value)
+            
+            if value == self.type.value {
+                self.updateBtn.alpha = 0.0
+                self.updateBtn.isHidden = false
+                let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) { self.updateBtn.alpha = 1.0 }
+                animator.startAnimation()
+            }
         }).disposed(by: self.disposeBag)
     }
     
