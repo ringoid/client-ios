@@ -281,8 +281,8 @@ class NewFacesViewController: BaseViewController
             
             // Diff should be last item
             if totalCount > 0 {
-            self.tableView.isUserInteractionEnabled = false
-            self.tableView.scrollToRow(at:  IndexPath(row: totalCount - 1, section: 0), at: .top, animated: true)
+                self.tableView.isUserInteractionEnabled = false
+                self.tableView.scrollToRow(at:  IndexPath(row: totalCount - 1, section: 0), at: .top, animated: true)
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {

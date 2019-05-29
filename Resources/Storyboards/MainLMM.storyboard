@@ -611,7 +611,7 @@ see who likes you</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQ2-em-YLp">
-                                <rect key="frame" x="40" y="617.5" width="21.5" height="21"/>
+                                <rect key="frame" x="177" y="617.5" width="21.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -619,7 +619,7 @@ see who likes you</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_gender_female" translatesAutoresizingMaskIntoConstraints="NO" id="98v-39-l5G">
-                                <rect key="frame" x="16" y="620" width="16" height="16"/>
+                                <rect key="frame" x="153" y="620" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="ODH-hD-iWq"/>
                                     <constraint firstAttribute="width" constant="16" id="sw0-lB-6pl"/>
@@ -652,8 +652,8 @@ see who likes you</string>
                             <constraint firstItem="pQ2-em-YLp" firstAttribute="centerY" secondItem="98v-39-l5G" secondAttribute="centerY" id="lgg-Z5-9AK"/>
                             <constraint firstAttribute="bottom" secondItem="cOc-LA-9UX" secondAttribute="bottom" constant="48" id="nNU-gW-keG"/>
                             <constraint firstAttribute="trailing" secondItem="lEH-hc-Jn1" secondAttribute="trailing" constant="100" id="ndM-ed-fRg" userLabel="iconOffset"/>
-                            <constraint firstItem="98v-39-l5G" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="oPP-lk-wut"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
+                            <constraint firstItem="pQ2-em-YLp" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="wbK-o2-GrN"/>
                             <constraint firstItem="eDJ-qT-P4s" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="zuL-7R-2xV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dlp-dl-iCM"/>
