@@ -39,6 +39,7 @@ class ImageService
                 .retryOnConnect(timeout: 10.0)
                 .retry(3)
                 .subscribe(onNext: { response in
+                    self.taskMap.removeValue(forKey: url)
                 to.image = response.image
             }).disposed(by: disposeBag)
             
@@ -53,7 +54,7 @@ class ImageService
         ImagePipeline.shared.rx.loadImage(with: thumbnailUrl).asObservable()
             .retryOnConnect(timeout: 10.0)
             .retry(3)
-            .flatMap({ response -> Observable<ImageResponse> in
+            .flatMap({ response -> Observable<ImageResponse> in                
                 to.image = response.image
                 thumbnailResponse = response
                 
@@ -61,6 +62,8 @@ class ImageService
                     .retryOnConnect(timeout: 10.0)
                     .retry(3)
             }).subscribe(onNext: { response in
+                self.taskMap.removeValue(forKey: url)
+                
                 let thumbView = UIImageView(frame: to.bounds)
                 thumbView.image = thumbnailResponse?.image
                 thumbView.contentMode = .scaleAspectFill
