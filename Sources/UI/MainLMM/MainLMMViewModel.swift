@@ -148,7 +148,7 @@ extension RemoteFeedType
         switch self {
         case .likesYou: return .likesYou
         case .matches: return .matches
-        case .messages: return .inbox
+        case .messages: return .messages
             
         default: return nil
         }
