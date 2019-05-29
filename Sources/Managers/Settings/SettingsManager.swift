@@ -146,6 +146,7 @@ class SettingsManager
         self.notifications.isGranted.asObservable().subscribe(onNext: { [weak self] state in
             log("Permissions changed - pushes access granted: \(state)", level: .low)
             self?.updateRemoteSettings()
+            self?.updatePushToken()
         }).disposed(by: self.disposeBag)
     }
 }
