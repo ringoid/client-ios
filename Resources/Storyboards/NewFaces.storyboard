@@ -222,7 +222,7 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Woq-Wa-eWS">
-                                <rect key="frame" x="177" y="617.5" width="21.5" height="21"/>
+                                <rect key="frame" x="177" y="620" width="21.5" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -263,6 +263,7 @@ discover users nearby</string>
                             <constraint firstItem="HGV-Wh-HTU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="fz3-iX-AyN"/>
                             <constraint firstItem="bby-nO-FSI" firstAttribute="leading" secondItem="HGV-Wh-HTU" secondAttribute="trailing" constant="8" id="gP0-Dm-LGE"/>
                             <constraint firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" id="hMK-Ge-ajI"/>
+                            <constraint firstItem="Woq-Wa-eWS" firstAttribute="height" secondItem="nVK-G6-Y9R" secondAttribute="height" id="i3D-o4-6hI"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="ms1-Iv-Xza"/>
                             <constraint firstAttribute="trailing" secondItem="p52-p6-qqu" secondAttribute="trailing" constant="99" id="qXd-TD-zCq" userLabel="iconOffset"/>
                             <constraint firstItem="bby-nO-FSI" firstAttribute="centerY" secondItem="HGV-Wh-HTU" secondAttribute="centerY" id="qne-Zl-Aoo"/>

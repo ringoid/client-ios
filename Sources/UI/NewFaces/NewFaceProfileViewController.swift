@@ -229,6 +229,8 @@ class NewFaceProfileViewController: UIViewController
         self.distanceLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.distanceLabel.frame, offset: value) ?? 1.0)
         self.statusLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusLabel.frame, offset: value) ?? 1.0)
         self.locationIconView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.locationIconView.frame, offset: value) ?? 1.0)
+        self.genderView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.genderView.frame, offset: value) ?? 1.0)
+        self.ageLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.ageLabel.frame, offset: value) ?? 1.0)
     }
     
     fileprivate func bottomOpacityFor(_ frame: CGRect, offset: CGFloat) -> CGFloat?

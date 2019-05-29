@@ -312,6 +312,8 @@ class MainLMMProfileViewController: UIViewController
         self.distanceLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.distanceLabel.frame, offset: value) ?? 1.0)
         self.statusLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.statusLabel.frame, offset: value) ?? 1.0)
         self.locationIconView.alpha = self.discreetOpacity(for: self.topOpacityFor(self.locationIconView.frame, offset: value) ?? 1.0)
+        self.genderView.alpha = self.discreetOpacity(for: self.topOpacityFor(self.genderView.frame, offset: value) ?? 1.0)
+        self.ageLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.ageLabel.frame, offset: value) ?? 1.0)
     }
     
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
@@ -342,6 +344,14 @@ class MainLMMProfileViewController: UIViewController
         
         if let locationIconControlOpacity = self.bottomOpacityFor(self.locationIconView.frame, offset: value) {
             self.locationIconView.alpha = self.discreetOpacity(for: locationIconControlOpacity)
+        }
+        
+        if let genderControlOpacity = self.bottomOpacityFor(self.genderView.frame, offset: value) {
+            self.genderView.alpha = self.discreetOpacity(for: genderControlOpacity)
+        }
+        
+        if let ageControlOpacity = self.bottomOpacityFor(self.ageLabel.frame, offset: value) {
+            self.ageLabel.alpha = self.discreetOpacity(for: ageControlOpacity)
         }
     }
     
