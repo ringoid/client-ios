@@ -16,6 +16,7 @@ class ImageService
     static let shared = ImageService()
     
     fileprivate var taskMap: [URL: DisposeBag] = [:]
+    fileprivate var viewMap: [URL: UIView] = [:]
     
     private init()
     {
@@ -33,22 +34,31 @@ class ImageService
             return
         }
         
+        if self.taskMap[url] != nil && self.viewMap[url] == to { return }
+        
         guard let thumbnailUrl = thumbnailUrl else {
             let disposeBag: DisposeBag = DisposeBag()
+            self.taskMap[url] = disposeBag
+            self.viewMap[url] = to
+            
             ImagePipeline.shared.rx.loadImage(with: url).asObservable()
                 .retryOnConnect(timeout: 10.0)
                 .retry(3)
                 .subscribe(onNext: { response in
                     self.taskMap.removeValue(forKey: url)
-                to.image = response.image
-            }).disposed(by: disposeBag)
-            
-            self.taskMap[url] = disposeBag
-            
+                    self.viewMap.removeValue(forKey: url)
+                    to.image = response.image
+                }, onError: { _ in
+                    self.taskMap.removeValue(forKey: url)
+                    self.viewMap.removeValue(forKey: url)
+                }).disposed(by: disposeBag)
+ 
             return
         }
         
         let disposeBag: DisposeBag = DisposeBag()
+        self.taskMap[url] = disposeBag
+        self.viewMap[url] = to
         var thumbnailResponse: ImageResponse? = nil
         
         ImagePipeline.shared.rx.loadImage(with: thumbnailUrl).asObservable()
@@ -63,6 +73,7 @@ class ImageService
                     .retry(3)
             }).subscribe(onNext: { response in
                 self.taskMap.removeValue(forKey: url)
+                self.viewMap.removeValue(forKey: url)
                 
                 let thumbView = UIImageView(frame: to.bounds)
                 thumbView.image = thumbnailResponse?.image
@@ -79,13 +90,15 @@ class ImageService
                 })
                 
                 animator.startAnimation()
+            }, onError: { _ in
+                self.taskMap.removeValue(forKey: url)
+                self.viewMap.removeValue(forKey: url)
             }).disposed(by: disposeBag)
-        
-        self.taskMap[url] = disposeBag
     }
     
     func cancel(_ url: URL)
     {
         self.taskMap.removeValue(forKey: url)
+        self.viewMap.removeValue(forKey: url)
     }
 }

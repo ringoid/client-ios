@@ -61,6 +61,7 @@ class NewFacePhotoViewController: UIViewController
         super.viewDidLoad()
 
         self.updateBindings()
+        self.update()
         
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeInactive), name: UIApplication.willResignActiveNotification, object: nil)
