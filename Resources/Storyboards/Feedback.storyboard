@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dK7-of-ave">
-                                <rect key="frame" x="37.5" y="80" width="300" height="260"/>
+                                <rect key="frame" x="37.5" y="72" width="300" height="260"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lT7-a3-UWY">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="260"/>
@@ -140,7 +140,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="dK7-of-ave" firstAttribute="top" secondItem="Xeo-iS-irQ" secondAttribute="top" constant="60" id="ZVQ-sx-SNP"/>
+                            <constraint firstItem="dK7-of-ave" firstAttribute="top" secondItem="Xeo-iS-irQ" secondAttribute="top" constant="52" id="ZVQ-sx-SNP"/>
                             <constraint firstItem="dK7-of-ave" firstAttribute="centerX" secondItem="J6a-hh-3bX" secondAttribute="centerX" id="wzS-yo-10W"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xeo-iS-irQ"/>
