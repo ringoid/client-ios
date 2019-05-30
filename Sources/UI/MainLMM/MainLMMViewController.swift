@@ -140,6 +140,7 @@ class MainLMMViewController: BaseViewController
     
     @IBAction func onRefresh()
     {
+        self.hideScrollToTopOption()
         self.reload()
     }
     
