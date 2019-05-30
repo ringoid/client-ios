@@ -57,17 +57,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         return self.appManager.onUserActivity(userActivity: userActivity, restorationHandler: restorationHandler)
     }
-    
-    //MARK: - Pushes management
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
-    {
-        self.appManager.onGot(deviceToken: deviceToken)
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)
-    {
-        log("failed to get DeviceToken: \(error)", level: .high)
-    }
 }
 
