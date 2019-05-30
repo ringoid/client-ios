@@ -1385,7 +1385,7 @@
 					57EE64D12216711000246B45 = {
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Push = {
 								enabled = 1;
