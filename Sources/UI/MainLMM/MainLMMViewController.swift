@@ -437,7 +437,7 @@ class MainLMMViewController: BaseViewController
             self.tableView.layoutIfNeeded()
             self.tableView.setContentOffset(CGPoint(x: 0.0, y: cachedOffset), animated: false)
             
-            if cachedOffset > 75.0 && totalCount > 0 {
+            if cachedOffset > 75.0 && totalCount > 0 && totalCount > 0{
                 self.scrollTopBtn.alpha = 1.0
                 self.updateBtn.alpha = 1.0
                 self.isScrollTopVisible = true
@@ -501,6 +501,7 @@ class MainLMMViewController: BaseViewController
     fileprivate func showScrollToTopOption()
     {
         guard !self.isScrollTopVisible else { return }
+        guard self.profiles()?.value.count != 0 else { return }
         
         let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
             self.scrollTopBtn.alpha = 1.0
