@@ -21,12 +21,12 @@ class NotificationsServiceDefault: NSObject, NotificationService
     var isMatchEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     var isMessageEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     var responses: Observable<UNNotificationResponse>!
-    var foregroundNotifications: Observable<UNNotification>!
+    var notificationData: Observable<[AnyHashable : Any]>!
     var isRegistered: Bool = false
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var responseObserver: AnyObserver<UNNotificationResponse>?
-    fileprivate var foregoundNotificationsObserver: AnyObserver<UNNotification>?
+    fileprivate var notificationDataObserver: AnyObserver<[AnyHashable : Any]>?
     
     override init()
     {
@@ -48,9 +48,9 @@ class NotificationsServiceDefault: NSObject, NotificationService
             return Disposables.create()
         })
         
-        self.foregroundNotifications = Observable<UNNotification>.create({ [weak self] observer -> Disposable in
+        self.notificationData = Observable<[AnyHashable : Any]>.create({ [weak self] observer -> Disposable in
             
-            self?.foregoundNotificationsObserver = observer
+            self?.notificationDataObserver = observer
             
             return Disposables.create()
         }).share()
@@ -59,8 +59,7 @@ class NotificationsServiceDefault: NSObject, NotificationService
     
     func handle(notificationDict: [AnyHashable : Any])
     {
-        log("Received push", level: .high)
-        print(notificationDict)
+        self.notificationDataObserver?.onNext(notificationDict)
     }
     
     func register()
@@ -164,7 +163,7 @@ extension NotificationsServiceDefault: UNUserNotificationCenterDelegate
     {
         guard UIApplication.shared.applicationState == .active else { return }
         
-        self.foregoundNotificationsObserver?.onNext(notification)
+        self.notificationDataObserver?.onNext(notification.request.content.userInfo)
     }
 }
 
@@ -175,5 +174,10 @@ extension NotificationsServiceDefault: MessagingDelegate
         self.token.accept(fcmToken)
         UserDefaults.standard.set(fcmToken, forKey: "push_token")
         UserDefaults.standard.synchronize()
+    }
+    
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage)
+    {
+        print("message received")
     }
 }

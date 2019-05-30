@@ -63,8 +63,7 @@ class MainLMMViewModel
     
     var updatedFeed: Observable<LMMType?>
     {
-        return self.notifications.foregroundNotifications.map({ notification -> LMMType? in
-            let userInfo = notification.request.content.userInfo
+        return self.notifications.notificationData.map({ userInfo -> LMMType? in            
             guard let typeStr = userInfo["type"] as? String else { return nil }
             
             return RemoteFeedType(rawValue: typeStr)?.lmmType()

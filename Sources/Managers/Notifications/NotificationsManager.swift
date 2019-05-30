@@ -37,8 +37,8 @@ class NotificationsManager
             self.api.updatePush(token).subscribe().disposed(by: self.disposeBag)
         }).disposed(by: self.disposeBag)
         
-        self.notifications.foregroundNotifications.subscribe(onNext: { _ in
-            print("FOREGROUND PUSH")
+        self.notifications.notificationData.subscribe(onNext: { _ in
+            print("PUSH RECEIVED")
         }).disposed(by: self.disposeBag)
     }
 }

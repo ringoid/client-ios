@@ -450,10 +450,9 @@ class MainViewController: BaseViewController
             self.effectsView.animateMessages(countToShow, from: position)
         }).disposed(by: self.disposeBag)
         
-        self.input.notifications.foregroundNotifications.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] notification in
+        self.input.notifications.notificationData.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] userInfo in
             guard let `self` = self else { return }
             
-            let userInfo = notification.request.content.userInfo
             guard let typeStr = userInfo["type"] as? String else { return }
             guard let remoteFeed = RemoteFeedType(rawValue: typeStr) else { return }
             

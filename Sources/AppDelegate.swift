@@ -57,5 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         return self.appManager.onUserActivity(userActivity: userActivity, restorationHandler: restorationHandler)
     }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
+    {
+        self.appManager.onGot(notificationDict: userInfo)
+        
+        completionHandler(.noData)
+    }
 }
 
