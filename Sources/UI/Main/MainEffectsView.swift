@@ -21,8 +21,8 @@ class MainEffectsView: TouchThroughView
         
         let cell = CAEmitterCell()
         cell.contents = UIImage(named: "effect_like")!.cgImage
-        cell.emissionLongitude = -.pi / 2.0 - .pi * 0.1
-        cell.emissionRange = .pi / 16.0
+        cell.emissionLongitude = -.pi / 2.0 - .pi * 0.01
+        cell.emissionRange = .pi / 32.0
         cell.lifetime = lifetime
         cell.birthRate = birthRate
         cell.scale = 0.6
@@ -71,8 +71,8 @@ class MainEffectsView: TouchThroughView
         
         let cell = CAEmitterCell()
         cell.contents = UIImage(named: "effect_message")!.cgImage
-        cell.emissionLongitude = -.pi / 2.0 + .pi * 0.1
-        cell.emissionRange = .pi / 16.0
+        cell.emissionLongitude = -.pi / 2.0 + .pi * 0.01
+        cell.emissionRange = .pi / 32.0
         cell.lifetime = lifetime
         cell.birthRate = birthRate
         cell.scale = 0.6
@@ -121,8 +121,8 @@ class MainEffectsView: TouchThroughView
         
         let cell = CAEmitterCell()
         cell.contents = UIImage(named: "effect_hello")!.cgImage
-        cell.emissionLongitude = -.pi / 2.0 + .pi * 0.1
-        cell.emissionRange = .pi / 16.0
+        cell.emissionLongitude = -.pi / 2.0 + .pi * 0.01
+        cell.emissionRange = .pi / 32.0
         cell.lifetime = lifetime
         cell.birthRate = birthRate
         cell.scale = 0.6
@@ -171,7 +171,7 @@ class MainEffectsView: TouchThroughView
         
         let cell = CAEmitterCell()
         cell.contents = UIImage(named: "effect_match")!.cgImage
-        cell.emissionLongitude = -.pi / 2.0 //+ .pi * 0.055
+        cell.emissionLongitude = -.pi / 2.0
         cell.emissionRange = .pi / 16.0
         cell.lifetime = lifetime
         cell.birthRate = birthRate

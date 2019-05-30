@@ -69,12 +69,6 @@ class MainViewController: BaseViewController
         GlobalAnimationManager.shared.animationView = self.effectsView
         
         self.setupBindings()
-        
-//        #if STAGE
-//        let recognizer = UITapGestureRecognizer(target: self, action: #selector(showDebugLikes))
-//        recognizer.numberOfTapsRequired = 3
-//        self.likeBtn.gestureRecognizers = [recognizer]
-//        #endif
     }
     
     #if STAGE
@@ -409,8 +403,8 @@ class MainViewController: BaseViewController
             }
             
             let size = self.likeBtn.bounds.size
-            let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
-            let position = self.likeBtn.convert(center, to: nil)
+            let center = self.likeBtn.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), to: nil)
+            let position = CGPoint(x: 44.0, y: center.y + 16.0)
             self.effectsView.animateLikes(countToShow, from: position)
         }).disposed(by: self.disposeBag)
         
@@ -427,8 +421,8 @@ class MainViewController: BaseViewController
             }
             
             let size = self.likeBtn.bounds.size
-            let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
-            let position = self.likeBtn.convert(center, to: nil)
+            let center = self.likeBtn.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), to: nil)
+            let position = CGPoint(x: 44.0, y: center.y + 16.0)
             self.effectsView.animateMatches(countToShow, from: position)
         }).disposed(by: self.disposeBag)
         
@@ -445,8 +439,8 @@ class MainViewController: BaseViewController
             }
             
             let size = self.likeBtn.bounds.size
-            let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
-            let position = self.likeBtn.convert(center, to: nil)
+            let center = self.likeBtn.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), to: nil)
+            let position = CGPoint(x: 44.0, y: center.y + 16.0)
             self.effectsView.animateMessages(countToShow, from: position)
         }).disposed(by: self.disposeBag)
         
@@ -457,8 +451,8 @@ class MainViewController: BaseViewController
             guard let remoteFeed = RemoteFeedType(rawValue: typeStr) else { return }
             
             let size = self.likeBtn.bounds.size
-            let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
-            let position = self.likeBtn.convert(center, to: nil)
+            let center = self.likeBtn.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), to: nil)
+            let position = CGPoint(x: 44.0, y: center.y + 16.0)
             
             switch remoteFeed {
             case .likesYou:
