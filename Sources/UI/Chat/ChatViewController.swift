@@ -60,7 +60,7 @@ class ChatViewController: BaseViewController
         self.messageTextView.text = ChatViewController.messagesCache[self.input.profile.id]
         
         if let url = self.input.photo.filepath().url() {
-            ImageService.shared.load(url, thumbnailUrl: nil, to: self.photoView)
+            ImageService.shared.load(url, thumbnailUrl: self.input.photo.thumbnailFilepath().url(), to: self.photoView)
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
