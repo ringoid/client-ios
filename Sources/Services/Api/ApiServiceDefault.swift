@@ -260,6 +260,38 @@ class ApiServiceDefault: ApiService
         }
     }
     
+    func getChat(_ profileId: String, resolution: String, lastActionDate: Date?) -> Observable<ApiLMMProfile>
+    {
+        var params: [String: Any] = [
+            "resolution": resolution,
+            "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970 * 1000.0),
+            "userId": profileId
+        ]
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        let trace = Performance.startTrace(name: "feeds/chat")
+        
+        return self.requestGET(path: "feeds/chat", params: params, trace: trace)
+            .flatMap { jsonDict -> Observable<ApiLMMProfile> in
+                guard let chatDict = jsonDict["chat"] as? [String: Any] else {
+                    let error = createError("ApiService: wrong chat data format", type: .hidden)
+                    
+                    return .error(error)
+                }
+                
+                guard let profile = ApiLMMProfile.parse(chatDict) as? ApiLMMProfile else {
+                    let error = createError("ApiService: wrong chat data format", type: .hidden)
+                    
+                    return .error(error)
+                }
+
+                return .just(profile)
+        }
+    }
+    
     // MARK: - Images
     
     func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhotoPlaceholder>

@@ -349,7 +349,7 @@ class ActionsManager
             self.commit()
         })
         self.triggerTimer = timer
-        RunLoop.main.add(timer, forMode: .default)
+        RunLoop.main.add(timer, forMode: .common)
     }
     
     fileprivate func clearProfileResources(_ profile: ActionProfile)

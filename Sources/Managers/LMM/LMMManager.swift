@@ -32,6 +32,7 @@ class LMMManager
     let actionsManager: ActionsManager
     let deviceService: DeviceService
     let storage: XStorageService
+    let notifications: NotificationService
     
     fileprivate var disposeBag: DisposeBag = DisposeBag()
     
@@ -163,13 +164,14 @@ class LMMManager
         }
     }
     
-    init(_ db: DBService, api: ApiService, device: DeviceService, actionsManager: ActionsManager, storage: XStorageService)
+    init(_ db: DBService, api: ApiService, device: DeviceService, actionsManager: ActionsManager, storage: XStorageService, notifications: NotificationService)
     {
         self.db = db
         self.apiService = api
         self.deviceService = device
         self.actionsManager = actionsManager
         self.storage = storage
+        self.notifications = notifications
         
         self.setupBindings()
         self.loadPrevState()
@@ -302,6 +304,16 @@ class LMMManager
             
             self?.sent.accept(profiles)
         }).disposed(by: self.disposeBag)
+        
+        self.notifications.notificationData.subscribe(onNext: { [weak self] userInfo in
+            guard let `self` = self else { return }
+            guard let typeStr = userInfo["type"] as? String else { return }
+            guard let remoteFeedType = RemoteFeedType(rawValue: typeStr), remoteFeedType == .messages else { return }
+            
+            
+            print("wow")
+            
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func loadPrevState()
@@ -321,6 +333,54 @@ class LMMManager
         self.storage.object("prevNotSeenInbox").subscribe( onSuccess: { obj in
             self.prevNotSeenInbox = Array<String>.create(obj) ?? []
         }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func testChatByTimer()
+    {
+        let timer = Timer(timeInterval: 5.0, repeats: true) { [weak self] _ in
+            self?.updateChats()
+        }
+        
+        RunLoop.main.add(timer, forMode: .common)
+    }
+    
+    fileprivate func updateChats()
+    {
+        guard self.apiService.isAuthorized.value else { return }
+        
+        self.messages.value.forEach({ self.updateChat($0.id) })
+    }
+    
+    fileprivate func updateChat(_ profileId: String)
+    {
+        self.apiService.getChat(profileId,
+                                resolution: self.deviceService.photoResolution,
+                                lastActionDate: self.actionsManager.lastActionDate.value).subscribe(onNext: { [weak self] profile in
+                                    self?.updateLocalProfile(profileId, remoteProfile: profile)
+                                }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func updateLocalProfile(_ id: String, remoteProfile: ApiLMMProfile)
+    {
+        var localOrderPosition: Int = 0
+        
+        if let localProfile = self.messages.value.filter({ $0.id == id }).first {
+            localProfile.write { obj in
+                let lmmProfile = obj as? LMMProfile
+                let updatedMessages = remoteProfile.messages.map({ message -> Message in
+                    let localMessage = Message()
+                    localMessage.wasYouSender = message.wasYouSender
+                    localMessage.text = message.text
+                    localMessage.orderPosition = localOrderPosition
+                    localOrderPosition += 1
+                    
+                    return localMessage
+                })
+                
+                lmmProfile?.messages.removeAll()
+                lmmProfile?.messages.append(objectsIn: updatedMessages)
+            }
+        }
     }
     
     fileprivate func updateProfilesPrevState(_ avoidEmptyFeeds: Bool)
