@@ -128,10 +128,6 @@ class NotificationsServiceDefault: NSObject, NotificationService
     
     fileprivate func loadStored()
     {
-        if let storedToken = UserDefaults.standard.string(forKey: "push_token") {
-            self.token.accept(storedToken)
-        }
-        
         if UserDefaults.standard.object(forKey: "is_evening_enabled") != nil {
             self.isEveningEnabled.accept(UserDefaults.standard.bool(forKey: "is_evening_enabled"))
         }
@@ -172,8 +168,6 @@ extension NotificationsServiceDefault: MessagingDelegate
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String)
     {
         self.token.accept(fcmToken)
-        UserDefaults.standard.set(fcmToken, forKey: "push_token")
-        UserDefaults.standard.synchronize()
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage)
