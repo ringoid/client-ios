@@ -175,6 +175,7 @@ class LMMManager
         
         self.setupBindings()
         self.loadPrevState()
+        self.testChatByTimer()
     }
     
     fileprivate func refresh(_ from: SourceFeedType) -> Observable<Void>
@@ -309,10 +310,7 @@ class LMMManager
             guard let `self` = self else { return }
             guard let typeStr = userInfo["type"] as? String else { return }
             guard let remoteFeedType = RemoteFeedType(rawValue: typeStr), remoteFeedType == .messages else { return }
-            
-            
-            print("wow")
-            
+
         }).disposed(by: self.disposeBag)
     }
     
@@ -353,34 +351,33 @@ class LMMManager
     
     fileprivate func updateChat(_ profileId: String)
     {
-        self.apiService.getChat(profileId,
-                                resolution: self.deviceService.photoResolution,
-                                lastActionDate: self.actionsManager.lastActionDate.value).subscribe(onNext: { [weak self] profile in
-                                    self?.updateLocalProfile(profileId, remoteProfile: profile)
-                                }).disposed(by: self.disposeBag)
+        self.actionsManager.sendQueue().subscribe(onNext: { [weak self] _ in
+            guard let `self` = self else { return }
+            
+            self.apiService.getChat(profileId,
+                                    resolution: self.deviceService.photoResolution,
+                                    lastActionDate: self.actionsManager.lastActionDate.value).subscribe(onNext: { [weak self] messages in
+                                        
+                                        self?.updateLocalProfile(profileId, remoteMessages: messages)
+                                    }).disposed(by: self.disposeBag)
+            
+        }).disposed(by: self.disposeBag)
     }
     
-    fileprivate func updateLocalProfile(_ id: String, remoteProfile: ApiLMMProfile)
+    fileprivate func updateLocalProfile(_ id: String, remoteMessages: [ApiMessage])
     {
         var localOrderPosition: Int = 0
+        let updatedMessages = remoteMessages.map({ message -> Message in
+            let localMessage = Message()
+            localMessage.wasYouSender = message.wasYouSender
+            localMessage.text = message.text
+            localMessage.orderPosition = localOrderPosition
+            localOrderPosition += 1
+            
+            return localMessage
+        })
         
-        if let localProfile = self.messages.value.filter({ $0.id == id }).first {
-            localProfile.write { obj in
-                let lmmProfile = obj as? LMMProfile
-                let updatedMessages = remoteProfile.messages.map({ message -> Message in
-                    let localMessage = Message()
-                    localMessage.wasYouSender = message.wasYouSender
-                    localMessage.text = message.text
-                    localMessage.orderPosition = localOrderPosition
-                    localOrderPosition += 1
-                    
-                    return localMessage
-                })
-                
-                lmmProfile?.messages.removeAll()
-                lmmProfile?.messages.append(objectsIn: updatedMessages)
-            }
-        }
+        self.db.lmmProfileUpdate(id, messages: updatedMessages)
     }
     
     fileprivate func updateProfilesPrevState(_ avoidEmptyFeeds: Bool)

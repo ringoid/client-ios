@@ -201,6 +201,33 @@ class DBService
         return Observable.array(from: actions)
     }
     
+    // MARK: - Feeds
+    
+    func lmmProfileUpdate(_ id: String, messages: [Message])
+    {
+        let predicate = NSPredicate(format: "type = %d AND isDeleted = false AND id = %@", FeedType.messages.rawValue, id)
+        if  let profile = self.realm.objects(LMMProfile.self).filter(predicate).first {
+            self.write {
+                profile.messages.removeAll()
+                profile.messages.append(objectsIn: messages)
+                
+                self.updateMessages()
+            }
+        }
+        
+        //if let localProfile = self.messages().filter((predicate)).fi.subscribe(onNex)
+            /*
+            .value.filter({ $0.id == id }).first {
+            localProfile.write { obj in
+                let lmmProfile = obj as? LMMProfile
+                
+                
+                lmmProfile?.messages.removeAll()
+                lmmProfile?.messages.append(objectsIn: updatedMessages)
+            }
+        }*/
+    }
+    
     // MARK: - Common
     
     func add(_ object: DBServiceObject) -> Single<Void>
@@ -283,6 +310,17 @@ class DBService
             }
 
             return Disposables.create()
+        }
+    }
+    
+    func write(_ block: (() -> ())? )
+    {
+        if self.realm.isInWriteTransaction {
+            block?()
+        } else {
+            try? self.realm.write {
+                block?()
+            }
         }
     }
     
