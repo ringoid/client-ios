@@ -51,6 +51,7 @@ class MainLMMViewController: BaseViewController
     fileprivate var currentActivityState: LMMFeedActivityState = .initial
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var isTabSwitched: Bool = false
+    fileprivate var isUpdateBtnVisible: Bool = false
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
@@ -195,9 +196,14 @@ class MainLMMViewController: BaseViewController
             
             MainLMMViewController.updatedFeeds.insert(value)
             
+            guard !self.isUpdateBtnVisible else { return }
+            
             if value == self.type.value {
+                
                 self.updateBtn.alpha = 0.0
                 self.updateBtn.isHidden = false
+                self.isUpdateBtnVisible = true
+                
                 let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) { self.updateBtn.alpha = 1.0 }
                 animator.startAnimation()
             }
@@ -246,6 +252,7 @@ class MainLMMViewController: BaseViewController
         
         MainLMMViewController.updatedFeeds.removeAll()
         self.updateBtn.isHidden = true
+        self.isUpdateBtnVisible = false
         
         self.tableView.panGestureRecognizer.isEnabled = false
 
@@ -296,9 +303,12 @@ class MainLMMViewController: BaseViewController
         self.isTabSwitched = true
         self.updateBindings()
         
+        guard !self.isUpdateBtnVisible else { return }
+        
         if MainLMMViewController.updatedFeeds.contains(type) {
             self.updateBtn.isHidden = false
             self.updateBtn.alpha = 1.0
+            self.isUpdateBtnVisible = true
         }
     }
     
@@ -442,10 +452,12 @@ class MainLMMViewController: BaseViewController
                 self.scrollTopBtn.alpha = 1.0
                 self.updateBtn.alpha = 1.0
                 self.isScrollTopVisible = true
+                self.isUpdateBtnVisible = true
             } else {
                 self.scrollTopBtn.alpha = 0.0
                 self.updateBtn.alpha = 0.0
                 self.isScrollTopVisible = false
+                self.isUpdateBtnVisible = false
             }
         }
     }
@@ -504,15 +516,23 @@ class MainLMMViewController: BaseViewController
         guard !self.isScrollTopVisible else { return }
         guard self.profiles()?.value.count != 0 else { return }
         
-        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
+        let topAnimator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
             self.scrollTopBtn.alpha = 1.0
-            self.updateBtn.alpha = 1.0
         }
-        animator.addCompletion { _ in
+        topAnimator.addCompletion { _ in
             self.isScrollTopVisible = true
         }
         
-        animator.startAnimation()
+        topAnimator.startAnimation()
+        
+        guard !self.isUpdateBtnVisible else { return }
+        
+        self.isUpdateBtnVisible = true
+        let updateAnimator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
+            self.updateBtn.alpha = 1.0
+        }
+        
+        updateAnimator.startAnimation()
     }
     
     fileprivate func hideScrollToTopOption()
@@ -784,6 +804,7 @@ extension MainLMMViewController: UIScrollViewDelegate
         if offset - self.prevScrollingOffset > midTrashhold {
             self.hideScrollToTopOption()
             self.updateBtn.alpha = 0.0
+            self.isUpdateBtnVisible = false
             self.prevScrollingOffset = offset
             
             return
