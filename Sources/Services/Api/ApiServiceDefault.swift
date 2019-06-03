@@ -250,17 +250,17 @@ class ApiServiceDefault: ApiService
         
         return self.requestGET(path: "feeds/get_new_faces", params: params, trace: trace)
             .flatMap { jsonDict -> Observable<[ApiProfile]> in
-            guard let profilesArray = jsonDict["profiles"] as? [[String: Any]] else {
-                let error = createError("ApiService: wrong profiles data format", type: .hidden)
+                guard let profilesArray = jsonDict["profiles"] as? [[String: Any]] else {
+                    let error = createError("ApiService: wrong profiles data format", type: .hidden)
+                    
+                    return .error(error)
+                }
                 
-                return .error(error)
-            }
-            
-            return .just(profilesArray.compactMap({ ApiProfile.parse($0) }))
+                return .just(profilesArray.compactMap({ ApiProfile.parse($0) }))
         }
     }
     
-    func getChat(_ profileId: String, resolution: String, lastActionDate: Date?) -> Observable<[ApiMessage]>
+    func getChat(_ profileId: String, resolution: String, lastActionDate: Date?) -> Observable<ApiChatUpdate>
     {
         var params: [String: Any] = [
             "resolution": resolution,
@@ -275,20 +275,20 @@ class ApiServiceDefault: ApiService
         let trace = Performance.startTrace(name: "feeds/chat")
         
         return self.requestGET(path: "feeds/chat", params: params, trace: trace)
-            .flatMap { jsonDict -> Observable<[ApiMessage]> in
+            .flatMap { jsonDict -> Observable<ApiChatUpdate> in
                 guard let chatDict = jsonDict["chat"] as? [String: Any] else {
                     let error = createError("ApiService: wrong chat data format", type: .hidden)
                     
                     return .error(error)
                 }
                 
-                guard let messagesArray = chatDict["messages"] as? [[String: Any]]  else {
+                guard let chatUpdate = ApiChatUpdate.parse(chatDict) else {
                     let error = createError("ApiService: wrong chat data format", type: .hidden)
                     
                     return .error(error)
                 }
-
-                return .just(messagesArray.compactMap({ ApiMessage.parse($0) }))
+                
+                return .just(chatUpdate)
         }
     }
     

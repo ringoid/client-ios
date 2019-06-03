@@ -358,9 +358,16 @@ class LMMManager
             
             self.apiService.getChat(profileId,
                                     resolution: self.deviceService.photoResolution,
-                                    lastActionDate: self.actionsManager.lastActionDate.value).subscribe(onNext: { [weak self] messages in
+                                    lastActionDate: self.actionsManager.lastActionDate.value).subscribe(onNext: { [weak self] chatUpdate in
                                         
-                                        self?.updateLocalProfile(profileId, remoteMessages: messages)
+                                        self?.updateLocalProfile(profileId, remoteMessages: chatUpdate.messages)
+                                        
+                                        guard chatUpdate.pullAgainAfter > 0 else { return }
+                                        
+                                        let interval = Double(chatUpdate.pullAgainAfter) / 1000.0
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + interval, execute: { [weak self] in
+                                            self?.updateChat(profileId)
+                                        })
                                     }).disposed(by: self.disposeBag)
             
         }).disposed(by: self.disposeBag)
