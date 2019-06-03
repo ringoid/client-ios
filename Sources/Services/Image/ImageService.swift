@@ -29,7 +29,9 @@ class ImageService
     {
         let request = ImageRequest(url: url)
         if let cachedImage = ImageCache.shared[request] {
-            to.image = cachedImage
+            DispatchQueue.main.async {
+                to.image = cachedImage
+            }            
             
             return
         }
