@@ -210,22 +210,8 @@ class DBService
             self.write {
                 profile.messages.removeAll()
                 profile.messages.append(objectsIn: messages)
-                
-                self.updateMessages()
             }
         }
-        
-        //if let localProfile = self.messages().filter((predicate)).fi.subscribe(onNex)
-            /*
-            .value.filter({ $0.id == id }).first {
-            localProfile.write { obj in
-                let lmmProfile = obj as? LMMProfile
-                
-                
-                lmmProfile?.messages.removeAll()
-                lmmProfile?.messages.append(objectsIn: updatedMessages)
-            }
-        }*/
     }
     
     // MARK: - Common

@@ -175,7 +175,7 @@ class LMMManager
         
         self.setupBindings()
         self.loadPrevState()
-        self.testChatByTimer()
+        //self.testChatByTimer()
     }
     
     fileprivate func refresh(_ from: SourceFeedType) -> Observable<Void>
@@ -310,7 +310,9 @@ class LMMManager
             guard let `self` = self else { return }
             guard let typeStr = userInfo["type"] as? String else { return }
             guard let remoteFeedType = RemoteFeedType(rawValue: typeStr), remoteFeedType == .messages else { return }
-
+            
+            guard let profileId = userInfo["oppositeUserId"] as? String else { return }
+            self.updateChat(profileId)
         }).disposed(by: self.disposeBag)
     }
     
