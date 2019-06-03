@@ -210,6 +210,7 @@ class DBService
             self.write {
                 profile.messages.removeAll()
                 profile.messages.append(objectsIn: messages)
+                profile.notSeen = true
             }
         }
     }

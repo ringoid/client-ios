@@ -103,12 +103,6 @@ class MainLMMProfileViewController: UIViewController
         
         self.updateMessageBtnOffset()
         
-        if let iconName =  self.input.profile.state.iconName() {
-            self.messageBtn.setImage(UIImage(named: iconName), for: .normal)
-        } else {
-            self.messageBtn.setImage(nil, for: .normal)
-        }
-        
         let input = NewFaceProfileVMInput(
             profile: self.input.profile,
             sourceType: self.input.feedType.sourceType(),
@@ -142,8 +136,6 @@ class MainLMMProfileViewController: UIViewController
         #if STAGE
         self.profileIdLabel.text = "Profile: " + String(self.input.profile.id.suffix(4))
         self.profileIdLabel.isHidden = false
-        self.seenLabel.text = self.viewModel?.input.profile.notSeen == true ? "Not seen" : "Seen"
-        self.seenLabel.isHidden = false
         #endif
         
         self.statusView.layer.borderWidth = 1.0
@@ -232,6 +224,10 @@ class MainLMMProfileViewController: UIViewController
             guard let `self` = self else { return }
             
             self.messageBtn.isHidden = self.input.feedType != .messages || state
+        }).disposed(by: self.diposeBag)
+        
+        Observable.from(object:self.input.profile).observeOn(MainScheduler.instance).subscribe({ [weak self] _ in
+            self?.updateSeenState()
         }).disposed(by: self.diposeBag)
     }
     
@@ -453,6 +449,20 @@ class MainLMMProfileViewController: UIViewController
         self.genderOffsetConstraint.constant =  self.input.profileManager.gender.value == .male ? 0.0 : 4.0
         self.ageLabel.isHidden = false
         self.genderView.isHidden = false
+    }
+    
+    fileprivate func updateSeenState()
+    {
+        #if STAGE
+        self.seenLabel.text = self.viewModel?.input.profile.notSeen == true ? "Not seen" : "Seen"
+        self.seenLabel.isHidden = false
+        #endif
+        
+        if let iconName =  self.input.profile.state.iconName() {
+            self.messageBtn.setImage(UIImage(named: iconName), for: .normal)
+        } else {
+            self.messageBtn.setImage(nil, for: .normal)
+        }
     }
 }
 
