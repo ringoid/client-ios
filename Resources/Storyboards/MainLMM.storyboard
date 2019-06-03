@@ -572,7 +572,7 @@ see who likes you</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOc-LA-9UX">
-                                <rect key="frame" x="167" y="598" width="41.5" height="21"/>
+                                <rect key="frame" x="167" y="550" width="41.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -642,6 +642,7 @@ see who likes you</string>
                             <constraint firstAttribute="bottomMargin" secondItem="duK-qX-ktj" secondAttribute="bottom" id="SYR-al-KFo"/>
                             <constraint firstItem="nFG-N4-HJi" firstAttribute="centerY" secondItem="pQ2-em-YLp" secondAttribute="centerY" id="U3u-84-97T"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="118" id="UE3-94-yVQ" userLabel="MessageTopOffset"/>
+                            <constraint firstItem="cOc-LA-9UX" firstAttribute="centerY" secondItem="qVA-P0-T2F" secondAttribute="centerY" id="VjE-jh-k8V"/>
                             <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="-12" id="XAG-qi-5bb"/>
                             <constraint firstItem="duK-qX-ktj" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="YhF-UI-eSx"/>
                             <constraint firstItem="eDJ-qT-P4s" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="20" id="bgx-sm-BG8"/>
@@ -650,7 +651,6 @@ see who likes you</string>
                             <constraint firstItem="InC-ES-1Or" firstAttribute="leading" secondItem="eDJ-qT-P4s" secondAttribute="trailing" constant="8" id="iL5-si-XiA"/>
                             <constraint firstAttribute="bottom" secondItem="nFG-N4-HJi" secondAttribute="bottom" constant="32" id="jre-a2-fsn"/>
                             <constraint firstItem="pQ2-em-YLp" firstAttribute="centerY" secondItem="98v-39-l5G" secondAttribute="centerY" id="lgg-Z5-9AK"/>
-                            <constraint firstAttribute="bottom" secondItem="cOc-LA-9UX" secondAttribute="bottom" constant="48" id="nNU-gW-keG"/>
                             <constraint firstAttribute="trailing" secondItem="lEH-hc-Jn1" secondAttribute="trailing" constant="100" id="ndM-ed-fRg" userLabel="iconOffset"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
                             <constraint firstItem="pQ2-em-YLp" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="wbK-o2-GrN"/>
