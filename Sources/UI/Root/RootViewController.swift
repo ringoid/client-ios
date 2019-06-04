@@ -63,6 +63,8 @@ class RootViewController: BaseViewController {
 
         self.mode = to
         
+        ModalUIManager.shared.hide(animated: false)
+                
         switch to {
         case .unknown: break
         case .auth:
