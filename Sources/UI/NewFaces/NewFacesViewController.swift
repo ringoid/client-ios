@@ -141,6 +141,7 @@ class NewFacesViewController: BaseViewController
     @objc fileprivate func onReload()
     {
         AnalyticsManager.shared.send(.pullToRefresh(SourceFeedType.newFaces.rawValue))
+        self.hideScrollToTopOption()
         self.reload()
     }
     

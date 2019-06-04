@@ -227,7 +227,7 @@ class MainLMMViewController: BaseViewController
     fileprivate func setupReloader()
     {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(reload), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
         self.tableView.refreshControl = refreshControl
     }
     

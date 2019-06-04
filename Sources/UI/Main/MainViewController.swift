@@ -138,6 +138,8 @@ class MainViewController: BaseViewController
         
         self.prevState = to
         
+        ModalUIManager.shared.hide(animated: false)
+        
         switch to {
         case .search:
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
