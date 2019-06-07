@@ -392,6 +392,10 @@ class MainViewController: BaseViewController
             self?.lmmNotSeenIndicatorView.isHidden = !state
         }).disposed(by: self.disposeBag)
         
+        self.viewModel?.notSeenProfilesTotalCount.observeOn(MainScheduler.instance).subscribe(onNext: { value in
+            UIApplication.shared.applicationIconBadgeNumber = value
+        }).disposed(by: self.disposeBag)
+        
         self.viewModel?.incomingLikesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             

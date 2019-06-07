@@ -68,6 +68,7 @@ class MainViewModel
     
     let isNotSeenProfilesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     let isNotSeenInboxAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    let notSeenProfilesTotalCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var notSeenLikesCount: Int = 0
@@ -114,21 +115,30 @@ class MainViewModel
             guard let `self` = self else { return }
             
             self.notSeenLikesCount = count
-            self.isNotSeenProfilesAvailable.accept(count + self.notSeenMatchesCount + self.notSeenMessagesCount != 0)
+            
+            let totalCount = count + self.notSeenMatchesCount + self.notSeenMessagesCount
+            self.isNotSeenProfilesAvailable.accept(totalCount != 0)
+            self.notSeenProfilesTotalCount.accept(totalCount)
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenMatchesCount.subscribe(onNext:{ [weak self] count in
             guard let `self` = self else { return }
             
             self.notSeenMatchesCount = count
-            self.isNotSeenProfilesAvailable.accept(count + self.notSeenLikesCount + self.notSeenMessagesCount != 0)
+            
+            let totalCount = count + self.notSeenLikesCount + self.notSeenMessagesCount
+            self.isNotSeenProfilesAvailable.accept(totalCount != 0)
+            self.notSeenProfilesTotalCount.accept(totalCount)
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenMessagesCount.subscribe(onNext:{ [weak self] count in
             guard let `self` = self else { return }
             
             self.notSeenMessagesCount = count
-            self.isNotSeenProfilesAvailable.accept(count + self.notSeenMessagesCount + self.notSeenLikesCount != 0)
+            
+            let totalCount = count + self.notSeenMessagesCount + self.notSeenLikesCount
+            self.isNotSeenProfilesAvailable.accept(totalCount != 0)
+            self.notSeenProfilesTotalCount.accept(totalCount)
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenInboxCount.subscribe(onNext:{ [weak self] count in
