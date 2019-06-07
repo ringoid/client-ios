@@ -386,7 +386,7 @@ class LMMManager
             return localMessage
         })
         
-        self.db.lmmProfileUpdate(id, messages: updatedMessages)
+        self.db.lmmProfileUpdate(id, messages: updatedMessages, notSentMessagesCount: self.actionsManager.notCommitedMessagesCount)
     }
     
     fileprivate func updateProfilesPrevState(_ avoidEmptyFeeds: Bool)

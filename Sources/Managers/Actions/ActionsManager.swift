@@ -36,6 +36,10 @@ class ActionsManager
     let isInternetAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     let isLikedSomeone: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
+    var notCommitedMessagesCount: Int {
+        return (self.queue + self.sendingActions).filter({ $0.type == ActionType.message.rawValue }).count
+    }
+    
     fileprivate let db: DBService
     fileprivate let apiService: ApiService
     fileprivate let fs: FileService
