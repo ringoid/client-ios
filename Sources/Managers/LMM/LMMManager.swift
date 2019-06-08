@@ -77,44 +77,11 @@ class LMMManager
     
     // Not seen counters
     
-    var notSeenLikesYouCount: Observable<Int>
-    {
-        return self.likesYou.asObservable().map { profiles -> Int in
-            var notSeenCount: Int = 0
-            profiles.forEach({ profile in
-                if profile.notSeen { notSeenCount += 1 }
-            })
-            
-            return notSeenCount + self.likesYouNotificationProfiles.count
-        }
-    }
-    
-    var notSeenMatchesCount: Observable<Int>
-    {
-        return self.matches.asObservable().map { profiles -> Int in
-            var notSeenCount: Int = 0
-            profiles.forEach({ profile in
-                if profile.notSeen { notSeenCount += 1 }
-            })
-            
-            return notSeenCount + self.matchesNotificationProfiles.count
-        }
-    }
-    
-    var notSeenMessagesCount: Observable<Int>
-    {
-        return self.messages.asObservable().map { profiles -> Int in
-            var notSeenCount: Int = 0
-            profiles.forEach({ profile in
-                guard !profile.isInvalidated else { return }
-                if profile.notSeen { notSeenCount += 1 }
-            })
-            
-            return notSeenCount + self.messagesNotificationProfiles.values.reduce(0) { $0 + $1 }
-        }
-    }
-    
-    var notSeenInboxCount: Observable<Int>
+    var notSeenLikesYouCount: Observable<Int>!
+    var notSeenMatchesCount: Observable<Int>!
+    var notSeenMessagesCount: Observable<Int>!
+
+    var notSeenInboxCount: Observable<Int>!
     {
         return self.inbox.asObservable().map { profiles -> Int in
             var notSeenCount: Int = 0
@@ -169,6 +136,10 @@ class LMMManager
         }
     }
     
+    fileprivate var notSeenLikesYouCountObserver: AnyObserver<Int>?
+    fileprivate var notSeenMatchesCountObserver: AnyObserver<Int>?
+    fileprivate var notSeenMessagesCountObserver: AnyObserver<Int>?
+    
     init(_ db: DBService, api: ApiService, device: DeviceService, actionsManager: ActionsManager, storage: XStorageService, notifications: NotificationService)
     {
         self.db = db
@@ -177,6 +148,24 @@ class LMMManager
         self.actionsManager = actionsManager
         self.storage = storage
         self.notifications = notifications
+        
+        self.notSeenLikesYouCount = Observable<Int>.create({ [weak self] observer -> Disposable in
+            self?.notSeenLikesYouCountObserver = observer
+            
+            return Disposables.create()
+        })
+        
+        self.notSeenMatchesCount = Observable<Int>.create({ [weak self] observer -> Disposable in
+            self?.notSeenMatchesCountObserver = observer
+            
+            return Disposables.create()
+        })
+        
+        self.notSeenMessagesCount = Observable<Int>.create({ [weak self] observer -> Disposable in
+            self?.notSeenMessagesCountObserver = observer
+            
+            return Disposables.create()
+        })
         
         self.setupBindings()
         self.loadPrevState()
@@ -343,6 +332,24 @@ class LMMManager
             
             self?.sent.accept(profiles)
         }).disposed(by: self.disposeBag)
+
+        self.likesYou.asObservable().subscribe(onNext:{ [weak self] profiles in
+            guard let `self` = self else { return }
+            
+            self.notSeenLikesYouCountObserver?.onNext(profiles.notSeenCount + self.likesYouNotificationProfiles.count)
+        }).disposed(by: self.disposeBag)
+        
+        self.matches.asObservable().subscribe(onNext:{ [weak self] profiles in
+            guard let `self` = self else { return }
+            
+            self.notSeenMatchesCountObserver?.onNext(profiles.notSeenCount + self.matchesNotificationProfiles.count)
+        }).disposed(by: self.disposeBag)
+
+        self.messages.asObservable().subscribe(onNext:{ [weak self] profiles in
+            guard let `self` = self else { return }
+            
+            self.notSeenMessagesCountObserver?.onNext(profiles.notSeenCount + self.messagesNotificationProfiles.values.reduce(0) { $0 + $1 })
+        }).disposed(by: self.disposeBag)
         
         self.notifications.notificationData.subscribe(onNext: { [weak self] userInfo in
             guard let `self` = self else { return }
@@ -353,14 +360,21 @@ class LMMManager
             switch remoteFeedType {
             case .likesYou:
                 self.likesYouNotificationProfiles.append(profileId)
+                let notSeenCount = self.likesYou.value.notSeenCount + self.likesYouNotificationProfiles.count
+                self.notSeenLikesYouCountObserver?.onNext(notSeenCount)
                 break
                 
             case .matches:
                 self.matchesNotificationProfiles.append(profileId)
+                let notSeenCount = self.matches.value.notSeenCount + self.matchesNotificationProfiles.count
+                self.notSeenMatchesCountObserver?.onNext(notSeenCount)
                 break
                 
             case .messages:
                 self.messagesNotificationProfiles[profileId] = self.messagesNotificationProfiles[profileId] ?? 0 + 1
+                let notSeenCount = self.messages.value.notSeenCount + self.messagesNotificationProfiles.values.reduce(0) { $0 + $1 }
+                self.notSeenMessagesCountObserver?.onNext(notSeenCount)
+                
                 self.updateChat(profileId)
                 break
                 
@@ -525,6 +539,21 @@ extension ApiProfileStatus
         case .away: return .away
         case .online: return .online
         }
+    }
+}
+
+extension Array where Element: LMMProfile
+{
+    var notSeenCount: Int
+    {
+        var accamulator: Int = 0
+        self.forEach({ profile in
+            guard !profile.isInvalidated else { return }
+            
+            if profile.notSeen { accamulator += 1 }
+        })
+        
+        return accamulator
     }
 }
 
