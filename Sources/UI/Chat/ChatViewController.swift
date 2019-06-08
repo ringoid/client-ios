@@ -15,6 +15,8 @@ class ChatViewController: BaseViewController
 {
     var input: ChatVMInput!
     
+    static var openedProfileId: String? = nil
+    
     fileprivate var viewModel: ChatViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate let singleMessageSources: [SourceFeedType] = [    
@@ -43,6 +45,7 @@ class ChatViewController: BaseViewController
     
     deinit
     {
+        ChatViewController.openedProfileId = nil
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -51,6 +54,8 @@ class ChatViewController: BaseViewController
         assert(self.input != nil)
         
         super.viewDidLoad()
+        
+        ChatViewController.openedProfileId = self.input.profile.id
         
         self.setupInputAttributes()
         KeyboardListener.shared.delegate = self
