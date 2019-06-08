@@ -421,6 +421,25 @@ see who likes you</string>
                                     <outlet property="delegate" destination="5Bt-Xu-MH5" id="ZU8-q5-eXy"/>
                                 </connections>
                             </tableView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHe-x4-G7n">
+                                <rect key="frame" x="77.5" y="571" width="220" height="36"/>
+                                <color key="backgroundColor" red="0.38077474790157917" green="0.42653614335648204" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="fgn-ZN-wjl"/>
+                                    <constraint firstAttribute="height" constant="36" id="nss-Ns-DMg"/>
+                                </constraints>
+                                <state key="normal" title="Tap to refresh">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="18"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onRefresh" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="2cY-GH-9uQ"/>
+                                </connections>
+                            </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ey6-2A-Ohd" customClass="ContainerView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -452,25 +471,6 @@ see who likes you</string>
                                 <state key="normal" image="feed_scroll_top"/>
                                 <connections>
                                     <action selector="onScrollTop" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="58u-6c-Gm0"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHe-x4-G7n">
-                                <rect key="frame" x="77.5" y="571" width="220" height="36"/>
-                                <color key="backgroundColor" red="0.38077474790157917" green="0.42653614335648204" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="220" id="fgn-ZN-wjl"/>
-                                    <constraint firstAttribute="height" constant="36" id="nss-Ns-DMg"/>
-                                </constraints>
-                                <state key="normal" title="Tap to refresh">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="18"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="onRefresh" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="2cY-GH-9uQ"/>
                                 </connections>
                             </button>
                         </subviews>
