@@ -49,6 +49,11 @@ class LMMManager
     fileprivate var messagesCached: [LMMProfile] = []
     fileprivate var inboxCached: [LMMProfile] = []
     fileprivate var sentCached: [LMMProfile] = []
+    
+    fileprivate var likesYouNotificationProfiles: [String] = []
+    fileprivate var matchesNotificationProfiles: [String] = []
+    fileprivate var messagesNotificationProfiles: [String: Int] = [:]
+    
     var contentShouldBeHidden: Bool = false
     {
         didSet {
@@ -80,7 +85,7 @@ class LMMManager
                 if profile.notSeen { notSeenCount += 1 }
             })
             
-            return notSeenCount
+            return notSeenCount + self.likesYouNotificationProfiles.count
         }
     }
     
@@ -92,7 +97,7 @@ class LMMManager
                 if profile.notSeen { notSeenCount += 1 }
             })
             
-            return notSeenCount
+            return notSeenCount + self.matchesNotificationProfiles.count
         }
     }
     
@@ -105,7 +110,7 @@ class LMMManager
                 if profile.notSeen { notSeenCount += 1 }
             })
             
-            return notSeenCount
+            return notSeenCount + self.messagesNotificationProfiles.values.reduce(0) { $0 + $1 }
         }
     }
     
@@ -194,6 +199,7 @@ class LMMManager
         
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
             
+            self!.resetNotificationProfiles()
             self!.purge()
             
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)
@@ -264,6 +270,38 @@ class LMMManager
         }
     }
     
+    func reset()
+    {
+        self.storage.remove("prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
+        self.storage.remove("prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
+        self.storage.remove("prevNotSeenHellos").subscribe().disposed(by: self.disposeBag)
+        self.storage.remove("prevNotSeenInbox").subscribe().disposed(by: self.disposeBag)
+        
+        self.likesYouCached.removeAll()
+        self.matchesCached.removeAll()
+        self.messagesCached.removeAll()
+        self.inboxCached.removeAll()
+        self.sentCached.removeAll()
+        
+        self.prevNotSeenLikes.removeAll()
+        self.prevNotSeenMatches.removeAll()
+        self.prevNotSeenMessages.removeAll()
+        self.prevNotSeenInbox.removeAll()
+        
+        self.likesYou.accept([])
+        self.matches.accept([])
+        self.messages.accept([])
+        self.inbox.accept([])
+        self.sent.accept([])
+        
+        self.resetNotificationProfiles()
+        
+        self.disposeBag = DisposeBag()
+        self.setupBindings()
+    }
+    
+    // MARK: -
+    
     fileprivate func setupBindings()
     {
         self.db.likesYou().subscribe(onNext: { [weak self] profiles in
@@ -309,10 +347,26 @@ class LMMManager
         self.notifications.notificationData.subscribe(onNext: { [weak self] userInfo in
             guard let `self` = self else { return }
             guard let typeStr = userInfo["type"] as? String else { return }
-            guard let remoteFeedType = RemoteFeedType(rawValue: typeStr), remoteFeedType == .messages else { return }
-            
+            guard let remoteFeedType = RemoteFeedType(rawValue: typeStr) else { return }
             guard let profileId = userInfo["oppositeUserId"] as? String else { return }
-            self.updateChat(profileId)
+            
+            switch remoteFeedType {
+            case .likesYou:
+                self.likesYouNotificationProfiles.append(profileId)
+                break
+                
+            case .matches:
+                self.matchesNotificationProfiles.append(profileId)
+                break
+                
+            case .messages:
+                self.messagesNotificationProfiles[profileId] = self.messagesNotificationProfiles[profileId] ?? 0 + 1
+                self.updateChat(profileId)
+                break
+                
+            case .unknown: break
+            }
+
         }).disposed(by: self.disposeBag)
     }
     
@@ -409,32 +463,11 @@ class LMMManager
         self.storage.store(self.prevNotSeenInbox, key: "prevNotSeenInbox").subscribe().disposed(by: self.disposeBag)
     }
     
-    func reset()
+    fileprivate func resetNotificationProfiles()
     {
-        self.storage.remove("prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
-        self.storage.remove("prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
-        self.storage.remove("prevNotSeenHellos").subscribe().disposed(by: self.disposeBag)
-        self.storage.remove("prevNotSeenInbox").subscribe().disposed(by: self.disposeBag)
-        
-        self.likesYouCached.removeAll()
-        self.matchesCached.removeAll()
-        self.messagesCached.removeAll()
-        self.inboxCached.removeAll()
-        self.sentCached.removeAll()
-        
-        self.prevNotSeenLikes.removeAll()
-        self.prevNotSeenMatches.removeAll()
-        self.prevNotSeenMessages.removeAll()
-        self.prevNotSeenInbox.removeAll()
-        
-        self.likesYou.accept([])
-        self.matches.accept([])
-        self.messages.accept([])
-        self.inbox.accept([])
-        self.sent.accept([])
-        
-        self.disposeBag = DisposeBag()
-        self.setupBindings()
+        self.likesYouNotificationProfiles.removeAll()
+        self.matchesNotificationProfiles.removeAll()
+        self.messagesNotificationProfiles.removeAll()
     }
 }
 
