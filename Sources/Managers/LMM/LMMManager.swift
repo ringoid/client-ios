@@ -78,9 +78,9 @@ class LMMManager
     
     // Not seen counters
     
-    var notSeenLikesYouCount: Observable<Int>!
-    var notSeenMatchesCount: Observable<Int>!
-    var notSeenMessagesCount: Observable<Int>!
+    let notSeenLikesYouCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    let notSeenMatchesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    let notSeenMessagesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
 
     var notSeenInboxCount: Observable<Int>!
     {
@@ -139,9 +139,6 @@ class LMMManager
         }
     }
     
-    fileprivate var notSeenLikesYouCountObserver: AnyObserver<Int>!
-    fileprivate var notSeenMatchesCountObserver: AnyObserver<Int>!
-    fileprivate var notSeenMessagesCountObserver: AnyObserver<Int>!
     fileprivate var notSeenLikesYouPrevCount: Int = 0
     fileprivate var notSeenMatchesPrevCount: Int = 0
     fileprivate var notSeenMessagesPrevCount: Int = 0
@@ -155,30 +152,9 @@ class LMMManager
         self.storage = storage
         self.notifications = notifications
         
-        self.notSeenLikesYouCount = Observable<Int>.create({ [weak self] observer -> Disposable in
-            self?.notSeenLikesYouCountObserver = observer
-            
-            return Disposables.create()
-        })
-        
-        self.notSeenMatchesCount = Observable<Int>.create({ [weak self] observer -> Disposable in
-            self?.notSeenMatchesCountObserver = observer
-            
-            return Disposables.create()
-        })
-        
-        self.notSeenMessagesCount = Observable<Int>.create({ [weak self] observer -> Disposable in
-            self?.notSeenMessagesCountObserver = observer
-            
-            return Disposables.create()
-        })
-
         self.loadPrevState()
+        self.setupBindings()
         
-        DispatchQueue.main.async {
-            self.setupBindings()
-        }
-
         //self.testChatByTimer()
     }
     
@@ -368,19 +344,19 @@ class LMMManager
         self.likesYou.asObservable().subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
             
-            self.notSeenLikesYouCountObserver.onNext(profiles.notSeenCount + self.likesYouNotificationProfiles.count)
+            self.notSeenLikesYouCount.accept(profiles.notSeenCount + self.likesYouNotificationProfiles.count)
         }).disposed(by: self.disposeBag)
         
         self.matches.asObservable().subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
             
-            self.notSeenMatchesCountObserver.onNext(profiles.notSeenCount + self.matchesNotificationProfiles.count)
+            self.notSeenMatchesCount.accept(profiles.notSeenCount + self.matchesNotificationProfiles.count)
         }).disposed(by: self.disposeBag)
 
         self.messages.asObservable().subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
             
-            self.notSeenMessagesCountObserver.onNext(profiles.notSeenCount + self.messagesNotificationProfiles.values.reduce(0) { $0 + $1 })
+            self.notSeenMessagesCount.accept(profiles.notSeenCount + self.messagesNotificationProfiles.values.reduce(0) { $0 + $1 })
         }).disposed(by: self.disposeBag)
         
         self.notifications.notificationData.subscribe(onNext: { [weak self] userInfo in
@@ -393,19 +369,20 @@ class LMMManager
             case .likesYou:
                 self.likesYouNotificationProfiles.append(profileId)
                 let notSeenCount = self.likesYou.value.notSeenCount + self.likesYouNotificationProfiles.count
-                self.notSeenLikesYouCountObserver.onNext(notSeenCount)
+                self.notSeenLikesYouCount.accept(notSeenCount)
                 break
                 
             case .matches:
                 self.matchesNotificationProfiles.append(profileId)
                 let notSeenCount = self.matches.value.notSeenCount + self.matchesNotificationProfiles.count
-                self.notSeenMatchesCountObserver.onNext(notSeenCount)
+                self.notSeenMatchesCount.accept(notSeenCount)
                 break
                 
             case .messages:
                 self.messagesNotificationProfiles[profileId] = self.messagesNotificationProfiles[profileId] ?? 0 + 1
-                let notSeenCount = self.messages.value.notSeenCount + self.messagesNotificationProfiles.values.reduce(0) { $0 + $1 }
-                self.notSeenMessagesCountObserver.onNext(notSeenCount)
+                let notSeenCount = self.messages.value.notSeenCount + self.messagesNotificationProfiles.count
+                self.notSeenMessagesCount.accept(notSeenCount)
+                
                 
                 self.updateChat(profileId)
                 break
