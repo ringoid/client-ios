@@ -28,6 +28,8 @@ class ChatViewController: BaseViewController
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var messageTextView: UITextView!
     @IBOutlet fileprivate weak var photoView: UIImageView!
+    @IBOutlet fileprivate weak var statusView: UIView!
+    @IBOutlet fileprivate weak var statusLabel: UILabel!
     @IBOutlet fileprivate weak var inputBottomConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var inputHeightConstraint: NSLayoutConstraint!
     
@@ -63,6 +65,10 @@ class ChatViewController: BaseViewController
         self.tableView.transform = CGAffineTransform(rotationAngle: -.pi)
         
         self.messageTextView.text = ChatViewController.messagesCache[self.input.profile.id]
+        
+        self.statusView.layer.borderWidth = 1.0
+        self.statusView.layer.borderColor = UIColor.lightGray.cgColor  
+        self.applyStatuses()
         
         if let url = self.input.photo.filepath().url() {
             ImageService.shared.load(url, thumbnailUrl: self.input.photo.thumbnailFilepath().url(), to: self.photoView)
@@ -219,6 +225,23 @@ class ChatViewController: BaseViewController
             .foregroundColor: UIColor.white,
             .shadow: shadow
         ]
+    }
+    
+    fileprivate func applyStatuses()
+    {
+        if let status = OnlineStatus(rawValue: self.input.profile.status), status != .unknown {
+            self.statusView.backgroundColor = status.color()
+            self.statusView.isHidden = false
+        } else {
+            self.statusView.isHidden = true
+        }
+        
+        if let statusText = self.input.profile.statusText, statusText.lowercased() != "unknown",  statusText.count > 0 {
+            self.statusLabel.text = statusText
+            self.statusLabel.isHidden = false
+        } else {
+            self.statusLabel.isHidden = true
+        }
     }
 }
 
