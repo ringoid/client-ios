@@ -96,6 +96,7 @@ class LMMManager
     }
     
     let notSeenTotalCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    let notificationsProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     
     // Incoming counters
     
@@ -154,8 +155,6 @@ class LMMManager
         
         self.loadPrevState()
         self.setupBindings()
-        
-        //self.testChatByTimer()
     }
     
     fileprivate func refresh(_ from: SourceFeedType) -> Observable<Void>
@@ -370,6 +369,7 @@ class LMMManager
                 self.likesYouNotificationProfiles.append(profileId)
                 let notSeenCount = self.likesYou.value.notSeenCount + self.likesYouNotificationProfiles.count
                 self.notSeenLikesYouCount.accept(notSeenCount)
+                
                 break
                 
             case .matches:
@@ -383,12 +383,16 @@ class LMMManager
                 let notSeenCount = self.messages.value.notSeenCount + self.messagesNotificationProfiles.count
                 self.notSeenMessagesCount.accept(notSeenCount)
                 
-                
                 self.updateChat(profileId)
                 break
                 
             case .unknown: break
             }
+            
+            let notificationsCount = self.likesYouNotificationProfiles.count +
+                self.matchesNotificationProfiles.count +
+                self.messagesNotificationProfiles.count
+            self.notificationsProfilesCount.accept(notificationsCount)            
         }).disposed(by: self.disposeBag)
         
         // Total count
@@ -444,15 +448,6 @@ class LMMManager
         self.storage.object("prevNotSeenInbox").subscribe( onSuccess: { obj in
             self.prevNotSeenInbox = Array<String>.create(obj) ?? []
         }).disposed(by: self.disposeBag)
-    }
-    
-    fileprivate func testChatByTimer()
-    {
-        let timer = Timer(timeInterval: 5.0, repeats: true) { [weak self] _ in
-            self?.updateChats()
-        }
-        
-        RunLoop.main.add(timer, forMode: .common)
     }
     
     fileprivate func updateChats()

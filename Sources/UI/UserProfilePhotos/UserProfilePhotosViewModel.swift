@@ -128,7 +128,8 @@ class UserProfilePhotosViewModel
             guard let `self` = self else { return }
             
             let manager = self.input.lmmManager
-            let count = profiles.count + manager.matches.value.count + manager.messages.value.count
+            var count = profiles.count + manager.matches.value.count + manager.messages.value.count
+            count += manager.notificationsProfilesCount.value
             self.lmmCount.accept(count)
         }).disposed(by: self.disposeBag)
         
@@ -136,7 +137,8 @@ class UserProfilePhotosViewModel
             guard let `self` = self else { return }
             
             let manager = self.input.lmmManager
-            let count = profiles.count + manager.likesYou.value.count + manager.messages.value.count
+            var count = profiles.count + manager.likesYou.value.count + manager.messages.value.count
+            count += manager.notificationsProfilesCount.value
             self.lmmCount.accept(count)
         }).disposed(by: self.disposeBag)
         
@@ -144,7 +146,17 @@ class UserProfilePhotosViewModel
             guard let `self` = self else { return }
             
             let manager = self.input.lmmManager
-            let count = profiles.count + manager.likesYou.value.count + manager.matches.value.count
+            var count = profiles.count + manager.likesYou.value.count + manager.matches.value.count
+            count += manager.notificationsProfilesCount.value
+            self.lmmCount.accept(count)
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.notificationsProfilesCount.subscribe(onNext: { [weak self] notificationsCount in
+            guard let `self` = self else { return }
+            
+            let manager = self.input.lmmManager
+            var count = manager.messages.value.count + manager.likesYou.value.count + manager.matches.value.count
+            count += notificationsCount
             self.lmmCount.accept(count)
         }).disposed(by: self.disposeBag)
     }
