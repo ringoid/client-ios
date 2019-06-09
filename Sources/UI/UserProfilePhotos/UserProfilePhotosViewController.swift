@@ -42,6 +42,8 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var locationIconView: UIView!
     @IBOutlet fileprivate weak var iconOffsetConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var lmmLabel: UILabel!
+    @IBOutlet fileprivate weak var lmmWidthConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var lmmIconView: UIImageView!
     
     override func viewDidLoad()
     {
@@ -302,12 +304,23 @@ class UserProfilePhotosViewController: BaseViewController
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.lmmCount.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] value in
+            guard let `self` = self else { return }
             
             if value != 0 {
-                self?.lmmLabel.text = "\(value)"
-                self?.lmmLabel.isHidden = false
+                let valueStr = "\(value)"
+                self.lmmLabel.text = valueStr
+                self.lmmWidthConstraint.constant = (valueStr as NSString).boundingRect(
+                    with: CGSize(width: 300.0, height: 14.0),
+                    options: .usesLineFragmentOrigin,
+                    attributes: [.font: self.lmmLabel.font],
+                    context: nil
+                    ).width + 7.0
+                
+                self.lmmIconView.isHidden = false
+                self.lmmLabel.isHidden = false
             } else {
-                self?.lmmLabel.isHidden = true
+                self.lmmIconView.isHidden = true
+                self.lmmLabel.isHidden = true
             }
         }).disposed(by: self.disposeBag)
     }
