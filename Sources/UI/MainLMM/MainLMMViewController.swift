@@ -162,6 +162,8 @@ class MainLMMViewController: BaseViewController
                 self?.tableView.dataSource = EmptyFeed.shared
                 self?.lastFeedIds.removeAll()
                 self?.tableView.reloadData()
+                self?.updateBtn.isHidden = true
+                self?.isUpdateBtnVisible = false
                 UIManager.shared.lmmRefreshModeEnabled.accept(true)
             } else {
                 UIManager.shared.lmmRefreshModeEnabled.accept(false)
@@ -196,7 +198,7 @@ class MainLMMViewController: BaseViewController
             
             MainLMMViewController.updatedFeeds.insert(value)
             
-            guard !self.isUpdateBtnVisible else { return }
+            guard !self.isUpdateBtnVisible && self.viewModel?.isFetching.value == false else { return }
             
             if value == self.type.value {
                 
@@ -305,7 +307,7 @@ class MainLMMViewController: BaseViewController
         
         guard !self.isUpdateBtnVisible else { return }
         
-        if MainLMMViewController.updatedFeeds.contains(type) {
+        if MainLMMViewController.updatedFeeds.contains(type) && self.viewModel?.isFetching.value == false {
             self.updateBtn.isHidden = false
             self.updateBtn.alpha = 1.0
             self.isUpdateBtnVisible = true
@@ -526,7 +528,7 @@ class MainLMMViewController: BaseViewController
         
         topAnimator.startAnimation()
         
-        guard !self.isUpdateBtnVisible else { return }
+        guard !self.isUpdateBtnVisible && self.viewModel?.isFetching.value == false else { return }
         
         self.isUpdateBtnVisible = true
         let updateAnimator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
