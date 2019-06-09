@@ -46,6 +46,9 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet fileprivate weak var notSeenLikesYouLabel: UILabel!
     @IBOutlet fileprivate weak var notSeenMatchesLabel: UILabel!
     @IBOutlet fileprivate weak var notSeenMessagesLabel: UILabel!
+    @IBOutlet fileprivate weak var notSeenLikesYouWidthConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var notSeenMatchesWidthConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var notSeenMessagesWidthConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -146,18 +149,48 @@ class MainLMMContainerViewController: BaseViewController
     fileprivate func setupBindings()
     {
         self.input.lmmManager.notSeenLikesYouCount.subscribe(onNext: { [weak self] count in
-            self?.likesYouIndicatorView.isHidden = count == 0
-            self?.notSeenLikesYouLabel.text = "\(count)"
+            guard let `self` = self else { return }
+            
+            self.likesYouIndicatorView.isHidden = count == 0
+            
+            let countStr = "\(count)"
+            self.notSeenLikesYouLabel.text = countStr
+            self.notSeenLikesYouWidthConstraint.constant = (countStr as NSString).boundingRect(
+                with: CGSize(width: 300.0, height: 14.0),
+                options: .usesLineFragmentOrigin,
+                attributes: [.font: self.notSeenLikesYouLabel.font],
+                context: nil
+                ).width  + 7.0
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenMatchesCount.subscribe(onNext: { [weak self] count in
-            self?.matchesIndicatorView.isHidden = count == 0
-            self?.notSeenMatchesLabel.text = "\(count)"
+            guard let `self` = self else { return }
+            
+            self.matchesIndicatorView.isHidden = count == 0
+            
+            let countStr = "\(count)"
+            self.notSeenMatchesLabel.text = countStr
+            self.notSeenMatchesWidthConstraint.constant = (countStr as NSString).boundingRect(
+                with: CGSize(width: 300.0, height: 14.0),
+                options: .usesLineFragmentOrigin,
+                attributes: [.font: self.notSeenMatchesLabel.font],
+                context: nil
+                ).width + 7.0
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenMessagesCount.subscribe(onNext: { [weak self] count in
-            self?.chatIndicatorView.isHidden = count == 0
-            self?.notSeenMessagesLabel.text = "\(count)"
+            guard let `self` = self else { return }
+            
+            self.chatIndicatorView.isHidden = count == 0
+            
+            let countStr = "\(count)"
+            self.notSeenMessagesLabel.text = countStr
+            self.notSeenMessagesWidthConstraint.constant = (countStr as NSString).boundingRect(
+                with: CGSize(width: 300.0, height: 14.0),
+                options: .usesLineFragmentOrigin,
+                attributes: [.font: self.notSeenMessagesLabel.font],
+                context: nil
+                ).width + 7.0
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
