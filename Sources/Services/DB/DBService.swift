@@ -214,6 +214,7 @@ class DBService
                 self.updateOrder(Array(profile.messages[0..<notSentMessagesCount]))
                 
                 profile.notSeen = true
+                self.checkObjectsForUpdates([profile])
             }
         }
     }
@@ -457,7 +458,7 @@ class DBService
         self.userPhotosObserver?.onNext(photos.toArray())
     }
     
-    fileprivate func checkObjectsForUpdates(_ objects: [DBServiceObject])
+    func checkObjectsForUpdates(_ objects: [DBServiceObject])
     {
         var shouldUpdateNewFaces: Bool = false
         var shouldUpdateLikesYou: Bool = false

@@ -474,6 +474,9 @@ class MainViewController: BaseViewController
                 break
                 
             case .messages:
+                if self.input.lmmManager.isMessageNotificationAlreadyProcessed(profileId) { break }
+                
+                self.input.lmmManager.markNotificationAsProcessed(profileId)
                 self.preshownMessagesCount += 1
                 self.effectsView.animateMessages(1, from: position)
                 break

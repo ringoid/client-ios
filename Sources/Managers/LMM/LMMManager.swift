@@ -53,6 +53,7 @@ class LMMManager
     fileprivate var likesYouNotificationProfiles: [String] = []
     fileprivate var matchesNotificationProfiles: [String] = []
     fileprivate var messagesNotificationProfiles: [String: Int] = [:]
+    fileprivate var processedNotificationsProfiles: Set<String> = []
     
     var contentShouldBeHidden: Bool = false
     {
@@ -289,6 +290,28 @@ class LMMManager
         self.setupBindings()
     }
     
+    // MARK: - Notifications
+    
+    func markNotificationsSeen(_ profileId: String)
+    {
+        self.messagesNotificationProfiles.removeValue(forKey: profileId)
+    }
+    
+    func isMessageNotificationAlreadyProcessed(_ profileId: String) -> Bool
+    {
+        return self.processedNotificationsProfiles.contains(profileId)
+    }
+    
+    func markNotificationAsProcessed(_ profileId: String)
+    {
+        self.processedNotificationsProfiles.insert(profileId)
+    }
+    
+    func removeNotificationFromProcessed(_ profileId: String)
+    {
+        self.processedNotificationsProfiles.remove(profileId)
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
@@ -482,6 +505,7 @@ class LMMManager
         self.likesYouNotificationProfiles.removeAll()
         self.matchesNotificationProfiles.removeAll()
         self.messagesNotificationProfiles.removeAll()
+        self.processedNotificationsProfiles.removeAll()
     }
 }
 

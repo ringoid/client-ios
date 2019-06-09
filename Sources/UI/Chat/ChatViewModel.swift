@@ -15,6 +15,7 @@ struct ChatVMInput
     let photo: Photo
     let source: SourceFeedType
     let chatManager: ChatManager
+    let lmmManager: LMMManager
     let scenario: AnalyticsScenarioManager
     let transition: TransitionManager
     let onClose: (()->())?
@@ -49,6 +50,8 @@ class ChatViewModel
     func markAsRead()
     {
         self.input.chatManager.markAsRead(self.input.profile)
+        self.input.lmmManager.markNotificationsSeen(self.input.profile.id)
+        self.input.lmmManager.removeNotificationFromProcessed(self.input.profile.id)
     }
     
     // MARK: -

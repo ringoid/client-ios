@@ -53,9 +53,10 @@ class TransitionManager
         case .sent: self.db.updateOrder(lmm.sent.value)
         }
         
-        profile.write({ obj in
+        profile.write({ [weak self] obj in
             (obj as? LMMProfile)?.type = to.feedType().rawValue
             (obj as? LMMProfile)?.notSeen = false
+            self?.db.checkObjectsForUpdates([obj!])
         })
         
         switch to {
@@ -89,9 +90,10 @@ class TransitionManager
         
         let duplicate = profile.duplicate()
         
-        duplicate.write({ obj in
+        duplicate.write({ [weak self] obj in
             (obj as? LMMProfile)?.type = to.feedType().rawValue
             (obj as? LMMProfile)?.notSeen = false
+            self?.db.checkObjectsForUpdates([obj!])
         })
         
         switch to {

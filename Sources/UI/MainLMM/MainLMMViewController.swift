@@ -479,6 +479,7 @@ class MainLMMViewController: BaseViewController
             photo: photo,
             source: self.type.value.sourceType(),
             chatManager: self.input.chatManager,
+            lmmManager: self.input.lmmManager,
             scenario: self.input.scenario,
             transition: self.input.transition
             , onClose: { [weak self] in

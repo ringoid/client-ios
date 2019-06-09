@@ -13,7 +13,7 @@ class DBServiceObject: Object
     @objc dynamic var orderPosition: Int = 0
     @objc dynamic var isDeleted: Bool = false
     
-    func write(_ writeBlock: ((Object?) -> ())?)
+    func write(_ writeBlock: ((DBServiceObject?) -> ())?)
     {
         guard let realm = self.realm else { return }
         
