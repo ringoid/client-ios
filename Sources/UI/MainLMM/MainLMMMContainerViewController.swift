@@ -43,6 +43,9 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet fileprivate weak var notificationsBannerView: UIView!
     @IBOutlet fileprivate weak var notificationsBannerLabel: UILabel!
     @IBOutlet fileprivate weak var notificationsBannerSubLabel: UILabel!
+    @IBOutlet fileprivate weak var notSeenLikesYouLabel: UILabel!
+    @IBOutlet fileprivate weak var notSeenMatchesLabel: UILabel!
+    @IBOutlet fileprivate weak var notSeenMessagesLabel: UILabel!
     
     override func viewDidLoad()
     {
@@ -144,14 +147,17 @@ class MainLMMContainerViewController: BaseViewController
     {
         self.input.lmmManager.notSeenLikesYouCount.subscribe(onNext: { [weak self] count in
             self?.likesYouIndicatorView.isHidden = count == 0
+            self?.notSeenLikesYouLabel.text = "\(count)"
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenMatchesCount.subscribe(onNext: { [weak self] count in
             self?.matchesIndicatorView.isHidden = count == 0
+            self?.notSeenMatchesLabel.text = "\(count)"
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenMessagesCount.subscribe(onNext: { [weak self] count in
             self?.chatIndicatorView.isHidden = count == 0
+            self?.notSeenMessagesLabel.text = "\(count)"
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
