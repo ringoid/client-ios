@@ -41,6 +41,7 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var distanceLabel: UILabel!
     @IBOutlet fileprivate weak var locationIconView: UIView!
     @IBOutlet fileprivate weak var iconOffsetConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var lmmLabel: UILabel!
     
     override func viewDidLoad()
     {
@@ -297,6 +298,16 @@ class UserProfilePhotosViewController: BaseViewController
             } else {
                 self?.distanceLabel.isHidden = true
                 self?.locationIconView.isHidden = true
+            }
+        }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.lmmCount.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] value in
+            
+            if value != 0 {
+                self?.lmmLabel.text = "\(value)"
+                self?.lmmLabel.isHidden = false
+            } else {
+                self?.lmmLabel.isHidden = true
             }
         }).disposed(by: self.disposeBag)
     }

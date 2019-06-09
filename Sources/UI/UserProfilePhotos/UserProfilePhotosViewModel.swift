@@ -59,6 +59,11 @@ class UserProfilePhotosViewModel
         return self.input.settingsManager.isAuthorized
     }
     
+    var lmmCount: BehaviorRelay<Int>
+    {
+        return self.input.lmmManager.notSeenTotalCount
+    }
+    
     var isLocationDenied: Bool
     {
         return self.input.location.isDenied

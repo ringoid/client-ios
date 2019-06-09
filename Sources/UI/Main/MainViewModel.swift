@@ -111,34 +111,29 @@ class MainViewModel
     
     fileprivate func setupBindings()
     {
+        self.input.lmmManager.notSeenTotalCount.asObservable().subscribe(onNext: { [weak self] value in
+            guard let `self` = self else { return }
+            
+            self.isNotSeenProfilesAvailable.accept(value != 0)
+            self.notSeenProfilesTotalCount.accept(value)
+        }).disposed(by: self.disposeBag)
+        
         self.input.lmmManager.notSeenLikesYouCount.subscribe(onNext:{ [weak self] count in
             guard let `self` = self else { return }
             
             self.notSeenLikesCount = count
-            
-            let totalCount = count + self.notSeenMatchesCount + self.notSeenMessagesCount
-            self.isNotSeenProfilesAvailable.accept(totalCount != 0)
-            self.notSeenProfilesTotalCount.accept(totalCount)
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenMatchesCount.subscribe(onNext:{ [weak self] count in
             guard let `self` = self else { return }
             
             self.notSeenMatchesCount = count
-            
-            let totalCount = count + self.notSeenLikesCount + self.notSeenMessagesCount
-            self.isNotSeenProfilesAvailable.accept(totalCount != 0)
-            self.notSeenProfilesTotalCount.accept(totalCount)
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenMessagesCount.subscribe(onNext:{ [weak self] count in
             guard let `self` = self else { return }
             
             self.notSeenMessagesCount = count
-            
-            let totalCount = count + self.notSeenMessagesCount + self.notSeenLikesCount
-            self.isNotSeenProfilesAvailable.accept(totalCount != 0)
-            self.notSeenProfilesTotalCount.accept(totalCount)
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenInboxCount.subscribe(onNext:{ [weak self] count in

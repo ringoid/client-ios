@@ -138,6 +138,14 @@ see how many likes you get</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVf-pC-0A8">
+                                <rect key="frame" x="173" y="97.5" width="29.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt; 100 km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b08-7e-Z70">
                                 <rect key="frame" x="287" y="520" width="72" height="14"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -159,6 +167,7 @@ see how many likes you get</string>
                             <constraint firstAttribute="trailing" secondItem="PNa-bT-Gpt" secondAttribute="trailing" constant="100" id="01l-Mj-onx" userLabel="distanceIconOffset"/>
                             <constraint firstItem="Pzg-eZ-8Og" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" id="1qb-Vr-aDl" userLabel="PagesTop"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="4hG-ZS-M4a"/>
+                            <constraint firstItem="nVf-pC-0A8" firstAttribute="centerY" secondItem="Qh3-mN-wQe" secondAttribute="centerY" id="80E-wX-P5E"/>
                             <constraint firstItem="32r-W0-czT" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="60" id="EDx-rN-Hng"/>
                             <constraint firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" id="EeI-Bh-ckx"/>
                             <constraint firstItem="Qh3-mN-wQe" firstAttribute="centerY" secondItem="32r-W0-czT" secondAttribute="centerY" id="HpT-Ds-AQd"/>
@@ -171,6 +180,7 @@ see how many likes you get</string>
                             <constraint firstAttribute="trailing" secondItem="czw-ci-QbL" secondAttribute="trailing" id="NuO-3f-hgg"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="Q1a-Y0-U7m"/>
                             <constraint firstItem="ct4-pd-6bj" firstAttribute="leading" secondItem="Qh3-mN-wQe" secondAttribute="trailing" constant="8" id="QgN-ka-zPI"/>
+                            <constraint firstItem="nVf-pC-0A8" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="SMc-9B-HaF"/>
                             <constraint firstItem="Qh3-mN-wQe" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" constant="16" id="SUx-wr-dio"/>
                             <constraint firstItem="czw-ci-QbL" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="SZt-tn-ia5"/>
                             <constraint firstItem="0Ze-nT-pEZ" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="gjJ-L8-PF8"/>
@@ -193,6 +203,7 @@ see how many likes you get</string>
                         <outlet property="distanceLabelOffsetConstraint" destination="ttQ-Nc-1VA" id="Pnh-hT-Rc7"/>
                         <outlet property="emptyFeedLabel" destination="c03-Vj-oKe" id="HhA-IN-Ey8"/>
                         <outlet property="iconOffsetConstraint" destination="01l-Mj-onx" id="wsL-rB-1bv"/>
+                        <outlet property="lmmLabel" destination="nVf-pC-0A8" id="jaS-gR-F3D"/>
                         <outlet property="locationIconView" destination="PNa-bT-Gpt" id="mBN-DB-CS6"/>
                         <outlet property="optionsBtn" destination="0Ze-nT-pEZ" id="xcA-G9-NaZ"/>
                         <outlet property="pagesControl" destination="Pzg-eZ-8Og" id="SO3-57-aFu"/>

@@ -67,7 +67,7 @@ class ChatViewController: BaseViewController
         self.messageTextView.text = ChatViewController.messagesCache[self.input.profile.id]
         
         self.statusView.layer.borderWidth = 1.0
-        self.statusView.layer.borderColor = UIColor.lightGray.cgColor  
+        self.statusView.layer.borderColor = UIColor.lightGray.cgColor
         self.applyStatuses()
         
         if let url = self.input.photo.filepath().url() {
