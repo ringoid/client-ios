@@ -453,8 +453,10 @@ class MainLMMProfileViewController: UIViewController
     
     fileprivate func updateSeenState()
     {
+        guard !self.input.profile.isInvalidated else { return }
+        
         #if STAGE
-        self.seenLabel.text = self.viewModel?.input.profile.notSeen == true ? "Not seen" : "Seen"
+        self.seenLabel.text = self.input.profile.notSeen == true ? "Not seen" : "Seen"
         self.seenLabel.isHidden = false
         #endif
         
