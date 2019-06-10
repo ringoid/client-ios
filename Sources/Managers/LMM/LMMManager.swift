@@ -50,8 +50,8 @@ class LMMManager
     fileprivate var inboxCached: [LMMProfile] = []
     fileprivate var sentCached: [LMMProfile] = []
     
-    fileprivate var likesYouNotificationProfiles: [String] = []
-    fileprivate var matchesNotificationProfiles: [String] = []
+    fileprivate var likesYouNotificationProfiles: Set<String> = []
+    fileprivate var matchesNotificationProfiles: Set<String> = []
     fileprivate var messagesNotificationProfiles: [String: Int] = [:]
     fileprivate var processedNotificationsProfiles: Set<String> = []
     
@@ -288,6 +288,7 @@ class LMMManager
     
     func markNotificationAsProcessed(_ profileId: String)
     {
+        self.messagesNotificationProfiles.removeValue(forKey: profileId)
         self.processedNotificationsProfiles.insert(profileId)
     }
     
@@ -355,7 +356,10 @@ class LMMManager
         self.messages.asObservable().subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
             
-            self.notSeenMessagesCount.accept(profiles.notSeenCount + self.messagesNotificationProfiles.values.reduce(0) { $0 + $1 })
+            var notSeenLocalSet =  Set<String>(profiles.filter({ $0.notSeen }).map({ $0.id }))
+            notSeenLocalSet = notSeenLocalSet.union(self.messagesNotificationProfiles.keys)
+            
+            self.notSeenMessagesCount.accept(notSeenLocalSet.count)
         }).disposed(by: self.disposeBag)
         
         self.notifications.notificationData.subscribe(onNext: { [weak self] userInfo in
@@ -366,24 +370,29 @@ class LMMManager
             
             switch remoteFeedType {
             case .likesYou:
-                self.likesYouNotificationProfiles.append(profileId)
+                self.likesYouNotificationProfiles.insert(profileId)
                 let notSeenCount = self.likesYou.value.notSeenCount + self.likesYouNotificationProfiles.count
                 self.notSeenLikesYouCount.accept(notSeenCount)
                 
                 break
                 
             case .matches:
-                self.matchesNotificationProfiles.append(profileId)
+                self.matchesNotificationProfiles.insert(profileId)
                 let notSeenCount = self.matches.value.notSeenCount + self.matchesNotificationProfiles.count
                 self.notSeenMatchesCount.accept(notSeenCount)
                 break
                 
             case .messages:
-                self.messagesNotificationProfiles[profileId] = self.messagesNotificationProfiles[profileId] ?? 0 + 1
-                let notSeenCount = self.messages.value.notSeenCount + self.messagesNotificationProfiles.count
-                self.notSeenMessagesCount.accept(notSeenCount)
-                
                 self.updateChat(profileId)
+                
+                if self.isMessageNotificationAlreadyProcessed(profileId) { break }
+                
+                self.messagesNotificationProfiles[profileId] = self.messagesNotificationProfiles[profileId] ?? 0 + 1
+                
+                var notSeenLocalSet =  Set<String>(self.messages.value.filter({ $0.notSeen }).map({ $0.id }))
+                notSeenLocalSet = notSeenLocalSet.union(self.messagesNotificationProfiles.keys)
+                self.notSeenMessagesCount.accept(notSeenLocalSet.count)
+                
                 break
                 
             case .unknown: break
@@ -392,7 +401,7 @@ class LMMManager
             let notificationsCount = self.likesYouNotificationProfiles.count +
                 self.matchesNotificationProfiles.count +
                 self.messagesNotificationProfiles.count
-            self.notificationsProfilesCount.accept(notificationsCount)            
+            self.notificationsProfilesCount.accept(notificationsCount)
         }).disposed(by: self.disposeBag)
         
         // Total count
