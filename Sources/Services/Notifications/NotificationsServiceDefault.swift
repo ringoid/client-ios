@@ -13,6 +13,7 @@ import Firebase
 
 class NotificationsServiceDefault: NSObject, NotificationService
 {
+    var senderId: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     var notification: BehaviorRelay<RemoteNotification> = BehaviorRelay<RemoteNotification>(value: RemoteNotification(message: ""))
     var token: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     var isGranted: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
@@ -32,7 +33,8 @@ class NotificationsServiceDefault: NSObject, NotificationService
     {
         super.init()
         
-        Messaging.messaging().delegate = self
+        //Messaging.messaging().delegate = self
+        Messaging.messaging().isAutoInitEnabled = false
         
         UNUserNotificationCenter.current().delegate = self
         self.isRegistered = UIApplication.shared.isRegisteredForRemoteNotifications
@@ -89,7 +91,19 @@ class NotificationsServiceDefault: NSObject, NotificationService
     
     func store(_ token: Data)
     {
-        Messaging.messaging().apnsToken = token
+        Messaging.messaging().setAPNSToken(token, type: .unknown)
+
+        if let senderId = self.senderId.value {
+            self.retrieveFCMToken(senderId)
+        }
+    }
+    
+    func reset()
+    {
+        guard let senderId = self.senderId.value else { return }
+        
+        self.deleteFCMToken(senderId)
+        self.senderId.accept(nil)
     }
     
     // MARK: -
@@ -114,6 +128,12 @@ class NotificationsServiceDefault: NSObject, NotificationService
         self.isMessageEnabled.subscribe(onNext: { value in
             UserDefaults.standard.set(value, forKey: "is_message_enabled")
             UserDefaults.standard.synchronize()
+        }).disposed(by: self.disposeBag)
+        
+        self.senderId.asObservable().subscribe(onNext: { [weak self] id in
+            guard let senderId = id else { return }
+            
+            self?.retrieveFCMToken(senderId)
         }).disposed(by: self.disposeBag)
     }
     
@@ -144,6 +164,31 @@ class NotificationsServiceDefault: NSObject, NotificationService
             self.isMessageEnabled.accept(UserDefaults.standard.bool(forKey: "is_message_enabled"))
         }
     }
+    
+    fileprivate func retrieveFCMToken(_ senderId: String)
+    {
+        
+        guard Messaging.messaging().apnsToken != nil else { return }
+        
+        log("Retrieving FCM token...", level: .low)
+        
+        Messaging.messaging().retrieveFCMToken(forSenderID: senderId) { [weak self] (fcmToken, error) in
+            if let error = error {
+                log("FCM token error: \(error)", level: .high)
+                
+                return
+            }
+            
+            self?.token.accept(fcmToken)
+        }
+    }
+    
+    fileprivate func deleteFCMToken(_ senderId: String)
+    {
+        Messaging.messaging().deleteFCMToken(forSenderID: senderId) { _ in
+            
+        }
+    }
 }
 
 extension NotificationsServiceDefault: UNUserNotificationCenterDelegate
@@ -160,18 +205,5 @@ extension NotificationsServiceDefault: UNUserNotificationCenterDelegate
         guard UIApplication.shared.applicationState == .active else { return }
         
         self.notificationDataObserver?.onNext(notification.request.content.userInfo)
-    }
-}
-
-extension NotificationsServiceDefault: MessagingDelegate
-{
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String)
-    {
-        self.token.accept(fcmToken)
-    }
-    
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage)
-    {
-        print("message received")
     }
 }

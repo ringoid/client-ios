@@ -45,6 +45,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         self.appManager.onBecomeActive()
     }
+
+    // PUSH TOKEN
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
+    {
+        self.appManager.onGot(deviceToken: deviceToken)
+    }
     
     // Respond to URI scheme links
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool

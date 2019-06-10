@@ -17,6 +17,7 @@ struct RemoteNotification
 
 protocol NotificationService
 {
+    var senderId: BehaviorRelay<String?> { get }
     var notification: BehaviorRelay<RemoteNotification> { get }
     var token: BehaviorRelay<String?> { get }
     var isGranted: BehaviorRelay<Bool> { get }
@@ -32,4 +33,5 @@ protocol NotificationService
     func register()
     func update()
     func store(_ token: Data)
+    func reset()
 }

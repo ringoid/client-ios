@@ -40,5 +40,9 @@ class NotificationsManager
         self.notifications.notificationData.subscribe(onNext: { _ in
             print("PUSH RECEIVED")
         }).disposed(by: self.disposeBag)
+        
+        self.api.customerId.asObservable().subscribe(onNext: { [weak self] _ in
+            self?.notifications.senderId.accept(AppConfig.fcmSenderId)
+        }).disposed(by: self.disposeBag)
     }
 }

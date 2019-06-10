@@ -108,6 +108,7 @@ class SettingsManager
     
     func reset()
     {
+        self.notifications.reset()
         self.actions.reset()
         self.lmm.reset()
         self.newFaces.reset()
