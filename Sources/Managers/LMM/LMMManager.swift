@@ -97,6 +97,7 @@ class LMMManager
     
     let notSeenTotalCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     let notificationsProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    let lmmCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     
     // Incoming counters
     
@@ -345,12 +346,14 @@ class LMMManager
             guard let `self` = self else { return }
             
             self.notSeenLikesYouCount.accept(profiles.notSeenCount + self.likesYouNotificationProfiles.count)
+            self.updateLmmCount()
         }).disposed(by: self.disposeBag)
         
         self.matches.asObservable().subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
             
             self.notSeenMatchesCount.accept(profiles.notSeenCount + self.matchesNotificationProfiles.count)
+            self.updateLmmCount()
         }).disposed(by: self.disposeBag)
 
         self.messages.asObservable().subscribe(onNext:{ [weak self] profiles in
@@ -360,6 +363,7 @@ class LMMManager
             notSeenLocalSet = notSeenLocalSet.union(self.messagesNotificationProfiles.keys)
             
             self.notSeenMessagesCount.accept(notSeenLocalSet.count)
+            self.updateLmmCount()
         }).disposed(by: self.disposeBag)
         
         self.notifications.notificationData.subscribe(onNext: { [weak self] userInfo in
@@ -402,6 +406,7 @@ class LMMManager
                 self.matchesNotificationProfiles.count +
                 self.messagesNotificationProfiles.count
             self.notificationsProfilesCount.accept(notificationsCount)
+            self.updateLmmCount()
         }).disposed(by: self.disposeBag)
         
         // Total count
@@ -524,12 +529,24 @@ class LMMManager
         self.storage.store(self.prevNotSeenInbox, key: "prevNotSeenInbox").subscribe().disposed(by: self.disposeBag)
     }
     
+    fileprivate func updateLmmCount()
+    {
+        var lmmProfiles = Set((self.likesYou.value + self.matches.value + self.messages.value).map({ $0.id }))
+        lmmProfiles = lmmProfiles.union(self.likesYouNotificationProfiles)
+        lmmProfiles = lmmProfiles.union(self.matchesNotificationProfiles)
+        lmmProfiles = lmmProfiles.union(Set(self.messagesNotificationProfiles.keys))
+        
+        self.lmmCount.accept(lmmProfiles.count)
+    }
+    
     fileprivate func resetNotificationProfiles()
     {
         self.likesYouNotificationProfiles.removeAll()
         self.matchesNotificationProfiles.removeAll()
         self.messagesNotificationProfiles.removeAll()
         self.processedNotificationsProfiles.removeAll()
+        self.notificationsProfilesCount.accept(0)
+        self.lmmCount.accept(0)
     }
 }
 

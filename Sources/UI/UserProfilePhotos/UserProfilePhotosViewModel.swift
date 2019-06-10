@@ -59,7 +59,10 @@ class UserProfilePhotosViewModel
         return self.input.settingsManager.isAuthorized
     }
     
-    var lmmCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    var lmmCount: BehaviorRelay<Int>
+    {
+        return self.input.lmmManager.lmmCount
+    }
 
     var isLocationDenied: Bool
     {
@@ -120,44 +123,6 @@ class UserProfilePhotosViewModel
     {
         self.input.profileManager.photos.asObservable().subscribe(onNext: { [weak self] updatedPhotos in
             self?.photos.accept(updatedPhotos.filter({ !$0.isBlocked }))
-        }).disposed(by: self.disposeBag)
-        
-        // LMM count
-        
-        self.input.lmmManager.likesYou.subscribe(onNext: { [weak self] profiles in
-            guard let `self` = self else { return }
-            
-            let manager = self.input.lmmManager
-            var count = profiles.count + manager.matches.value.count + manager.messages.value.count
-            count += manager.notificationsProfilesCount.value
-            self.lmmCount.accept(count)
-        }).disposed(by: self.disposeBag)
-        
-        self.input.lmmManager.matches.subscribe(onNext: { [weak self] profiles in
-            guard let `self` = self else { return }
-            
-            let manager = self.input.lmmManager
-            var count = profiles.count + manager.likesYou.value.count + manager.messages.value.count
-            count += manager.notificationsProfilesCount.value
-            self.lmmCount.accept(count)
-        }).disposed(by: self.disposeBag)
-        
-        self.input.lmmManager.messages.subscribe(onNext: { [weak self] profiles in
-            guard let `self` = self else { return }
-            
-            let manager = self.input.lmmManager
-            var count = profiles.count + manager.likesYou.value.count + manager.matches.value.count
-            count += manager.notificationsProfilesCount.value
-            self.lmmCount.accept(count)
-        }).disposed(by: self.disposeBag)
-        
-        self.input.lmmManager.notificationsProfilesCount.subscribe(onNext: { [weak self] notificationsCount in
-            guard let `self` = self else { return }
-            
-            let manager = self.input.lmmManager
-            var count = manager.messages.value.count + manager.likesYou.value.count + manager.matches.value.count
-            count += notificationsCount
-            self.lmmCount.accept(count)
         }).disposed(by: self.disposeBag)
     }
 }
