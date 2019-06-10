@@ -236,6 +236,7 @@ class UserProfilePhotosViewController: BaseViewController
             }
             
             self.updatePages()
+            self.updateLmmCounter()
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.isBlocked.observeOn(MainScheduler.instance).asObservable().subscribe(onNext: { [weak self] state in
@@ -304,24 +305,7 @@ class UserProfilePhotosViewController: BaseViewController
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.lmmCount.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] value in
-            guard let `self` = self else { return }
-            
-            if value != 0 {
-                let valueStr = "\(value)"
-                self.lmmLabel.text = valueStr
-                self.lmmWidthConstraint.constant = (valueStr as NSString).boundingRect(
-                    with: CGSize(width: 300.0, height: 14.0),
-                    options: .usesLineFragmentOrigin,
-                    attributes: [.font: self.lmmLabel.font],
-                    context: nil
-                    ).width + 7.0
-                
-                self.lmmIconView.isHidden = false
-                self.lmmLabel.isHidden = false
-            } else {
-                self.lmmIconView.isHidden = true
-                self.lmmLabel.isHidden = true
-            }
+            self?.updateLmmCounter()
         }).disposed(by: self.disposeBag)
     }
     
@@ -468,6 +452,29 @@ class UserProfilePhotosViewController: BaseViewController
         }))
         
         self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func updateLmmCounter()
+    {
+        guard let lmmCount = self.viewModel?.lmmCount.value else { return }
+        guard let photosCount = self.viewModel?.photos.value.count else { return }
+        
+        if lmmCount > 0 && photosCount > 0 {
+            let valueStr = "\(lmmCount)"
+            self.lmmLabel.text = valueStr
+            self.lmmWidthConstraint.constant = (valueStr as NSString).boundingRect(
+                with: CGSize(width: 300.0, height: 14.0),
+                options: .usesLineFragmentOrigin,
+                attributes: [.font: self.lmmLabel.font],
+                context: nil
+                ).width + 7.0
+            
+            self.lmmIconView.isHidden = false
+            self.lmmLabel.isHidden = false
+        } else {
+            self.lmmIconView.isHidden = true
+            self.lmmLabel.isHidden = true
+        }
     }
 }
 
