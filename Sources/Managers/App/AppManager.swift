@@ -62,6 +62,7 @@ class AppManager
     {
         self.promotionManager.sendReferraCodeIfNeeded()
         self.settingsMananger.updateRemoteSettings()
+        self.notificationsManager.updateFCMToken()
         
         self.notifications.update()
         FBSDKAppEvents.activateApp()

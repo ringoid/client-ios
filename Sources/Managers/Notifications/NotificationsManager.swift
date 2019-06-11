@@ -24,6 +24,11 @@ class NotificationsManager
         self.setupBindings()
     }
     
+    func updateFCMToken()
+    {
+        self.notifications.senderId.accept(AppConfig.fcmSenderId)
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
@@ -42,7 +47,7 @@ class NotificationsManager
         }).disposed(by: self.disposeBag)
         
         self.api.customerId.asObservable().subscribe(onNext: { [weak self] _ in
-            self?.notifications.senderId.accept(AppConfig.fcmSenderId)
+            self?.updateFCMToken()
         }).disposed(by: self.disposeBag)
     }
 }

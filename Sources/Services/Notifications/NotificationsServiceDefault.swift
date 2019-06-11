@@ -94,7 +94,26 @@ class NotificationsServiceDefault: NSObject, NotificationService
         Messaging.messaging().setAPNSToken(token, type: .unknown)
 
         if let senderId = self.senderId.value {
-            self.retrieveFCMToken(senderId)
+            self.updateFCMToken(senderId)
+        }
+    }
+    
+    func updateFCMToken(_ senderId: String)
+    {
+        guard Messaging.messaging().apnsToken != nil else { return }
+        
+        log("Updating FCM token...", level: .low)
+        
+        Messaging.messaging().deleteFCMToken(forSenderID: senderId) { [weak self] _ in
+            Messaging.messaging().retrieveFCMToken(forSenderID: senderId) {  (fcmToken, error) in
+                if let error = error {
+                    log("FCM token error: \(error)", level: .high)
+                    
+                    return
+                }
+                
+                self?.token.accept(fcmToken)
+            }
         }
     }
     
@@ -133,7 +152,7 @@ class NotificationsServiceDefault: NSObject, NotificationService
         self.senderId.asObservable().subscribe(onNext: { [weak self] id in
             guard let senderId = id else { return }
             
-            self?.retrieveFCMToken(senderId)
+            self?.updateFCMToken(senderId)
         }).disposed(by: self.disposeBag)
     }
     
@@ -162,24 +181,6 @@ class NotificationsServiceDefault: NSObject, NotificationService
         
         if UserDefaults.standard.object(forKey: "is_message_enabled") != nil {
             self.isMessageEnabled.accept(UserDefaults.standard.bool(forKey: "is_message_enabled"))
-        }
-    }
-    
-    fileprivate func retrieveFCMToken(_ senderId: String)
-    {
-        
-        guard Messaging.messaging().apnsToken != nil else { return }
-        
-        log("Retrieving FCM token...", level: .low)
-        
-        Messaging.messaging().retrieveFCMToken(forSenderID: senderId) { [weak self] (fcmToken, error) in
-            if let error = error {
-                log("FCM token error: \(error)", level: .high)
-                
-                return
-            }
-            
-            self?.token.accept(fcmToken)
         }
     }
     
