@@ -158,6 +158,13 @@ class FlurryAnalytics: AnalyticsService
                 ])
             break
             
+        case .tapToRefresh(let sourceFeed):
+            Flurry.logEvent("TAP_TO_REFRESH", withParameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
         case .firstSwipe(let sourceFeed):
             Flurry.logEvent("AHA_FIRST_SWIPE", withParameters: [
                 "UUID": self.userId,

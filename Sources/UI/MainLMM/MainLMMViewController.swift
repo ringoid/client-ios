@@ -141,9 +141,12 @@ class MainLMMViewController: BaseViewController
     
     @IBAction func onRefresh()
     {
+        AnalyticsManager.shared.send(.tapToRefresh(self.type.value.sourceType().rawValue))
+        
         self.hideScrollToTopOption()
         self.reload()
     }
+    
     
     // MARK: -
     

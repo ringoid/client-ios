@@ -154,6 +154,13 @@ class FirebaseAnalytics: AnalyticsService
                 ])
             break
             
+        case .tapToRefresh(let sourceFeed):
+            Analytics.logEvent("TAP_TO_REFRESH", parameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
         case .firstSwipe(let sourceFeed):
             Analytics.logEvent("AHA_FIRST_SWIPE", parameters: [
                 "UUID": self.userId,

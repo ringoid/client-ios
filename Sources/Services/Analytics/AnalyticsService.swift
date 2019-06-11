@@ -30,6 +30,7 @@ enum AnalyticsEvent
     case messagedFromMessages;
     case openedByPush;
     case pullToRefresh(String);
+    case tapToRefresh(String);
     
     case firstSwipe(String);
     case firstLikesYou(String);
