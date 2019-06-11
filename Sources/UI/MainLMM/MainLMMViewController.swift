@@ -37,7 +37,6 @@ class MainLMMViewController: BaseViewController
     ]
     
     fileprivate static var photoIndexes: [String: Int] = [:]
-    fileprivate static var updatedFeeds: Set<LMMType> =  Set<LMMType>()
     fileprivate var isDragged: Bool = false    
     
     fileprivate var viewModel: MainLMMViewModel?
@@ -165,6 +164,7 @@ class MainLMMViewController: BaseViewController
                 self?.tableView.dataSource = EmptyFeed.shared
                 self?.lastFeedIds.removeAll()
                 self?.tableView.reloadData()
+                self?.updateBtn.alpha = 1.0
                 self?.updateBtn.isHidden = true
                 self?.isUpdateBtnVisible = false
                 UIManager.shared.lmmRefreshModeEnabled.accept(true)
@@ -174,6 +174,7 @@ class MainLMMViewController: BaseViewController
                 self?.toggleActivity(isEmpty ? .empty : .contentAvailable)
                 self?.tableView.dataSource = self
                 self?.updateFeed(true)
+                self?.checkForUpdates()
             }
         }).disposed(by: self.disposeBag)
         
@@ -196,22 +197,16 @@ class MainLMMViewController: BaseViewController
             self?.input.lmmManager.topOrder(id, type: .sent)
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.updatedFeed.subscribe(onNext: { value in
-            guard let value = value else { return }
-            
-            MainLMMViewController.updatedFeeds.insert(value)
-            
-            guard !self.isUpdateBtnVisible && self.viewModel?.isFetching.value == false else { return }
-            
-            if value == self.type.value {
-                
-                self.updateBtn.alpha = 0.0
-                self.updateBtn.isHidden = false
-                self.isUpdateBtnVisible = true
-                
-                let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) { self.updateBtn.alpha = 1.0 }
-                animator.startAnimation()
-            }
+        self.input.lmmManager.likesYouUpdatesAvailable.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self ] _ in
+            self?.checkForUpdates()
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.matchesUpdatesAvailable.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self ] _ in
+            self?.checkForUpdates()
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.messagesUpdatesAvailable.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self ] _ in
+            self?.checkForUpdates()
         }).disposed(by: self.disposeBag)
     }
     
@@ -255,7 +250,6 @@ class MainLMMViewController: BaseViewController
     {
         AnalyticsManager.shared.send(.pullToRefresh(self.type.value.sourceType().rawValue))
         
-        MainLMMViewController.updatedFeeds.removeAll()
         self.updateBtn.isHidden = true
         self.isUpdateBtnVisible = false
         
@@ -308,13 +302,7 @@ class MainLMMViewController: BaseViewController
         self.isTabSwitched = true
         self.updateBindings()
         
-        guard !self.isUpdateBtnVisible else { return }
-        
-        if MainLMMViewController.updatedFeeds.contains(type) && self.viewModel?.isFetching.value == false {
-            self.updateBtn.isHidden = false
-            self.updateBtn.alpha = 1.0
-            self.isUpdateBtnVisible = true
-        }
+        self.checkForUpdates()
     }
     
     fileprivate func profiles() -> BehaviorRelay<[LMMProfile]>?
@@ -334,6 +322,17 @@ class MainLMMViewController: BaseViewController
             
         case .sent:
             return self.viewModel?.sent
+        }
+    }
+    
+    fileprivate func isUpdatesAvailable() -> Bool
+    {
+        switch self.type.value {
+        case .likesYou: return self.input.lmmManager.likesYouUpdatesAvailable.value
+        case .matches: return self.input.lmmManager.matchesUpdatesAvailable.value
+        case .messages: return self.input.lmmManager.messagesUpdatesAvailable.value
+            
+        default: return false
         }
     }
     
@@ -464,6 +463,34 @@ class MainLMMViewController: BaseViewController
                 self.isScrollTopVisible = false
                 self.isUpdateBtnVisible = false
             }
+        }
+    }
+    
+    fileprivate func checkForUpdates()
+    {
+        guard self.viewModel?.isFetching.value == false else {
+            self.isUpdateBtnVisible = false
+            self.updateBtn.isHidden = true
+            self.updateBtn.alpha = 1.0
+            
+            return
+        }
+        
+        if self.isUpdatesAvailable() {
+            guard !self.isUpdateBtnVisible else { return }
+            
+            self.updateBtn.alpha = 0.0
+            self.updateBtn.isHidden = false
+            self.isUpdateBtnVisible = true
+            
+            let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) { self.updateBtn.alpha = 1.0 }
+            animator.startAnimation()
+        } else {
+            guard self.isUpdateBtnVisible else { return }
+            
+            self.updateBtn.isHidden = true
+            self.updateBtn.alpha = 1.0
+            self.isUpdateBtnVisible = false
         }
     }
     
