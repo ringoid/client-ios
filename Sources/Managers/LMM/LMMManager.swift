@@ -145,6 +145,12 @@ class LMMManager
     fileprivate var notSeenMatchesPrevCount: Int = 0
     fileprivate var notSeenMessagesPrevCount: Int = 0
     
+    // Updates
+    
+    var likesYouUpdatesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var matchesUpdatesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    var messagesUpdatesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    
     init(_ db: DBService, api: ApiService, device: DeviceService, actionsManager: ActionsManager, storage: XStorageService, notifications: NotificationService)
     {
         self.db = db
@@ -431,7 +437,9 @@ class LMMManager
                 self.matchesNotificationProfiles.count +
                 self.messagesNotificationProfiles.count
             self.notificationsProfilesCount.accept(notificationsCount)
+            
             self.updateLmmCount()
+            self.updateAvailability()
         }).disposed(by: self.disposeBag)
         
         // Total count
@@ -483,8 +491,10 @@ class LMMManager
             self.notSeenMatchesCount.accept(self.matches.value.notSeenCount + self.matchesNotificationProfiles.count)
             
             var notSeenLocalSet =  Set<String>(self.messages.value.filter({ $0.notSeen }).map({ $0.id }))
-            notSeenLocalSet = notSeenLocalSet.union(self.messagesNotificationProfiles.keys)            
+            notSeenLocalSet = notSeenLocalSet.union(self.messagesNotificationProfiles.keys)
             self.notSeenMessagesCount.accept(notSeenLocalSet.count)
+            
+            self.updateAvailability()
         }).disposed(by: self.disposeBag)
     }
     
@@ -551,6 +561,13 @@ class LMMManager
         lmmProfiles = lmmProfiles.union(Set(self.messagesNotificationProfiles.keys))
         
         self.lmmCount.accept(lmmProfiles.count)
+    }
+    
+    fileprivate func updateAvailability()
+    {
+        self.likesYouUpdatesAvailable.accept(!self.likesYouNotificationProfiles.isEmpty)
+        self.matchesUpdatesAvailable.accept(!self.matchesNotificationProfiles.isEmpty)
+        self.messagesUpdatesAvailable.accept(!self.messagesNotificationProfiles.isEmpty)
     }
     
     fileprivate func resetNotificationProfiles()
