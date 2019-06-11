@@ -468,6 +468,24 @@ class LMMManager
                 self.notSeenMessagesPrevCount
             self.notSeenTotalCount.accept(totalCount)
         }).disposed(by: self.disposeBag)
+        
+        // Actions
+        
+        self.actionsManager.viewedProfiles.subscribe(onNext: { [weak self] profileId in
+            guard let profileId = profileId else { return }
+            guard let `self` = self else { return }
+            
+            self.likesYouNotificationProfiles.remove(profileId)
+            self.matchesNotificationProfiles.remove(profileId)
+            self.messagesNotificationProfiles.removeValue(forKey: profileId)
+            
+            self.notSeenLikesYouCount.accept(self.likesYou.value.notSeenCount + self.likesYouNotificationProfiles.count)
+            self.notSeenMatchesCount.accept(self.matches.value.notSeenCount + self.matchesNotificationProfiles.count)
+            
+            var notSeenLocalSet =  Set<String>(self.messages.value.filter({ $0.notSeen }).map({ $0.id }))
+            notSeenLocalSet = notSeenLocalSet.union(self.messagesNotificationProfiles.keys)            
+            self.notSeenMessagesCount.accept(notSeenLocalSet.count)
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func loadPrevState()
