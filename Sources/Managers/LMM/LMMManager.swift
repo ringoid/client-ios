@@ -245,6 +245,28 @@ class LMMManager
         }
     }
     
+    func updateChat(_ profileId: String)
+    {
+        self.actionsManager.sendQueue().subscribe(onNext: { [weak self] _ in
+            guard let `self` = self else { return }
+            
+            self.apiService.getChat(profileId,
+                                    resolution: self.deviceService.photoResolution,
+                                    lastActionDate: self.actionsManager.lastActionDate.value).subscribe(onNext: { [weak self] chatUpdate in
+                                        
+                                        self?.updateLocalProfile(profileId, remoteMessages: chatUpdate.messages)
+                                        
+                                        guard chatUpdate.pullAgainAfter > 0 else { return }
+                                        
+                                        let interval = Double(chatUpdate.pullAgainAfter) / 1000.0
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + interval, execute: { [weak self] in
+                                            self?.updateChat(profileId)
+                                        })
+                                    }).disposed(by: self.disposeBag)
+            
+        }).disposed(by: self.disposeBag)
+    }
+    
     func reset()
     {
         self.storage.remove("prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
@@ -464,35 +486,6 @@ class LMMManager
         
         self.storage.object("prevNotSeenInbox").subscribe( onSuccess: { obj in
             self.prevNotSeenInbox = Array<String>.create(obj) ?? []
-        }).disposed(by: self.disposeBag)
-    }
-    
-    fileprivate func updateChats()
-    {
-        guard self.apiService.isAuthorized.value else { return }
-        
-        self.messages.value.forEach({ self.updateChat($0.id) })
-    }
-    
-    fileprivate func updateChat(_ profileId: String)
-    {
-        self.actionsManager.sendQueue().subscribe(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
-            
-            self.apiService.getChat(profileId,
-                                    resolution: self.deviceService.photoResolution,
-                                    lastActionDate: self.actionsManager.lastActionDate.value).subscribe(onNext: { [weak self] chatUpdate in
-                                        
-                                        self?.updateLocalProfile(profileId, remoteMessages: chatUpdate.messages)
-                                        
-                                        guard chatUpdate.pullAgainAfter > 0 else { return }
-                                        
-                                        let interval = Double(chatUpdate.pullAgainAfter) / 1000.0
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + interval, execute: { [weak self] in
-                                            self?.updateChat(profileId)
-                                        })
-                                    }).disposed(by: self.disposeBag)
-            
         }).disposed(by: self.disposeBag)
     }
     

@@ -54,6 +54,11 @@ class ChatViewModel
         self.input.lmmManager.removeNotificationFromProcessed(self.input.profile.id)
     }
     
+    func updateContent()
+    {
+        self.input.lmmManager.updateChat(self.input.profile.id)
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()

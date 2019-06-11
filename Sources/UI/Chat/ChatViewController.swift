@@ -211,6 +211,7 @@ class ChatViewController: BaseViewController
     @objc fileprivate func onAppBecomeActive()
     {
         self.messageTextView.becomeFirstResponder()
+        self.viewModel?.updateContent()
     }
     
     fileprivate func setupInputAttributes()
