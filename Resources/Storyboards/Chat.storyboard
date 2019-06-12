@@ -24,18 +24,6 @@
                                     <constraint firstAttribute="width" secondItem="Y4U-O2-Qkv" secondAttribute="height" multiplier="3:4" id="TjS-IC-yOh"/>
                                 </constraints>
                             </imageView>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UM8-yN-NFd" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <view alpha="0.14999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cjc-8j-yFq" userLabel="BottomBarView">
                                 <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                 <subviews>
@@ -158,6 +146,18 @@
                                     <outletCollection property="gestureRecognizers" destination="q49-r4-Pck" appends="YES" id="f1s-I0-c0V"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UM8-yN-NFd" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                        <color key="value" white="0.0" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPj-U6-bjV">
                                 <rect key="frame" x="311" y="587" width="64" height="80"/>
                                 <constraints>
@@ -237,7 +237,7 @@
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="trailing" secondItem="qPj-U6-bjV" secondAttribute="trailing" id="iZx-Xs-XS7"/>
                             <constraint firstAttribute="trailing" secondItem="Y4U-O2-Qkv" secondAttribute="trailing" id="jEu-u2-fwH"/>
                             <constraint firstAttribute="trailing" secondItem="H3p-mh-W6s" secondAttribute="trailing" id="kFu-OV-Myh"/>
-                            <constraint firstItem="UM8-yN-NFd" firstAttribute="bottom" secondItem="b2c-7o-Xv8" secondAttribute="top" constant="72" id="oFa-rW-1Op"/>
+                            <constraint firstItem="UM8-yN-NFd" firstAttribute="bottom" secondItem="b2c-7o-Xv8" secondAttribute="top" constant="56" id="oFa-rW-1Op"/>
                             <constraint firstItem="ZHb-Cm-ZEN" firstAttribute="top" secondItem="b2c-7o-Xv8" secondAttribute="top" id="oiM-pY-2o4"/>
                             <constraint firstItem="Eue-c0-Gb6" firstAttribute="centerY" secondItem="Gu8-Zv-Egg" secondAttribute="centerY" id="p1d-CD-dV2"/>
                             <constraint firstItem="xQe-Gm-ZM8" firstAttribute="leading" secondItem="Gu8-Zv-Egg" secondAttribute="trailing" constant="8" id="qC5-Og-Bfm"/>
