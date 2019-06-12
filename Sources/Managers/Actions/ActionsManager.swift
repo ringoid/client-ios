@@ -238,6 +238,8 @@ class ActionsManager
         
         self.viewActionsMap[photo.id] = Date()
         self.viewMap[profile.id] = true
+        
+        self.viewedProfiles.accept(profile.id)
     }
     
     func stopViewAction(_ profile: ActionProfile, photo: ActionPhoto, sourceType: SourceFeedType)
@@ -251,7 +253,6 @@ class ActionsManager
         self.add(.view(viewCount: 1, viewTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
         
         self.db.markProfileAsSeen(profile.id)
-        self.viewedProfiles.accept(profile.id)
     }
     
     func startViewChatAction(_ profile: ActionProfile, photo: ActionPhoto)
