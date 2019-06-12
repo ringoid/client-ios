@@ -578,12 +578,18 @@ class LMMManager
         if updatedMatchesProfiles.count > 0 { self.matchesUpdatesAvailable.accept(true) }
         if self.matchesNotificationProfiles.count == 0 { self.matchesUpdatesAvailable.accept(false) }
 
-        // Profiles
+        // Messages
         let currentMessagesProfiles = Set<String>(self.messagesNotificationProfiles.keys)
         let updatedMessagesProfiles = currentMessagesProfiles.subtracting(self.prevMessagesUpdatedProfiles)
         self.prevMessagesUpdatedProfiles = currentMessagesProfiles
         
-        if updatedMessagesProfiles.count > 0 { self.messagesUpdatesAvailable.accept(true) }
+        if updatedMessagesProfiles.count > 0 {
+            // Single profile case
+            if self.messages.value.count == 1, updatedMessagesProfiles.first == self.messages.value.first?.id { return }
+            
+            self.messagesUpdatesAvailable.accept(true)
+        }
+        
         if currentMessagesProfiles.count == 0 { self.messagesUpdatesAvailable.accept(false) }
     }
     
