@@ -164,7 +164,6 @@ class MainLMMViewController: BaseViewController
                 self?.tableView.dataSource = EmptyFeed.shared
                 self?.lastFeedIds.removeAll()
                 self?.tableView.reloadData()
-                self?.updateBtn.alpha = 1.0
                 self?.updateBtn.isHidden = true
                 self?.isUpdateBtnVisible = false
                 UIManager.shared.lmmRefreshModeEnabled.accept(true)
@@ -250,6 +249,7 @@ class MainLMMViewController: BaseViewController
     {
         AnalyticsManager.shared.send(.pullToRefresh(self.type.value.sourceType().rawValue))
         
+        self.updateBtn.alpha = 1.0
         self.updateBtn.isHidden = true
         self.isUpdateBtnVisible = false
         
@@ -456,12 +456,10 @@ class MainLMMViewController: BaseViewController
                 self.scrollTopBtn.alpha = 1.0
                 self.updateBtn.alpha = 1.0
                 self.isScrollTopVisible = true
-                self.isUpdateBtnVisible = true
             } else {
                 self.scrollTopBtn.alpha = 0.0
                 self.updateBtn.alpha = 0.0
                 self.isScrollTopVisible = false
-                self.isUpdateBtnVisible = false
             }
         }
     }
@@ -471,7 +469,6 @@ class MainLMMViewController: BaseViewController
         guard self.viewModel?.isFetching.value == false else {
             self.isUpdateBtnVisible = false
             self.updateBtn.isHidden = true
-            self.updateBtn.alpha = 1.0
             
             return
         }
@@ -479,17 +476,13 @@ class MainLMMViewController: BaseViewController
         if self.isUpdatesAvailable() {
             guard !self.isUpdateBtnVisible else { return }
             
-            self.updateBtn.alpha = 0.0
+            self.updateBtn.alpha = 1.0
             self.updateBtn.isHidden = false
             self.isUpdateBtnVisible = true
-            
-            let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) { self.updateBtn.alpha = 1.0 }
-            animator.startAnimation()
         } else {
             guard self.isUpdateBtnVisible else { return }
             
             self.updateBtn.isHidden = true
-            self.updateBtn.alpha = 1.0
             self.isUpdateBtnVisible = false
         }
     }
@@ -558,14 +551,9 @@ class MainLMMViewController: BaseViewController
         
         topAnimator.startAnimation()
         
-        guard !self.isUpdateBtnVisible && self.viewModel?.isFetching.value == false else { return }
+        guard self.viewModel?.isFetching.value == false else { return }
         
-        self.isUpdateBtnVisible = true
-        let updateAnimator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
-            self.updateBtn.alpha = 1.0
-        }
-        
-        updateAnimator.startAnimation()
+        self.updateBtn.alpha = 1.0
     }
     
     fileprivate func hideScrollToTopOption()
@@ -580,6 +568,8 @@ class MainLMMViewController: BaseViewController
         }
         
         animator.startAnimation()
+        
+        self.updateBtn.alpha = 0.0
     }
     
     static func resetStates()
@@ -836,8 +826,6 @@ extension MainLMMViewController: UIScrollViewDelegate
         
         if offset - self.prevScrollingOffset > midTrashhold {
             self.hideScrollToTopOption()
-            self.updateBtn.alpha = 0.0
-            self.isUpdateBtnVisible = false
             self.prevScrollingOffset = offset
             
             return
