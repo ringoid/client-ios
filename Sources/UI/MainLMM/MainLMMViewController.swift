@@ -249,9 +249,9 @@ class MainLMMViewController: BaseViewController
     {
         AnalyticsManager.shared.send(.pullToRefresh(self.type.value.sourceType().rawValue))
         
-        self.updateBtn.alpha = 1.0
-        self.updateBtn.isHidden = true
-        self.isUpdateBtnVisible = false
+        self.input.lmmManager.likesYouUpdatesAvailable.accept(false)
+        self.input.lmmManager.matchesUpdatesAvailable.accept(false)
+        self.input.lmmManager.messagesUpdatesAvailable.accept(false)
         
         self.tableView.panGestureRecognizer.isEnabled = false
 

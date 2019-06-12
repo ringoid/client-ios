@@ -147,6 +147,10 @@ class LMMManager
     
     // Updates
     
+    fileprivate var prevLikesYouUpdatedProfiles: Set<String> = []
+    fileprivate var prevMatchesUpdatedProfiles: Set<String> = []
+    fileprivate var prevMessagesUpdatedProfiles: Set<String> = []
+    
     var likesYouUpdatesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     var matchesUpdatesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     var messagesUpdatesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
@@ -565,9 +569,24 @@ class LMMManager
     
     fileprivate func updateAvailability()
     {
-        self.likesYouUpdatesAvailable.accept(!self.likesYouNotificationProfiles.isEmpty)
-        self.matchesUpdatesAvailable.accept(!self.matchesNotificationProfiles.isEmpty)
-        self.messagesUpdatesAvailable.accept(!self.messagesNotificationProfiles.isEmpty)
+        let updatedLikesYouProfiles = self.likesYouNotificationProfiles.subtracting(self.prevLikesYouUpdatedProfiles)
+        if updatedLikesYouProfiles.count > 0 {
+            self.prevLikesYouUpdatedProfiles = self.likesYouNotificationProfiles
+            self.likesYouUpdatesAvailable.accept(true)
+        }
+        
+        let updatedMatchesProfiles = self.matchesNotificationProfiles.subtracting(self.prevMatchesUpdatedProfiles)
+        if updatedMatchesProfiles.count > 0 {
+            self.prevMatchesUpdatedProfiles = self.matchesNotificationProfiles
+            self.matchesUpdatesAvailable.accept(true)
+        }
+ 
+        let currentMessagesProfiles = Set<String>(self.messagesNotificationProfiles.keys)
+        let updatedMessagesProfiles = currentMessagesProfiles.subtracting(self.prevMessagesUpdatedProfiles)
+        if updatedMessagesProfiles.count > 0 {
+            self.prevMessagesUpdatedProfiles = currentMessagesProfiles
+            self.messagesUpdatesAvailable.accept(true)
+        }
     }
     
     fileprivate func resetNotificationProfiles()
@@ -575,6 +594,9 @@ class LMMManager
         self.likesYouNotificationProfiles.removeAll()
         self.matchesNotificationProfiles.removeAll()
         self.messagesNotificationProfiles.removeAll()
+        self.prevLikesYouUpdatedProfiles.removeAll()
+        self.prevMatchesUpdatedProfiles.removeAll()
+        self.prevMessagesUpdatedProfiles.removeAll()
         self.processedNotificationsProfiles.removeAll()
         self.notificationsProfilesCount.accept(0)
         self.lmmCount.accept(0)
