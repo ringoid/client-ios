@@ -50,7 +50,6 @@ class ChatViewModel
     func markAsRead()
     {
         self.input.chatManager.markAsRead(self.input.profile)
-        self.input.lmmManager.markNotificationsSeen(self.input.profile.id)
         self.input.lmmManager.removeNotificationFromProcessed(self.input.profile.id)
     }
     

@@ -467,6 +467,7 @@ class MainLMMViewController: BaseViewController
     fileprivate func checkForUpdates()
     {
         guard self.viewModel?.isFetching.value == false else {
+            self.updateBtn.alpha = 1.0
             self.isUpdateBtnVisible = false
             self.updateBtn.isHidden = true
             

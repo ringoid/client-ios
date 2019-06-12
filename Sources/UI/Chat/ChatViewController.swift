@@ -58,6 +58,7 @@ class ChatViewController: BaseViewController
         super.viewDidLoad()
         
         ChatViewController.openedProfileId = self.input.profile.id
+        self.input.lmmManager.markNotificationAsProcessed(self.input.profile.id)        
         
         self.setupInputAttributes()
         KeyboardListener.shared.delegate = self

@@ -309,11 +309,6 @@ class LMMManager
     
     // MARK: - Notifications
     
-    func markNotificationsSeen(_ profileId: String)
-    {
-        self.messagesNotificationProfiles.removeValue(forKey: profileId)
-    }
-    
     func isMessageNotificationAlreadyProcessed(_ profileId: String) -> Bool
     {
         return self.processedNotificationsProfiles.contains(profileId)
@@ -569,24 +564,27 @@ class LMMManager
     
     fileprivate func updateAvailability()
     {
+        // Likes you
         let updatedLikesYouProfiles = self.likesYouNotificationProfiles.subtracting(self.prevLikesYouUpdatedProfiles)
-        if updatedLikesYouProfiles.count > 0 {
-            self.prevLikesYouUpdatedProfiles = self.likesYouNotificationProfiles
-            self.likesYouUpdatesAvailable.accept(true)
-        }
+        self.prevLikesYouUpdatedProfiles = self.likesYouNotificationProfiles
         
+        if updatedLikesYouProfiles.count > 0 { self.likesYouUpdatesAvailable.accept(true) }
+        if self.likesYouNotificationProfiles.count == 0 { self.likesYouUpdatesAvailable.accept(false) }
+        
+        // Matches
         let updatedMatchesProfiles = self.matchesNotificationProfiles.subtracting(self.prevMatchesUpdatedProfiles)
-        if updatedMatchesProfiles.count > 0 {
-            self.prevMatchesUpdatedProfiles = self.matchesNotificationProfiles
-            self.matchesUpdatesAvailable.accept(true)
-        }
- 
+        self.prevMatchesUpdatedProfiles = self.matchesNotificationProfiles
+        
+        if updatedMatchesProfiles.count > 0 { self.matchesUpdatesAvailable.accept(true) }
+        if self.matchesNotificationProfiles.count == 0 { self.matchesUpdatesAvailable.accept(false) }
+
+        // Profiles
         let currentMessagesProfiles = Set<String>(self.messagesNotificationProfiles.keys)
         let updatedMessagesProfiles = currentMessagesProfiles.subtracting(self.prevMessagesUpdatedProfiles)
-        if updatedMessagesProfiles.count > 0 {
-            self.prevMessagesUpdatedProfiles = currentMessagesProfiles
-            self.messagesUpdatesAvailable.accept(true)
-        }
+        self.prevMessagesUpdatedProfiles = currentMessagesProfiles
+        
+        if updatedMessagesProfiles.count > 0 { self.messagesUpdatesAvailable.accept(true) }
+        if currentMessagesProfiles.count == 0 { self.messagesUpdatesAvailable.accept(false) }
     }
     
     fileprivate func resetNotificationProfiles()
