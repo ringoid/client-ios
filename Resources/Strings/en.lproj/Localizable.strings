@@ -50,7 +50,7 @@
 "feed_messages_empty_no_data" = "No messages yet";
 "feed_inbox_empty_no_data" = "No messages yet";
 "feed_sent_empty_no_data" = "No messages yet";
-"feed_tap_to_refresh" = "Tap to refresh";
+"feed_tap_to_refresh" = "Refresh";
 
 "lmm_tab_likes" = "Likes You";
 "lmm_tab_matches" = "Matches";
