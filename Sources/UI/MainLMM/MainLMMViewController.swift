@@ -197,14 +197,20 @@ class MainLMMViewController: BaseViewController
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.likesYouUpdatesAvailable.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self ] _ in
+            guard self?.type.value == .likesYou else { return }
+            
             self?.checkForUpdates()
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.matchesUpdatesAvailable.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self ] _ in
+            guard self?.type.value == .matches else { return }
+            
             self?.checkForUpdates()
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.messagesUpdatesAvailable.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self ] _ in
+            guard self?.type.value == .messages else { return }
+            
             self?.checkForUpdates()
         }).disposed(by: self.disposeBag)
     }
@@ -454,11 +460,9 @@ class MainLMMViewController: BaseViewController
             
             if cachedOffset > 75.0 && totalCount > 0 && totalCount > 0{
                 self.scrollTopBtn.alpha = 1.0
-                self.updateBtn.alpha = 1.0
                 self.isScrollTopVisible = true
             } else {
                 self.scrollTopBtn.alpha = 0.0
-                self.updateBtn.alpha = 0.0
                 self.isScrollTopVisible = false
             }
         }
@@ -475,7 +479,7 @@ class MainLMMViewController: BaseViewController
         }
         
         if self.isUpdatesAvailable() {
-            guard !self.isUpdateBtnVisible else { return }
+            guard !self.isUpdateBtnVisible || self.updateBtn.alpha < 1.0 else { return }
             
             self.updateBtn.alpha = 1.0
             self.updateBtn.isHidden = false
