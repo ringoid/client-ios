@@ -105,7 +105,7 @@ class LMMManager
     var incomingLikesYouCount: Observable<Int>
     {
         return self.likesYou.asObservable().map { profiles -> Int in
-            let notSeenProfiles = profiles.filter({ $0.notSeen })
+            let notSeenProfiles = profiles.filter({ $0.notSeen && $0.id != self.apiService.customerId.value })
 
             return notSeenProfiles.filter({ !self.prevNotSeenLikes.contains($0.id) }).count
         }
@@ -115,7 +115,7 @@ class LMMManager
     var incomingMatches: Observable<Int>
     {
         return self.matches.asObservable().map { profiles -> Int in
-            let notSeenProfiles = profiles.filter({ $0.notSeen })
+            let notSeenProfiles = profiles.filter({ $0.notSeen && $0.id != self.apiService.customerId.value })
 
             return notSeenProfiles.filter({ !self.prevNotSeenMatches.contains($0.id) }).count
         }
@@ -125,7 +125,7 @@ class LMMManager
     var incomingMessages: Observable<Int>
     {
         return self.messages.asObservable().map { profiles -> Int in
-            let notSeenProfiles = profiles.filter({ $0.notSeen })
+            let notSeenProfiles = profiles.filter({ $0.notSeen && $0.id != self.apiService.customerId.value })
             
             return notSeenProfiles.filter({ !self.prevNotSeenMessages.contains($0.id) }).count
         }
