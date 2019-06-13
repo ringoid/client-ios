@@ -195,6 +195,10 @@ class ChatViewController: BaseViewController
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             }
         }).disposed(by: self.disposeBag)
+        
+        Observable.from(object:self.input.profile).observeOn(MainScheduler.instance).subscribe({ [weak self] _ in
+            self?.applyStatuses()
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func textSize(_ text: String) -> CGSize

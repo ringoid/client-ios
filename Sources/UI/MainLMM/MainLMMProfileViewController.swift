@@ -228,6 +228,7 @@ class MainLMMProfileViewController: UIViewController
         
         Observable.from(object:self.input.profile).observeOn(MainScheduler.instance).subscribe({ [weak self] _ in
             self?.updateSeenState()
+            self?.applyStatuses()
         }).disposed(by: self.diposeBag)
     }
     
