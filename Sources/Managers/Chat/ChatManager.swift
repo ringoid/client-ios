@@ -42,7 +42,7 @@ class ChatManager
                     lmmProfile?.messages.append(duplicateMessage)
                 }
                 
-                self.db.forceMarkAsSeen($0)
+                self.db.forceMark($0, isSeen: true)
             }
         }).disposed(by: self.disposeBag)
         
@@ -63,7 +63,7 @@ class ChatManager
     func markAsRead(_ profile: LMMProfile)
     {
         self.db.lmmDuplicates(profile.id).subscribe(onSuccess: { [weak self] duplicates in
-            duplicates.forEach({ self?.db.forceMarkAsSeen($0) })
+            duplicates.forEach({ self?.db.forceMark($0, isSeen: true) })
             
         }).disposed(by: self.disposeBag)
     }

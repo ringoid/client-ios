@@ -419,6 +419,9 @@ class LMMManager
                 
                 if self.isMessageNotificationAlreadyProcessed(profileId) { break }
                 if self.messagesNotificationProfiles.contains(profileId) { break }
+                
+                self.db.updateSeen(profileId, isSeen: false)
+                
                 if self.actionsManager.lmmViewingProfiles.value.contains(profileId) { break }
                 
                 self.likesYouNotificationProfiles.remove(profileId)

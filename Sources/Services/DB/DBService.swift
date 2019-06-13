@@ -129,34 +129,31 @@ class DBService
         }).disposed(by: self.disposeBag)
     }
     
-    func markProfileAsSeen(_ id: String)
+    func updateSeen(_ id: String, isSeen: Bool)
     {
         let predicate = NSPredicate(format: "id = %@ AND isDeleted = false", id)
         guard let lmmProfile = self.realm.objects(LMMProfile.self).filter(predicate).first else { return }
-        guard lmmProfile.notSeen else { return }
-        
-        guard lmmProfile.type == FeedType.likesYou.rawValue ||
-            lmmProfile.type == FeedType.matches.rawValue else { return }
+        guard lmmProfile.notSeen != !isSeen else { return }
         
         if self.realm.isInWriteTransaction {
-            lmmProfile.notSeen = false
+            lmmProfile.notSeen = !isSeen
             self.checkObjectsForUpdates([lmmProfile])
         } else {
             try? self.realm.write {
-                lmmProfile.notSeen = false
+                lmmProfile.notSeen = !isSeen
                 self.checkObjectsForUpdates([lmmProfile])
             }
         }
     }
     
-    func forceMarkAsSeen(_ profile: LMMProfile)
+    func forceMark(_ profile: LMMProfile, isSeen: Bool)
     {
         if self.realm.isInWriteTransaction {
-            profile.notSeen = false
+            profile.notSeen = !isSeen
             self.checkObjectsForUpdates([profile])
         } else {
             try? self.realm.write {
-                profile.notSeen = false
+                profile.notSeen = !isSeen
                 self.checkObjectsForUpdates([profile])
             }
         }
