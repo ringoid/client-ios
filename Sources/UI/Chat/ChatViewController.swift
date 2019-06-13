@@ -187,6 +187,9 @@ class ChatViewController: BaseViewController
             }
             
             self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.updateVisibleCellsBorders(self.tableView.contentOffset.y)
+            }
             
             if self.viewModel?.messages.value.count != 0 {
                 self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
@@ -242,6 +245,22 @@ class ChatViewController: BaseViewController
             self.statusLabel.isHidden = false
         } else {
             self.statusLabel.isHidden = true
+        }
+    }
+    
+    fileprivate func updateVisibleCellsBorders(_  contentOffset: CGFloat)
+    {
+        let tableBottomOffset = contentOffset + self.tableView.bounds.height
+        
+        // Cells
+        self.tableView.visibleCells.forEach { cell in
+            guard let chatCell = cell as? ChatBaseCell else { return }
+            guard let index = self.tableView.indexPath(for: cell)?.row else { return }
+            
+            let cellTopOffset = CGFloat(index) * cell.bounds.height
+            let cellBottomOffset = cellTopOffset + cell.bounds.height - 32.0
+            
+            chatCell.topVisibleBorderDistance = tableBottomOffset - cellBottomOffset + self.view.safeAreaInsets.top
         }
     }
 }
@@ -329,5 +348,14 @@ extension ChatViewController: UITextViewDelegate
         let color = textView.tintColor
         textView.tintColor = .clear
         textView.tintColor = color
+    }
+}
+
+extension ChatViewController: UIScrollViewDelegate
+{
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    {
+        let offset = scrollView.contentOffset.y
+        self.updateVisibleCellsBorders(offset)
     }
 }

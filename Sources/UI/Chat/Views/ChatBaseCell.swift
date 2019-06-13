@@ -19,6 +19,22 @@ class ChatBaseCell: UITableViewCell
         }
     }
     
+    var topVisibleBorderDistance: CGFloat = 999.0
+    {
+        didSet {
+            /*
+            
+            guard self.topVisibleBorderDistance < 56.0 else {
+                self.contentView.alpha = 1.0
+                
+                return
+            }
+            
+            self.contentView.alpha = self.topVisibleBorderDistance / 56.0 * 0.55 + 0.45
+ */
+        }
+    }
+    
     @IBOutlet fileprivate weak var labelWidthConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var labelHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var contentLabel: UILabel!
