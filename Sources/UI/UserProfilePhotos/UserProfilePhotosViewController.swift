@@ -419,6 +419,11 @@ class UserProfilePhotosViewController: BaseViewController
         self.addBtn.isHidden = false
         self.titleLabel.isHidden = false
         self.pagesControl.isHidden = false
+        
+        self.statusLabel.alpha = 1.0
+        self.statusView.alpha = 1.0
+        self.lmmLabel.alpha = 1.0
+        self.lmmIconView.alpha = 1.0
     }
     
     fileprivate func hideControls()
@@ -428,6 +433,11 @@ class UserProfilePhotosViewController: BaseViewController
         self.addBtn.isHidden = true
         self.titleLabel.isHidden = true
         self.pagesControl.isHidden = true
+        
+        self.statusLabel.alpha = 0.0
+        self.statusView.alpha = 0.0
+        self.lmmLabel.alpha = 0.0
+        self.lmmIconView.alpha = 0.0
     }
     
     fileprivate func showBlockedAlert()
