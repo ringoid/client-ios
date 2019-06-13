@@ -132,6 +132,7 @@ class MainLMMViewController: BaseViewController
     @IBAction func onScrollTop()
     {
         self.hideScrollToTopOption()
+        self.updateBtn.alpha = 1.0
         let topOffset = self.view.safeAreaInsets.top + self.tableView.contentInset.top
         self.tableView.setContentOffset(CGPoint(x: 0.0, y: -topOffset), animated: false)
         MainLMMViewController.feedsState[self.type.value]?.offset = 0.0
@@ -181,6 +182,7 @@ class MainLMMViewController: BaseViewController
             guard state else { return }
             
             self?.hideScrollToTopOption()
+            self?.updateBtn.alpha = 0.0
         }).disposed(by: self.disposeBag)
         
         self.input.transition.destination.subscribe(onNext: { feedType in
@@ -573,8 +575,6 @@ class MainLMMViewController: BaseViewController
         }
         
         animator.startAnimation()
-        
-        self.updateBtn.alpha = 0.0
     }
     
     static func resetStates()
@@ -817,6 +817,7 @@ extension MainLMMViewController: UIScrollViewDelegate
         
         guard offset > topTrashhold else {
             self.hideScrollToTopOption()
+            self.updateBtn.alpha = 1.0
             self.prevScrollingOffset = 0.0
             
             return
@@ -831,6 +832,7 @@ extension MainLMMViewController: UIScrollViewDelegate
         
         if offset - self.prevScrollingOffset > midTrashhold {
             self.hideScrollToTopOption()
+            self.updateBtn.alpha = 0.0
             self.prevScrollingOffset = offset
             
             return
