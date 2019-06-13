@@ -36,6 +36,7 @@ class ChatViewModel
         self.input = input
         
         self.setupBindings()
+        self.input.lmmManager.updateChat(self.input.profile.id)
     }
     
     func send(_ text: String)

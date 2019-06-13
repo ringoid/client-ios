@@ -52,7 +52,7 @@ class LMMManager
     
     fileprivate var likesYouNotificationProfiles: Set<String> = []
     fileprivate var matchesNotificationProfiles: Set<String> = []
-    fileprivate var messagesNotificationProfiles: [String: Int] = [:]
+    fileprivate var messagesNotificationProfiles: Set<String> = []
     fileprivate var processedNotificationsProfiles: Set<String> = []
     
     var contentShouldBeHidden: Bool = false
@@ -308,7 +308,6 @@ class LMMManager
     }
     
     // MARK: - Notifications
-    
     func isMessageNotificationAlreadyProcessed(_ profileId: String) -> Bool
     {
         return self.processedNotificationsProfiles.contains(profileId)
@@ -316,7 +315,6 @@ class LMMManager
     
     func markNotificationAsProcessed(_ profileId: String)
     {
-        self.messagesNotificationProfiles.removeValue(forKey: profileId)
         self.processedNotificationsProfiles.insert(profileId)
     }
     
@@ -387,7 +385,7 @@ class LMMManager
             guard let `self` = self else { return }
             
             var notSeenLocalSet =  Set<String>(profiles.filter({ $0.notSeen }).map({ $0.id }))
-            notSeenLocalSet = notSeenLocalSet.union(self.messagesNotificationProfiles.keys)
+            notSeenLocalSet = notSeenLocalSet.union(self.messagesNotificationProfiles)
             
             self.notSeenMessagesCount.accept(notSeenLocalSet.count)
             self.updateLmmCount()
@@ -418,13 +416,14 @@ class LMMManager
                 self.updateChat(profileId)
                 
                 if self.isMessageNotificationAlreadyProcessed(profileId) { break }
+                if self.messagesNotificationProfiles.contains(profileId) { break }
                 
                 self.likesYouNotificationProfiles.remove(profileId)
                 self.matchesNotificationProfiles.remove(profileId)
-                self.messagesNotificationProfiles[profileId] = self.messagesNotificationProfiles[profileId] ?? 0 + 1
+                self.messagesNotificationProfiles.insert(profileId)
                 
                 var notSeenLocalSet =  Set<String>(self.messages.value.filter({ $0.notSeen }).map({ $0.id }))
-                notSeenLocalSet = notSeenLocalSet.union(self.messagesNotificationProfiles.keys)
+                notSeenLocalSet = notSeenLocalSet.union(self.messagesNotificationProfiles)
                 self.notSeenMessagesCount.accept(notSeenLocalSet.count)
                 
                 break
@@ -484,13 +483,13 @@ class LMMManager
             
             self.likesYouNotificationProfiles.remove(profileId)
             self.matchesNotificationProfiles.remove(profileId)
-            self.messagesNotificationProfiles.removeValue(forKey: profileId)
+            self.messagesNotificationProfiles.remove(profileId)
             
             self.notSeenLikesYouCount.accept(self.likesYou.value.notSeenCount + self.likesYouNotificationProfiles.count)
             self.notSeenMatchesCount.accept(self.matches.value.notSeenCount + self.matchesNotificationProfiles.count)
             
             var notSeenLocalSet =  Set<String>(self.messages.value.filter({ $0.notSeen }).map({ $0.id }))
-            notSeenLocalSet = notSeenLocalSet.union(self.messagesNotificationProfiles.keys)
+            notSeenLocalSet = notSeenLocalSet.union(self.messagesNotificationProfiles)
             self.notSeenMessagesCount.accept(notSeenLocalSet.count)
             
             self.updateAvailability()
@@ -557,7 +556,7 @@ class LMMManager
         var lmmProfiles = Set((self.likesYou.value + self.matches.value + self.messages.value).map({ $0.id }))
         lmmProfiles = lmmProfiles.union(self.likesYouNotificationProfiles)
         lmmProfiles = lmmProfiles.union(self.matchesNotificationProfiles)
-        lmmProfiles = lmmProfiles.union(Set(self.messagesNotificationProfiles.keys))
+        lmmProfiles = lmmProfiles.union(self.messagesNotificationProfiles)
         
         self.lmmCount.accept(lmmProfiles.count)
     }
@@ -579,9 +578,8 @@ class LMMManager
         if self.matchesNotificationProfiles.count == 0 { self.matchesUpdatesAvailable.accept(false) }
 
         // Messages
-        let currentMessagesProfiles = Set<String>(self.messagesNotificationProfiles.keys)
-        let updatedMessagesProfiles = currentMessagesProfiles.subtracting(self.prevMessagesUpdatedProfiles)
-        self.prevMessagesUpdatedProfiles = currentMessagesProfiles
+        let updatedMessagesProfiles = self.messagesNotificationProfiles.subtracting(self.prevMessagesUpdatedProfiles)
+        self.prevMessagesUpdatedProfiles = self.messagesNotificationProfiles
         
         if updatedMessagesProfiles.count > 0 {
             // Single profile case
@@ -590,7 +588,7 @@ class LMMManager
             self.messagesUpdatesAvailable.accept(true)
         }
         
-        if currentMessagesProfiles.count == 0 { self.messagesUpdatesAvailable.accept(false) }
+        if messagesNotificationProfiles.count == 0 { self.messagesUpdatesAvailable.accept(false) }
     }
     
     fileprivate func resetNotificationProfiles()
