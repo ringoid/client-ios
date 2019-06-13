@@ -155,12 +155,15 @@ class MainLMMContainerViewController: BaseViewController
             
             let countStr = "\(count)"
             self.notSeenLikesYouLabel.text = countStr
-            self.notSeenLikesYouWidthConstraint.constant = (countStr as NSString).boundingRect(
+            
+            var counterWidth =  (countStr as NSString).boundingRect(
                 with: CGSize(width: 300.0, height: 14.0),
                 options: .usesLineFragmentOrigin,
                 attributes: [.font: self.notSeenLikesYouLabel.font],
                 context: nil
                 ).width  + 7.0
+            counterWidth = counterWidth > 16.0 ? counterWidth : 16.0
+            self.notSeenLikesYouWidthConstraint.constant = counterWidth
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenMatchesCount.subscribe(onNext: { [weak self] count in
@@ -170,12 +173,15 @@ class MainLMMContainerViewController: BaseViewController
             
             let countStr = "\(count)"
             self.notSeenMatchesLabel.text = countStr
-            self.notSeenMatchesWidthConstraint.constant = (countStr as NSString).boundingRect(
+            
+            var counterWidth = (countStr as NSString).boundingRect(
                 with: CGSize(width: 300.0, height: 14.0),
                 options: .usesLineFragmentOrigin,
                 attributes: [.font: self.notSeenMatchesLabel.font],
                 context: nil
                 ).width + 7.0
+            counterWidth = counterWidth > 16.0 ? counterWidth : 16.0
+            self.notSeenMatchesWidthConstraint.constant = counterWidth
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenMessagesCount.subscribe(onNext: { [weak self] count in
@@ -185,12 +191,15 @@ class MainLMMContainerViewController: BaseViewController
             
             let countStr = "\(count)"
             self.notSeenMessagesLabel.text = countStr
-            self.notSeenMessagesWidthConstraint.constant = (countStr as NSString).boundingRect(
+            
+            var counterWidth = (countStr as NSString).boundingRect(
                 with: CGSize(width: 300.0, height: 14.0),
                 options: .usesLineFragmentOrigin,
                 attributes: [.font: self.notSeenMessagesLabel.font],
                 context: nil
                 ).width + 7.0
+            counterWidth = counterWidth > 16.0 ? counterWidth : 16.0
+            self.notSeenMessagesWidthConstraint.constant = counterWidth
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
