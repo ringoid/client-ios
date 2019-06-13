@@ -213,7 +213,7 @@ class DBService
                 profile.messages.append(objectsIn: messages)
                 self.updateOrder(Array(profile.messages[0..<notSentMessagesCount]))
                 
-                profile.notSeen = true
+                profile.notSeen = count != profile.messages.count
                 self.checkObjectsForUpdates([profile])
             }
         }
