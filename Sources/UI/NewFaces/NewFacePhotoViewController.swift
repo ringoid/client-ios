@@ -92,7 +92,8 @@ class NewFacePhotoViewController: UIViewController
         
         self.input?.actionsManager.startViewAction(
             actionProfile,
-            photo: actionPhoto
+            photo: actionPhoto,
+            sourceType: self.input?.sourceType ?? .whoLikedMe
         )
     }
     
@@ -190,7 +191,8 @@ class NewFacePhotoViewController: UIViewController
         
         self.input?.actionsManager.startViewAction(
             profile,
-            photo: photo
+            photo: photo,
+            sourceType: self.input.sourceType
         )
     }
     

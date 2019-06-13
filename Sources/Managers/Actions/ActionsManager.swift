@@ -35,7 +35,7 @@ class ActionsManager
     let lastActionDate: BehaviorRelay<Date?> = BehaviorRelay<Date?>(value: nil)
     let isInternetAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     let isLikedSomeone: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
-    let viewingProfiles: BehaviorRelay<Set<String>> = BehaviorRelay<Set<String>>(value: [])
+    let lmmViewingProfiles: BehaviorRelay<Set<String>> = BehaviorRelay<Set<String>>(value: [])
     
     var notCommitedMessagesCount: Int {
         return (self.queue + self.sendingActions).filter({ $0.type == ActionType.message.rawValue }).count
@@ -160,7 +160,7 @@ class ActionsManager
     {
         self.stopViewAction(profile, photo: photo, sourceType: source)
         self.add(.like(likeCount: 1), profile: profile, photo: photo, source: source)
-        self.startViewAction(profile, photo: photo)
+        self.startViewAction(profile, photo: photo, sourceType: source)
         self.commit()
         
         AnalyticsManager.shared.send(.liked(source.rawValue))
@@ -190,7 +190,7 @@ class ActionsManager
     {
         self.stopViewAction(profile, photo: photo, sourceType: source)
         self.add(.unlike, profile: profile, photo: photo, source: source)
-        self.startViewAction(profile, photo: photo)
+        self.startViewAction(profile, photo: photo, sourceType: source)
         self.commit()
         
         AnalyticsManager.shared.send(.unliked(source.rawValue))
@@ -210,7 +210,7 @@ class ActionsManager
         self.db.blockProfile(profile.id)
         self.stopViewAction(profile, photo: photo, sourceType: source)
         self.add(.block(reason: reason), profile: profile, photo: photo, source: source)
-        self.startViewAction(profile, photo: photo)
+        self.startViewAction(profile, photo: photo, sourceType: source)
         self.commit()
     }
     
@@ -218,7 +218,7 @@ class ActionsManager
     {
         self.stopViewChatAction(profile, photo: photo, sourceType: source)
         self.add(.message(text: text), profile: profile, photo: photo, source: source)
-        self.startViewChatAction(profile, photo: photo)
+        self.startViewChatAction(profile, photo: photo, sourceType: source)
         self.commit()
         
         AnalyticsManager.shared.send(.messaged(source.rawValue))
@@ -232,16 +232,18 @@ class ActionsManager
         }
     }
     
-    func startViewAction(_ profile: ActionProfile, photo: ActionPhoto)
+    func startViewAction(_ profile: ActionProfile, photo: ActionPhoto, sourceType: SourceFeedType)
     {
         guard viewActionsMap[photo.id] == nil else { return }
         
         self.viewActionsMap[photo.id] = Date()
         self.viewMap[profile.id] = true
         
-        var profiles = self.viewingProfiles.value
+        guard sourceType == .whoLikedMe || sourceType == .matches || sourceType == .messages else { return }
+        
+        var profiles = self.lmmViewingProfiles.value
         profiles.insert(profile.id)
-        self.viewingProfiles.accept(profiles)
+        self.lmmViewingProfiles.accept(profiles)
     }
     
     func stopViewAction(_ profile: ActionProfile, photo: ActionPhoto, sourceType: SourceFeedType)
@@ -255,13 +257,23 @@ class ActionsManager
         self.add(.view(viewCount: 1, viewTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
         
         self.db.markProfileAsSeen(profile.id)
+        
+        var profiles = self.lmmViewingProfiles.value
+        profiles.remove(profile.id)
+        self.lmmViewingProfiles.accept(profiles)
     }
     
-    func startViewChatAction(_ profile: ActionProfile, photo: ActionPhoto)
+    func startViewChatAction(_ profile: ActionProfile, photo: ActionPhoto, sourceType: SourceFeedType)
     {
         guard viewActionsMap[photo.id] == nil else { return }
         
         self.viewActionsMap[photo.id] = Date()
+        
+        guard sourceType == .whoLikedMe || sourceType == .matches || sourceType == .messages else { return }
+        
+        var profiles = self.lmmViewingProfiles.value
+        profiles.insert(profile.id)
+        self.lmmViewingProfiles.accept(profiles)
     }
     
     func stopViewChatAction(_ profile: ActionProfile, photo: ActionPhoto, sourceType: SourceFeedType)
@@ -274,9 +286,9 @@ class ActionsManager
         let interval = Date().timeIntervalSince(date) * 1000.0
         self.add(FeedAction.viewChat(viewChatCount: 1, viewChatTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
         
-        var profiles = self.viewingProfiles.value
+        var profiles = self.lmmViewingProfiles.value
         profiles.remove(profile.id)
-        self.viewingProfiles.accept(profiles)
+        self.lmmViewingProfiles.accept(profiles)
     }
     
     func inqueueStoredActions()

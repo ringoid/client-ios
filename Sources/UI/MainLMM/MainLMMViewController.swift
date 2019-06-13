@@ -500,7 +500,7 @@ class MainLMMViewController: BaseViewController
             let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first {
             
             self.input.actionsManager.stopViewAction(actionProfile, photo: actionPhoto, sourceType: self.type.value.sourceType())
-            self.input.actionsManager.startViewChatAction(actionProfile, photo: actionPhoto)
+            self.input.actionsManager.startViewChatAction(actionProfile, photo: actionPhoto, sourceType: self.type.value.sourceType())
         }
         
         let vc = ChatViewController.create()
@@ -531,7 +531,7 @@ class MainLMMViewController: BaseViewController
         if let actionProfile = profile.actionInstance(),
             let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first {
             self.input.actionsManager.stopViewChatAction(actionProfile, photo: actionPhoto, sourceType: self.type.value.sourceType())
-            self.input.actionsManager.startViewAction(actionProfile, photo: actionPhoto)
+            self.input.actionsManager.startViewAction(actionProfile, photo: actionPhoto, sourceType: self.type.value.sourceType())
         }
         profileVC?.showNotChatControls()
         

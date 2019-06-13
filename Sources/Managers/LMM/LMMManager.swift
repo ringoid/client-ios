@@ -417,7 +417,7 @@ class LMMManager
                 
                 if self.isMessageNotificationAlreadyProcessed(profileId) { break }
                 if self.messagesNotificationProfiles.contains(profileId) { break }
-                if self.actionsManager.viewingProfiles.value.contains(profileId) { break }
+                if self.actionsManager.lmmViewingProfiles.value.contains(profileId) { break }
                 
                 self.likesYouNotificationProfiles.remove(profileId)
                 self.matchesNotificationProfiles.remove(profileId)
@@ -478,7 +478,7 @@ class LMMManager
         
         // Actions
         
-        self.actionsManager.viewingProfiles.subscribe(onNext: { [weak self] profiles in
+        self.actionsManager.lmmViewingProfiles.subscribe(onNext: { [weak self] profiles in
             guard let `self` = self else { return }
             
             self.likesYouNotificationProfiles.subtract(profiles)
