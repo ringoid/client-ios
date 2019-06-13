@@ -266,7 +266,7 @@ class LMMManager
                                     resolution: self.deviceService.photoResolution,
                                     lastActionDate: self.actionsManager.lastActionDate.value).subscribe(onNext: { [weak self] chatUpdate in
                                         
-                                        self?.updateLocalProfile(profileId, remoteMessages: chatUpdate.messages)
+                                        self?.updateLocalProfile(profileId, update: chatUpdate)
                                         
                                         guard chatUpdate.pullAgainAfter > 0 else { return }
                                         
@@ -517,10 +517,10 @@ class LMMManager
         }).disposed(by: self.disposeBag)
     }
     
-    fileprivate func updateLocalProfile(_ id: String, remoteMessages: [ApiMessage])
+    fileprivate func updateLocalProfile(_ id: String, update: ApiChatUpdate)
     {
         var localOrderPosition: Int = 0
-        let updatedMessages = remoteMessages.map({ message -> Message in
+        let updatedMessages = update.messages.map({ message -> Message in
             let localMessage = Message()
             localMessage.wasYouSender = message.wasYouSender
             localMessage.text = message.text
@@ -530,7 +530,13 @@ class LMMManager
             return localMessage
         })
         
-        self.db.lmmProfileUpdate(id, messages: updatedMessages, notSentMessagesCount: self.actionsManager.notCommitedMessagesCount)
+        self.db.lmmProfileUpdate(id,
+                                 messages: updatedMessages,
+                                 notSentMessagesCount: self.actionsManager.notCommitedMessagesCount,
+                                 status: update.status?.onlineStatus() ?? .unknown,
+                                 statusText: update.lastOnlineText ?? "unknown",
+                                 distanceText: update.distanceText ?? "unknown"
+        )
     }
     
     fileprivate func updateProfilesPrevState(_ avoidEmptyFeeds: Bool)
