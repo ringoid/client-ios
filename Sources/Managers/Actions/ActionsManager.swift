@@ -35,7 +35,7 @@ class ActionsManager
     let lastActionDate: BehaviorRelay<Date?> = BehaviorRelay<Date?>(value: nil)
     let isInternetAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     let isLikedSomeone: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
-    let viewedProfiles: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
+    let viewingProfiles: BehaviorRelay<Set<String>> = BehaviorRelay<Set<String>>(value: [])
     
     var notCommitedMessagesCount: Int {
         return (self.queue + self.sendingActions).filter({ $0.type == ActionType.message.rawValue }).count
@@ -239,7 +239,9 @@ class ActionsManager
         self.viewActionsMap[photo.id] = Date()
         self.viewMap[profile.id] = true
         
-        self.viewedProfiles.accept(profile.id)
+        var profiles = self.viewingProfiles.value
+        profiles.insert(profile.id)
+        self.viewingProfiles.accept(profiles)
     }
     
     func stopViewAction(_ profile: ActionProfile, photo: ActionPhoto, sourceType: SourceFeedType)
@@ -271,7 +273,10 @@ class ActionsManager
         
         let interval = Date().timeIntervalSince(date) * 1000.0
         self.add(FeedAction.viewChat(viewChatCount: 1, viewChatTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
-        self.viewedProfiles.accept(profile.id)
+        
+        var profiles = self.viewingProfiles.value
+        profiles.remove(profile.id)
+        self.viewingProfiles.accept(profiles)
     }
     
     func inqueueStoredActions()
