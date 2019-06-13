@@ -127,7 +127,9 @@ class LMMManager
         return self.messages.asObservable().map { profiles -> Int in
             let notSeenProfiles = profiles.filter({ $0.notSeen && $0.id != self.apiService.customerId.value })
             
-            return notSeenProfiles.filter({ !self.prevNotSeenMessages.contains($0.id) }).count
+            let updatedMessages = notSeenProfiles.filter({ !self.prevNotSeenMessages.contains($0.id) })
+            
+            return Set<String>(updatedMessages.map({ $0.id })).count
         }
     }
     
