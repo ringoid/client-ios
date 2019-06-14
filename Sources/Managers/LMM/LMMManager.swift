@@ -404,6 +404,7 @@ class LMMManager
                 self.likesYouNotificationProfiles.insert(profileId)
                 let notSeenCount = self.likesYou.value.notSeenCount + self.likesYouNotificationProfiles.count
                 self.notSeenLikesYouCount.accept(notSeenCount)
+                self.prevNotSeenInbox.append(profileId)
                 
                 break
                 
@@ -412,6 +413,7 @@ class LMMManager
                 self.matchesNotificationProfiles.insert(profileId)
                 let notSeenCount = self.matches.value.notSeenCount + self.matchesNotificationProfiles.count
                 self.notSeenMatchesCount.accept(notSeenCount)
+                self.prevNotSeenMatches.append(profileId)
                 break
                 
             case .messages:
@@ -421,6 +423,7 @@ class LMMManager
                 if self.messagesNotificationProfiles.contains(profileId) { break }
                 
                 self.db.updateSeen(profileId, isSeen: false)
+                self.prevNotSeenMessages.append(profileId)
                 
                 if self.actionsManager.lmmViewingProfiles.value.contains(profileId) { break }
                 
