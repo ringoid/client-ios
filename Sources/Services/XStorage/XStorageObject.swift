@@ -78,3 +78,24 @@ extension Array: XStorageObject where Element == String
         return (from as? String)?.components(separatedBy: CharacterSet(charactersIn: ","))
     }
 }
+
+extension Set: XStorageObject where Element == String
+{
+    func storableObject() -> Any
+    {
+        return self.reduce(into:"", { (currentResult, element) in
+            if currentResult.count != 0 {
+                currentResult += "," + element
+            } else {
+                currentResult += element
+            }
+        })
+    }
+    
+    static func create(_ from: Any) -> Set<String>?
+    {
+        guard let components = (from as? String)?.components(separatedBy: CharacterSet(charactersIn: ",")) else { return nil }
+        
+        return Set<String>(components)
+    }
+}

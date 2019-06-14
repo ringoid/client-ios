@@ -101,7 +101,7 @@ class LMMManager
     
     // Incoming counters
     
-    fileprivate var prevNotSeenLikes: [String] = []
+    fileprivate var prevNotSeenLikes: Set<String> = []
     var incomingLikesYouCount: Observable<Int>
     {
         return self.likesYou.asObservable().map { profiles -> Int in
@@ -111,7 +111,7 @@ class LMMManager
         }
     }
     
-    fileprivate var prevNotSeenMatches: [String] = []
+    fileprivate var prevNotSeenMatches: Set<String> = []
     var incomingMatches: Observable<Int>
     {
         return self.matches.asObservable().map { profiles -> Int in
@@ -121,7 +121,7 @@ class LMMManager
         }
     }
     
-    fileprivate var prevNotSeenMessages: [String] = []
+    fileprivate var prevNotSeenMessages: Set<String> = []
     var incomingMessages: Observable<Int>
     {
         return self.messages.asObservable().map { profiles -> Int in
@@ -404,7 +404,7 @@ class LMMManager
                 self.likesYouNotificationProfiles.insert(profileId)
                 let notSeenCount = self.likesYou.value.notSeenCount + self.likesYouNotificationProfiles.count
                 self.notSeenLikesYouCount.accept(notSeenCount)
-                self.prevNotSeenInbox.append(profileId)
+                self.prevNotSeenLikes.insert(profileId)
                 
                 break
                 
@@ -413,7 +413,7 @@ class LMMManager
                 self.matchesNotificationProfiles.insert(profileId)
                 let notSeenCount = self.matches.value.notSeenCount + self.matchesNotificationProfiles.count
                 self.notSeenMatchesCount.accept(notSeenCount)
-                self.prevNotSeenMatches.append(profileId)
+                self.prevNotSeenMatches.insert(profileId)
                 break
                 
             case .messages:
@@ -423,7 +423,7 @@ class LMMManager
                 if self.messagesNotificationProfiles.contains(profileId) { break }
                 
                 self.db.updateSeen(profileId, isSeen: false)
-                self.prevNotSeenMessages.append(profileId)
+                self.prevNotSeenMessages.insert(profileId)
                 
                 if self.actionsManager.lmmViewingProfiles.value.contains(profileId) { break }
                 
@@ -507,15 +507,15 @@ class LMMManager
     fileprivate func loadPrevState()
     {
         self.storage.object("prevNotSeenLikes").subscribe( onSuccess: { obj in
-            self.prevNotSeenLikes = Array<String>.create(obj) ?? []
+            self.prevNotSeenLikes = Set<String>.create(obj) ?? []
         }).disposed(by: self.disposeBag)
         
         self.storage.object("prevNotSeenMatches").subscribe( onSuccess: { obj in
-            self.prevNotSeenMatches = Array<String>.create(obj) ?? []
+            self.prevNotSeenMatches = Set<String>.create(obj) ?? []
         }).disposed(by: self.disposeBag)
         
         self.storage.object("prevNotSeenMessages").subscribe( onSuccess: { obj in
-            self.prevNotSeenMessages = Array<String>.create(obj) ?? []
+            self.prevNotSeenMessages = Set<String>.create(obj) ?? []
         }).disposed(by: self.disposeBag)
         
         self.storage.object("prevNotSeenInbox").subscribe( onSuccess: { obj in
@@ -547,13 +547,13 @@ class LMMManager
     
     fileprivate func updateProfilesPrevState(_ avoidEmptyFeeds: Bool)
     {
-        let notSeenLikes = self.likesYou.value.filter({ $0.notSeen }).compactMap({ $0.id })
+        let notSeenLikes = Set<String>(self.likesYou.value.filter({ $0.notSeen }).compactMap({ $0.id }))
         if notSeenLikes.count > 0 || !avoidEmptyFeeds { self.prevNotSeenLikes = notSeenLikes }
         
-        let notSeenMatches = self.matches.value.filter({ $0.notSeen }).compactMap({ $0.id })
+        let notSeenMatches = Set<String>(self.matches.value.filter({ $0.notSeen }).compactMap({ $0.id }))
         if notSeenMatches.count > 0 || !avoidEmptyFeeds { self.prevNotSeenMatches = notSeenMatches }
         
-        let notSeenMessages = self.messages.value.filter({ $0.notSeen }).compactMap({ $0.id })
+        let notSeenMessages = Set<String>(self.messages.value.filter({ $0.notSeen }).compactMap({ $0.id }))
         if notSeenMessages.count > 0 || !avoidEmptyFeeds { self.prevNotSeenMessages = notSeenMessages }
         
         let notSeenInbox = self.inbox.value.filter({ $0.notSeen }).compactMap({ $0.id })
