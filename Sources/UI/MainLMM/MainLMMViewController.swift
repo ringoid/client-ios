@@ -99,6 +99,7 @@ class MainLMMViewController: BaseViewController
         
         self.isTabSwitched = true
         self.updateFeed(true)
+        self.checkForUpdates()
     }
     
     override func updateTheme()
