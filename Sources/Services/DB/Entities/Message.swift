@@ -12,6 +12,7 @@ class Message: DBServiceObject
 {    
     @objc dynamic var wasYouSender: Bool = false
     @objc dynamic var text: String!
+    @objc dynamic var isSent: Bool = false
 }
 
 extension Message
@@ -21,6 +22,7 @@ extension Message
         let message = Message()
         message.wasYouSender = self.wasYouSender
         message.text = self.text
+        message.isSent = self.isSent
         
         if self.realm?.isInWriteTransaction == true {
             self.realm?.add(message)

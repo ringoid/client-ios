@@ -532,14 +532,14 @@ class LMMManager
             localMessage.wasYouSender = message.wasYouSender
             localMessage.text = message.text
             localMessage.orderPosition = localOrderPosition
+            localMessage.isSent = true
             localOrderPosition += 1
             
             return localMessage
         })
         
         self.db.lmmProfileUpdate(id,
-                                 messages: updatedMessages,
-                                 notSentMessagesCount: self.actionsManager.notCommitedMessagesCount,
+                                 messages: updatedMessages,                                 
                                  status: update.status?.onlineStatus() ?? .unknown,
                                  statusText: update.lastOnlineText ?? "unknown",
                                  distanceText: update.distanceText ?? "unknown"
@@ -643,6 +643,7 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
             localMessage.wasYouSender = message.wasYouSender
             localMessage.text = message.text
             localMessage.orderPosition = localOrderPosition
+            localMessage.isSent = true
             localOrderPosition += 1
             
             return localMessage

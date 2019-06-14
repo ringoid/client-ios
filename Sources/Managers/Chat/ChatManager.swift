@@ -32,6 +32,7 @@ class ChatManager
         let message = Message()
         message.text = text
         message.wasYouSender = true
+        message.isSent = false
         
         self.db.lmmDuplicates(profile.id).subscribe(onSuccess: { profiles in
             profiles.forEach {

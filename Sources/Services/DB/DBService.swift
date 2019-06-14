@@ -40,7 +40,7 @@ class DBService
     
     init()
     {
-        let version: UInt64 = 6
+        let version: UInt64 = 7
         let config = Realm.Configuration(schemaVersion: version, migrationBlock: { (migration, oldVersion) in
             if oldVersion < 4 {
                 migration.enumerateObjects(ofType: Photo.className(), { (_, newObject) in
@@ -70,6 +70,12 @@ class DBService
                 
                 migration.enumerateObjects(ofType: LMMProfile.className(), { (_, newObject) in
                     newObject?["age"] = 0
+                })
+            }
+            
+            if oldVersion < 7 {
+                migration.enumerateObjects(ofType: Message.className(), { (_, newObject) in
+                    newObject?["isSent"] = true                    
                 })
             }
         }, deleteRealmIfMigrationNeeded: false)
@@ -200,7 +206,7 @@ class DBService
     
     // MARK: - Feeds
     
-    func lmmProfileUpdate(_ id: String, messages: [Message], notSentMessagesCount: Int, status: OnlineStatus, statusText: String, distanceText: String)
+    func lmmProfileUpdate(_ id: String, messages: [Message], status: OnlineStatus, statusText: String, distanceText: String)
     {
         let predicate = NSPredicate(format: "type = %d AND isDeleted = false AND id = %@", FeedType.messages.rawValue, id)
         if  let profile = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition").first {
@@ -210,9 +216,10 @@ class DBService
                 profile.distanceText = distanceText
                 
                 let count = profile.messages.count
-                profile.messages.removeFirst(count - notSentMessagesCount)
+                let notSentMessages = profile.messages.filter({ !$0.isSent })
+                profile.messages.removeAll()
                 profile.messages.append(objectsIn: messages)
-                self.updateOrder(Array(profile.messages[0..<notSentMessagesCount]))
+                self.updateOrder(Array(notSentMessages))
                 
                 profile.notSeen = (count != profile.messages.count) ? true : profile.notSeen
                 self.checkObjectsForUpdates([profile])
