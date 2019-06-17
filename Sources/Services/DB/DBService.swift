@@ -218,7 +218,7 @@ class DBService
                 let count = profile.messages.count
                 profile.messages.removeFirst(count - notSentMessagesCount)
                 profile.messages.append(objectsIn: messages)
-                self.updateOrder(Array(profile.messages[0..<notSentMessagesCount]))
+                self.updateOrder(Array(profile.messages[0..<notSentMessagesCount]), silently: true)
                 
                 profile.notSeen = (count != profile.messages.count) ? true : profile.notSeen
                 self.checkObjectsForUpdates([profile])
@@ -263,12 +263,12 @@ class DBService
         }
     }
     
-    func updateOrder(_ object: DBServiceObject)
+    func updateOrder(_ object: DBServiceObject, silently: Bool)
     {
-        self.updateOrder([object])
+        self.updateOrder([object], silently: silently)
     }
     
-    func updateOrder(_ objects: [DBServiceObject])
+    func updateOrder(_ objects: [DBServiceObject], silently: Bool)
     {
         if self.realm.isInWriteTransaction {
             objects.forEach { object in
@@ -276,7 +276,9 @@ class DBService
                 self.currentOrderPosition += 1
             }
  
-            self.checkObjectsForUpdates(objects)
+            if !silently {
+                self.checkObjectsForUpdates(objects)
+            }
         } else {
             try? self.realm.write {
                 objects.forEach { object in
@@ -284,7 +286,9 @@ class DBService
                     self.currentOrderPosition += 1
                 }
                 
-                self.checkObjectsForUpdates(objects)
+                if !silently {
+                    self.checkObjectsForUpdates(objects)
+                }
             }
         }
     }

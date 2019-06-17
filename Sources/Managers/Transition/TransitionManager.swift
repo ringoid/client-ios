@@ -46,20 +46,19 @@ class TransitionManager
         guard let from = FeedType(rawValue: profile.type) else { return }
         
         switch to {
-        case .likesYou: self.db.updateOrder(lmm.likesYou.value)
-        case .matches: self.db.updateOrder(lmm.matches.value)
-        case .messages: self.db.updateOrder(lmm.messages.value)
-        case .inbox: self.db.updateOrder(lmm.inbox.value)
-        case .sent: self.db.updateOrder(lmm.sent.value)
+        case .likesYou: self.db.updateOrder(lmm.likesYou.value, silently: true)
+        case .matches: self.db.updateOrder(lmm.matches.value, silently: true)
+        case .messages: self.db.updateOrder(lmm.messages.value, silently: true)
+        case .inbox: self.db.updateOrder(lmm.inbox.value, silently: true)
+        case .sent: self.db.updateOrder(lmm.sent.value, silently: true)
         }
         
         // Manually transitioned profile is already seen
         self.lmm.markAsTransitioned(profile.id, in: to)
         
-        profile.write({ [weak self] obj in
+        profile.write({ obj in
             (obj as? LMMProfile)?.type = to.feedType().rawValue
             (obj as? LMMProfile)?.notSeen = false
-            self?.db.checkObjectsForUpdates([obj!])
         })
         
         switch to {
@@ -84,11 +83,11 @@ class TransitionManager
         guard let from = FeedType(rawValue: profile.type) else { return }
         
         switch to {
-        case .likesYou: self.db.updateOrder(lmm.likesYou.value)
-        case .matches: self.db.updateOrder(lmm.matches.value)
-        case .messages: self.db.updateOrder(lmm.messages.value)
-        case .inbox: self.db.updateOrder(lmm.inbox.value)
-        case .sent: self.db.updateOrder(lmm.sent.value)
+        case .likesYou: self.db.updateOrder(lmm.likesYou.value, silently: true)
+        case .matches: self.db.updateOrder(lmm.matches.value, silently: true)
+        case .messages: self.db.updateOrder(lmm.messages.value, silently: true)
+        case .inbox: self.db.updateOrder(lmm.inbox.value, silently: true)
+        case .sent: self.db.updateOrder(lmm.sent.value, silently: true)
         }
         
         let duplicate = profile.duplicate()

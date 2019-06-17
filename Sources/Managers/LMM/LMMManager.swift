@@ -240,8 +240,8 @@ class LMMManager
     func topOrder(_ profileId: String, type: LMMType)
     {
         switch type {
-        case .inbox: self.db.updateOrder(self.inbox.value.filter({ $0.id != profileId }))
-        case .sent: self.db.updateOrder(self.sent.value.filter({ $0.id != profileId }))
+        case .inbox: self.db.updateOrder(self.inbox.value.filter({ $0.id != profileId }), silently: false)
+        case .sent: self.db.updateOrder(self.sent.value.filter({ $0.id != profileId }), silently: false)
             
             
         default: return

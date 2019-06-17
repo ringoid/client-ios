@@ -83,7 +83,7 @@ class UserProfileManager
         return self.db.add(photo).asObservable().map({ _ -> UserPhoto in
             let updatedPhotos = self.photos.value
             updatedPhotos[0..<(updatedPhotos.count - 1)].forEach({ oldPhoto in
-                self.db.updateOrder(oldPhoto)
+                self.db.updateOrder(oldPhoto, silently: false)
             })
             
             return photo
@@ -229,7 +229,7 @@ class UserProfileManager
                         localPhoto.isBlocked = remoteApiPhoto.isBlocked
                         localPhoto.id = remoteApiPhoto.id
                         localPhoto.setFilepath(FilePath(filename: remoteApiPhoto.url, type: .url))
-                        self.db.updateOrder(localPhoto)
+                        self.db.updateOrder(localPhoto, silently: false)
                     }
                 }
             }
