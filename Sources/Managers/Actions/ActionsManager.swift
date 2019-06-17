@@ -256,14 +256,8 @@ class ActionsManager
         let interval = Date().timeIntervalSince(date) * 1000.0
         self.add(.view(viewCount: 1, viewTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
         
-        if sourceType == .whoLikedMe {
-            self.db.updateSeen(profile.id, isSeen: true)
-        }
-        
-        if sourceType == .matches {
-            self.db.updateSeen(profile.id, isSeen: profile.messagesCount == 0)
-        }
-        
+        self.db.updateSeen(profile.id, isSeen: true)
+
         var profiles = self.lmmViewingProfiles.value
         profiles.remove(profile.id)
         self.lmmViewingProfiles.accept(profiles)
@@ -291,6 +285,8 @@ class ActionsManager
         
         let interval = Date().timeIntervalSince(date) * 1000.0
         self.add(FeedAction.viewChat(viewChatCount: 1, viewChatTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
+        
+        self.db.updateRead(profile.id, isRead: true)
         
         var profiles = self.lmmViewingProfiles.value
         profiles.remove(profile.id)

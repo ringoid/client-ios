@@ -14,13 +14,15 @@ fileprivate struct ChatProfileCache
     let id: String
     let messagesCount: Int
     let notSeen: Bool
+    let notRead: Bool
     
     static func create(_ profile: LMMProfile) -> ChatProfileCache
     {
         return ChatProfileCache(
             id: profile.id,
             messagesCount: profile.messages.count,
-            notSeen: profile.notSeen
+            notSeen: profile.notSeen,
+            notRead: profile.notRead
         )
     }
 }
@@ -188,14 +190,15 @@ class LMMManager
             
             (matches + messages).forEach { remoteProfile in
                 guard remoteProfile.messages.count != 0 else { return }
-                remoteProfile.notSeen = true
+                
+                remoteProfile.notRead = true
                 
                 chatCache.forEach { localChatProfile in
                     if localChatProfile.id == remoteProfile.id {
                         if localChatProfile.messagesCount == remoteProfile.messages.count {
-                            remoteProfile.notSeen = localChatProfile.notSeen
+                            remoteProfile.notRead = localChatProfile.notRead
                         } else {
-                            remoteProfile.notSeen = true
+                            remoteProfile.notRead = true
                         }
                     }
                 }
@@ -439,8 +442,8 @@ class LMMManager
                 
                 if self.isMessageNotificationAlreadyProcessed(profileId) { break }
                 if self.messagesNotificationProfiles.contains(profileId) { break }
-                
-                self.db.updateSeen(profileId, isSeen: false)
+                                
+                self.db.updateRead(profileId, isRead: false)
                 self.prevNotSeenMessages.insert(profileId)
                 
                 if self.actionsManager.lmmViewingProfiles.value.contains(profileId) { break }
@@ -681,6 +684,7 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         localProfile.id = profile.id
         localProfile.age = profile.age
         localProfile.notSeen = profile.notSeen
+        localProfile.notRead = true
         localProfile.defaultSortingOrderPosition = profile.defaultSortingOrderPosition
         localProfile.photos.append(objectsIn: localPhotos)
         localProfile.messages.append(objectsIn: localMessages)

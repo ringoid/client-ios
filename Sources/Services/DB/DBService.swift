@@ -77,6 +77,10 @@ class DBService
                 migration.enumerateObjects(ofType: ActionProfile.className(), { (_, newObject) in
                     newObject?["messagesCount"] = 0
                 })
+                
+                migration.enumerateObjects(ofType: LMMProfile.className(), { (_, newObject) in
+                    newObject?["notRead"] = false
+                })
             }            
         }, deleteRealmIfMigrationNeeded: false)
         
@@ -152,6 +156,18 @@ class DBService
         }
     }
     
+    func updateRead(_ id: String, isRead: Bool)
+    {
+        let predicate = NSPredicate(format: "id = %@ AND isDeleted = false", id)
+        guard let lmmProfile = self.realm.objects(LMMProfile.self).filter(predicate).first else { return }
+        guard lmmProfile.notRead != !isRead else { return }
+        
+        self.write {
+            lmmProfile.notRead = !isRead
+            self.checkObjectsForUpdates([lmmProfile])
+        }
+    }
+    
     func forceMark(_ profile: LMMProfile, isSeen: Bool)
     {
         if self.realm.isInWriteTransaction {
@@ -220,7 +236,7 @@ class DBService
                 profile.messages.append(objectsIn: messages)
                 self.updateOrder(Array(profile.messages[0..<notSentMessagesCount]), silently: true)
                 
-                profile.notSeen = (count != profile.messages.count) ? true : profile.notSeen
+                profile.notRead = (count != profile.messages.count) ? true : profile.notRead
                 self.checkObjectsForUpdates([profile])
             }
         }
