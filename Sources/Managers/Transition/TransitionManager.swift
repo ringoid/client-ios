@@ -66,6 +66,9 @@ class TransitionManager
         
         guard from != to.feedType() else { return }
         
+        // Manually transitioned profile is already seen
+        self.lmm.markAsSeen(profile.id, in: to)
+        
         switch from {
         case .likesYou, .matches, .messages: self.db.forceUpdateLMM()
         case .inbox, .sent: self.db.forceUpdateMessages()
@@ -102,6 +105,9 @@ class TransitionManager
         }
         
         guard from != to.feedType() else { return }
+        
+        // Manually transitioned profile is already seen
+        self.lmm.markAsSeen(profile.id, in: to)
         
         switch from {
         case .likesYou, .matches, .messages: self.db.forceUpdateLMM()

@@ -279,6 +279,17 @@ class LMMManager
         }).disposed(by: self.disposeBag)
     }
     
+    func markAsSeen(_ profileId: String, in feed: LMMType)
+    {
+        switch feed {
+        case .likesYou: self.prevNotSeenLikes.insert(profileId)
+        case .matches: self.prevNotSeenMatches.insert(profileId)
+        case .messages: self.prevNotSeenMessages.insert(profileId)
+            
+        default: return
+        }
+    }
+    
     func storeFeedsState()
     {
         self.updateProfilesPrevState(false)
