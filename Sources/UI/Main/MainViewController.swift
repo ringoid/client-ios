@@ -469,6 +469,8 @@ class MainViewController: BaseViewController
                 break
                 
             case .matches:
+                guard self.input.lmmManager.matches.value.map({ $0.id }).contains(profileId) else { break }
+                
                 self.preshownMatchesCount += 1
                 self.effectsView.animateMatches(1, from: position)
                 break

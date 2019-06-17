@@ -105,9 +105,10 @@ class LMMManager
     var incomingLikesYouCount: Observable<Int>
     {
         return self.likesYou.asObservable().map { profiles -> Int in
-            let notSeenProfiles = profiles.filter({ $0.notSeen && $0.id != self.apiService.customerId.value })
-
-            return notSeenProfiles.filter({ !self.prevNotSeenLikes.contains($0.id) }).count
+            var notSeenProfiles = profiles.nonSeenIDs()
+            notSeenProfiles.remove(self.apiService.customerId.value)
+            
+            return notSeenProfiles.subtracting(self.prevNotSeenLikes).count            
         }
     }
     
@@ -115,9 +116,10 @@ class LMMManager
     var incomingMatches: Observable<Int>
     {
         return self.matches.asObservable().map { profiles -> Int in
-            let notSeenProfiles = profiles.filter({ $0.notSeen && $0.id != self.apiService.customerId.value })
+            var notSeenProfiles = profiles.nonSeenIDs()
+            notSeenProfiles.remove(self.apiService.customerId.value)
 
-            return notSeenProfiles.filter({ !self.prevNotSeenMatches.contains($0.id) }).count
+            return notSeenProfiles.subtracting(self.prevNotSeenMatches).count
         }
     }
     
@@ -125,21 +127,10 @@ class LMMManager
     var incomingMessages: Observable<Int>
     {
         return self.messages.asObservable().map { profiles -> Int in
-            let notSeenProfiles = profiles.filter({ $0.notSeen && $0.id != self.apiService.customerId.value })
-            
-            let updatedMessages = notSeenProfiles.filter({ !self.prevNotSeenMessages.contains($0.id) })
-            
-            return Set<String>(updatedMessages.map({ $0.id })).count
-        }
-    }
-    
-    fileprivate var prevNotSeenInbox: [String] = []
-    var incomingInbox: Observable<Int>
-    {
-        return self.inbox.asObservable().map { profiles -> Int in
-            let notSeenProfiles = profiles.filter({ $0.notSeen })
-            
-            return notSeenProfiles.filter({ !self.prevNotSeenInbox.contains($0.id) }).count
+            var notSeenProfiles = profiles.nonSeenIDs()
+            notSeenProfiles.remove(self.apiService.customerId.value)
+
+            return notSeenProfiles.subtracting(self.prevNotSeenMessages).count
         }
     }
     
@@ -307,7 +298,6 @@ class LMMManager
         self.storage.remove("prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("prevNotSeenHellos").subscribe().disposed(by: self.disposeBag)
-        self.storage.remove("prevNotSeenInbox").subscribe().disposed(by: self.disposeBag)
         
         self.storage.remove("likesYouNotificationProfiles").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("matchesNotificationProfiles").subscribe().disposed(by: self.disposeBag)
@@ -323,7 +313,6 @@ class LMMManager
         self.prevNotSeenLikes.removeAll()
         self.prevNotSeenMatches.removeAll()
         self.prevNotSeenMessages.removeAll()
-        self.prevNotSeenInbox.removeAll()
         
         self.likesYou.accept([])
         self.matches.accept([])
@@ -547,10 +536,6 @@ class LMMManager
             self.prevNotSeenMessages = Set<String>.create(obj) ?? []
         }).disposed(by: self.disposeBag)
         
-        self.storage.object("prevNotSeenInbox").subscribe( onSuccess: { obj in
-            self.prevNotSeenInbox = Array<String>.create(obj) ?? []
-        }).disposed(by: self.disposeBag)
-        
         // Notifications state
         
         self.storage.object("likesYouNotificationProfiles").subscribe(onSuccess: { obj in
@@ -603,13 +588,9 @@ class LMMManager
         let notSeenMessages = Set<String>(self.messages.value.filter({ $0.notSeen }).compactMap({ $0.id }))
         if notSeenMessages.count > 0 || !avoidEmptyFeeds { self.prevNotSeenMessages = notSeenMessages }
         
-        let notSeenInbox = self.inbox.value.filter({ $0.notSeen }).compactMap({ $0.id })
-        if notSeenInbox.count > 0 || !avoidEmptyFeeds { self.prevNotSeenInbox = notSeenInbox }
-        
         self.storage.store(self.prevNotSeenLikes, key: "prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
         self.storage.store(self.prevNotSeenMatches, key: "prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
         self.storage.store(self.prevNotSeenMessages, key: "prevNotSeenMessages").subscribe().disposed(by: self.disposeBag)
-        self.storage.store(self.prevNotSeenInbox, key: "prevNotSeenInbox").subscribe().disposed(by: self.disposeBag)
     }
     
     fileprivate func updateLmmCount()

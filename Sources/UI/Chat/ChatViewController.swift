@@ -131,7 +131,7 @@ class ChatViewController: BaseViewController
             return
         }
         
-        let shouldCloseAutomatically = self.singleMessageSources.contains(self.viewModel!.input.source)
+        let shouldCloseAutomatically = self.singleMessageSources.contains(self.viewModel!.input.source) && self.viewModel?.messages.value.count == 0
         
         self.viewModel?.send(text)
         

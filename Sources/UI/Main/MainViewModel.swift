@@ -60,12 +60,7 @@ class MainViewModel
     {
         return self.input.lmmManager.incomingMessages
     }
-    
-    var incomingInbox: Observable<Int>
-    {
-        return self.input.lmmManager.incomingInbox
-    }
-    
+        
     let isNotSeenProfilesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     let isNotSeenInboxAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     let notSeenProfilesTotalCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
