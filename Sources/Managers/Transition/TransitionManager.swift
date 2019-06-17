@@ -53,6 +53,9 @@ class TransitionManager
         case .sent: self.db.updateOrder(lmm.sent.value)
         }
         
+        // Manually transitioned profile is already seen
+        self.lmm.markAsTransitioned(profile.id, in: to)
+        
         profile.write({ [weak self] obj in
             (obj as? LMMProfile)?.type = to.feedType().rawValue
             (obj as? LMMProfile)?.notSeen = false
@@ -65,9 +68,6 @@ class TransitionManager
         }
         
         guard from != to.feedType() else { return }
-        
-        // Manually transitioned profile is already seen
-        self.lmm.markAsSeen(profile.id, in: to)
         
         switch from {
         case .likesYou, .matches, .messages: self.db.forceUpdateLMM()
@@ -107,7 +107,7 @@ class TransitionManager
         guard from != to.feedType() else { return }
         
         // Manually transitioned profile is already seen
-        self.lmm.markAsSeen(profile.id, in: to)
+        self.lmm.markAsTransitioned(profile.id, in: to)
         
         switch from {
         case .likesYou, .matches, .messages: self.db.forceUpdateLMM()
