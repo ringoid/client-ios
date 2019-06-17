@@ -11,6 +11,7 @@ import RealmSwift
 class ActionProfile: DBServiceObject
 {
     @objc dynamic var id: String!
+    @objc dynamic var messagesCount: Int = 0
     let photos: List<ActionPhoto> = List<ActionPhoto>()
     
     func orderedPhotos() -> [ActionPhoto]
@@ -30,6 +31,7 @@ extension Profile
         let actionProfile = ActionProfile()
         actionProfile.id = self.id
         actionProfile.photos.append(objectsIn: self.photos.map({ $0.actionInstance() }))
+        actionProfile.messagesCount = (self as? LMMProfile)?.messages.count ?? 0
         
         if self.realm?.isInWriteTransaction == true {
             self.realm?.add(actionProfile)

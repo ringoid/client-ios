@@ -40,7 +40,7 @@ class DBService
     
     init()
     {
-        let version: UInt64 = 6
+        let version: UInt64 = 7
         let config = Realm.Configuration(schemaVersion: version, migrationBlock: { (migration, oldVersion) in
             if oldVersion < 4 {
                 migration.enumerateObjects(ofType: Photo.className(), { (_, newObject) in
@@ -72,6 +72,12 @@ class DBService
                     newObject?["age"] = 0
                 })
             }
+            
+            if oldVersion < 7 {
+                migration.enumerateObjects(ofType: ActionProfile.className(), { (_, newObject) in
+                    newObject?["messagesCount"] = 0
+                })
+            }            
         }, deleteRealmIfMigrationNeeded: false)
         
         self.realm = try! Realm(configuration: config)
