@@ -273,8 +273,9 @@ class LMMManager
     func markAsTransitioned(_ profileId: String, in feed: LMMType)
     {
         switch feed {
-        case .matches: self.markNotificationAsProcessed(profileId)
-        
+        case .matches: self.prevNotSeenMatches.insert(profileId)
+        case .messages: self.prevNotSeenMessages.insert(profileId)
+            
         default: return
         }
     }
