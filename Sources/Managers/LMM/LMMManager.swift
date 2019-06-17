@@ -579,13 +579,13 @@ class LMMManager
     
     fileprivate func updateProfilesPrevState(_ avoidEmptyFeeds: Bool)
     {
-        let notSeenLikes = Set<String>(self.likesYou.value.filter({ $0.notSeen }).compactMap({ $0.id }))
+        let notSeenLikes = self.likesYou.value.nonSeenIDs()
         if notSeenLikes.count > 0 || !avoidEmptyFeeds { self.prevNotSeenLikes = notSeenLikes }
         
-        let notSeenMatches = Set<String>(self.matches.value.filter({ $0.notSeen }).compactMap({ $0.id }))
+        let notSeenMatches = self.matches.value.nonSeenIDs()
         if notSeenMatches.count > 0 || !avoidEmptyFeeds { self.prevNotSeenMatches = notSeenMatches }
         
-        let notSeenMessages = Set<String>(self.messages.value.filter({ $0.notSeen }).compactMap({ $0.id }))
+        let notSeenMessages = self.messages.value.nonSeenIDs()
         if notSeenMessages.count > 0 || !avoidEmptyFeeds { self.prevNotSeenMessages = notSeenMessages }
         
         self.storage.store(self.prevNotSeenLikes, key: "prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
