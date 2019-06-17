@@ -55,6 +55,7 @@ class AppManager
     
     func onTerminate()
     {
+        self.lmmManager.storeFeedsState()
         self.defaultStorage.sync()
     }
     

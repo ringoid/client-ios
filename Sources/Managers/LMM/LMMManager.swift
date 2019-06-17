@@ -279,12 +279,31 @@ class LMMManager
         }).disposed(by: self.disposeBag)
     }
     
+    func storeFeedsState()
+    {
+        self.updateProfilesPrevState(false)
+        
+        self.storage.store(self.likesYouNotificationProfiles, key: "likesYouNotificationProfiles")
+            .subscribe().disposed(by: self.disposeBag)
+        self.storage.store(self.matchesNotificationProfiles, key: "matchesNotificationProfiles")
+            .subscribe().disposed(by: self.disposeBag)
+        self.storage.store(self.messagesNotificationProfiles, key: "messagesNotificationProfiles")
+            .subscribe().disposed(by: self.disposeBag)
+        self.storage.store(self.processedNotificationsProfiles, key: "processedNotificationsProfiles")
+            .subscribe().disposed(by: self.disposeBag)
+    }
+    
     func reset()
     {
         self.storage.remove("prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("prevNotSeenHellos").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("prevNotSeenInbox").subscribe().disposed(by: self.disposeBag)
+        
+        self.storage.remove("likesYouNotificationProfiles").subscribe().disposed(by: self.disposeBag)
+        self.storage.remove("matchesNotificationProfiles").subscribe().disposed(by: self.disposeBag)
+        self.storage.remove("messagesNotificationProfiles").subscribe().disposed(by: self.disposeBag)
+        self.storage.remove("processedNotificationsProfiles").subscribe().disposed(by: self.disposeBag)
         
         self.likesYouCached.removeAll()
         self.matchesCached.removeAll()
@@ -521,6 +540,24 @@ class LMMManager
         
         self.storage.object("prevNotSeenInbox").subscribe( onSuccess: { obj in
             self.prevNotSeenInbox = Array<String>.create(obj) ?? []
+        }).disposed(by: self.disposeBag)
+        
+        // Notifications state
+        
+        self.storage.object("likesYouNotificationProfiles").subscribe(onSuccess: { obj in
+            self.likesYouNotificationProfiles = Set<String>.create(obj) ?? []
+        }).disposed(by: self.disposeBag)
+        
+        self.storage.object("matchesNotificationProfiles").subscribe(onSuccess: { obj in
+            self.matchesNotificationProfiles = Set<String>.create(obj) ?? []
+        }).disposed(by: self.disposeBag)
+        
+        self.storage.object("messagesNotificationProfiles").subscribe(onSuccess: { obj in
+            self.messagesNotificationProfiles = Set<String>.create(obj) ?? []
+        }).disposed(by: self.disposeBag)
+        
+        self.storage.object("processedNotificationsProfiles").subscribe(onSuccess: { obj in
+            self.processedNotificationsProfiles = Set<String>.create(obj) ?? []
         }).disposed(by: self.disposeBag)
     }
     
