@@ -202,7 +202,7 @@ class DBService
     
     func lmmProfileUpdate(_ id: String, messages: [Message], notSentMessagesCount: Int, status: OnlineStatus, statusText: String, distanceText: String)
     {
-        let predicate = NSPredicate(format: "type = %d AND isDeleted = false AND id = %@", FeedType.messages.rawValue, id)
+        let predicate = NSPredicate(format: "isDeleted = false AND id = %@", id)
         if  let profile = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition").first {
             self.write {
                 profile.status = status.rawValue

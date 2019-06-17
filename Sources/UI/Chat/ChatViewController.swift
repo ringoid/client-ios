@@ -111,11 +111,7 @@ class ChatViewController: BaseViewController
     
     @IBAction func onClose()
     {
-        self.viewModel?.markAsRead()
-        ChatViewController.messagesCache[self.input.profile.id] = self.messageTextView.text
-        
-        self.messageTextView.resignFirstResponder()
-        self.input.onClose?()
+        self.closeChat(false)
     }
     
     @IBAction func onSend()
@@ -140,15 +136,7 @@ class ChatViewController: BaseViewController
         self.viewModel?.send(text)
         
         guard !shouldCloseAutomatically else {
-            switch self.input.source {
-            case .matches:
-                self.input.transition.move(input.profile, to: .messages)
-                break
-
-            default: break
-            }
-            
-            self.onClose()
+            self.closeChat(true)
             
             return
         }
@@ -266,6 +254,25 @@ class ChatViewController: BaseViewController
             
             chatCell.topVisibleBorderDistance = tableBottomOffset - cellBottomOffset + self.view.safeAreaInsets.top
         }
+    }
+    
+    func closeChat(_ shouldMoveToMessages: Bool)
+    {
+        if self.viewModel?.messages.value.count != 0 || shouldMoveToMessages {
+            switch self.input.source {
+            case .matches:
+                self.input.transition.move(input.profile, to: .messages)
+                break
+                
+            default: break
+            }
+        }
+        
+        self.viewModel?.markAsRead()
+        ChatViewController.messagesCache[self.input.profile.id] = self.messageTextView.text
+        
+        self.messageTextView.resignFirstResponder()
+        self.input.onClose?()
     }
 }
 
