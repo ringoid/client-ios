@@ -347,6 +347,11 @@ class LMMManager
         self.messagesNotificationProfiles.remove(profileId)
     }
     
+    func isMessageProfileNotRead(_ profileId: String) -> Bool
+    {
+        return (self.matches.value + self.messages.value).filter({ $0.notRead }).map({ $0.id }).contains(profileId)
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()

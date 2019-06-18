@@ -459,7 +459,7 @@ class MainViewController: BaseViewController
             guard ChatViewController.openedProfileId != profileId else { return }
             
             let size = self.likeBtn.bounds.size
-            let center = self.likeBtn.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), to: nil)
+            let center = self.likeBtn.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), to: self.view)
             let position = CGPoint(x: 44.0, y: center.y + 16.0)
             
             switch remoteFeed {
@@ -476,8 +476,9 @@ class MainViewController: BaseViewController
                 break
                 
             case .messages:
-                if ChatViewController.openedProfileId == profileId { break }
+                
                 if self.input.lmmManager.isMessageNotificationAlreadyProcessed(profileId) { break }
+                if self.input.lmmManager.isMessageProfileNotRead(profileId) { break }
                 
                 self.input.lmmManager.markNotificationAsProcessed(profileId)
                                 
