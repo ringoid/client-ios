@@ -476,9 +476,7 @@ class MainViewController: BaseViewController
                 break
                 
             case .messages:
-                
-                if self.input.lmmManager.isMessageNotificationAlreadyProcessed(profileId) { break }
-                if self.input.lmmManager.isMessageProfileNotRead(profileId) { break }
+                if self.input.lmmManager.isMessageNotificationAlreadyProcessed(profileId) { break }                
                 
                 self.input.lmmManager.markNotificationAsProcessed(profileId)
                                 
