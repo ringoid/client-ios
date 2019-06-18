@@ -74,10 +74,6 @@ class DBService
             }
             
             if oldVersion < 7 {
-                migration.enumerateObjects(ofType: ActionProfile.className(), { (_, newObject) in
-                    newObject?["messagesCount"] = 0
-                })
-                
                 migration.enumerateObjects(ofType: LMMProfile.className(), { (_, newObject) in
                     newObject?["notRead"] = false
                 })

@@ -344,6 +344,7 @@ class LMMManager
     func removeNotificationFromProcessed(_ profileId: String)
     {
         self.processedNotificationsProfiles.remove(profileId)
+        self.messagesNotificationProfiles.remove(profileId)
     }
     
     // MARK: -
@@ -442,15 +443,20 @@ class LMMManager
             case .matches:
                 self.likesYouNotificationProfiles.remove(profileId)
                 self.matchesNotificationProfiles.insert(profileId)
+                
                 let notSeenCount = self.matches.value.notSeenIDs().union(self.matchesNotificationProfiles).count
                 self.notSeenMatchesCount.accept(notSeenCount)
+                
+                let notSeenLikesCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
+                self.notSeenLikesYouCount.accept(notSeenLikesCount)
+                
                 self.prevNotSeenMatches.insert(profileId)
                 break
                 
             case .messages:
                 self.updateChat(profileId)
                 
-                if self.isMessageNotificationAlreadyProcessed(profileId) { break }
+                if ChatViewController.openedProfileId == profileId { break }
                 if self.messagesNotificationProfiles.contains(profileId) { break }
                                 
                 self.db.updateRead(profileId, isRead: false)
@@ -466,6 +472,12 @@ class LMMManager
                     .union(self.matches.value.notReadIDs())
                     .union(self.messagesNotificationProfiles).count
                 self.notSeenMessagesCount.accept(notSeenCount)
+                
+                let notSeenMatchesCount = self.matches.value.notSeenIDs().union(self.matchesNotificationProfiles).count
+                self.notSeenMatchesCount.accept(notSeenMatchesCount)
+                
+                let notSeenLikesCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
+                self.notSeenLikesYouCount.accept(notSeenLikesCount)
                 
                 break
                 
