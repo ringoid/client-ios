@@ -179,7 +179,7 @@ class LMMManager
         
         return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
             
-            //self!.resetNotificationProfiles()
+            self!.resetNotificationProfiles()
             self!.purge()
             
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)
@@ -317,6 +317,8 @@ class LMMManager
         self.prevNotSeenLikes.removeAll()
         self.prevNotSeenMatches.removeAll()
         self.prevNotReadMessages.removeAll()
+        
+        self.processedNotificationsProfiles.removeAll()
         
         self.likesYou.accept([])
         self.matches.accept([])
@@ -676,7 +678,6 @@ class LMMManager
         self.prevLikesYouUpdatedProfiles.removeAll()
         self.prevMatchesUpdatedProfiles.removeAll()
         self.prevMessagesUpdatedProfiles.removeAll()
-        self.processedNotificationsProfiles.removeAll()
         self.notificationsProfilesCount.accept(0)
         self.lmmCount.accept(0)
     }
