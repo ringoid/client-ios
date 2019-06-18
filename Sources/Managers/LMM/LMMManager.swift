@@ -191,7 +191,7 @@ class LMMManager
             (matches + messages).forEach { remoteProfile in
                 guard remoteProfile.messages.count != 0 else { return }
                 
-                remoteProfile.notRead = false
+                remoteProfile.notRead = remoteProfile.messages.count > 0
                 
                 chatCache.forEach { localChatProfile in
                     if localChatProfile.id == remoteProfile.id {
@@ -710,7 +710,7 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         localProfile.id = profile.id
         localProfile.age = profile.age
         localProfile.notSeen = profile.notSeen
-        localProfile.notRead = false
+        localProfile.notRead = profile.messages.count > 0
         localProfile.defaultSortingOrderPosition = profile.defaultSortingOrderPosition
         localProfile.photos.append(objectsIn: localPhotos)
         localProfile.messages.append(objectsIn: localMessages)
