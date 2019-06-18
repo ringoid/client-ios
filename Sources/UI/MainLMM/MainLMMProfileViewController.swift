@@ -408,6 +408,8 @@ class MainLMMProfileViewController: UIViewController
     
     fileprivate func applyStatuses()
     {
+        guard !self.input.profile.isInvalidated else { return }
+        
         if let status = OnlineStatus(rawValue: self.input.profile.status), status != .unknown {
             self.statusView.backgroundColor = status.color()
             self.statusView.isHidden = false
