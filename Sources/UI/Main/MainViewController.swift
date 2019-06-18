@@ -445,7 +445,7 @@ class MainViewController: BaseViewController
             }
             
             let size = self.likeBtn.bounds.size
-            let center = self.likeBtn.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), to: nil)
+            let center = self.likeBtn.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), to: self.view)
             let position = CGPoint(x: 44.0, y: center.y + 16.0)
             self.effectsView.animateMessages(countToShow, from: position)
         }).disposed(by: self.disposeBag)
@@ -466,24 +466,29 @@ class MainViewController: BaseViewController
             case .likesYou:
                 self.preshownLikesCount += 1
                 self.effectsView.animateLikes(1, from: position)
+                
                 break
                 
             case .matches:
-                guard !self.input.lmmManager.matches.value.map({ $0.id }).contains(profileId) else { break }
+                guard !self.input.lmmManager.matches.value.map({ $0.id }).contains(profileId) else { return }
                 
                 self.preshownMatchesCount += 1
                 self.effectsView.animateMatches(1, from: position)
+                
                 break
                 
             case .messages:
-                if self.input.lmmManager.isMessageNotificationAlreadyProcessed(profileId) { break }                
+                if self.viewModel?.isMessageProcessed(profileId) == true { return }
                 
-                self.input.lmmManager.markNotificationAsProcessed(profileId)
-                                
                 self.preshownMessagesCount += 1
                 self.effectsView.animateMessages(1, from: position)
-                break
                 
+                DispatchQueue.main.async {
+                    self.viewModel?.markMessageAsProcessed(profileId)
+                }
+                
+                break
+ 
             default: return
             }
             

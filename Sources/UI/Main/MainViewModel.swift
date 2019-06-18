@@ -102,6 +102,16 @@ class MainViewModel
         self.input.navigationManager.mainItem.accept(.profile)
     }
     
+    func isMessageProcessed(_ profileId: String) -> Bool
+    {
+        return self.input.lmmManager.isMessageNotificationAlreadyProcessed(profileId)
+    }
+    
+    func markMessageAsProcessed(_ profileId: String)
+    {
+        self.input.lmmManager.markNotificationAsProcessed(profileId)
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
