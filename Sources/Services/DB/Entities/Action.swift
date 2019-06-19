@@ -109,20 +109,24 @@ extension Action
 
 extension Action
 {
-    func messageData() -> String?
+    func messageData() -> (id: String, text: String)?
     {
         guard self.type == ActionType.message.rawValue else { return nil }
         guard let jsonData = self.extraData, let jsonDict = (try? JSONSerialization.jsonObject(with: jsonData)) as? [String: Any] else { return nil }
         guard let text = jsonDict["text"] as? String else { return nil }
+        guard let id = jsonDict["id"] as? String else { return nil }
         
-        return text
+        return (id, text)
     }
     
-    func setMessageData(_ text: String)
+    func setMessageData(_ id: String, text: String)
     {
         guard self.type == ActionType.message.rawValue else { return }
         
-        self.extraData = try? JSONSerialization.data(withJSONObject: ["text": text])
+        self.extraData = try? JSONSerialization.data(withJSONObject: [
+            "id": id,
+            "text": text
+            ])
     }
 }
 

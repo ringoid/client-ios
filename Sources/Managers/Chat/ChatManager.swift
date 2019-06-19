@@ -29,8 +29,10 @@ class ChatManager
     {
         self.scenario.checkFirstMessageSent(source)
         
+        let messageId = UUID().uuidString
+        
         let message = Message()
-        message.id = UUID().uuidString
+        message.id = messageId
         message.text = text
         message.wasYouSender = true
         message.timestamp = Date()
@@ -53,7 +55,8 @@ class ChatManager
         guard let actionProfile = profile.actionInstance(), let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first else { return }
         
         self.actionsManager.messageActionProtected(
-            text,
+            messageId,
+            text: text,
             profile: actionProfile,
             photo: actionPhoto,
             source: source

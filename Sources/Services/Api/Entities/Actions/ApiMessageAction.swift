@@ -10,10 +10,12 @@ import Foundation
 
 class ApiMessageAction: ApiAction
 {
+    var id: String = ""
     var text: String = ""
     
     override func json() -> [String: Any] {
         var jsonObj = super.json()
+        jsonObj["id"] = self.id
         jsonObj["text"] = self.text
         
         return jsonObj

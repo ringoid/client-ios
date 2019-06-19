@@ -26,7 +26,7 @@ enum FeedAction
     case view(viewCount: Int, viewTime: Int, actionTime: Date)
     case block(reason: BlockReason)
     case unlike
-    case message(text: String)
+    case message(id: String, text: String)
     case viewChat(viewChatCount: Int, viewChatTime: Int, actionTime: Date)
 }
 
@@ -214,10 +214,10 @@ class ActionsManager
         self.commit()
     }
     
-    func messageActionProtected(_ text: String, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
+    func messageActionProtected(_ id: String, text: String, profile: ActionProfile, photo: ActionPhoto, source: SourceFeedType)
     {
         self.stopViewChatAction(profile, photo: photo, sourceType: source)
-        self.add(.message(text: text), profile: profile, photo: photo, source: source)
+        self.add(.message(id: id, text: text), profile: profile, photo: photo, source: source)
         self.startViewChatAction(profile, photo: photo, sourceType: source)
         self.commit()
         
@@ -440,7 +440,9 @@ extension Action {
             
         case .message:
             let messageAction = ApiMessageAction()
-            messageAction.text = self.messageData() ?? ""
+            let messageData = self.messageData()
+            messageAction.id = messageData?.id ?? ""
+            messageAction.text = messageData?.text ?? ""
             apiAction = messageAction
             break
             
@@ -501,9 +503,9 @@ extension FeedAction
             createdAction.type = ActionType.unlike.rawValue
             break
             
-        case .message(let text):
+        case .message(let id, let text):
             createdAction.type = ActionType.message.rawValue
-            createdAction.setMessageData(text)
+            createdAction.setMessageData(id, text: text)
             break
             
         case .viewChat(let viewChatCount, let viewChatTime, let actionTime):
