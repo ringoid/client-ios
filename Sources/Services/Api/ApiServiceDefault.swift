@@ -84,6 +84,72 @@ class ApiServiceDefault: ApiService
         }        
     }
     
+    func login(_ email: String)  -> Observable<String>
+    {
+        let params: [String: Any] = [
+            "email": email
+        ]
+        
+        let trace = Performance.startTrace(name: "auth/login_with_email")
+        
+        return self.request(.post, path: "auth/login_with_email", jsonBody: params, trace: trace).flatMap({ jsonDict -> Observable<String> in
+            guard let authSessionId = jsonDict["authSessionId"] as? String else {
+                let error = createError("ApiService: authSessionId field is missings", type: .hidden)
+                
+                return .error(error)
+            }
+            
+            return .just(authSessionId)
+        })
+    }
+    
+    func change(_ email: String)  -> Observable<String>
+    {
+        var params: [String: Any] = [
+            "email": email
+        ]
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        let trace = Performance.startTrace(name: "auth/change_email")
+        
+        return self.request(.post, path: "auth/change_email", jsonBody: params, trace: trace).flatMap({ jsonDict -> Observable<String> in
+            guard let authSessionId = jsonDict["authSessionId"] as? String else {
+                let error = createError("ApiService: authSessionId field is missings", type: .hidden)
+                
+                return .error(error)
+            }
+            
+            return .just(authSessionId)
+        })
+    }
+    
+    func verify(_ email: String, authSessionId: String, code: String) -> Observable<Void>
+    {
+        let params: [String: Any] = [
+            "email": email,
+            "authSessionId": authSessionId,
+            "pinCode": code
+        ]
+        
+        let trace = Performance.startTrace(name: "auth/verify_email")
+        
+        return self.request(.post, path: "auth/verify_email", jsonBody: params, trace: trace).flatMap { [weak self] jsonDict -> Observable<Void> in
+            guard let accessToken = jsonDict["accessToken"] as? String else {
+                let error = createError("Verify email: no token in response", type: .hidden)
+                
+                return .error(error)
+            }
+
+            self?.accessToken = accessToken
+            self?.storeCredentials()
+            
+            return .just(())
+        }
+    }
+    
     func logout() -> Observable<Void>
     {
         var params: [String: Any] = [:]

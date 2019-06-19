@@ -39,6 +39,9 @@ protocol ApiService
     var error: BehaviorRelay<ApiError> { get }
     
     func createProfile(year: Int, sex: Sex, privateKey: String?, referralCode: String?) -> Observable<Void>
+    func login(_ email: String)  -> Observable<String>
+    func change(_ email: String)  -> Observable<String>
+    func verify(_ email: String, authSessionId: String, code: String) -> Observable<Void>
     func logout() -> Observable<Void>
     func reset()
     func claim(_ code: String) -> Observable<Void>
