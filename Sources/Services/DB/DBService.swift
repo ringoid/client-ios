@@ -77,6 +77,11 @@ class DBService
                 migration.enumerateObjects(ofType: LMMProfile.className(), { (_, newObject) in
                     newObject?["notRead"] = false
                 })
+                
+                migration.enumerateObjects(ofType: Message.className(), { (_, newObject) in
+                    newObject?["id"] = UUID().uuidString
+                    newObject?["timestamp"] = Date()
+                })
             }            
         }, deleteRealmIfMigrationNeeded: false)
         

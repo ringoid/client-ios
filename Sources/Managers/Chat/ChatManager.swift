@@ -30,8 +30,10 @@ class ChatManager
         self.scenario.checkFirstMessageSent(source)
         
         let message = Message()
+        message.id = UUID().uuidString
         message.text = text
         message.wasYouSender = true
+        message.timestamp = Date()
         
         self.db.lmmDuplicates(profile.id).subscribe(onSuccess: { profiles in
             profiles.forEach {

@@ -9,9 +9,11 @@
 import RealmSwift
 
 class Message: DBServiceObject
-{    
+{
+    @objc dynamic var id: String!
     @objc dynamic var wasYouSender: Bool = false
     @objc dynamic var text: String!
+    @objc dynamic var timestamp: Date!
 }
 
 extension Message
@@ -19,8 +21,10 @@ extension Message
     func duplicate() -> Message
     {
         let message = Message()
+        message.id = self.id
         message.wasYouSender = self.wasYouSender
         message.text = self.text
+        message.timestamp = self.timestamp
         
         if self.realm?.isInWriteTransaction == true {
             self.realm?.add(message)

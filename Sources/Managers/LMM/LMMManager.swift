@@ -597,8 +597,10 @@ class LMMManager
         var localOrderPosition: Int = 0
         let updatedMessages = update.messages.map({ message -> Message in
             let localMessage = Message()
+            localMessage.id = message.id
             localMessage.wasYouSender = message.wasYouSender
             localMessage.text = message.text
+            localMessage.timestamp = message.timestamp
             localMessage.orderPosition = localOrderPosition
             localOrderPosition += 1
             
@@ -703,8 +705,10 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         
         let localMessages = profile.messages.map({ message -> Message in
             let localMessage = Message()
+            localMessage.id = message.id
             localMessage.wasYouSender = message.wasYouSender
             localMessage.text = message.text
+            localMessage.timestamp = message.timestamp
             localMessage.orderPosition = localOrderPosition
             localOrderPosition += 1
             

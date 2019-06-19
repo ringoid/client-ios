@@ -10,17 +10,26 @@ import Foundation
 
 struct ApiMessage
 {
+    let id: String
     let wasYouSender: Bool
     let text: String
+    let timestamp: Date
 }
 
 extension ApiMessage
 {
     static func parse(_ dict: [String: Any]) -> ApiMessage?
     {
+        guard let id = dict["msgId"] as? String else { return nil }
         guard let wasYouSender = dict["wasYouSender"] as? Bool else { return nil }
         guard let text = dict["text"] as? String else { return nil }
+        guard let unixTimestamp = dict["msgAt"] as? Int else { return nil }
         
-        return ApiMessage(wasYouSender: wasYouSender, text: text)
+        return ApiMessage(
+            id: id,
+            wasYouSender: wasYouSender,
+            text: text,
+            timestamp: Date(timeIntervalSince1970: Double(unixTimestamp) / 1000.0)
+        )
     }
 }
