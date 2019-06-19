@@ -223,7 +223,7 @@ class DBService
     
     // MARK: - Feeds
     
-    func lmmProfileUpdate(_ id: String, messages: [Message], notSentMessagesCount: Int, status: OnlineStatus, statusText: String, distanceText: String)
+    func lmmProfileUpdate(_ id: String, messages: [Message], status: OnlineStatus, statusText: String, distanceText: String)
     {
         let predicate = NSPredicate(format: "isDeleted = false AND id = %@", id)
         if  let profile = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition").first {
@@ -232,12 +232,20 @@ class DBService
                 profile.statusText = statusText
                 profile.distanceText = distanceText
                 
-                let count = profile.messages.count
-                profile.messages.removeFirst(count - notSentMessagesCount)
+                let localCount = profile.messages.count
+
+                var notSentMessages: [Message] = []
+
+                if let lastTimestamp = messages.last?.timestamp {
+                    notSentMessages = profile.messages.filter({ $0.timestamp > lastTimestamp })
+                }
+
+                profile.messages.removeAll()
                 profile.messages.append(objectsIn: messages)
-                self.updateOrder(Array(profile.messages[0..<notSentMessagesCount]), silently: true)
-                
-                profile.notRead = (count != profile.messages.count) ? true : profile.notRead
+                profile.messages.append(objectsIn: notSentMessages)
+                self.updateOrder(Array(profile.messages), silently: true)
+  
+                profile.notRead = (localCount != profile.messages.count) ? true : profile.notRead
                 self.checkObjectsForUpdates([profile])
             }
         }

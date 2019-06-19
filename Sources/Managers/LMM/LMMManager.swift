@@ -609,7 +609,6 @@ class LMMManager
         
         self.db.lmmProfileUpdate(id,
                                  messages: updatedMessages,
-                                 notSentMessagesCount: self.actionsManager.notCommitedMessagesCount,
                                  status: update.status?.onlineStatus() ?? .unknown,
                                  statusText: update.lastOnlineText ?? "unknown",
                                  distanceText: update.distanceText ?? "unknown"
