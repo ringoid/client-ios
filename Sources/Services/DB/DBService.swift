@@ -232,21 +232,21 @@ class DBService
                 profile.statusText = statusText
                 profile.distanceText = distanceText
                 
-                let localCount = profile.messages.count
-
-                var notSentMessages: [Message] = []
-
-                if let lastTimestamp = messages.last?.timestamp {
-                    notSentMessages = profile.messages.filter({ $0.timestamp > lastTimestamp })
+                defer {
+                    self.checkObjectsForUpdates([profile])
                 }
-
+                
+                guard let lastTimestamp = messages.last?.timestamp else { return }
+                
+                let localCount = profile.messages.count
+                let notSentMessages = profile.messages.filter({ $0.timestamp > lastTimestamp })
+                
                 profile.messages.removeAll()
                 profile.messages.append(objectsIn: messages)
                 profile.messages.append(objectsIn: notSentMessages)
                 self.updateOrder(Array(profile.messages), silently: true)
   
-                profile.notRead = (localCount != profile.messages.count) ? true : profile.notRead
-                self.checkObjectsForUpdates([profile])
+                profile.notRead = (localCount != profile.messages.count) ? true : profile.notRead                
             }
         }
     }
