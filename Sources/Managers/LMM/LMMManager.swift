@@ -260,15 +260,15 @@ class LMMManager
             
             self.apiService.getChat(profileId,
                                     resolution: self.deviceService.photoResolution,
-                                    lastActionDate: self.actionsManager.lastActionDate.value).subscribe(onNext: { [weak self] chatUpdate in
+                                    lastActionDate: self.actionsManager.lastActionDate.value).subscribe(onNext: { [weak self] chatUpdate, pullAfterInterval in
                                         
                                         self?.updateLocalProfile(profileId, update: chatUpdate)
                                         
-                                        guard chatUpdate.pullAgainAfter > 0 else { return }
+                                        guard pullAfterInterval > 0 else { return }
                                         
-                                        let interval = Double(chatUpdate.pullAgainAfter) / 1000.0
+                                        let interval = Double(pullAfterInterval) / 1000.0
                                         guard interval > 0.5 else { return }
-                                                                                
+                                        
                                         self?.chatUpdateInterval.accept(interval)
                                     }).disposed(by: self.disposeBag)
             

@@ -326,7 +326,7 @@ class ApiServiceDefault: ApiService
         }
     }
     
-    func getChat(_ profileId: String, resolution: String, lastActionDate: Date?) -> Observable<ApiChatUpdate>
+    func getChat(_ profileId: String, resolution: String, lastActionDate: Date?) -> Observable<(ApiChatUpdate, Int)>
     {
         var params: [String: Any] = [
             "resolution": resolution,
@@ -341,7 +341,7 @@ class ApiServiceDefault: ApiService
         let trace = Performance.startTrace(name: "feeds/chat")
         
         return self.requestGET(path: "feeds/chat", params: params, trace: trace)
-            .flatMap { jsonDict -> Observable<ApiChatUpdate> in
+            .flatMap { jsonDict -> Observable<(ApiChatUpdate, Int)> in
                 guard let chatDict = jsonDict["chat"] as? [String: Any] else {
                     let error = createError("ApiService: wrong chat data format", type: .hidden)
                     
@@ -354,7 +354,9 @@ class ApiServiceDefault: ApiService
                     return .error(error)
                 }
                 
-                return .just(chatUpdate)
+                let pullAgainAfter: Int = jsonDict["pullAgainAfter"] as? Int ?? 0
+                
+                return .just((chatUpdate, pullAgainAfter))
         }
     }
     
