@@ -77,15 +77,21 @@ class NotificationsServiceDefault: NSObject, NotificationService
             
             DispatchQueue.main.async {
                 UIApplication.shared.registerForRemoteNotifications()
-                self?.isGranted.accept(granted)
             }
         }
     }
     
     func update()
     {
-        UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in            
-            self?.isGranted.accept(settings.authorizationStatus == .authorized)
+        UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
+            let state = settings.authorizationStatus == .authorized
+            self?.isGranted.accept(state)
+            
+            guard state else { return }
+            
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
         }
     }
     

@@ -144,7 +144,7 @@ class SettingsManager
             self.storage.store(state, key: "is_first_launch").subscribe().disposed(by: self.disposeBag)
         }).disposed(by: self.disposeBag)
         
-        self.notifications.isGranted.asObservable().subscribe(onNext: { [weak self] state in
+        self.notifications.isGranted.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             log("Permissions changed - pushes access granted: \(state)", level: .low)
             self?.updateRemoteSettings()
             self?.updatePushToken()

@@ -49,5 +49,11 @@ class NotificationsManager
         self.api.customerId.asObservable().subscribe(onNext: { [weak self] _ in
             self?.updateFCMToken()
         }).disposed(by: self.disposeBag)
+        
+        self.notifications.isGranted.subscribe(onNext:{ [weak self] state in
+            guard state else { return }
+            
+            self?.updateFCMToken()
+        }).disposed(by: self.disposeBag)
     }
 }
