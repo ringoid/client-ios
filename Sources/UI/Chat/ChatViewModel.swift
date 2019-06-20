@@ -28,8 +28,14 @@ class ChatViewModel
     
     let messages: BehaviorRelay<[Message]> = BehaviorRelay<[Message]>(value: [])
     
-    
     fileprivate let disposeBag: DisposeBag = DisposeBag()
+    fileprivate var updateTimer: Timer?
+    
+    deinit
+    {
+        self.updateTimer?.invalidate()
+        self.updateTimer = nil
+    }
     
     init(_ input: ChatVMInput)
     {
@@ -67,6 +73,17 @@ class ChatViewModel
             guard let updatedProfile = self?.input.profile else { return }
             
             self?.messages.accept(Array(updatedProfile.messages.sorted(byKeyPath: "orderPosition")))
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.chatUpdateInterval.observeOn(MainScheduler.instance).subscribe(onNext:{ [weak self] interval in
+            self?.updateTimer?.invalidate()
+            self?.updateTimer = nil
+            
+            let timer = Timer(timeInterval: interval, repeats: true, block: { _ in
+                self?.updateContent()
+            })
+            RunLoop.main.add(timer, forMode: .common)
+            self?.updateTimer = timer
         }).disposed(by: self.disposeBag)
     }
 }

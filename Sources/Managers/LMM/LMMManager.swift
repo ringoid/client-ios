@@ -46,6 +46,8 @@ class LMMManager
     
     let isFetching: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
+    let chatUpdateInterval: BehaviorRelay<Double> = BehaviorRelay<Double>(value: 5.0)
+    
     fileprivate var likesYouCached: [LMMProfile] = []
     fileprivate var matchesCached: [LMMProfile] = []
     fileprivate var messagesCached: [LMMProfile] = []
@@ -265,9 +267,9 @@ class LMMManager
                                         guard chatUpdate.pullAgainAfter > 0 else { return }
                                         
                                         let interval = Double(chatUpdate.pullAgainAfter) / 1000.0
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + interval, execute: { [weak self] in
-                                            self?.updateChat(profileId)
-                                        })
+                                        guard interval > 0.5 else { return }
+                                                                                
+                                        self?.chatUpdateInterval.accept(interval)
                                     }).disposed(by: self.disposeBag)
             
         }).disposed(by: self.disposeBag)
@@ -557,6 +559,11 @@ class LMMManager
             
             self.updateAvailability()
         }).disposed(by: self.disposeBag)
+        
+        self.chatUpdateInterval.subscribe(onNext: { interval in
+            UserDefaults.standard.set(interval, forKey: "chat_update_interval")
+            UserDefaults.standard.synchronize()
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func loadPrevState()
@@ -590,6 +597,11 @@ class LMMManager
         self.storage.object("processedNotificationsProfiles").subscribe(onSuccess: { obj in
             self.processedNotificationsProfiles = Set<String>.create(obj) ?? []
         }).disposed(by: self.disposeBag)
+        
+        let interval = UserDefaults.standard.double(forKey: "chat_update_interval")
+        if interval >= 0.5 {
+            self.chatUpdateInterval.accept(interval)
+        }
     }
     
     fileprivate func updateLocalProfile(_ id: String, update: ApiChatUpdate)
