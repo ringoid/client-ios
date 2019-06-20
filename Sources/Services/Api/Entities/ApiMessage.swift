@@ -20,7 +20,7 @@ extension ApiMessage
 {
     static func parse(_ dict: [String: Any]) -> ApiMessage?
     {
-        guard let id = dict["msgId"] as? String else { return nil }
+        guard let id = dict["clientMsgId"] as? String else { return nil }
         guard let wasYouSender = dict["wasYouSender"] as? Bool else { return nil }
         guard let text = dict["text"] as? String else { return nil }
         guard let unixTimestamp = dict["msgAt"] as? Int else { return nil }

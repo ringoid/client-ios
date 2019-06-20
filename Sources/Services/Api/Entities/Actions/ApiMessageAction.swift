@@ -15,7 +15,7 @@ class ApiMessageAction: ApiAction
     
     override func json() -> [String: Any] {
         var jsonObj = super.json()
-        jsonObj["id"] = self.id
+        jsonObj["clientMsgId"] = self.id
         jsonObj["text"] = self.text
         
         return jsonObj
