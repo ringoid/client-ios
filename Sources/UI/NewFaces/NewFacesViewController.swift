@@ -42,7 +42,6 @@ class NewFacesViewController: BaseViewController
     @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
     @IBOutlet fileprivate weak var emptyFeedActivityView: UIActivityIndicatorView!
     @IBOutlet fileprivate weak var blockContainerView: UIView!
-    @IBOutlet fileprivate weak var ringoidTitleLabel: UILabel!
     @IBOutlet fileprivate weak var blockPhotoView: UIImageView!
     @IBOutlet fileprivate weak var blockPhotoAspectConstraint: NSLayoutConstraint!
     
@@ -330,13 +329,11 @@ class NewFacesViewController: BaseViewController
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.text = "common_pull_to_refresh".localized()
             self.emptyFeedLabel.isHidden = false
-            self.ringoidTitleLabel.isHidden = true
             break
             
         case .reloading:
             self.emptyFeedActivityView.startAnimating()
             self.emptyFeedLabel.isHidden = true
-            self.ringoidTitleLabel.isHidden = true
             break
             
         case .fetching:
@@ -347,13 +344,11 @@ class NewFacesViewController: BaseViewController
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.text =  self.isTabSwitched ? "common_pull_to_refresh".localized() : "feed_explore_empty_no_data".localized()
             self.emptyFeedLabel.isHidden = false
-            self.ringoidTitleLabel.isHidden = true
             break
             
         case .contentAvailable:
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.isHidden = true
-            self.ringoidTitleLabel.isHidden = false
             break
         }
         

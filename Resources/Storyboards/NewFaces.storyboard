@@ -75,14 +75,6 @@ discover users nearby</string>
                                     <outlet property="delegate" destination="m48-Io-6eu" id="N5r-HP-NWd"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ringoid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyq-7S-asZ">
-                                <rect key="frame" x="150" y="28" width="75.5" height="27.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="1" height="1"/>
-                            </label>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcH-VU-hkW">
                                 <rect key="frame" x="16" y="517" width="84" height="84"/>
                                 <constraints>
@@ -121,7 +113,6 @@ discover users nearby</string>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="DIr-zl-DwV"/>
                             <constraint firstItem="RcH-VU-hkW" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" constant="16" id="M0s-yz-w5X"/>
                             <constraint firstAttribute="bottom" secondItem="f5P-fA-3ZX" secondAttribute="bottom" id="TVP-3o-yBY"/>
-                            <constraint firstItem="lyq-7S-asZ" firstAttribute="top" secondItem="Dzb-Wx-JQu" secondAttribute="top" constant="8" id="U8X-nV-cMW"/>
                             <constraint firstItem="Dzb-Wx-JQu" firstAttribute="trailing" secondItem="f5P-fA-3ZX" secondAttribute="trailing" id="UYa-cj-LJ4"/>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="V4m-wZ-I6w"/>
                             <constraint firstAttribute="bottom" secondItem="Owz-cZ-1Sc" secondAttribute="bottom" id="WOb-4K-jM4"/>
@@ -129,7 +120,6 @@ discover users nearby</string>
                             <constraint firstItem="4Je-db-FTU" firstAttribute="top" secondItem="Dzb-Wx-JQu" secondAttribute="top" constant="37" id="bKq-go-6VW"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="eOj-9V-78m"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="k2s-xp-RvI"/>
-                            <constraint firstItem="lyq-7S-asZ" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="kV7-MA-pfj"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" id="nm8-TI-5VR"/>
                             <constraint firstAttribute="trailing" secondItem="Owz-cZ-1Sc" secondAttribute="trailing" id="sVe-sm-wMe"/>
                             <constraint firstItem="4Je-db-FTU" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" constant="18" id="xmA-gD-zWl"/>
@@ -143,7 +133,6 @@ discover users nearby</string>
                         <outlet property="blockPhotoView" destination="fyV-MR-lVu" id="ZPl-Xu-U01"/>
                         <outlet property="emptyFeedActivityView" destination="Kt8-il-Lh0" id="oCN-Tl-uUi"/>
                         <outlet property="emptyFeedLabel" destination="CGR-G7-fOR" id="XU1-zR-aiG"/>
-                        <outlet property="ringoidTitleLabel" destination="lyq-7S-asZ" id="Qgl-xc-NcF"/>
                         <outlet property="scrollTopBtn" destination="RcH-VU-hkW" id="A6d-nd-dJD"/>
                         <outlet property="tableView" destination="Owz-cZ-1Sc" id="KNv-5u-zds"/>
                         <outlet property="titleLabel" destination="4Je-db-FTU" id="iV1-Tj-RvH"/>
