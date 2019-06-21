@@ -369,6 +369,8 @@
 		57EEB06E22BCED1E005770B3 /* Income.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06C22BCED1E005770B3 /* Income.swift */; };
 		57EEB07022BCEE18005770B3 /* Hair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06F22BCEE18005770B3 /* Hair.swift */; };
 		57EEB07122BCEE18005770B3 /* Hair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06F22BCEE18005770B3 /* Hair.swift */; };
+		57EEB07622BD058D005770B3 /* SettingsProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB07522BD058D005770B3 /* SettingsProfileCell.swift */; };
+		57EEB07722BD058D005770B3 /* SettingsProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB07522BD058D005770B3 /* SettingsProfileCell.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -570,6 +572,7 @@
 		57EEB06922BCECA7005770B3 /* Children.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Children.swift; sourceTree = "<group>"; };
 		57EEB06C22BCED1E005770B3 /* Income.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income.swift; sourceTree = "<group>"; };
 		57EEB06F22BCEE18005770B3 /* Hair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hair.swift; sourceTree = "<group>"; };
+		57EEB07522BD058D005770B3 /* SettingsProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileCell.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1179,6 +1182,7 @@
 				57528C792292E786003F01E3 /* SettingsNotificationsMatchCell.swift */,
 				57528C7C2292E79F003F01E3 /* SettingsNotificationsMessageCell.swift */,
 				57528C7F2292EF29003F01E3 /* SettingsSwitchableCell.swift */,
+				57EEB07522BD058D005770B3 /* SettingsProfileCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1845,6 +1849,7 @@
 				570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */,
 				573663C32271B7810041C5DB /* TransitionManager.swift in Sources */,
 				57B863CA21ECD1DC00B9CC70 /* MainLMMViewModel.swift in Sources */,
+				57EEB07622BD058D005770B3 /* SettingsProfileCell.swift in Sources */,
 				579CD7C321F9A93E00C3AEE3 /* ChatViewModel.swift in Sources */,
 				57585D7221E5055D00038798 /* BaseViewController.swift in Sources */,
 				570D04C321DFA4EF00E0DCFB /* ApiUserPhotoPlaceholder.swift in Sources */,
@@ -2024,6 +2029,7 @@
 				57EE65292216711000246B45 /* ApiPhoto.swift in Sources */,
 				573663C42271B7810041C5DB /* TransitionManager.swift in Sources */,
 				57149D61221AD32D00F636A4 /* SettingsLegalCustomerCell.swift in Sources */,
+				57EEB07722BD058D005770B3 /* SettingsProfileCell.swift in Sources */,
 				57EE652A2216711000246B45 /* FileService.swift in Sources */,
 				57EE652B2216711000246B45 /* ApiServiceConfig.swift in Sources */,
 				57EE652C2216711000246B45 /* MainLMMViewModel.swift in Sources */,

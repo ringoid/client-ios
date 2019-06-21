@@ -58,8 +58,42 @@
                                 <color key="separatorColor" red="0.80392156862745101" green="0.80784313725490198" blue="0.82745098039215681" alpha="0.13219713184931506" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="18" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="push_cell" id="f9e-0a-til" customClass="SettingsNotificationsCell" customModule="Ringoid" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="profile_cell" id="I8J-hr-9x8" userLabel="profile_cell" customClass="SettingsProfileCell" customModule="Ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="375" height="42"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I8J-hr-9x8" id="2ab-dM-NaD">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="42"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_bar_profile_selected" translatesAutoresizingMaskIntoConstraints="NO" id="1N7-G7-iEB">
+                                                    <rect key="frame" x="19" y="9" width="15" height="24"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="NvW-KZ-oct"/>
+                                                        <constraint firstAttribute="width" constant="15" id="VZT-ik-G0C"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKo-0W-hmT">
+                                                    <rect key="frame" x="48" y="11" width="49" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pKo-0W-hmT" firstAttribute="centerY" secondItem="2ab-dM-NaD" secondAttribute="centerY" id="255-0S-o34"/>
+                                                <constraint firstItem="1N7-G7-iEB" firstAttribute="leading" secondItem="2ab-dM-NaD" secondAttribute="leading" constant="19" id="5YP-Fe-fa1"/>
+                                                <constraint firstItem="1N7-G7-iEB" firstAttribute="centerY" secondItem="2ab-dM-NaD" secondAttribute="centerY" id="FPx-7V-jEi"/>
+                                                <constraint firstItem="pKo-0W-hmT" firstAttribute="leading" secondItem="1N7-G7-iEB" secondAttribute="trailing" constant="14" id="vFU-6s-GEW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="pKo-0W-hmT" id="KP2-Ne-Lrx"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="push_cell" id="f9e-0a-til" customClass="SettingsNotificationsCell" customModule="Ringoid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="43" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f9e-0a-til" id="hzJ-0J-f8g">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="42"/>
@@ -83,7 +117,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="theme_cell" id="ysQ-x0-ECu" customClass="SettingsThemeCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="43" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="85" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ysQ-x0-ECu" id="WhX-zx-7gd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
@@ -120,7 +154,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="language_cell" id="vxr-59-AJB" customClass="SettingsLanguageCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="85" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="127" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vxr-59-AJB" id="Pev-CB-uxZ">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="42"/>
@@ -144,7 +178,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="legal_cell" id="5oj-mg-TOM" customClass="SettingsLegalCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="127" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="169" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5oj-mg-TOM" id="ZXn-Yf-0PG">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="42"/>
@@ -168,7 +202,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="support_cell" id="8qe-T1-QBr" customClass="SettingsEmailCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="169" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="211" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8qe-T1-QBr" id="1UN-Vy-TVk">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="42"/>
@@ -192,7 +226,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="suggest_cell" id="rcX-g8-z7d" userLabel="suggest_cell" customClass="SettingsSuggestCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="211" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="253" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rcX-g8-z7d" id="s84-BJ-YJO">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="42"/>
@@ -216,7 +250,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="delete_cell" id="o96-ct-5e4" customClass="SettingsDeleteCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="253" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="295" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o96-ct-5e4" id="dAZ-Bt-t5N">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
@@ -1144,6 +1178,7 @@
     </scenes>
     <resources>
         <image name="common_back" width="11" height="20"/>
+        <image name="main_bar_profile_selected" width="27" height="31"/>
         <image name="settings_delete_account" width="11" height="15"/>
         <image name="settings_moon" width="15" height="15"/>
     </resources>

@@ -22,25 +22,27 @@ fileprivate struct SettingsOption
 
 fileprivate enum SettingsOptionType: Int
 {
-    case push = 0
-    case theme = 1
-    case language = 2
-    case legal = 3
-    case support = 4
-    case suggest = 5
-    case delete = 6
+    case profile = 0
+    case push = 1
+    case theme = 2
+    case language = 3
+    case legal = 4
+    case support = 5
+    case suggest = 6
+    case delete = 7
 }
 
 #else
 
 fileprivate enum SettingsOptionType: Int
 {
-    case push = 0
-    case language = 1
-    case legal = 2
-    case support = 3
-    case suggest = 4
-    case delete = 5
+    case profile = 0
+    case push = 1
+    case language = 2
+    case legal = 3
+    case support = 4
+    case suggest = 5
+    case delete = 6
 }
 
 #endif
@@ -51,6 +53,7 @@ class SettingsViewController: BaseViewController
     
      #if STAGE
     fileprivate let options = [
+        SettingsOption(cellIdentifier: "profile_cell", height: 56.0),
         SettingsOption(cellIdentifier: "push_cell", height: 56.0),
         SettingsOption(cellIdentifier: "theme_cell", height: 56.0),
         SettingsOption(cellIdentifier: "language_cell", height: 56.0),
@@ -61,6 +64,7 @@ class SettingsViewController: BaseViewController
     ]
     #else
     fileprivate let options = [
+        SettingsOption(cellIdentifier: "profile_cell", height: 56.0),
         SettingsOption(cellIdentifier: "push_cell", height: 56.0),
         SettingsOption(cellIdentifier: "language_cell", height: 56.0),
         SettingsOption(cellIdentifier: "legal_cell", height: 56.0),
@@ -182,6 +186,9 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         guard let option = SettingsOptionType(rawValue: indexPath.row) else { return }
         
         switch option {
+        case .profile:
+            break
+            
         case .push:
             self.performSegue(withIdentifier: SegueIds.pushes, sender: nil)
             break
