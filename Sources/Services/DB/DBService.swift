@@ -40,7 +40,7 @@ class DBService
     
     init()
     {
-        let version: UInt64 = 7
+        let version: UInt64 = 8
         let config = Realm.Configuration(schemaVersion: version, migrationBlock: { (migration, oldVersion) in
             if oldVersion < 4 {
                 migration.enumerateObjects(ofType: Photo.className(), { (_, newObject) in
@@ -82,7 +82,29 @@ class DBService
                     newObject?["id"] = UUID().uuidString
                     newObject?["timestamp"] = Date()
                 })
-            }            
+            }
+            
+            if oldVersion < 8 {
+                migration.enumerateObjects(ofType: Profile.className(), { (_, newObject) in
+                    newObject?["property"] = RealmOptional<Int>()
+                    newObject?["transport"] = RealmOptional<Int>()
+                    newObject?["income"] = RealmOptional<Int>()
+                    newObject?["height"] = RealmOptional<Int>()
+                    newObject?["educationLevel"] = RealmOptional<Int>()
+                    newObject?["hairColor"] = RealmOptional<Int>()
+                    newObject?["children"] = RealmOptional<Int>()
+                    
+                    newObject?["name"] = nil
+                    newObject?["jobTitle"] = nil
+                    newObject?["company"] = nil
+                    newObject?["education"] = nil
+                    newObject?["about"] = nil
+                    newObject?["instagram"] = nil
+                    newObject?["tikTok"] = nil
+                    newObject?["whereLive"] = nil
+                    newObject?["whereFrom"] = nil
+                })
+            }
         }, deleteRealmIfMigrationNeeded: false)
         
         self.realm = try! Realm(configuration: config)
