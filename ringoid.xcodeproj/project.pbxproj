@@ -355,6 +355,20 @@
 		57EE6559221677DE00246B45 /* ApiServiceConfigProd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE6558221677DE00246B45 /* ApiServiceConfigProd.swift */; };
 		57EE655D2216DCA700246B45 /* SentryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE655C2216DCA700246B45 /* SentryService.swift */; };
 		57EE655E2216DCA700246B45 /* SentryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EE655C2216DCA700246B45 /* SentryService.swift */; };
+		57EEB05D22BCDFDF005770B3 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB05C22BCDFDF005770B3 /* UserProfile.swift */; };
+		57EEB05E22BCDFDF005770B3 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB05C22BCDFDF005770B3 /* UserProfile.swift */; };
+		57EEB06122BCE71F005770B3 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06022BCE71F005770B3 /* Property.swift */; };
+		57EEB06222BCE71F005770B3 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06022BCE71F005770B3 /* Property.swift */; };
+		57EEB06422BCE8E5005770B3 /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06322BCE8E5005770B3 /* Transport.swift */; };
+		57EEB06522BCE8E5005770B3 /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06322BCE8E5005770B3 /* Transport.swift */; };
+		57EEB06722BCEC10005770B3 /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06622BCEC10005770B3 /* Education.swift */; };
+		57EEB06822BCEC10005770B3 /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06622BCEC10005770B3 /* Education.swift */; };
+		57EEB06A22BCECA7005770B3 /* Children.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06922BCECA7005770B3 /* Children.swift */; };
+		57EEB06B22BCECA7005770B3 /* Children.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06922BCECA7005770B3 /* Children.swift */; };
+		57EEB06D22BCED1E005770B3 /* Income.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06C22BCED1E005770B3 /* Income.swift */; };
+		57EEB06E22BCED1E005770B3 /* Income.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06C22BCED1E005770B3 /* Income.swift */; };
+		57EEB07022BCEE18005770B3 /* Hair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06F22BCEE18005770B3 /* Hair.swift */; };
+		57EEB07122BCEE18005770B3 /* Hair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06F22BCEE18005770B3 /* Hair.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -549,6 +563,13 @@
 		57EE65562216711000246B45 /* Ringoid st.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ringoid st.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57EE6558221677DE00246B45 /* ApiServiceConfigProd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceConfigProd.swift; sourceTree = "<group>"; };
 		57EE655C2216DCA700246B45 /* SentryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentryService.swift; sourceTree = "<group>"; };
+		57EEB05C22BCDFDF005770B3 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		57EEB06022BCE71F005770B3 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
+		57EEB06322BCE8E5005770B3 /* Transport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transport.swift; sourceTree = "<group>"; };
+		57EEB06622BCEC10005770B3 /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
+		57EEB06922BCECA7005770B3 /* Children.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Children.swift; sourceTree = "<group>"; };
+		57EEB06C22BCED1E005770B3 /* Income.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income.swift; sourceTree = "<group>"; };
+		57EEB06F22BCEE18005770B3 /* Hair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hair.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -912,6 +933,7 @@
 		57585D4021E3553F00038798 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				57EEB05F22BCE549005770B3 /* Types */,
 				57B863EC21EF448100B9CC70 /* Action.swift */,
 				576FC10721FEC9C400BA5ABE /* ActionPhoto.swift */,
 				576FC10921FEC9FF00BA5ABE /* ActionProfile.swift */,
@@ -923,6 +945,7 @@
 				57B863C121ECB94800B9CC70 /* Message.swift */,
 				57F98DB521F4A23600A09876 /* DBServiceObject.swift */,
 				576FC12122032D7E00BA5ABE /* BlockedProfile.swift */,
+				57EEB05C22BCDFDF005770B3 /* UserProfile.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1282,6 +1305,19 @@
 				57EE655C2216DCA700246B45 /* SentryService.swift */,
 			);
 			path = Sentry;
+			sourceTree = "<group>";
+		};
+		57EEB05F22BCE549005770B3 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				57EEB06022BCE71F005770B3 /* Property.swift */,
+				57EEB06322BCE8E5005770B3 /* Transport.swift */,
+				57EEB06622BCEC10005770B3 /* Education.swift */,
+				57EEB06922BCECA7005770B3 /* Children.swift */,
+				57EEB06C22BCED1E005770B3 /* Income.swift */,
+				57EEB06F22BCEE18005770B3 /* Hair.swift */,
+			);
+			path = Types;
 			sourceTree = "<group>";
 		};
 		57FB7BC221E61BC700AAA29D /* Main */ = {
@@ -1696,6 +1732,7 @@
 				57B863ED21EF448100B9CC70 /* Action.swift in Sources */,
 				573A5C14222541FF0094A9FA /* SettingsDebugCell.swift in Sources */,
 				57B863D321EDB18600B9CC70 /* MainLMMProfileViewModel.swift in Sources */,
+				57EEB07022BCEE18005770B3 /* Hair.swift in Sources */,
 				57FB7BD321E74C3E00AAA29D /* Storyboards.swift in Sources */,
 				576FC1142201876A00BA5ABE /* DeviceService.swift in Sources */,
 				57850300225725810056120A /* AnalyticsManager.swift in Sources */,
@@ -1720,6 +1757,7 @@
 				57B6DB1A22A50577000BD1C2 /* ApiChatUpdate.swift in Sources */,
 				57585D6021E4BF4900038798 /* UploaderServiceDefault.swift in Sources */,
 				577DDAD622647964001D7D24 /* LocationService.swift in Sources */,
+				57EEB06D22BCED1E005770B3 /* Income.swift in Sources */,
 				573D1165228DA0A500CD9C2D /* SettingsFeedbackViewController.swift in Sources */,
 				576FC12222032D7E00BA5ABE /* BlockedProfile.swift in Sources */,
 				570D04CA21E32F4800E0DCFB /* AuthViewController.swift in Sources */,
@@ -1731,7 +1769,9 @@
 				57BEB67B2213D7E6000BD768 /* SettingsLocaleViewController.swift in Sources */,
 				579CD7C621F9D4E600C3AEE3 /* ChatLeftCell.swift in Sources */,
 				57B863C021ECB93200B9CC70 /* LMMProfile.swift in Sources */,
+				57EEB06122BCE71F005770B3 /* Property.swift in Sources */,
 				57801AB12232A2B6005A9731 /* ViewController.swift in Sources */,
+				57EEB06A22BCECA7005770B3 /* Children.swift in Sources */,
 				57528C7A2292E786003F01E3 /* SettingsNotificationsMatchCell.swift in Sources */,
 				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
 				576FC10A21FEC9FF00BA5ABE /* ActionProfile.swift in Sources */,
@@ -1789,6 +1829,7 @@
 				573D116F228EC8B400CD9C2D /* DeletionFeedbackViewController.swift in Sources */,
 				57B863CF21ECD98F00B9CC70 /* MainLMMCell.swift in Sources */,
 				57801A84222E4378005A9731 /* SettingsDebugItemCell.swift in Sources */,
+				57EEB06722BCEC10005770B3 /* Education.swift in Sources */,
 				57B863FC21EF5DDF00B9CC70 /* ApiViewChatAction.swift in Sources */,
 				57585D5B21E4A0F100038798 /* FilePath.swift in Sources */,
 				573A5C1B222556AD0094A9FA /* LogService.swift in Sources */,
@@ -1797,6 +1838,7 @@
 				57585D4621E3570B00038798 /* NewFaceProfile.swift in Sources */,
 				576FC10821FEC9C400BA5ABE /* ActionPhoto.swift in Sources */,
 				57B863C521ECC34C00B9CC70 /* LMMManager.swift in Sources */,
+				57EEB06422BCE8E5005770B3 /* Transport.swift in Sources */,
 				57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */,
 				57585D5721E4925600038798 /* FileService.swift in Sources */,
 				57528C7D2292E79F003F01E3 /* SettingsNotificationsMessageCell.swift in Sources */,
@@ -1825,6 +1867,7 @@
 				579CD7CF21FAE2D100C3AEE3 /* ChatManager.swift in Sources */,
 				578502E92253B0AE0056120A /* ImageService.swift in Sources */,
 				57386E4B220C7A7C0000E5D9 /* UIManager.swift in Sources */,
+				57EEB05D22BCDFDF005770B3 /* UserProfile.swift in Sources */,
 				576FC11122001CD400BA5ABE /* ErrorsManager.swift in Sources */,
 				57EE6559221677DE00246B45 /* ApiServiceConfigProd.swift in Sources */,
 				577DDAE322649B5D001D7D24 /* ApiLocationAction.swift in Sources */,
@@ -1868,6 +1911,7 @@
 				57EE64E42216711000246B45 /* Message.swift in Sources */,
 				573A5C15222541FF0094A9FA /* SettingsDebugCell.swift in Sources */,
 				57EE64E52216711000246B45 /* Action.swift in Sources */,
+				57EEB07122BCEE18005770B3 /* Hair.swift in Sources */,
 				57EE64E62216711000246B45 /* MainLMMProfileViewModel.swift in Sources */,
 				57EE64E72216711000246B45 /* Storyboards.swift in Sources */,
 				57850301225725810056120A /* AnalyticsManager.swift in Sources */,
@@ -1892,6 +1936,7 @@
 				57B6DB1B22A50577000BD1C2 /* ApiChatUpdate.swift in Sources */,
 				57EE64F22216711000246B45 /* XStorageService.swift in Sources */,
 				577DDAD722647965001D7D24 /* LocationService.swift in Sources */,
+				57EEB06E22BCED1E005770B3 /* Income.swift in Sources */,
 				573D1166228DA0A500CD9C2D /* SettingsFeedbackViewController.swift in Sources */,
 				57EE64F32216711000246B45 /* ApiUserPhoto.swift in Sources */,
 				57EE64F42216711000246B45 /* UploaderServiceDefault.swift in Sources */,
@@ -1903,7 +1948,9 @@
 				57EE64F82216711000246B45 /* NewFaceProfileViewModel.swift in Sources */,
 				57EE64F92216711000246B45 /* MainLMMMContainerViewController.swift in Sources */,
 				57EE64FA2216711000246B45 /* SettingsLocaleViewController.swift in Sources */,
+				57EEB06222BCE71F005770B3 /* Property.swift in Sources */,
 				57801AB22232A2B6005A9731 /* ViewController.swift in Sources */,
+				57EEB06B22BCECA7005770B3 /* Children.swift in Sources */,
 				57528C7B2292E786003F01E3 /* SettingsNotificationsMatchCell.swift in Sources */,
 				57EE64FB2216711000246B45 /* ChatLeftCell.swift in Sources */,
 				57EE64FC2216711000246B45 /* LMMProfile.swift in Sources */,
@@ -1961,6 +2008,7 @@
 				573D1170228EC8B400CD9C2D /* DeletionFeedbackViewController.swift in Sources */,
 				57EE651F2216711000246B45 /* Photo.swift in Sources */,
 				57801A85222E4379005A9731 /* SettingsDebugItemCell.swift in Sources */,
+				57EEB06822BCEC10005770B3 /* Education.swift in Sources */,
 				57EE65202216711000246B45 /* DBServiceObject.swift in Sources */,
 				57EE65212216711000246B45 /* MainLMMCell.swift in Sources */,
 				573A5C1C222556AD0094A9FA /* LogService.swift in Sources */,
@@ -1969,6 +2017,7 @@
 				57EE65242216711000246B45 /* MainViewController.swift in Sources */,
 				57EE65252216711000246B45 /* Colors.swift in Sources */,
 				57EE65262216711000246B45 /* NewFaceProfile.swift in Sources */,
+				57EEB06522BCE8E5005770B3 /* Transport.swift in Sources */,
 				57EE65272216711000246B45 /* ActionPhoto.swift in Sources */,
 				57EE65282216711000246B45 /* LMMManager.swift in Sources */,
 				57528C7E2292E79F003F01E3 /* SettingsNotificationsMessageCell.swift in Sources */,
@@ -1997,6 +2046,7 @@
 				57EE653B2216711000246B45 /* ActionsManager.swift in Sources */,
 				578502EA2253B0AE0056120A /* ImageService.swift in Sources */,
 				57EE653C2216711000246B45 /* ChatManager.swift in Sources */,
+				57EEB05E22BCDFDF005770B3 /* UserProfile.swift in Sources */,
 				57EE653D2216711000246B45 /* UIManager.swift in Sources */,
 				57EE653E2216711000246B45 /* ErrorsManager.swift in Sources */,
 				577DDAE422649B5D001D7D24 /* ApiLocationAction.swift in Sources */,
