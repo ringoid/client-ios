@@ -28,6 +28,7 @@ class NotificationsServiceDefault: NSObject, NotificationService
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var responseObserver: AnyObserver<UNNotificationResponse>?
     fileprivate var notificationDataObserver: AnyObserver<[AnyHashable : Any]>?
+    fileprivate var isGrantedPrevState: Bool = true
     
     override init()
     {
@@ -67,6 +68,10 @@ class NotificationsServiceDefault: NSObject, NotificationService
     func register()
     {
         UNUserNotificationCenter.current().requestAuthorization(options: [ .badge, .alert, .sound ]) { [weak self] (granted, error) in
+            defer {
+                self?.isGrantedPrevState = granted
+            }
+            
             self?.isRegistered = true
             self?.isGranted.accept(granted)
             
@@ -87,10 +92,16 @@ class NotificationsServiceDefault: NSObject, NotificationService
             let state = settings.authorizationStatus == .authorized
             self?.isGranted.accept(state)
             
+            defer {
+                self?.isGrantedPrevState = state
+            }
+            
             guard state else { return }
             
-            DispatchQueue.main.async {
-                UIApplication.shared.registerForRemoteNotifications()
+            if self?.isGrantedPrevState == false {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
             }
         }
     }
