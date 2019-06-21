@@ -33,6 +33,10 @@ class ApiServiceDefault: ApiService
         self.config = config
         self.storage = storage
         
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 10.0
+        _ = Alamofire.SessionManager(configuration: configuration)
+        
         self.loadCredentials()
     }
     
