@@ -214,6 +214,7 @@ class UserProfilePhotosViewController: BaseViewController
             settingsManager: self.input.settingsManager,
             actionsManager: self.input.actionsManager,
             errorsManager: self.input.errorsManager,
+            profileManager: self.input.profileManager,
             device: self.input.device
         )
         

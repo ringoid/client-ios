@@ -375,6 +375,12 @@
 		57EEB07A22BE3E2C005770B3 /* SettingsProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB07822BE3E2C005770B3 /* SettingsProfileViewController.swift */; };
 		57EEB07C22BE3E4F005770B3 /* SettingsProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB07B22BE3E4F005770B3 /* SettingsProfileViewModel.swift */; };
 		57EEB07D22BE3E4F005770B3 /* SettingsProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB07B22BE3E4F005770B3 /* SettingsProfileViewModel.swift */; };
+		57EEB08222BE62FF005770B3 /* SettingsProfileHeightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB08122BE62FF005770B3 /* SettingsProfileHeightCell.swift */; };
+		57EEB08322BE62FF005770B3 /* SettingsProfileHeightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB08122BE62FF005770B3 /* SettingsProfileHeightCell.swift */; };
+		57EEB08822BE63C0005770B3 /* SettingsProfileFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB08722BE63C0005770B3 /* SettingsProfileFieldCell.swift */; };
+		57EEB08922BE63C0005770B3 /* SettingsProfileFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB08722BE63C0005770B3 /* SettingsProfileFieldCell.swift */; };
+		57EEB08C22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB08B22BE6D84005770B3 /* ProfileFieldsConfiguration.swift */; };
+		57EEB08D22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB08B22BE6D84005770B3 /* ProfileFieldsConfiguration.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -579,6 +585,9 @@
 		57EEB07522BD058D005770B3 /* SettingsProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileCell.swift; sourceTree = "<group>"; };
 		57EEB07822BE3E2C005770B3 /* SettingsProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileViewController.swift; sourceTree = "<group>"; };
 		57EEB07B22BE3E4F005770B3 /* SettingsProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileViewModel.swift; sourceTree = "<group>"; };
+		57EEB08122BE62FF005770B3 /* SettingsProfileHeightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileHeightCell.swift; sourceTree = "<group>"; };
+		57EEB08722BE63C0005770B3 /* SettingsProfileFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileFieldCell.swift; sourceTree = "<group>"; };
+		57EEB08B22BE6D84005770B3 /* ProfileFieldsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFieldsConfiguration.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1149,6 +1158,7 @@
 		579CD7AF21F8626900C3AEE3 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				57EEB08A22BE6D45005770B3 /* Profile */,
 				579CD7B421F8945C00C3AEE3 /* Views */,
 				579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */,
 				579CD7B221F890A300C3AEE3 /* SettingsViewModel.swift */,
@@ -1191,6 +1201,8 @@
 				57528C7C2292E79F003F01E3 /* SettingsNotificationsMessageCell.swift */,
 				57528C7F2292EF29003F01E3 /* SettingsSwitchableCell.swift */,
 				57EEB07522BD058D005770B3 /* SettingsProfileCell.swift */,
+				57EEB08122BE62FF005770B3 /* SettingsProfileHeightCell.swift */,
+				57EEB08722BE63C0005770B3 /* SettingsProfileFieldCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1330,6 +1342,14 @@
 				57EEB06F22BCEE18005770B3 /* Hair.swift */,
 			);
 			path = Types;
+			sourceTree = "<group>";
+		};
+		57EEB08A22BE6D45005770B3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				57EEB08B22BE6D84005770B3 /* ProfileFieldsConfiguration.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		57FB7BC221E61BC700AAA29D /* Main */ = {
@@ -1803,6 +1823,7 @@
 				57ED4870224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */,
 				57528C802292EF29003F01E3 /* SettingsSwitchableCell.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
+				57EEB08822BE63C0005770B3 /* SettingsProfileFieldCell.swift in Sources */,
 				576FC10D21FF33EA00BA5ABE /* NavigationManager.swift in Sources */,
 				574F4ACA22520B230027A083 /* SettingsNotificationsCell.swift in Sources */,
 				57585D4C21E388EC00038798 /* UserProfilePhotosViewController.swift in Sources */,
@@ -1822,6 +1843,7 @@
 				57585D6421E4C73600038798 /* NewFacesViewModel.swift in Sources */,
 				573A5C0E222409F10094A9FA /* EmptyFeed.swift in Sources */,
 				577DDAD922647975001D7D24 /* LocationServiceDefault.swift in Sources */,
+				57EEB08C22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */,
 				573A5C202226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
 				57585D3C21E34AFC00038798 /* ApiProfile.swift in Sources */,
 				573663C72272D8870041C5DB /* GlobalAnimationManager.swift in Sources */,
@@ -1852,6 +1874,7 @@
 				576FC10821FEC9C400BA5ABE /* ActionPhoto.swift in Sources */,
 				57B863C521ECC34C00B9CC70 /* LMMManager.swift in Sources */,
 				57EEB06422BCE8E5005770B3 /* Transport.swift in Sources */,
+				57EEB08222BE62FF005770B3 /* SettingsProfileHeightCell.swift in Sources */,
 				57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */,
 				57585D5721E4925600038798 /* FileService.swift in Sources */,
 				57528C7D2292E79F003F01E3 /* SettingsNotificationsMessageCell.swift in Sources */,
@@ -1985,6 +2008,7 @@
 				57ED4871224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */,
 				57528C812292EF29003F01E3 /* SettingsSwitchableCell.swift in Sources */,
 				57EE65042216711000246B45 /* AuthViewModel.swift in Sources */,
+				57EEB08922BE63C0005770B3 /* SettingsProfileFieldCell.swift in Sources */,
 				57EE65052216711000246B45 /* SettingsThemeCell.swift in Sources */,
 				574F4ACB22520B230027A083 /* SettingsNotificationsCell.swift in Sources */,
 				57EE65062216711000246B45 /* Errors.swift in Sources */,
@@ -2004,6 +2028,7 @@
 				57EE65122216711000246B45 /* SettingsLegalViewController.swift in Sources */,
 				573A5C0F22240C160094A9FA /* EmptyFeed.swift in Sources */,
 				577DDADA22647975001D7D24 /* LocationServiceDefault.swift in Sources */,
+				57EEB08D22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */,
 				573A5C212226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
 				57EE65132216711000246B45 /* ApiBlockAction.swift in Sources */,
 				573663C82272D8870041C5DB /* GlobalAnimationManager.swift in Sources */,
@@ -2034,6 +2059,7 @@
 				57EE65252216711000246B45 /* Colors.swift in Sources */,
 				57EE65262216711000246B45 /* NewFaceProfile.swift in Sources */,
 				57EEB06522BCE8E5005770B3 /* Transport.swift in Sources */,
+				57EEB08322BE62FF005770B3 /* SettingsProfileHeightCell.swift in Sources */,
 				57EE65272216711000246B45 /* ActionPhoto.swift in Sources */,
 				57EE65282216711000246B45 /* LMMManager.swift in Sources */,
 				57528C7E2292E79F003F01E3 /* SettingsNotificationsMessageCell.swift in Sources */,

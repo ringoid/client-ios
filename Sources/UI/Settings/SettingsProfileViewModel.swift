@@ -10,10 +10,15 @@ import Foundation
 
 struct SettingsProfileVMInput
 {
-    
+    let profileManager: UserProfileManager
 }
 
 class SettingsProfileViewModel
 {
+    let configuration: ProfileFieldsConfiguration
     
+    init(_ input: SettingsProfileVMInput)
+    {
+        self.configuration = ProfileFieldsConfiguration(input.profileManager)
+    }
 }

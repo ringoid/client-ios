@@ -111,3 +111,5 @@
 "feedback_make_ringoid_better" = "Как сделать Ringoid лучше?";
 "feedback_before_deletion" = "Перед уходом, пожалуйста, предложите, как улучшить Ringoid";
 "feedback_thanks_alert" = "Спасибо! Мы прочитаем ваши предложения в ближайшие минуты.";
+
+"profile_field_height" = "Рост";

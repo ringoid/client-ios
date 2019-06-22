@@ -23,6 +23,8 @@ class SettingsProfileViewController: BaseViewController
         assert(self.input != nil)
         
         super.viewDidLoad()
+        
+        self.setupViewModel()
     }
     
     override func updateTheme()
@@ -46,6 +48,13 @@ class SettingsProfileViewController: BaseViewController
     @IBAction func onBack()
     {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: -
+    
+    fileprivate func setupViewModel()
+    {
+        self.viewModel = SettingsProfileViewModel(self.input)
     }
 }
 
