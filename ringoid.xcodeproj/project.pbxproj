@@ -371,6 +371,10 @@
 		57EEB07122BCEE18005770B3 /* Hair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06F22BCEE18005770B3 /* Hair.swift */; };
 		57EEB07622BD058D005770B3 /* SettingsProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB07522BD058D005770B3 /* SettingsProfileCell.swift */; };
 		57EEB07722BD058D005770B3 /* SettingsProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB07522BD058D005770B3 /* SettingsProfileCell.swift */; };
+		57EEB07922BE3E2C005770B3 /* SettingsProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB07822BE3E2C005770B3 /* SettingsProfileViewController.swift */; };
+		57EEB07A22BE3E2C005770B3 /* SettingsProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB07822BE3E2C005770B3 /* SettingsProfileViewController.swift */; };
+		57EEB07C22BE3E4F005770B3 /* SettingsProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB07B22BE3E4F005770B3 /* SettingsProfileViewModel.swift */; };
+		57EEB07D22BE3E4F005770B3 /* SettingsProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB07B22BE3E4F005770B3 /* SettingsProfileViewModel.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -573,6 +577,8 @@
 		57EEB06C22BCED1E005770B3 /* Income.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income.swift; sourceTree = "<group>"; };
 		57EEB06F22BCEE18005770B3 /* Hair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hair.swift; sourceTree = "<group>"; };
 		57EEB07522BD058D005770B3 /* SettingsProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileCell.swift; sourceTree = "<group>"; };
+		57EEB07822BE3E2C005770B3 /* SettingsProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileViewController.swift; sourceTree = "<group>"; };
+		57EEB07B22BE3E4F005770B3 /* SettingsProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileViewModel.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1153,6 +1159,8 @@
 				573A5C162225440B0094A9FA /* SettingsDebugViewController.swift */,
 				57801A86222FF049005A9731 /* SettingsDebugLogViewController.swift */,
 				57528C702292BCE4003F01E3 /* SettingsNotificationsViewController.swift */,
+				57EEB07822BE3E2C005770B3 /* SettingsProfileViewController.swift */,
+				57EEB07B22BE3E4F005770B3 /* SettingsProfileViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1758,6 +1766,7 @@
 				57386E40220B27C00000E5D9 /* LocalizedTableViewCell.swift in Sources */,
 				570D04B821DE2B6400E0DCFB /* XStorageService.swift in Sources */,
 				576FC12A22086B6C00BA5ABE /* ApiUserPhoto.swift in Sources */,
+				57EEB07C22BE3E4F005770B3 /* SettingsProfileViewModel.swift in Sources */,
 				57B6DB1A22A50577000BD1C2 /* ApiChatUpdate.swift in Sources */,
 				57585D6021E4BF4900038798 /* UploaderServiceDefault.swift in Sources */,
 				577DDAD622647964001D7D24 /* LocationService.swift in Sources */,
@@ -1868,6 +1877,7 @@
 				577DDADD2264830D001D7D24 /* LocationManager.swift in Sources */,
 				579CD7BC21F8C4D800C3AEE3 /* SettingsManager.swift in Sources */,
 				57B863EB21EE33D200B9CC70 /* ActionsManager.swift in Sources */,
+				57EEB07922BE3E2C005770B3 /* SettingsProfileViewController.swift in Sources */,
 				57EE655D2216DCA700246B45 /* SentryService.swift in Sources */,
 				579CD7CF21FAE2D100C3AEE3 /* ChatManager.swift in Sources */,
 				578502E92253B0AE0056120A /* ImageService.swift in Sources */,
@@ -1938,6 +1948,7 @@
 				57EE64EF2216711000246B45 /* UserProfilePhotoViewController.swift in Sources */,
 				57EE64F02216711000246B45 /* UserPhoto.swift in Sources */,
 				57EE64F12216711000246B45 /* LocalizedTableViewCell.swift in Sources */,
+				57EEB07D22BE3E4F005770B3 /* SettingsProfileViewModel.swift in Sources */,
 				57B6DB1B22A50577000BD1C2 /* ApiChatUpdate.swift in Sources */,
 				57EE64F22216711000246B45 /* XStorageService.swift in Sources */,
 				577DDAD722647965001D7D24 /* LocationService.swift in Sources */,
@@ -2048,6 +2059,7 @@
 				577DDADE2264830D001D7D24 /* LocationManager.swift in Sources */,
 				57EE65382216711000246B45 /* AppConfig.swift in Sources */,
 				57EE65392216711000246B45 /* MainViewModel.swift in Sources */,
+				57EEB07A22BE3E2C005770B3 /* SettingsProfileViewController.swift in Sources */,
 				57EE653A2216711000246B45 /* SettingsManager.swift in Sources */,
 				57EE653B2216711000246B45 /* ActionsManager.swift in Sources */,
 				578502EA2253B0AE0056120A /* ImageService.swift in Sources */,

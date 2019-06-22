@@ -102,6 +102,10 @@ class SettingsViewController: BaseViewController
         if segue.identifier == SegueIds.pushes, let vc = segue.destination as? SettingsNotificationsViewController {
             vc.input = SettingsNotificationsInput(settingsManager: self.input.settingsManager)
         }
+        
+        if segue.identifier == SegueIds.profile, let vc = segue.destination as? SettingsProfileViewController {
+            vc.input = SettingsProfileVMInput()
+        }
     }
     
     override func updateTheme()
@@ -187,6 +191,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         
         switch option {
         case .profile:
+            self.performSegue(withIdentifier: SegueIds.profile, sender: nil)
             break
             
         case .push:
@@ -245,5 +250,6 @@ extension SettingsViewController
         static let locale = "locale_vc"
         static let legal = "legal_vc"
         static let pushes = "pushes_vc"
+        static let profile = "profile_vc"
     }
 }
