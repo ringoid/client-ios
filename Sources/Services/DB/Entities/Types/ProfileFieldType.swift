@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+enum ProfileFieldType: Int {
+    case height = 0
+    case hair = 1
+}
+
+extension ProfileFieldType
+{
+    func count() -> Int { return 2 }
+}

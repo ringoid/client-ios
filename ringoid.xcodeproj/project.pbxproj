@@ -381,6 +381,10 @@
 		57EEB08922BE63C0005770B3 /* SettingsProfileFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB08722BE63C0005770B3 /* SettingsProfileFieldCell.swift */; };
 		57EEB08C22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB08B22BE6D84005770B3 /* ProfileFieldsConfiguration.swift */; };
 		57EEB08D22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB08B22BE6D84005770B3 /* ProfileFieldsConfiguration.swift */; };
+		57EEB08F22BF6626005770B3 /* ProfileFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB08E22BF6626005770B3 /* ProfileFieldType.swift */; };
+		57EEB09022BF6626005770B3 /* ProfileFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB08E22BF6626005770B3 /* ProfileFieldType.swift */; };
+		57EEB09522BF695F005770B3 /* HairTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB09422BF695F005770B3 /* HairTitles.swift */; };
+		57EEB09622BF695F005770B3 /* HairTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB09422BF695F005770B3 /* HairTitles.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -588,6 +592,8 @@
 		57EEB08122BE62FF005770B3 /* SettingsProfileHeightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileHeightCell.swift; sourceTree = "<group>"; };
 		57EEB08722BE63C0005770B3 /* SettingsProfileFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileFieldCell.swift; sourceTree = "<group>"; };
 		57EEB08B22BE6D84005770B3 /* ProfileFieldsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFieldsConfiguration.swift; sourceTree = "<group>"; };
+		57EEB08E22BF6626005770B3 /* ProfileFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFieldType.swift; sourceTree = "<group>"; };
+		57EEB09422BF695F005770B3 /* HairTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairTitles.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1340,6 +1346,7 @@
 				57EEB06922BCECA7005770B3 /* Children.swift */,
 				57EEB06C22BCED1E005770B3 /* Income.swift */,
 				57EEB06F22BCEE18005770B3 /* Hair.swift */,
+				57EEB08E22BF6626005770B3 /* ProfileFieldType.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -1348,6 +1355,7 @@
 			isa = PBXGroup;
 			children = (
 				57EEB08B22BE6D84005770B3 /* ProfileFieldsConfiguration.swift */,
+				57EEB09422BF695F005770B3 /* HairTitles.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1911,12 +1919,14 @@
 				577DDAE322649B5D001D7D24 /* ApiLocationAction.swift in Sources */,
 				570D047F21DCED5700E0DCFB /* ApiService.swift in Sources */,
 				57528C712292BCE4003F01E3 /* SettingsNotificationsViewController.swift in Sources */,
+				57EEB09522BF695F005770B3 /* HairTitles.swift in Sources */,
 				579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */,
 				573663CA2272E6510041C5DB /* CAAnimationClosure.swift in Sources */,
 				57EE64C922152AC400246B45 /* SettingsLegalPolicyCell.swift in Sources */,
 				57386E44220B33120000E5D9 /* SettingsLegalCell.swift in Sources */,
 				57528C772292E761003F01E3 /* SettingsNotificationsLikeCell.swift in Sources */,
 				573A5C0B2223C4520094A9FA /* SettingsLocaleHelpCell.swift in Sources */,
+				57EEB08F22BF6626005770B3 /* ProfileFieldType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2096,12 +2106,14 @@
 				577DDAE422649B5D001D7D24 /* ApiLocationAction.swift in Sources */,
 				57EE653F2216711000246B45 /* ApiService.swift in Sources */,
 				57528C722292BCE4003F01E3 /* SettingsNotificationsViewController.swift in Sources */,
+				57EEB09622BF695F005770B3 /* HairTitles.swift in Sources */,
 				57EE65402216711000246B45 /* SettingsViewController.swift in Sources */,
 				573663CB2272E6510041C5DB /* CAAnimationClosure.swift in Sources */,
 				57EE65412216711000246B45 /* SettingsLegalPolicyCell.swift in Sources */,
 				57EE65422216711000246B45 /* SettingsLegalCell.swift in Sources */,
 				57528C782292E761003F01E3 /* SettingsNotificationsLikeCell.swift in Sources */,
 				573A5C0C2223C8470094A9FA /* SettingsLocaleHelpCell.swift in Sources */,
+				57EEB09022BF6626005770B3 /* ProfileFieldType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

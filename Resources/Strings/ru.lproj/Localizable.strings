@@ -115,3 +115,17 @@
 "profile_field_not_selected" = "Не выбрано";
 "profile_field_height" = "Рост";
 "profile_field_hair" = "Цвет волос";
+
+"profile_field_hair_black_male" = "Брюнет";
+"profile_field_hair_blonde_male" = "Блондин";
+"profile_field_hair_brown_male" = "Шатен";
+"profile_field_hair_red_male" = "Рыжий";
+"profile_field_hair_gray_male" = "Пепельный";
+"profile_field_hair_white_male" = "Седой";
+
+"profile_field_hair_black_female" = "Брюнетка";
+"profile_field_hair_blonde_female" = "Блондинка";
+"profile_field_hair_brown_female" = "Шатенка";
+"profile_field_hair_red_female" = "Рыжая";
+"profile_field_hair_gray_female" = "Пепельная";
+"profile_field_hair_white_female" = "Седая";

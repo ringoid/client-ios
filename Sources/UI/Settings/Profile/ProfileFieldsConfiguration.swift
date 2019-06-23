@@ -13,6 +13,7 @@ struct ProfileField {
     let icon: String
     let placeholder: String
     let cellIdentifier: String
+    let fieldType: ProfileFieldType
 }
 
 class ProfileFieldsConfiguration
@@ -24,13 +25,15 @@ class ProfileFieldsConfiguration
             title: "profile_field_height",
             icon: "profile_fields_ruler",
             placeholder: "175",
-            cellIdentifier: "profile_height_cell"
+            cellIdentifier: "profile_height_cell",
+            fieldType: .height
         ),
         ProfileField(
             title: "profile_field_hair",
             icon: "profile_fields_hair",
             placeholder: "profile_field_not_selected",
-            cellIdentifier: "profile_field_cell"
+            cellIdentifier: "profile_field_cell",
+            fieldType: .hair
         )
     ]
     
