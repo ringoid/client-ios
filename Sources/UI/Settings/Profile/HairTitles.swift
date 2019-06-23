@@ -6,7 +6,7 @@
 //  Copyright © 2019 Ringoid. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 extension Hair
 {

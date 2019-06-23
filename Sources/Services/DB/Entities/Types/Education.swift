@@ -18,3 +18,38 @@ enum Education: Int
     case university3 = 50
     case postGrad = 60
 }
+
+fileprivate let englishIndexMap: [Education] = [
+    .unknown,
+    .school,
+    .college,
+    .university2,
+    .postGrad
+]
+
+fileprivate let indexMap: [Education] = [
+    .unknown,
+    .school,
+    .college,
+    .university1,
+    .university2,
+    .university3,
+    .postGrad
+]
+
+extension Education
+{
+    static func at(_ index: Int, locale: Language) -> Education {
+        if locale == .english { return englishIndexMap[index]}
+        
+        return indexMap[index]
+    }
+    
+    static func count(_ locale: Language) -> Int
+    {
+        if locale == .english { return 5}
+        
+        return 7
+    }
+}
+

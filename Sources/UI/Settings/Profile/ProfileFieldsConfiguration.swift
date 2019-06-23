@@ -33,7 +33,14 @@ class ProfileFieldsConfiguration
             icon: "profile_fields_hair",
             placeholder: "profile_field_not_selected",
             cellIdentifier: "profile_field_cell",
-            fieldType: .hair
+            fieldType: .hair 
+        ),
+        ProfileField(
+            title: "profile_field_education",
+            icon: "profile_fields_education",
+            placeholder: "profile_field_not_selected",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .education
         )
     ]
     

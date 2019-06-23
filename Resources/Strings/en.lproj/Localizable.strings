@@ -114,6 +114,7 @@
 "profile_field_not_selected" = "Not selected";
 "profile_field_height" = "Height";
 "profile_field_hair" = "Hair Color";
+"profile_field_education" = "Education Level";
 
 "profile_field_hair_black" = "Black";
 
@@ -130,3 +131,10 @@
 "profile_field_hair_red_female" = "Red";
 "profile_field_hair_gray_female" = "Gray";
 "profile_field_hair_white_female" = "White";
+
+"profile_field_education_school" = "High school";
+"profile_field_education_college" = "College";
+"profile_field_education_university1" = "University";
+"profile_field_education_university2" = "University";
+"profile_field_education_university3" = "University";
+"profile_field_education_postgrad" = "Post-grad";

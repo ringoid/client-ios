@@ -11,9 +11,10 @@ import Foundation
 enum ProfileFieldType: Int {
     case height = 0
     case hair = 1
+    case education = 2
 }
 
 extension ProfileFieldType
 {
-    static func fieldsCount() -> Int { return 2 }
+    static func fieldsCount() -> Int { return 3 }
 }
