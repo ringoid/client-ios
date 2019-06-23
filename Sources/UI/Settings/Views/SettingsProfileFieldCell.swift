@@ -95,7 +95,7 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         guard let type = self.field?.fieldType else { return 0}
         
         switch type {
-        case .height: return 0
+        case .height: return Height.count()
         case .hair: return Hair.count()
         case .education: return Education.count(LocaleManager.shared.language.value)
         }
@@ -106,7 +106,7 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         guard let type = self.field?.fieldType else { return nil }
         
         switch type {
-        case .height: return nil
+        case .height: return Height.title(row)
         case .hair: return Hair(rawValue: row * 10)?.title(self.sex).localized()
         case .education: return Education.at(row, locale: LocaleManager.shared.language.value).title().localized()
         }
@@ -117,13 +117,16 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         guard let type = self.field?.fieldType else { return }
         
         switch type {
-        case .height: return
+        case .height:
+            self.valueField.text = Height.title(row)
+            
         case .hair:
             self.valueField.text = Hair(rawValue: row * 10)?.title(self.sex).localized()
             break
             
         case .education:
             self.valueField.text = Education.at(row, locale: LocaleManager.shared.language.value).title().localized()
+            break
         }
-    }   
+    }
 }

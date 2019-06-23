@@ -26,7 +26,7 @@ extension Hair
         
         if sex == .female {
             switch self {
-            case .unknown: return ""
+            case .unknown: return "profile_field_not_selected"
             case .black: return "profile_field_hair_black_female"
             case .blonde: return "profile_field_hair_blonde_female"
             case .brown: return "profile_field_hair_brown_female"
@@ -36,6 +36,6 @@ extension Hair
             }
         }
         
-        return ""
+        return "profile_field_not_selected"
     }
 }
