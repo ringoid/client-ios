@@ -15,5 +15,5 @@ enum ProfileFieldType: Int {
 
 extension ProfileFieldType
 {
-    func count() -> Int { return 2 }
+    static func fieldsCount() -> Int { return 2 }
 }

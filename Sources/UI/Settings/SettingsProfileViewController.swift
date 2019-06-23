@@ -76,6 +76,7 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
         guard let cell = tableView.dequeueReusableCell(withIdentifier: field.cellIdentifier) as? SettingsProfileFieldCell else { return UITableViewCell() }
         
         cell.field = field
+        cell.sex = self.input.profileManager.gender.value ?? .female
         
         return cell
     }

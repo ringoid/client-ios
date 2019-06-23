@@ -6,14 +6,7 @@
 //  Copyright © 2019 Ringoid. All rights reserved.
 //
 
-import Foundation
-
-//case black = 10
-//case blonde = 20
-//case brown = 30
-//case red = 40
-//case gray = 50
-//case white = 60
+import UIKit
 
 extension Hair
 {
@@ -21,7 +14,7 @@ extension Hair
     {
         if sex == .male {
             switch self {
-            case .unknown: return ""
+            case .unknown: return "profile_field_not_selected"
             case .black: return "profile_field_hair_black_male"
             case .blonde: return "profile_field_hair_blonde_male"
             case .brown: return "profile_field_hair_brown_male"

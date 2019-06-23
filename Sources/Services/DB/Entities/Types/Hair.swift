@@ -17,3 +17,8 @@ enum Hair: Int {
     case gray = 50
     case white = 60
 }
+
+extension Hair
+{
+    static func count() -> Int { return 6 }
+}
