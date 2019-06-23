@@ -8,9 +8,31 @@
 
 import Foundation
 
+struct ProfileField {
+    let title: String
+    let icon: String
+    let placeholder: String
+    let cellIdentifier: String
+}
+
 class ProfileFieldsConfiguration
 {
     fileprivate var profileManager: UserProfileManager
+    
+    let settingsFields: [ProfileField] = [
+        ProfileField(
+            title: "profile_field_height",
+            icon: "profile_fields_ruler",
+            placeholder: "175",
+            cellIdentifier: "profile_height_cell"
+        ),
+        ProfileField(
+            title: "profile_field_hair",
+            icon: "profile_fields_hair",
+            placeholder: "profile_field_not_selected",
+            cellIdentifier: "profile_field_cell"
+        )
+    ]
     
     init(_ profileManager: UserProfileManager)
     {

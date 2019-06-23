@@ -25,6 +25,7 @@ class SettingsProfileViewController: BaseViewController
         super.viewDidLoad()
         
         self.setupViewModel()
+        self.tableView.reloadData()
     }
     
     override func updateTheme()
@@ -66,11 +67,24 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.viewModel?.configuration.settingsFields.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        return UITableViewCell()
+        guard let field = self.viewModel?.configuration.settingsFields[indexPath.row] else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: field.cellIdentifier) as? SettingsProfileFieldCell else { return UITableViewCell() }
+        
+        cell.field = field
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        guard let field = self.viewModel?.configuration.settingsFields[indexPath.row] else { return }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: field.cellIdentifier) as? SettingsProfileFieldCell else { return }
+        
+        cell.startEditing()
     }
 }

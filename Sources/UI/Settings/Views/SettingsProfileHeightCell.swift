@@ -8,20 +8,7 @@
 
 import UIKit
 
-class SettingsProfileHeightCell: BaseTableViewCell
+class SettingsProfileHeightCell: SettingsProfileFieldCell
 {
-    @IBOutlet fileprivate weak var iconView: UIImageView!
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var valueField: UITextField!
-    
-    override func updateTheme()
-    {
-        self.titleLabel.textColor = ContentColor().uiColor()
-        self.tintColor = ContentColor().uiColor()
-    }
-    
-    override func updateLocale()
-    {
-        self.titleLabel.text = "profile_field_height".localized()
-    }
+
 }

@@ -1209,7 +1209,7 @@
                                 <color key="separatorColor" red="0.80392156859999997" green="0.80784313730000001" blue="0.82745098039999998" alpha="0.13219713180000001" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="18" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profile_height_cell" id="884-vZ-XDe" customClass="SettingsProfileHeightCell" customModule="Ringoid" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="profile_height_cell" id="884-vZ-XDe" customClass="SettingsProfileHeightCell" customModule="Ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="884-vZ-XDe" id="GxJ-F7-hvh">
@@ -1256,7 +1256,7 @@
                                             <outlet property="valueField" destination="cfl-KO-BL0" id="bM6-SV-9zu"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profile_field_cell" id="OIG-Zi-YJk" customClass="SettingsProfileFieldCell" customModule="Ringoid" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="profile_field_cell" id="OIG-Zi-YJk" customClass="SettingsProfileFieldCell" customModule="Ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="108" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OIG-Zi-YJk" id="rCo-bh-Yl5">

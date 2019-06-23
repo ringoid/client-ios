@@ -110,4 +110,6 @@
 "feedback_before_deletion" = "Before you leave, can you please suggest how to improve Ringoid";
 "feedback_thanks_alert" = "Thank you! We will look into your suggestions shortly.";
 
+"profile_field_not_selected" = "Not selected";
 "profile_field_height" = "Height";
+"profile_field_hair" = "Hair Color";
