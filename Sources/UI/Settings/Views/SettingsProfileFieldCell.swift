@@ -44,12 +44,28 @@ class SettingsProfileFieldCell: BaseTableViewCell
         self.valueField?.becomeFirstResponder()
     }
     
+    @objc func stopEditing()
+    {
+        self.valueField?.resignFirstResponder()
+    }
+    
     func setupInput()
     {
+        let width = UIScreen.main.bounds.width
+        let optionsView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: width, height: 44.0))
+        optionsView.backgroundColor = .white
+        let selectBtn = UIButton(frame: CGRect(x: width - 100.0, y: 0, width: 100.0, height: 44.0))
+        selectBtn.setTitle("button_select".localized(), for: .normal)
+        selectBtn.setTitleColor(.blue, for: .normal)
+        selectBtn.addTarget(self, action: #selector(stopEditing), for: .touchUpInside)
+        optionsView.addSubview(selectBtn)
+        
         let picker = UIPickerView()
         picker.dataSource = self
         picker.delegate = self
+        picker.backgroundColor = .white
         self.valueField.inputView = picker
+        self.valueField.inputAccessoryView = optionsView
     }
     
     // MARK: -

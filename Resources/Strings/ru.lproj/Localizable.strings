@@ -15,6 +15,7 @@
 "button_ok" = "OK";
 "button_settings" = "Настройки";
 "button_suggest" = "Предложить";
+"button_select" = "Выбрать";
 
 "common_pull_to_refresh" = "Потяни, чтобы обновить";
 "common_sex_male" = "Мужчина";
