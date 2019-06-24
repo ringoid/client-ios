@@ -48,6 +48,7 @@ class SettingsProfileViewController: BaseViewController
     
     @IBAction func onBack()
     {
+        self.input.profileManager.updateProfile()
         self.navigationController?.popViewController(animated: true)
     }
     
