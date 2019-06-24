@@ -58,6 +58,14 @@ class SettingsProfileViewModel
                 profile.educationLevel.value = EducationLevel.at(index, locale: LocaleManager.shared.language.value).rawValue
             }
             break
+            
+        case .education:
+            guard let text = value else { return }
+            
+            self.db.write {
+                profile.education = text
+            }
+            break
         }
     }
     

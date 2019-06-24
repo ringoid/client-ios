@@ -12,9 +12,5 @@ enum ProfileFieldType: Int {
     case height = 0
     case hair = 1
     case educationLevel = 2
-}
-
-extension ProfileFieldType
-{
-    static func fieldsCount() -> Int { return 3 }
+    case education = 3
 }

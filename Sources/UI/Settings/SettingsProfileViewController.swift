@@ -87,6 +87,7 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
             case .height: cell.valueIndex = heightIndex(profile.height.value ?? 175)
             case .hair: cell.valueIndex = Hair(rawValue: profile.hairColor.value ?? 0)?.index() ?? 0
             case .educationLevel: cell.valueIndex = EducationLevel(rawValue: profile.educationLevel.value ?? 0)?.index() ?? 0
+            case .education: cell.valueText = profile.education
             }
         }        
         

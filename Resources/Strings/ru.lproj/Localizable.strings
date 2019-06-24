@@ -116,7 +116,8 @@
 "profile_field_not_selected" = "Не выбрано";
 "profile_field_height" = "Рост";
 "profile_field_hair" = "Цвет волос";
-"profile_field_education" = "Уровень образования";
+"profile_field_education_level" = "Уровень образования";
+"profile_field_education" = "Место учебы";
 
 "profile_field_hair_black_male" = "Брюнет";
 "profile_field_hair_blonde_male" = "Блондин";

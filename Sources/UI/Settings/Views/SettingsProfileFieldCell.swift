@@ -31,8 +31,12 @@ class SettingsProfileFieldCell: BaseTableViewCell
             case .educationLevel:
                 self.valueField.text = EducationLevel.at(index, locale: LocaleManager.shared.language.value).title().localized()
                 break
+                
+            case .education: break
+                
             }
             
+            self.update()
             self.setupInput()
         }
     }
@@ -40,7 +44,22 @@ class SettingsProfileFieldCell: BaseTableViewCell
     var valueText: String?
     {
         didSet {
-            self.setupInput()
+            guard let type = self.field?.fieldType else { return }
+            guard let text = self.valueText else { return }
+            
+            switch type {
+            case .height: break
+            case .hair: break
+            case .educationLevel: break
+                
+            case .education:
+                self.valueField.text = text
+                break
+            }
+            
+            self.valueField.inputAccessoryView = nil
+            self.valueField.inputView = nil
+            self.update()
         }
     }
     
@@ -102,6 +121,17 @@ class SettingsProfileFieldCell: BaseTableViewCell
         self.valueField.inputAccessoryView = optionsView
     }
     
+    // MARK: - Actions
+    
+    @IBAction func onReturn()
+    {
+        self.valueField.resignFirstResponder()
+        
+        guard let type = self.field?.fieldType else { return }
+        
+        self.onSelect?(type, nil, self.valueField.text)
+    }
+    
     // MARK: -
     
     fileprivate func createPicker() -> UIPickerView
@@ -122,9 +152,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
         
         self.titleLabel.text = field.title.localized()
         self.iconView.image = UIImage(named: field.icon)
-        self.valueField.placeholder = field.placeholder.localized()
-        
-        self.setupInput()
+        self.valueField.placeholder = field.placeholder.localized()                
     }
     
     @objc fileprivate func cancelEditing()
@@ -149,6 +177,7 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         case .height: return Height.count()
         case .hair: return Hair.count()
         case .educationLevel: return EducationLevel.count(LocaleManager.shared.language.value)
+        case .education: return 0
         }
     }
     
@@ -160,6 +189,8 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         case .height: return Height.title(row)
         case .hair: return Hair(rawValue: row * 10)?.title(self.sex).localized()
         case .educationLevel: return EducationLevel.at(row, locale: LocaleManager.shared.language.value).title().localized()
+            
+        case .education: return nil
         }
     }
     
