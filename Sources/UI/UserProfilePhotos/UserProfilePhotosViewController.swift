@@ -215,7 +215,8 @@ class UserProfilePhotosViewController: BaseViewController
             actionsManager: self.input.actionsManager,
             errorsManager: self.input.errorsManager,
             profileManager: self.input.profileManager,
-            device: self.input.device
+            device: self.input.device,
+            db: self.input.db
         )
         
         ModalUIManager.shared.show(navVC, animated: true)

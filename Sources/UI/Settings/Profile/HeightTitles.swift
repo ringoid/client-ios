@@ -18,6 +18,12 @@ class Height
         return "\(feetFirst)'\(feetSecond) (\(cm) cm)"
     }
     
+    static func value(_ index: Int) -> Int
+    {
+        let feet: Double = 3.0 + 4.0 / 40.0 * Double(index)
+        return Int(feet * 30.48)
+    }
+    
     static func count() -> Int
     {
         return 41

@@ -76,7 +76,11 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
         guard let cell = tableView.dequeueReusableCell(withIdentifier: field.cellIdentifier) as? SettingsProfileFieldCell else { return UITableViewCell() }
         
         cell.field = field
-        cell.sex = self.input.profileManager.gender.value ?? .female
+        cell.sex = self.input.profileManager.gender.value ?? .female        
+        cell.onSelect = { [weak self] (type, index, value) in
+            self?.viewModel?.updateField(type, index: index, value: value)
+        }
+        
         
         return cell
     }
@@ -85,10 +89,6 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
     {
         guard let field = self.viewModel?.configuration.settingsFields[indexPath.row] else { return }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: field.cellIdentifier) as? SettingsProfileFieldCell else { return }
-        
-        cell.onSelect = { [weak self] (type, index) in
-            
-        }
         
         cell.startEditing()
     }

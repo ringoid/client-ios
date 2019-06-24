@@ -16,6 +16,7 @@ struct SettingsVMInput
     let errorsManager: ErrorsManager
     let profileManager: UserProfileManager
     let device: DeviceService
+    let db: DBService
 }
 
 class SettingsViewModel

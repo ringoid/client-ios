@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Education
+extension EducationLevel
 {
     func title() -> String
     {

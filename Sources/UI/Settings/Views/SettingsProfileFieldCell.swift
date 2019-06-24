@@ -24,7 +24,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
         }
     }
     
-    var onSelect: ((ProfileFieldType, Int) -> ())?
+    var onSelect: ((ProfileFieldType, Int?, String?) -> ())?
     
     @IBOutlet fileprivate weak var iconView: UIImageView!
     @IBOutlet fileprivate weak var titleLabel: UILabel!
@@ -99,7 +99,7 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         switch type {
         case .height: return Height.count()
         case .hair: return Hair.count()
-        case .education: return Education.count(LocaleManager.shared.language.value)
+        case .educationLevel: return EducationLevel.count(LocaleManager.shared.language.value)
         }
     }
     
@@ -110,7 +110,7 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         switch type {
         case .height: return Height.title(row)
         case .hair: return Hair(rawValue: row * 10)?.title(self.sex).localized()
-        case .education: return Education.at(row, locale: LocaleManager.shared.language.value).title().localized()
+        case .educationLevel: return EducationLevel.at(row, locale: LocaleManager.shared.language.value).title().localized()
         }
     }
     
@@ -126,11 +126,11 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
             self.valueField.text = Hair(rawValue: row * 10)?.title(self.sex).localized()
             break
             
-        case .education:
-            self.valueField.text = Education.at(row, locale: LocaleManager.shared.language.value).title().localized()
+        case .educationLevel:
+            self.valueField.text = EducationLevel.at(row, locale: LocaleManager.shared.language.value).title().localized()
             break
         }
         
-        self.onSelect?(type, row)
+        self.onSelect?(type, row, nil)
     }
 }

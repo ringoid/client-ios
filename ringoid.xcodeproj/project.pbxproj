@@ -361,8 +361,8 @@
 		57EEB06222BCE71F005770B3 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06022BCE71F005770B3 /* Property.swift */; };
 		57EEB06422BCE8E5005770B3 /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06322BCE8E5005770B3 /* Transport.swift */; };
 		57EEB06522BCE8E5005770B3 /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06322BCE8E5005770B3 /* Transport.swift */; };
-		57EEB06722BCEC10005770B3 /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06622BCEC10005770B3 /* Education.swift */; };
-		57EEB06822BCEC10005770B3 /* Education.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06622BCEC10005770B3 /* Education.swift */; };
+		57EEB06722BCEC10005770B3 /* EducationLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06622BCEC10005770B3 /* EducationLevel.swift */; };
+		57EEB06822BCEC10005770B3 /* EducationLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06622BCEC10005770B3 /* EducationLevel.swift */; };
 		57EEB06A22BCECA7005770B3 /* Children.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06922BCECA7005770B3 /* Children.swift */; };
 		57EEB06B22BCECA7005770B3 /* Children.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06922BCECA7005770B3 /* Children.swift */; };
 		57EEB06D22BCED1E005770B3 /* Income.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB06C22BCED1E005770B3 /* Income.swift */; };
@@ -588,7 +588,7 @@
 		57EEB05C22BCDFDF005770B3 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		57EEB06022BCE71F005770B3 /* Property.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 		57EEB06322BCE8E5005770B3 /* Transport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transport.swift; sourceTree = "<group>"; };
-		57EEB06622BCEC10005770B3 /* Education.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Education.swift; sourceTree = "<group>"; };
+		57EEB06622BCEC10005770B3 /* EducationLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationLevel.swift; sourceTree = "<group>"; };
 		57EEB06922BCECA7005770B3 /* Children.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Children.swift; sourceTree = "<group>"; };
 		57EEB06C22BCED1E005770B3 /* Income.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Income.swift; sourceTree = "<group>"; };
 		57EEB06F22BCEE18005770B3 /* Hair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hair.swift; sourceTree = "<group>"; };
@@ -1352,7 +1352,7 @@
 			children = (
 				57EEB06022BCE71F005770B3 /* Property.swift */,
 				57EEB06322BCE8E5005770B3 /* Transport.swift */,
-				57EEB06622BCEC10005770B3 /* Education.swift */,
+				57EEB06622BCEC10005770B3 /* EducationLevel.swift */,
 				57EEB06922BCECA7005770B3 /* Children.swift */,
 				57EEB06C22BCED1E005770B3 /* Income.swift */,
 				57EEB06F22BCEE18005770B3 /* Hair.swift */,
@@ -1887,7 +1887,7 @@
 				573D116F228EC8B400CD9C2D /* DeletionFeedbackViewController.swift in Sources */,
 				57B863CF21ECD98F00B9CC70 /* MainLMMCell.swift in Sources */,
 				57801A84222E4378005A9731 /* SettingsDebugItemCell.swift in Sources */,
-				57EEB06722BCEC10005770B3 /* Education.swift in Sources */,
+				57EEB06722BCEC10005770B3 /* EducationLevel.swift in Sources */,
 				57B863FC21EF5DDF00B9CC70 /* ApiViewChatAction.swift in Sources */,
 				57585D5B21E4A0F100038798 /* FilePath.swift in Sources */,
 				573A5C1B222556AD0094A9FA /* LogService.swift in Sources */,
@@ -2077,7 +2077,7 @@
 				573D1170228EC8B400CD9C2D /* DeletionFeedbackViewController.swift in Sources */,
 				57EE651F2216711000246B45 /* Photo.swift in Sources */,
 				57801A85222E4379005A9731 /* SettingsDebugItemCell.swift in Sources */,
-				57EEB06822BCEC10005770B3 /* Education.swift in Sources */,
+				57EEB06822BCEC10005770B3 /* EducationLevel.swift in Sources */,
 				57EE65202216711000246B45 /* DBServiceObject.swift in Sources */,
 				57EE65212216711000246B45 /* MainLMMCell.swift in Sources */,
 				573A5C1C222556AD0094A9FA /* LogService.swift in Sources */,

@@ -121,7 +121,7 @@ class UserProfileManager
     
     func createProfile()
     {
-        self.db.add(Profile()).subscribe().disposed(by: self.disposeBag)
+        self.db.add(UserProfile()).subscribe().disposed(by: self.disposeBag)
     }
     
     func updateProfile()

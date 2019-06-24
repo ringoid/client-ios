@@ -20,5 +20,10 @@ enum Hair: Int {
 
 extension Hair
 {
+    static func value(_ index: Int) -> Int
+    {
+        return index * 10
+    }
+    
     static func count() -> Int { return 6 }
 }

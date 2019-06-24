@@ -346,7 +346,8 @@ class MainViewController: BaseViewController
             promotionManager: self.input.promotionManager,
             device: self.input.device,
             location: self.input.location,
-            scenario: self.input.scenario
+            scenario: self.input.scenario,
+            db: self.input.db
         )
         
         self.menuVCCache[.profile] = vc

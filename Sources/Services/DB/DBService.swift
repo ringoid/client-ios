@@ -106,7 +106,7 @@ class DBService
                     newObject?["tikTok"] = nil
                     newObject?["whereLive"] = nil
                     newObject?["whereFrom"] = nil
-                })
+                })                
             }
         }, deleteRealmIfMigrationNeeded: false)
         

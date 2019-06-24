@@ -105,7 +105,8 @@ class SettingsViewController: BaseViewController
         
         if segue.identifier == SegueIds.profile, let vc = segue.destination as? SettingsProfileViewController {
             vc.input = SettingsProfileVMInput(
-                profileManager: self.input.profileManager
+                profileManager: self.input.profileManager,
+                db: self.input.db
             )
         }
     }

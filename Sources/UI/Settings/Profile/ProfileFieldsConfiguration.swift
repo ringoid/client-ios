@@ -40,7 +40,7 @@ class ProfileFieldsConfiguration
             icon: "profile_fields_education",
             placeholder: "profile_field_not_selected",
             cellIdentifier: "profile_field_cell",
-            fieldType: .education
+            fieldType: .educationLevel
         )
     ]
     

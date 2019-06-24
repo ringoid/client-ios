@@ -1,5 +1,5 @@
 //
-//  Education.swift
+//  EducationLevel.swift
 //  ringoid
 //
 //  Created by Victor Sukochev on 21/06/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Education: Int
+enum EducationLevel: Int
 {
     case unknown = 0
     case school = 10
@@ -19,7 +19,7 @@ enum Education: Int
     case postGrad = 60
 }
 
-fileprivate let englishIndexMap: [Education] = [
+fileprivate let englishIndexMap: [EducationLevel] = [
     .unknown,
     .school,
     .college,
@@ -27,7 +27,7 @@ fileprivate let englishIndexMap: [Education] = [
     .postGrad
 ]
 
-fileprivate let indexMap: [Education] = [
+fileprivate let indexMap: [EducationLevel] = [
     .unknown,
     .school,
     .college,
@@ -37,9 +37,9 @@ fileprivate let indexMap: [Education] = [
     .postGrad
 ]
 
-extension Education
+extension EducationLevel
 {
-    static func at(_ index: Int, locale: Language) -> Education {
+    static func at(_ index: Int, locale: Language) -> EducationLevel {
         if locale == .english { return englishIndexMap[index]}
         
         return indexMap[index]
