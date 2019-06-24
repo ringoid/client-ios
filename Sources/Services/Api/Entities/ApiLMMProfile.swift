@@ -14,13 +14,13 @@ class ApiLMMProfile: ApiProfile
     let notSeen: Bool
     let messages: [ApiMessage]
     
-    init(id: String, age: Int, defaultSortingOrderPosition: Int, notSeen: Bool, messages: [ApiMessage], photos: [ApiPhoto], status: ApiProfileStatus?, distanceText: String?, lastOnlineText: String?)
+    init(id: String, age: Int, defaultSortingOrderPosition: Int, notSeen: Bool, messages: [ApiMessage], photos: [ApiPhoto], status: ApiProfileStatus?, distanceText: String?, lastOnlineText: String?, info: ApiUserProfileInfo)
     {
         self.defaultSortingOrderPosition = defaultSortingOrderPosition
         self.notSeen = notSeen
         self.messages = messages
 
-        super.init(id: id, age: age, photos: photos, status: status, distanceText: distanceText, lastOnlineText: lastOnlineText)
+        super.init(id: id, age: age, photos: photos, status: status, distanceText: distanceText, lastOnlineText: lastOnlineText, info:  info)
     }
 }
 
@@ -34,6 +34,7 @@ extension ApiLMMProfile
         guard let notSeen = dict["notSeen"] as? Bool else { return nil }
         guard let messagesArray = dict["messages"] as? [[String: Any]] else { return nil }
         guard let photosArray = dict["photos"] as? [[String: Any]] else { return nil }
+        guard let info = ApiUserProfileInfo.parse(dict) else { return nil }
         
         let statusStr: String = dict["lastOnlineFlag"] as? String ?? ""
         
@@ -44,7 +45,8 @@ extension ApiLMMProfile
                              photos: photosArray.compactMap({ ApiPhoto.parse($0) }),
                              status: ApiProfileStatus(rawValue: statusStr),
                              distanceText: dict["distanceText"] as? String,
-                             lastOnlineText: dict["lastOnlineText"] as? String
+                             lastOnlineText: dict["lastOnlineText"] as? String,
+                             info: info
         )
     }
 }
