@@ -86,6 +86,10 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
         guard let field = self.viewModel?.configuration.settingsFields[indexPath.row] else { return }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: field.cellIdentifier) as? SettingsProfileFieldCell else { return }
         
+        cell.onSelect = { [weak self] (type, index) in
+            
+        }
+        
         cell.startEditing()
     }
 }

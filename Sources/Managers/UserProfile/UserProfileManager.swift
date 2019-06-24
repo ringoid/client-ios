@@ -35,6 +35,8 @@ class UserProfileManager
     var statusText: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     var distanceText: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     
+    let profile: BehaviorRelay<UserProfile?> = BehaviorRelay<UserProfile?>(value: nil)
+    
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     init(_ db: DBService, api: ApiService, uploader: UploaderService, fileService: FileService, device: DeviceService, storage: XStorageService, lmm: LMMManager)
@@ -178,6 +180,10 @@ class UserProfileManager
             
             UserDefaults.standard.setValue(value.timeIntervalSince1970, forKey: "profile_creation_date")
             UserDefaults.standard.synchronize()
+        }).disposed(by: self.disposeBag)
+        
+        self.db.userProfile().subscribe(onNext: { [weak self] userProfile in
+            self?.profile.accept(userProfile)
         }).disposed(by: self.disposeBag)
     }
     

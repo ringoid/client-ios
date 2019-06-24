@@ -38,6 +38,9 @@ class DBService
     fileprivate var userPhotosObservable: Observable<[UserPhoto]>!
     fileprivate var userPhotosObserver: AnyObserver<[UserPhoto]>?
     
+    fileprivate var userProfileObservable: Observable<UserProfile?>!
+    fileprivate var userProfileObserver: AnyObserver<UserProfile?>?
+    
     init()
     {
         let version: UInt64 = 8
@@ -111,6 +114,12 @@ class DBService
         self.currentOrderPosition = UserDefaults.standard.integer(forKey: "db_service_order_position_key")
         self.cleanDeletedObjects()
         self.setupObservers()
+    }
+    
+    // MARK: - User Profile
+    func userProfile() -> Observable<UserProfile?>
+    {
+        return self.userProfileObservable
     }
     
     // MARK: - New Faces
@@ -459,6 +468,13 @@ class DBService
             
             return Disposables.create()
         }).share()
+        
+        self.userProfileObservable = Observable<UserProfile?>.create({ [weak self] observer -> Disposable in
+            self?.userProfileObserver = observer
+            self?.updateUserProfile()
+            
+            return Disposables.create()
+            }).share()
     }
     
     fileprivate func updateNewFaces()
@@ -517,6 +533,14 @@ class DBService
         self.userPhotosObserver?.onNext(photos.toArray())
     }
     
+    fileprivate func updateUserProfile()
+    {
+        let predicate = NSPredicate(format: "isDeleted = false")
+        let profile = self.realm.objects(UserProfile.self).filter(predicate).first
+        
+        self.userProfileObserver?.onNext(profile)
+    }
+    
     func checkObjectsForUpdates(_ objects: [DBServiceObject])
     {
         var shouldUpdateNewFaces: Bool = false
@@ -526,10 +550,12 @@ class DBService
         var shouldUpdateSent: Bool = false
         var shouldUpdateMatches: Bool = false
         var shouldUpdateUserPhotos: Bool = false
+        var shouldUpdateUserProfile: Bool = false
         
         objects.forEach { object in
             if let _ = object as? NewFaceProfile { shouldUpdateNewFaces = true }
             if let _ = object as? UserPhoto { shouldUpdateUserPhotos = true }
+            if let _ = object as? UserProfile { shouldUpdateUserProfile = true }
             
             if let profile = object as? LMMProfile {
                 if profile.type == FeedType.likesYou.rawValue { shouldUpdateLikesYou = true }
@@ -547,6 +573,7 @@ class DBService
         if shouldUpdateInbox { self.updateInbox() }
         if shouldUpdateSent { self.updateSent() }
         if shouldUpdateUserPhotos { self.updateUserPhotos() }
+        if shouldUpdateUserProfile { self.updateUserProfile() }
     }
     
     fileprivate func removeProfiles(_ id: String)
@@ -586,6 +613,7 @@ class DBService
         objectsToDelete.append(contentsOf: Array(self.realm.objects(NewFaceProfile.self).filter(predicate)))
         objectsToDelete.append(contentsOf: Array(self.realm.objects(LMMProfile.self).filter(predicate)))
         objectsToDelete.append(contentsOf: Array(self.realm.objects(Message.self).filter(predicate)))
+        objectsToDelete.append(contentsOf: Array(self.realm.objects(UserProfile.self).filter(predicate)))
 
         try? self.realm.write {
             self.realm.delete(objectsToDelete)

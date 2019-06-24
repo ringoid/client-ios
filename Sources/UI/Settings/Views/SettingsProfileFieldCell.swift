@@ -24,6 +24,8 @@ class SettingsProfileFieldCell: BaseTableViewCell
         }
     }
     
+    var onSelect: ((ProfileFieldType, Int) -> ())?
+    
     @IBOutlet fileprivate weak var iconView: UIImageView!
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var valueField: UITextField!
@@ -128,5 +130,7 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
             self.valueField.text = Education.at(row, locale: LocaleManager.shared.language.value).title().localized()
             break
         }
+        
+        self.onSelect?(type, row)
     }
 }
