@@ -51,5 +51,10 @@ extension EducationLevel
         
         return 7
     }
+    
+    func index() -> Int
+    {
+        return self.rawValue / 10
+    }
 }
 

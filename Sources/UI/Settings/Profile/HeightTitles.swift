@@ -29,3 +29,8 @@ class Height
         return 41
     }
 }
+
+func heightIndex(_ value: Int) -> Int
+{
+    return Int((Double(value) - 91.0) / 3.0)
+}

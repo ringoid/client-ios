@@ -11,13 +11,33 @@ import UIKit
 class SettingsProfileFieldCell: BaseTableViewCell
 {
     var field: ProfileField?
+    var sex: Sex = .female
+
+    
+    var valueIndex: Int? = nil
     {
         didSet {
-            self.update()
+            guard let type = self.field?.fieldType else { return }
+            guard let index = self.valueIndex else { return }
+            
+            switch type {
+            case .height:
+                self.valueField.text = Height.title(index)
+                
+            case .hair:
+                self.valueField.text = Hair(rawValue: index * 10)?.title(self.sex).localized()
+                break
+                
+            case .educationLevel:
+                self.valueField.text = EducationLevel.at(index, locale: LocaleManager.shared.language.value).title().localized()
+                break
+            }
+            
+            self.setupInput()
         }
     }
     
-    var sex: Sex = .female
+    var valueText: String?
     {
         didSet {
             self.setupInput()
@@ -29,6 +49,8 @@ class SettingsProfileFieldCell: BaseTableViewCell
     @IBOutlet fileprivate weak var iconView: UIImageView!
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var valueField: UITextField!
+    
+    fileprivate weak var pickerView: UIPickerView!
     
     override func updateTheme()
     {
@@ -49,6 +71,13 @@ class SettingsProfileFieldCell: BaseTableViewCell
     @objc func stopEditing()
     {
         self.valueField?.resignFirstResponder()
+        
+        guard let type = self.field?.fieldType else { return }
+        
+        let index = self.pickerView.selectedRow(inComponent: 0)
+        self.valueIndex = index
+        
+        self.onSelect?(type, index, nil)
     }
     
     func setupInput()
@@ -56,21 +85,36 @@ class SettingsProfileFieldCell: BaseTableViewCell
         let width = UIScreen.main.bounds.width
         let optionsView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: width, height: 44.0))
         optionsView.backgroundColor = .white
+        
         let selectBtn = UIButton(frame: CGRect(x: width - 100.0, y: 0, width: 100.0, height: 44.0))
         selectBtn.setTitle("button_select".localized(), for: .normal)
         selectBtn.setTitleColor(.blue, for: .normal)
         selectBtn.addTarget(self, action: #selector(stopEditing), for: .touchUpInside)
         optionsView.addSubview(selectBtn)
         
-        let picker = UIPickerView()
-        picker.dataSource = self
-        picker.delegate = self
-        picker.backgroundColor = .white
-        self.valueField.inputView = picker
+        let cancelBtn = UIButton(frame: CGRect(x: 0.0, y: 0, width: 100.0, height: 44.0))
+        cancelBtn.setTitle("button_cancel".localized(), for: .normal)
+        cancelBtn.setTitleColor(.blue, for: .normal)
+        cancelBtn.addTarget(self, action: #selector(cancelEditing), for: .touchUpInside)
+        optionsView.addSubview(cancelBtn)
+  
+        self.valueField.inputView = self.createPicker()
         self.valueField.inputAccessoryView = optionsView
     }
     
     // MARK: -
+    
+    fileprivate func createPicker() -> UIPickerView
+    {
+        let picker = UIPickerView()
+        picker.dataSource = self
+        picker.delegate = self
+        picker.backgroundColor = .white
+        
+        self.pickerView = picker
+        
+        return picker
+    }
     
     fileprivate func update()
     {
@@ -81,6 +125,11 @@ class SettingsProfileFieldCell: BaseTableViewCell
         self.valueField.placeholder = field.placeholder.localized()
         
         self.setupInput()
+    }
+    
+    @objc fileprivate func cancelEditing()
+    {
+        self.valueField?.resignFirstResponder()
     }
 }
 
@@ -116,21 +165,6 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        guard let type = self.field?.fieldType else { return }
-        
-        switch type {
-        case .height:
-            self.valueField.text = Height.title(row)
-            
-        case .hair:
-            self.valueField.text = Hair(rawValue: row * 10)?.title(self.sex).localized()
-            break
-            
-        case .educationLevel:
-            self.valueField.text = EducationLevel.at(row, locale: LocaleManager.shared.language.value).title().localized()
-            break
-        }
-        
-        self.onSelect?(type, row, nil)
+
     }
 }

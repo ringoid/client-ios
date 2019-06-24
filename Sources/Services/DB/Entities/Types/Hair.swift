@@ -26,4 +26,9 @@ extension Hair
     }
     
     static func count() -> Int { return 6 }
+    
+    func index() -> Int
+    {
+        return self.rawValue / 10
+    }
 }

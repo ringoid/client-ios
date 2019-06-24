@@ -81,6 +81,13 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
             self?.viewModel?.updateField(type, index: index, value: value)
         }
         
+        if let profile = self.viewModel?.profileManager.profile.value {
+            switch field.fieldType {
+            case .height: cell.valueIndex = heightIndex(profile.height.value ?? 175)
+            case .hair: cell.valueIndex = Hair(rawValue: profile.hairColor.value ?? 0)?.index() ?? 0
+            case .educationLevel: cell.valueIndex = EducationLevel(rawValue: profile.educationLevel.value ?? 0)?.index() ?? 0
+            }
+        }        
         
         return cell
     }
