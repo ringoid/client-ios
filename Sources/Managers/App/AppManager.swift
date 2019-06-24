@@ -144,7 +144,7 @@ class AppManager
         self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader, fileService: self.fileService, device: self.deviceService, storage: self.defaultStorage, lmm: self.lmmManager)
         self.scenarioManager = AnalyticsScenarioManager(AnalyticsManager.shared)
         self.chatManager = ChatManager(self.db, actionsManager: self.actionsManager, scenario: self.scenarioManager)
-        self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, actions: self.actionsManager, lmm: self.lmmManager, newFaces: self.newFacesManager, notifications: self.notifications, scenario: self.scenarioManager)
+        self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, actions: self.actionsManager, lmm: self.lmmManager, newFaces: self.newFacesManager, notifications: self.notifications, scenario: self.scenarioManager, profile: self.profileManager)
         self.navigationManager = NavigationManager()
         self.errorsManager = ErrorsManager(self.apiService, settings: self.settingsMananger)
         self.promotionManager = PromotionManager(launchOptions, api: self.apiService)

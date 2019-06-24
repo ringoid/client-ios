@@ -61,6 +61,7 @@ class AuthViewModel
             self?.settingsManager.updateRemoteSettings()
             self?.settingsManager.updatePushToken()
             self?.locationManager.sendLastLocationIfAvailable()
+            self?.profileManager.createProfile()
             self?.profileManager.gender.accept(sex)
             self?.profileManager.yob.accept(year)
             self?.profileManager.creationDate.accept(Date())

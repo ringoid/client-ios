@@ -119,6 +119,37 @@ class UserProfileManager
         }
     }
     
+    func createProfile()
+    {
+        self.db.add(Profile()).subscribe().disposed(by: self.disposeBag)
+    }
+    
+    func updateProfile()
+    {
+        guard let profile = self.profile.value else { return }
+        
+        let apiProfile = ApiUserProfileInfo(
+            property: profile.property.value ?? 0,
+            transport: profile.transport.value ?? 0,
+            income: profile.income.value ?? 0,
+            height: profile.height.value ?? 0,
+            educationLevel: profile.educationLevel.value ?? 0,
+            hairColor: profile.hairColor.value ?? 0,
+            children: profile.children.value ?? 0,
+            name: profile.name ?? "",
+            jobTitle: profile.jobTitle ?? "",
+            company: profile.company ?? "",
+            education: profile.education ?? "",
+            about: profile.about ?? "",
+            instagram: profile.instagram ?? "",
+            tikTok: profile.tikTok ?? "",
+            whereLive: profile.whereLive ?? "",
+            whereFrom: profile.whereFrom ?? ""
+        )
+        
+        self.apiService.updateProfile(apiProfile).subscribe().disposed(by: self.disposeBag)
+    }
+    
     func refresh() -> Observable<Void>
     {
         return self.apiService.getUserOwnPhotos(self.deviceService.photoResolution).flatMap({ [weak self] profile -> Observable<Void> in
@@ -134,6 +165,13 @@ class UserProfileManager
     func refreshInBackground()
     {
         self.refresh().subscribe().disposed(by: self.disposeBag)
+    }
+    
+    func reset()
+    {
+        guard let profile = self.profile.value else { return }
+            
+        self.db.delete([profile]).subscribe().disposed(by: self.disposeBag)
     }
     
     // MARK: -
