@@ -389,6 +389,8 @@
 		57EEB09922BFA3DA005770B3 /* EducationTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB09722BFA3DA005770B3 /* EducationTitles.swift */; };
 		57EEB09B22BFB352005770B3 /* HeightTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB09A22BFB352005770B3 /* HeightTitles.swift */; };
 		57EEB09C22BFB352005770B3 /* HeightTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB09A22BFB352005770B3 /* HeightTitles.swift */; };
+		57EEB09E22C09245005770B3 /* ApiUserProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB09D22C09245005770B3 /* ApiUserProfileInfo.swift */; };
+		57EEB09F22C09245005770B3 /* ApiUserProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB09D22C09245005770B3 /* ApiUserProfileInfo.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -600,6 +602,7 @@
 		57EEB09422BF695F005770B3 /* HairTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairTitles.swift; sourceTree = "<group>"; };
 		57EEB09722BFA3DA005770B3 /* EducationTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationTitles.swift; sourceTree = "<group>"; };
 		57EEB09A22BFB352005770B3 /* HeightTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightTitles.swift; sourceTree = "<group>"; };
+		57EEB09D22C09245005770B3 /* ApiUserProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUserProfileInfo.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -749,6 +752,7 @@
 				57B863BD21EC758200B9CC70 /* ApiMessage.swift */,
 				57E6DBE9229820FB00713A79 /* ApiUserProfile.swift */,
 				57B6DB1922A50577000BD1C2 /* ApiChatUpdate.swift */,
+				57EEB09D22C09245005770B3 /* ApiUserProfileInfo.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1790,6 +1794,7 @@
 				57585D3F21E354FA00038798 /* NewFacesManager.swift in Sources */,
 				57B863D521EE16E700B9CC70 /* VerticalGradientView.swift in Sources */,
 				57ED4874224D10060033EB0B /* NotificationsManager.swift in Sources */,
+				57EEB09E22C09245005770B3 /* ApiUserProfileInfo.swift in Sources */,
 				577DDAF5226F0FB2001D7D24 /* FlurryAnalytics.swift in Sources */,
 				57B863D721EE179F00B9CC70 /* TouchThroughView.swift in Sources */,
 				574A7DA622434EFE0065AE56 /* PromotionManager.swift in Sources */,
@@ -1979,6 +1984,7 @@
 				57EE655E2216DCA700246B45 /* SentryService.swift in Sources */,
 				57EE64E82216711000246B45 /* DeviceService.swift in Sources */,
 				57ED4875224D10060033EB0B /* NotificationsManager.swift in Sources */,
+				57EEB09F22C09245005770B3 /* ApiUserProfileInfo.swift in Sources */,
 				577DDAF6226F0FB2001D7D24 /* FlurryAnalytics.swift in Sources */,
 				57EE64E92216711000246B45 /* NewFacesManager.swift in Sources */,
 				574A7DA722434EFE0065AE56 /* PromotionManager.swift in Sources */,
