@@ -22,6 +22,13 @@ class ProfileFieldsConfiguration
     
     let settingsFields: [ProfileField] = [
         ProfileField(
+            title: "profile_field_name",
+            icon: "profile_fields_education",
+            placeholder: "",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .name
+        ),
+        ProfileField(
             title: "profile_field_height",
             icon: "profile_fields_ruler",
             placeholder: "175",

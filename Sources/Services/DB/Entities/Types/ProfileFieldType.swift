@@ -9,8 +9,9 @@
 import Foundation
 
 enum ProfileFieldType: Int {
-    case height = 0
-    case hair = 1
-    case educationLevel = 2
-    case education = 3
+    case name = 0
+    case height = 1
+    case hair = 2
+    case educationLevel = 3
+    case education = 4
 }

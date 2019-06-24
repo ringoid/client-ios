@@ -13,10 +13,11 @@ class SettingsProfileFieldCell: BaseTableViewCell
     var field: ProfileField?
     var sex: Sex = .female
 
-    
     var valueIndex: Int? = nil
     {
         didSet {
+            self.update()
+            
             guard let type = self.field?.fieldType else { return }
             guard let index = self.valueIndex else { return }
             
@@ -32,11 +33,10 @@ class SettingsProfileFieldCell: BaseTableViewCell
                 self.valueField.text = EducationLevel.at(index, locale: LocaleManager.shared.language.value).title().localized()
                 break
                 
-            case .education: break
+            case .education, .name: break
                 
             }
             
-            self.update()
             self.setupInput()
         }
     }
@@ -44,6 +44,8 @@ class SettingsProfileFieldCell: BaseTableViewCell
     var valueText: String?
     {
         didSet {
+            self.update()
+            
             guard let type = self.field?.fieldType else { return }
             guard let text = self.valueText else { return }
             
@@ -52,14 +54,13 @@ class SettingsProfileFieldCell: BaseTableViewCell
             case .hair: break
             case .educationLevel: break
                 
-            case .education:
+            case .education, .name:
                 self.valueField.text = text
                 break
             }
             
             self.valueField.inputAccessoryView = nil
             self.valueField.inputView = nil
-            self.update()
         }
     }
     
@@ -177,7 +178,7 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         case .height: return Height.count()
         case .hair: return Hair.count()
         case .educationLevel: return EducationLevel.count(LocaleManager.shared.language.value)
-        case .education: return 0
+        case .education, .name: return 0
         }
     }
     
@@ -190,7 +191,7 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         case .hair: return Hair(rawValue: row * 10)?.title(self.sex).localized()
         case .educationLevel: return EducationLevel.at(row, locale: LocaleManager.shared.language.value).title().localized()
             
-        case .education: return nil
+        case .education, .name: return nil
         }
     }
     

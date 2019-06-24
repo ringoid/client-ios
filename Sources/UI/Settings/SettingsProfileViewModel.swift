@@ -66,6 +66,14 @@ class SettingsProfileViewModel
                 profile.education = text
             }
             break
+            
+        case .name:
+            guard let text = value else { return }
+            
+            self.db.write {
+                profile.name = text
+            }
+            break
         }
     }
     

@@ -112,6 +112,7 @@
 "feedback_thanks_alert" = "Thank you! We will look into your suggestions shortly.";
 
 "profile_field_not_selected" = "Not selected";
+"profile_field_name" = "Name";
 "profile_field_height" = "Height";
 "profile_field_hair" = "Hair Color";
 "profile_field_education_level" = "Education Level";
