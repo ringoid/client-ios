@@ -385,6 +385,21 @@ class ApiServiceDefault: ApiService
         }
     }
     
+    func updateProfile(_ profile: ApiUserProfileInfo) -> Observable<Void>
+    {
+        var params = profile.json()
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        let trace = Performance.startTrace(name: "auth/update_profile")
+        
+        return self.request(.post, path: "auth/update_profile", jsonBody: params, trace: trace).flatMap { _ -> Observable<Void> in
+            return .just(())
+        }
+    }
+    
     // MARK: - Images
     
     func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhotoPlaceholder>

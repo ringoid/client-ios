@@ -68,4 +68,27 @@ extension ApiUserProfileInfo
             whereFrom: whereFrom
         )
     }
+    
+    func json() -> [String: Any]
+    {
+        return [
+            "property": self.property,
+            "transport": self.transport,
+            "income": self.income,
+            "height": self.height,
+            "educationLevel": self.educationLevel,
+            "hairColor": self.hairColor,
+            "children": self.children,
+            "name": self.name,
+            "jobTitle": self.jobTitle,
+            "company": self.company,
+            "jobTitle": self.jobTitle,
+            "education": self.education,
+            "about": self.about,
+            "instagram": self.instagram,
+            "tikTok": self.tikTok,
+            "whereLive": self.whereLive,
+            "whereFrom": self.whereFrom
+        ]
+    }
 }
