@@ -38,7 +38,8 @@ class NewFaceProfileViewController: UIViewController
     fileprivate var photosVCs: [NewFacePhotoViewController] = []
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var preheaterTimer: Timer?
-    fileprivate var fieldsControls: [NewFaceProfileFieldControl] = []
+    fileprivate var leftFieldsControls: [NewFaceProfileFieldControl] = []
+    fileprivate var rightFieldsControls: [NewFaceProfileFieldControl] = []
     
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
@@ -51,15 +52,13 @@ class NewFaceProfileViewController: UIViewController
     @IBOutlet fileprivate weak var leftFieldLabel1: UILabel!
     @IBOutlet fileprivate weak var leftFieldIcon2: UIImageView!
     @IBOutlet fileprivate weak var leftFieldLabel2: UILabel!
-    @IBOutlet fileprivate weak var leftFieldIcon3: UIImageView!
-    @IBOutlet fileprivate weak var leftFieldLabel3: UILabel!
+
     
     @IBOutlet fileprivate weak var rightFieldIcon1: UIImageView!
     @IBOutlet fileprivate weak var rightFieldLabel1: UILabel!
     @IBOutlet fileprivate weak var rightFieldIcon2: UIImageView!
     @IBOutlet fileprivate weak var rightFieldLabel2: UILabel!
-    @IBOutlet fileprivate weak var rightFieldIcon3: UIImageView!
-    @IBOutlet fileprivate weak var rightFieldLabel3: UILabel!
+
     
     static func create(_ profile: NewFaceProfile,
                        initialIndex: Int,
@@ -301,13 +300,14 @@ class NewFaceProfileViewController: UIViewController
     
     fileprivate func setupFieldsControls()
     {
-        self.fieldsControls = [
+        self.leftFieldsControls = [
             NewFaceProfileFieldControl(iconView: self.leftFieldIcon1, titleLabel: self.leftFieldLabel1),
             NewFaceProfileFieldControl(iconView: self.leftFieldIcon2, titleLabel: self.leftFieldLabel2),
-            NewFaceProfileFieldControl(iconView: self.leftFieldIcon3, titleLabel: self.leftFieldLabel3),
+        ]
+        
+        self.rightFieldsControls = [
             NewFaceProfileFieldControl(iconView: self.rightFieldIcon1, titleLabel: self.rightFieldLabel1),
             NewFaceProfileFieldControl(iconView: self.rightFieldIcon2, titleLabel: self.rightFieldLabel2),
-            NewFaceProfileFieldControl(iconView: self.rightFieldIcon3, titleLabel: self.rightFieldLabel3),
         ]
     }
     
@@ -315,26 +315,38 @@ class NewFaceProfileViewController: UIViewController
     {
         let profileManager = self.input.profileManager
         let configuration = ProfileFieldsConfiguration(profileManager)
-        let columns = configuration.colums(self.input.profile)
-        let start = page * 6        
-        let count = columns.count
+        let leftRows = configuration.leftColums(self.input.profile)
+        let rightRows = configuration.rightColums(self.input.profile)
+        let start = page * 2
+        let leftCount = leftRows.count
+        let rightCount = rightRows.count
         
-        (0...5).forEach { index in
-            let controls = self.fieldsControls[index]
+        (0...1).forEach { index in
+            let leftControls = self.leftFieldsControls[index]
+            let rightControls = self.rightFieldsControls[index]
             let absoluteIndex = start + index
             
-            guard absoluteIndex < count else {
-                controls.iconView.isHidden = true
-                controls.titleLabel.isHidden = true
-                
-                return
+            if absoluteIndex >= leftCount {
+                leftControls.iconView.isHidden = true
+                leftControls.titleLabel.isHidden = true
+            } else {
+                let row = leftRows[absoluteIndex]
+                leftControls.iconView.image = UIImage(named: row.icon ?? "")
+                leftControls.titleLabel.text = row.title.localized()
+                leftControls.iconView.isHidden = false
+                leftControls.titleLabel.isHidden = false
             }
             
-            let row = columns[absoluteIndex]
-            controls.iconView.image = UIImage(named: row.icon ?? "")
-            controls.titleLabel.text = row.title.localized()
-            controls.iconView.isHidden = false
-            controls.titleLabel.isHidden = false
+            if absoluteIndex >= rightCount {
+                rightControls.iconView.isHidden = true
+                rightControls.titleLabel.isHidden = true
+            } else {
+                let row = rightRows[absoluteIndex]
+                rightControls.iconView.image = UIImage(named: row.icon ?? "")
+                rightControls.titleLabel.text = row.title.localized()
+                rightControls.iconView.isHidden = false
+                rightControls.titleLabel.isHidden = false
+            }
         }
     }
 }

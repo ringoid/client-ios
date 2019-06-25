@@ -70,7 +70,7 @@ class ProfileFieldsConfiguration
         self.profileManager = profileManager
     }
     
-    func colums(_ profile: Profile) -> [ProfileFileRow]
+    func leftColums(_ profile: Profile) -> [ProfileFileRow]
     {
         var rows: [ProfileFileRow] = []
         
@@ -134,6 +134,43 @@ class ProfileFieldsConfiguration
             rows.append(ProfileFileRow(
                 title: title,
                 icon: nil
+            ))
+        }
+        
+        return rows
+    }
+    
+    func rightColums(_ profile: Profile) -> [ProfileFileRow]
+    {
+        var rows: [ProfileFileRow] = []
+        
+        if let title = profile.distanceText, title != "unknown" {
+            rows.append(ProfileFileRow(
+                title: title,
+                icon: "common_location"
+            ))
+        }
+        
+        if let title = profile.whereLive, title != "unknown" {
+            rows.append(ProfileFileRow(
+                title: title,
+                icon: "common_location"
+            ))
+        }
+        
+        if let value = profile.height.value {
+            let index = heightIndex(value)
+            rows.append(ProfileFileRow(
+                title: Height.title(index),
+                icon: "profile_fields_ruler"
+            ))
+        }
+        
+        if let value = profile.hairColor.value, let hairColor = Hair(rawValue: value) {
+            let gender: Sex = self.profileManager.gender.value == .male ? .female : .male
+            rows.append(ProfileFileRow(
+                title: hairColor.title(gender),
+                icon: "profile_fields_hair"
             ))
         }
         
