@@ -152,3 +152,8 @@
 "profile_field_property_room" = "Снимаю комнату";
 "profile_field_property_flat" = "Квартира (снимаю или своя)";
 "profile_field_property_house" = "Дом (снимаю или свой)";
+
+"profile_field_income_low" = "Низкий доход";
+"profile_field_income_middle" = "Средний доход";
+"profile_field_income_high" = "Высокий доход";
+"profile_field_income_ultrahigh" = "Сверхвысокий доход";

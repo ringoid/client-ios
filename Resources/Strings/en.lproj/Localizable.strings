@@ -152,3 +152,8 @@
 "profile_field_property_room" = "Rent a room";
 "profile_field_property_flat" = "Flat (rent or own)";
 "profile_field_property_house" = "House (rent or own)";
+
+"profile_field_income_low" = "Low Income";
+"profile_field_income_middle" = "Middle Income";
+"profile_field_income_high" = "High Income";
+"profile_field_income_ultrahigh" = "Ultra High Income";

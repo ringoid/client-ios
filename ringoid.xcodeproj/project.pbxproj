@@ -395,6 +395,8 @@
 		57EEB0A822C20132005770B3 /* ChildrenTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0A622C20131005770B3 /* ChildrenTitles.swift */; };
 		57EEB0AA22C20718005770B3 /* PropertyTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0A922C20718005770B3 /* PropertyTitles.swift */; };
 		57EEB0AB22C20718005770B3 /* PropertyTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0A922C20718005770B3 /* PropertyTitles.swift */; };
+		57EEB0AD22C20CF4005770B3 /* IncomeTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0AC22C20CF4005770B3 /* IncomeTitles.swift */; };
+		57EEB0AE22C20CF4005770B3 /* IncomeTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0AC22C20CF4005770B3 /* IncomeTitles.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -609,6 +611,7 @@
 		57EEB09D22C09245005770B3 /* ApiUserProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUserProfileInfo.swift; sourceTree = "<group>"; };
 		57EEB0A622C20131005770B3 /* ChildrenTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenTitles.swift; sourceTree = "<group>"; };
 		57EEB0A922C20718005770B3 /* PropertyTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTitles.swift; sourceTree = "<group>"; };
+		57EEB0AC22C20CF4005770B3 /* IncomeTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeTitles.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1376,6 +1379,7 @@
 				57EEB09A22BFB352005770B3 /* HeightTitles.swift */,
 				57EEB0A622C20131005770B3 /* ChildrenTitles.swift */,
 				57EEB0A922C20718005770B3 /* PropertyTitles.swift */,
+				57EEB0AC22C20CF4005770B3 /* IncomeTitles.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1934,6 +1938,7 @@
 				579CD7BC21F8C4D800C3AEE3 /* SettingsManager.swift in Sources */,
 				57B863EB21EE33D200B9CC70 /* ActionsManager.swift in Sources */,
 				57EEB07922BE3E2C005770B3 /* SettingsProfileViewController.swift in Sources */,
+				57EEB0AD22C20CF4005770B3 /* IncomeTitles.swift in Sources */,
 				57EE655D2216DCA700246B45 /* SentryService.swift in Sources */,
 				579CD7CF21FAE2D100C3AEE3 /* ChatManager.swift in Sources */,
 				578502E92253B0AE0056120A /* ImageService.swift in Sources */,
@@ -2126,6 +2131,7 @@
 				57EE65382216711000246B45 /* AppConfig.swift in Sources */,
 				57EE65392216711000246B45 /* MainViewModel.swift in Sources */,
 				57EEB07A22BE3E2C005770B3 /* SettingsProfileViewController.swift in Sources */,
+				57EEB0AE22C20CF4005770B3 /* IncomeTitles.swift in Sources */,
 				57EE653A2216711000246B45 /* SettingsManager.swift in Sources */,
 				57EE653B2216711000246B45 /* ActionsManager.swift in Sources */,
 				578502EA2253B0AE0056120A /* ImageService.swift in Sources */,
