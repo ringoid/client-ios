@@ -203,14 +203,14 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="mUh-fA-frq">
-                                <rect key="frame" x="16" y="620" width="15" height="15"/>
+                                <rect key="frame" x="16" y="612" width="15" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="2MV-rt-5XK"/>
                                     <constraint firstAttribute="height" constant="15" id="Op0-ej-B2M"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqK-UA-iee">
-                                <rect key="frame" x="39" y="620" width="34.5" height="15"/>
+                                <rect key="frame" x="39" y="612" width="34.5" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -218,14 +218,14 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="hF7-La-xF3">
-                                <rect key="frame" x="236" y="620" width="15" height="15"/>
+                                <rect key="frame" x="236" y="612" width="15" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="1bd-Mv-PMv"/>
                                     <constraint firstAttribute="height" constant="15" id="3SU-Gu-h2C"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxp-7c-isg">
-                                <rect key="frame" x="259" y="620" width="100" height="15"/>
+                                <rect key="frame" x="259" y="612" width="100" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="gnd-Wf-h9o"/>
                                 </constraints>
@@ -236,14 +236,14 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="Ne3-kc-nB2">
-                                <rect key="frame" x="236" y="589" width="15" height="15"/>
+                                <rect key="frame" x="236" y="581" width="15" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="KWK-ZF-P4t"/>
                                     <constraint firstAttribute="height" constant="15" id="P84-2j-OAX"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TG-AM-TBD">
-                                <rect key="frame" x="259" y="589" width="100" height="15"/>
+                                <rect key="frame" x="259" y="581" width="100" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="g5t-CM-O8l"/>
                                 </constraints>
@@ -254,15 +254,23 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="hpB-3V-fnF">
-                                <rect key="frame" x="16" y="589" width="15" height="15"/>
+                                <rect key="frame" x="16" y="581" width="15" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="GlU-bH-4eW"/>
                                     <constraint firstAttribute="height" constant="15" id="WOa-B5-zjE"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGd-FX-LHF">
-                                <rect key="frame" x="39" y="589" width="34.5" height="15"/>
+                                <rect key="frame" x="39" y="581" width="34.5" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afrodita, 19" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgt-rd-QRL">
+                                <rect key="frame" x="16" y="550" width="92" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -271,6 +279,7 @@ discover users nearby</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="jgt-rd-QRL" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="1TV-pF-1rd"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="hF7-La-xF3" secondAttribute="trailing" constant="8" id="5NP-6E-3NK"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="hF7-La-xF3" secondAttribute="top" id="ANk-co-dkG"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="centerY" secondItem="mUh-fA-frq" secondAttribute="centerY" id="Bn5-Xc-X65"/>
@@ -287,6 +296,7 @@ discover users nearby</string>
                             <constraint firstItem="hpB-3V-fnF" firstAttribute="centerY" secondItem="UGd-FX-LHF" secondAttribute="centerY" id="XI4-5X-8P5"/>
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="-12" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="jgt-rd-QRL" secondAttribute="bottom" constant="96" id="ZMz-PX-Szg"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="centerY" secondItem="HqK-UA-iee" secondAttribute="centerY" id="cwa-AK-ROd"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="leading" secondItem="Ne3-kc-nB2" secondAttribute="trailing" constant="8" id="dYN-r8-BGt"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="5TG-AM-TBD" secondAttribute="leading" id="egi-7A-clp"/>
@@ -297,7 +307,7 @@ discover users nearby</string>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="bottom" secondItem="hF7-La-xF3" secondAttribute="bottom" id="iNT-kD-Lsn"/>
                             <constraint firstItem="UGd-FX-LHF" firstAttribute="bottom" secondItem="hpB-3V-fnF" secondAttribute="bottom" id="iyQ-pa-B7q"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="trailing" secondItem="5TG-AM-TBD" secondAttribute="trailing" id="jEg-QL-jPD"/>
-                            <constraint firstAttribute="bottom" secondItem="mUh-fA-frq" secondAttribute="bottom" constant="32" id="jpd-3w-6cq"/>
+                            <constraint firstAttribute="bottom" secondItem="mUh-fA-frq" secondAttribute="bottom" constant="40" id="jpd-3w-6cq"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="bottom" secondItem="Ne3-kc-nB2" secondAttribute="bottom" id="kKy-mu-RU6"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="ms1-Iv-Xza"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="5TG-AM-TBD" secondAttribute="bottom" constant="16" id="nz5-gG-NAZ"/>
@@ -318,6 +328,7 @@ discover users nearby</string>
                         <outlet property="leftFieldIcon2" destination="mUh-fA-frq" id="uk9-oc-4b0"/>
                         <outlet property="leftFieldLabel1" destination="UGd-FX-LHF" id="xV5-qL-21v"/>
                         <outlet property="leftFieldLabel2" destination="HqK-UA-iee" id="TYJ-gE-wrW"/>
+                        <outlet property="nameLabel" destination="jgt-rd-QRL" id="b6f-js-hAK"/>
                         <outlet property="optionsBtn" destination="X1t-jW-NWk" id="LoZ-fG-SZb"/>
                         <outlet property="pagesControl" destination="ahE-Zb-Two" id="5Uz-7h-eYN"/>
                         <outlet property="profileIdLabel" destination="DXW-7Y-3ph" id="4Nc-ug-lj1"/>

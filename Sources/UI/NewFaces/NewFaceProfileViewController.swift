@@ -46,6 +46,7 @@ class NewFaceProfileViewController: UIViewController
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
     @IBOutlet fileprivate weak var statusView: UIView!
     @IBOutlet fileprivate weak var statusLabel: UILabel!
+    @IBOutlet fileprivate weak var nameLabel: UILabel!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -130,6 +131,7 @@ class NewFaceProfileViewController: UIViewController
         self.statusView.layer.borderColor = UIColor.lightGray.cgColor
         
         self.applyStatuses()
+        self.applyName()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -296,6 +298,18 @@ class NewFaceProfileViewController: UIViewController
         } else {
             self.statusLabel.isHidden = true
         }
+    }
+    
+    fileprivate func applyName()
+    {
+        let profile = self.input.profile
+        var title: String = ""
+        if let name = profile.name, name != "unknown" {
+            title += "\(name), "
+        }
+        
+        title += "\(profile.age)"
+        self.nameLabel.text = title
     }
     
     fileprivate func setupFieldsControls()
