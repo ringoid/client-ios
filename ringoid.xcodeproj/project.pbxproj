@@ -393,6 +393,8 @@
 		57EEB09F22C09245005770B3 /* ApiUserProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB09D22C09245005770B3 /* ApiUserProfileInfo.swift */; };
 		57EEB0A722C20131005770B3 /* ChildrenTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0A622C20131005770B3 /* ChildrenTitles.swift */; };
 		57EEB0A822C20132005770B3 /* ChildrenTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0A622C20131005770B3 /* ChildrenTitles.swift */; };
+		57EEB0AA22C20718005770B3 /* PropertyTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0A922C20718005770B3 /* PropertyTitles.swift */; };
+		57EEB0AB22C20718005770B3 /* PropertyTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0A922C20718005770B3 /* PropertyTitles.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -606,6 +608,7 @@
 		57EEB09A22BFB352005770B3 /* HeightTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightTitles.swift; sourceTree = "<group>"; };
 		57EEB09D22C09245005770B3 /* ApiUserProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUserProfileInfo.swift; sourceTree = "<group>"; };
 		57EEB0A622C20131005770B3 /* ChildrenTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenTitles.swift; sourceTree = "<group>"; };
+		57EEB0A922C20718005770B3 /* PropertyTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTitles.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1372,6 +1375,7 @@
 				57EEB09722BFA3DA005770B3 /* EducationTitles.swift */,
 				57EEB09A22BFB352005770B3 /* HeightTitles.swift */,
 				57EEB0A622C20131005770B3 /* ChildrenTitles.swift */,
+				57EEB0A922C20718005770B3 /* PropertyTitles.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1911,6 +1915,7 @@
 				57B863CA21ECD1DC00B9CC70 /* MainLMMViewModel.swift in Sources */,
 				57EEB07622BD058D005770B3 /* SettingsProfileCell.swift in Sources */,
 				579CD7C321F9A93E00C3AEE3 /* ChatViewModel.swift in Sources */,
+				57EEB0AA22C20718005770B3 /* PropertyTitles.swift in Sources */,
 				57585D7221E5055D00038798 /* BaseViewController.swift in Sources */,
 				570D04C321DFA4EF00E0DCFB /* ApiUserPhotoPlaceholder.swift in Sources */,
 				57149D60221AD32D00F636A4 /* SettingsLegalCustomerCell.swift in Sources */,
@@ -2102,6 +2107,7 @@
 				57149D61221AD32D00F636A4 /* SettingsLegalCustomerCell.swift in Sources */,
 				57EEB07722BD058D005770B3 /* SettingsProfileCell.swift in Sources */,
 				57EE652A2216711000246B45 /* FileService.swift in Sources */,
+				57EEB0AB22C20718005770B3 /* PropertyTitles.swift in Sources */,
 				57EE652B2216711000246B45 /* ApiServiceConfig.swift in Sources */,
 				57EE652C2216711000246B45 /* MainLMMViewModel.swift in Sources */,
 				57EE652D2216711000246B45 /* ChatViewModel.swift in Sources */,

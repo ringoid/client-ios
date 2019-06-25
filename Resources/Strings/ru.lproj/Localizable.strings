@@ -145,3 +145,10 @@
 "profile_field_children_dont_want" = "Не хочу";
 "profile_field_children_have_want" = "Есть и хочу еще";
 "profile_field_children_have_dont_want" = "Есть и не хочу больше";
+
+"profile_field_property_parents" = "Живу с родителями";
+"profile_field_property_dormitory" = "Живу в общежитии";
+"profile_field_property_friend" = "Живу с приятелем/подругой";
+"profile_field_property_room" = "Снимаю комнату";
+"profile_field_property_flat" = "Квартира (снимаю или своя)";
+"profile_field_property_house" = "Дом (снимаю или свой)";

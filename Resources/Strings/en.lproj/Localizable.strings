@@ -145,3 +145,10 @@
 "profile_field_children_dont_want" = "Don't want";
 "profile_field_children_have_want" = "Have & want more";
 "profile_field_children_have_dont_want" = "Have & don't want more";
+
+"profile_field_property_parents" = "Live with parents";
+"profile_field_property_dormitory" = "Live in a dormitory";
+"profile_field_property_friend" = "Live with a friend";
+"profile_field_property_room" = "Rent a room";
+"profile_field_property_flat" = "Flat (rent or own)";
+"profile_field_property_house" = "House (rent or own)";
