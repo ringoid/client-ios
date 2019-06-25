@@ -48,6 +48,7 @@ class NewFaceProfileViewController: UIViewController
     @IBOutlet fileprivate weak var statusLabel: UILabel!
     @IBOutlet fileprivate weak var nameLabel: UILabel!
     @IBOutlet fileprivate weak var nameConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var aboutLabel: UILabel!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -55,7 +56,6 @@ class NewFaceProfileViewController: UIViewController
     @IBOutlet fileprivate weak var leftFieldIcon2: UIImageView!
     @IBOutlet fileprivate weak var leftFieldLabel2: UILabel!
 
-    
     @IBOutlet fileprivate weak var rightFieldIcon1: UIImageView!
     @IBOutlet fileprivate weak var rightFieldLabel1: UILabel!
     @IBOutlet fileprivate weak var rightFieldIcon2: UIImageView!
@@ -327,6 +327,78 @@ class NewFaceProfileViewController: UIViewController
     }
     
     fileprivate func updateFieldsContent(_ page: Int)
+    {
+        guard let gender: Sex = self.input.profileManager.gender.value?.opposite() else { return }
+        
+        // MALE
+        if gender == .male {
+            if page == 0 {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(0)
+                
+                return
+            }
+            
+            if page == 1 {
+                if let aboutText = self.input.profile.about, aboutText != "unknown" {
+                    self.leftFieldsControls.forEach({ controls in
+                        controls.iconView.isHidden = true
+                        controls.titleLabel.isHidden = true
+                    })
+                    
+                    self.aboutLabel.text = aboutText
+                    self.aboutLabel.isHidden = false
+                    self.nameConstraint.constant = 96.0
+                    self.view.layoutIfNeeded()
+                } else {
+                    self.aboutLabel.isHidden = true
+                    self.updateProfileRows(1)
+                }
+                
+                return
+            }
+            
+            if let aboutText = self.input.profile.about, aboutText != "unknown" {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page - 1)
+            } else {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page)
+            }
+        }
+        
+        // FEMALE
+        if gender == .female {
+            if page == 0 {
+                if let aboutText = self.input.profile.about, aboutText != "unknown" {
+                    self.leftFieldsControls.forEach({ controls in
+                        controls.iconView.isHidden = true
+                        controls.titleLabel.isHidden = true
+                    })
+                    
+                    self.aboutLabel.text = aboutText
+                    self.aboutLabel.isHidden = false
+                    self.nameConstraint.constant = 96.0
+                    self.view.layoutIfNeeded()
+                } else {
+                    self.aboutLabel.isHidden = true
+                    self.updateProfileRows(0)
+                }
+                
+                return
+            }
+            
+            if let aboutText = self.input.profile.about, aboutText != "unknown" {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page - 1)
+            } else {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page)
+            }
+        }
+    }
+    
+    fileprivate func updateProfileRows(_ page: Int)
     {
         let profileManager = self.input.profileManager
         let configuration = ProfileFieldsConfiguration(profileManager)

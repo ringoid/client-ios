@@ -78,3 +78,11 @@ class AuthViewModel
         }
     }
 }
+
+extension Sex
+{
+    func opposite() -> Sex
+    {
+        return self == .male ? .female : .male
+    }
+}
