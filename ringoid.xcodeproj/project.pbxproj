@@ -397,6 +397,8 @@
 		57EEB0AB22C20718005770B3 /* PropertyTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0A922C20718005770B3 /* PropertyTitles.swift */; };
 		57EEB0AD22C20CF4005770B3 /* IncomeTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0AC22C20CF4005770B3 /* IncomeTitles.swift */; };
 		57EEB0AE22C20CF4005770B3 /* IncomeTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0AC22C20CF4005770B3 /* IncomeTitles.swift */; };
+		57EEB0B022C2100A005770B3 /* TransportTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0AF22C2100A005770B3 /* TransportTitles.swift */; };
+		57EEB0B122C2100A005770B3 /* TransportTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0AF22C2100A005770B3 /* TransportTitles.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -612,6 +614,7 @@
 		57EEB0A622C20131005770B3 /* ChildrenTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenTitles.swift; sourceTree = "<group>"; };
 		57EEB0A922C20718005770B3 /* PropertyTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTitles.swift; sourceTree = "<group>"; };
 		57EEB0AC22C20CF4005770B3 /* IncomeTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeTitles.swift; sourceTree = "<group>"; };
+		57EEB0AF22C2100A005770B3 /* TransportTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportTitles.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1380,6 +1383,7 @@
 				57EEB0A622C20131005770B3 /* ChildrenTitles.swift */,
 				57EEB0A922C20718005770B3 /* PropertyTitles.swift */,
 				57EEB0AC22C20CF4005770B3 /* IncomeTitles.swift */,
+				57EEB0AF22C2100A005770B3 /* TransportTitles.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1957,6 +1961,7 @@
 				57528C772292E761003F01E3 /* SettingsNotificationsLikeCell.swift in Sources */,
 				573A5C0B2223C4520094A9FA /* SettingsLocaleHelpCell.swift in Sources */,
 				57EEB08F22BF6626005770B3 /* ProfileFieldType.swift in Sources */,
+				57EEB0B022C2100A005770B3 /* TransportTitles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2150,6 +2155,7 @@
 				57528C782292E761003F01E3 /* SettingsNotificationsLikeCell.swift in Sources */,
 				573A5C0C2223C8470094A9FA /* SettingsLocaleHelpCell.swift in Sources */,
 				57EEB09022BF6626005770B3 /* ProfileFieldType.swift in Sources */,
+				57EEB0B122C2100A005770B3 /* TransportTitles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

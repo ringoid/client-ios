@@ -157,3 +157,11 @@
 "profile_field_income_middle" = "Средний доход";
 "profile_field_income_high" = "Высокий доход";
 "profile_field_income_ultrahigh" = "Сверхвысокий доход";
+
+"profile_field_transport_walk" = "Хожу пешком";
+"profile_field_transport_public" = "Общ. транспорт";
+"profile_field_transport_cycle" = "Езжу на велосипеде";
+"profile_field_transport_motocycle" = "Есть мотоцикл";
+"profile_field_transport_car" = "Есть автомобиль";
+"profile_field_transport_taxi" = "Езжу на такси / Uber";
+"profile_field_transport_chauffeur" = "Личный водитель";

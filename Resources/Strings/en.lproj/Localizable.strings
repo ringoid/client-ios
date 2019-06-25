@@ -157,3 +157,11 @@
 "profile_field_income_middle" = "Middle Income";
 "profile_field_income_high" = "High Income";
 "profile_field_income_ultrahigh" = "Ultra High Income";
+
+"profile_field_transport_walk" = "Walk";
+"profile_field_transport_public" = "Use Public Transport";
+"profile_field_transport_cycle" = "Cycle";
+"profile_field_transport_motocycle" = "Own a motocycle";
+"profile_field_transport_car" = "Own a car";
+"profile_field_transport_taxi" = "Use Taxi / Uber";
+"profile_field_transport_chauffeur" = "Hire Chauffeur";
