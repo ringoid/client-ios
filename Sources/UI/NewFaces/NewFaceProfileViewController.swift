@@ -98,6 +98,7 @@ class NewFaceProfileViewController: UIViewController
         
         super.viewDidLoad()
         
+        self.setupFieldsControls()
         self.setupBindings()
         //self.setupPreheaterTimer()
         self.preheatSecondPhoto()
@@ -130,7 +131,6 @@ class NewFaceProfileViewController: UIViewController
         self.statusView.layer.borderColor = UIColor.lightGray.cgColor
         
         self.applyStatuses()
-        self.setupFieldsControls()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -172,6 +172,10 @@ class NewFaceProfileViewController: UIViewController
             UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
                 self?.optionsBtn.alpha = alpha
             }).startAnimation()
+        }).disposed(by: self.disposeBag)
+        
+        self.currentIndex.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] page in
+            self?.updateFieldsContent(page)
         }).disposed(by: self.disposeBag)
     }
     
@@ -305,6 +309,33 @@ class NewFaceProfileViewController: UIViewController
             NewFaceProfileFieldControl(iconView: self.rightFieldIcon2, titleLabel: self.rightFieldLabel2),
             NewFaceProfileFieldControl(iconView: self.rightFieldIcon3, titleLabel: self.rightFieldLabel3),
         ]
+    }
+    
+    fileprivate func updateFieldsContent(_ page: Int)
+    {
+        let profileManager = self.input.profileManager
+        let configuration = ProfileFieldsConfiguration(profileManager)
+        let columns = configuration.colums(self.input.profile)
+        let start = page * 6        
+        let count = columns.count
+        
+        (0...5).forEach { index in
+            let controls = self.fieldsControls[index]
+            let absoluteIndex = start + index
+            
+            guard absoluteIndex < count else {
+                controls.iconView.isHidden = true
+                controls.titleLabel.isHidden = true
+                
+                return
+            }
+            
+            let row = columns[absoluteIndex]
+            controls.iconView.image = UIImage(named: row.icon ?? "")
+            controls.titleLabel.text = row.title.localized()
+            controls.iconView.isHidden = false
+            controls.titleLabel.isHidden = false
+        }
     }
 }
 

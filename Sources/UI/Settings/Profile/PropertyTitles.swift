@@ -10,7 +10,7 @@ import Foundation
 
 extension Property
 {
-    func titles() -> String
+    func title() -> String
     {
         switch self {
         case .unknown: return "profile_field_not_selected"
