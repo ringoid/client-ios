@@ -72,6 +72,86 @@ class ProfileFieldsConfiguration
     
     func leftColums(_ profile: Profile) -> [ProfileFileRow]
     {
+        guard let gender = self.profileManager.gender.value?.opposite() else { return [] }
+        
+        switch gender {
+        case .male: return self.leftColumsMale(profile)
+        case .female: return self.leftColumsFemale(profile)
+        }
+    }
+    
+    func leftColumsMale(_ profile: Profile) -> [ProfileFileRow]
+    {
+        var rows: [ProfileFileRow] = []
+        
+        if let rawValue = profile.children.value, let children = Children(rawValue: rawValue), children != .unknown {
+            rows.append(ProfileFileRow(
+                title: children.title(),
+                icon: "profile_fields_children"
+            ))
+        }
+        
+        if let rawValue = profile.income.value, let income = Income(rawValue: rawValue), income != .unknown {
+            rows.append(ProfileFileRow(
+                title: income.title(),
+                icon: "profile_fields_income"
+            ))
+        }
+        
+        if let title = profile.jobTitle, title != "unknown" {
+            rows.append(ProfileFileRow(
+                title: title,
+                icon: nil
+            ))
+        }
+        
+        if let title = profile.education, title != "unknown" {
+            rows.append(ProfileFileRow(
+                title: title,
+                icon: nil
+            ))
+        }
+        
+        if let rawValue = profile.educationLevel.value, let level = EducationLevel(rawValue: rawValue), level != .unknown {
+            rows.append(ProfileFileRow(
+                title: level.title(),
+                icon: "profile_fields_education"
+            ))
+        }
+        
+        if let rawValue = profile.property.value, let property = Property(rawValue: rawValue), property != .unknown {
+            rows.append(ProfileFileRow(
+                title: property.title(),
+                icon: "profile_fields_house"
+            ))
+        }
+        
+        if let rawValue = profile.transport.value, let transport = Transport(rawValue: rawValue), transport != .unknown {
+            rows.append(ProfileFileRow(
+                title: transport.title(),
+                icon: "profile_fields_transport"
+            ))
+        }
+        
+        if let title = profile.tikTok, title != "unknown" {
+            rows.append(ProfileFileRow(
+                title: title,
+                icon: nil
+            ))
+        }
+        
+        if let title = profile.instagram, title != "unknown" {
+            rows.append(ProfileFileRow(
+                title: title,
+                icon: nil
+            ))
+        }
+        
+        return rows
+    }
+    
+    func leftColumsFemale(_ profile: Profile) -> [ProfileFileRow]
+    {
         var rows: [ProfileFileRow] = []
         
         if let rawValue = profile.children.value, let children = Children(rawValue: rawValue), children != .unknown {
