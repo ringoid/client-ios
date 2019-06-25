@@ -8,12 +8,19 @@
 
 import Foundation
 
-struct ProfileField {
+struct ProfileField
+{
     let title: String
     let icon: String
     let placeholder: String
     let cellIdentifier: String
     let fieldType: ProfileFieldType
+}
+
+struct NewFacesProfileField
+{
+    let title: String
+    let icon: String
 }
 
 class ProfileFieldsConfiguration
@@ -61,5 +68,10 @@ class ProfileFieldsConfiguration
     init(_ profileManager: UserProfileManager)
     {
         self.profileManager = profileManager
+    }
+    
+    func newFacesFields(_ profile: NewFaceProfile) -> [NewFacesProfileField]
+    {
+        return []
     }
 }

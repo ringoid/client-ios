@@ -11,6 +11,12 @@ import RxSwift
 import RxCocoa
 import Nuke
 
+fileprivate struct NewFaceProfileFieldControl
+{
+    let iconView: UIImageView
+    let titleLabel: UILabel
+}
+
 class NewFaceProfileViewController: UIViewController
 {
     var input: NewFaceProfileVMInput!
@@ -32,12 +38,28 @@ class NewFaceProfileViewController: UIViewController
     fileprivate var photosVCs: [NewFacePhotoViewController] = []
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var preheaterTimer: Timer?
+    fileprivate var fieldsControls: [NewFaceProfileFieldControl] = []
     
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
     @IBOutlet fileprivate weak var statusView: UIView!
     @IBOutlet fileprivate weak var statusLabel: UILabel!
+    
+    // Profile fields
+    @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
+    @IBOutlet fileprivate weak var leftFieldLabel1: UILabel!
+    @IBOutlet fileprivate weak var leftFieldIcon2: UIImageView!
+    @IBOutlet fileprivate weak var leftFieldLabel2: UILabel!
+    @IBOutlet fileprivate weak var leftFieldIcon3: UIImageView!
+    @IBOutlet fileprivate weak var leftFieldLabel3: UILabel!
+    
+    @IBOutlet fileprivate weak var rightFieldIcon1: UIImageView!
+    @IBOutlet fileprivate weak var rightFieldLabel1: UILabel!
+    @IBOutlet fileprivate weak var rightFieldIcon2: UIImageView!
+    @IBOutlet fileprivate weak var rightFieldLabel2: UILabel!
+    @IBOutlet fileprivate weak var rightFieldIcon3: UIImageView!
+    @IBOutlet fileprivate weak var rightFieldLabel3: UILabel!
     
     static func create(_ profile: NewFaceProfile,
                        initialIndex: Int,
@@ -108,6 +130,7 @@ class NewFaceProfileViewController: UIViewController
         self.statusView.layer.borderColor = UIColor.lightGray.cgColor
         
         self.applyStatuses()
+        self.setupFieldsControls()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -270,6 +293,18 @@ class NewFaceProfileViewController: UIViewController
         } else {
             self.statusLabel.isHidden = true
         }
+    }
+    
+    fileprivate func setupFieldsControls()
+    {
+        self.fieldsControls = [
+            NewFaceProfileFieldControl(iconView: self.leftFieldIcon1, titleLabel: self.leftFieldLabel1),
+            NewFaceProfileFieldControl(iconView: self.leftFieldIcon2, titleLabel: self.leftFieldLabel2),
+            NewFaceProfileFieldControl(iconView: self.leftFieldIcon3, titleLabel: self.leftFieldLabel3),
+            NewFaceProfileFieldControl(iconView: self.rightFieldIcon1, titleLabel: self.rightFieldLabel1),
+            NewFaceProfileFieldControl(iconView: self.rightFieldIcon2, titleLabel: self.rightFieldLabel2),
+            NewFaceProfileFieldControl(iconView: self.rightFieldIcon3, titleLabel: self.rightFieldLabel3),
+        ]
     }
 }
 
