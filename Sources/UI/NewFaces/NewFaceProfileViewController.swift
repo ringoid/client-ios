@@ -38,12 +38,6 @@ class NewFaceProfileViewController: UIViewController
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
     @IBOutlet fileprivate weak var statusView: UIView!
     @IBOutlet fileprivate weak var statusLabel: UILabel!
-    @IBOutlet fileprivate weak var distanceLabel: UILabel!
-    @IBOutlet fileprivate weak var locationIconView: UIView!
-    @IBOutlet fileprivate weak var iconOffsetConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var ageLabel: UILabel!
-    @IBOutlet fileprivate weak var genderView: UIImageView!
-    @IBOutlet fileprivate weak var genderOffsetConstraint: NSLayoutConstraint!
     
     static func create(_ profile: NewFaceProfile,
                        initialIndex: Int,
@@ -114,7 +108,6 @@ class NewFaceProfileViewController: UIViewController
         self.statusView.layer.borderColor = UIColor.lightGray.cgColor
         
         self.applyStatuses()
-        self.applyAge()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -226,11 +219,7 @@ class NewFaceProfileViewController: UIViewController
         self.optionsBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
         self.pagesControl.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
         self.statusView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
-        self.distanceLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.distanceLabel.frame, offset: value) ?? 1.0)
         self.statusLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusLabel.frame, offset: value) ?? 1.0)
-        self.locationIconView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.locationIconView.frame, offset: value) ?? 1.0)
-        self.genderView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.genderView.frame, offset: value) ?? 1.0)
-        self.ageLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.ageLabel.frame, offset: value) ?? 1.0)
     }
     
     fileprivate func bottomOpacityFor(_ frame: CGRect, offset: CGFloat) -> CGFloat?
@@ -281,41 +270,6 @@ class NewFaceProfileViewController: UIViewController
         } else {
             self.statusLabel.isHidden = true
         }
-        
-        if let distanceText = self.input.profile.distanceText, distanceText.lowercased() != "unknown",  distanceText.count > 0 {
-            self.distanceLabel.text = distanceText
-            let textWidth = (distanceText as NSString).boundingRect(
-                with: CGSize(width: 999.0, height: 999.0),
-                options: .usesLineFragmentOrigin,
-                attributes: [NSAttributedString.Key.font: self.distanceLabel.font],
-                context: nil
-                ).size.width
-            self.iconOffsetConstraint.constant = textWidth + 24.0
-            self.distanceLabel.isHidden = false
-            self.locationIconView.isHidden = false
-        } else {
-            self.distanceLabel.isHidden = true
-            self.locationIconView.isHidden = true
-        }
-    }
-    
-    fileprivate func applyAge()
-    {
-        let age = self.input.profile.age
-        
-        guard age > 17 else {
-            self.ageLabel.isHidden = true
-            self.genderView.isHidden = true
-            
-            return
-        }
-        
-        self.ageLabel.text = "\(age)"
-        let iconName = self.input.profileManager.gender.value == .male ? "feed_gender_female" : "feed_gender_male"
-        self.genderView.image = UIImage(named: iconName)
-        self.genderOffsetConstraint.constant =  self.input.profileManager.gender.value == .male ? 0.0 : 4.0
-        self.ageLabel.isHidden = false
-        self.genderView.isHidden = false
     }
 }
 
