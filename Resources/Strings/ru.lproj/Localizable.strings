@@ -140,3 +140,8 @@
 "profile_field_education_university2" = "Высшее";
 "profile_field_education_university3" = "Несколько высших";
 "profile_field_education_postgrad" = "Ученая степень";
+
+"profile_field_children_someday" = "Хочу";
+"profile_field_children_dont_want" = "Не хочу";
+"profile_field_children_have_want" = "Есть и хочу еще";
+"profile_field_children_have_dont_want" = "Есть и не хочу больше";

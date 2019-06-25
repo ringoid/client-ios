@@ -140,3 +140,8 @@
 "profile_field_education_university2" = "University";
 "profile_field_education_university3" = "University";
 "profile_field_education_postgrad" = "Post-grad";
+
+"profile_field_children_someday" = "Want someday";
+"profile_field_children_dont_want" = "Don't want";
+"profile_field_children_have_want" = "Have & want more";
+"profile_field_children_have_dont_want" = "Have & don't want more";

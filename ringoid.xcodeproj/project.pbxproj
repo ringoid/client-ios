@@ -391,6 +391,8 @@
 		57EEB09C22BFB352005770B3 /* HeightTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB09A22BFB352005770B3 /* HeightTitles.swift */; };
 		57EEB09E22C09245005770B3 /* ApiUserProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB09D22C09245005770B3 /* ApiUserProfileInfo.swift */; };
 		57EEB09F22C09245005770B3 /* ApiUserProfileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB09D22C09245005770B3 /* ApiUserProfileInfo.swift */; };
+		57EEB0A722C20131005770B3 /* ChildrenTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0A622C20131005770B3 /* ChildrenTitles.swift */; };
+		57EEB0A822C20132005770B3 /* ChildrenTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0A622C20131005770B3 /* ChildrenTitles.swift */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -603,6 +605,7 @@
 		57EEB09722BFA3DA005770B3 /* EducationTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationTitles.swift; sourceTree = "<group>"; };
 		57EEB09A22BFB352005770B3 /* HeightTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightTitles.swift; sourceTree = "<group>"; };
 		57EEB09D22C09245005770B3 /* ApiUserProfileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUserProfileInfo.swift; sourceTree = "<group>"; };
+		57EEB0A622C20131005770B3 /* ChildrenTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildrenTitles.swift; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1368,6 +1371,7 @@
 				57EEB09422BF695F005770B3 /* HairTitles.swift */,
 				57EEB09722BFA3DA005770B3 /* EducationTitles.swift */,
 				57EEB09A22BFB352005770B3 /* HeightTitles.swift */,
+				57EEB0A622C20131005770B3 /* ChildrenTitles.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1857,6 +1861,7 @@
 				57B863F021EF5A0000B9CC70 /* ApiAction.swift in Sources */,
 				57B863D921EE18ED00B9CC70 /* DiagonalGradientView.swift in Sources */,
 				57EE64CD2215394A00246B45 /* SettingsLegalLicensesCell.swift in Sources */,
+				57EEB0A722C20131005770B3 /* ChildrenTitles.swift in Sources */,
 				57585D5921E4928600038798 /* FileServiceDefault.swift in Sources */,
 				57EEB09822BFA3DA005770B3 /* EducationTitles.swift in Sources */,
 				57EE64C1221478A600246B45 /* SettingsLegalViewController.swift in Sources */,
@@ -2047,6 +2052,7 @@
 				57EE650C2216711000246B45 /* KeyboardListener.swift in Sources */,
 				57EE650D2216711000246B45 /* ChatBaseCell.swift in Sources */,
 				57EE650E2216711000246B45 /* ApiAction.swift in Sources */,
+				57EEB0A822C20132005770B3 /* ChildrenTitles.swift in Sources */,
 				57EE650F2216711000246B45 /* DiagonalGradientView.swift in Sources */,
 				57EEB09922BFA3DA005770B3 /* EducationTitles.swift in Sources */,
 				57EE65102216711000246B45 /* SettingsLegalLicensesCell.swift in Sources */,
