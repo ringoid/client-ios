@@ -47,6 +47,7 @@ class NewFaceProfileViewController: UIViewController
     @IBOutlet fileprivate weak var statusView: UIView!
     @IBOutlet fileprivate weak var statusLabel: UILabel!
     @IBOutlet fileprivate weak var nameLabel: UILabel!
+    @IBOutlet fileprivate weak var nameConstraint: NSLayoutConstraint!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -335,6 +336,8 @@ class NewFaceProfileViewController: UIViewController
         let leftCount = leftRows.count
         let rightCount = rightRows.count
         
+        var nameOffset: CGFloat = 96.0
+        
         (0...1).forEach { index in
             let leftControls = self.leftFieldsControls[index]
             let rightControls = self.rightFieldsControls[index]
@@ -343,6 +346,9 @@ class NewFaceProfileViewController: UIViewController
             if absoluteIndex >= leftCount {
                 leftControls.iconView.isHidden = true
                 leftControls.titleLabel.isHidden = true
+                
+                if index ==  0 { nameOffset = 40.0 }
+                
             } else {
                 let row = leftRows[absoluteIndex]
                 leftControls.iconView.image = UIImage(named: row.icon ?? "")
@@ -362,6 +368,9 @@ class NewFaceProfileViewController: UIViewController
                 rightControls.titleLabel.isHidden = false
             }
         }
+        
+        self.nameConstraint.constant = nameOffset
+        self.view.layoutIfNeeded()
     }
 }
 

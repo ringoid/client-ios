@@ -296,7 +296,7 @@ discover users nearby</string>
                             <constraint firstItem="hpB-3V-fnF" firstAttribute="centerY" secondItem="UGd-FX-LHF" secondAttribute="centerY" id="XI4-5X-8P5"/>
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="-12" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="jgt-rd-QRL" secondAttribute="bottom" constant="96" id="ZMz-PX-Szg"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="jgt-rd-QRL" secondAttribute="bottom" constant="96" id="ZMz-PX-Szg" userLabel="name bottom"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="centerY" secondItem="HqK-UA-iee" secondAttribute="centerY" id="cwa-AK-ROd"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="leading" secondItem="Ne3-kc-nB2" secondAttribute="trailing" constant="8" id="dYN-r8-BGt"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="5TG-AM-TBD" secondAttribute="leading" id="egi-7A-clp"/>
@@ -328,6 +328,7 @@ discover users nearby</string>
                         <outlet property="leftFieldIcon2" destination="mUh-fA-frq" id="uk9-oc-4b0"/>
                         <outlet property="leftFieldLabel1" destination="UGd-FX-LHF" id="xV5-qL-21v"/>
                         <outlet property="leftFieldLabel2" destination="HqK-UA-iee" id="TYJ-gE-wrW"/>
+                        <outlet property="nameConstraint" destination="ZMz-PX-Szg" id="Rdv-UB-LIG"/>
                         <outlet property="nameLabel" destination="jgt-rd-QRL" id="b6f-js-hAK"/>
                         <outlet property="optionsBtn" destination="X1t-jW-NWk" id="LoZ-fG-SZb"/>
                         <outlet property="pagesControl" destination="ahE-Zb-Two" id="5Uz-7h-eYN"/>
