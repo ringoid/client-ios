@@ -24,6 +24,8 @@ class SettingsProfileViewController: BaseViewController
         
         super.viewDidLoad()
         
+        self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 260.0, right: 0.0)
+        
         self.setupViewModel()
         self.tableView.reloadData()
     }
@@ -50,6 +52,11 @@ class SettingsProfileViewController: BaseViewController
     {
         self.input.profileManager.updateProfile()
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func onHideInput()
+    {
+        UIApplication.shared.sendAction(#selector(UIView.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
     // MARK: -

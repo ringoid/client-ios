@@ -128,6 +128,7 @@
 "profile_field_transport" = "Транспорт";
 "profile_field_income" = "Доход";
 "profile_field_property" = "Недвижимость";
+"profile_field_children" = "Дети";
 
 "profile_field_hair_black_male" = "Брюнет";
 "profile_field_hair_blonde_male" = "Блондин";

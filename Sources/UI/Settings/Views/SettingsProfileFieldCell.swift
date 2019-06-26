@@ -35,7 +35,20 @@ class SettingsProfileFieldCell: BaseTableViewCell
                 
             case .children:
                 self.valueField.text = Children.at(index).title().localized()
+                break
                 
+            case .transport:
+                self.valueField.text = Transport.at(index).title().localized()
+                break
+                
+            case .income:
+                self.valueField.text = Income.at(index).title().localized()
+                break
+                
+            case .property:
+                self.valueField.text = Property.at(index).title().localized()
+                break
+
             default: break
                 
             }
@@ -53,7 +66,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
             guard let text = self.valueText else { return }
             
             switch type {
-            case .education, .name, .instagram, .tiktok, .bio, .job, .whereLive:
+            case .education, .name, .instagram, .tiktok, .bio, .job, .whereLive, .company:
                 self.valueField.text = text
                 break
                 
