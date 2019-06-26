@@ -288,8 +288,8 @@ discover users nearby</string>
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.23309075342465754" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About me" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEy-yV-NWA">
-                                <rect key="frame" x="16" y="579" width="343" height="56"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About me" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEy-yV-NWA">
+                                <rect key="frame" x="16" y="575" width="343" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="gkf-JW-gIn"/>
@@ -304,7 +304,7 @@ discover users nearby</string>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jgt-rd-QRL" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="1TV-pF-1rd"/>
-                            <constraint firstItem="DEy-yV-NWA" firstAttribute="top" secondItem="jgt-rd-QRL" secondAttribute="bottom" constant="8" id="2v2-oc-7cA"/>
+                            <constraint firstItem="DEy-yV-NWA" firstAttribute="top" secondItem="jgt-rd-QRL" secondAttribute="bottom" constant="4" id="2v2-oc-7cA"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="hF7-La-xF3" secondAttribute="trailing" constant="8" id="5NP-6E-3NK"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="hF7-La-xF3" secondAttribute="top" id="ANk-co-dkG"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="centerY" secondItem="mUh-fA-frq" secondAttribute="centerY" id="Bn5-Xc-X65"/>
@@ -354,6 +354,7 @@ discover users nearby</string>
                         <viewLayoutGuide key="safeArea" id="QNT-if-MPg"/>
                     </view>
                     <connections>
+                        <outlet property="aboutHeightConstraint" destination="gkf-JW-gIn" id="ZTZ-35-etM"/>
                         <outlet property="aboutLabel" destination="DEy-yV-NWA" id="TMy-zX-d0I"/>
                         <outlet property="leftFieldIcon1" destination="mUh-fA-frq" id="ZHg-m3-vHG"/>
                         <outlet property="leftFieldIcon2" destination="hpB-3V-fnF" id="sm3-ni-SEd"/>
