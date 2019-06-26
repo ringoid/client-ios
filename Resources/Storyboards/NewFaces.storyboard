@@ -355,19 +355,19 @@ discover users nearby</string>
                     </view>
                     <connections>
                         <outlet property="aboutLabel" destination="DEy-yV-NWA" id="TMy-zX-d0I"/>
-                        <outlet property="leftFieldIcon1" destination="hpB-3V-fnF" id="Mkj-Ow-CRh"/>
-                        <outlet property="leftFieldIcon2" destination="mUh-fA-frq" id="uk9-oc-4b0"/>
-                        <outlet property="leftFieldLabel1" destination="UGd-FX-LHF" id="xV5-qL-21v"/>
-                        <outlet property="leftFieldLabel2" destination="HqK-UA-iee" id="TYJ-gE-wrW"/>
+                        <outlet property="leftFieldIcon1" destination="mUh-fA-frq" id="ZHg-m3-vHG"/>
+                        <outlet property="leftFieldIcon2" destination="hpB-3V-fnF" id="sm3-ni-SEd"/>
+                        <outlet property="leftFieldLabel1" destination="HqK-UA-iee" id="8o7-EW-XrV"/>
+                        <outlet property="leftFieldLabel2" destination="UGd-FX-LHF" id="Dst-Qt-NKd"/>
                         <outlet property="nameConstraint" destination="ZMz-PX-Szg" id="Rdv-UB-LIG"/>
                         <outlet property="nameLabel" destination="jgt-rd-QRL" id="b6f-js-hAK"/>
                         <outlet property="optionsBtn" destination="X1t-jW-NWk" id="LoZ-fG-SZb"/>
                         <outlet property="pagesControl" destination="ahE-Zb-Two" id="5Uz-7h-eYN"/>
                         <outlet property="profileIdLabel" destination="DXW-7Y-3ph" id="4Nc-ug-lj1"/>
-                        <outlet property="rightFieldIcon1" destination="Ne3-kc-nB2" id="xX3-5g-eMw"/>
-                        <outlet property="rightFieldIcon2" destination="hF7-La-xF3" id="mNw-RG-6Ql"/>
-                        <outlet property="rightFieldLabel1" destination="5TG-AM-TBD" id="GvG-HH-zQF"/>
-                        <outlet property="rightFieldLabel2" destination="Sxp-7c-isg" id="ZZ3-GV-bg9"/>
+                        <outlet property="rightFieldIcon1" destination="hF7-La-xF3" id="gzN-9R-7X5"/>
+                        <outlet property="rightFieldIcon2" destination="Ne3-kc-nB2" id="2PM-9P-rf1"/>
+                        <outlet property="rightFieldLabel1" destination="Sxp-7c-isg" id="4Tf-TB-Dkw"/>
+                        <outlet property="rightFieldLabel2" destination="5TG-AM-TBD" id="mA9-nY-pJP"/>
                         <outlet property="statusLabel" destination="bby-nO-FSI" id="eKh-um-gb0"/>
                         <outlet property="statusView" destination="HGV-Wh-HTU" id="LSt-g1-wGN"/>
                     </connections>

@@ -355,7 +355,7 @@ class NewFaceProfileViewController: UIViewController
                     
                     self.aboutLabel.text = aboutText
                     self.aboutLabel.isHidden = false
-                    self.nameConstraint.constant = 96.0
+                    self.nameConstraint.constant = 86.0
                     self.view.layoutIfNeeded()
                 } else {
                     self.aboutLabel.isHidden = true
@@ -385,7 +385,7 @@ class NewFaceProfileViewController: UIViewController
                     
                     self.aboutLabel.text = aboutText
                     self.aboutLabel.isHidden = false
-                    self.nameConstraint.constant = 96.0
+                    self.nameConstraint.constant = 86.0
                     self.view.layoutIfNeeded()
                 } else {
                     self.aboutLabel.isHidden = true
@@ -415,7 +415,7 @@ class NewFaceProfileViewController: UIViewController
         let leftCount = leftRows.count
         let rightCount = rightRows.count
         
-        var nameOffset: CGFloat = 96.0
+        var nameOffset: CGFloat = 86.0
         
         (0...1).forEach { index in
             let leftControls = self.leftFieldsControls[index]
@@ -426,6 +426,7 @@ class NewFaceProfileViewController: UIViewController
                 leftControls.iconView.isHidden = true
                 leftControls.titleLabel.isHidden = true
                 
+                if index ==  1 && nameOffset > 41.0 { nameOffset = 60.0 }
                 if index ==  0 { nameOffset = 40.0 }
                 
             } else {
