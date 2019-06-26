@@ -8,6 +8,8 @@
 
 import UIKit
 
+fileprivate let pickerBackgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
+
 class SettingsProfileFieldCell: BaseTableViewCell
 {
     var field: ProfileField?
@@ -80,15 +82,25 @@ class SettingsProfileFieldCell: BaseTableViewCell
     
     var onSelect: ((ProfileFieldType, Int?, String?) -> ())?
     
-    @IBOutlet fileprivate weak var iconView: UIImageView!
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
-    @IBOutlet fileprivate weak var valueField: UITextField!
+    @IBOutlet weak var iconView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var valueField: UITextField!
     
     fileprivate weak var pickerView: UIPickerView!
     
+    override func awakeFromNib()
+    {
+        super.awakeFromNib()
+        
+        self.valueField.layer.sublayerTransform = CATransform3DMakeTranslation(6.0, 0.0, 0.0)
+        self.valueField.layer.cornerRadius = 8.0
+        self.valueField.layer.borderColor = UIColor.darkGray.cgColor
+        self.valueField.layer.borderWidth = 1.0
+        self.valueField.clipsToBounds = true
+    }
+    
     override func updateTheme()
     {
-        self.titleLabel.textColor = ContentColor().uiColor()
         self.tintColor = ContentColor().uiColor()
     }
     
@@ -118,17 +130,17 @@ class SettingsProfileFieldCell: BaseTableViewCell
     {
         let width = UIScreen.main.bounds.width
         let optionsView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: width, height: 44.0))
-        optionsView.backgroundColor = .white
+        optionsView.backgroundColor = pickerBackgroundColor
         
         let selectBtn = UIButton(frame: CGRect(x: width - 100.0, y: 0, width: 100.0, height: 44.0))
         selectBtn.setTitle("button_select".localized(), for: .normal)
-        selectBtn.setTitleColor(.blue, for: .normal)
+        selectBtn.setTitleColor(.white, for: .normal)
         selectBtn.addTarget(self, action: #selector(stopEditing), for: .touchUpInside)
         optionsView.addSubview(selectBtn)
         
         let cancelBtn = UIButton(frame: CGRect(x: 0.0, y: 0, width: 100.0, height: 44.0))
         cancelBtn.setTitle("button_cancel".localized(), for: .normal)
-        cancelBtn.setTitleColor(.blue, for: .normal)
+        cancelBtn.setTitleColor(.white, for: .normal)
         cancelBtn.addTarget(self, action: #selector(cancelEditing), for: .touchUpInside)
         optionsView.addSubview(cancelBtn)
   
@@ -154,7 +166,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
         let picker = UIPickerView()
         picker.dataSource = self
         picker.delegate = self
-        picker.backgroundColor = .white
+        picker.backgroundColor = pickerBackgroundColor
         
         self.pickerView = picker
         
@@ -198,11 +210,15 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         case .hair: return Hair.count()
         case .educationLevel: return EducationLevel.count(LocaleManager.shared.language.value)
         case .children: return Children.count()
+        case .income: return Income.count()
+        case .property: return Property.count()
+        case .transport: return Transport.count()
        
         default: return 0
         }
     }
     
+    /*
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
         guard let type = self.field?.fieldType else { return nil }
@@ -212,9 +228,34 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         case .hair: return Hair(rawValue: row * 10)?.title(self.sex).localized()
         case .educationLevel: return EducationLevel.at(row, locale: LocaleManager.shared.language.value).title().localized()
         case .children: return Children.at(row).title().localized()
+        case .property: return Property.at(row).title().localized()
+        case .income: return Income.at(row).title().localized()
+        case .transport: return Transport.at(row).title().localized()
             
         default: return nil
         }
+    }
+ */
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        guard let type = self.field?.fieldType else { return nil }
+        var title: String = ""
+        
+        switch type {
+        case .height: title = Height.title(row); break
+        case .hair: title = Hair(rawValue: row * 10)?.title(self.sex).localized() ?? ""; break
+        case .educationLevel: title = EducationLevel.at(row, locale: LocaleManager.shared.language.value).title().localized(); break
+        case .children: title = Children.at(row).title().localized(); break
+        case .property: title = Property.at(row).title().localized(); break
+        case .income: title = Income.at(row).title().localized(); break
+        case .transport: title = Transport.at(row).title().localized(); break
+            
+        default: return nil
+        }
+        
+        return NSAttributedString(string: title, attributes: [
+            .foregroundColor: UIColor.white
+            ])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)

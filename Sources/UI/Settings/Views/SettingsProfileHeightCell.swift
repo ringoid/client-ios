@@ -10,5 +10,10 @@ import UIKit
 
 class SettingsProfileHeightCell: SettingsProfileFieldCell
 {
-
+    override func awakeFromNib()
+    {
+        super.awakeFromNib()
+        
+        self.valueField.layer.sublayerTransform = CATransform3DMakeTranslation(0.0, 0.0, 0.0)
+    }
 }
