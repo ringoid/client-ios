@@ -49,6 +49,7 @@ class NewFaceProfileViewController: UIViewController
     @IBOutlet fileprivate weak var nameLabel: UILabel!
     @IBOutlet fileprivate weak var nameConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutLabel: UILabel!
+    @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -420,6 +421,7 @@ class NewFaceProfileViewController: UIViewController
         let rightCount = rightRows.count
         
         var nameOffset: CGFloat = 86.0
+        var rightColumnMaxWidth: CGFloat = 0.0
         
         (0...1).forEach { index in
             let leftControls = self.leftFieldsControls[index]
@@ -450,10 +452,19 @@ class NewFaceProfileViewController: UIViewController
                 rightControls.titleLabel.text = row.title.localized()
                 rightControls.iconView.isHidden = false
                 rightControls.titleLabel.isHidden = false
+                
+                let width = (row.title.localized() as NSString).size(withAttributes: [
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0)
+                    ]).width
+                
+                if width > rightColumnMaxWidth {
+                    rightColumnMaxWidth = width
+                }
             }
         }
         
         self.nameConstraint.constant = nameOffset
+        self.rightColumnConstraint.constant = rightColumnMaxWidth + 4.0
         self.view.layoutIfNeeded()
     }
 }

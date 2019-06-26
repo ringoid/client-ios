@@ -158,10 +158,10 @@ discover users nearby</string>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9J-Io-shh" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="507" width="375" height="160"/>
+                                <rect key="frame" x="0.0" y="537" width="375" height="130"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="qJV-gp-KqM"/>
+                                    <constraint firstAttribute="height" constant="130" id="qJV-gp-KqM"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
@@ -233,14 +233,14 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="hF7-La-xF3">
-                                <rect key="frame" x="236" y="612" width="15" height="15"/>
+                                <rect key="frame" x="228" y="612" width="15" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="1bd-Mv-PMv"/>
                                     <constraint firstAttribute="height" constant="15" id="3SU-Gu-h2C"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxp-7c-isg">
-                                <rect key="frame" x="259" y="612" width="116" height="15"/>
+                                <rect key="frame" x="251" y="612" width="116" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -248,14 +248,14 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="Ne3-kc-nB2">
-                                <rect key="frame" x="236" y="587" width="15" height="15"/>
+                                <rect key="frame" x="228" y="587" width="15" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="KWK-ZF-P4t"/>
                                     <constraint firstAttribute="height" constant="15" id="P84-2j-OAX"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TG-AM-TBD">
-                                <rect key="frame" x="259" y="587" width="116" height="15"/>
+                                <rect key="frame" x="251" y="587" width="116" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="116" id="g5t-CM-O8l"/>
                                 </constraints>
@@ -311,7 +311,7 @@ discover users nearby</string>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="top" secondItem="mUh-fA-frq" secondAttribute="top" id="CD0-AL-1vp"/>
                             <constraint firstItem="DEy-yV-NWA" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="DH3-yd-MhX"/>
                             <constraint firstItem="Ne3-kc-nB2" firstAttribute="centerY" secondItem="5TG-AM-TBD" secondAttribute="centerY" id="Dof-qO-HE6"/>
-                            <constraint firstAttribute="trailing" secondItem="Sxp-7c-isg" secondAttribute="trailing" id="EbU-Gn-KJO"/>
+                            <constraint firstAttribute="trailing" secondItem="Sxp-7c-isg" secondAttribute="trailing" constant="8" id="EbU-Gn-KJO"/>
                             <constraint firstAttribute="trailing" secondItem="DEy-yV-NWA" secondAttribute="trailing" constant="16" id="Gw8-O6-8Bt"/>
                             <constraint firstAttribute="bottom" secondItem="ahE-Zb-Two" secondAttribute="bottom" id="LF8-et-HfT"/>
                             <constraint firstAttribute="trailing" secondItem="X1t-jW-NWk" secondAttribute="trailing" id="Le3-5c-RWL"/>
@@ -364,6 +364,7 @@ discover users nearby</string>
                         <outlet property="optionsBtn" destination="X1t-jW-NWk" id="LoZ-fG-SZb"/>
                         <outlet property="pagesControl" destination="ahE-Zb-Two" id="5Uz-7h-eYN"/>
                         <outlet property="profileIdLabel" destination="DXW-7Y-3ph" id="4Nc-ug-lj1"/>
+                        <outlet property="rightColumnConstraint" destination="g5t-CM-O8l" id="8zn-y4-Nfh"/>
                         <outlet property="rightFieldIcon1" destination="hF7-La-xF3" id="gzN-9R-7X5"/>
                         <outlet property="rightFieldIcon2" destination="Ne3-kc-nB2" id="2PM-9P-rf1"/>
                         <outlet property="rightFieldLabel1" destination="Sxp-7c-isg" id="4Tf-TB-Dkw"/>
