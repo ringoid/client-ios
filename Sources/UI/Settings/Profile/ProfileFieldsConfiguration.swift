@@ -205,14 +205,14 @@ class ProfileFieldsConfiguration
         
         if let title = profile.tikTok, title != "unknown" {
             rows.append(ProfileFileRow(
-                title: title,
+                title: "TikTok: " +  title,
                 icon: "profile_fields_tiktok"
             ))
         }
         
         if let title = profile.instagram, title != "unknown" {
             rows.append(ProfileFileRow(
-                title: title,
+                title: "Instagram: " +  title,
                 icon: "profile_fields_instagram"
             ))
         }
@@ -275,14 +275,14 @@ class ProfileFieldsConfiguration
         
         if let title = profile.tikTok, title != "unknown" {
             rows.append(ProfileFileRow(
-                title: title,
+                title: "TikTok: " + title,
                 icon: "profile_fields_tiktok"
             ))
         }
         
         if let title = profile.instagram, title != "unknown" {
             rows.append(ProfileFileRow(
-                title: title,
+                title: "Instagram: " + title,
                 icon: "profile_fields_instagram"
             ))
         }
