@@ -601,7 +601,7 @@ see who likes you</string>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProfileID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVA-P0-T2F">
-                                <rect key="frame" x="16" y="550" width="70" height="21"/>
+                                <rect key="frame" x="16" y="323" width="70" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -609,28 +609,13 @@ see who likes you</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOc-LA-9UX">
-                                <rect key="frame" x="167" y="550" width="41.5" height="21"/>
+                                <rect key="frame" x="167" y="323" width="41.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&gt; 100 km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFG-N4-HJi">
-                                <rect key="frame" x="287" y="621" width="72" height="14"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="1" height="1"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_location" translatesAutoresizingMaskIntoConstraints="NO" id="lEH-hc-Jn1">
-                                <rect key="frame" x="261" y="621" width="14" height="14"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="14" id="qop-tA-rGS"/>
-                                    <constraint firstAttribute="height" constant="14" id="xHh-C0-GRc"/>
-                                </constraints>
-                            </imageView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="duK-qX-ktj">
                                 <rect key="frame" x="187.5" y="667" width="0.0" height="0.0"/>
                             </pageControl>
@@ -647,37 +632,16 @@ see who likes you</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQ2-em-YLp">
-                                <rect key="frame" x="177" y="617.5" width="21.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="1" height="1"/>
-                            </label>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_gender_female" translatesAutoresizingMaskIntoConstraints="NO" id="98v-39-l5G">
-                                <rect key="frame" x="153" y="620" width="16" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="ODH-hD-iWq"/>
-                                    <constraint firstAttribute="width" constant="16" id="sw0-lB-6pl"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="nFG-N4-HJi" secondAttribute="trailing" constant="16" id="1ik-5Y-RaJ"/>
-                            <constraint firstAttribute="bottom" secondItem="qVA-P0-T2F" secondAttribute="bottom" constant="96" id="2lx-Bq-mkW"/>
                             <constraint firstAttribute="trailing" secondItem="lGR-yG-LEW" secondAttribute="trailing" id="3dD-ad-k8o"/>
-                            <constraint firstItem="nFG-N4-HJi" firstAttribute="height" secondItem="lEH-hc-Jn1" secondAttribute="height" id="6B6-yV-AjS"/>
                             <constraint firstItem="cOc-LA-9UX" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="6Uy-2i-XPh"/>
                             <constraint firstItem="qVA-P0-T2F" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="Cw3-cN-Upn"/>
-                            <constraint firstItem="pQ2-em-YLp" firstAttribute="leading" secondItem="98v-39-l5G" secondAttribute="trailing" constant="8" id="Eaf-4X-Oy8" userLabel="GenderOffset"/>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="centerX" secondItem="lGR-yG-LEW" secondAttribute="centerX" id="NaJ-Wi-l5L"/>
-                            <constraint firstItem="nFG-N4-HJi" firstAttribute="centerY" secondItem="lEH-hc-Jn1" secondAttribute="centerY" id="PVe-cR-lPM"/>
                             <constraint firstAttribute="bottomMargin" secondItem="duK-qX-ktj" secondAttribute="bottom" id="SYR-al-KFo"/>
-                            <constraint firstItem="nFG-N4-HJi" firstAttribute="centerY" secondItem="pQ2-em-YLp" secondAttribute="centerY" id="U3u-84-97T"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="118" id="UE3-94-yVQ" userLabel="MessageTopOffset"/>
                             <constraint firstItem="cOc-LA-9UX" firstAttribute="centerY" secondItem="qVA-P0-T2F" secondAttribute="centerY" id="VjE-jh-k8V"/>
                             <constraint firstItem="lGR-yG-LEW" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="-12" id="XAG-qi-5bb"/>
@@ -686,22 +650,13 @@ see who likes you</string>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="gA6-9y-Jou"/>
                             <constraint firstItem="InC-ES-1Or" firstAttribute="centerY" secondItem="eDJ-qT-P4s" secondAttribute="centerY" id="hGV-Og-Njq"/>
                             <constraint firstItem="InC-ES-1Or" firstAttribute="leading" secondItem="eDJ-qT-P4s" secondAttribute="trailing" constant="8" id="iL5-si-XiA"/>
-                            <constraint firstAttribute="bottom" secondItem="nFG-N4-HJi" secondAttribute="bottom" constant="32" id="jre-a2-fsn"/>
-                            <constraint firstItem="pQ2-em-YLp" firstAttribute="centerY" secondItem="98v-39-l5G" secondAttribute="centerY" id="lgg-Z5-9AK"/>
-                            <constraint firstAttribute="trailing" secondItem="lEH-hc-Jn1" secondAttribute="trailing" constant="100" id="ndM-ed-fRg" userLabel="iconOffset"/>
+                            <constraint firstItem="qVA-P0-T2F" firstAttribute="centerY" secondItem="ekE-T8-wuA" secondAttribute="centerY" id="iu5-0K-I53"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
-                            <constraint firstItem="pQ2-em-YLp" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="wbK-o2-GrN"/>
                             <constraint firstItem="eDJ-qT-P4s" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="zuL-7R-2xV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dlp-dl-iCM"/>
                     </view>
                     <connections>
-                        <outlet property="ageLabel" destination="pQ2-em-YLp" id="9Ve-t8-YHW"/>
-                        <outlet property="distanceLabel" destination="nFG-N4-HJi" id="zdA-V6-Yml"/>
-                        <outlet property="genderOffsetConstraint" destination="Eaf-4X-Oy8" id="vkB-cK-4Ow"/>
-                        <outlet property="genderView" destination="98v-39-l5G" id="tKh-9S-bVi"/>
-                        <outlet property="iconOffsetConstraint" destination="ndM-ed-fRg" id="uDe-1Y-Vi5"/>
-                        <outlet property="locationIconView" destination="lEH-hc-Jn1" id="E0j-b6-RO2"/>
                         <outlet property="messageBtn" destination="2Wc-Ed-6t2" id="CMh-0H-xuQ"/>
                         <outlet property="messageBtnTopConstraint" destination="UE3-94-yVQ" id="626-7A-0v6"/>
                         <outlet property="optionsBtn" destination="lGR-yG-LEW" id="Yk6-ZA-bUI"/>
@@ -727,8 +682,6 @@ see who likes you</string>
     </scenes>
     <resources>
         <image name="chat_close" width="26" height="26"/>
-        <image name="common_location" width="56" height="56"/>
-        <image name="feed_gender_female" width="42" height="64"/>
         <image name="feed_messages_empty" width="36" height="35"/>
         <image name="feed_options" width="32" height="12"/>
         <image name="feed_scroll_top" width="65" height="65"/>
