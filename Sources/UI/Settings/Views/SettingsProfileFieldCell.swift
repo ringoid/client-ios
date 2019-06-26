@@ -8,7 +8,7 @@
 
 import UIKit
 
-fileprivate let pickerBackgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
+fileprivate let pickerBackgroundColor = UIColor(red: 0.35, green: 0.35, blue: 0.35, alpha: 1.0)
 
 class SettingsProfileFieldCell: BaseTableViewCell
 {
@@ -18,6 +18,8 @@ class SettingsProfileFieldCell: BaseTableViewCell
     var valueIndex: Int? = nil
     {
         didSet {
+            if self.valueIndex != nil { self.valueText = nil }
+            
             self.update()
             
             guard let type = self.field?.fieldType else { return }
@@ -62,6 +64,8 @@ class SettingsProfileFieldCell: BaseTableViewCell
     var valueText: String?
     {
         didSet {
+            if self.valueText != nil { self.valueIndex = nil }
+            
             self.update()
             
             guard let type = self.field?.fieldType else { return }
@@ -87,6 +91,8 @@ class SettingsProfileFieldCell: BaseTableViewCell
     @IBOutlet weak var valueField: UITextField!
     
     fileprivate weak var pickerView: UIPickerView!
+    fileprivate var prevIndexValue: Int? = nil
+    fileprivate var prevTextValue: String? = nil
     
     override func awakeFromNib()
     {
@@ -97,6 +103,8 @@ class SettingsProfileFieldCell: BaseTableViewCell
         self.valueField.layer.borderColor = UIColor.darkGray.cgColor
         self.valueField.layer.borderWidth = 1.0
         self.valueField.clipsToBounds = true
+        
+        self.valueField.delegate = self
     }
     
     override func updateTheme()
@@ -117,16 +125,15 @@ class SettingsProfileFieldCell: BaseTableViewCell
     @objc func stopEditing()
     {
         self.valueField?.resignFirstResponder()
-        
-        guard let type = self.field?.fieldType else { return }
-        
-        let index = self.pickerView.selectedRow(inComponent: 0)
-        self.valueIndex = index
-        
-        self.onSelect?(type, index, nil)
     }
     
-    func setupInput()
+    func resetInput()
+    {
+        self.valueField.inputView = nil
+        self.valueField.inputAccessoryView = nil
+    }
+    
+    fileprivate func setupInput()
     {
         let width = UIScreen.main.bounds.width
         let optionsView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: width, height: 44.0))
@@ -190,6 +197,14 @@ class SettingsProfileFieldCell: BaseTableViewCell
     @objc fileprivate func cancelEditing()
     {
         self.valueField?.resignFirstResponder()
+        
+        if let index = self.prevIndexValue {
+            self.valueIndex = index
+        }
+        
+        if let text = self.prevTextValue {
+            self.valueText = text
+        }
     }
 }
 
@@ -217,25 +232,7 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         default: return 0
         }
     }
-    
-    /*
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
-    {
-        guard let type = self.field?.fieldType else { return nil }
-        
-        switch type {
-        case .height: return Height.title(row)
-        case .hair: return Hair(rawValue: row * 10)?.title(self.sex).localized()
-        case .educationLevel: return EducationLevel.at(row, locale: LocaleManager.shared.language.value).title().localized()
-        case .children: return Children.at(row).title().localized()
-        case .property: return Property.at(row).title().localized()
-        case .income: return Income.at(row).title().localized()
-        case .transport: return Transport.at(row).title().localized()
-            
-        default: return nil
-        }
-    }
- */
+
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
         guard let type = self.field?.fieldType else { return nil }
@@ -260,6 +257,19 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
+        guard let type = self.field?.fieldType else { return }
+        
+        self.valueIndex = row
+        
+        self.onSelect?(type, row, nil)
+    }
+}
 
+extension SettingsProfileFieldCell: UITextFieldDelegate
+{
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+        self.prevIndexValue = self.valueIndex
+        self.prevTextValue = self.valueText
     }
 }

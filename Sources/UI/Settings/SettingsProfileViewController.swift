@@ -84,10 +84,12 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
         guard let cell = tableView.dequeueReusableCell(withIdentifier: field.cellIdentifier) as? SettingsProfileFieldCell else { return UITableViewCell() }
         
         cell.field = field
-        cell.sex = self.input.profileManager.gender.value ?? .female        
+        cell.sex = self.input.profileManager.gender.value ?? .female
         cell.onSelect = { [weak self] (type, index, value) in
             self?.viewModel?.updateField(type, index: index, value: value)
         }
+        
+        cell.resetInput()
         
         if let profile = self.viewModel?.profileManager.profile.value {
             switch field.fieldType {
