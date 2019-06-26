@@ -26,6 +26,9 @@ class SettingsProfileViewController: BaseViewController
         
         self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 260.0, right: 0.0)
         
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(onHideInput))
+        self.view.addGestureRecognizer(recognizer)
+        
         self.setupViewModel()
         self.tableView.reloadData()
     }
