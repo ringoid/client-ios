@@ -30,10 +30,59 @@ class ProfileFieldsConfiguration
     let settingsFields: [ProfileField] = [
         ProfileField(
             title: "profile_field_name",
-            icon: "profile_fields_education",
+            icon: nil,
             placeholder: "",
             cellIdentifier: "profile_field_cell",
             fieldType: .name
+        ),
+        ProfileField(
+            title: "profile_field_instagram",
+            icon: "profile_fields_instagram",
+            placeholder: "",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .instagram
+        ),
+        ProfileField(
+            title: "profile_field_tiktok",
+            icon: "profile_fields_tiktok",
+            placeholder: "",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .tiktok
+        ),
+        ProfileField(
+            title: "profile_field_where_live",
+            icon: nil,
+            placeholder: "",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .whereLive
+        ),
+        ProfileField(
+            title: "profile_field_bio",
+            icon: nil,
+            placeholder: "",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .bio
+        ),
+        ProfileField(
+            title: "profile_field_job",
+            icon: "profile_fields_job",
+            placeholder: "",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .job
+        ),
+        ProfileField(
+            title: "profile_field_company",
+            icon: "profile_fields_job",
+            placeholder: "",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .company
+        ),
+        ProfileField(
+            title: "profile_field_education",
+            icon: "profile_fields_education",
+            placeholder: "",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .education
         ),
         ProfileField(
             title: "profile_field_height",
@@ -47,7 +96,7 @@ class ProfileFieldsConfiguration
             icon: "profile_fields_hair",
             placeholder: "profile_field_not_selected",
             cellIdentifier: "profile_field_cell",
-            fieldType: .hair 
+            fieldType: .hair
         ),
         ProfileField(
             title: "profile_field_education_level",
@@ -57,12 +106,33 @@ class ProfileFieldsConfiguration
             fieldType: .educationLevel
         ),
         ProfileField(
-            title: "profile_field_education",
-            icon: "profile_fields_education",
+            title: "profile_field_children",
+            icon: "profile_fields_children",
             placeholder: "",
             cellIdentifier: "profile_field_cell",
-            fieldType: .education
-        )
+            fieldType: .children
+        ),
+        ProfileField(
+            title: "profile_field_income",
+            icon: "profile_fields_income",
+            placeholder: "",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .income
+        ),
+        ProfileField(
+            title: "profile_field_property",
+            icon: "profile_fields_house",
+            placeholder: "",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .property
+        ),
+        ProfileField(
+            title: "profile_field_transport",
+            icon: "profile_fields_transport",
+            placeholder: "",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .transport
+        ),
     ]
     
     init(_ profileManager: UserProfileManager)

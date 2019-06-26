@@ -117,6 +117,15 @@
 "profile_field_hair" = "Hair Color";
 "profile_field_education_level" = "Education Level";
 "profile_field_education" = "Education";
+"profile_field_instagram" = "Instagram";
+"profile_field_tiktok" = "TikTok";
+"profile_field_where_live" = "Where I live";
+"profile_field_bio" = "Bio";
+"profile_field_job" = "Job title";
+"profile_field_company" = "Company";
+"profile_field_transport" = "Transport";
+"profile_field_income" = "Income";
+"profile_field_property" = "Property";
 
 "profile_field_hair_black" = "Black";
 

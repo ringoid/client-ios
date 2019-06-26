@@ -119,6 +119,15 @@
 "profile_field_hair" = "Цвет волос";
 "profile_field_education_level" = "Уровень образования";
 "profile_field_education" = "Место учебы";
+"profile_field_instagram" = "Instagram";
+"profile_field_tiktok" = "TikTok";
+"profile_field_where_live" = "Город";
+"profile_field_bio" = "О себе";
+"profile_field_job" = "Должность";
+"profile_field_company" = "Место работы";
+"profile_field_transport" = "Транспорт";
+"profile_field_income" = "Доход";
+"profile_field_property" = "Недвижимость";
 
 "profile_field_hair_black_male" = "Брюнет";
 "profile_field_hair_blonde_male" = "Блондин";
