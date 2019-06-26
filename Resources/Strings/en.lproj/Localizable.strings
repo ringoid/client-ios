@@ -128,7 +128,8 @@
 "profile_field_property" = "Property";
 "profile_field_children" = "Children";
 
-"profile_field_hair_black" = "Black";
+"profile_field_company_placeholder" = "Name of company";
+"profile_field_education_placeholder" = "University, college, etc";
 
 "profile_field_hair_black_male" = "Black";
 "profile_field_hair_blonde_male" = "Blonde";

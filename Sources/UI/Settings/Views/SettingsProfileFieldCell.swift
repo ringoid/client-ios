@@ -22,12 +22,28 @@ class SettingsProfileFieldCell: BaseTableViewCell
             
             self.update()
             
+            self.valueField.attributedPlaceholder = NSAttributedString(string: "profile_field_not_selected".localized(),
+                                                                       attributes: [
+                                                                        .foregroundColor: UIColor.lightGray
+                ])
+            
             guard let type = self.field?.fieldType else { return }
             guard let index = self.valueIndex else { return }
+            
+            defer {
+                self.setupInput()
+            }
+            
+            guard index != 0  else {
+                self.valueField.text = nil
+                
+                return
+            }
             
             switch type {
             case .height:
                 self.valueField.text = Height.title(index)
+                break
                 
             case .hair:
                 self.valueField.text = Hair(rawValue: index * 10)?.title(self.sex).localized()
@@ -56,8 +72,6 @@ class SettingsProfileFieldCell: BaseTableViewCell
             default: break
                 
             }
-            
-            self.setupInput()
         }
     }
     
@@ -160,10 +174,6 @@ class SettingsProfileFieldCell: BaseTableViewCell
     @IBAction func onReturn()
     {
         self.valueField.resignFirstResponder()
-        
-        guard let type = self.field?.fieldType else { return }
-        
-        self.onSelect?(type, nil, self.valueField.text)
     }
     
     // MARK: -
@@ -186,7 +196,10 @@ class SettingsProfileFieldCell: BaseTableViewCell
         guard let field = self.field else { return }
         
         self.titleLabel.text = field.title.localized()
-        self.valueField.placeholder = field.placeholder.localized()
+        self.valueField.attributedPlaceholder = NSAttributedString(string: self.field?.placeholder?.localized() ?? "",
+                           attributes: [
+                            .foregroundColor: UIColor.lightGray
+            ])
         
         if let icon = field.icon {
             self.iconView.image = UIImage(named: icon)
@@ -272,5 +285,12 @@ extension SettingsProfileFieldCell: UITextFieldDelegate
     {
         self.prevIndexValue = self.valueIndex
         self.prevTextValue = self.valueText
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField)
+    {
+        guard let type = self.field?.fieldType else { return }
+        
+        self.onSelect?(type, nil, textField.text)
     }
 }

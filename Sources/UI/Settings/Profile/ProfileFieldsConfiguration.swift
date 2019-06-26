@@ -12,7 +12,7 @@ struct ProfileField
 {
     let title: String
     let icon: String?
-    let placeholder: String
+    let placeholder: String?
     let cellIdentifier: String
     let fieldType: ProfileFieldType
 }
@@ -31,56 +31,56 @@ class ProfileFieldsConfiguration
         ProfileField(
             title: "profile_field_name",
             icon: nil,
-            placeholder: "",
+            placeholder: nil,
             cellIdentifier: "profile_field_cell",
             fieldType: .name
         ),
         ProfileField(
             title: "profile_field_instagram",
             icon: "profile_fields_instagram",
-            placeholder: "",
+            placeholder: "@username",
             cellIdentifier: "profile_field_cell",
             fieldType: .instagram
         ),
         ProfileField(
             title: "profile_field_tiktok",
             icon: "profile_fields_tiktok",
-            placeholder: "",
+            placeholder: "@username",
             cellIdentifier: "profile_field_cell",
             fieldType: .tiktok
         ),
         ProfileField(
             title: "profile_field_where_live",
             icon: "profile_fields_marker",
-            placeholder: "",
+            placeholder: nil,
             cellIdentifier: "profile_field_cell",
             fieldType: .whereLive
         ),
         ProfileField(
             title: "profile_field_bio",
             icon: nil,
-            placeholder: "",
+            placeholder: nil,
             cellIdentifier: "profile_field_cell",
             fieldType: .bio
         ),
         ProfileField(
             title: "profile_field_job",
             icon: "profile_fields_job",
-            placeholder: "",
+            placeholder: nil,
             cellIdentifier: "profile_field_cell",
             fieldType: .job
         ),
         ProfileField(
             title: "profile_field_company",
             icon: "profile_fields_job",
-            placeholder: "",
+            placeholder: "profile_field_company_placeholder".localized(),
             cellIdentifier: "profile_field_cell",
             fieldType: .company
         ),
         ProfileField(
             title: "profile_field_education",
             icon: "profile_fields_education",
-            placeholder: "",
+            placeholder: "profile_field_education_placeholder".localized(),
             cellIdentifier: "profile_field_cell",
             fieldType: .education
         ),
@@ -94,42 +94,42 @@ class ProfileFieldsConfiguration
         ProfileField(
             title: "profile_field_hair",
             icon: "profile_fields_hair",
-            placeholder: "profile_field_not_selected",
+            placeholder: nil,
             cellIdentifier: "profile_field_cell",
             fieldType: .hair
         ),
         ProfileField(
             title: "profile_field_education_level",
             icon: "profile_fields_education",
-            placeholder: "profile_field_not_selected",
+            placeholder: nil,
             cellIdentifier: "profile_field_cell",
             fieldType: .educationLevel
         ),
         ProfileField(
             title: "profile_field_children",
             icon: "profile_fields_children",
-            placeholder: "",
+            placeholder: nil,
             cellIdentifier: "profile_field_cell",
             fieldType: .children
         ),
         ProfileField(
             title: "profile_field_income",
             icon: "profile_fields_income",
-            placeholder: "",
+            placeholder: nil,
             cellIdentifier: "profile_field_cell",
             fieldType: .income
         ),
         ProfileField(
             title: "profile_field_property",
             icon: "profile_fields_house",
-            placeholder: "",
+            placeholder: nil,
             cellIdentifier: "profile_field_cell",
             fieldType: .property
         ),
         ProfileField(
             title: "profile_field_transport",
             icon: "profile_fields_transport",
-            placeholder: "",
+            placeholder: nil,
             cellIdentifier: "profile_field_cell",
             fieldType: .transport
         ),
