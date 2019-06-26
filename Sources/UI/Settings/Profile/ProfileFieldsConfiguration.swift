@@ -11,7 +11,7 @@ import Foundation
 struct ProfileField
 {
     let title: String
-    let icon: String
+    let icon: String?
     let placeholder: String
     let cellIdentifier: String
     let fieldType: ProfileFieldType

@@ -33,7 +33,10 @@ class SettingsProfileFieldCell: BaseTableViewCell
                 self.valueField.text = EducationLevel.at(index, locale: LocaleManager.shared.language.value).title().localized()
                 break
                 
-            case .education, .name: break
+            case .children:
+                self.valueField.text = Children.at(index).title().localized()
+                
+            default: break
                 
             }
             
@@ -50,13 +53,11 @@ class SettingsProfileFieldCell: BaseTableViewCell
             guard let text = self.valueText else { return }
             
             switch type {
-            case .height: break
-            case .hair: break
-            case .educationLevel: break
-                
-            case .education, .name:
+            case .education, .name, .instagram, .tiktok, .bio, .job, .whereLive:
                 self.valueField.text = text
                 break
+                
+            default: break
             }
             
             self.valueField.inputAccessoryView = nil
@@ -152,8 +153,13 @@ class SettingsProfileFieldCell: BaseTableViewCell
         guard let field = self.field else { return }
         
         self.titleLabel.text = field.title.localized()
-        self.iconView.image = UIImage(named: field.icon)
-        self.valueField.placeholder = field.placeholder.localized()                
+        self.valueField.placeholder = field.placeholder.localized()
+        
+        if let icon = field.icon {
+            self.iconView.image = UIImage(named: icon)
+        } else {
+            self.iconView.image = nil
+        }
     }
     
     @objc fileprivate func cancelEditing()
@@ -178,7 +184,9 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         case .height: return Height.count()
         case .hair: return Hair.count()
         case .educationLevel: return EducationLevel.count(LocaleManager.shared.language.value)
-        case .education, .name: return 0
+        case .children: return Children.count()
+       
+        default: return 0
         }
     }
     
@@ -190,8 +198,9 @@ extension SettingsProfileFieldCell: UIPickerViewDataSource, UIPickerViewDelegate
         case .height: return Height.title(row)
         case .hair: return Hair(rawValue: row * 10)?.title(self.sex).localized()
         case .educationLevel: return EducationLevel.at(row, locale: LocaleManager.shared.language.value).title().localized()
+        case .children: return Children.at(row).title().localized()
             
-        case .education, .name: return nil
+        default: return nil
         }
     }
     

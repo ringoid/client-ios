@@ -16,3 +16,20 @@ enum Children: Int
     case haveAndWant = 30
     case haveAndDontWant = 40
 }
+
+extension Children
+{
+    static func at(_ index: Int) -> Children {
+        return Children(rawValue: index * 10)!
+    }
+    
+    static func count() -> Int
+    {
+        return 5
+    }
+    
+    func index() -> Int
+    {
+        return self.rawValue / 10
+    }
+}

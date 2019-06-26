@@ -59,6 +59,30 @@ class SettingsProfileViewModel
             }
             break
             
+        case .children:
+            guard let index = index else { return }
+            
+            self.db.write {
+                profile.children.value = Children.at(index).rawValue
+            }
+            break
+            
+        case .transport:
+            guard let index = index else { return }
+            
+            self.db.write {
+                profile.transport.value = Transport.at(index).rawValue
+            }
+            break
+            
+        case .income:
+            guard let index = index else { return }
+            
+            self.db.write {
+                profile.income.value = Income.at(index).rawValue
+            }
+            break
+            
         case .education:
             guard let text = value else { return }
             
@@ -72,6 +96,62 @@ class SettingsProfileViewModel
             
             self.db.write {
                 profile.name = text
+            }
+            break
+            
+        case .tiktok:
+            guard let text = value else { return }
+            
+            self.db.write {
+                profile.tikTok = text
+            }
+            break
+            
+        case .instagram:
+            guard let text = value else { return }
+            
+            self.db.write {
+                profile.instagram = text
+            }
+            break
+            
+        case .whereLive:
+            guard let text = value else { return }
+            
+            self.db.write {
+                profile.whereLive = text
+            }
+            break
+            
+        case .bio:
+            guard let text = value else { return }
+            
+            self.db.write {
+                profile.about = text
+            }
+            break
+            
+        case .company:
+            guard let text = value else { return }
+            
+            self.db.write {
+                profile.company = text
+            }
+            break
+            
+        case .job:
+            guard let text = value else { return }
+            
+            self.db.write {
+                profile.jobTitle = text
+            }
+            break
+            
+        case .property:
+            guard let index = index else { return }
+            
+            self.db.write {
+                profile.property.value = Property.at(index).rawValue
             }
             break
         }

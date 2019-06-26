@@ -19,3 +19,20 @@ enum Transport: Int
     case taxi = 60
     case chauffeur = 70
 }
+
+extension Transport
+{
+    static func at(_ index: Int) -> Transport {
+        return Transport(rawValue: index * 10)!
+    }
+    
+    static func count() -> Int
+    {
+        return 7
+    }
+    
+    func index() -> Int
+    {
+        return self.rawValue / 10
+    }
+}

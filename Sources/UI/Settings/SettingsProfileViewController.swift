@@ -87,8 +87,18 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
             case .height: cell.valueIndex = heightIndex(profile.height.value ?? 175)
             case .hair: cell.valueIndex = Hair(rawValue: profile.hairColor.value ?? 0)?.index() ?? 0
             case .educationLevel: cell.valueIndex = EducationLevel(rawValue: profile.educationLevel.value ?? 0)?.index() ?? 0
+            case .children: cell.valueIndex = Children(rawValue: profile.children.value ?? 0)?.index() ?? 0
+            case .transport: cell.valueIndex = Transport(rawValue: profile.children.value ?? 0)?.index() ?? 0
+            case .income: cell.valueIndex = Income(rawValue: profile.children.value ?? 0)?.index() ?? 0
+            case .property: cell.valueIndex = Property(rawValue: profile.children.value ?? 0)?.index() ?? 0
             case .education: cell.valueText = profile.education
             case .name: cell.valueText = profile.name
+            case .tiktok: cell.valueText = profile.tikTok
+            case .instagram: cell.valueText = profile.instagram
+            case .job: cell.valueText = profile.jobTitle
+            case .company: cell.valueText = profile.company
+            case .whereLive: cell.valueText = profile.whereLive
+            case .bio: cell.valueText = profile.about
             }
         }        
         

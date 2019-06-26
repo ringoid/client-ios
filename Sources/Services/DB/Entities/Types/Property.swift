@@ -18,3 +18,20 @@ enum Property: Int
     case flat = 50
     case house = 60
 }
+
+extension Property
+{
+    static func at(_ index: Int) -> Property {
+        return Property(rawValue: index * 10)!
+    }
+    
+    static func count() -> Int
+    {
+        return 7
+    }
+    
+    func index() -> Int
+    {
+        return self.rawValue / 10
+    }
+}

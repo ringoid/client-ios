@@ -10,8 +10,18 @@ import Foundation
 
 enum ProfileFieldType: Int {
     case name = 0
-    case height = 1
-    case hair = 2
-    case educationLevel = 3
-    case education = 4
+    case instagram = 1
+    case tiktok = 2
+    case whereLive = 3
+    case bio = 4
+    case job = 5
+    case company = 6
+    case education = 7
+    case height = 8
+    case hair = 9
+    case educationLevel = 10
+    case children = 11
+    case income = 12
+    case property = 13
+    case transport = 14    
 }
