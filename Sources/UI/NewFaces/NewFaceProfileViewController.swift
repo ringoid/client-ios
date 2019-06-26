@@ -348,7 +348,7 @@ class NewFaceProfileViewController: UIViewController
             
             if page == 1 {
                 if let aboutText = self.input.profile.about, aboutText != "unknown" {
-                    self.leftFieldsControls.forEach({ controls in
+                    (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
                         controls.iconView.isHidden = true
                         controls.titleLabel.isHidden = true
                     })
@@ -378,7 +378,7 @@ class NewFaceProfileViewController: UIViewController
         if gender == .female {
             if page == 0 {
                 if let aboutText = self.input.profile.about, aboutText != "unknown" {
-                    self.leftFieldsControls.forEach({ controls in
+                    (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
                         controls.iconView.isHidden = true
                         controls.titleLabel.isHidden = true
                     })

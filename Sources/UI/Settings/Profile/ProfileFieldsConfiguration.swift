@@ -51,7 +51,7 @@ class ProfileFieldsConfiguration
         ),
         ProfileField(
             title: "profile_field_where_live",
-            icon: nil,
+            icon: "profile_fields_marker",
             placeholder: "",
             cellIdentifier: "profile_field_cell",
             fieldType: .whereLive
@@ -171,14 +171,14 @@ class ProfileFieldsConfiguration
         if let title = profile.jobTitle, title != "unknown" {
             rows.append(ProfileFileRow(
                 title: title,
-                icon: nil
+                icon: "profile_fields_job"
             ))
         }
         
         if let title = profile.education, title != "unknown" {
             rows.append(ProfileFileRow(
                 title: title,
-                icon: nil
+                icon: "profile_fields_education"
             ))
         }
         
@@ -206,14 +206,14 @@ class ProfileFieldsConfiguration
         if let title = profile.tikTok, title != "unknown" {
             rows.append(ProfileFileRow(
                 title: title,
-                icon: nil
+                icon: "profile_fields_tiktok"
             ))
         }
         
         if let title = profile.instagram, title != "unknown" {
             rows.append(ProfileFileRow(
                 title: title,
-                icon: nil
+                icon: "profile_fields_instagram"
             ))
         }
         
@@ -234,7 +234,7 @@ class ProfileFieldsConfiguration
         if let title = profile.education, title != "unknown" {
             rows.append(ProfileFileRow(
                 title: title,
-                icon: nil
+                icon: "profile_fields_education"
             ))
         }
         
@@ -262,7 +262,7 @@ class ProfileFieldsConfiguration
         if let title = profile.jobTitle, title != "unknown" {
             rows.append(ProfileFileRow(
                 title: title,
-                icon: nil
+                icon: "profile_fields_job"
             ))
         }
         
@@ -276,14 +276,14 @@ class ProfileFieldsConfiguration
         if let title = profile.tikTok, title != "unknown" {
             rows.append(ProfileFileRow(
                 title: title,
-                icon: nil
+                icon: "profile_fields_tiktok"
             ))
         }
         
         if let title = profile.instagram, title != "unknown" {
             rows.append(ProfileFileRow(
                 title: title,
-                icon: nil
+                icon: "profile_fields_instagram"
             ))
         }
         
@@ -304,7 +304,7 @@ class ProfileFieldsConfiguration
         if let title = profile.whereLive, title != "unknown" {
             rows.append(ProfileFileRow(
                 title: title,
-                icon: "common_location"
+                icon: "profile_fields_marker"
             ))
         }
         
