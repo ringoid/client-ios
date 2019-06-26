@@ -134,7 +134,7 @@ class MainLMMProfileViewController: UIViewController
         self.pagesControl.currentPage = index
         
         #if STAGE
-        self.profileIdLabel.text = "Profile: " + String(self.input.profile.id.suffix(4))
+        self.profileIdLabel.text = "Profile: " + String(self.input.profile.id.prefix(4))
         self.profileIdLabel.isHidden = false
         #endif
         
