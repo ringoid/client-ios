@@ -174,6 +174,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
         picker.dataSource = self
         picker.delegate = self
         picker.backgroundColor = pickerBackgroundColor
+        picker.selectRow(self.valueIndex ?? 0, inComponent: 0, animated: false)
         
         self.pickerView = picker
         
