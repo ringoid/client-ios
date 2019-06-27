@@ -40,6 +40,22 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var lmmLabel: UILabel!
     @IBOutlet fileprivate weak var lmmWidthConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var lmmIconView: UIImageView!
+    @IBOutlet fileprivate weak var nameLabel: UILabel!
+    @IBOutlet fileprivate weak var nameConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var aboutLabel: UILabel!
+    @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var aboutHeightConstraint: NSLayoutConstraint!
+    
+    // Profile fields
+    @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
+    @IBOutlet fileprivate weak var leftFieldLabel1: UILabel!
+    @IBOutlet fileprivate weak var leftFieldIcon2: UIImageView!
+    @IBOutlet fileprivate weak var leftFieldLabel2: UILabel!
+    
+    @IBOutlet fileprivate weak var rightFieldIcon1: UIImageView!
+    @IBOutlet fileprivate weak var rightFieldLabel1: UILabel!
+    @IBOutlet fileprivate weak var rightFieldIcon2: UIImageView!
+    @IBOutlet fileprivate weak var rightFieldLabel2: UILabel!
     
     override func viewDidLoad()
     {
