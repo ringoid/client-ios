@@ -280,7 +280,7 @@ see how many likes you get</string>
                             <constraint firstItem="hwe-yx-WQU" firstAttribute="leading" secondItem="eno-1i-kP1" secondAttribute="leading" id="cfw-DG-jxT"/>
                             <constraint firstItem="hwe-yx-WQU" firstAttribute="bottom" secondItem="Kqw-ue-cJ1" secondAttribute="bottom" id="dnV-rA-1k2"/>
                             <constraint firstItem="dx0-jU-NB1" firstAttribute="top" secondItem="Szp-BM-HWd" secondAttribute="bottom" constant="4" id="eWL-oV-hvc"/>
-                            <constraint firstItem="BK0-ML-AsK" firstAttribute="bottom" secondItem="q5L-So-vMI" secondAttribute="top" constant="500" id="fCJ-dj-Vw9"/>
+                            <constraint firstItem="BK0-ML-AsK" firstAttribute="bottom" secondItem="q5L-So-vMI" secondAttribute="top" constant="500" id="fCJ-dj-Vw9" userLabel="FieldsBottom"/>
                             <constraint firstItem="hwe-yx-WQU" firstAttribute="top" secondItem="Kqw-ue-cJ1" secondAttribute="top" id="gQM-JE-jv6"/>
                             <constraint firstItem="0Ze-nT-pEZ" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="gjJ-L8-PF8"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerY" secondItem="q5L-So-vMI" secondAttribute="centerY" id="h1K-ko-wtW"/>
@@ -307,6 +307,7 @@ see how many likes you get</string>
                         <outlet property="containerTableView" destination="GhS-rk-bVb" id="o6E-fd-3zd"/>
                         <outlet property="deleteBtn" destination="32r-W0-czT" id="qDq-QL-d5e"/>
                         <outlet property="emptyFeedLabel" destination="c03-Vj-oKe" id="HhA-IN-Ey8"/>
+                        <outlet property="fieldsBottomConstraint" destination="fCJ-dj-Vw9" id="APm-Wb-AYV"/>
                         <outlet property="leftFieldIcon1" destination="BK0-ML-AsK" id="z5b-ra-CwL"/>
                         <outlet property="leftFieldIcon2" destination="npc-Nn-Arv" id="cY5-EL-I20"/>
                         <outlet property="leftFieldLabel1" destination="27t-IX-qLF" id="2cU-Op-ngI"/>

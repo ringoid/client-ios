@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 import Nuke
 import MobileCoreServices
 
@@ -21,11 +22,14 @@ class UserProfilePhotosViewController: BaseViewController
     fileprivate var pickerVC: UIViewController?
     fileprivate weak var pagesVC: UIPageViewController?
     fileprivate var photosVCs: [UIViewController] = []
-    fileprivate var currentIndex: Int = 0
+    fileprivate var currentIndex: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     fileprivate var lastClientPhotoId: String? = nil
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var pickedPhoto: UIImage?
     fileprivate var isViewShown: Bool = false
+    fileprivate var leftFieldsControls: [ProfileFieldControl] = []
+    fileprivate var rightFieldsControls: [ProfileFieldControl] = []
+    fileprivate let photoHeight: CGFloat = UIScreen.main.bounds.width * AppConfig.photoRatio
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
@@ -45,6 +49,7 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var aboutLabel: UILabel!
     @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutHeightConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var fieldsBottomConstraint: NSLayoutConstraint!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -63,6 +68,9 @@ class UserProfilePhotosViewController: BaseViewController
         
         super.viewDidLoad()
         
+        self.fieldsBottomConstraint.constant = self.photoHeight
+        self.setupFieldsControls()
+        
         let height = UIScreen.main.bounds.width * AppConfig.photoRatio
         self.containerTableView.rowHeight = height
         self.containerTableView.contentInset = UIEdgeInsets(top: 56.0, left: 0.0, bottom: 0.0, right: 0.0)
@@ -76,6 +84,8 @@ class UserProfilePhotosViewController: BaseViewController
 
         self.setupBindings()
         self.setupReloader()
+        
+        self.applyName()
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -291,6 +301,19 @@ class UserProfilePhotosViewController: BaseViewController
         self.viewModel?.lmmCount.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] value in
             self?.updateLmmCounter()
         }).disposed(by: self.disposeBag)
+        
+        self.currentIndex.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] page in
+            self?.updateFieldsContent(page)
+        }).disposed(by: self.disposeBag)
+        
+        if let profile = self.input.profileManager.profile.value {
+            Observable.from(object: profile).observeOn(MainScheduler.instance).subscribe({ [weak self] _ in
+                guard let `self` = self else { return }
+                
+                self.updateFieldsContent(self.currentIndex.value)
+                self.applyName()
+            }).disposed(by: self.disposeBag)
+        }
     }
     
     fileprivate func setupReloader()
@@ -346,7 +369,7 @@ class UserProfilePhotosViewController: BaseViewController
             self.pagesVC?.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
         }
         
-        self.currentIndex = startIndex
+        self.currentIndex.accept(startIndex)
         self.pagesControl.numberOfPages = photos.count
         self.pagesControl.currentPage = startIndex
         self.deleteBtn.isHidden = photos.isEmpty
@@ -356,7 +379,7 @@ class UserProfilePhotosViewController: BaseViewController
     {
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertVC.addAction(UIAlertAction(title: "profile_button_delete_image".localized(), style: .destructive, handler: ({ _ in
-            guard let photo = self.viewModel?.photos.value[self.currentIndex] else { return }
+            guard let photo = self.viewModel?.photos.value[self.currentIndex.value] else { return }
             
             if photo.likes > 0 {
                 self.showDeletionConfirmationAlert()
@@ -383,7 +406,7 @@ class UserProfilePhotosViewController: BaseViewController
             preferredStyle: .alert
         )
         alertVC.addAction(UIAlertAction(title: "profile_button_delete_image".localized(), style: .default, handler: ({ _ in
-            guard let photo = self.viewModel?.photos.value[self.currentIndex] else { return }
+            guard let photo = self.viewModel?.photos.value[self.currentIndex.value] else { return }
             
             self.showControls()
             self.viewModel?.delete(photo)
@@ -470,6 +493,184 @@ class UserProfilePhotosViewController: BaseViewController
             self.lmmLabel.isHidden = true
         }
     }
+    
+    fileprivate func setupFieldsControls()
+    {
+        self.leftFieldsControls = [
+            ProfileFieldControl(iconView: self.leftFieldIcon1, titleLabel: self.leftFieldLabel1),
+            ProfileFieldControl(iconView: self.leftFieldIcon2, titleLabel: self.leftFieldLabel2),
+        ]
+        
+        self.rightFieldsControls = [
+            ProfileFieldControl(iconView: self.rightFieldIcon1, titleLabel: self.rightFieldLabel1),
+            ProfileFieldControl(iconView: self.rightFieldIcon2, titleLabel: self.rightFieldLabel2),
+        ]
+    }
+    
+    fileprivate func updateFieldsContent(_ page: Int)
+    {
+        guard let profile = self.input.profileManager.profile.value else { return }
+        guard let gender = self.input.profileManager.gender.value else { return }
+        
+        // MALE
+        if gender == .male {
+            if page == 0 {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(0)
+                
+                return
+            }
+            
+            if page == 1 {
+                if let aboutText = profile.about, aboutText != "unknown" {
+                    (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
+                        controls.iconView.isHidden = true
+                        controls.titleLabel.isHidden = true
+                    })
+                    
+                    self.aboutLabel.text = aboutText
+                    self.aboutLabel.isHidden = false
+                    self.nameConstraint.constant = self.photoHeight - 46.0
+                    self.aboutHeightConstraint.constant = (aboutText as NSString).boundingRect(
+                        with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
+                        options: .usesLineFragmentOrigin,
+                        attributes: [NSAttributedString.Key.font: self.aboutLabel.font],
+                        context: nil
+                        ).size.height
+                    self.view.layoutIfNeeded()
+                } else {
+                    self.aboutLabel.isHidden = true
+                    self.updateProfileRows(1)
+                }
+                
+                return
+            }
+            
+            if let aboutText = profile.about, aboutText != "unknown" {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page - 1)
+            } else {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page)
+            }
+        }
+        
+        // FEMALE
+        if gender == .female {
+            if page == 0 {
+                if let aboutText = profile.about, aboutText != "unknown" {
+                    (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
+                        controls.iconView.isHidden = true
+                        controls.titleLabel.isHidden = true
+                    })
+                    
+                    self.aboutLabel.text = aboutText
+                    self.aboutLabel.isHidden = false
+                    self.nameConstraint.constant =  self.photoHeight - 46.0
+                    self.aboutHeightConstraint.constant = (aboutText as NSString).boundingRect(
+                        with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
+                        options: .usesLineFragmentOrigin,
+                        attributes: [NSAttributedString.Key.font: self.aboutLabel.font],
+                        context: nil
+                        ).size.height + 4.0
+                    self.view.layoutIfNeeded()
+                } else {
+                    self.aboutLabel.isHidden = true
+                    self.updateProfileRows(0)
+                }
+                
+                return
+            }
+            
+            if let aboutText = profile.about, aboutText != "unknown" {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page - 1)
+            } else {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page)
+            }
+        }
+    }
+    
+    fileprivate func updateProfileRows(_ page: Int)
+    {
+        guard let profile = self.input.profileManager.profile.value else { return }
+        
+        let profileManager = self.input.profileManager
+        let configuration = ProfileFieldsConfiguration(profileManager)
+        let leftRows = configuration.leftUserColumns(profile)
+        let rightRows = configuration.rightUserColumns(profile)
+        let start = page * 2
+        let leftCount = leftRows.count
+        let rightCount = rightRows.count
+        
+        var nameOffset: CGFloat = self.photoHeight - 46.0
+        var rightColumnMaxWidth: CGFloat = 0.0
+        
+        (0...1).forEach { index in
+            let leftControls = self.leftFieldsControls[index]
+            let rightControls = self.rightFieldsControls[index]
+            let absoluteIndex = start + index
+            
+            if absoluteIndex >= leftCount {
+                leftControls.iconView.isHidden = true
+                leftControls.titleLabel.isHidden = true
+                
+                if index ==  1 && nameOffset <  self.photoHeight - 1.0 { nameOffset =  self.photoHeight - 20.0 }
+                if index ==  0 { nameOffset =  self.photoHeight }
+                
+            } else {
+                let row = leftRows[absoluteIndex]
+                leftControls.iconView.image = UIImage(named: row.icon ?? "")
+                leftControls.titleLabel.text = row.title.localized()
+                leftControls.iconView.isHidden = false
+                leftControls.titleLabel.isHidden = false
+            }
+            
+            if absoluteIndex >= rightCount {
+                rightControls.iconView.isHidden = true
+                rightControls.titleLabel.isHidden = true
+            } else {
+                let row = rightRows[absoluteIndex]
+                rightControls.iconView.image = UIImage(named: row.icon ?? "")
+                rightControls.titleLabel.text = row.title.localized()
+                rightControls.iconView.isHidden = false
+                rightControls.titleLabel.isHidden = false
+                
+                let width = (row.title.localized() as NSString).size(withAttributes: [
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0)
+                    ]).width
+                
+                if width > rightColumnMaxWidth {
+                    rightColumnMaxWidth = width
+                }
+            }
+        }
+        
+        self.nameConstraint.constant = nameOffset
+        self.rightColumnConstraint.constant = rightColumnMaxWidth + 4.0
+        self.view.layoutIfNeeded()
+    }
+    
+    fileprivate func applyName()
+    {
+        guard let profile = self.input.profileManager.profile.value else { return }
+        guard let yob = self.input.profileManager.yob.value else { return }
+        
+        let age =  Calendar.current.component(.year, from: Date()) - yob
+        
+        var title: String = ""
+        if let name = profile.name, name != "unknown" {
+            title += "\(name), "
+        } else {
+            let gender = self.input.profileManager.gender.value ?? .male
+            let genderStr = gender == .male ? "common_sex_male".localized() : "common_sex_female".localized()
+            title += "\(genderStr), "
+        }
+        
+        title += "\(age)"
+        self.nameLabel.text = title
+    }
 }
 
 extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate
@@ -522,7 +723,7 @@ extension UserProfilePhotosViewController: UIPageViewControllerDelegate, UIPageV
         guard finished, completed else { return }
         guard let index = self.photosVCs.index(of: photoVC) else { return }
         
-        self.currentIndex = index
+        self.currentIndex.accept(index)
         self.pagesControl.currentPage = index
         
         guard let photo = self.viewModel?.photos.value[index] else { return }
