@@ -60,7 +60,7 @@ class ProfileFieldsConfiguration
             title: "profile_field_bio",
             icon: nil,
             placeholder: nil,
-            cellIdentifier: "profile_field_cell",
+            cellIdentifier: "profile_field_text_cell",
             fieldType: .bio
         ),
         ProfileField(

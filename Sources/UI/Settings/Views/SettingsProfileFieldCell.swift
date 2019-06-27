@@ -36,6 +36,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
             
             guard index != 0  else {
                 self.valueField?.text = nil
+                self.valueTextView?.text = nil
                 
                 return
             }
@@ -88,6 +89,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
             switch type {
             case .education, .name, .instagram, .tiktok, .bio, .job, .whereLive, .company:
                 self.valueField?.text = text
+                self.valueTextView?.text = text
                 break
                 
             default: break
@@ -103,6 +105,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var valueField: UITextField?
+    @IBOutlet weak var valueTextView: UITextView?
     
     fileprivate weak var pickerView: UIPickerView!
     fileprivate var prevIndexValue: Int? = nil
@@ -112,6 +115,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
     {
         super.awakeFromNib()
         
+        // Text field
         self.valueField?.layer.sublayerTransform = CATransform3DMakeTranslation(6.0, 0.0, 0.0)
         self.valueField?.layer.cornerRadius = 8.0
         self.valueField?.layer.borderColor = UIColor.darkGray.cgColor
@@ -119,6 +123,14 @@ class SettingsProfileFieldCell: BaseTableViewCell
         self.valueField?.clipsToBounds = true
         
         self.valueField?.delegate = self
+        
+        // Text view
+        self.valueTextView?.layer.cornerRadius = 8.0
+        self.valueTextView?.layer.borderColor = UIColor.darkGray.cgColor
+        self.valueTextView?.layer.borderWidth = 1.0
+        self.valueTextView?.clipsToBounds = true
+        
+        self.valueTextView?.delegate = self
     }
     
     override func updateTheme()
@@ -134,11 +146,13 @@ class SettingsProfileFieldCell: BaseTableViewCell
     func startEditing()
     {
         self.valueField?.becomeFirstResponder()
+        self.valueTextView?.becomeFirstResponder()
     }
     
     @objc func stopEditing()
     {
         self.valueField?.resignFirstResponder()
+        self.valueTextView?.resignFirstResponder()
     }
     
     func resetInput()
@@ -211,6 +225,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
     @objc fileprivate func cancelEditing()
     {
         self.valueField?.resignFirstResponder()
+        self.valueTextView?.resignFirstResponder()
         
         if let index = self.prevIndexValue {
             self.valueIndex = index
@@ -292,5 +307,21 @@ extension SettingsProfileFieldCell: UITextFieldDelegate
         guard let type = self.field?.fieldType else { return }
         
         self.onSelect?(type, nil, textField.text)
+    }
+}
+
+extension SettingsProfileFieldCell: UITextViewDelegate
+{
+    func textViewDidBeginEditing(_ textView: UITextView)
+    {
+        self.prevIndexValue = self.valueIndex
+        self.prevTextValue = self.valueText
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView)
+    {
+        guard let type = self.field?.fieldType else { return }
+        
+        self.onSelect?(type, nil, textView.text)
     }
 }

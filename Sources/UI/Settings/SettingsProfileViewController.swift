@@ -124,4 +124,13 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
         
         cell.startEditing()
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        guard let field = self.viewModel?.configuration.settingsFields[indexPath.row] else { return 0.0 }
+        
+        if field.fieldType == .bio { return 110.0 }
+        
+        return 72.0
+    }
 }

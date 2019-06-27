@@ -1310,6 +1310,53 @@
                                             <outlet property="valueField" destination="6Pn-dm-lwb" id="00b-Qg-dnb"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="profile_field_text_cell" rowHeight="160" id="PFC-KI-6V9" customClass="SettingsProfileFieldCell" customModule="Ringoid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="172" width="375" height="160"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PFC-KI-6V9" id="g4j-ok-kAC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_education" translatesAutoresizingMaskIntoConstraints="NO" id="Jq1-Rf-O7w">
+                                                    <rect key="frame" x="16" y="8" width="15" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="PNJ-s6-gyD"/>
+                                                        <constraint firstAttribute="width" constant="15" id="yEP-o6-RrR"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Education" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kom-P1-hrU">
+                                                    <rect key="frame" x="39" y="7.5" width="60.5" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jNu-eK-aks">
+                                                    <rect key="frame" x="39" y="27.5" width="320" height="128.5"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="jNu-eK-aks" secondAttribute="bottom" constant="4" id="5As-v3-aqy"/>
+                                                <constraint firstAttribute="trailing" secondItem="jNu-eK-aks" secondAttribute="trailing" constant="16" id="DqT-bW-n6O"/>
+                                                <constraint firstItem="jNu-eK-aks" firstAttribute="leading" secondItem="Kom-P1-hrU" secondAttribute="leading" id="Fk0-bT-W2U"/>
+                                                <constraint firstItem="jNu-eK-aks" firstAttribute="top" secondItem="Kom-P1-hrU" secondAttribute="bottom" constant="4" id="Nsh-oy-NyU"/>
+                                                <constraint firstItem="Kom-P1-hrU" firstAttribute="leading" secondItem="Jq1-Rf-O7w" secondAttribute="trailing" constant="8" id="Yj3-AK-Dfc"/>
+                                                <constraint firstItem="Kom-P1-hrU" firstAttribute="centerY" secondItem="Jq1-Rf-O7w" secondAttribute="centerY" id="gzl-sp-oVQ"/>
+                                                <constraint firstItem="Jq1-Rf-O7w" firstAttribute="leading" secondItem="g4j-ok-kAC" secondAttribute="leading" constant="16" id="h8e-fP-gQo"/>
+                                                <constraint firstItem="Jq1-Rf-O7w" firstAttribute="top" secondItem="g4j-ok-kAC" secondAttribute="top" constant="8" id="tf5-Yt-M6B"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="iconView" destination="Jq1-Rf-O7w" id="gQf-Dt-25V"/>
+                                            <outlet property="titleLabel" destination="Kom-P1-hrU" id="55U-OE-F33"/>
+                                            <outlet property="valueTextView" destination="jNu-eK-aks" id="Kem-iL-D0E"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <sections/>
                                 <connections>
@@ -1339,7 +1386,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bGf-rQ-IvB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-254" y="-662"/>
+            <point key="canvasLocation" x="-255.19999999999999" y="-662.51874062968523"/>
         </scene>
     </scenes>
     <resources>
