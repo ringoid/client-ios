@@ -330,6 +330,14 @@ class MainLMMProfileViewController: UIViewController
         self.pagesControl.alpha = self.discreetOpacity(for: self.topOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
         self.statusView.alpha = self.discreetOpacity(for: self.topOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
         self.statusLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.statusLabel.frame, offset: value) ?? 1.0)
+        
+        self.nameLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.nameLabel.frame, offset: value) ?? 1.0)
+        self.aboutLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.aboutLabel.frame, offset: value) ?? 1.0)
+        
+        (self.leftFieldsControls + self.rightFieldsControls).forEach { controls in
+            controls.iconView.alpha = self.discreetOpacity(for: self.topOpacityFor(controls.iconView.frame, offset: value) ?? 1.0)
+            controls.titleLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(controls.titleLabel.frame, offset: value) ?? 1.0)
+        }
     }
     
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
@@ -352,6 +360,25 @@ class MainLMMProfileViewController: UIViewController
 
         if let statusLabelControlOpacity = self.bottomOpacityFor(self.statusLabel.frame, offset: value) {
             self.statusLabel.alpha = self.discreetOpacity(for: statusLabelControlOpacity)
+        }
+        
+        if let nameLabelControlOpacity = self.bottomOpacityFor(self.nameLabel.frame, offset: value) {
+            self.nameLabel.alpha = self.discreetOpacity(for: nameLabelControlOpacity)
+        }
+        
+        if let aboutLabelControlOpacity = self.bottomOpacityFor(self.aboutLabel.frame, offset: value) {
+            self.aboutLabel.alpha = self.discreetOpacity(for: aboutLabelControlOpacity)
+        }
+        
+        (self.leftFieldsControls + self.rightFieldsControls).forEach { controls in
+            
+            if let iconViewControlOpacity = self.bottomOpacityFor(controls.iconView.frame, offset: value) {
+                controls.iconView.alpha = self.discreetOpacity(for: iconViewControlOpacity)
+            }
+            
+            if let titleLabelControlOpacity = self.bottomOpacityFor(controls.titleLabel.frame, offset: value) {
+                controls.titleLabel.alpha = self.discreetOpacity(for: titleLabelControlOpacity)
+            }
         }
     }
     
