@@ -22,7 +22,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
             
             self.update()
             
-            self.valueField.attributedPlaceholder = NSAttributedString(string: "profile_field_not_selected".localized(),
+            self.valueField?.attributedPlaceholder = NSAttributedString(string: "profile_field_not_selected".localized(),
                                                                        attributes: [
                                                                         .foregroundColor: UIColor.lightGray
                 ])
@@ -35,38 +35,38 @@ class SettingsProfileFieldCell: BaseTableViewCell
             }
             
             guard index != 0  else {
-                self.valueField.text = nil
+                self.valueField?.text = nil
                 
                 return
             }
             
             switch type {
             case .height:
-                self.valueField.text = Height.title(index)
+                self.valueField?.text = Height.title(index)
                 break
                 
             case .hair:
-                self.valueField.text = Hair(rawValue: index * 10)?.title(self.sex).localized()
+                self.valueField?.text = Hair(rawValue: index * 10)?.title(self.sex).localized()
                 break
                 
             case .educationLevel:
-                self.valueField.text = EducationLevel.at(index, locale: LocaleManager.shared.language.value).title().localized()
+                self.valueField?.text = EducationLevel.at(index, locale: LocaleManager.shared.language.value).title().localized()
                 break
                 
             case .children:
-                self.valueField.text = Children.at(index).title().localized()
+                self.valueField?.text = Children.at(index).title().localized()
                 break
                 
             case .transport:
-                self.valueField.text = Transport.at(index).title().localized()
+                self.valueField?.text = Transport.at(index).title().localized()
                 break
                 
             case .income:
-                self.valueField.text = Income.at(index).title().localized()
+                self.valueField?.text = Income.at(index).title().localized()
                 break
                 
             case .property:
-                self.valueField.text = Property.at(index).title().localized()
+                self.valueField?.text = Property.at(index).title().localized()
                 break
 
             default: break
@@ -87,14 +87,14 @@ class SettingsProfileFieldCell: BaseTableViewCell
             
             switch type {
             case .education, .name, .instagram, .tiktok, .bio, .job, .whereLive, .company:
-                self.valueField.text = text
+                self.valueField?.text = text
                 break
                 
             default: break
             }
             
-            self.valueField.inputAccessoryView = nil
-            self.valueField.inputView = nil
+            self.valueField?.inputAccessoryView = nil
+            self.valueField?.inputView = nil
         }
     }
     
@@ -102,7 +102,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
     
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var valueField: UITextField!
+    @IBOutlet weak var valueField: UITextField?
     
     fileprivate weak var pickerView: UIPickerView!
     fileprivate var prevIndexValue: Int? = nil
@@ -112,13 +112,13 @@ class SettingsProfileFieldCell: BaseTableViewCell
     {
         super.awakeFromNib()
         
-        self.valueField.layer.sublayerTransform = CATransform3DMakeTranslation(6.0, 0.0, 0.0)
-        self.valueField.layer.cornerRadius = 8.0
-        self.valueField.layer.borderColor = UIColor.darkGray.cgColor
-        self.valueField.layer.borderWidth = 1.0
-        self.valueField.clipsToBounds = true
+        self.valueField?.layer.sublayerTransform = CATransform3DMakeTranslation(6.0, 0.0, 0.0)
+        self.valueField?.layer.cornerRadius = 8.0
+        self.valueField?.layer.borderColor = UIColor.darkGray.cgColor
+        self.valueField?.layer.borderWidth = 1.0
+        self.valueField?.clipsToBounds = true
         
-        self.valueField.delegate = self
+        self.valueField?.delegate = self
     }
     
     override func updateTheme()
@@ -143,8 +143,8 @@ class SettingsProfileFieldCell: BaseTableViewCell
     
     func resetInput()
     {
-        self.valueField.inputView = nil
-        self.valueField.inputAccessoryView = nil
+        self.valueField?.inputView = nil
+        self.valueField?.inputAccessoryView = nil
     }
     
     fileprivate func setupInput()
@@ -165,15 +165,15 @@ class SettingsProfileFieldCell: BaseTableViewCell
         cancelBtn.addTarget(self, action: #selector(cancelEditing), for: .touchUpInside)
         optionsView.addSubview(cancelBtn)
   
-        self.valueField.inputView = self.createPicker()
-        self.valueField.inputAccessoryView = optionsView
+        self.valueField?.inputView = self.createPicker()
+        self.valueField?.inputAccessoryView = optionsView
     }
     
     // MARK: - Actions
     
     @IBAction func onReturn()
     {
-        self.valueField.resignFirstResponder()
+        self.valueField?.resignFirstResponder()
     }
     
     // MARK: -
@@ -196,7 +196,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
         guard let field = self.field else { return }
         
         self.titleLabel.text = field.title.localized()
-        self.valueField.attributedPlaceholder = NSAttributedString(string: self.field?.placeholder?.localized() ?? "",
+        self.valueField?.attributedPlaceholder = NSAttributedString(string: self.field?.placeholder?.localized() ?? "",
                            attributes: [
                             .foregroundColor: UIColor.lightGray
             ])

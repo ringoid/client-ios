@@ -14,6 +14,6 @@ class SettingsProfileHeightCell: SettingsProfileFieldCell
     {
         super.awakeFromNib()
         
-        self.valueField.layer.sublayerTransform = CATransform3DMakeTranslation(0.0, 0.0, 0.0)
+        self.valueField?.layer.sublayerTransform = CATransform3DMakeTranslation(0.0, 0.0, 0.0)
     }
 }
