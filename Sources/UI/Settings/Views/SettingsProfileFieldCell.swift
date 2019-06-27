@@ -306,7 +306,9 @@ extension SettingsProfileFieldCell: UITextFieldDelegate
     {
         guard let type = self.field?.fieldType else { return }
         
-        self.onSelect?(type, nil, textField.text)
+        let text = textField.text?.trimContent()
+        self.valueText = textField.text?.trimContent()
+        self.onSelect?(type, nil, text)
     }
 }
 
@@ -322,7 +324,9 @@ extension SettingsProfileFieldCell: UITextViewDelegate
     {
         guard let type = self.field?.fieldType else { return }
         
-        self.onSelect?(type, nil, textView.text)
+        let text = textView.text.trimContent()
+        self.valueText = text
+        self.onSelect?(type, nil, text)
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

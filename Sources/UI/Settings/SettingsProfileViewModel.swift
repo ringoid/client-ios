@@ -84,7 +84,7 @@ class SettingsProfileViewModel
             break
             
         case .education:
-            guard let text = value else { return }
+            let text = value?.trimContent()
             
             self.db.write {
                 profile.education = text
@@ -92,7 +92,7 @@ class SettingsProfileViewModel
             break
             
         case .name:
-            guard let text = value else { return }
+            let text = value?.trimContent()
             
             self.db.write {
                 profile.name = text
@@ -100,7 +100,7 @@ class SettingsProfileViewModel
             break
             
         case .tiktok:
-            guard let text = value else { return }
+            let text = value?.trimContent()
             
             self.db.write {
                 profile.tikTok = text
@@ -108,7 +108,7 @@ class SettingsProfileViewModel
             break
             
         case .instagram:
-            guard let text = value else { return }
+            let text = value?.trimContent()
             
             self.db.write {
                 profile.instagram = text
@@ -116,7 +116,7 @@ class SettingsProfileViewModel
             break
             
         case .whereLive:
-            guard let text = value else { return }
+            let text = value?.trimContent()
             
             self.db.write {
                 profile.whereLive = text
@@ -124,7 +124,7 @@ class SettingsProfileViewModel
             break
             
         case .bio:
-            guard let text = value else { return }
+            let text = value?.trimContent()
             
             self.db.write {
                 profile.about = text
@@ -132,7 +132,7 @@ class SettingsProfileViewModel
             break
             
         case .company:
-            guard let text = value else { return }
+            let text = value?.trimContent()
             
             self.db.write {
                 profile.company = text
@@ -140,7 +140,7 @@ class SettingsProfileViewModel
             break
             
         case .job:
-            guard let text = value else { return }
+            let text = value?.trimContent()
             
             self.db.write {
                 profile.jobTitle = text
@@ -164,5 +164,18 @@ class SettingsProfileViewModel
         if self.profileManager.profile.value == nil {
             self.profileManager.createProfile()
         }
+    }
+}
+
+extension String
+{
+    func trimContent() -> String?
+    {
+        let components = self.components(separatedBy: .whitespacesAndNewlines)
+        let result = components.filter({ !$0.isEmpty }).joined(separator: " ")
+        
+        guard result.count != 0 else { return nil }
+        
+        return result
     }
 }
