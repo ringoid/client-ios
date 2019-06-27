@@ -37,10 +37,6 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var pagesTopConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var statusView: UIView!
     @IBOutlet fileprivate weak var statusLabel: UILabel!
-    @IBOutlet fileprivate weak var distanceLabelOffsetConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var distanceLabel: UILabel!
-    @IBOutlet fileprivate weak var locationIconView: UIView!
-    @IBOutlet fileprivate weak var iconOffsetConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var lmmLabel: UILabel!
     @IBOutlet fileprivate weak var lmmWidthConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var lmmIconView: UIImageView!
@@ -61,10 +57,7 @@ class UserProfilePhotosViewController: BaseViewController
         self.pagesTopConstraint.constant = height + 24.0
         
         self.statusView.layer.borderWidth = 1.0
-        self.statusView.layer.borderColor = UIColor.lightGray.cgColor
-        
-        self.distanceLabelOffsetConstraint.constant = UIScreen.main.bounds.width * AppConfig.photoRatio + 20.0
-        
+
         self.setupBindings()
         self.setupReloader()
     }
@@ -233,8 +226,6 @@ class UserProfilePhotosViewController: BaseViewController
             if photos.count == 0 {
                 self.statusView.isHidden = true
                 self.statusLabel.isHidden = true
-                self.locationIconView.isHidden = true
-                self.distanceLabel.isHidden = true
             }
             
             self.updatePages()
@@ -278,31 +269,6 @@ class UserProfilePhotosViewController: BaseViewController
                 self?.statusLabel.isHidden = false
             } else {
                 self?.statusLabel.isHidden = true
-            }
-        }).disposed(by: self.disposeBag)
-        
-        self.viewModel?.distanceText.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] distanceText in
-            guard let count = self?.viewModel?.photos.value.count, count > 0 else {
-                self?.distanceLabel.isHidden = true
-                self?.locationIconView.isHidden = true
-                
-                return
-            }
-            
-            if let text = distanceText, text.lowercased() != "unknown", text.count > 0 {
-                self?.distanceLabel.text = text
-                let textWidth = (text as NSString).boundingRect(
-                    with: CGSize(width: 999.0, height: 999.0),
-                    options: .usesLineFragmentOrigin,
-                    attributes: [NSAttributedString.Key.font: self?.distanceLabel.font ?? UIFont.smallSystemFontSize],
-                    context: nil
-                    ).size.width
-                self?.iconOffsetConstraint.constant = textWidth + 24.0
-                self?.distanceLabel.isHidden = false
-                self?.locationIconView.isHidden = false
-            } else {
-                self?.distanceLabel.isHidden = true
-                self?.locationIconView.isHidden = true
             }
         }).disposed(by: self.disposeBag)
         

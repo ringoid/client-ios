@@ -155,6 +155,7 @@ class MainLMMProfileViewController: UIViewController
         self.statusView.layer.borderWidth = 1.0
         self.statusView.layer.borderColor = UIColor.lightGray.cgColor  
         self.applyStatuses()
+        self.applyName()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -618,6 +619,22 @@ class MainLMMProfileViewController: UIViewController
         self.nameConstraint.constant = nameOffset
         self.rightColumnConstraint.constant = rightColumnMaxWidth + 4.0
         self.view.layoutIfNeeded()
+    }
+    
+    fileprivate func applyName()
+    {
+        let profile = self.input.profile
+        var title: String = ""
+        if let name = profile.name, name != "unknown" {
+            title += "\(name), "
+        } else {
+            let gender = self.input.profileManager.gender.value?.opposite() ?? .male
+            let genderStr = gender == .male ? "common_sex_male".localized() : "common_sex_female".localized()
+            title += "\(genderStr), "
+        }
+        
+        title += "\(profile.age)"
+        self.nameLabel.text = title
     }
 }
 
