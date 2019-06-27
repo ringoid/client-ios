@@ -567,6 +567,21 @@ see who likes you</string>
                                     <segue destination="gqb-l2-0Wt" kind="embed" identifier="embed_pages" id="ztS-ZW-J5g"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vBP-lc-cHQ" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="537" width="375" height="130"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="r0L-yz-EDW"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InC-ES-1Or">
                                 <rect key="frame" x="36" y="15.5" width="50" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -729,7 +744,9 @@ see who likes you</string>
                             <constraint firstItem="QvJ-Gq-VGZ" firstAttribute="leading" secondItem="IJx-PC-azo" secondAttribute="trailing" constant="8" id="889-Wz-PT6"/>
                             <constraint firstItem="r1y-kA-ocU" firstAttribute="leading" secondItem="BPd-OE-Pen" secondAttribute="trailing" constant="8" id="C5w-Cc-kmk"/>
                             <constraint firstItem="qVA-P0-T2F" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="Cw3-cN-Upn"/>
+                            <constraint firstItem="vBP-lc-cHQ" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="ECr-X5-BTY"/>
                             <constraint firstItem="kYa-nc-a14" firstAttribute="centerY" secondItem="lT4-ql-cww" secondAttribute="centerY" id="EoK-2T-KKP"/>
+                            <constraint firstAttribute="bottom" secondItem="vBP-lc-cHQ" secondAttribute="bottom" id="FHi-0r-u0u"/>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
                             <constraint firstItem="5Gj-0E-Tsq" firstAttribute="top" secondItem="SiD-cq-hiE" secondAttribute="bottom" constant="4" id="Kep-a2-sVe"/>
@@ -750,6 +767,7 @@ see who likes you</string>
                             <constraint firstItem="5Gj-0E-Tsq" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="ZwV-Ec-4fp"/>
                             <constraint firstItem="eDJ-qT-P4s" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="20" id="bgx-sm-BG8"/>
                             <constraint firstItem="QvJ-Gq-VGZ" firstAttribute="bottom" secondItem="IJx-PC-azo" secondAttribute="bottom" id="edq-uS-xmI"/>
+                            <constraint firstAttribute="trailing" secondItem="vBP-lc-cHQ" secondAttribute="trailing" id="f65-Rk-K0U"/>
                             <constraint firstItem="IJx-PC-azo" firstAttribute="centerY" secondItem="QvJ-Gq-VGZ" secondAttribute="centerY" id="fv6-g6-hIG"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" id="gA6-9y-Jou"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GNe-2F-xlI" secondAttribute="trailing" constant="8" id="gfk-Hj-XnO"/>

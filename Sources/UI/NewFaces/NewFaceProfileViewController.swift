@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Nuke
 
-fileprivate struct NewFaceProfileFieldControl
+ struct ProfileFieldControl
 {
     let iconView: UIImageView
     let titleLabel: UILabel
@@ -38,8 +38,8 @@ class NewFaceProfileViewController: UIViewController
     fileprivate var photosVCs: [NewFacePhotoViewController] = []
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var preheaterTimer: Timer?
-    fileprivate var leftFieldsControls: [NewFaceProfileFieldControl] = []
-    fileprivate var rightFieldsControls: [NewFaceProfileFieldControl] = []
+    fileprivate var leftFieldsControls: [ProfileFieldControl] = []
+    fileprivate var rightFieldsControls: [ProfileFieldControl] = []
     
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
@@ -329,13 +329,13 @@ class NewFaceProfileViewController: UIViewController
     fileprivate func setupFieldsControls()
     {
         self.leftFieldsControls = [
-            NewFaceProfileFieldControl(iconView: self.leftFieldIcon1, titleLabel: self.leftFieldLabel1),
-            NewFaceProfileFieldControl(iconView: self.leftFieldIcon2, titleLabel: self.leftFieldLabel2),
+            ProfileFieldControl(iconView: self.leftFieldIcon1, titleLabel: self.leftFieldLabel1),
+            ProfileFieldControl(iconView: self.leftFieldIcon2, titleLabel: self.leftFieldLabel2),
         ]
         
         self.rightFieldsControls = [
-            NewFaceProfileFieldControl(iconView: self.rightFieldIcon1, titleLabel: self.rightFieldLabel1),
-            NewFaceProfileFieldControl(iconView: self.rightFieldIcon2, titleLabel: self.rightFieldLabel2),
+            ProfileFieldControl(iconView: self.rightFieldIcon1, titleLabel: self.rightFieldLabel1),
+            ProfileFieldControl(iconView: self.rightFieldIcon2, titleLabel: self.rightFieldLabel2),
         ]
     }
     

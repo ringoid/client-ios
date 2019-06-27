@@ -41,6 +41,8 @@ class MainLMMProfileViewController: UIViewController
     fileprivate var photosVCs: [NewFacePhotoViewController] = []
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var preheaterTimer: Timer?
+    fileprivate var leftFieldsControls: [ProfileFieldControl] = []
+    fileprivate var rightFieldsControls: [ProfileFieldControl] = []
     
     @IBOutlet fileprivate weak var messageBtn: UIButton!
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
@@ -103,6 +105,8 @@ class MainLMMProfileViewController: UIViewController
         assert(self.input != nil)
         
         super.viewDidLoad()
+        
+        self.setupFieldsControls()
         
         // TODO: Move logic inside view model
         self.setupBindings()
@@ -244,6 +248,10 @@ class MainLMMProfileViewController: UIViewController
         Observable.from(object:self.input.profile).observeOn(MainScheduler.instance).subscribe({ [weak self] _ in
             self?.updateSeenState()
             self?.applyStatuses()
+        }).disposed(by: self.diposeBag)
+        
+        self.currentIndex.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] page in
+            self?.updateFieldsContent(page)
         }).disposed(by: self.diposeBag)
     }
     
@@ -428,6 +436,161 @@ class MainLMMProfileViewController: UIViewController
         } else {
             self.messageBtn.setImage(nil, for: .normal)
         }
+    }
+    
+    fileprivate func setupFieldsControls()
+    {
+        self.leftFieldsControls = [
+            ProfileFieldControl(iconView: self.leftFieldIcon1, titleLabel: self.leftFieldLabel1),
+            ProfileFieldControl(iconView: self.leftFieldIcon2, titleLabel: self.leftFieldLabel2),
+        ]
+        
+        self.rightFieldsControls = [
+            ProfileFieldControl(iconView: self.rightFieldIcon1, titleLabel: self.rightFieldLabel1),
+            ProfileFieldControl(iconView: self.rightFieldIcon2, titleLabel: self.rightFieldLabel2),
+        ]
+    }
+    
+    fileprivate func updateFieldsContent(_ page: Int)
+    {
+        guard let gender: Sex = self.input.profileManager.gender.value?.opposite() else { return }
+        
+        // MALE
+        if gender == .male {
+            if page == 0 {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(0)
+                
+                return
+            }
+            
+            if page == 1 {
+                if let aboutText = self.input.profile.about, aboutText != "unknown" {
+                    (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
+                        controls.iconView.isHidden = true
+                        controls.titleLabel.isHidden = true
+                    })
+                    
+                    self.aboutLabel.text = aboutText
+                    self.aboutLabel.isHidden = false
+                    self.nameConstraint.constant = 86.0
+                    self.aboutHeightConstraint.constant = (aboutText as NSString).boundingRect(
+                        with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
+                        options: .usesLineFragmentOrigin,
+                        attributes: [NSAttributedString.Key.font: self.aboutLabel.font],
+                        context: nil
+                        ).size.height
+                    self.view.layoutIfNeeded()
+                } else {
+                    self.aboutLabel.isHidden = true
+                    self.updateProfileRows(1)
+                }
+                
+                return
+            }
+            
+            if let aboutText = self.input.profile.about, aboutText != "unknown" {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page - 1)
+            } else {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page)
+            }
+        }
+        
+        // FEMALE
+        if gender == .female {
+            if page == 0 {
+                if let aboutText = self.input.profile.about, aboutText != "unknown" {
+                    (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
+                        controls.iconView.isHidden = true
+                        controls.titleLabel.isHidden = true
+                    })
+                    
+                    self.aboutLabel.text = aboutText
+                    self.aboutLabel.isHidden = false
+                    self.nameConstraint.constant = 86.0
+                    self.aboutHeightConstraint.constant = (aboutText as NSString).boundingRect(
+                        with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
+                        options: .usesLineFragmentOrigin,
+                        attributes: [NSAttributedString.Key.font: self.aboutLabel.font],
+                        context: nil
+                        ).size.height + 4.0
+                    self.view.layoutIfNeeded()
+                } else {
+                    self.aboutLabel.isHidden = true
+                    self.updateProfileRows(0)
+                }
+                
+                return
+            }
+            
+            if let aboutText = self.input.profile.about, aboutText != "unknown" {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page - 1)
+            } else {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page)
+            }
+        }
+    }
+    
+    fileprivate func updateProfileRows(_ page: Int)
+    {
+        let profileManager = self.input.profileManager
+        let configuration = ProfileFieldsConfiguration(profileManager)
+        let leftRows = configuration.leftColums(self.input.profile)
+        let rightRows = configuration.rightColums(self.input.profile)
+        let start = page * 2
+        let leftCount = leftRows.count
+        let rightCount = rightRows.count
+        
+        var nameOffset: CGFloat = 86.0
+        var rightColumnMaxWidth: CGFloat = 0.0
+        
+        (0...1).forEach { index in
+            let leftControls = self.leftFieldsControls[index]
+            let rightControls = self.rightFieldsControls[index]
+            let absoluteIndex = start + index
+            
+            if absoluteIndex >= leftCount {
+                leftControls.iconView.isHidden = true
+                leftControls.titleLabel.isHidden = true
+                
+                if index ==  1 && nameOffset > 41.0 { nameOffset = 60.0 }
+                if index ==  0 { nameOffset = 40.0 }
+                
+            } else {
+                let row = leftRows[absoluteIndex]
+                leftControls.iconView.image = UIImage(named: row.icon ?? "")
+                leftControls.titleLabel.text = row.title.localized()
+                leftControls.iconView.isHidden = false
+                leftControls.titleLabel.isHidden = false
+            }
+            
+            if absoluteIndex >= rightCount {
+                rightControls.iconView.isHidden = true
+                rightControls.titleLabel.isHidden = true
+            } else {
+                let row = rightRows[absoluteIndex]
+                rightControls.iconView.image = UIImage(named: row.icon ?? "")
+                rightControls.titleLabel.text = row.title.localized()
+                rightControls.iconView.isHidden = false
+                rightControls.titleLabel.isHidden = false
+                
+                let width = (row.title.localized() as NSString).size(withAttributes: [
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0)
+                    ]).width
+                
+                if width > rightColumnMaxWidth {
+                    rightColumnMaxWidth = width
+                }
+            }
+        }
+        
+        self.nameConstraint.constant = nameOffset
+        self.rightColumnConstraint.constant = rightColumnMaxWidth + 4.0
+        self.view.layoutIfNeeded()
     }
 }
 
