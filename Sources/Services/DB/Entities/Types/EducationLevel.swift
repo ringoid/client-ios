@@ -40,7 +40,13 @@ fileprivate let indexMap: [EducationLevel] = [
 extension EducationLevel
 {
     static func at(_ index: Int, locale: Language) -> EducationLevel {
-        if locale == .english { return englishIndexMap[index]}
+        if locale == .english {
+            if [3, 5].contains(index) {
+                return .university2
+            }
+            
+            return englishIndexMap[index]
+        }
         
         return indexMap[index]
     }
