@@ -349,7 +349,7 @@ class ProfileFieldsConfiguration
         }
         
         if let value = profile.hairColor.value, let hairColor = Hair(rawValue: value) {
-            let gender: Sex = self.profileManager.gender.value == .male ? .female : .male
+            let gender: Sex = self.profileManager.gender.value == .male ? .male : .female
             rows.append(ProfileFileRow(
                 title: hairColor.title(gender),
                 icon: "profile_fields_hair"
@@ -373,13 +373,6 @@ class ProfileFieldsConfiguration
     {
         var rows: [ProfileFileRow] = []
         
-        if let rawValue = profile.children.value, let children = Children(rawValue: rawValue), children != .unknown {
-            rows.append(ProfileFileRow(
-                title: children.title(),
-                icon: "profile_fields_children"
-            ))
-        }
-        
         if let rawValue = profile.income.value, let income = Income(rawValue: rawValue), income != .unknown {
             rows.append(ProfileFileRow(
                 title: income.title(),
@@ -394,17 +387,10 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.education, title != "unknown" {
+        if let rawValue = profile.children.value, let children = Children(rawValue: rawValue), children != .unknown {
             rows.append(ProfileFileRow(
-                title: title,
-                icon: "profile_fields_education"
-            ))
-        }
-        
-        if let rawValue = profile.educationLevel.value, let level = EducationLevel(rawValue: rawValue), level != .unknown {
-            rows.append(ProfileFileRow(
-                title: level.title(),
-                icon: "profile_fields_education"
+                title: children.title(),
+                icon: "profile_fields_children"
             ))
         }
         
@@ -419,6 +405,20 @@ class ProfileFieldsConfiguration
             rows.append(ProfileFileRow(
                 title: transport.title(),
                 icon: "profile_fields_transport"
+            ))
+        }
+        
+        if let title = profile.education, title != "unknown" {
+            rows.append(ProfileFileRow(
+                title: title,
+                icon: "profile_fields_education"
+            ))
+        }
+        
+        if let rawValue = profile.educationLevel.value, let level = EducationLevel(rawValue: rawValue), level != .unknown {
+            rows.append(ProfileFileRow(
+                title: level.title(),
+                icon: "profile_fields_education"
             ))
         }
         
@@ -443,10 +443,31 @@ class ProfileFieldsConfiguration
     {
         var rows: [ProfileFileRow] = []
         
+        if let title = profile.tikTok, title != "unknown" {
+            rows.append(ProfileFileRow(
+                title: "TikTok: " + title,
+                icon: "profile_fields_tiktok"
+            ))
+        }
+        
+        if let title = profile.instagram, title != "unknown" {
+            rows.append(ProfileFileRow(
+                title: "Instagram: " + title,
+                icon: "profile_fields_instagram"
+            ))
+        }
+        
         if let rawValue = profile.children.value, let children = Children(rawValue: rawValue), children != .unknown {
             rows.append(ProfileFileRow(
                 title: children.title(),
                 icon: "profile_fields_children"
+            ))
+        }
+        
+        if let rawValue = profile.educationLevel.value, let level = EducationLevel(rawValue: rawValue), level != .unknown {
+            rows.append(ProfileFileRow(
+                title: level.title(),
+                icon: "profile_fields_education"
             ))
         }
         
@@ -457,10 +478,10 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let rawValue = profile.educationLevel.value, let level = EducationLevel(rawValue: rawValue), level != .unknown {
+        if let title = profile.jobTitle, title != "unknown" {
             rows.append(ProfileFileRow(
-                title: level.title(),
-                icon: "profile_fields_education"
+                title: title,
+                icon: "profile_fields_job"
             ))
         }
         
@@ -478,31 +499,10 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.jobTitle, title != "unknown" {
-            rows.append(ProfileFileRow(
-                title: title,
-                icon: "profile_fields_job"
-            ))
-        }
-        
         if let rawValue = profile.transport.value, let transport = Transport(rawValue: rawValue), transport != .unknown {
             rows.append(ProfileFileRow(
                 title: transport.title(),
                 icon: "profile_fields_transport"
-            ))
-        }
-        
-        if let title = profile.tikTok, title != "unknown" {
-            rows.append(ProfileFileRow(
-                title: "TikTok: " + title,
-                icon: "profile_fields_tiktok"
-            ))
-        }
-        
-        if let title = profile.instagram, title != "unknown" {
-            rows.append(ProfileFileRow(
-                title: "Instagram: " + title,
-                icon: "profile_fields_instagram"
             ))
         }
         

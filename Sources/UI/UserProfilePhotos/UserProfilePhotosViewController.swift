@@ -512,8 +512,8 @@ class UserProfilePhotosViewController: BaseViewController
         guard let profile = self.input.profileManager.profile.value else { return }
         guard let gender = self.input.profileManager.gender.value else { return }
         
-        // MALE
-        if gender == .male {
+        // Female
+        if gender == .female {
             if page == 0 {
                 self.aboutLabel.isHidden = true
                 self.updateProfileRows(0)
@@ -555,8 +555,8 @@ class UserProfilePhotosViewController: BaseViewController
             }
         }
         
-        // FEMALE
-        if gender == .female {
+        // Male
+        if gender == .male {
             if page == 0 {
                 if let aboutText = profile.about, aboutText != "unknown" {
                     (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
