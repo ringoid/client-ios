@@ -50,6 +50,22 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
     @IBOutlet fileprivate weak var statusView: UIView!
     @IBOutlet fileprivate weak var statusLabel: UILabel!
+    @IBOutlet fileprivate weak var nameLabel: UILabel!
+    @IBOutlet fileprivate weak var nameConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var aboutLabel: UILabel!
+    @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var aboutHeightConstraint: NSLayoutConstraint!
+    
+    // Profile fields
+    @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
+    @IBOutlet fileprivate weak var leftFieldLabel1: UILabel!
+    @IBOutlet fileprivate weak var leftFieldIcon2: UIImageView!
+    @IBOutlet fileprivate weak var leftFieldLabel2: UILabel!
+    
+    @IBOutlet fileprivate weak var rightFieldIcon1: UIImageView!
+    @IBOutlet fileprivate weak var rightFieldLabel1: UILabel!
+    @IBOutlet fileprivate weak var rightFieldIcon2: UIImageView!
+    @IBOutlet fileprivate weak var rightFieldLabel2: UILabel!
     
     static func create(_ profile: LMMProfile,
                        feedType: LMMType,
@@ -134,7 +150,7 @@ class MainLMMProfileViewController: UIViewController
         
         self.statusView.layer.borderWidth = 1.0
         self.statusView.layer.borderColor = UIColor.lightGray.cgColor  
-        self.applyStatuses()        
+        self.applyStatuses()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
