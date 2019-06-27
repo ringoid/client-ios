@@ -78,6 +78,21 @@ see how many likes you get</string>
                                     <outlet property="delegate" destination="aaf-t7-SOT" id="gev-Qx-7GI"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="idu-Bh-Qrz" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="240" width="375" height="130"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="LCR-1Z-z79"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ze-nT-pEZ">
                                 <rect key="frame" x="0.0" y="20" width="76" height="60"/>
                                 <constraints>
@@ -256,6 +271,7 @@ see how many likes you get</string>
                             <constraint firstItem="arP-gR-cEw" firstAttribute="centerY" secondItem="nVf-pC-0A8" secondAttribute="centerY" id="GBG-tL-hdg"/>
                             <constraint firstItem="27t-IX-qLF" firstAttribute="leading" secondItem="UMb-Bl-CM4" secondAttribute="leading" id="HZn-Yc-Lks"/>
                             <constraint firstItem="Qh3-mN-wQe" firstAttribute="centerY" secondItem="32r-W0-czT" secondAttribute="centerY" id="HpT-Ds-AQd"/>
+                            <constraint firstItem="idu-Bh-Qrz" firstAttribute="leading" secondItem="Yc6-CF-qSL" secondAttribute="leading" id="I5Z-fp-9nW"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="J5p-mc-dZY"/>
                             <constraint firstAttribute="trailing" secondItem="32r-W0-czT" secondAttribute="trailing" id="K8k-hh-C28"/>
                             <constraint firstItem="czw-ci-QbL" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="LPJ-xp-Qg7"/>
@@ -266,6 +282,7 @@ see how many likes you get</string>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="Q1a-Y0-U7m"/>
                             <constraint firstItem="nVf-pC-0A8" firstAttribute="leading" secondItem="arP-gR-cEw" secondAttribute="trailing" id="Q5g-iU-viA"/>
                             <constraint firstItem="ct4-pd-6bj" firstAttribute="leading" secondItem="Qh3-mN-wQe" secondAttribute="trailing" constant="8" id="QgN-ka-zPI"/>
+                            <constraint firstItem="idu-Bh-Qrz" firstAttribute="trailing" secondItem="Yc6-CF-qSL" secondAttribute="trailing" id="RNa-sB-tj7"/>
                             <constraint firstItem="UMb-Bl-CM4" firstAttribute="bottom" secondItem="npc-Nn-Arv" secondAttribute="bottom" id="SCh-0L-Ydf"/>
                             <constraint firstItem="nVf-pC-0A8" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="SMc-9B-HaF"/>
                             <constraint firstItem="Qh3-mN-wQe" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" constant="16" id="SUx-wr-dio"/>
@@ -296,6 +313,7 @@ see how many likes you get</string>
                             <constraint firstItem="ct4-pd-6bj" firstAttribute="centerY" secondItem="Qh3-mN-wQe" secondAttribute="centerY" id="szD-ZH-LJ3"/>
                             <constraint firstItem="hwe-yx-WQU" firstAttribute="top" secondItem="eno-1i-kP1" secondAttribute="bottom" constant="10" id="v4k-mc-rpn"/>
                             <constraint firstItem="04l-Dx-sJ6" firstAttribute="centerY" secondItem="eno-1i-kP1" secondAttribute="centerY" id="vAW-Ox-lLb"/>
+                            <constraint firstItem="idu-Bh-Qrz" firstAttribute="bottom" secondItem="Yc6-CF-qSL" secondAttribute="top" constant="350" id="xUg-94-G37" userLabel="BottomShadow"/>
                             <constraint firstItem="BK0-ML-AsK" firstAttribute="centerY" secondItem="27t-IX-qLF" secondAttribute="centerY" id="ykd-OM-KkI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Yc6-CF-qSL"/>
@@ -304,6 +322,7 @@ see how many likes you get</string>
                         <outlet property="aboutHeightConstraint" destination="Y3k-7L-Z9z" id="0Jp-We-7ta"/>
                         <outlet property="aboutLabel" destination="dx0-jU-NB1" id="3kl-Ou-LG6"/>
                         <outlet property="addBtn" destination="R3C-Zv-Ixf" id="3Be-pJ-u5T"/>
+                        <outlet property="bottomShadowView" destination="idu-Bh-Qrz" id="Zca-o0-Guc"/>
                         <outlet property="containerTableView" destination="GhS-rk-bVb" id="o6E-fd-3zd"/>
                         <outlet property="deleteBtn" destination="32r-W0-czT" id="qDq-QL-d5e"/>
                         <outlet property="emptyFeedLabel" destination="c03-Vj-oKe" id="HhA-IN-Ey8"/>
@@ -325,6 +344,7 @@ see how many likes you get</string>
                         <outlet property="rightFieldIcon2" destination="04l-Dx-sJ6" id="AiS-xp-RK6"/>
                         <outlet property="rightFieldLabel1" destination="hwe-yx-WQU" id="R7I-JL-JKQ"/>
                         <outlet property="rightFieldLabel2" destination="eno-1i-kP1" id="soL-48-o7f"/>
+                        <outlet property="shadowBottomConstraint" destination="xUg-94-G37" id="azq-ki-RpI"/>
                         <outlet property="statusLabel" destination="ct4-pd-6bj" id="4Pk-p6-3Tj"/>
                         <outlet property="statusView" destination="Qh3-mN-wQe" id="VOD-VX-wE6"/>
                         <outlet property="titleLabel" destination="UJu-F3-4rH" id="DNT-SD-cx5"/>

@@ -50,6 +50,8 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var fieldsBottomConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var shadowBottomConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var bottomShadowView: UIView!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -69,6 +71,7 @@ class UserProfilePhotosViewController: BaseViewController
         super.viewDidLoad()
         
         self.fieldsBottomConstraint.constant = self.photoHeight
+        self.shadowBottomConstraint.constant = self.photoHeight + 56.0
         self.setupFieldsControls()
         
         let height = UIScreen.main.bounds.width * AppConfig.photoRatio
@@ -253,6 +256,8 @@ class UserProfilePhotosViewController: BaseViewController
                 self.statusView.isHidden = true
                 self.statusLabel.isHidden = true
             }
+            
+            self.bottomShadowView.isHidden = photos.count == 0
             
             self.updatePages()
             self.updateLmmCounter()
