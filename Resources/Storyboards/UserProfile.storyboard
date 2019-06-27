@@ -79,10 +79,10 @@ see how many likes you get</string>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="idu-Bh-Qrz" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="240" width="375" height="130"/>
+                                <rect key="frame" x="0.0" y="220" width="375" height="150"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="LCR-1Z-z79"/>
+                                    <constraint firstAttribute="height" constant="150" id="LCR-1Z-z79"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">

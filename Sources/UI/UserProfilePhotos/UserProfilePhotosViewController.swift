@@ -70,7 +70,7 @@ class UserProfilePhotosViewController: BaseViewController
         
         super.viewDidLoad()
         
-        self.fieldsBottomConstraint.constant = self.photoHeight
+        self.fieldsBottomConstraint.constant = self.photoHeight + 20.0
         self.shadowBottomConstraint.constant = self.photoHeight + 56.0
         self.setupFieldsControls()
         
@@ -535,7 +535,7 @@ class UserProfilePhotosViewController: BaseViewController
                     
                     self.aboutLabel.text = aboutText
                     self.aboutLabel.isHidden = false
-                    self.nameConstraint.constant = self.photoHeight - 46.0
+                    self.nameConstraint.constant = self.photoHeight - 26.0
                     self.aboutHeightConstraint.constant = (aboutText as NSString).boundingRect(
                         with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
                         options: .usesLineFragmentOrigin,
@@ -571,7 +571,7 @@ class UserProfilePhotosViewController: BaseViewController
                     
                     self.aboutLabel.text = aboutText
                     self.aboutLabel.isHidden = false
-                    self.nameConstraint.constant =  self.photoHeight - 46.0
+                    self.nameConstraint.constant =  self.photoHeight - 26.0
                     self.aboutHeightConstraint.constant = (aboutText as NSString).boundingRect(
                         with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
                         options: .usesLineFragmentOrigin,
@@ -609,7 +609,7 @@ class UserProfilePhotosViewController: BaseViewController
         let leftCount = leftRows.count
         let rightCount = rightRows.count
         
-        var nameOffset: CGFloat = self.photoHeight - 46.0
+        var nameOffset: CGFloat = self.photoHeight - 26.0
         var rightColumnMaxWidth: CGFloat = 0.0
         
         (0...1).forEach { index in
@@ -621,8 +621,8 @@ class UserProfilePhotosViewController: BaseViewController
                 leftControls.iconView.isHidden = true
                 leftControls.titleLabel.isHidden = true
                 
-                if index ==  1 && nameOffset <  self.photoHeight - 1.0 { nameOffset =  self.photoHeight - 20.0 }
-                if index ==  0 { nameOffset =  self.photoHeight }
+                if index ==  1 && nameOffset <  self.photoHeight - 1.0 { nameOffset =  self.photoHeight}
+                if index ==  0 { nameOffset =  self.photoHeight + 20.0 }
                 
             } else {
                 let row = leftRows[absoluteIndex]
