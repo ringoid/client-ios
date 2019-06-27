@@ -258,6 +258,12 @@ class UserProfilePhotosViewController: BaseViewController
             }
             
             self.bottomShadowView.isHidden = photos.count == 0
+            self.nameLabel.alpha = photos.count == 0 ? 0.0 : 1.0
+            self.aboutLabel.alpha = photos.count == 0 ? 0.0 : 1.0
+            (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
+                control.iconView.alpha = photos.count == 0 ? 0.0 : 1.0
+                control.titleLabel.alpha = photos.count == 0 ? 0.0 : 1.0
+            })
             
             self.updatePages()
             self.updateLmmCounter()
