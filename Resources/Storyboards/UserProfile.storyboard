@@ -291,13 +291,13 @@ see how many likes you get</string>
                             <constraint firstItem="Szp-BM-HWd" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" constant="16" id="XGn-z0-m6X"/>
                             <constraint firstItem="npc-Nn-Arv" firstAttribute="centerY" secondItem="UMb-Bl-CM4" secondAttribute="centerY" id="YGI-Yu-U9I"/>
                             <constraint firstItem="eno-1i-kP1" firstAttribute="bottom" secondItem="04l-Dx-sJ6" secondAttribute="bottom" id="afA-8G-T5R"/>
-                            <constraint firstItem="Szp-BM-HWd" firstAttribute="bottom" secondItem="q5L-So-vMI" secondAttribute="top" constant="450" id="afa-yc-kob" userLabel="NameBottom"/>
+                            <constraint firstItem="Szp-BM-HWd" firstAttribute="bottom" secondItem="Yc6-CF-qSL" secondAttribute="top" constant="430" id="afa-yc-kob" userLabel="NameBottom"/>
                             <constraint firstItem="27t-IX-qLF" firstAttribute="leading" secondItem="BK0-ML-AsK" secondAttribute="trailing" constant="8" id="bWi-uQ-1mf"/>
                             <constraint firstItem="hwe-yx-WQU" firstAttribute="centerY" secondItem="BK0-ML-AsK" secondAttribute="centerY" id="c9u-Jb-YHl"/>
                             <constraint firstItem="hwe-yx-WQU" firstAttribute="leading" secondItem="eno-1i-kP1" secondAttribute="leading" id="cfw-DG-jxT"/>
                             <constraint firstItem="hwe-yx-WQU" firstAttribute="bottom" secondItem="Kqw-ue-cJ1" secondAttribute="bottom" id="dnV-rA-1k2"/>
                             <constraint firstItem="dx0-jU-NB1" firstAttribute="top" secondItem="Szp-BM-HWd" secondAttribute="bottom" constant="4" id="eWL-oV-hvc"/>
-                            <constraint firstItem="BK0-ML-AsK" firstAttribute="bottom" secondItem="q5L-So-vMI" secondAttribute="top" constant="500" id="fCJ-dj-Vw9" userLabel="FieldsBottom"/>
+                            <constraint firstItem="BK0-ML-AsK" firstAttribute="bottom" secondItem="Yc6-CF-qSL" secondAttribute="top" constant="480" id="fCJ-dj-Vw9" userLabel="FieldsBottom"/>
                             <constraint firstItem="hwe-yx-WQU" firstAttribute="top" secondItem="Kqw-ue-cJ1" secondAttribute="top" id="gQM-JE-jv6"/>
                             <constraint firstItem="0Ze-nT-pEZ" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="gjJ-L8-PF8"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerY" secondItem="q5L-So-vMI" secondAttribute="centerY" id="h1K-ko-wtW"/>
