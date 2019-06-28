@@ -364,6 +364,10 @@ class UserProfilePhotosViewController: BaseViewController
         self.photosVCs = photos.map({ photo in
             let vc = UserProfilePhotoViewController.create()
             vc.photo = photo
+            vc.input = SettingsProfileVMInput(
+                profileManager: self.input.profileManager,
+                db: self.input.db
+            )
             
             return vc
         })

@@ -13,6 +13,8 @@ import RxCocoa
 
 class UserProfilePhotoViewController: UIViewController
 {
+    var input: SettingsProfileVMInput!
+    
     var photo: UserPhoto?
     {
         didSet {
@@ -32,6 +34,8 @@ class UserProfilePhotoViewController: UIViewController
     
     override func viewDidLoad()
     {
+        assert(self.input != nil)
+        
         super.viewDidLoad()
         
         self.update()
@@ -41,6 +45,19 @@ class UserProfilePhotoViewController: UIViewController
         self.photoIdLabel?.text = "Photo: " + String(self.photo?.id?.prefix(4) ?? "")
         self.photoIdLabel?.isHidden = false
         #endif
+    }
+    
+    // MARK: - IBAction
+    
+    @IBAction func onTap()
+    {
+        let storyboard = Storyboards.settings()
+        guard let profileVC = storyboard.instantiateViewController(withIdentifier: "settings_profile") as? SettingsProfileViewController else { return }
+        
+        profileVC.input = input
+        profileVC.isModal = true
+        
+        ModalUIManager.shared.show(profileVC, animated: true)
     }
     
     // MARK: -

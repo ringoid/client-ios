@@ -11,6 +11,7 @@ import UIKit
 class SettingsProfileViewController: BaseViewController
 {
     var input: SettingsProfileVMInput!
+    var isModal: Bool = false
     
     fileprivate var viewModel: SettingsProfileViewModel?
     
@@ -54,7 +55,12 @@ class SettingsProfileViewController: BaseViewController
     @IBAction func onBack()
     {
         self.input.profileManager.updateProfile()
-        self.navigationController?.popViewController(animated: true)
+        
+        if self.isModal {
+            ModalUIManager.shared.hide(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func onHideInput()

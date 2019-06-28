@@ -351,8 +351,12 @@ see how many likes you get</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EvB-7Q-pcw">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EvB-7Q-pcw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Exu-Ud-gr6" appends="YES" id="ncf-Id-jaq"/>
+                                </connections>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eWS-GM-6XE" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="517" width="375" height="150"/>
@@ -398,6 +402,11 @@ see how many likes you get</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMm-wd-LTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Exu-Ud-gr6">
+                    <connections>
+                        <action selector="onTap" destination="CTV-VO-snh" id="yB4-c7-ho4"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1512" y="82"/>
         </scene>
