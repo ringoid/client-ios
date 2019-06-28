@@ -316,7 +316,7 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let value = profile.hairColor.value, let hairColor = Hair(rawValue: value) {
+        if let value = profile.hairColor.value, let hairColor = Hair(rawValue: value), hairColor != .unknown {
             let gender: Sex = self.profileManager.gender.value == .male ? .female : .male
             rows.append(ProfileFileRow(
                 title: hairColor.title(gender),
@@ -348,7 +348,7 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let value = profile.hairColor.value, let hairColor = Hair(rawValue: value) {
+        if let value = profile.hairColor.value, let hairColor = Hair(rawValue: value), hairColor != .unknown {
             let gender: Sex = self.profileManager.gender.value == .male ? .male : .female
             rows.append(ProfileFileRow(
                 title: hairColor.title(gender),

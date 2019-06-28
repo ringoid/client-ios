@@ -210,10 +210,12 @@ class SettingsProfileFieldCell: BaseTableViewCell
         guard let field = self.field else { return }
         
         self.titleLabel.text = field.title.localized()
-        self.valueField?.attributedPlaceholder = NSAttributedString(string: self.field?.placeholder?.localized() ?? "",
-                           attributes: [
-                            .foregroundColor: UIColor.lightGray
-            ])
+        
+        if self.valueIndex == nil {
+            self.valueField?.attributedPlaceholder = NSAttributedString(string: self.field?.placeholder?.localized() ?? "",  attributes: [
+                .foregroundColor: UIColor.lightGray
+                ])
+        }
         
         if let icon = field.icon {
             self.iconView.image = UIImage(named: icon)
@@ -304,6 +306,7 @@ extension SettingsProfileFieldCell: UITextFieldDelegate
     
     func textFieldDidEndEditing(_ textField: UITextField)
     {
+        guard self.valueIndex == nil else { return }
         guard let type = self.field?.fieldType else { return }
         
         let text = textField.text?.trimContent()
