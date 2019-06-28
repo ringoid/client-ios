@@ -87,7 +87,7 @@ class ProfileFieldsConfiguration
         ProfileField(
             title: "profile_field_height",
             icon: "profile_fields_ruler",
-            placeholder: "175",
+            placeholder: nil,
             cellIdentifier: "profile_height_cell",
             fieldType: .height
         ),

@@ -102,7 +102,7 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
         
         if let profile = self.viewModel?.profileManager.profile.value {
             switch field.fieldType {
-            case .height: cell.valueIndex = heightIndex(profile.height.value ?? 175)
+            case .height: cell.valueIndex = heightIndex(profile.height.value ?? 0)
             case .hair: cell.valueIndex = Hair(rawValue: profile.hairColor.value ?? 0)?.index() ?? 0
             case .educationLevel: cell.valueIndex = EducationLevel(rawValue: profile.educationLevel.value ?? 0)?.index() ?? 0
             case .children: cell.valueIndex = Children(rawValue: profile.children.value ?? 0)?.index() ?? 0
