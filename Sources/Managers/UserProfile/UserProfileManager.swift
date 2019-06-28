@@ -136,15 +136,15 @@ class UserProfileManager
             educationLevel: profile.educationLevel.value ?? 0,
             hairColor: profile.hairColor.value ?? 0,
             children: profile.children.value ?? 0,
-            name: profile.name ?? "",
-            jobTitle: profile.jobTitle ?? "",
-            company: profile.company ?? "",
-            education: profile.education ?? "",
-            about: profile.about ?? "",
-            instagram: profile.instagram ?? "",
-            tikTok: profile.tikTok ?? "",
-            whereLive: profile.whereLive ?? "",
-            whereFrom: profile.whereFrom ?? ""
+            name: profile.name ?? "unknown",
+            jobTitle: profile.jobTitle ?? "unknown",
+            company: profile.company ?? "unknown",
+            education: profile.education ?? "unknown",
+            about: profile.about ?? "unknown",
+            instagram: profile.instagram ?? "unknown",
+            tikTok: profile.tikTok ?? "unknown",
+            whereLive: profile.whereLive ?? "unknown",
+            whereFrom: profile.whereFrom ?? "unknown"
         )
         
         self.apiService.updateProfile(apiProfile).subscribe().disposed(by: self.disposeBag)
