@@ -15,6 +15,7 @@
 "button_ok" = "OK";
 "button_settings" = "Settings";
 "button_suggest" = "Suggest";
+"button_select" = "Select";
 
 "common_pull_to_refresh" = "Pull to refresh";
 "common_sex_male" = "Male";
@@ -74,6 +75,7 @@
 "profile_empty_images" = "Add photo to\nreceive likes";
 "profile_empty_title" = "Profile";
 
+"settings_profile" = "Profile";
 "settings_account_delete" = "Delete Account";
 "settings_account_delete_dialog_title" = "Delete Account?";
 "settings_app_info" = "Legal";
@@ -108,3 +110,69 @@
 "feedback_make_ringoid_better" = "How to make Ringoid better?";
 "feedback_before_deletion" = "Before you leave, can you please suggest how to improve Ringoid";
 "feedback_thanks_alert" = "Thank you! We will look into your suggestions shortly.";
+
+"profile_field_not_selected" = "Not selected";
+"profile_field_name" = "Name";
+"profile_field_height" = "Height";
+"profile_field_hair" = "Hair Color";
+"profile_field_education_level" = "Education Level";
+"profile_field_education" = "Education";
+"profile_field_instagram" = "Instagram";
+"profile_field_tiktok" = "TikTok";
+"profile_field_where_live" = "Where I live";
+"profile_field_bio" = "Bio";
+"profile_field_job" = "Job title";
+"profile_field_company" = "Company";
+"profile_field_transport" = "Transport";
+"profile_field_income" = "Income";
+"profile_field_property" = "Property";
+"profile_field_children" = "Children";
+
+"profile_field_company_placeholder" = "Name of company";
+"profile_field_education_placeholder" = "University, college, etc";
+
+"profile_field_hair_black_male" = "Black";
+"profile_field_hair_blonde_male" = "Blonde";
+"profile_field_hair_brown_male" = "Brown";
+"profile_field_hair_red_male" = "Red";
+"profile_field_hair_gray_male" = "Gray";
+"profile_field_hair_white_male" = "White";
+
+"profile_field_hair_black_female" = "Black";
+"profile_field_hair_blonde_female" = "Blonde";
+"profile_field_hair_brown_female" = "Female";
+"profile_field_hair_red_female" = "Red";
+"profile_field_hair_gray_female" = "Gray";
+"profile_field_hair_white_female" = "White";
+
+"profile_field_education_school" = "High school";
+"profile_field_education_college" = "College";
+"profile_field_education_university1" = "University";
+"profile_field_education_university2" = "University";
+"profile_field_education_university3" = "University";
+"profile_field_education_postgrad" = "Post-grad";
+
+"profile_field_children_someday" = "Want someday";
+"profile_field_children_dont_want" = "Don't want";
+"profile_field_children_have_want" = "Have & want more";
+"profile_field_children_have_dont_want" = "Have & don't want more";
+
+"profile_field_property_parents" = "Live with parents";
+"profile_field_property_dormitory" = "Live in a dormitory";
+"profile_field_property_friend" = "Live with a friend";
+"profile_field_property_room" = "Rent a room";
+"profile_field_property_flat" = "Flat (rent or own)";
+"profile_field_property_house" = "House (rent or own)";
+
+"profile_field_income_low" = "Low Income";
+"profile_field_income_middle" = "Middle Income";
+"profile_field_income_high" = "High Income";
+"profile_field_income_ultrahigh" = "Ultra High Income";
+
+"profile_field_transport_walk" = "Walk";
+"profile_field_transport_public" = "Use Public Transport";
+"profile_field_transport_cycle" = "Cycle";
+"profile_field_transport_motocycle" = "Own a motocycle";
+"profile_field_transport_car" = "Own a car";
+"profile_field_transport_taxi" = "Use Taxi / Uber";
+"profile_field_transport_chauffeur" = "Hire Chauffeur";

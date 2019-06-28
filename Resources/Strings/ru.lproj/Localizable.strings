@@ -15,6 +15,7 @@
 "button_ok" = "OK";
 "button_settings" = "Настройки";
 "button_suggest" = "Предложить";
+"button_select" = "Выбрать";
 
 "common_pull_to_refresh" = "Потяни, чтобы обновить";
 "common_sex_male" = "Мужчина";
@@ -76,6 +77,7 @@
 "profile_empty_images" = "Добавь фото, чтобы\nполучать лайки";
 "profile_empty_title" = "Профиль";
 
+"settings_profile" = "Профиль";
 "settings_account_delete" = "Удалить аккаунт";
 "settings_account_delete_dialog_title" = "Удалить аккаунт?";
 "settings_app_info" = "Информация";
@@ -110,3 +112,69 @@
 "feedback_make_ringoid_better" = "Как сделать Ringoid лучше?";
 "feedback_before_deletion" = "Перед уходом, пожалуйста, предложите, как улучшить Ringoid";
 "feedback_thanks_alert" = "Спасибо! Мы прочитаем ваши предложения в ближайшие минуты.";
+
+"profile_field_not_selected" = "Не выбрано";
+"profile_field_name" = "Имя";
+"profile_field_height" = "Рост";
+"profile_field_hair" = "Цвет волос";
+"profile_field_education_level" = "Уровень образования";
+"profile_field_education" = "Место учебы";
+"profile_field_instagram" = "Instagram";
+"profile_field_tiktok" = "TikTok";
+"profile_field_where_live" = "Город";
+"profile_field_bio" = "О себе";
+"profile_field_job" = "Должность";
+"profile_field_company" = "Место работы";
+"profile_field_transport" = "Транспорт";
+"profile_field_income" = "Доход";
+"profile_field_property" = "Недвижимость";
+"profile_field_children" = "Дети";
+
+"profile_field_company_placeholder" = "Название компании, фирмы, и т.п.";
+"profile_field_education_placeholder" = "Университет, колледж, и т.п.";
+
+"profile_field_hair_black_male" = "Брюнет";
+"profile_field_hair_blonde_male" = "Блондин";
+"profile_field_hair_brown_male" = "Шатен";
+"profile_field_hair_red_male" = "Рыжий";
+"profile_field_hair_gray_male" = "Пепельный";
+"profile_field_hair_white_male" = "Седой";
+
+"profile_field_hair_black_female" = "Брюнетка";
+"profile_field_hair_blonde_female" = "Блондинка";
+"profile_field_hair_brown_female" = "Шатенка";
+"profile_field_hair_red_female" = "Рыжая";
+"profile_field_hair_gray_female" = "Пепельная";
+"profile_field_hair_white_female" = "Седая";
+
+"profile_field_education_school" = "Среднее";
+"profile_field_education_college" = "Среднее проф.";
+"profile_field_education_university1" = "Неполное высшее";
+"profile_field_education_university2" = "Высшее";
+"profile_field_education_university3" = "Несколько высших";
+"profile_field_education_postgrad" = "Ученая степень";
+
+"profile_field_children_someday" = "Хочу";
+"profile_field_children_dont_want" = "Не хочу";
+"profile_field_children_have_want" = "Есть и хочу еще";
+"profile_field_children_have_dont_want" = "Есть и не хочу больше";
+
+"profile_field_property_parents" = "Живу с родителями";
+"profile_field_property_dormitory" = "Живу в общежитии";
+"profile_field_property_friend" = "Живу с приятелем/подругой";
+"profile_field_property_room" = "Снимаю комнату";
+"profile_field_property_flat" = "Квартира (снимаю или своя)";
+"profile_field_property_house" = "Дом (снимаю или свой)";
+
+"profile_field_income_low" = "Низкий доход";
+"profile_field_income_middle" = "Средний доход";
+"profile_field_income_high" = "Высокий доход";
+"profile_field_income_ultrahigh" = "Сверхвысокий доход";
+
+"profile_field_transport_walk" = "Хожу пешком";
+"profile_field_transport_public" = "Общ. транспорт";
+"profile_field_transport_cycle" = "Езжу на велосипеде";
+"profile_field_transport_motocycle" = "Есть мотоцикл";
+"profile_field_transport_car" = "Есть автомобиль";
+"profile_field_transport_taxi" = "Езжу на такси / Uber";
+"profile_field_transport_chauffeur" = "Личный водитель";

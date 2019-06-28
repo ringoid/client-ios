@@ -25,6 +25,7 @@ struct MainVMInput
     let location: LocationManager
     let scenario: AnalyticsScenarioManager
     let transition: TransitionManager
+    let db: DBService
 }
 
 class MainViewModel

@@ -99,7 +99,8 @@ class RootViewController: BaseViewController {
             notifications: self.appManager.notifications,
             location: self.appManager.locationManager,
             scenario: self.appManager.scenarioManager,
-            transition: self.appManager.transitionManager
+            transition: self.appManager.transitionManager,
+            db: self.appManager.db
         )
         
         self.containerView.embed(vc, to: self)

@@ -38,7 +38,7 @@ class UserProfilePhotoViewController: UIViewController
         self.updateBindings()
         
         #if STAGE
-        self.photoIdLabel?.text = "Photo: " + String(self.photo?.id?.suffix(4) ?? "")
+        self.photoIdLabel?.text = "Photo: " + String(self.photo?.id?.prefix(4) ?? "")
         self.photoIdLabel?.isHidden = false
         #endif
     }

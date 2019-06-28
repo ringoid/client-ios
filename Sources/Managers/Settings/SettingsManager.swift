@@ -20,6 +20,7 @@ class SettingsManager
     let newFaces: NewFacesManager
     let notifications: NotificationService
     let scenario: AnalyticsScenarioManager
+    let profile: UserProfileManager
     
     let isFirstLaunch: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
@@ -51,7 +52,7 @@ class SettingsManager
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager, lmm: LMMManager, newFaces: NewFacesManager, notifications: NotificationService, scenario: AnalyticsScenarioManager)
+    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager, lmm: LMMManager, newFaces: NewFacesManager, notifications: NotificationService, scenario: AnalyticsScenarioManager, profile: UserProfileManager)
     {
         self.db = db
         self.api = api
@@ -62,6 +63,7 @@ class SettingsManager
         self.newFaces = newFaces
         self.notifications = notifications
         self.scenario = scenario
+        self.profile = profile
         
         self.loadSettings()
         self.updateRemoteSettings()
@@ -110,6 +112,7 @@ class SettingsManager
     {
         self.notifications.reset()
         self.actions.reset()
+        self.profile.reset()
         self.lmm.reset()
         self.newFaces.reset()
         self.isFirstLaunch.accept(true)
@@ -131,9 +134,7 @@ class SettingsManager
             guard let state = Bool.create(obj) else { return }
             
             self?.isFirstLaunch.accept(state)
-        }).disposed(by: self.disposeBag)
-        
-        
+        }).disposed(by: self.disposeBag)                
     }
     
     fileprivate func setupBindings()

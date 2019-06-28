@@ -11,6 +11,12 @@ import RxSwift
 import RxCocoa
 import Nuke
 
+ struct ProfileFieldControl
+{
+    let iconView: UIImageView
+    let titleLabel: UILabel
+}
+
 class NewFaceProfileViewController: UIViewController
 {
     var input: NewFaceProfileVMInput!
@@ -32,18 +38,31 @@ class NewFaceProfileViewController: UIViewController
     fileprivate var photosVCs: [NewFacePhotoViewController] = []
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var preheaterTimer: Timer?
+    fileprivate var leftFieldsControls: [ProfileFieldControl] = []
+    fileprivate var rightFieldsControls: [ProfileFieldControl] = []
     
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
     @IBOutlet fileprivate weak var statusView: UIView!
     @IBOutlet fileprivate weak var statusLabel: UILabel!
-    @IBOutlet fileprivate weak var distanceLabel: UILabel!
-    @IBOutlet fileprivate weak var locationIconView: UIView!
-    @IBOutlet fileprivate weak var iconOffsetConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var ageLabel: UILabel!
-    @IBOutlet fileprivate weak var genderView: UIImageView!
-    @IBOutlet fileprivate weak var genderOffsetConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var nameLabel: UILabel!
+    @IBOutlet fileprivate weak var nameConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var aboutLabel: UILabel!
+    @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var aboutHeightConstraint: NSLayoutConstraint!
+    
+    // Profile fields
+    @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
+    @IBOutlet fileprivate weak var leftFieldLabel1: UILabel!
+    @IBOutlet fileprivate weak var leftFieldIcon2: UIImageView!
+    @IBOutlet fileprivate weak var leftFieldLabel2: UILabel!
+
+    @IBOutlet fileprivate weak var rightFieldIcon1: UIImageView!
+    @IBOutlet fileprivate weak var rightFieldLabel1: UILabel!
+    @IBOutlet fileprivate weak var rightFieldIcon2: UIImageView!
+    @IBOutlet fileprivate weak var rightFieldLabel2: UILabel!
+
     
     static func create(_ profile: NewFaceProfile,
                        initialIndex: Int,
@@ -82,6 +101,7 @@ class NewFaceProfileViewController: UIViewController
         
         super.viewDidLoad()
         
+        self.setupFieldsControls()
         self.setupBindings()
         //self.setupPreheaterTimer()
         self.preheatSecondPhoto()
@@ -106,7 +126,7 @@ class NewFaceProfileViewController: UIViewController
         }
         
         #if STAGE
-        self.profileIdLabel.text = "Profile: " +  String(self.input.profile.id.suffix(4))
+        self.profileIdLabel.text = "Profile: " +  String(self.input.profile.id.prefix(4))
         self.profileIdLabel.isHidden = false
         #endif
         
@@ -114,7 +134,7 @@ class NewFaceProfileViewController: UIViewController
         self.statusView.layer.borderColor = UIColor.lightGray.cgColor
         
         self.applyStatuses()
-        self.applyAge()
+        self.applyName()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -156,6 +176,10 @@ class NewFaceProfileViewController: UIViewController
             UIViewPropertyAnimator.init(duration: 0.1, curve: .linear, animations: {
                 self?.optionsBtn.alpha = alpha
             }).startAnimation()
+        }).disposed(by: self.disposeBag)
+        
+        self.currentIndex.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] page in
+            self?.updateFieldsContent(page)
         }).disposed(by: self.disposeBag)
     }
     
@@ -226,11 +250,14 @@ class NewFaceProfileViewController: UIViewController
         self.optionsBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
         self.pagesControl.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
         self.statusView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
-        self.distanceLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.distanceLabel.frame, offset: value) ?? 1.0)
         self.statusLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusLabel.frame, offset: value) ?? 1.0)
-        self.locationIconView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.locationIconView.frame, offset: value) ?? 1.0)
-        self.genderView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.genderView.frame, offset: value) ?? 1.0)
-        self.ageLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.ageLabel.frame, offset: value) ?? 1.0)
+        self.nameLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.nameLabel.frame, offset: value) ?? 1.0)
+        self.aboutLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.aboutLabel.frame, offset: value) ?? 1.0)
+        
+        (self.leftFieldsControls + self.rightFieldsControls).forEach { controls in
+            controls.iconView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(controls.iconView.frame, offset: value) ?? 1.0)
+            controls.titleLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(controls.titleLabel.frame, offset: value) ?? 1.0)
+        }
     }
     
     fileprivate func bottomOpacityFor(_ frame: CGRect, offset: CGFloat) -> CGFloat?
@@ -281,41 +308,177 @@ class NewFaceProfileViewController: UIViewController
         } else {
             self.statusLabel.isHidden = true
         }
-        
-        if let distanceText = self.input.profile.distanceText, distanceText.lowercased() != "unknown",  distanceText.count > 0 {
-            self.distanceLabel.text = distanceText
-            let textWidth = (distanceText as NSString).boundingRect(
-                with: CGSize(width: 999.0, height: 999.0),
-                options: .usesLineFragmentOrigin,
-                attributes: [NSAttributedString.Key.font: self.distanceLabel.font],
-                context: nil
-                ).size.width
-            self.iconOffsetConstraint.constant = textWidth + 24.0
-            self.distanceLabel.isHidden = false
-            self.locationIconView.isHidden = false
+    }
+    
+    fileprivate func applyName()
+    {
+        let profile = self.input.profile
+        var title: String = ""
+        if let name = profile.name, name != "unknown" {
+            title += "\(name), "
         } else {
-            self.distanceLabel.isHidden = true
-            self.locationIconView.isHidden = true
+            let gender = self.input.profileManager.gender.value?.opposite() ?? .male
+            let genderStr = gender == .male ? "common_sex_male".localized() : "common_sex_female".localized()
+            title += "\(genderStr), "
+        }
+        
+        title += "\(profile.age)"
+        self.nameLabel.text = title
+    }
+    
+    fileprivate func setupFieldsControls()
+    {
+        self.leftFieldsControls = [
+            ProfileFieldControl(iconView: self.leftFieldIcon1, titleLabel: self.leftFieldLabel1),
+            ProfileFieldControl(iconView: self.leftFieldIcon2, titleLabel: self.leftFieldLabel2),
+        ]
+        
+        self.rightFieldsControls = [
+            ProfileFieldControl(iconView: self.rightFieldIcon1, titleLabel: self.rightFieldLabel1),
+            ProfileFieldControl(iconView: self.rightFieldIcon2, titleLabel: self.rightFieldLabel2),
+        ]
+    }
+    
+    fileprivate func updateFieldsContent(_ page: Int)
+    {
+        guard let gender: Sex = self.input.profileManager.gender.value?.opposite() else { return }
+        
+        // MALE
+        if gender == .male {
+            if page == 0 {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(0)
+                
+                return
+            }
+            
+            if page == 1 {
+                if let aboutText = self.input.profile.about, aboutText != "unknown" {
+                    (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
+                        controls.iconView.isHidden = true
+                        controls.titleLabel.isHidden = true
+                    })
+                    
+                    self.aboutLabel.text = aboutText
+                    self.aboutLabel.isHidden = false
+                    self.nameConstraint.constant = 86.0
+                    self.aboutHeightConstraint.constant = (aboutText as NSString).boundingRect(
+                        with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
+                        options: .usesLineFragmentOrigin,
+                        attributes: [NSAttributedString.Key.font: self.aboutLabel.font],
+                        context: nil
+                        ).size.height
+                    self.view.layoutIfNeeded()
+                } else {
+                    self.aboutLabel.isHidden = true
+                    self.updateProfileRows(1)
+                }
+                
+                return
+            }
+            
+            if let aboutText = self.input.profile.about, aboutText != "unknown" {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page - 1)
+            } else {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page)
+            }
+        }
+        
+        // FEMALE
+        if gender == .female {
+            if page == 0 {
+                if let aboutText = self.input.profile.about, aboutText != "unknown" {
+                    (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
+                        controls.iconView.isHidden = true
+                        controls.titleLabel.isHidden = true
+                    })
+                    
+                    self.aboutLabel.text = aboutText
+                    self.aboutLabel.isHidden = false
+                    self.nameConstraint.constant = 86.0
+                    self.aboutHeightConstraint.constant = (aboutText as NSString).boundingRect(
+                        with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
+                        options: .usesLineFragmentOrigin,
+                        attributes: [NSAttributedString.Key.font: self.aboutLabel.font],
+                        context: nil
+                        ).size.height + 4.0
+                    self.view.layoutIfNeeded()
+                } else {
+                    self.aboutLabel.isHidden = true
+                    self.updateProfileRows(0)
+                }
+                
+                return
+            }
+            
+            if let aboutText = self.input.profile.about, aboutText != "unknown" {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page - 1)
+            } else {
+                self.aboutLabel.isHidden = true
+                self.updateProfileRows(page)
+            }
         }
     }
     
-    fileprivate func applyAge()
+    fileprivate func updateProfileRows(_ page: Int)
     {
-        let age = self.input.profile.age
+        let profileManager = self.input.profileManager
+        let configuration = ProfileFieldsConfiguration(profileManager)
+        let leftRows = configuration.leftColums(self.input.profile)
+        let rightRows = configuration.rightColums(self.input.profile)
+        let start = page * 2
+        let leftCount = leftRows.count
+        let rightCount = rightRows.count
         
-        guard age > 17 else {
-            self.ageLabel.isHidden = true
-            self.genderView.isHidden = true
+        var nameOffset: CGFloat = 86.0
+        var rightColumnMaxWidth: CGFloat = 0.0
+        
+        (0...1).forEach { index in
+            let leftControls = self.leftFieldsControls[index]
+            let rightControls = self.rightFieldsControls[index]
+            let absoluteIndex = start + index
             
-            return
+            if absoluteIndex >= leftCount {
+                leftControls.iconView.isHidden = true
+                leftControls.titleLabel.isHidden = true
+                
+                if index ==  1 && nameOffset > 41.0 { nameOffset = 60.0 }
+                if index ==  0 { nameOffset = 40.0 }
+                
+            } else {
+                let row = leftRows[absoluteIndex]
+                leftControls.iconView.image = UIImage(named: row.icon ?? "")
+                leftControls.titleLabel.text = row.title.localized()
+                leftControls.iconView.isHidden = false
+                leftControls.titleLabel.isHidden = false
+            }
+            
+            if absoluteIndex >= rightCount {
+                rightControls.iconView.isHidden = true
+                rightControls.titleLabel.isHidden = true
+            } else {
+                let row = rightRows[absoluteIndex]
+                rightControls.iconView.image = UIImage(named: row.icon ?? "")
+                rightControls.titleLabel.text = row.title.localized()
+                rightControls.iconView.isHidden = false
+                rightControls.titleLabel.isHidden = false
+                
+                let width = (row.title.localized() as NSString).size(withAttributes: [
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12.0)
+                    ]).width
+                
+                if width > rightColumnMaxWidth {
+                    rightColumnMaxWidth = width
+                }
+            }
         }
         
-        self.ageLabel.text = "\(age)"
-        let iconName = self.input.profileManager.gender.value == .male ? "feed_gender_female" : "feed_gender_male"
-        self.genderView.image = UIImage(named: iconName)
-        self.genderOffsetConstraint.constant =  self.input.profileManager.gender.value == .male ? 0.0 : 4.0
-        self.ageLabel.isHidden = false
-        self.genderView.isHidden = false
+        self.nameConstraint.constant = nameOffset
+        self.rightColumnConstraint.constant = rightColumnMaxWidth + 4.0
+        self.view.layoutIfNeeded()
     }
 }
 

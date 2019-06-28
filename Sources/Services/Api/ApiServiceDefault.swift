@@ -364,6 +364,42 @@ class ApiServiceDefault: ApiService
         }
     }
     
+    func getProfile() -> Observable<ApiUserProfileInfo>
+    {
+        var params: [String: Any] = [:]
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        let trace = Performance.startTrace(name: "auth/get_profile")
+        
+        return self.request(.get, path: "auth/get_profile", jsonBody: params, trace: trace).flatMap { jsonDict -> Observable<ApiUserProfileInfo> in
+            guard let profileInfo = ApiUserProfileInfo.parse(jsonDict) else {
+                let error = createError("ApiService: wrong profile info data format", type: .hidden)
+                
+                return .error(error)
+            }
+            
+            return .just(profileInfo)
+        }
+    }
+    
+    func updateProfile(_ profile: ApiUserProfileInfo) -> Observable<Void>
+    {
+        var params = profile.json()
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        let trace = Performance.startTrace(name: "auth/update_profile")
+        
+        return self.request(.post, path: "auth/update_profile", jsonBody: params, trace: trace).flatMap { _ -> Observable<Void> in
+            return .just(())
+        }
+    }
+    
     // MARK: - Images
     
     func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhotoPlaceholder>

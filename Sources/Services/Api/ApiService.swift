@@ -51,6 +51,9 @@ protocol ApiService
     func getLMHIS(_ resolution: String, lastActionDate: Date?, source: SourceFeedType) -> Observable<ApiLMMResult>
     func getChat(_ profileId: String, resolution: String, lastActionDate: Date?) -> Observable<(ApiChatUpdate, Int)>
     
+    func getProfile() -> Observable<ApiUserProfileInfo>
+    func updateProfile(_ profile: ApiUserProfileInfo) -> Observable<Void>
+    
     func getPresignedImageUrl(_ photoId: String, fileExtension: String) -> Observable<ApiUserPhotoPlaceholder>
     func getUserOwnPhotos(_ resolution: String) -> Observable<ApiUserProfile>
     func deletePhoto(_ photoId: String) -> Observable<Void>

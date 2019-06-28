@@ -26,6 +26,25 @@ class Profile: DBServiceObject
     @objc dynamic var statusText: String!
     @objc dynamic var distanceText: String!
     
+    // Info fields
+    let property: RealmOptional<Int> = RealmOptional<Int>()
+    let transport: RealmOptional<Int> = RealmOptional<Int>()
+    let income: RealmOptional<Int> = RealmOptional<Int>()
+    let height: RealmOptional<Int> = RealmOptional<Int>()
+    let educationLevel: RealmOptional<Int> = RealmOptional<Int>()
+    let hairColor: RealmOptional<Int> = RealmOptional<Int>()
+    let children: RealmOptional<Int> = RealmOptional<Int>()
+    
+    @objc dynamic var name: String? = nil
+    @objc dynamic var jobTitle: String? = nil
+    @objc dynamic var company: String? = nil
+    @objc dynamic var education: String? = nil
+    @objc dynamic var about: String? = nil
+    @objc dynamic var instagram: String? = nil
+    @objc dynamic var tikTok: String? = nil
+    @objc dynamic var whereLive: String? = nil
+    @objc dynamic var whereFrom: String? = nil
+    
     func orderedPhotos() -> [Photo]
     {
         guard !self.isInvalidated else { return []  }

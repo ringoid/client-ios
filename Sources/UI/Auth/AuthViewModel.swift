@@ -61,6 +61,7 @@ class AuthViewModel
             self?.settingsManager.updateRemoteSettings()
             self?.settingsManager.updatePushToken()
             self?.locationManager.sendLastLocationIfAvailable()
+            self?.profileManager.createProfile()
             self?.profileManager.gender.accept(sex)
             self?.profileManager.yob.accept(year)
             self?.profileManager.creationDate.accept(Date())
@@ -75,5 +76,13 @@ class AuthViewModel
         case .dark: ThemeManager.shared.theme.accept(.light)
         case .light: ThemeManager.shared.theme.accept(.dark)
         }
+    }
+}
+
+extension Sex
+{
+    func opposite() -> Sex
+    {
+        return self == .male ? .female : .male
     }
 }

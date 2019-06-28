@@ -35,6 +35,8 @@ class UserProfileManager
     var statusText: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     var distanceText: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     
+    let profile: BehaviorRelay<UserProfile?> = BehaviorRelay<UserProfile?>(value: nil)
+    
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     init(_ db: DBService, api: ApiService, uploader: UploaderService, fileService: FileService, device: DeviceService, storage: XStorageService, lmm: LMMManager)
@@ -117,6 +119,37 @@ class UserProfileManager
         }
     }
     
+    func createProfile()
+    {
+        self.db.add(UserProfile()).subscribe().disposed(by: self.disposeBag)
+    }
+    
+    func updateProfile()
+    {
+        guard let profile = self.profile.value else { return }
+        
+        let apiProfile = ApiUserProfileInfo(
+            property: profile.property.value ?? 0,
+            transport: profile.transport.value ?? 0,
+            income: profile.income.value ?? 0,
+            height: profile.height.value ?? 0,
+            educationLevel: profile.educationLevel.value ?? 0,
+            hairColor: profile.hairColor.value ?? 0,
+            children: profile.children.value ?? 0,
+            name: profile.name ?? "",
+            jobTitle: profile.jobTitle ?? "",
+            company: profile.company ?? "",
+            education: profile.education ?? "",
+            about: profile.about ?? "",
+            instagram: profile.instagram ?? "",
+            tikTok: profile.tikTok ?? "",
+            whereLive: profile.whereLive ?? "",
+            whereFrom: profile.whereFrom ?? ""
+        )
+        
+        self.apiService.updateProfile(apiProfile).subscribe().disposed(by: self.disposeBag)
+    }
+    
     func refresh() -> Observable<Void>
     {
         return self.apiService.getUserOwnPhotos(self.deviceService.photoResolution).flatMap({ [weak self] profile -> Observable<Void> in
@@ -132,6 +165,13 @@ class UserProfileManager
     func refreshInBackground()
     {
         self.refresh().subscribe().disposed(by: self.disposeBag)
+    }
+    
+    func reset()
+    {
+        guard let profile = self.profile.value else { return }
+            
+        self.db.delete([profile]).subscribe().disposed(by: self.disposeBag)
     }
     
     // MARK: -
@@ -178,6 +218,10 @@ class UserProfileManager
             
             UserDefaults.standard.setValue(value.timeIntervalSince1970, forKey: "profile_creation_date")
             UserDefaults.standard.synchronize()
+        }).disposed(by: self.disposeBag)
+        
+        self.db.userProfile().subscribe(onNext: { [weak self] userProfile in
+            self?.profile.accept(userProfile)
         }).disposed(by: self.disposeBag)
     }
     

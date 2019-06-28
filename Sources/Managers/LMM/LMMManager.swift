@@ -738,6 +738,25 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         localProfile.status = (profile.status?.onlineStatus() ?? .unknown).rawValue
         localProfile.statusText = profile.lastOnlineText ?? ""
         localProfile.distanceText = profile.distanceText ?? ""
+
+        // Info
+        localProfile.property.value = profile.info.property
+        localProfile.transport.value = profile.info.transport
+        localProfile.income.value = profile.info.income
+        localProfile.height.value = profile.info.height
+        localProfile.educationLevel.value = profile.info.educationLevel
+        localProfile.hairColor.value = profile.info.hairColor
+        localProfile.children.value = profile.info.children
+        
+        localProfile.name = profile.info.name
+        localProfile.jobTitle = profile.info.jobTitle
+        localProfile.company = profile.info.company
+        localProfile.education = profile.info.education
+        localProfile.about = profile.info.about
+        localProfile.instagram = profile.info.instagram
+        localProfile.tikTok = profile.info.tikTok
+        localProfile.whereLive = profile.info.whereLive
+        localProfile.whereFrom = profile.info.whereFrom
         
         return localProfile
     })
