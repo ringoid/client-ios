@@ -308,7 +308,7 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let value = profile.height.value {
+        if let value = profile.height.value, value != 0 {
             let index = heightIndex(value)
             rows.append(ProfileFileRow(
                 title: Height.title(index),
@@ -340,7 +340,7 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let value = profile.height.value {
+        if let value = profile.height.value, value != 0 {
             let index = heightIndex(value)
             rows.append(ProfileFileRow(
                 title: Height.title(index),
