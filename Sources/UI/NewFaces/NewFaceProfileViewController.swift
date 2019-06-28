@@ -125,10 +125,10 @@ class NewFaceProfileViewController: UIViewController
             self.pagesControl.currentPage = self.currentIndex.value
         }
         
-        #if STAGE
-        self.profileIdLabel.text = "Profile: " +  String(self.input.profile.id.prefix(4))
-        self.profileIdLabel.isHidden = false
-        #endif
+//        #if STAGE
+//        self.profileIdLabel.text = "Profile: " +  String(self.input.profile.id.prefix(4))
+//        self.profileIdLabel.isHidden = false
+//        #endif
         
         self.statusView.layer.borderWidth = 1.0
         self.statusView.layer.borderColor = UIColor.lightGray.cgColor

@@ -147,10 +147,10 @@ class MainLMMProfileViewController: UIViewController
         self.pagesControl.numberOfPages = self.input.profile.orderedPhotos().count
         self.pagesControl.currentPage = index
         
-        #if STAGE
-        self.profileIdLabel.text = "Profile: " + String(self.input.profile.id.prefix(4))
-        self.profileIdLabel.isHidden = false
-        #endif
+//        #if STAGE
+//        self.profileIdLabel.text = "Profile: " + String(self.input.profile.id.prefix(4))
+//        self.profileIdLabel.isHidden = false
+//        #endif
         
         self.statusView.layer.borderWidth = 1.0
         self.statusView.layer.borderColor = UIColor.lightGray.cgColor  
@@ -454,10 +454,10 @@ class MainLMMProfileViewController: UIViewController
     {
         guard !self.input.profile.isInvalidated else { return }
         
-        #if STAGE
-        self.seenLabel.text = self.input.profile.notSeen == true ? "Not seen" : "Seen"
-        self.seenLabel.isHidden = false
-        #endif
+//        #if STAGE
+//        self.seenLabel.text = self.input.profile.notSeen == true ? "Not seen" : "Seen"
+//        self.seenLabel.isHidden = false
+//        #endif
         
         if let iconName =  self.input.profile.state.iconName() {
             self.messageBtn.setImage(UIImage(named: iconName), for: .normal)

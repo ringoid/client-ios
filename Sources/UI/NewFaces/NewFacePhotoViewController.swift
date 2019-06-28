@@ -66,10 +66,10 @@ class NewFacePhotoViewController: UIViewController
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeInactive), name: UIApplication.willResignActiveNotification, object: nil)
         
-        #if STAGE
-        self.photoIdLabel.text = "Photo: " + String(self.photo?.id.prefix(4) ?? "")
-        self.photoIdLabel.isHidden = false
-        #endif
+//        #if STAGE
+//        self.photoIdLabel.text = "Photo: " + String(self.photo?.id.prefix(4) ?? "")
+//        self.photoIdLabel.isHidden = false
+//        #endif
     }
     
     override func viewWillAppear(_ animated: Bool)
