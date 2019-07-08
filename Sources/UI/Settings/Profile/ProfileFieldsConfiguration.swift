@@ -325,15 +325,15 @@ class ProfileFieldsConfiguration
         
         if let value = profile.hairColor.value, let hairColor = Hair(rawValue: value), hairColor != .unknown {
             if let genderStr = profile.gender, let gender = Sex(rawValue: genderStr) {
-                switch gender {
-                case .male: return self.leftColumsMale(profile)
-                case .female: return self.leftColumsFemale(profile)
-                }
+                rows.append(ProfileFileRow(
+                    title: hairColor.title(gender),
+                    icon: "profile_fields_hair"
+                ))
             } else if let oldGender = self.profileManager.gender.value?.opposite() {
-                switch oldGender {
-                case .male: return self.leftColumsMale(profile)
-                case .female: return self.leftColumsFemale(profile)
-                }
+                rows.append(ProfileFileRow(
+                    title: hairColor.title(oldGender),
+                    icon: "profile_fields_hair"
+                ))
             }
         }
         
