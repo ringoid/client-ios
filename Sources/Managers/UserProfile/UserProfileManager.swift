@@ -49,6 +49,7 @@ class UserProfileManager
         self.storage = storage
         self.lmm = lmm
         
+        self.checkProfile()
         self.loadProfileInfo()
         self.setupBindings()
     }
@@ -295,6 +296,13 @@ class UserProfileManager
         let creationTimestamp = UserDefaults.standard.double(forKey: "profile_creation_date")        
         if creationTimestamp > 1.0 {
             self.creationDate.accept(Date(timeIntervalSince1970: creationTimestamp))
+        }
+    }
+    
+    fileprivate func checkProfile()
+    {
+        if self.profile.value == nil {
+            self.createProfile()
         }
     }
 }

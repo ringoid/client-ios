@@ -25,8 +25,6 @@ class SettingsProfileViewModel
         self.configuration = ProfileFieldsConfiguration(input.profileManager)
         self.profileManager = input.profileManager
         self.db = input.db
-        
-        self.checkProfile()
     }
     
     func updateField(_ type: ProfileFieldType, index: Int?, value: String?)
@@ -154,15 +152,6 @@ class SettingsProfileViewModel
                 profile.property.value = Property.at(index).rawValue
             }
             break
-        }
-    }
-    
-    // MARK: -
-    
-    fileprivate func checkProfile()
-    {
-        if self.profileManager.profile.value == nil {
-            self.profileManager.createProfile()
         }
     }
 }
