@@ -533,7 +533,7 @@ class UserProfilePhotosViewController: BaseViewController
             }
             
             if page == 1 {
-                if let aboutText = profile.about, aboutText != "unknown" {
+                if let aboutText = profile.about, aboutText != "unknown", !aboutText.isEmpty {
                     (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
                         controls.iconView.isHidden = true
                         controls.titleLabel.isHidden = true
@@ -557,7 +557,7 @@ class UserProfilePhotosViewController: BaseViewController
                 return
             }
             
-            if let aboutText = profile.about, aboutText != "unknown" {
+            if let aboutText = profile.about, aboutText != "unknown", !aboutText.isEmpty {
                 self.aboutLabel.isHidden = true
                 self.updateProfileRows(page - 1)
             } else {
@@ -569,7 +569,7 @@ class UserProfilePhotosViewController: BaseViewController
         // Male
         if gender == .male {
             if page == 0 {
-                if let aboutText = profile.about, aboutText != "unknown" {
+                if let aboutText = profile.about, aboutText != "unknown", !aboutText.isEmpty {
                     (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
                         controls.iconView.isHidden = true
                         controls.titleLabel.isHidden = true
@@ -593,7 +593,7 @@ class UserProfilePhotosViewController: BaseViewController
                 return
             }
             
-            if let aboutText = profile.about, aboutText != "unknown" {
+            if let aboutText = profile.about, aboutText != "unknown", !aboutText.isEmpty {
                 self.aboutLabel.isHidden = true
                 self.updateProfileRows(page - 1)
             } else {

@@ -175,14 +175,14 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.jobTitle, title != "unknown" {
+        if let title = profile.jobTitle, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_job"
             ))
         }
         
-        if let title = profile.education, title != "unknown" {
+        if let title = profile.education, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_education"
@@ -210,14 +210,14 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.tikTok, title != "unknown" {
+        if let title = profile.tikTok, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: "TikTok: " +  title,
                 icon: "profile_fields_tiktok"
             ))
         }
         
-        if let title = profile.instagram, title != "unknown" {
+        if let title = profile.instagram, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: "Instagram: " +  title,
                 icon: "profile_fields_instagram"
@@ -238,7 +238,7 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.education, title != "unknown" {
+        if let title = profile.education, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_education"
@@ -266,7 +266,7 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.jobTitle, title != "unknown" {
+        if let title = profile.jobTitle, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_job"
@@ -280,14 +280,14 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.tikTok, title != "unknown" {
+        if let title = profile.tikTok, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: "TikTok: " + title,
                 icon: "profile_fields_tiktok"
             ))
         }
         
-        if let title = profile.instagram, title != "unknown" {
+        if let title = profile.instagram, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: "Instagram: " + title,
                 icon: "profile_fields_instagram"
@@ -301,14 +301,14 @@ class ProfileFieldsConfiguration
     {
         var rows: [ProfileFileRow] = []
         
-        if let title = profile.distanceText, title != "unknown" {
+        if let title = profile.distanceText, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "common_location"
             ))
         }
         
-        if let title = profile.whereLive, title != "unknown" {
+        if let title = profile.whereLive, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_marker"
@@ -346,7 +346,7 @@ class ProfileFieldsConfiguration
     {
         var rows: [ProfileFileRow] = []
         
-        if let title = profile.whereLive, title != "unknown" {
+        if let title = profile.whereLive, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_marker"
@@ -393,7 +393,7 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.jobTitle, title != "unknown" {
+        if let title = profile.jobTitle, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_job"
@@ -421,7 +421,7 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.education, title != "unknown" {
+        if let title = profile.education, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_education"
@@ -435,14 +435,14 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.tikTok, title != "unknown" {
+        if let title = profile.tikTok, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: "TikTok: " +  title,
                 icon: "profile_fields_tiktok"
             ))
         }
         
-        if let title = profile.instagram, title != "unknown" {
+        if let title = profile.instagram, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: "Instagram: " +  title,
                 icon: "profile_fields_instagram"
@@ -456,14 +456,14 @@ class ProfileFieldsConfiguration
     {
         var rows: [ProfileFileRow] = []
         
-        if let title = profile.tikTok, title != "unknown" {
+        if let title = profile.tikTok, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: "TikTok: " + title,
                 icon: "profile_fields_tiktok"
             ))
         }
         
-        if let title = profile.instagram, title != "unknown" {
+        if let title = profile.instagram, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: "Instagram: " + title,
                 icon: "profile_fields_instagram"
@@ -484,14 +484,14 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.education, title != "unknown" {
+        if let title = profile.education, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_education"
             ))
         }
         
-        if let title = profile.jobTitle, title != "unknown" {
+        if let title = profile.jobTitle, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_job"
