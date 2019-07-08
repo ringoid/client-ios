@@ -30,7 +30,7 @@ class ProfileFieldsConfiguration
     let settingsFields: [ProfileField] = [
         ProfileField(
             title: "profile_field_name",
-            icon: nil,
+            icon: "settings_profile",
             placeholder: nil,
             cellIdentifier: "profile_field_cell",
             fieldType: .name
@@ -58,7 +58,7 @@ class ProfileFieldsConfiguration
         ),
         ProfileField(
             title: "profile_field_bio",
-            icon: nil,
+            icon: "profile_fields_bio",
             placeholder: nil,
             cellIdentifier: "profile_field_text_cell",
             fieldType: .bio
