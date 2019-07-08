@@ -142,12 +142,19 @@ class ProfileFieldsConfiguration
     
     func leftColums(_ profile: Profile) -> [ProfileFileRow]
     {
-        guard let gender = self.profileManager.gender.value?.opposite() else { return [] }
-        
-        switch gender {
-        case .male: return self.leftColumsMale(profile)
-        case .female: return self.leftColumsFemale(profile)
+        if let genderStr = profile.gender, let gender = Sex(rawValue: genderStr) {
+            switch gender {
+            case .male: return self.leftColumsMale(profile)
+            case .female: return self.leftColumsFemale(profile)
+            }
+        } else if let oldGender = self.profileManager.gender.value?.opposite() {
+            switch oldGender {
+            case .male: return self.leftColumsMale(profile)
+            case .female: return self.leftColumsFemale(profile)
+            }
         }
+        
+        return []
     }
     
     func leftColumsMale(_ profile: Profile) -> [ProfileFileRow]
@@ -317,11 +324,17 @@ class ProfileFieldsConfiguration
         }
         
         if let value = profile.hairColor.value, let hairColor = Hair(rawValue: value), hairColor != .unknown {
-            let gender: Sex = self.profileManager.gender.value == .male ? .female : .male
-            rows.append(ProfileFileRow(
-                title: hairColor.title(gender),
-                icon: "profile_fields_hair"
-            ))
+            if let genderStr = profile.gender, let gender = Sex(rawValue: genderStr) {
+                switch gender {
+                case .male: return self.leftColumsMale(profile)
+                case .female: return self.leftColumsFemale(profile)
+                }
+            } else if let oldGender = self.profileManager.gender.value?.opposite() {
+                switch oldGender {
+                case .male: return self.leftColumsMale(profile)
+                case .female: return self.leftColumsFemale(profile)
+                }
+            }
         }
         
         return rows

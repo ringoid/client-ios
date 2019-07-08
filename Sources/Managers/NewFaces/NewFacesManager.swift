@@ -66,6 +66,7 @@ class NewFacesManager
                 localProfile.status = (profile.status?.onlineStatus() ?? .unknown).rawValue
                 localProfile.statusText = profile.lastOnlineText ?? ""
                 localProfile.distanceText = profile.distanceText ?? ""
+                localProfile.gender = profile.sex
                 
                 // Info
                 localProfile.property.value = profile.info.property

@@ -738,6 +738,7 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         localProfile.status = (profile.status?.onlineStatus() ?? .unknown).rawValue
         localProfile.statusText = profile.lastOnlineText ?? ""
         localProfile.distanceText = profile.distanceText ?? ""
+        localProfile.gender = profile.sex
 
         // Info
         localProfile.property.value = profile.info.property

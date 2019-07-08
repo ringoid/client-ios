@@ -14,13 +14,13 @@ class ApiLMMProfile: ApiProfile
     let notSeen: Bool
     let messages: [ApiMessage]
     
-    init(id: String, age: Int, defaultSortingOrderPosition: Int, notSeen: Bool, messages: [ApiMessage], photos: [ApiPhoto], status: ApiProfileStatus?, distanceText: String?, lastOnlineText: String?, info: ApiUserProfileInfo)
+    init(id: String, age: Int, defaultSortingOrderPosition: Int, notSeen: Bool, messages: [ApiMessage], photos: [ApiPhoto], status: ApiProfileStatus?, distanceText: String?, lastOnlineText: String?, sex: String?, info: ApiUserProfileInfo)
     {
         self.defaultSortingOrderPosition = defaultSortingOrderPosition
         self.notSeen = notSeen
         self.messages = messages
 
-        super.init(id: id, age: age, photos: photos, status: status, distanceText: distanceText, lastOnlineText: lastOnlineText, info:  info)
+        super.init(id: id, age: age, photos: photos, status: status, distanceText: distanceText, lastOnlineText: lastOnlineText, sex: sex, info:  info)
     }
 }
 
@@ -46,6 +46,7 @@ extension ApiLMMProfile
                              status: ApiProfileStatus(rawValue: statusStr),
                              distanceText: dict["distanceText"] as? String,
                              lastOnlineText: dict["lastOnlineText"] as? String,
+                             sex: dict["sex"] as? String,
                              info: info
         )
     }

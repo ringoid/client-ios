@@ -44,6 +44,7 @@ class Profile: DBServiceObject
     @objc dynamic var tikTok: String? = nil
     @objc dynamic var whereLive: String? = nil
     @objc dynamic var whereFrom: String? = nil
+    @objc dynamic var gender: String? = nil
     
     func orderedPhotos() -> [Photo]
     {
