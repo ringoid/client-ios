@@ -82,11 +82,11 @@ class MainViewController: BaseViewController
             guard let text = alertVC.textFields?.first?.text, let count = Int(text) else { return }
             
             let size = self.likeBtn.bounds.size
-            let center = CGPoint(x: size.width - 25.0, y: size.height / 2.0 - 30.0)
-            let position = self.likeBtn.convert(center, to: nil)
+            let center = self.likeBtn.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), to: nil)
+            let position = CGPoint(x: 44.0, y: center.y + 16.0)
             self.effectsView.animateLikes(count, from: position)
-            self.effectsView.animateMatches(Int(Double(count) / 5.0), from: position)
-            self.effectsView.animateMessages(Int(Double(count) / 10.0), from: position)
+            self.effectsView.animateMatches(Int(Double(count) / 3.0), from: position)
+            self.effectsView.animateMessages(Int(Double(count) / 2.0), from: position)
         }))
         alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
