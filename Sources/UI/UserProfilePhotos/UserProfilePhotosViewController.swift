@@ -632,7 +632,13 @@ class UserProfilePhotosViewController: BaseViewController
                 
             } else {
                 let row = leftRows[absoluteIndex]
-                leftControls.iconView.image = UIImage(named: row.icon ?? "")
+                
+                if let icon = row.icon {
+                    leftControls.iconView.image = UIImage(named: icon)
+                } else {
+                    leftControls.iconView.image = nil
+                }
+                    
                 leftControls.titleLabel.text = row.title.localized()
                 leftControls.iconView.isHidden = false
                 leftControls.titleLabel.isHidden = false
@@ -643,7 +649,13 @@ class UserProfilePhotosViewController: BaseViewController
                 rightControls.titleLabel.isHidden = true
             } else {
                 let row = rightRows[absoluteIndex]
-                rightControls.iconView.image = UIImage(named: row.icon ?? "")
+                
+                if let icon = row.icon {
+                    rightControls.iconView.image = UIImage(named: icon)
+                } else {
+                    rightControls.iconView.image = nil
+                }
+                
                 rightControls.titleLabel.text = row.title.localized()
                 rightControls.iconView.isHidden = false
                 rightControls.titleLabel.isHidden = false
