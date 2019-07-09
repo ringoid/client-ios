@@ -70,9 +70,12 @@ class ChatViewModel
     fileprivate func setupBindings()
     {
         self.input.profile.rx.observe(LMMProfile.self, "messages").subscribe(onNext: { [weak self] _ in
-            guard let updatedProfile = self?.input.profile else { return }
+            guard let `self` = self else { return }
+
+            let updatedMessages = self.input.profile.messages.toArray()
+            guard self.isContentUpdated(updatedMessages) else { return }
             
-            self?.messages.accept(Array(updatedProfile.messages.sorted(byKeyPath: "orderPosition")))
+            self.messages.accept(updatedMessages)
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.chatUpdateInterval.observeOn(MainScheduler.instance).subscribe(onNext:{ [weak self] interval in
@@ -85,5 +88,10 @@ class ChatViewModel
             RunLoop.main.add(timer, forMode: .common)
             self?.updateTimer = timer
         }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func isContentUpdated(_ updatedMessages: [Message]) -> Bool
+    {
+        return self.messages.value.count <  updatedMessages.count
     }
 }
