@@ -548,7 +548,7 @@ class UserProfilePhotosViewController: BaseViewController
                     
                     self.aboutLabel.text = aboutText
                     self.aboutLabel.isHidden = false
-                    self.nameConstraint.constant = self.photoHeight - height + 30.0
+                    self.nameConstraint.constant = self.photoHeight - height + 24.0
                     self.aboutHeightConstraint.constant = height
                     self.view.layoutIfNeeded()
                 } else {
@@ -586,7 +586,7 @@ class UserProfilePhotosViewController: BaseViewController
                     
                     self.aboutLabel.text = aboutText
                     self.aboutLabel.isHidden = false
-                    self.nameConstraint.constant =  self.photoHeight - height + 30.0
+                    self.nameConstraint.constant =  self.photoHeight - height + 24.0
                     self.aboutHeightConstraint.constant = height
                     self.view.layoutIfNeeded()
                 } else {

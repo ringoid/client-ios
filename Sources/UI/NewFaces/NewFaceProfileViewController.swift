@@ -368,7 +368,7 @@ class NewFaceProfileViewController: UIViewController
                     
                     self.aboutLabel.text = aboutText
                     self.aboutLabel.isHidden = false
-                    self.nameConstraint.constant = height + 40.0
+                    self.nameConstraint.constant = height + 36.0
                     self.aboutHeightConstraint.constant = height + 4.0
                     self.view.layoutIfNeeded()
                 } else {
@@ -406,7 +406,7 @@ class NewFaceProfileViewController: UIViewController
                     
                     self.aboutLabel.text = aboutText
                     self.aboutLabel.isHidden = false
-                    self.nameConstraint.constant = height + 40.0
+                    self.nameConstraint.constant = height + 36.0
                     self.aboutHeightConstraint.constant = height
                     self.view.layoutIfNeeded()
                 } else {
