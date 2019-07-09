@@ -618,10 +618,20 @@ class UserProfilePhotosViewController: BaseViewController
         var nameOffset: CGFloat = self.photoHeight - 26.0
         var rightColumnMaxWidth: CGFloat = 0.0
         
+        defer {
+            self.nameConstraint.constant = nameOffset
+            self.rightColumnConstraint.constant = rightColumnMaxWidth + 4.0
+            self.view.layoutIfNeeded()
+        }
+        
         (0...1).forEach { index in
-            let leftControls = self.leftFieldsControls[index]
-            let rightControls = self.rightFieldsControls[index]
-            let absoluteIndex = start + index
+            var leftControls = self.leftFieldsControls[index]
+            var rightControls = self.rightFieldsControls[index]
+            let absoluteIndex = start + (1 - index)
+            
+            // Left
+            
+            var leftRow: ProfileFileRow? = nil
             
             if absoluteIndex >= leftCount {
                 leftControls.iconView.isHidden = true
@@ -630,26 +640,47 @@ class UserProfilePhotosViewController: BaseViewController
                 if index ==  1 && nameOffset <  self.photoHeight - 1.0 { nameOffset =  self.photoHeight}
                 if index ==  0 { nameOffset =  self.photoHeight + 20.0 }
                 
-            } else {
-                let row = leftRows[absoluteIndex]
+            } else if leftCount - absoluteIndex == 1, index == 1 {
+                leftControls.iconView.isHidden = true
+                leftControls.titleLabel.isHidden = true
                 
+                nameOffset =  self.photoHeight
+                
+                leftRow = leftRows[absoluteIndex]
+                leftControls = self.leftFieldsControls[0]
+            } else {
+                leftRow = leftRows[absoluteIndex]
+            }
+            
+            if let row = leftRow {
                 if let icon = row.icon {
                     leftControls.iconView.image = UIImage(named: icon)
                 } else {
                     leftControls.iconView.image = nil
                 }
-                    
+                
                 leftControls.titleLabel.text = row.title.localized()
                 leftControls.iconView.isHidden = false
                 leftControls.titleLabel.isHidden = false
             }
             
+            // Right
+            var rightRow: ProfileFileRow? = nil
+            
             if absoluteIndex >= rightCount {
                 rightControls.iconView.isHidden = true
                 rightControls.titleLabel.isHidden = true
-            } else {
-                let row = rightRows[absoluteIndex]
+            } else if rightCount - absoluteIndex == 1, index == 1 { // Special case
+                rightControls.iconView.isHidden = true
+                rightControls.titleLabel.isHidden = true
                 
+                rightRow = rightRows[absoluteIndex]
+                rightControls = self.rightFieldsControls[0]
+            } else {
+                rightRow = rightRows[absoluteIndex]
+            }
+            
+            if let row = rightRow {
                 if let icon = row.icon {
                     rightControls.iconView.image = UIImage(named: icon)
                 } else {
@@ -669,10 +700,6 @@ class UserProfilePhotosViewController: BaseViewController
                 }
             }
         }
-        
-        self.nameConstraint.constant = nameOffset
-        self.rightColumnConstraint.constant = rightColumnMaxWidth + 4.0
-        self.view.layoutIfNeeded()
     }
     
     fileprivate func applyName()
