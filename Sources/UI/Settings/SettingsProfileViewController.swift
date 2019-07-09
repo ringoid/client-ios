@@ -54,7 +54,11 @@ class SettingsProfileViewController: BaseViewController
     
     @IBAction func onBack()
     {
-        self.input.profileManager.updateProfile()
+        // Waiting 0.5 sec for local DB update
+        let profileManager = self.input.profileManager
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            profileManager.updateProfile()
+        }
         
         if self.isModal {
             ModalUIManager.shared.hide(animated: true)
