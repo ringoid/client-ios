@@ -359,15 +359,17 @@ class NewFaceProfileViewController: UIViewController
                         controls.titleLabel.isHidden = true
                     })
                     
-                    self.aboutLabel.text = aboutText
-                    self.aboutLabel.isHidden = false
-                    self.nameConstraint.constant = 86.0
-                    self.aboutHeightConstraint.constant = (aboutText as NSString).boundingRect(
+                    let height = (aboutText as NSString).boundingRect(
                         with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
                         options: .usesLineFragmentOrigin,
                         attributes: [NSAttributedString.Key.font: self.aboutLabel.font],
                         context: nil
                         ).size.height
+                    
+                    self.aboutLabel.text = aboutText
+                    self.aboutLabel.isHidden = false
+                    self.nameConstraint.constant = height + 40.0
+                    self.aboutHeightConstraint.constant = height + 4.0
                     self.view.layoutIfNeeded()
                 } else {
                     self.aboutLabel.isHidden = true
@@ -395,15 +397,17 @@ class NewFaceProfileViewController: UIViewController
                         controls.titleLabel.isHidden = true
                     })
                     
-                    self.aboutLabel.text = aboutText
-                    self.aboutLabel.isHidden = false
-                    self.nameConstraint.constant = 86.0
-                    self.aboutHeightConstraint.constant = (aboutText as NSString).boundingRect(
+                    let height = (aboutText as NSString).boundingRect(
                         with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
                         options: .usesLineFragmentOrigin,
                         attributes: [NSAttributedString.Key.font: self.aboutLabel.font],
                         context: nil
                         ).size.height + 4.0
+                    
+                    self.aboutLabel.text = aboutText
+                    self.aboutLabel.isHidden = false
+                    self.nameConstraint.constant = height + 40.0
+                    self.aboutHeightConstraint.constant = height
                     self.view.layoutIfNeeded()
                 } else {
                     self.aboutLabel.isHidden = true
