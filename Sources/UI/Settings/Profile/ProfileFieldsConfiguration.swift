@@ -36,20 +36,6 @@ class ProfileFieldsConfiguration
             fieldType: .name
         ),
         ProfileField(
-            title: "profile_field_instagram",
-            icon: "profile_fields_instagram",
-            placeholder: "@username",
-            cellIdentifier: "profile_field_cell",
-            fieldType: .instagram
-        ),
-        ProfileField(
-            title: "profile_field_tiktok",
-            icon: "profile_fields_tiktok",
-            placeholder: "@username",
-            cellIdentifier: "profile_field_cell",
-            fieldType: .tiktok
-        ),
-        ProfileField(
             title: "profile_field_where_live",
             icon: "profile_fields_marker",
             placeholder: nil,
@@ -62,6 +48,20 @@ class ProfileFieldsConfiguration
             placeholder: nil,
             cellIdentifier: "profile_field_text_cell",
             fieldType: .bio
+        ),
+        ProfileField(
+            title: "profile_field_instagram",
+            icon: "profile_fields_instagram",
+            placeholder: "@username",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .instagram
+        ),
+        ProfileField(
+            title: "profile_field_tiktok",
+            icon: "profile_fields_tiktok",
+            placeholder: "@username",
+            cellIdentifier: "profile_field_cell",
+            fieldType: .tiktok
         ),
         ProfileField(
             title: "profile_field_job",
@@ -301,17 +301,17 @@ class ProfileFieldsConfiguration
     {
         var rows: [ProfileFileRow] = []
         
-        if let title = profile.distanceText, title != "unknown", !title.isEmpty {
-            rows.append(ProfileFileRow(
-                title: title,
-                icon: "common_location"
-            ))
-        }
-        
         if let title = profile.whereLive, title != "unknown", !title.isEmpty {
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_marker"
+            ))
+        }
+        
+        if let title = profile.distanceText, title != "unknown", !title.isEmpty {
+            rows.append(ProfileFileRow(
+                title: title,
+                icon: "common_location"
             ))
         }
         
