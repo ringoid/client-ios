@@ -520,7 +520,7 @@ class UserProfilePhotosViewController: BaseViewController
     
     fileprivate func updateFieldsContent(_ page: Int)
     {
-        guard let profile = self.input.profileManager.profile.value else { return }
+        guard let profile = self.input.profileManager.profile.value, !profile.isInvalidated else { return }
         guard let gender = self.input.profileManager.gender.value else { return }
         
         // Female
