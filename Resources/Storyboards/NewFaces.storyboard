@@ -433,7 +433,7 @@ discover users nearby</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hn8-Xt-EOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="gMH-LG-MIb">
+                <tapGestureRecognizer numberOfTapsRequired="2" id="gMH-LG-MIb">
                     <connections>
                         <action selector="onTap:" destination="CPb-Zo-KOu" id="sEm-2u-ryW"/>
                     </connections>
