@@ -175,7 +175,13 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.jobTitle, title != "unknown", !title.isEmpty {
+        if let jobTitle = profile.jobTitle, jobTitle != "unknown", !jobTitle.isEmpty {
+            var title = jobTitle
+            
+            if let companyTitle = profile.company, companyTitle != "unknown", !companyTitle.isEmpty {
+                title += ", \(companyTitle)"
+            }
+            
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_job"
@@ -266,7 +272,13 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.jobTitle, title != "unknown", !title.isEmpty {
+        if let jobTitle = profile.jobTitle, jobTitle != "unknown", !jobTitle.isEmpty {
+            var title = jobTitle
+            
+            if let companyTitle = profile.company, companyTitle != "unknown", !companyTitle.isEmpty {
+                title += ", \(companyTitle)"
+            }
+            
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_job"
@@ -393,7 +405,13 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.jobTitle, title != "unknown", !title.isEmpty {
+        if let jobTitle = profile.jobTitle, jobTitle != "unknown", !jobTitle.isEmpty {
+            var title = jobTitle
+            
+            if let companyTitle = profile.company, companyTitle != "unknown", !companyTitle.isEmpty {
+                title += ", \(companyTitle)"
+            }
+            
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_job"
@@ -491,7 +509,13 @@ class ProfileFieldsConfiguration
             ))
         }
         
-        if let title = profile.jobTitle, title != "unknown", !title.isEmpty {
+        if let jobTitle = profile.jobTitle, jobTitle != "unknown", !jobTitle.isEmpty {
+            var title = jobTitle
+            
+            if let companyTitle = profile.company, companyTitle != "unknown", !companyTitle.isEmpty {
+                title += ", \(companyTitle)"
+            }
+            
             rows.append(ProfileFileRow(
                 title: title,
                 icon: "profile_fields_job"
