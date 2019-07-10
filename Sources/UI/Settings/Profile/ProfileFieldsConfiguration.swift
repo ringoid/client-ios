@@ -186,6 +186,11 @@ class ProfileFieldsConfiguration
                 title: title,
                 icon: "profile_fields_job"
             ))
+        } else if let companyTitle = profile.company, companyTitle != "unknown", !companyTitle.isEmpty  {
+            rows.append(ProfileFileRow(
+                title: companyTitle,
+                icon: "profile_fields_job"
+            ))
         }
         
         if let title = profile.education, title != "unknown", !title.isEmpty {
@@ -281,6 +286,11 @@ class ProfileFieldsConfiguration
             
             rows.append(ProfileFileRow(
                 title: title,
+                icon: "profile_fields_job"
+            ))
+        } else if let companyTitle = profile.company, companyTitle != "unknown", !companyTitle.isEmpty  {
+            rows.append(ProfileFileRow(
+                title: companyTitle,
                 icon: "profile_fields_job"
             ))
         }
@@ -416,6 +426,11 @@ class ProfileFieldsConfiguration
                 title: title,
                 icon: "profile_fields_job"
             ))
+        } else if let companyTitle = profile.company, companyTitle != "unknown", !companyTitle.isEmpty  {
+            rows.append(ProfileFileRow(
+                title: companyTitle,
+                icon: "profile_fields_job"
+            ))
         }
         
         if let rawValue = profile.children.value, let children = Children(rawValue: rawValue), children != .unknown {
@@ -518,6 +533,11 @@ class ProfileFieldsConfiguration
             
             rows.append(ProfileFileRow(
                 title: title,
+                icon: "profile_fields_job"
+            ))
+        } else if let companyTitle = profile.company, companyTitle != "unknown", !companyTitle.isEmpty  {
+            rows.append(ProfileFileRow(
+                title: companyTitle,
                 icon: "profile_fields_job"
             ))
         }
