@@ -87,7 +87,7 @@ class FeedbackManager
         }
 
         let params: [String: Any] = [
-            "channel": "CJDASTGTC",
+            "channel": self.profileManager.gender.value == .male ? "CL9UV062Z" : "CL9UG0HU0",
             "text": reportText,
         ]
         
