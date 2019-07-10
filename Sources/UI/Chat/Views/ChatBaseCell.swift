@@ -41,7 +41,7 @@ class ChatBaseCell: UITableViewCell
     
     static func height(_ text: String) -> CGFloat
     {
-        return contentSize(text).height + 4.0 + 24.0 + 14.0
+        return contentSize(text).height + 4.0 + 13.0 + 14.0
     }
     
     override func awakeFromNib()
