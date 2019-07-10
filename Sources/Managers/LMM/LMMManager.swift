@@ -133,6 +133,10 @@ class LMMManager
         return self.messages.asObservable().map { profiles -> Int in
             var notReadProfiles = profiles.notReadIDs()
             notReadProfiles.remove(self.apiService.customerId.value)
+            
+            if let openedProfileId = ChatViewController.openedProfileId {
+                notReadProfiles.remove(openedProfileId)
+            }
 
             return notReadProfiles.subtracting(self.prevNotReadMessages).count
         }
