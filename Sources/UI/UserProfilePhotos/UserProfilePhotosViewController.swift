@@ -708,7 +708,7 @@ class UserProfilePhotosViewController: BaseViewController
     
     fileprivate func applyName()
     {
-        guard let profile = self.input.profileManager.profile.value else { return }
+        guard let profile = self.input.profileManager.profile.value, !profile.isInvalidated else { return }
         guard let yob = self.input.profileManager.yob.value else { return }
         
         let age =  Calendar.current.component(.year, from: Date()) - yob
