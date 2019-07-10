@@ -670,6 +670,9 @@ class MainLMMProfileViewController: UIViewController
         var title: String = ""
         if let name = profile.name, name != "unknown" {
             title += "\(name), "
+        } else if let genderStr = profile.gender, let gender = Sex(rawValue: genderStr) {
+            let genderStr = gender == .male ? "common_sex_male".localized() : "common_sex_female".localized()
+            title += "\(genderStr), "
         } else {
             let gender = self.input.profileManager.gender.value?.opposite() ?? .male
             let genderStr = gender == .male ? "common_sex_male".localized() : "common_sex_female".localized()

@@ -33,6 +33,10 @@ class ChatViewController: BaseViewController
     @IBOutlet fileprivate weak var inputBottomConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var inputHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet fileprivate weak var nameLabel: UILabel!
+    @IBOutlet fileprivate weak var statusCenterOffsetConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var nameCenterOffsetConstraint: NSLayoutConstraint!
+    
     static func create() -> ChatViewController
     {
         let storyboard = Storyboards.chat()
@@ -225,11 +229,17 @@ class ChatViewController: BaseViewController
     
     fileprivate func applyStatuses()
     {
+        // Status
+        
         if let status = OnlineStatus(rawValue: self.input.profile.status), status != .unknown {
             self.statusView.backgroundColor = status.color()
             self.statusView.isHidden = false
+            self.nameCenterOffsetConstraint.constant = -7.0
+            self.statusCenterOffsetConstraint.constant = 9.0
         } else {
             self.statusView.isHidden = true
+            self.nameCenterOffsetConstraint.constant =  0.0
+            self.statusCenterOffsetConstraint.constant = 0.0
         }
         
         if let statusText = self.input.profile.statusText, statusText.lowercased() != "unknown",  statusText.count > 0 {
@@ -238,6 +248,19 @@ class ChatViewController: BaseViewController
         } else {
             self.statusLabel.isHidden = true
         }
+        
+        // Name
+        let profile = self.input.profile
+        var title: String = ""
+        if let name = profile.name, name != "unknown" {
+            title += "\(name), "
+        } else if let genderStr = profile.gender, let gender = Sex(rawValue: genderStr) {
+            let genderStr = gender == .male ? "common_sex_male".localized() : "common_sex_female".localized()
+            title += "\(genderStr), "
+        }
+        
+        title += "\(profile.age)"
+        self.nameLabel.text = title
     }
     
     fileprivate func updateVisibleCellsBorders(_  contentOffset: CGFloat)
