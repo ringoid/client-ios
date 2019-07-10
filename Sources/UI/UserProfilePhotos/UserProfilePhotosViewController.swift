@@ -252,6 +252,9 @@ class UserProfilePhotosViewController: BaseViewController
             if photos.count == 0 {
                 self.statusView.isHidden = true
                 self.statusLabel.isHidden = true
+            } else if self.viewModel?.status.value != nil {
+                self.statusView.isHidden = false
+                self.statusLabel.isHidden = false
             }
             
             self.nameLabel.alpha = photos.count == 0 ? 0.0 : 1.0
