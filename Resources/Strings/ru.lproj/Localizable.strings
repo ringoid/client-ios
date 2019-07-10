@@ -130,8 +130,9 @@
 "profile_field_property" = "Недвижимость";
 "profile_field_children" = "Дети";
 
-"profile_field_company_placeholder" = "Название компании, фирмы, и т.п.";
+"profile_field_company_placeholder" = "Название фирмы или индустрии";
 "profile_field_education_placeholder" = "Университет, колледж. Год выпуска";
+"profile_field_where_live_placeholder" = "Где я живу";
 
 "profile_field_hair_black_male" = "Брюнет";
 "profile_field_hair_blonde_male" = "Блондин";

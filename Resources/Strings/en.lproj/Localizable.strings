@@ -119,7 +119,7 @@
 "profile_field_education" = "Education";
 "profile_field_instagram" = "Instagram";
 "profile_field_tiktok" = "TikTok";
-"profile_field_where_live" = "Where I live";
+"profile_field_where_live" = "City";
 "profile_field_bio" = "Bio";
 "profile_field_job" = "Job title";
 "profile_field_company" = "Company";
@@ -128,8 +128,9 @@
 "profile_field_property" = "Property";
 "profile_field_children" = "Children";
 
-"profile_field_company_placeholder" = "Name of company";
+"profile_field_company_placeholder" = "Name of company or industry";
 "profile_field_education_placeholder" = "University, college. Graduation year";
+"profile_field_where_live_placeholder" = "Where I live";
 
 "profile_field_hair_black_male" = "Black";
 "profile_field_hair_blonde_male" = "Blonde";

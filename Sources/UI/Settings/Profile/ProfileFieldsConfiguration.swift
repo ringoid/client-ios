@@ -38,7 +38,7 @@ class ProfileFieldsConfiguration
         ProfileField(
             title: "profile_field_where_live",
             icon: "profile_fields_marker",
-            placeholder: nil,
+            placeholder: "profile_field_where_live_placeholder".localized(),
             cellIdentifier: "profile_field_cell",
             fieldType: .whereLive
         ),
