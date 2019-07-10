@@ -196,8 +196,7 @@ class UserProfileManager
                 return
             }
 
-            self.lmm.contentShouldBeHidden = true
-            self.db.resetNewFaces().subscribe().disposed(by: self.disposeBag)
+            self.lmm.contentShouldBeHidden = true            
         }).disposed(by: self.disposeBag)
         
         self.gender.subscribe(onNext: { value in
