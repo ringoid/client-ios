@@ -402,7 +402,7 @@ see how many likes you get</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dMm-wd-LTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer numberOfTapsRequired="2" id="Exu-Ud-gr6">
+                <tapGestureRecognizer id="Exu-Ud-gr6">
                     <connections>
                         <action selector="onTap" destination="CTV-VO-snh" id="yB4-c7-ho4"/>
                     </connections>

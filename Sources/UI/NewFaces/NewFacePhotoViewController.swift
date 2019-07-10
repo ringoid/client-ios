@@ -39,7 +39,8 @@ class NewFacePhotoViewController: UIViewController
     
     @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var animationLikeView: UIImageView!
-    @IBOutlet fileprivate weak var photoIdLabel: UILabel!    
+    @IBOutlet fileprivate weak var photoIdLabel: UILabel!
+    @IBOutlet fileprivate weak var tapRecognizer: UITapGestureRecognizer!
     
     deinit
     {
@@ -65,6 +66,11 @@ class NewFacePhotoViewController: UIViewController
         
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeInactive), name: UIApplication.willResignActiveNotification, object: nil)
+        
+        switch self.input.sourceType {
+        case .newFaces, .whoLikedMe: self.tapRecognizer.numberOfTapsRequired = 2
+        default: self.tapRecognizer.numberOfTapsRequired = 1
+        }
         
 //        #if STAGE
 //        self.photoIdLabel.text = "Photo: " + String(self.photo?.id.prefix(4) ?? "")

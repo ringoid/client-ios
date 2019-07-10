@@ -430,10 +430,11 @@ discover users nearby</string>
                         <outlet property="animationLikeView" destination="8do-7J-kjV" id="JLs-GM-AXu"/>
                         <outlet property="photoIdLabel" destination="7cD-Y1-uy3" id="zcF-f2-iDq"/>
                         <outlet property="photoView" destination="fil-jT-HLM" id="sdS-da-hJd"/>
+                        <outlet property="tapRecognizer" destination="gMH-LG-MIb" id="W9a-3Z-PBS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hn8-Xt-EOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer numberOfTapsRequired="2" id="gMH-LG-MIb">
+                <tapGestureRecognizer id="gMH-LG-MIb">
                     <connections>
                         <action selector="onTap:" destination="CPb-Zo-KOu" id="sEm-2u-ryW"/>
                     </connections>
