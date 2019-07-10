@@ -111,6 +111,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
         }
     }
     
+    var defaultItemIndex: Int = 0
     var onSelect: ((ProfileFieldType, Int?, String?) -> ())?
     
     @IBOutlet weak var iconView: UIImageView!
@@ -164,6 +165,13 @@ class SettingsProfileFieldCell: BaseTableViewCell
     {
         self.valueField?.resignFirstResponder()
         self.valueTextView?.resignFirstResponder()
+        
+        guard let type = self.field?.fieldType else { return }
+        
+        let row = self.pickerView.selectedRow(inComponent: 0)
+        self.valueIndex = row
+        
+        self.onSelect?(type, row, nil)
     }
     
     func resetInput()
@@ -209,7 +217,12 @@ class SettingsProfileFieldCell: BaseTableViewCell
         picker.dataSource = self
         picker.delegate = self
         picker.backgroundColor = pickerBackgroundColor
-        picker.selectRow(self.valueIndex ?? 0, inComponent: 0, animated: false)
+        
+        if let index = self.valueIndex, index != 0 {
+            picker.selectRow(index, inComponent: 0, animated: false)
+        } else {
+            picker.selectRow(self.defaultItemIndex, inComponent: 0, animated: false)
+        }
         
         self.pickerView = picker
         
