@@ -260,7 +260,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBJ-Cm-bUE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="q49-r4-Pck">
+                <tapGestureRecognizer numberOfTapsRequired="2" id="q49-r4-Pck">
                     <connections>
                         <action selector="onClose" destination="7Sb-wa-NBj" id="hdb-Hr-H11"/>
                     </connections>
