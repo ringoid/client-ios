@@ -13,6 +13,22 @@ fileprivate let pickerBackgroundColor = UIColor(red: 0.35, green: 0.35, blue: 0.
 class SettingsProfileFieldCell: BaseTableViewCell
 {
     var field: ProfileField?
+    {
+        didSet {
+            guard let type = field?.fieldType else { return }
+            
+            switch type {
+            case .bio, .company, .education, .instagram, .job, .name, .tiktok, .whereLive:
+                self.setupTextPlaceholder()
+                break
+                
+            case .children, .educationLevel, .hair, .income, .property, .height, .transport:
+                self.setupValuePlaceholder()
+                break
+            }
+        }
+    }
+    
     var sex: Sex = .female
 
     var valueIndex: Int? = nil
@@ -21,12 +37,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
             if self.valueIndex != nil { self.valueText = nil }
             
             self.update()
-            
-            self.valueField?.attributedPlaceholder = NSAttributedString(string: "profile_field_not_selected".localized(),
-                                                                       attributes: [
-                                                                        .foregroundColor: UIColor.lightGray
-                ])
-            
+      
             guard let type = self.field?.fieldType else { return }
             guard let index = self.valueIndex else { return }
             
@@ -211,12 +222,6 @@ class SettingsProfileFieldCell: BaseTableViewCell
         
         self.titleLabel.text = field.title.localized()
         
-        if self.valueIndex == nil {
-            self.valueField?.attributedPlaceholder = NSAttributedString(string: self.field?.placeholder?.localized() ?? "",  attributes: [
-                .foregroundColor: UIColor.lightGray
-                ])
-        }
-        
         if let icon = field.icon {
             self.iconView.image = UIImage(named: icon)
         } else {
@@ -236,6 +241,26 @@ class SettingsProfileFieldCell: BaseTableViewCell
         if let text = self.prevTextValue {
             self.valueText = text
         }
+    }
+    
+    fileprivate func setupTextPlaceholder()
+    {
+        
+        if let placeholderText = self.field?.placeholder?.localized() {
+            self.valueField?.attributedPlaceholder = NSAttributedString(string: placeholderText,  attributes: [
+                .foregroundColor: UIColor.lightGray
+                ])
+        } else {
+            self.valueField?.attributedPlaceholder = nil
+        }
+    }
+    
+    fileprivate func setupValuePlaceholder()
+    {
+        self.valueField?.attributedPlaceholder = NSAttributedString(string: "profile_field_not_selected".localized(),
+                                                                    attributes: [
+                                                                        .foregroundColor: UIColor.lightGray
+            ])
     }
 }
 
