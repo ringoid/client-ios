@@ -24,5 +24,6 @@ class ContainerViewController: UIViewController
         vc.view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         vc.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         vc.view.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        self.view.setNeedsLayout()
     }
 }
