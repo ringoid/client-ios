@@ -253,13 +253,12 @@ class ChatViewController: BaseViewController
         let profile = self.input.profile
         var title: String = ""
         if let name = profile.name, name != "unknown" {
-            title += "\(name), "
+            title += name
         } else if let genderStr = profile.gender, let gender = Sex(rawValue: genderStr) {
             let genderStr = gender == .male ? "common_sex_male".localized() : "common_sex_female".localized()
-            title += "\(genderStr), "
+            title += genderStr
         }
         
-        title += "\(profile.age)"
         self.nameLabel.text = title
     }
     
