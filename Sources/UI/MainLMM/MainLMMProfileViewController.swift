@@ -271,6 +271,11 @@ class MainLMMProfileViewController: UIViewController
         alertVC.addAction(UIAlertAction(title: "block_profile_button_report".localized(), style: .default, handler: { _ in
             self.showBlockReasonOptions(isChat)
         }))
+        alertVC.addAction(UIAlertAction(title: "feedback_suggest_improvements".localized(), style: .default, handler: { _ in
+            FeedbackManager.shared.showSuggestion(self, source: .popup, feedSource: self.input.feedType.sourceType())
+            self.onBlockOptionsWillHide?()
+            UIManager.shared.blockModeEnabled.accept(false)
+        }))
         alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
             self.onBlockOptionsWillHide?()
             UIManager.shared.blockModeEnabled.accept(false)

@@ -16,6 +16,7 @@ enum FeedbackSource: String {
     case deleteAccount = "DeleteAccount"
     case settings = "SuggestFromSettings"
     case chat = "CloseChat"
+    case popup = "SuggestFromProfilePopup"
 }
 
 class FeedbackManager
@@ -31,14 +32,14 @@ class FeedbackManager
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    func showSuggestion(_ from: UIViewController)
+    func showSuggestion(_ from: UIViewController, source: FeedbackSource, feedSource: SourceFeedType?)
     {
         let vc = Storyboards.feedback().instantiateViewController(withIdentifier: "settings_feedback_vc") as! SettingsFeedbackViewController
         vc.modalPresentationStyle = .overFullScreen
         vc.onSend = { [weak self] text in
             guard text.count > 0 else { return }
             
-            self?.send(text, source: .settings)
+            self?.send(text, source: source, feedSource: feedSource)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
                 self?.showThanksAlert(from)
             })
@@ -52,7 +53,7 @@ class FeedbackManager
         let vc = Storyboards.feedback().instantiateViewController(withIdentifier: "deletion_feedback_vc") as! DeletionFeedbackViewController
         vc.modalPresentationStyle = .overFullScreen
         vc.onDelete = { [weak self] text in
-            self?.send(text, source: .deleteAccount)
+            self?.send(text, source: .deleteAccount, feedSource: nil)
             onDelete?()
         }
 
@@ -61,7 +62,7 @@ class FeedbackManager
     
     // MARK: -
     
-    fileprivate func send(_ text: String, source: FeedbackSource)
+    fileprivate func send(_ text: String, source: FeedbackSource, feedSource: SourceFeedType?)
     {
         guard text.trimmingCharacters(in: .whitespacesAndNewlines).count > 0 else { return }
         
@@ -72,7 +73,12 @@ class FeedbackManager
             reportText.append("*\(age) \(gender == .male ? "M" : "F")* ")
         }
         
-        reportText.append("from `\(source.rawValue)`\n\n")
+        if let feedSource = feedSource {
+            reportText.append("from `\(source.rawValue):\(feedSource.rawValue)`\n\n")
+        } else {
+            reportText.append("from `\(source.rawValue)`\n\n")
+        }
+        
         reportText.append("> \"\(text.replacingOccurrences(of: "\n", with: "\n>"))\"\n\n")
         reportText.append("iOS \(self.deviceService.appVersion)\n\(self.deviceService.deviceName)\n\n")
         reportText.append("`\(self.apiService.customerId.value)`")

@@ -218,7 +218,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
             
         case .suggest:
             if self.input.actionsManager.checkConnectionState() {
-                FeedbackManager.shared.showSuggestion(self)
+                FeedbackManager.shared.showSuggestion(self, source: .settings, feedSource: nil)
             }
             break
             
