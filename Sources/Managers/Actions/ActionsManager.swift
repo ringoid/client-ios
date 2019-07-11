@@ -104,6 +104,7 @@ class ActionsManager
     
     func commit()
     {
+        guard self.apiService.isAuthorized.value else { return }
         guard !self.queue.isEmpty else { return }
         
         self.sendQueue().subscribe().disposed(by: self.disposeBag)
