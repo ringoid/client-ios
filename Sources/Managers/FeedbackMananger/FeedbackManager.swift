@@ -74,7 +74,7 @@ class FeedbackManager
         }
         
         if let feedSource = feedSource {
-            reportText.append("from `\(source.rawValue):\(feedSource.rawValue)`\n\n")
+            reportText.append("from `\(source.rawValue)` - `\(feedSource.rawValue)`\n\n")
         } else {
             reportText.append("from `\(source.rawValue)`\n\n")
         }
