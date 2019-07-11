@@ -79,6 +79,8 @@
 		573D116D228DACEF00CD9C2D /* SettingsSuggestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D116B228DACEF00CD9C2D /* SettingsSuggestCell.swift */; };
 		573D116F228EC8B400CD9C2D /* DeletionFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D116E228EC8B400CD9C2D /* DeletionFeedbackViewController.swift */; };
 		573D1170228EC8B400CD9C2D /* DeletionFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D116E228EC8B400CD9C2D /* DeletionFeedbackViewController.swift */; };
+		573D768A22D73C1400E1576B /* SettingsProfileFieldsSuggest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D768922D73C1300E1576B /* SettingsProfileFieldsSuggest.swift */; };
+		573D768B22D73C1400E1576B /* SettingsProfileFieldsSuggest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D768922D73C1300E1576B /* SettingsProfileFieldsSuggest.swift */; };
 		574A7DA622434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574A7DA722434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574F4ACA22520B230027A083 /* SettingsNotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */; };
@@ -467,6 +469,7 @@
 		573D1168228DA38E00CD9C2D /* FeedbackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackManager.swift; sourceTree = "<group>"; };
 		573D116B228DACEF00CD9C2D /* SettingsSuggestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSuggestCell.swift; sourceTree = "<group>"; };
 		573D116E228EC8B400CD9C2D /* DeletionFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletionFeedbackViewController.swift; sourceTree = "<group>"; };
+		573D768922D73C1300E1576B /* SettingsProfileFieldsSuggest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileFieldsSuggest.swift; sourceTree = "<group>"; };
 		574A7DA522434EFE0065AE56 /* PromotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionManager.swift; sourceTree = "<group>"; };
 		574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsCell.swift; sourceTree = "<group>"; };
 		57528C702292BCE4003F01E3 /* SettingsNotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsViewController.swift; sourceTree = "<group>"; };
@@ -1231,6 +1234,7 @@
 				57EEB07522BD058D005770B3 /* SettingsProfileCell.swift */,
 				57EEB08122BE62FF005770B3 /* SettingsProfileHeightCell.swift */,
 				57EEB08722BE63C0005770B3 /* SettingsProfileFieldCell.swift */,
+				573D768922D73C1300E1576B /* SettingsProfileFieldsSuggest.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1883,6 +1887,7 @@
 				57585D6421E4C73600038798 /* NewFacesViewModel.swift in Sources */,
 				573A5C0E222409F10094A9FA /* EmptyFeed.swift in Sources */,
 				577DDAD922647975001D7D24 /* LocationServiceDefault.swift in Sources */,
+				573D768A22D73C1400E1576B /* SettingsProfileFieldsSuggest.swift in Sources */,
 				57EEB08C22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */,
 				573A5C202226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
 				57585D3C21E34AFC00038798 /* ApiProfile.swift in Sources */,
@@ -2077,6 +2082,7 @@
 				57EE65122216711000246B45 /* SettingsLegalViewController.swift in Sources */,
 				573A5C0F22240C160094A9FA /* EmptyFeed.swift in Sources */,
 				577DDADA22647975001D7D24 /* LocationServiceDefault.swift in Sources */,
+				573D768B22D73C1400E1576B /* SettingsProfileFieldsSuggest.swift in Sources */,
 				57EEB08D22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */,
 				573A5C212226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
 				57EE65132216711000246B45 /* ApiBlockAction.swift in Sources */,

@@ -17,6 +17,7 @@ enum FeedbackSource: String {
     case settings = "SuggestFromSettings"
     case chat = "CloseChat"
     case popup = "SuggestFromProfilePopup"
+    case profileFields = "SuggestFromProfileSettings"
 }
 
 class FeedbackManager

@@ -28,6 +28,7 @@ class SettingsProfileViewController: BaseViewController
         self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 260.0, right: 0.0)
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onHideInput))
+        recognizer.delegate = self
         self.view.addGestureRecognizer(recognizer)
         
         self.setupViewModel()
@@ -88,11 +89,19 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel?.configuration.settingsFields.count ?? 0
+        return (self.viewModel?.configuration.settingsFields.count ?? 0) + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        // Suggest
+        if let count = self.viewModel?.configuration.settingsFields.count, indexPath.row == count {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "profile_suggest_cell") as? SettingsProfileFieldsSuggest else { return UITableViewCell() }
+            
+            return cell
+        }
+        
+        // Fields
         guard let field = self.viewModel?.configuration.settingsFields[indexPath.row] else { return UITableViewCell() }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: field.cellIdentifier) as? SettingsProfileFieldCell else { return UITableViewCell() }
         
@@ -129,6 +138,13 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        if let count = self.viewModel?.configuration.settingsFields.count, indexPath.row == count {
+            FeedbackManager.shared.showSuggestion(self, source: .profileFields, feedSource: nil)
+            
+            return
+        }
+        
+        // Fields
         guard let field = self.viewModel?.configuration.settingsFields[indexPath.row] else { return }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: field.cellIdentifier) as? SettingsProfileFieldCell else { return }
         
@@ -137,10 +153,30 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
+        // Suggest
+        if let count = self.viewModel?.configuration.settingsFields.count, indexPath.row == count {
+            
+            return 72.0
+        }
+        
+        // Fields
         guard let field = self.viewModel?.configuration.settingsFields[indexPath.row] else { return 0.0 }
         
         if field.fieldType == .bio { return 110.0 }
         
         return 72.0
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+
+extension SettingsProfileViewController: UIGestureRecognizerDelegate
+{
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool
+    {
+        guard let view = touch.view else { return true }
+        if view.isDescendant(of: self.tableView) { return false }
+        
+        return true
     }
 }
