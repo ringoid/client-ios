@@ -27,6 +27,7 @@ fileprivate enum SettingsNotificationsOptionType: Int
     case match = 1
     case like = 2
     case evening = 3
+    case suggest = 4
 }
 
 class SettingsNotificationsViewController: BaseViewController
@@ -38,6 +39,7 @@ class SettingsNotificationsViewController: BaseViewController
         SettingsNotificationsOption(cellIdentifier: "match_cell", height: 56.0),
         SettingsNotificationsOption(cellIdentifier: "like_cell", height: 56.0),
         SettingsNotificationsOption(cellIdentifier: "evening_cell", height: 96.0),
+        SettingsNotificationsOption(cellIdentifier: "profile_suggest_cell", height: 72.0),
     ]
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
@@ -108,6 +110,9 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
     {
         let option = self.options[indexPath.row]
         let type = SettingsNotificationsOptionType(rawValue: indexPath.row)!
+        
+        guard type != .suggest else { return tableView.dequeueReusableCell(withIdentifier: option.cellIdentifier)! }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: option.cellIdentifier) as! SettingsSwitchableCell
         
         let notifications = self.input.settingsManager.notifications
@@ -118,6 +123,8 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
         case .like: cell.valueSwitch.isOn = notifications.isLikeEnabled.value && isEnabledBySystem
         case .match: cell.valueSwitch.isOn = notifications.isMatchEnabled.value && isEnabledBySystem
         case .message: cell.valueSwitch.isOn = notifications.isMessageEnabled.value && isEnabledBySystem
+            
+        default: break
         }
         
         cell.onValueChanged = { [weak self] valueSwitch in
@@ -139,6 +146,8 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
                 case .like: notifications.isLikeEnabled.accept(valueSwitch.isOn)
                 case .match: notifications.isMatchEnabled.accept(valueSwitch.isOn)
                 case .message: notifications.isMessageEnabled.accept(valueSwitch.isOn)
+                    
+                default: break
                 }
                 
                 self.input.settingsManager.updateRemoteSettings()
@@ -156,5 +165,14 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
         let option = self.options[indexPath.row]
 
         return option.height
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let type = SettingsNotificationsOptionType(rawValue: indexPath.row)!
+        
+        guard type == .suggest else { return }
+        
+        FeedbackManager.shared.showSuggestion(self, source: .notificationsSettings, feedSource: nil)
     }
 }

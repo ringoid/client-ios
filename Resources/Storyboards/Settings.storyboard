@@ -1145,6 +1145,31 @@
                                             <outlet property="valueSwitch" destination="Krz-a3-77C" id="jFJ-02-t0A"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="profile_suggest_cell" id="MW2-PT-M13" customClass="SettingsProfileFieldsSuggest" customModule="Ringoid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="250" width="375" height="42"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MW2-PT-M13" id="4Ss-ye-G8f">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="42"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggest Improvemets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPq-Mn-hfJ">
+                                                    <rect key="frame" x="16" y="10.5" width="167.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="gPq-Mn-hfJ" firstAttribute="centerY" secondItem="4Ss-ye-G8f" secondAttribute="centerY" id="VNi-dX-Hrb"/>
+                                                <constraint firstItem="gPq-Mn-hfJ" firstAttribute="leading" secondItem="4Ss-ye-G8f" secondAttribute="leading" constant="16" id="gzF-VH-z7c"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="gPq-Mn-hfJ" id="uan-QF-m2b"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <sections/>
                                 <connections>
@@ -1365,7 +1390,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggest Improvemets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2V-qk-BzX">
-                                                    <rect key="frame" x="31" y="25.5" width="167.5" height="21"/>
+                                                    <rect key="frame" x="16" y="25.5" width="167.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -1374,7 +1399,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="i2V-qk-BzX" firstAttribute="centerY" secondItem="Tuo-f8-oVH" secondAttribute="centerY" id="Dpj-oh-0G0"/>
-                                                <constraint firstItem="i2V-qk-BzX" firstAttribute="leading" secondItem="Tuo-f8-oVH" secondAttribute="leadingMargin" constant="16" id="fSo-5g-BCN"/>
+                                                <constraint firstItem="i2V-qk-BzX" firstAttribute="leading" secondItem="Tuo-f8-oVH" secondAttribute="leading" constant="16" id="fSo-5g-BCN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
