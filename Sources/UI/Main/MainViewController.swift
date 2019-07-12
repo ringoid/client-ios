@@ -514,7 +514,9 @@ class MainViewController: BaseViewController
             self?.bottomShadowView.isHidden = state
         }).disposed(by: self.disposeBag)
         
-        self.input.notifications.responses.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { response in
+        self.input.notifications.responses.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] response in
+            guard let `self` = self else { return }
+            
             let userInfo = response.notification.request.content.userInfo
             guard let typeStr = userInfo["type"] as? String else {
                 self.input.navigationManager.mainItem.accept(.searchAndFetch)
