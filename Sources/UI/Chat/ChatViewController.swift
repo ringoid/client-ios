@@ -97,7 +97,8 @@ class ChatViewController: BaseViewController
         super.viewDidLayoutSubviews()
         
         self.tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: self.tableView.bounds.width - 10.0)
-    }
+        self.tableView.contentInset = UIEdgeInsets(top: 8.0, left: 0.0, bottom: 0.0, right: 0.0)        
+    }   
     
     override func updateTheme()
     {

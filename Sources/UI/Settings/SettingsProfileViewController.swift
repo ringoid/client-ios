@@ -156,7 +156,7 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
         // Suggest
         if let count = self.viewModel?.configuration.settingsFields.count, indexPath.row == count {
             
-            return 72.0
+            return 124.0
         }
         
         // Fields

@@ -39,7 +39,7 @@ class SettingsNotificationsViewController: BaseViewController
         SettingsNotificationsOption(cellIdentifier: "match_cell", height: 56.0),
         SettingsNotificationsOption(cellIdentifier: "like_cell", height: 56.0),
         SettingsNotificationsOption(cellIdentifier: "evening_cell", height: 96.0),
-        SettingsNotificationsOption(cellIdentifier: "profile_suggest_cell", height: 72.0),
+        SettingsNotificationsOption(cellIdentifier: "profile_suggest_cell", height: 124.0),
     ]
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()

@@ -1390,7 +1390,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggest Improvemets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2V-qk-BzX">
-                                                    <rect key="frame" x="16" y="25.5" width="167.5" height="21"/>
+                                                    <rect key="frame" x="39" y="25.5" width="167.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -1399,7 +1399,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="i2V-qk-BzX" firstAttribute="centerY" secondItem="Tuo-f8-oVH" secondAttribute="centerY" id="Dpj-oh-0G0"/>
-                                                <constraint firstItem="i2V-qk-BzX" firstAttribute="leading" secondItem="Tuo-f8-oVH" secondAttribute="leading" constant="16" id="fSo-5g-BCN"/>
+                                                <constraint firstItem="i2V-qk-BzX" firstAttribute="leading" secondItem="Tuo-f8-oVH" secondAttribute="leading" constant="39" id="fSo-5g-BCN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
