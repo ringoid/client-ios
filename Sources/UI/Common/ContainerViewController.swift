@@ -12,14 +12,20 @@ class ContainerViewController: UIViewController
 {
     func embed(_ vc: UIViewController)
     {
-        self.view.subviews.forEach({ $0.removeFromSuperview() })
+        UIView.performWithoutAnimation {
+            self.view.subviews.forEach({ $0.removeFromSuperview() })
+        }
         self.children.forEach({ $0.removeFromParent() })
         
         self.addChild(vc)
         
         vc.view.translatesAutoresizingMaskIntoConstraints = false
         vc.view.frame = self.view.bounds
-        self.view.addSubview(vc.view)
+        
+        UIView.performWithoutAnimation {
+            self.view.addSubview(vc.view)
+        }
+        
         vc.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         vc.view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         vc.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true

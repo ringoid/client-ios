@@ -67,14 +67,19 @@ class RootViewController: BaseViewController {
                 
         switch to {
         case .unknown: break
-        case .auth:
-            self.embedAuthVC()
+        case .auth: self.embedAuthVC()
         case .main:
             self.embedMainVC()
             self.appManager.navigationManager.mainItem.accept(.profileAndFetch)
+            break
+            
         case .search:
             self.embedMainVC()
-            self.appManager.navigationManager.mainItem.accept(.searchAndFetch)
+            DispatchQueue.main.async {
+                self.appManager.navigationManager.mainItem.accept(.searchAndFetch)
+            }
+            break
+            
         case .userProfile:
             self.embedMainVC()
             self.appManager.navigationManager.mainItem.accept(.profile)
@@ -188,7 +193,7 @@ class RootViewController: BaseViewController {
             } else {
                 if self?.appManager.settingsMananger.isFirstLaunch.value == true {
                     self?.move(to: .search)
-                     self?.appManager.settingsMananger.isFirstLaunch.accept(false)
+                    self?.appManager.settingsMananger.isFirstLaunch.accept(false)
                 } else {
                     self?.move(to: .search)
                 }
