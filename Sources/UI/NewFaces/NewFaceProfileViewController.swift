@@ -349,7 +349,8 @@ class NewFaceProfileViewController: UIViewController
     
     fileprivate func updateFieldsContent(_ page: Int)
     {
-        guard let gender: Sex = self.input.profileManager.gender.value?.opposite() else { return }
+        let genderStr: String = self.input.profile.gender ?? "male"
+        let gender = Sex(rawValue: genderStr)
         
         // MALE
         if gender == .male {
