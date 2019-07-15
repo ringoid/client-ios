@@ -663,7 +663,7 @@ class LMMManager
     
     fileprivate func updateLocalLmmCount()
     {
-        var lmmProfiles = Set((self.likesYou.value + self.matches.value + self.messages.value).map({ $0.id }))
+        let lmmProfiles = Set((self.likesYou.value + self.matches.value + self.messages.value).map({ $0.id }))
         self.localLmmCount.accept(lmmProfiles.count)
     }
     

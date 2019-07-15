@@ -143,7 +143,7 @@
                                     <segue destination="5Bt-Xu-MH5" kind="embed" identifier="embed_lmm" id="758-j3-FOe"/>
                                 </connections>
                             </containerView>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avd-pS-HNL" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="avd-pS-HNL" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="92"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
@@ -166,7 +166,7 @@
                                         <size key="titleShadowOffset" width="1" height="1"/>
                                         <state key="normal" title="0" image="main_bar_like">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="0.24761879280821919" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="onLikesYouSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="GdG-Pr-fyM"/>
@@ -177,10 +177,11 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="XY6-5e-t0j"/>
                                         </constraints>
+                                        <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <size key="titleShadowOffset" width="1" height="1"/>
-                                        <state key="normal" title="0" image="main_bar_like">
+                                        <state key="normal" title="0" image="main_lmm_matches">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="0.2403146404109589" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="onMatchesSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="ONu-bD-Af9"/>
@@ -191,10 +192,11 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="qDw-du-VIy"/>
                                         </constraints>
+                                        <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <size key="titleShadowOffset" width="1" height="1"/>
-                                        <state key="normal" title="0" image="main_bar_like">
+                                        <state key="normal" title="0" image="main_lmm_chat">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="titleShadowColor" white="0.0" alpha="0.25040132705479456" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="onChatSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="mdT-k7-MV0"/>
@@ -791,6 +793,8 @@ see who likes you</string>
         <image name="feed_scroll_top" width="65" height="65"/>
         <image name="main_banner_bell" width="64" height="64"/>
         <image name="main_bar_like" width="29" height="27"/>
+        <image name="main_lmm_chat" width="50" height="40"/>
+        <image name="main_lmm_matches" width="47" height="42"/>
         <image name="profile_fields_children" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>

@@ -218,19 +218,19 @@ class MainLMMContainerViewController: BaseViewController
         switch type {
         case .likesYou:
             self.likeYouBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
-            self.matchesBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.chatBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_lmm_matches"), for: .normal)
+            self.chatBtn.setImage(UIImage(named: "main_lmm_chat"), for: .normal)
             break
             
         case .matches:
-            self.matchesBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_lmm_matches_selected"), for: .normal)
             self.likeYouBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.chatBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.chatBtn.setImage(UIImage(named: "main_lmm_chat"), for: .normal)
             break
             
         case .messages:
-            self.chatBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
-            self.matchesBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.chatBtn.setImage(UIImage(named: "main_lmm_chat_selected"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_lmm_matches"), for: .normal)
             self.likeYouBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             break
             

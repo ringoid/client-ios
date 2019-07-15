@@ -69,6 +69,10 @@ class MainViewController: BaseViewController
         GlobalAnimationManager.shared.animationView = self.effectsView
         
         self.setupBindings()
+        
+//        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showDebugLikes))
+//        tapRecognizer.numberOfTapsRequired = 2
+//        self.likeBtn.addGestureRecognizer(tapRecognizer)
     }
     
     #if STAGE
