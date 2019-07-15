@@ -61,6 +61,11 @@ class MainViewModel
     {
         return self.input.lmmManager.incomingMessages
     }
+    
+    var lmmCount: BehaviorRelay<Int>
+    {
+        return self.input.lmmManager.lmmCount
+    }
         
     let isNotSeenProfilesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     let isNotSeenInboxAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)

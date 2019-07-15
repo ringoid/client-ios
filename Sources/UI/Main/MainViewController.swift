@@ -385,6 +385,11 @@ class MainViewController: BaseViewController
             self?.select(item.selectionState())
         }).disposed(by: self.disposeBag)
         
+        self.viewModel?.lmmCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
+            let title: String? = count != 0 ? "\(count)" : nil
+            self?.likeBtn.setTitle(title, for: .normal)
+        }).disposed(by: self.disposeBag)
+        
         self.viewModel?.availablePhotosCount.subscribe(onNext: { [weak self] count in
             self?.profileIndicatorView.isHidden = count != 0
         }).disposed(by: self.disposeBag)
