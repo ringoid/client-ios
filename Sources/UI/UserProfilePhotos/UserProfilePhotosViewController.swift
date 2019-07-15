@@ -712,9 +712,6 @@ class UserProfilePhotosViewController: BaseViewController
     fileprivate func applyName()
     {
         guard let profile = self.input.profileManager.profile.value, !profile.isInvalidated else { return }
-        guard let yob = self.input.profileManager.yob.value else { return }
-        
-        let age =  Calendar.current.component(.year, from: Date()) - yob
         
         var title: String = ""
         if let name = profile.name, name != "unknown" {
@@ -725,7 +722,11 @@ class UserProfilePhotosViewController: BaseViewController
             title += "\(genderStr), "
         }
         
-        title += "\(age)"
+        if let yob = self.input.profileManager.yob.value {
+            let age =  Calendar.current.component(.year, from: Date()) - yob
+            title += "\(age)"
+        }
+        
         self.nameLabel.text = title
     }
 }
