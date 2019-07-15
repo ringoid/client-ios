@@ -36,16 +36,10 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet weak var matchesIndicatorView: UIView!
     @IBOutlet weak var likesYouIndicatorView: UIView!
     @IBOutlet weak var optionsContainer: UIView!
-    @IBOutlet weak var matchesBtnWidthLayout: NSLayoutConstraint!
-    @IBOutlet weak var tabsCenterConstraint: NSLayoutConstraint!
-    @IBOutlet weak var messagesIndicatorConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var topShadowView: UIView!
     @IBOutlet fileprivate weak var notificationsBannerView: UIView!
     @IBOutlet fileprivate weak var notificationsBannerLabel: UILabel!
     @IBOutlet fileprivate weak var notificationsBannerSubLabel: UILabel!
-    @IBOutlet fileprivate weak var notSeenLikesYouLabel: UILabel!
-    @IBOutlet fileprivate weak var notSeenMatchesLabel: UILabel!
-    @IBOutlet fileprivate weak var notSeenMessagesLabel: UILabel!
     @IBOutlet fileprivate weak var notSeenLikesYouWidthConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var notSeenMatchesWidthConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var notSeenMessagesWidthConstraint: NSLayoutConstraint!
@@ -62,13 +56,8 @@ class MainLMMContainerViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.chatBtn.setTitle("lmm_tab_messages".localized(), for: .normal)
-        self.likeYouBtn.setTitle("lmm_tab_likes".localized(), for: .normal)
-        self.matchesBtn.setTitle("lmm_tab_matches".localized(), for: .normal)
         self.notificationsBannerLabel.text = "settings_notifications_banner_title".localized()
         self.notificationsBannerSubLabel.text = "settings_notifications_banner_subtitle".localized()
-        
-        self.updateBtnSizes()
     }
     
     override func updateTheme()
@@ -148,58 +137,37 @@ class MainLMMContainerViewController: BaseViewController
     
     fileprivate func setupBindings()
     {
+        self.input.lmmManager.likesYou.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+            let title: String? = profiles.count != 0 ? "\(profiles.count)" : nil
+            self?.likeYouBtn.setTitle(title, for: .normal)
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.matches.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+            let title: String? = profiles.count != 0 ? "\(profiles.count)" : nil
+            self?.matchesBtn.setTitle(title, for: .normal)
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.messages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+            let title: String? = profiles.count != 0 ? "\(profiles.count)" : nil
+            self?.chatBtn.setTitle(title, for: .normal)
+        }).disposed(by: self.disposeBag)
+        
         self.input.lmmManager.notSeenLikesYouCount.subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
             self.likesYouIndicatorView.isHidden = count == 0
-            
-            let countStr = "\(count)"
-            self.notSeenLikesYouLabel.text = countStr
-            
-            var counterWidth =  (countStr as NSString).boundingRect(
-                with: CGSize(width: 300.0, height: 14.0),
-                options: .usesLineFragmentOrigin,
-                attributes: [.font: self.notSeenLikesYouLabel.font],
-                context: nil
-                ).width  + 7.0
-            counterWidth = counterWidth > 16.0 ? counterWidth : 16.0
-            self.notSeenLikesYouWidthConstraint.constant = counterWidth
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenMatchesCount.subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
             self.matchesIndicatorView.isHidden = count == 0
-            
-            let countStr = "\(count)"
-            self.notSeenMatchesLabel.text = countStr
-            
-            var counterWidth = (countStr as NSString).boundingRect(
-                with: CGSize(width: 300.0, height: 14.0),
-                options: .usesLineFragmentOrigin,
-                attributes: [.font: self.notSeenMatchesLabel.font],
-                context: nil
-                ).width + 7.0
-            counterWidth = counterWidth > 16.0 ? counterWidth : 16.0
-            self.notSeenMatchesWidthConstraint.constant = counterWidth
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenMessagesCount.subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
             self.chatIndicatorView.isHidden = count == 0
-            
-            let countStr = "\(count)"
-            self.notSeenMessagesLabel.text = countStr
-            
-            var counterWidth = (countStr as NSString).boundingRect(
-                with: CGSize(width: 300.0, height: 14.0),
-                options: .usesLineFragmentOrigin,
-                attributes: [.font: self.notSeenMessagesLabel.font],
-                context: nil
-                ).width + 7.0
-            counterWidth = counterWidth > 16.0 ? counterWidth : 16.0
-            self.notSeenMessagesWidthConstraint.constant = counterWidth
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
@@ -249,73 +217,26 @@ class MainLMMContainerViewController: BaseViewController
 
         switch type {
         case .likesYou:
-            self.likeYouBtn.setTitleColor(lmmSelectedColor, for: .normal)
-            self.likeYouBtn.titleLabel?.font = lmmSelectedFont
-            self.matchesBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.matchesBtn.titleLabel?.font = lmmUnselectedFont
-            self.chatBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.chatBtn.titleLabel?.font = lmmUnselectedFont
+            self.likeYouBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.chatBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             break
             
         case .matches:
-            self.matchesBtn.setTitleColor(lmmSelectedColor, for: .normal)
-            self.matchesBtn.titleLabel?.font = lmmSelectedFont
-            self.likeYouBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.likeYouBtn.titleLabel?.font = lmmUnselectedFont
-            self.chatBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.chatBtn.titleLabel?.font = lmmUnselectedFont
+            self.matchesBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
+            self.likeYouBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.chatBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             break
             
         case .messages:
-            self.chatBtn.setTitleColor(lmmSelectedColor, for: .normal)
-            self.chatBtn.titleLabel?.font = lmmSelectedFont
-            self.likeYouBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.likeYouBtn.titleLabel?.font = lmmUnselectedFont
-            self.matchesBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.matchesBtn.titleLabel?.font = lmmUnselectedFont
+            self.chatBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.likeYouBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             break
             
         default: return
         }
         
         self.lmmVC?.type.accept(type)
-    }
-    
-    fileprivate func updateBtnSizes()
-    {
-        let matchesWidth = ("lmm_tab_matches".localized() as NSString).boundingRect(
-            with: CGSize(width: 300.0, height: 200.0),
-            options: .usesLineFragmentOrigin,
-            attributes: [.font: lmmUnselectedFont],
-            context: nil
-            ).width
-        
-        let likesWidth = ("lmm_tab_likes".localized() as NSString).boundingRect(
-            with: CGSize(width: 300.0, height: 200.0),
-            options: .usesLineFragmentOrigin,
-            attributes: [.font: lmmUnselectedFont],
-            context: nil
-            ).width
-        
-        let chatsWidth = ("lmm_tab_messages".localized() as NSString).boundingRect(
-            with: CGSize(width: 300.0, height: 200.0),
-            options: .usesLineFragmentOrigin,
-            attributes: [.font: lmmUnselectedFont],
-            context: nil
-            ).width
-        
-        if likesWidth + matchesWidth + chatsWidth > UIScreen.main.bounds.width - 50.0
-        {
-            lmmUnselectedFont = UIFont.systemFont(ofSize: 15.0, weight: .regular)
-            lmmSelectedFont = UIFont.systemFont(ofSize: 16.0, weight: .bold)
-            
-            self.updateBtnSizes()
-            return
-        }
-        
-        self.matchesBtnWidthLayout.constant = matchesWidth + 20.0
-        self.tabsCenterConstraint.constant = (likesWidth - chatsWidth) / 2.0
-        self.messagesIndicatorConstraint.constant = chatsWidth + 10.0
-        self.view.layoutSubviews()
     }
 }
