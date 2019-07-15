@@ -64,7 +64,7 @@ class MainViewModel
     
     var lmmCount: BehaviorRelay<Int>
     {
-        return self.input.lmmManager.lmmCount
+        return self.input.lmmManager.localLmmCount
     }
         
     let isNotSeenProfilesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)

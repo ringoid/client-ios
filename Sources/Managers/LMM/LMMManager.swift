@@ -102,6 +102,7 @@ class LMMManager
     let notSeenTotalCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     let notificationsProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     let lmmCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    let localLmmCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     
     // Incoming counters
     
@@ -410,6 +411,7 @@ class LMMManager
             let nonSeenCount = profiles.notSeenIDs().union(self.likesYouNotificationProfiles).count
             self.notSeenLikesYouCount.accept(nonSeenCount)
             self.updateLmmCount()
+            self.updateLocalLmmCount()
         }).disposed(by: self.disposeBag)
         
         self.matches.asObservable().subscribe(onNext:{ [weak self] profiles in
@@ -425,6 +427,7 @@ class LMMManager
             self.notSeenMessagesCount.accept(nonSeenMessagesCount)
             
             self.updateLmmCount()
+            self.updateLocalLmmCount()
         }).disposed(by: self.disposeBag)
 
         self.messages.asObservable().subscribe(onNext:{ [weak self] profiles in
@@ -436,6 +439,7 @@ class LMMManager
             
             self.notSeenMessagesCount.accept(nonSeenCount)
             self.updateLmmCount()
+            self.updateLocalLmmCount()
         }).disposed(by: self.disposeBag)
         
         self.notifications.notificationData.subscribe(onNext: { [weak self] userInfo in
@@ -655,6 +659,12 @@ class LMMManager
         lmmProfiles = lmmProfiles.union(self.messagesNotificationProfiles)
         
         self.lmmCount.accept(lmmProfiles.count)
+    }
+    
+    fileprivate func updateLocalLmmCount()
+    {
+        var lmmProfiles = Set((self.likesYou.value + self.matches.value + self.messages.value).map({ $0.id }))
+        self.localLmmCount.accept(lmmProfiles.count)
     }
     
     fileprivate func updateAvailability()
