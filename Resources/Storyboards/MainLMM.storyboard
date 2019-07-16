@@ -638,6 +638,18 @@ see who likes you</string>
                                     <action selector="onChatSelected" destination="Nf7-hc-eWV" eventType="touchUpInside" id="d62-YA-ePo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAT-kr-d5R" userLabel="LikeButton">
+                                <rect key="frame" x="299" y="118" width="76" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="76" id="Ntn-YU-2ad"/>
+                                    <constraint firstAttribute="height" constant="64" id="dq2-4s-3SW"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" image="feed_like"/>
+                                <connections>
+                                    <action selector="onLikeWithSender:" destination="Nf7-hc-eWV" eventType="touchUpInside" id="588-gZ-TY2"/>
+                                </connections>
+                            </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProfileID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVA-P0-T2F">
                                 <rect key="frame" x="16" y="323" width="70" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -788,6 +800,7 @@ see who likes you</string>
                             <constraint firstItem="duK-qX-ktj" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="YhF-UI-eSx"/>
                             <constraint firstItem="lT4-ql-cww" firstAttribute="top" secondItem="kYa-nc-a14" secondAttribute="top" id="Zod-49-JhZ"/>
                             <constraint firstItem="5Gj-0E-Tsq" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="ZwV-Ec-4fp"/>
+                            <constraint firstAttribute="trailing" secondItem="HAT-kr-d5R" secondAttribute="trailing" id="a9U-P4-pGu"/>
                             <constraint firstItem="eDJ-qT-P4s" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="20" id="bgx-sm-BG8"/>
                             <constraint firstItem="QvJ-Gq-VGZ" firstAttribute="bottom" secondItem="IJx-PC-azo" secondAttribute="bottom" id="edq-uS-xmI"/>
                             <constraint firstAttribute="trailing" secondItem="vBP-lc-cHQ" secondAttribute="trailing" id="f65-Rk-K0U"/>
@@ -800,6 +813,7 @@ see who likes you</string>
                             <constraint firstItem="QvJ-Gq-VGZ" firstAttribute="top" secondItem="GNe-2F-xlI" secondAttribute="bottom" constant="10" id="iI3-EA-YRf"/>
                             <constraint firstItem="InC-ES-1Or" firstAttribute="leading" secondItem="eDJ-qT-P4s" secondAttribute="trailing" constant="8" id="iL5-si-XiA"/>
                             <constraint firstItem="qVA-P0-T2F" firstAttribute="centerY" secondItem="ekE-T8-wuA" secondAttribute="centerY" id="iu5-0K-I53"/>
+                            <constraint firstItem="HAT-kr-d5R" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="118" id="nY8-Cj-EMd"/>
                             <constraint firstItem="GNe-2F-xlI" firstAttribute="leading" secondItem="Y6w-eN-oCn" secondAttribute="trailing" constant="8" id="nhz-fB-e83"/>
                             <constraint firstItem="GNe-2F-xlI" firstAttribute="bottom" secondItem="Y6w-eN-oCn" secondAttribute="bottom" id="o73-0f-a6x"/>
                             <constraint firstItem="BPd-OE-Pen" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="o9z-7c-j1E"/>
@@ -817,6 +831,7 @@ see who likes you</string>
                         <outlet property="leftFieldIcon2" destination="kYa-nc-a14" id="Vyh-sI-QII"/>
                         <outlet property="leftFieldLabel1" destination="r1y-kA-ocU" id="Eab-tf-Tvb"/>
                         <outlet property="leftFieldLabel2" destination="lT4-ql-cww" id="u7J-pD-Rbn"/>
+                        <outlet property="likeBtn" destination="HAT-kr-d5R" id="dHF-FQ-0zY"/>
                         <outlet property="messageBtn" destination="2Wc-Ed-6t2" id="CMh-0H-xuQ"/>
                         <outlet property="messageBtnTopConstraint" destination="UE3-94-yVQ" id="626-7A-0v6"/>
                         <outlet property="nameConstraint" destination="X9p-Wu-6bn" id="bbf-eo-BRo"/>
@@ -849,6 +864,7 @@ see who likes you</string>
     </scenes>
     <resources>
         <image name="chat_close" width="26" height="26"/>
+        <image name="feed_like" width="36" height="33"/>
         <image name="feed_messages_empty" width="36" height="35"/>
         <image name="feed_options" width="32" height="12"/>
         <image name="feed_scroll_top" width="65" height="65"/>

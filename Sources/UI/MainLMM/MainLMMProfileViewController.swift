@@ -57,6 +57,7 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var aboutLabel: UILabel!
     @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutHeightConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var likeBtn: UIButton!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -204,6 +205,12 @@ class MainLMMProfileViewController: UIViewController
     
     // MARK: - Actions
     
+    @IBAction func onLike(sender: UIView)
+    {
+        let photoVC = self.photosVCs[self.currentIndex.value]
+        photoVC.handleTap(sender.center)
+    }
+    
     @IBAction func onChatSelected()
     {
         guard self.input.actionsManager.checkConnectionState() else { return }
@@ -234,6 +241,11 @@ class MainLMMProfileViewController: UIViewController
                 LMMType.messages,
                 LMMType.matches
                 ].contains(self.input.feedType)  || state
+            
+            self.likeBtn.isHidden =  ![
+                LMMType.likesYou
+                ].contains(self.input.feedType)  || state
+            
             self.optionsBtn.isHidden = state
         }).disposed(by: self.diposeBag)
         
@@ -244,6 +256,11 @@ class MainLMMProfileViewController: UIViewController
                 LMMType.messages,
                 LMMType.matches
                 ].contains(self.input.feedType)  || state
+            
+            self.likeBtn.isHidden =  ![
+                LMMType.likesYou
+                ].contains(self.input.feedType)  || state
+            
         }).disposed(by: self.diposeBag)
         
         Observable.from(object:self.input.profile).observeOn(MainScheduler.instance).subscribe({ [weak self] _ in
@@ -339,6 +356,7 @@ class MainLMMProfileViewController: UIViewController
         
         self.nameLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.nameLabel.frame, offset: value) ?? 1.0)
         self.aboutLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.aboutLabel.frame, offset: value) ?? 1.0)
+        self.likeBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(self.likeBtn.frame, offset: value) ?? 1.0)
         
         (self.leftFieldsControls + self.rightFieldsControls).forEach { controls in
             controls.iconView.alpha = self.discreetOpacity(for: self.topOpacityFor(controls.iconView.frame, offset: value) ?? 1.0)
@@ -374,6 +392,10 @@ class MainLMMProfileViewController: UIViewController
         
         if let aboutLabelControlOpacity = self.bottomOpacityFor(self.aboutLabel.frame, offset: value) {
             self.aboutLabel.alpha = self.discreetOpacity(for: aboutLabelControlOpacity)
+        }
+        
+        if let likeBtnControlOpacity = self.bottomOpacityFor(self.likeBtn.frame, offset: value) {
+            self.likeBtn.alpha = self.discreetOpacity(for: likeBtnControlOpacity)
         }
         
         (self.leftFieldsControls + self.rightFieldsControls).forEach { controls in
@@ -742,8 +764,7 @@ extension MessagingState
         case .chatUnread: return "feed_chat_unread"
         case .chatRead: return "feed_chat_read"
         case .empty: return "feed_messages_empty"
-        case .outcomingOnly: return "feed_messages"
-        default: return nil
+        case .outcomingOnly: return "feed_messages"        
         }
     }
 }
