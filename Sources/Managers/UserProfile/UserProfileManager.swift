@@ -170,7 +170,7 @@ class UserProfileManager
     
     func reset()
     {
-        guard let profile = self.profile.value else { return }
+        guard let profile = self.profile.value, !profile.isInvalidated else { return }
             
         self.db.delete([profile]).subscribe().disposed(by: self.disposeBag)
     }
