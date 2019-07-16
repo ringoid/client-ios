@@ -117,6 +117,13 @@ see how many likes you get</string>
                                     <action selector="deletePhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="KYt-hL-B7c"/>
                                 </connections>
                             </button>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_pencil" translatesAutoresizingMaskIntoConstraints="NO" id="oTk-g9-AL2">
+                                <rect key="frame" x="327" y="198" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="FXe-f5-7kW"/>
+                                    <constraint firstAttribute="height" constant="32" id="Ued-jg-br3"/>
+                                </constraints>
+                            </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ct4-pd-6bj">
                                 <rect key="frame" x="36" y="97.5" width="50" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -251,6 +258,7 @@ see how many likes you get</string>
                             <constraint firstAttribute="trailing" secondItem="eno-1i-kP1" secondAttribute="trailing" constant="8" id="Tes-5n-t7U"/>
                             <constraint firstItem="Szp-BM-HWd" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" constant="16" id="XGn-z0-m6X"/>
                             <constraint firstItem="npc-Nn-Arv" firstAttribute="centerY" secondItem="UMb-Bl-CM4" secondAttribute="centerY" id="YGI-Yu-U9I"/>
+                            <constraint firstItem="oTk-g9-AL2" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="178" id="Zox-3l-ddI"/>
                             <constraint firstItem="eno-1i-kP1" firstAttribute="bottom" secondItem="04l-Dx-sJ6" secondAttribute="bottom" id="afA-8G-T5R"/>
                             <constraint firstItem="Szp-BM-HWd" firstAttribute="bottom" secondItem="Yc6-CF-qSL" secondAttribute="top" constant="430" id="afa-yc-kob" userLabel="NameBottom"/>
                             <constraint firstItem="27t-IX-qLF" firstAttribute="leading" secondItem="BK0-ML-AsK" secondAttribute="trailing" constant="8" id="bWi-uQ-1mf"/>
@@ -272,6 +280,7 @@ see how many likes you get</string>
                             <constraint firstAttribute="trailing" secondItem="dx0-jU-NB1" secondAttribute="trailing" constant="16" id="sY6-TS-O0V"/>
                             <constraint firstItem="27t-IX-qLF" firstAttribute="bottom" secondItem="BK0-ML-AsK" secondAttribute="bottom" id="stc-b4-www"/>
                             <constraint firstItem="ct4-pd-6bj" firstAttribute="centerY" secondItem="Qh3-mN-wQe" secondAttribute="centerY" id="szD-ZH-LJ3"/>
+                            <constraint firstAttribute="trailing" secondItem="oTk-g9-AL2" secondAttribute="trailing" constant="16" id="tsO-dr-syS"/>
                             <constraint firstItem="hwe-yx-WQU" firstAttribute="top" secondItem="eno-1i-kP1" secondAttribute="bottom" constant="10" id="v4k-mc-rpn"/>
                             <constraint firstItem="04l-Dx-sJ6" firstAttribute="centerY" secondItem="eno-1i-kP1" secondAttribute="centerY" id="vAW-Ox-lLb"/>
                             <constraint firstItem="BK0-ML-AsK" firstAttribute="centerY" secondItem="27t-IX-qLF" secondAttribute="centerY" id="ykd-OM-KkI"/>
@@ -295,6 +304,7 @@ see how many likes you get</string>
                         <outlet property="optionsBtn" destination="0Ze-nT-pEZ" id="xcA-G9-NaZ"/>
                         <outlet property="pagesControl" destination="Pzg-eZ-8Og" id="SO3-57-aFu"/>
                         <outlet property="pagesTopConstraint" destination="1qb-Vr-aDl" id="YPv-qn-fr3"/>
+                        <outlet property="pencilIconView" destination="oTk-g9-AL2" id="JSc-jA-5Dj"/>
                         <outlet property="rightColumnConstraint" destination="K10-1e-Xd7" id="rCd-mT-Jrn"/>
                         <outlet property="rightFieldIcon1" destination="Kqw-ue-cJ1" id="P1Z-aM-iA6"/>
                         <outlet property="rightFieldIcon2" destination="04l-Dx-sJ6" id="AiS-xp-RK6"/>
@@ -474,6 +484,7 @@ see how many likes you get</string>
         <image name="common_back" width="11" height="20"/>
         <image name="common_done" width="26" height="21"/>
         <image name="feed_options" width="32" height="12"/>
+        <image name="feed_pencil" width="64" height="64"/>
         <image name="profile_fields_children" width="30" height="30"/>
         <image name="profile_photo_add" width="34" height="34"/>
         <image name="profile_settings" width="30" height="30"/>

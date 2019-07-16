@@ -47,6 +47,7 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var fieldsBottomConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var pencilIconView: UIImageView!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -249,9 +250,11 @@ class UserProfilePhotosViewController: BaseViewController
             if photos.count == 0 {
                 self.statusView.isHidden = true
                 self.statusLabel.isHidden = true
+                self.pencilIconView.isHidden = true
             } else if self.viewModel?.status.value != nil {
                 self.statusView.isHidden = false
                 self.statusLabel.isHidden = false
+                self.pencilIconView.isHidden = false
             }
             
             self.nameLabel.alpha = photos.count == 0 ? 0.0 : 1.0
@@ -435,6 +438,7 @@ class UserProfilePhotosViewController: BaseViewController
         
         self.statusLabel.alpha = 1.0
         self.statusView.alpha = 1.0
+        self.pencilIconView.alpha = 1.0
     }
     
     fileprivate func hideControls()
@@ -447,6 +451,7 @@ class UserProfilePhotosViewController: BaseViewController
         
         self.statusLabel.alpha = 0.0
         self.statusView.alpha = 0.0
+        self.pencilIconView.alpha = 0.0
     }
     
     fileprivate func showBlockedAlert()
