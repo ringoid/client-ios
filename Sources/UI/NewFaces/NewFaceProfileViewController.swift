@@ -51,6 +51,7 @@ class NewFaceProfileViewController: UIViewController
     @IBOutlet fileprivate weak var aboutLabel: UILabel!
     @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutHeightConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var likeBtn: UIButton!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -264,6 +265,7 @@ class NewFaceProfileViewController: UIViewController
         self.statusLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusLabel.frame, offset: value) ?? 1.0)
         self.nameLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.nameLabel.frame, offset: value) ?? 1.0)
         self.aboutLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.aboutLabel.frame, offset: value) ?? 1.0)
+        self.likeBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.likeBtn.frame, offset: value) ?? 1.0)
         
         (self.leftFieldsControls + self.rightFieldsControls).forEach { controls in
             controls.iconView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(controls.iconView.frame, offset: value) ?? 1.0)

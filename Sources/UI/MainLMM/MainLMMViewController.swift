@@ -60,7 +60,7 @@ class MainLMMViewController: BaseViewController
     @IBOutlet fileprivate weak var blockContainerView: UIView!
     @IBOutlet fileprivate weak var blockPhotoView: UIImageView!
     @IBOutlet fileprivate weak var blockPhotoAspectConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var updateBtn: UIButton!
+    @IBOutlet fileprivate weak var updateBtn: UIButton!    
     
     override func viewDidLoad()
     {
