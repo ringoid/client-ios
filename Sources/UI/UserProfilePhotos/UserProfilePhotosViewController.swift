@@ -41,9 +41,6 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var pagesTopConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var statusView: UIView!
     @IBOutlet fileprivate weak var statusLabel: UILabel!
-    @IBOutlet fileprivate weak var lmmLabel: UILabel!
-    @IBOutlet fileprivate weak var lmmWidthConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var lmmIconView: UIImageView!
     @IBOutlet fileprivate weak var nameLabel: UILabel!
     @IBOutlet fileprivate weak var nameConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutLabel: UILabel!
@@ -265,7 +262,6 @@ class UserProfilePhotosViewController: BaseViewController
             })
             
             self.updatePages()
-            self.updateLmmCounter()
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.isBlocked.observeOn(MainScheduler.instance).asObservable().subscribe(onNext: { [weak self] state in
@@ -306,10 +302,6 @@ class UserProfilePhotosViewController: BaseViewController
             } else {
                 self?.statusLabel.isHidden = true
             }
-        }).disposed(by: self.disposeBag)
-        
-        self.viewModel?.lmmCount.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] value in
-            self?.updateLmmCounter()
         }).disposed(by: self.disposeBag)
         
         self.currentIndex.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] page in
@@ -443,8 +435,6 @@ class UserProfilePhotosViewController: BaseViewController
         
         self.statusLabel.alpha = 1.0
         self.statusView.alpha = 1.0
-        self.lmmLabel.alpha = 1.0
-        self.lmmIconView.alpha = 1.0
     }
     
     fileprivate func hideControls()
@@ -457,8 +447,6 @@ class UserProfilePhotosViewController: BaseViewController
         
         self.statusLabel.alpha = 0.0
         self.statusView.alpha = 0.0
-        self.lmmLabel.alpha = 0.0
-        self.lmmIconView.alpha = 0.0
     }
     
     fileprivate func showBlockedAlert()
@@ -483,29 +471,6 @@ class UserProfilePhotosViewController: BaseViewController
         }))
         
         self.present(alertVC, animated: true, completion: nil)
-    }
-    
-    fileprivate func updateLmmCounter()
-    {
-        guard let lmmCount = self.viewModel?.lmmCount.value else { return }
-        guard let photosCount = self.viewModel?.photos.value.count else { return }
-        
-        if lmmCount > 0 && photosCount > 0 {
-            let valueStr = "\(lmmCount)"
-            self.lmmLabel.text = valueStr
-            self.lmmWidthConstraint.constant = (valueStr as NSString).boundingRect(
-                with: CGSize(width: 300.0, height: 14.0),
-                options: .usesLineFragmentOrigin,
-                attributes: [.font: self.lmmLabel.font],
-                context: nil
-                ).width + 7.0
-            
-            self.lmmIconView.isHidden = false
-            self.lmmLabel.isHidden = false
-        } else {
-            self.lmmIconView.isHidden = true
-            self.lmmLabel.isHidden = true
-        }
     }
     
     fileprivate func setupFieldsControls()
