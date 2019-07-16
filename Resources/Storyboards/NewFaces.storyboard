@@ -300,9 +300,22 @@ discover users nearby</string>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjV-mO-k6V" userLabel="LikeButton">
+                                <rect key="frame" x="299" y="168" width="76" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="gEO-rG-9EG"/>
+                                    <constraint firstAttribute="width" constant="76" id="hDL-z7-Bs7"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" image="feed_like"/>
+                                <connections>
+                                    <action selector="onLikeWithSender:" destination="gBk-mi-2xQ" eventType="touchUpInside" id="hb9-oT-0HX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="xjV-mO-k6V" firstAttribute="top" secondItem="X1t-jW-NWk" secondAttribute="bottom" constant="120" id="091-Be-Zjn"/>
                             <constraint firstItem="jgt-rd-QRL" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="1TV-pF-1rd"/>
                             <constraint firstItem="DEy-yV-NWA" firstAttribute="top" secondItem="jgt-rd-QRL" secondAttribute="bottom" constant="4" id="2v2-oc-7cA"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="hF7-La-xF3" secondAttribute="trailing" constant="8" id="5NP-6E-3NK"/>
@@ -324,6 +337,7 @@ discover users nearby</string>
                             <constraint firstItem="hpB-3V-fnF" firstAttribute="centerY" secondItem="UGd-FX-LHF" secondAttribute="centerY" id="XI4-5X-8P5"/>
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="-12" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
+                            <constraint firstAttribute="trailing" secondItem="xjV-mO-k6V" secondAttribute="trailing" id="Yvo-8E-AMH"/>
                             <constraint firstAttribute="bottomMargin" secondItem="jgt-rd-QRL" secondAttribute="bottom" constant="96" id="ZMz-PX-Szg" userLabel="name bottom"/>
                             <constraint firstAttribute="trailing" secondItem="D9J-Io-shh" secondAttribute="trailing" id="bTP-h8-Ebf"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="centerY" secondItem="HqK-UA-iee" secondAttribute="centerY" id="cwa-AK-ROd"/>
@@ -452,6 +466,7 @@ discover users nearby</string>
         </scene>
     </scenes>
     <resources>
+        <image name="feed_like" width="36" height="33"/>
         <image name="feed_like_selected" width="36" height="33"/>
         <image name="feed_options" width="32" height="12"/>
         <image name="feed_scroll_top" width="65" height="65"/>

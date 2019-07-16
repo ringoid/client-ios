@@ -156,7 +156,13 @@ class NewFaceProfileViewController: UIViewController
     }
     
     // MARK: - Actions
-        
+    
+    @IBAction func onLike(sender: UIView)
+    {
+        let photoVC = self.photosVCs[self.currentIndex.value]        
+        photoVC.handleTap(sender.center)
+    }
+    
     @IBAction func onBlock()
     {
         guard self.input.actionsManager.checkConnectionState() else { return }
