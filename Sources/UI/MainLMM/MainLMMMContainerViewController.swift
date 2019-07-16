@@ -47,7 +47,6 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet weak var likesYouIndicatorView: UIView!
     
     @IBOutlet weak var optionsContainer: UIView!
-    @IBOutlet fileprivate weak var topShadowView: UIView!
     @IBOutlet fileprivate weak var notificationsBannerView: UIView!
     @IBOutlet fileprivate weak var notificationsBannerLabel: UILabel!
     @IBOutlet fileprivate weak var notificationsBannerSubLabel: UILabel!
@@ -55,6 +54,7 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet fileprivate weak var notSeenMatchesWidthConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var notSeenMessagesWidthConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var optionsLineLeftOffsetConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var optionLineView: UIView!
     
     override func viewDidLoad()
     {
@@ -182,7 +182,6 @@ class MainLMMContainerViewController: BaseViewController
         UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
                 self?.optionsContainer.alpha = state ? 0.0 : 1.0
-                self?.topShadowView.isHidden = state
             }).startAnimation()
         }).disposed(by: self.disposeBag)
         
@@ -191,7 +190,6 @@ class MainLMMContainerViewController: BaseViewController
                 guard let `self` = self else { return }
                 
                 self.optionsContainer.alpha = state ? 0.0 : 1.0
-                self.topShadowView.isHidden = state
                 
                 if state  {
                     self.notificationsBannerView.isHidden = true
@@ -242,6 +240,11 @@ class MainLMMContainerViewController: BaseViewController
             self.chatsTitleLabel.font = lmmUnselectedTitleFont
             
             self.optionsLineLeftOffsetConstraint.constant = 0.0
+            UIViewPropertyAnimator(duration: 0.15, curve: .easeOut) {
+                self.optionLineView.frame = CGRect(
+                    origin: CGPoint(x: 0.0, y: self.optionLineView.frame.origin.y),
+                    size: self.optionLineView.bounds.size)
+                }.startAnimation()
             break
             
         case .matches:
@@ -261,6 +264,11 @@ class MainLMMContainerViewController: BaseViewController
             self.chatsTitleLabel.font = lmmUnselectedTitleFont
             
             self.optionsLineLeftOffsetConstraint.constant = self.matchesBtn.frame.origin.x
+            UIViewPropertyAnimator(duration: 0.15, curve: .easeOut) {
+                self.optionLineView.frame = CGRect(
+                    origin: CGPoint(x: self.matchesBtn.frame.origin.x, y: self.optionLineView.frame.origin.y),
+                    size: self.optionLineView.bounds.size)
+                }.startAnimation()
             break
             
         case .messages:
@@ -280,13 +288,19 @@ class MainLMMContainerViewController: BaseViewController
             self.likesTitleLabel.font = lmmUnselectedTitleFont
             
             self.optionsLineLeftOffsetConstraint.constant = self.chatBtn.frame.origin.x
+            
+            UIViewPropertyAnimator(duration: 0.15, curve: .easeOut) {
+                self.optionLineView.frame = CGRect(
+                    origin: CGPoint(x: self.chatBtn.frame.origin.x, y: self.optionLineView.frame.origin.y),
+                    size: self.optionLineView.bounds.size)
+            }.startAnimation()
             break
             
         default: return
         }
         
         //UIView.animate(withDuration: 0.2) {
-            self.view.setNeedsLayout()
+            //self.optionsContainer.setNeeds
         //}
         
         self.lmmVC?.type.accept(type)
