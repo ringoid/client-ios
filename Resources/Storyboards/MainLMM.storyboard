@@ -164,7 +164,7 @@
                                             <constraint firstAttribute="height" constant="44" id="ZO1-F9-4sK"/>
                                         </constraints>
                                         <size key="titleShadowOffset" width="1" height="1"/>
-                                        <state key="normal" title="0" image="main_bar_like">
+                                        <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -172,6 +172,22 @@
                                             <action selector="onLikesYouSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="GdG-Pr-fyM"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGX-mV-7Wl">
+                                        <rect key="frame" x="55" y="15" width="15" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcl-xX-LWR">
+                                        <rect key="frame" x="45" y="39.5" width="35" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6H-GQ-xYk">
                                         <rect key="frame" x="125" y="16" width="125" height="44"/>
                                         <constraints>
@@ -179,7 +195,7 @@
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <size key="titleShadowOffset" width="1" height="1"/>
-                                        <state key="normal" title="0" image="main_lmm_matches">
+                                        <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -187,6 +203,22 @@
                                             <action selector="onMatchesSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="ONu-bD-Af9"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJl-rA-92c">
+                                        <rect key="frame" x="180" y="15" width="15" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="matches" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOQ-vu-C09">
+                                        <rect key="frame" x="154" y="39.5" width="67" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1R-St-pNy">
                                         <rect key="frame" x="250" y="16" width="125" height="44"/>
                                         <constraints>
@@ -194,7 +226,7 @@
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <size key="titleShadowOffset" width="1" height="1"/>
-                                        <state key="normal" title="0" image="main_lmm_chat">
+                                        <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -202,8 +234,24 @@
                                             <action selector="onChatSelected" destination="7TG-Gv-7GI" eventType="touchUpInside" id="mdT-k7-MV0"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9g-YE-QP9">
+                                        <rect key="frame" x="305" y="15" width="15" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="chats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laJ-6c-Gzn">
+                                        <rect key="frame" x="291" y="39.5" width="43" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ef-im-3ec">
-                                        <rect key="frame" x="69.5" y="22" width="6" height="6"/>
+                                        <rect key="frame" x="82" y="39.5" width="6" height="6"/>
                                         <color key="backgroundColor" red="1" green="0.011764705882352941" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="6" id="5HQ-hA-Fjg"/>
@@ -216,7 +264,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QY6-GC-5lz">
-                                        <rect key="frame" x="194.5" y="22" width="6" height="6"/>
+                                        <rect key="frame" x="223" y="39.5" width="6" height="6"/>
                                         <color key="backgroundColor" red="1" green="0.01176470588" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="6" id="bDC-sr-p78"/>
@@ -229,7 +277,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="82V-db-bgk">
-                                        <rect key="frame" x="319.5" y="22" width="6" height="6"/>
+                                        <rect key="frame" x="336" y="39.5" width="6" height="6"/>
                                         <color key="backgroundColor" red="1" green="0.01176470588" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="6" id="0xH-3e-iuq"/>
@@ -245,21 +293,33 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Y1R-St-pNy" firstAttribute="centerY" secondItem="t6H-GQ-xYk" secondAttribute="centerY" id="0KR-h9-nPk"/>
+                                    <constraint firstItem="aOQ-vu-C09" firstAttribute="centerX" secondItem="t6H-GQ-xYk" secondAttribute="centerX" id="0dj-V9-nFr"/>
+                                    <constraint firstItem="Y1R-St-pNy" firstAttribute="centerX" secondItem="laJ-6c-Gzn" secondAttribute="centerX" id="1JO-ki-9NM"/>
+                                    <constraint firstItem="VGX-mV-7Wl" firstAttribute="centerY" secondItem="30C-S0-bMA" secondAttribute="centerY" constant="-10" id="5Or-7w-5Xg"/>
                                     <constraint firstItem="Y1R-St-pNy" firstAttribute="width" secondItem="30C-S0-bMA" secondAttribute="width" id="6Lc-ST-sBc"/>
-                                    <constraint firstItem="1ef-im-3ec" firstAttribute="top" secondItem="30C-S0-bMA" secondAttribute="top" constant="6" id="6jh-xb-5fj"/>
-                                    <constraint firstItem="QY6-GC-5lz" firstAttribute="centerX" secondItem="t6H-GQ-xYk" secondAttribute="centerX" constant="10" id="DJC-BO-BAm"/>
+                                    <constraint firstItem="RJl-rA-92c" firstAttribute="centerY" secondItem="t6H-GQ-xYk" secondAttribute="centerY" constant="-10" id="88o-P0-3gc"/>
+                                    <constraint firstItem="laJ-6c-Gzn" firstAttribute="centerY" secondItem="Y1R-St-pNy" secondAttribute="centerY" constant="12" id="ESD-a4-igG"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="leading" secondItem="30C-S0-bMA" secondAttribute="trailing" id="Fth-z7-yBr"/>
+                                    <constraint firstItem="aOQ-vu-C09" firstAttribute="centerY" secondItem="t6H-GQ-xYk" secondAttribute="centerY" constant="12" id="Gp7-4D-dJW"/>
+                                    <constraint firstItem="Bcl-xX-LWR" firstAttribute="centerY" secondItem="30C-S0-bMA" secondAttribute="centerY" constant="12" id="HXG-ab-TSZ"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerX" secondItem="Ywr-Pj-xRP" secondAttribute="centerX" id="KRt-C6-PGQ" userLabel="TabsCenter"/>
-                                    <constraint firstItem="QY6-GC-5lz" firstAttribute="centerY" secondItem="1ef-im-3ec" secondAttribute="centerY" id="MEy-bx-pMl"/>
-                                    <constraint firstItem="82V-db-bgk" firstAttribute="centerX" secondItem="Y1R-St-pNy" secondAttribute="centerX" constant="10" id="U30-g0-fv0"/>
+                                    <constraint firstItem="Y1R-St-pNy" firstAttribute="centerX" secondItem="A9g-YE-QP9" secondAttribute="centerX" id="MG6-So-lnB"/>
+                                    <constraint firstItem="1ef-im-3ec" firstAttribute="trailing" secondItem="Bcl-xX-LWR" secondAttribute="trailing" constant="8" id="VJe-Rf-ASF"/>
                                     <constraint firstAttribute="bottom" secondItem="t6H-GQ-xYk" secondAttribute="bottom" id="Vfn-Br-crt"/>
                                     <constraint firstItem="30C-S0-bMA" firstAttribute="leading" secondItem="Ywr-Pj-xRP" secondAttribute="leading" id="ZOb-mr-uXJ"/>
                                     <constraint firstItem="Y1R-St-pNy" firstAttribute="leading" secondItem="t6H-GQ-xYk" secondAttribute="trailing" id="Zwg-1Q-IhN"/>
+                                    <constraint firstItem="RJl-rA-92c" firstAttribute="centerX" secondItem="t6H-GQ-xYk" secondAttribute="centerX" id="dj9-PV-CKF"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="centerY" secondItem="30C-S0-bMA" secondAttribute="centerY" id="eBn-Oa-T8H"/>
+                                    <constraint firstItem="A9g-YE-QP9" firstAttribute="centerY" secondItem="Y1R-St-pNy" secondAttribute="centerY" constant="-10" id="eJc-wO-xnc"/>
+                                    <constraint firstItem="82V-db-bgk" firstAttribute="trailing" secondItem="laJ-6c-Gzn" secondAttribute="trailing" constant="8" id="gYG-TV-xjz"/>
+                                    <constraint firstItem="1ef-im-3ec" firstAttribute="top" secondItem="Bcl-xX-LWR" secondAttribute="top" id="gdW-Vw-O1B"/>
                                     <constraint firstAttribute="trailing" secondItem="Y1R-St-pNy" secondAttribute="trailing" id="iZZ-Wm-K6t"/>
-                                    <constraint firstItem="1ef-im-3ec" firstAttribute="centerX" secondItem="30C-S0-bMA" secondAttribute="centerX" constant="10" id="kEb-b3-ojE"/>
+                                    <constraint firstItem="Bcl-xX-LWR" firstAttribute="centerX" secondItem="30C-S0-bMA" secondAttribute="centerX" id="jIe-EZ-X22"/>
+                                    <constraint firstItem="QY6-GC-5lz" firstAttribute="trailing" secondItem="aOQ-vu-C09" secondAttribute="trailing" constant="8" id="kHd-sz-gPL"/>
                                     <constraint firstItem="t6H-GQ-xYk" firstAttribute="width" secondItem="30C-S0-bMA" secondAttribute="width" id="kLV-j1-BNp"/>
-                                    <constraint firstItem="82V-db-bgk" firstAttribute="centerY" secondItem="1ef-im-3ec" secondAttribute="centerY" id="xjl-hW-g2k"/>
+                                    <constraint firstItem="82V-db-bgk" firstAttribute="top" secondItem="laJ-6c-Gzn" secondAttribute="top" id="ng1-Tc-iDc"/>
+                                    <constraint firstItem="QY6-GC-5lz" firstAttribute="top" secondItem="aOQ-vu-C09" secondAttribute="top" id="pJ7-av-d1n"/>
+                                    <constraint firstItem="VGX-mV-7Wl" firstAttribute="centerX" secondItem="30C-S0-bMA" secondAttribute="centerX" id="we0-UO-WcX"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cg6-qk-QbB">
@@ -337,10 +397,16 @@
                     <connections>
                         <outlet property="chatBtn" destination="Y1R-St-pNy" id="sLl-2g-d8G"/>
                         <outlet property="chatIndicatorView" destination="82V-db-bgk" id="GzI-GU-4AO"/>
+                        <outlet property="chatsCountLabel" destination="A9g-YE-QP9" id="d3b-OR-06o"/>
+                        <outlet property="chatsTitleLabel" destination="laJ-6c-Gzn" id="Dqz-mL-w4f"/>
                         <outlet property="likeYouBtn" destination="30C-S0-bMA" id="dCI-dr-uju"/>
+                        <outlet property="likesCountLabel" destination="VGX-mV-7Wl" id="JdR-cy-4qx"/>
+                        <outlet property="likesTitleLabel" destination="Bcl-xX-LWR" id="DYz-09-sV3"/>
                         <outlet property="likesYouIndicatorView" destination="1ef-im-3ec" id="8tJ-la-Rrg"/>
                         <outlet property="matchesBtn" destination="t6H-GQ-xYk" id="TUl-ED-bSc"/>
+                        <outlet property="matchesCountLabel" destination="RJl-rA-92c" id="kMA-zs-55d"/>
                         <outlet property="matchesIndicatorView" destination="QY6-GC-5lz" id="udS-3Q-Kp3"/>
+                        <outlet property="matchesTitleLabel" destination="aOQ-vu-C09" id="vrH-iu-0pe"/>
                         <outlet property="notSeenLikesYouWidthConstraint" destination="9ch-bM-NrC" id="GxJ-CC-1d9"/>
                         <outlet property="notSeenMatchesWidthConstraint" destination="k0D-k0-wu9" id="z4q-DP-p9w"/>
                         <outlet property="notSeenMessagesWidthConstraint" destination="FNK-qZ-fi2" id="PYs-lo-0L6"/>
@@ -792,9 +858,6 @@ see who likes you</string>
         <image name="feed_options" width="32" height="12"/>
         <image name="feed_scroll_top" width="65" height="65"/>
         <image name="main_banner_bell" width="64" height="64"/>
-        <image name="main_bar_like" width="29" height="27"/>
-        <image name="main_lmm_chat" width="50" height="40"/>
-        <image name="main_lmm_matches" width="47" height="42"/>
         <image name="profile_fields_children" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>

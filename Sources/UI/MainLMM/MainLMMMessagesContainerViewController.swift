@@ -108,16 +108,16 @@ class MainLMMMessagesContainerViewController: BaseViewController
         switch type {
         case .inbox:
             self.inboxBtn.setTitleColor(lmmSelectedColor, for: .normal)
-            self.inboxBtn.titleLabel?.font = lmmSelectedFont
+            self.inboxBtn.titleLabel?.font = lmmSelectedTitleFont
             self.sentBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.sentBtn.titleLabel?.font = lmmUnselectedFont
+            self.sentBtn.titleLabel?.font = lmmUnselectedTitleFont
             break
             
         case .sent:
             self.sentBtn.setTitleColor(lmmSelectedColor, for: .normal)
-            self.sentBtn.titleLabel?.font = lmmSelectedFont
+            self.sentBtn.titleLabel?.font = lmmSelectedTitleFont
             self.inboxBtn.setTitleColor(lmmUnselectedColor, for: .normal)
-            self.inboxBtn.titleLabel?.font = lmmUnselectedFont
+            self.inboxBtn.titleLabel?.font = lmmUnselectedTitleFont
             break
 
         default: return

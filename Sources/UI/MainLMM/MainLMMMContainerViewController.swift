@@ -9,8 +9,10 @@
 import RxSwift
 import RxCocoa
 
-var lmmSelectedFont = UIFont.systemFont(ofSize: 18.0, weight: .bold)
-var lmmUnselectedFont = UIFont.systemFont(ofSize: 17.0, weight: .regular)
+var lmmSelectedTitleFont = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
+var lmmUnselectedTitleFont = UIFont.systemFont(ofSize: 15.0, weight: .regular)
+var lmmSelectedCountFont = UIFont.systemFont(ofSize: 22.0, weight: .bold)
+var lmmUnselectedCountFont = UIFont.systemFont(ofSize: 22.0, weight: .semibold)
 var lmmSelectedColor = UIColor.white
 var lmmUnselectedColor = UIColor(
     red: 219.0 / 255.0,
@@ -32,9 +34,18 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet weak var likeYouBtn: UIButton!
     @IBOutlet weak var matchesBtn: UIButton!
     @IBOutlet weak var chatBtn: UIButton!
+    
+    @IBOutlet weak var likesTitleLabel: UILabel!
+    @IBOutlet weak var likesCountLabel: UILabel!
+    @IBOutlet weak var matchesTitleLabel: UILabel!
+    @IBOutlet weak var matchesCountLabel: UILabel!
+    @IBOutlet weak var chatsTitleLabel: UILabel!
+    @IBOutlet weak var chatsCountLabel: UILabel!
+    
     @IBOutlet weak var chatIndicatorView: UIView!
     @IBOutlet weak var matchesIndicatorView: UIView!
     @IBOutlet weak var likesYouIndicatorView: UIView!
+    
     @IBOutlet weak var optionsContainer: UIView!
     @IBOutlet fileprivate weak var topShadowView: UIView!
     @IBOutlet fileprivate weak var notificationsBannerView: UIView!
@@ -138,18 +149,15 @@ class MainLMMContainerViewController: BaseViewController
     fileprivate func setupBindings()
     {
         self.input.lmmManager.likesYou.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
-            let title: String? = profiles.count != 0 ? "\(profiles.count)" : nil
-            self?.likeYouBtn.setTitle(title, for: .normal)
+            self?.likesCountLabel.text = "\(profiles.count)"
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.matches.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
-            let title: String? = profiles.count != 0 ? "\(profiles.count)" : nil
-            self?.matchesBtn.setTitle(title, for: .normal)
+            self?.matchesCountLabel.text = "\(profiles.count)"
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.messages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
-            let title: String? = profiles.count != 0 ? "\(profiles.count)" : nil
-            self?.chatBtn.setTitle(title, for: .normal)
+            self?.chatsCountLabel.text = "\(profiles.count)"
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.notSeenLikesYouCount.subscribe(onNext: { [weak self] count in
@@ -217,21 +225,54 @@ class MainLMMContainerViewController: BaseViewController
 
         switch type {
         case .likesYou:
-            self.likeYouBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
-            self.matchesBtn.setImage(UIImage(named: "main_lmm_matches"), for: .normal)
-            self.chatBtn.setImage(UIImage(named: "main_lmm_chat"), for: .normal)
+            self.likesCountLabel.textColor = lmmSelectedColor
+            self.likesCountLabel.font = lmmSelectedCountFont
+            self.likesTitleLabel.textColor = lmmSelectedColor
+            self.likesTitleLabel.font = lmmSelectedTitleFont
+            
+            self.matchesCountLabel.textColor = lmmUnselectedColor
+            self.matchesCountLabel.font = lmmUnselectedCountFont
+            self.matchesTitleLabel.textColor = lmmUnselectedColor
+            self.matchesTitleLabel.font = lmmUnselectedTitleFont
+            
+            self.chatsCountLabel.textColor = lmmUnselectedColor
+            self.chatsCountLabel.font = lmmUnselectedCountFont
+            self.chatsTitleLabel.textColor = lmmUnselectedColor
+            self.chatsTitleLabel.font = lmmUnselectedTitleFont
             break
             
         case .matches:
-            self.matchesBtn.setImage(UIImage(named: "main_lmm_matches_selected"), for: .normal)
-            self.likeYouBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.chatBtn.setImage(UIImage(named: "main_lmm_chat"), for: .normal)
+            self.matchesCountLabel.textColor = lmmSelectedColor
+            self.matchesCountLabel.font = lmmSelectedCountFont
+            self.matchesTitleLabel.textColor = lmmSelectedColor
+            self.matchesTitleLabel.font = lmmSelectedTitleFont
+            
+            self.likesCountLabel.textColor = lmmUnselectedColor
+            self.likesCountLabel.font = lmmUnselectedCountFont
+            self.likesTitleLabel.textColor = lmmUnselectedColor
+            self.likesTitleLabel.font = lmmUnselectedTitleFont
+            
+            self.chatsCountLabel.textColor = lmmUnselectedColor
+            self.chatsCountLabel.font = lmmUnselectedCountFont
+            self.chatsTitleLabel.textColor = lmmUnselectedColor
+            self.chatsTitleLabel.font = lmmUnselectedTitleFont
             break
             
         case .messages:
-            self.chatBtn.setImage(UIImage(named: "main_lmm_chat_selected"), for: .normal)
-            self.matchesBtn.setImage(UIImage(named: "main_lmm_matches"), for: .normal)
-            self.likeYouBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.chatsCountLabel.textColor = lmmSelectedColor
+            self.chatsCountLabel.font = lmmSelectedCountFont
+            self.chatsTitleLabel.textColor = lmmSelectedColor
+            self.chatsTitleLabel.font = lmmSelectedTitleFont
+            
+            self.matchesCountLabel.textColor = lmmUnselectedColor
+            self.matchesCountLabel.font = lmmUnselectedCountFont
+            self.matchesTitleLabel.textColor = lmmUnselectedColor
+            self.matchesTitleLabel.font = lmmUnselectedTitleFont
+            
+            self.likesCountLabel.textColor = lmmUnselectedColor
+            self.likesCountLabel.font = lmmUnselectedCountFont
+            self.likesTitleLabel.textColor = lmmUnselectedColor
+            self.likesTitleLabel.font = lmmUnselectedTitleFont
             break
             
         default: return
