@@ -118,10 +118,10 @@ see how many likes you get</string>
                                 </connections>
                             </button>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_pencil" translatesAutoresizingMaskIntoConstraints="NO" id="oTk-g9-AL2">
-                                <rect key="frame" x="327" y="198" width="32" height="32"/>
+                                <rect key="frame" x="335" y="198" width="24" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="FXe-f5-7kW"/>
-                                    <constraint firstAttribute="height" constant="32" id="Ued-jg-br3"/>
+                                    <constraint firstAttribute="width" constant="24" id="FXe-f5-7kW"/>
+                                    <constraint firstAttribute="height" constant="24" id="Ued-jg-br3"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ct4-pd-6bj">
