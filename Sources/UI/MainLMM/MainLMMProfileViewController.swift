@@ -740,6 +740,9 @@ extension MessagingState
     {
         switch self {
         case .chatUnread: return "feed_chat_unread"
+        case .chatRead: return "feed_chat_read"
+        case .empty: return "feed_messages_empty"
+        case .outcomingOnly: return "feed_messages"
         default: return nil
         }
     }
