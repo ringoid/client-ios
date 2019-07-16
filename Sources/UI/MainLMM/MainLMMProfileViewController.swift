@@ -505,12 +505,13 @@ class MainLMMProfileViewController: UIViewController
                         controls.titleLabel.isHidden = true
                     })
                     
-                    let height = (aboutText as NSString).boundingRect(
+                    var height = (aboutText as NSString).boundingRect(
                         with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
                         options: .usesLineFragmentOrigin,
                         attributes: [NSAttributedString.Key.font: self.aboutLabel.font],
                         context: nil
                         ).size.height + 4.0
+                    height = height < 64.0 ? height : 64.0
                     
                     self.aboutLabel.text = aboutText
                     self.aboutLabel.isHidden = false
@@ -543,12 +544,13 @@ class MainLMMProfileViewController: UIViewController
                         controls.titleLabel.isHidden = true
                     })
                     
-                    let height = (aboutText as NSString).boundingRect(
+                    var height = (aboutText as NSString).boundingRect(
                         with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
                         options: .usesLineFragmentOrigin,
                         attributes: [NSAttributedString.Key.font: self.aboutLabel.font],
                         context: nil
                         ).size.height + 4.0
+                    height = height < 64.0 ? height : 64.0
                     
                     self.aboutLabel.text = aboutText
                     self.aboutLabel.isHidden = false
