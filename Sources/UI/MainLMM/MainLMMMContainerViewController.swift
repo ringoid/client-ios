@@ -15,9 +15,9 @@ var lmmSelectedCountFont = UIFont.systemFont(ofSize: 22.0, weight: .bold)
 var lmmUnselectedCountFont = UIFont.systemFont(ofSize: 22.0, weight: .semibold)
 var lmmSelectedColor = UIColor.white
 var lmmUnselectedColor = UIColor(
-    red: 219.0 / 255.0,
-    green: 219.0 / 255.0,
-    blue: 219.0 / 255.0,
+    red: 160.0 / 255.0,
+    green: 160.0 / 255.0,
+    blue: 160.0 / 255.0,
     alpha: 1.0
 )
 
@@ -54,6 +54,7 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet fileprivate weak var notSeenLikesYouWidthConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var notSeenMatchesWidthConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var notSeenMessagesWidthConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var optionsLineLeftOffsetConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -239,6 +240,8 @@ class MainLMMContainerViewController: BaseViewController
             self.chatsCountLabel.font = lmmUnselectedCountFont
             self.chatsTitleLabel.textColor = lmmUnselectedColor
             self.chatsTitleLabel.font = lmmUnselectedTitleFont
+            
+            self.optionsLineLeftOffsetConstraint.constant = 0.0
             break
             
         case .matches:
@@ -256,6 +259,8 @@ class MainLMMContainerViewController: BaseViewController
             self.chatsCountLabel.font = lmmUnselectedCountFont
             self.chatsTitleLabel.textColor = lmmUnselectedColor
             self.chatsTitleLabel.font = lmmUnselectedTitleFont
+            
+            self.optionsLineLeftOffsetConstraint.constant = self.matchesBtn.frame.origin.x
             break
             
         case .messages:
@@ -273,10 +278,16 @@ class MainLMMContainerViewController: BaseViewController
             self.likesCountLabel.font = lmmUnselectedCountFont
             self.likesTitleLabel.textColor = lmmUnselectedColor
             self.likesTitleLabel.font = lmmUnselectedTitleFont
+            
+            self.optionsLineLeftOffsetConstraint.constant = self.chatBtn.frame.origin.x
             break
             
         default: return
         }
+        
+        //UIView.animate(withDuration: 0.2) {
+            self.view.setNeedsLayout()
+        //}
         
         self.lmmVC?.type.accept(type)
     }
