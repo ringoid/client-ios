@@ -233,7 +233,8 @@ class UserProfilePhotosViewController: BaseViewController
             errorsManager: self.input.errorsManager,
             profileManager: self.input.profileManager,
             device: self.input.device,
-            db: self.input.db
+            db: self.input.db,
+            navigationManager: self.input.navigationManager
         )
         
         ModalUIManager.shared.show(navVC, animated: true)
@@ -364,7 +365,8 @@ class UserProfilePhotosViewController: BaseViewController
             vc.photo = photo
             vc.input = SettingsProfileVMInput(
                 profileManager: self.input.profileManager,
-                db: self.input.db
+                db: self.input.db,
+                navigationManager: self.input.navigationManager
             )
             
             return vc
@@ -463,6 +465,21 @@ class UserProfilePhotosViewController: BaseViewController
         alertVC.addAction(UIAlertAction(title: "button_close".localized(), style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func showFieldsEditor()
+    {
+        let storyboard = Storyboards.settings()
+        guard let profileVC = storyboard.instantiateViewController(withIdentifier: "settings_profile") as? SettingsProfileViewController else { return }
+        
+        profileVC.input = SettingsProfileVMInput(
+            profileManager: self.input.profileManager,
+            db: self.input.db,
+            navigationManager: self.input.navigationManager
+        )
+        profileVC.isModal = true
+        
+        ModalUIManager.shared.show(profileVC, animated: true)
     }
     
     fileprivate func showLocationsSettingsAlert()
@@ -809,6 +826,17 @@ extension UserProfilePhotosViewController: UserProfilePhotoCropVCDelegate
             self?.viewModel?.lastPhotoId.accept(nil)
             self?.lastClientPhotoId = photo.clientId
             self?.updatePages()
+            
+            if let profile = self?.input.profileManager.profile.value {
+                if profile.name == nil ||
+                    profile.name == "unknown" ||
+                    profile.whereLive == nil ||
+                    profile.whereLive == "unknown" {
+                    self?.showFieldsEditor()
+                    
+                    return
+                }
+            }
             
             if UIManager.shared.discoverAddPhotoModeEnabled.value {
                 UIManager.shared.discoverAddPhotoModeEnabled.accept(false)

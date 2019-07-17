@@ -63,6 +63,11 @@ class SettingsProfileViewController: BaseViewController
         
         if self.isModal {
             ModalUIManager.shared.hide(animated: true)
+            
+            if UIManager.shared.discoverAddPhotoModeEnabled.value {
+                UIManager.shared.discoverAddPhotoModeEnabled.accept(false)
+                self.input.navigationManager.mainItem.accept(.search)
+            }
         } else {
             self.navigationController?.popViewController(animated: true)
         }

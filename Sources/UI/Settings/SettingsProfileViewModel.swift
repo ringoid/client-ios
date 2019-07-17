@@ -12,6 +12,7 @@ struct SettingsProfileVMInput
 {
     let profileManager: UserProfileManager
     let db: DBService
+    let navigationManager: NavigationManager
 }
 
 class SettingsProfileViewModel

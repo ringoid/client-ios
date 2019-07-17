@@ -17,6 +17,7 @@ struct SettingsVMInput
     let profileManager: UserProfileManager
     let device: DeviceService
     let db: DBService
+    let navigationManager: NavigationManager
 }
 
 class SettingsViewModel
