@@ -348,7 +348,17 @@ class MainLMMProfileViewController: UIViewController
     
     fileprivate func handleTopBorderDistanceChange(_ value: CGFloat)
     {
-        self.optionsBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
+        // Options button interaction area special case
+        let optionsOrig = self.optionsBtn.frame.origin
+        let optionsSize = self.optionsBtn.frame.size
+        let optionsFrame = CGRect(
+            x: optionsOrig.x,
+            y: optionsOrig.y + 32.0,
+            width: optionsSize.width,
+            height: optionsSize.height - 64.0
+        )
+        self.optionsBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(optionsFrame, offset: value) ?? 1.0)
+        
         self.messageBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(self.messageBtn.frame, offset: value) ?? 1.0)
         self.pagesControl.alpha = self.discreetOpacity(for: self.topOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
         self.statusView.alpha = self.discreetOpacity(for: self.topOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
