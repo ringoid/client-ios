@@ -524,7 +524,7 @@ class MainLMMViewController: BaseViewController
         self.chatContainerView.embed(vc, to: self)
         self.chatContainerView.isHidden = false
                 
-        self.scrollTop(to: indexPath.row, offset: 0.0, animated: false)
+        self.scrollTop(to: indexPath.row, offset: 64.0, animated: false)
         profileVC?.hideNotChatControls()
     }
     
@@ -541,7 +541,7 @@ class MainLMMViewController: BaseViewController
         self.chatContainerView.isHidden = true
         self.chatContainerView.remove()
         
-        self.scrollTop(to: indexPath.row, offset: 44.0, animated: false)
+        self.scrollTop(to: indexPath.row, offset: 64.0, animated: false)
         self.isChatShown = false
     }
     
@@ -753,7 +753,7 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
                 guard let `cell` = cell else { return }
                 guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
                 
-                self?.scrollTop(to: cellIndexPath.row, offset: 44.0, animated: false)
+                self?.scrollTop(to: cellIndexPath.row, offset: 64.0, animated: false)
             }
             
             profileVC.currentIndex.asObservable().subscribe(onNext: { index in
