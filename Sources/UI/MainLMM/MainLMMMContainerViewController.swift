@@ -68,6 +68,10 @@ class MainLMMContainerViewController: BaseViewController
     
     override func updateLocale()
     {
+        self.likesTitleLabel.text = "lmm_tab_likes".localized()
+        self.matchesTitleLabel.text = "lmm_tab_matches".localized()
+        self.chatsTitleLabel.text = "lmm_tab_messages".localized()
+        
         self.notificationsBannerLabel.text = "settings_notifications_banner_title".localized()
         self.notificationsBannerSubLabel.text = "settings_notifications_banner_subtitle".localized()
     }
