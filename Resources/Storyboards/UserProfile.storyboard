@@ -118,7 +118,7 @@ see how many likes you get</string>
                                 </connections>
                             </button>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_pencil" translatesAutoresizingMaskIntoConstraints="NO" id="oTk-g9-AL2">
-                                <rect key="frame" x="335" y="198" width="24" height="24"/>
+                                <rect key="frame" x="335" y="214" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="FXe-f5-7kW"/>
                                     <constraint firstAttribute="height" constant="24" id="Ued-jg-br3"/>
@@ -258,7 +258,7 @@ see how many likes you get</string>
                             <constraint firstAttribute="trailing" secondItem="eno-1i-kP1" secondAttribute="trailing" constant="8" id="Tes-5n-t7U"/>
                             <constraint firstItem="Szp-BM-HWd" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" constant="16" id="XGn-z0-m6X"/>
                             <constraint firstItem="npc-Nn-Arv" firstAttribute="centerY" secondItem="UMb-Bl-CM4" secondAttribute="centerY" id="YGI-Yu-U9I"/>
-                            <constraint firstItem="oTk-g9-AL2" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="178" id="Zox-3l-ddI"/>
+                            <constraint firstItem="oTk-g9-AL2" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="194" id="Zox-3l-ddI"/>
                             <constraint firstItem="eno-1i-kP1" firstAttribute="bottom" secondItem="04l-Dx-sJ6" secondAttribute="bottom" id="afA-8G-T5R"/>
                             <constraint firstItem="Szp-BM-HWd" firstAttribute="bottom" secondItem="Yc6-CF-qSL" secondAttribute="top" constant="430" id="afa-yc-kob" userLabel="NameBottom"/>
                             <constraint firstItem="27t-IX-qLF" firstAttribute="leading" secondItem="BK0-ML-AsK" secondAttribute="trailing" constant="8" id="bWi-uQ-1mf"/>
