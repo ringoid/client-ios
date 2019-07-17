@@ -29,7 +29,6 @@ class MainLMMContainerViewController: BaseViewController
     
     fileprivate var lmmVC: MainLMMViewController?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
-    fileprivate var isBannerClosedManually: Bool = false
     
     @IBOutlet weak var likeYouBtn: UIButton!
     @IBOutlet weak var matchesBtn: UIButton!
@@ -47,9 +46,6 @@ class MainLMMContainerViewController: BaseViewController
     @IBOutlet weak var likesYouIndicatorView: UIView!
     
     @IBOutlet weak var optionsContainer: UIView!
-    @IBOutlet fileprivate weak var notificationsBannerView: UIView!
-    @IBOutlet fileprivate weak var notificationsBannerLabel: UILabel!
-    @IBOutlet fileprivate weak var notificationsBannerSubLabel: UILabel!
     @IBOutlet fileprivate weak var notSeenLikesYouWidthConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var notSeenMatchesWidthConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var notSeenMessagesWidthConstraint: NSLayoutConstraint!
@@ -71,9 +67,6 @@ class MainLMMContainerViewController: BaseViewController
         self.likesTitleLabel.text = "lmm_tab_likes".localized()
         self.matchesTitleLabel.text = "lmm_tab_matches".localized()
         self.chatsTitleLabel.text = "lmm_tab_messages".localized()
-        
-        self.notificationsBannerLabel.text = "settings_notifications_banner_title".localized()
-        self.notificationsBannerSubLabel.text = "settings_notifications_banner_subtitle".localized()
     }
     
     override func updateTheme()
@@ -117,36 +110,6 @@ class MainLMMContainerViewController: BaseViewController
     @IBAction func onChatSelected()
     {
         self.toggle(.messages)
-    }
-    
-    @IBAction fileprivate func onBannerTap()
-    {
-        if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-            UIApplication.shared.open(settingsUrl)
-        }
-        
-        self.closeBanner()
-    }
-    
-    @IBAction fileprivate func onBannerClose()
-    {
-        self.isBannerClosedManually = true
-        
-        self.closeBanner()
-    }
-    
-    fileprivate func closeBanner()
-    {
-        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeIn) { [weak self] in
-            self?.notificationsBannerView.alpha = 0.0
-        }
-        
-        animator.addCompletion { [weak self] _ in
-            self?.notificationsBannerView.isHidden = true
-            self?.notificationsBannerView.alpha = 1.0
-        }
-        
-        animator.startAnimation()
     }
     
     // MARK: -
@@ -193,15 +156,7 @@ class MainLMMContainerViewController: BaseViewController
             UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
                 guard let `self` = self else { return }
                 
-                self.optionsContainer.alpha = state ? 0.0 : 1.0
-                
-                if state  {
-                    self.notificationsBannerView.isHidden = true
-                } else {
-                    if self.input.notifications.isRegistered {
-                        self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value || self.isBannerClosedManually
-                    }
-                }
+                self.optionsContainer.alpha = state ? 0.0 : 1.0                                
             }).startAnimation()
         }).disposed(by: self.disposeBag)
         
@@ -210,13 +165,6 @@ class MainLMMContainerViewController: BaseViewController
             self?.likesYouIndicatorView.alpha = alpha
             self?.matchesIndicatorView.alpha = alpha
             self?.chatIndicatorView.alpha = alpha
-        }).disposed(by: self.disposeBag)
-        
-        self.input.notifications.isGranted.observeOn(MainScheduler.instance).subscribe(onNext:{ [weak self] _ in
-            guard let `self` = self else { return }
-            guard self.input.notifications.isRegistered else { return }
-            
-            self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value || self.isBannerClosedManually
         }).disposed(by: self.disposeBag)
     }
     
@@ -302,11 +250,7 @@ class MainLMMContainerViewController: BaseViewController
             
         default: return
         }
-        
-        //UIView.animate(withDuration: 0.2) {
-            //self.optionsContainer.setNeeds
-        //}
-        
+
         self.lmmVC?.type.accept(type)
     }
 }

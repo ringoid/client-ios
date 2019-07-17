@@ -41,6 +41,7 @@ class MainViewController: BaseViewController
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var menuVCCache: [SelectionState: UIViewController] = [:]
     fileprivate var prevState: SelectionState? = nil
+    fileprivate var isBannerClosedManually: Bool = false
     
     fileprivate var preshownLikesCount: Int = 0
     fileprivate var preshownMatchesCount: Int = 0
@@ -54,6 +55,11 @@ class MainViewController: BaseViewController
     @IBOutlet fileprivate weak var effectsView: MainEffectsView!
     @IBOutlet fileprivate weak var buttonsStackView: UIView!
     @IBOutlet fileprivate weak var bottomShadowView: UIView!
+    
+    @IBOutlet fileprivate weak var notificationsBannerView: UIView!
+    @IBOutlet fileprivate weak var notificationsBannerLabel: UILabel!
+    @IBOutlet fileprivate weak var notificationsBannerSubLabel: UILabel!
+
     
     static func create() -> MainViewController
     {
@@ -104,6 +110,12 @@ class MainViewController: BaseViewController
         self.view.backgroundColor = BackgroundColor().uiColor()
     }
     
+    override func updateLocale()
+    {
+        self.notificationsBannerLabel.text = "settings_notifications_banner_title".localized()
+        self.notificationsBannerSubLabel.text = "settings_notifications_banner_subtitle".localized()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "embed_container"
@@ -111,6 +123,8 @@ class MainViewController: BaseViewController
             self.containerVC = segue.destination as? ContainerViewController
         }
     }
+    
+    // MARK: - Actions
     
     @IBAction func onSearchSelected()
     {
@@ -130,6 +144,36 @@ class MainViewController: BaseViewController
     @IBAction func onMessagesSelected()
     {
         self.viewModel?.moveToMessages()
+    }
+    
+    @IBAction fileprivate func onBannerTap()
+    {
+        if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(settingsUrl)
+        }
+        
+        self.closeBanner()
+    }
+    
+    @IBAction fileprivate func onBannerClose()
+    {
+        self.isBannerClosedManually = true
+        
+        self.closeBanner()
+    }
+    
+    fileprivate func closeBanner()
+    {
+        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeIn) { [weak self] in
+            self?.notificationsBannerView.alpha = 0.0
+        }
+        
+        animator.addCompletion { [weak self] _ in
+            self?.notificationsBannerView.isHidden = true
+            self?.notificationsBannerView.alpha = 1.0
+        }
+        
+        animator.startAnimation()
     }
     
     // MARK: -
@@ -510,10 +554,20 @@ class MainViewController: BaseViewController
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.chatModeEnabled.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
-            self?.buttonsStackView.isHidden = state
-            self?.profileIndicatorView.alpha = state ? 0.0 : 1.0
-            self?.lmmNotSeenIndicatorView.alpha = state ? 0.0 : 1.0
-            self?.bottomShadowView.isHidden = state
+            guard let `self` = self else { return }
+            
+            self.buttonsStackView.isHidden = state
+            self.profileIndicatorView.alpha = state ? 0.0 : 1.0
+            self.lmmNotSeenIndicatorView.alpha = state ? 0.0 : 1.0
+            self.bottomShadowView.isHidden = state
+            
+            if state  {
+                self.notificationsBannerView.isHidden = true
+            } else {
+                if self.input.notifications.isRegistered {
+                    self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value || self.isBannerClosedManually
+                }
+            }
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.blockModeEnabled.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
@@ -568,6 +622,13 @@ class MainViewController: BaseViewController
                 break
             }
             
+        }).disposed(by: self.disposeBag)
+        
+        self.input.notifications.isGranted.observeOn(MainScheduler.instance).subscribe(onNext:{ [weak self] _ in
+            guard let `self` = self else { return }
+            guard self.input.notifications.isRegistered else { return }
+            
+            self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value || self.isBannerClosedManually
         }).disposed(by: self.disposeBag)
     }
 }
