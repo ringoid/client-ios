@@ -131,7 +131,11 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
             case .whereLive: cell.valueText = profile.whereLive
             case .bio: cell.valueText = profile.about
             }
-        }        
+            
+            if field.fieldType == .name, profile.name == nil || profile.name == "unknown" {
+                cell.startEditing()
+            }
+        }
         
         return cell
     }

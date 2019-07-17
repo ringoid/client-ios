@@ -814,6 +814,7 @@ extension UserProfilePhotosViewController: UserProfilePhotoCropVCDelegate
                 UIManager.shared.discoverAddPhotoModeEnabled.accept(false)
                 self?.input.navigationManager.mainItem.accept(.search)
             }
+            
         }), onError: ({ [weak self] error in
             guard let `self` = self else { return }
             
