@@ -508,7 +508,7 @@ see who likes you</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mmz-g3-KhV">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="mmz-g3-KhV" secondAttribute="height" multiplier="3:4" id="o3Y-zT-Xqf"/>
                                         </constraints>
@@ -518,7 +518,7 @@ see who likes you</string>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="mmz-g3-KhV" secondAttribute="trailing" id="F0w-Gc-rDh"/>
                                     <constraint firstItem="mmz-g3-KhV" firstAttribute="leading" secondItem="2sz-x1-syZ" secondAttribute="leading" id="Gc7-Hu-E3Z"/>
-                                    <constraint firstItem="mmz-g3-KhV" firstAttribute="top" secondItem="2sz-x1-syZ" secondAttribute="topMargin" id="N0T-mT-u8l"/>
+                                    <constraint firstItem="mmz-g3-KhV" firstAttribute="top" secondItem="2sz-x1-syZ" secondAttribute="top" id="N0T-mT-u8l"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q8X-YU-toI">

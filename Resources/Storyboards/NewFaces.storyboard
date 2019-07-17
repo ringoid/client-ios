@@ -91,7 +91,7 @@ discover users nearby</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fyV-MR-lVu">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="fyV-MR-lVu" secondAttribute="height" multiplier="3:4" id="bre-ax-5Oh"/>
                                         </constraints>
@@ -99,7 +99,7 @@ discover users nearby</string>
                                 </subviews>
                                 <color key="backgroundColor" red="0.28627450980000002" green="0.28627450980000002" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="fyV-MR-lVu" firstAttribute="top" secondItem="f5P-fA-3ZX" secondAttribute="topMargin" id="J80-N1-jNg"/>
+                                    <constraint firstItem="fyV-MR-lVu" firstAttribute="top" secondItem="f5P-fA-3ZX" secondAttribute="top" id="J80-N1-jNg"/>
                                     <constraint firstItem="fyV-MR-lVu" firstAttribute="leading" secondItem="f5P-fA-3ZX" secondAttribute="leading" id="tOs-c3-VTG"/>
                                     <constraint firstAttribute="trailing" secondItem="fyV-MR-lVu" secondAttribute="trailing" id="wUQ-hF-jVK"/>
                                 </constraints>
