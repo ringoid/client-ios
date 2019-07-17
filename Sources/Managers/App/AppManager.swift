@@ -68,6 +68,7 @@ class AppManager
         FBSDKAppEvents.activateApp()
         
         if let resignDate = self.resignDate, Date().timeIntervalSince(resignDate) > 300.0 {
+            UIManager.shared.wakeUpDelayTriggered.accept(true)
             self.newFacesManager.refresh().subscribe().disposed(by: self.disposeBag)
             self.lmmManager.refreshInBackground(.profile)
             self.profileManager.refreshInBackground()
@@ -76,6 +77,7 @@ class AppManager
     
     func onResignActive()
     {
+        UIManager.shared.wakeUpDelayTriggered.accept(false)
         self.resignDate = Date()
         self.actionsManager.commit()
     }

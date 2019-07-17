@@ -19,6 +19,8 @@ class UIManager
     // Profile
     let userProfileLikesVisible: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     
+    let wakeUpDelayTriggered: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    
     static let shared = UIManager()
     
     private init() {}

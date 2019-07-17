@@ -570,6 +570,15 @@ class MainViewController: BaseViewController
             }
         }).disposed(by: self.disposeBag)
         
+        
+        UIManager.shared.wakeUpDelayTriggered.observeOn(MainScheduler.instance).subscribe(onNext: { state in
+            guard state else { return }
+            
+            if self.input.notifications.isRegistered {
+                self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value
+            }
+        }).disposed(by: self.disposeBag)
+        
         UIManager.shared.blockModeEnabled.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             self?.buttonsStackView.isHidden = state
             self?.profileIndicatorView.alpha = state ? 0.0 : 1.0
@@ -627,6 +636,7 @@ class MainViewController: BaseViewController
         self.input.notifications.isGranted.observeOn(MainScheduler.instance).subscribe(onNext:{ [weak self] _ in
             guard let `self` = self else { return }
             guard self.input.notifications.isRegistered else { return }
+            guard !UIManager.shared.wakeUpDelayTriggered.value else { return }
             
             self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value || self.isBannerClosedManually
         }).disposed(by: self.disposeBag)
