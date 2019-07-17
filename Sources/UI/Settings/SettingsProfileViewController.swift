@@ -132,7 +132,12 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
             case .bio: cell.valueText = profile.about
             }
             
-            if field.fieldType == .name, profile.name == nil || profile.name == "unknown" {
+            let isNameEmpty: Bool = profile.name == nil || profile.name == "unknown"
+            let isCityEmpty: Bool = profile.whereLive == nil || profile.whereLive == "unknown"
+            
+            if field.fieldType == .name, isNameEmpty {
+                cell.startEditing()
+            } else if field.fieldType == .whereLive, !isNameEmpty, isCityEmpty {
                 cell.startEditing()
             }
         }
