@@ -103,7 +103,7 @@
 "settings_notifications_like" = "Новый лайк";
 "settings_notifications_match" = "Новая взаимность";
 "settings_notifications_message" = "Новое сообщение";
-"settings_notifications_banner_title" = "Узнай, когда тебе прислали новый лайк, взаимность или сообщение";
+"settings_notifications_banner_title" = "Получай новые лайки, взаимности, сообщения";
 "settings_notifications_banner_subtitle" = "Включить push-уведомления";
 
 "web_url_error_status" = "https://ringoid.com/status-ru.html";
