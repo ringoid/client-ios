@@ -14,6 +14,7 @@ class UIManager
     let blockModeEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     let chatModeEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     let lmmRefreshModeEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    let discoverAddPhotoModeEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     let feedsFabShouldBeHidden: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     // Profile

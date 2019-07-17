@@ -217,6 +217,7 @@ class NewFacePhotoViewController: UIViewController
     {
         let alertVC = UIAlertController(title: nil, message: "feed_explore_dialog_no_user_photo_description".localized(), preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "button_add_photo".localized(), style: .default, handler: { [weak self] _ in
+            UIManager.shared.discoverAddPhotoModeEnabled.accept(true)
             self?.input.navigationManager.mainItem.accept(.profileAndPick)
         }))
         alertVC.addAction(UIAlertAction(title: "button_later".localized(), style: .cancel, handler: nil))

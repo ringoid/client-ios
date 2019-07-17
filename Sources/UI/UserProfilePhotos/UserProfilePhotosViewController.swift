@@ -719,6 +719,15 @@ extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINa
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
+        if UIManager.shared.discoverAddPhotoModeEnabled.value {
+            picker.dismiss(animated: false, completion: { [weak self] in
+                UIManager.shared.discoverAddPhotoModeEnabled.accept(false)
+                self?.input.navigationManager.mainItem.accept(.search)
+            })
+            
+            return
+        }
+        
         picker.dismiss(animated: true, completion: nil)
     }
 }
@@ -800,6 +809,11 @@ extension UserProfilePhotosViewController: UserProfilePhotoCropVCDelegate
             self?.viewModel?.lastPhotoId.accept(nil)
             self?.lastClientPhotoId = photo.clientId
             self?.updatePages()
+            
+            if UIManager.shared.discoverAddPhotoModeEnabled.value {
+                UIManager.shared.discoverAddPhotoModeEnabled.accept(false)
+                self?.input.navigationManager.mainItem.accept(.search)
+            }
         }), onError: ({ [weak self] error in
             guard let `self` = self else { return }
             
