@@ -55,9 +55,9 @@
 "feed_sent_empty_no_data" = "Отправленных ещё нет";
 "feed_tap_to_refresh" = "Обновить";
 
-"lmm_tab_likes" = "лайков";
-"lmm_tab_matches" = "взаимно";
-"lmm_tab_messages" = "чатов";
+"lmm_tab_likes" = "Лайки";
+"lmm_tab_matches" = "Взаимно";
+"lmm_tab_messages" = "Чаты";
 "lmm_tab_inbox" = "Входящие";
 "lmm_tab_sent" = "Отправленные";
 
