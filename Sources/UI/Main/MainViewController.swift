@@ -457,11 +457,6 @@ class MainViewController: BaseViewController
             self?.select(item.selectionState())
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.lmmCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
-            let title: String? = count != 0 ? "\(count)" : nil
-            self?.likeBtn.setTitle(title, for: .normal)
-        }).disposed(by: self.disposeBag)
-        
         self.viewModel?.availablePhotosCount.subscribe(onNext: { [weak self] count in
             self?.profileIndicatorView.isHidden = count != 0
         }).disposed(by: self.disposeBag)
@@ -566,12 +561,7 @@ class MainViewController: BaseViewController
             }
             
         }).disposed(by: self.disposeBag)
-        
-        UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
-            let alpha:CGFloat = state ? 0.0 : 1.0            
-            
-        }).disposed(by: self.disposeBag)
-        
+
         UIManager.shared.chatModeEnabled.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
             
@@ -656,6 +646,20 @@ class MainViewController: BaseViewController
             guard !UIManager.shared.wakeUpDelayTriggered.value else { return }
             
             self.notificationsBannerView.isHidden = self.input.notifications.isGranted.value || self.isBannerClosedManually
+        }).disposed(by: self.disposeBag)
+        
+        // Counters
+        
+        self.input.lmmManager.likesYou.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+            self?.likeBtn.setTitle("\(profiles.count)", for: .normal)
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.matches.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+            self?.matchesBtn.setTitle("\(profiles.count)", for: .normal)
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.messages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+            self?.chatsBtn.setTitle("\(profiles.count)", for: .normal)
         }).disposed(by: self.disposeBag)
     }
 }
