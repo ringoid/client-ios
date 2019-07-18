@@ -89,19 +89,19 @@ class MainLMMContainerViewController: BaseViewController
     
     fileprivate func setupBindings()
     {
-        UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
-            UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
-                self?.optionsContainer.alpha = state ? 0.0 : 1.0
-            }).startAnimation()
-        }).disposed(by: self.disposeBag)
+//        UIManager.shared.blockModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
+//            UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
+//                self?.optionsContainer.alpha = state ? 0.0 : 1.0
+//            }).startAnimation()
+//        }).disposed(by: self.disposeBag)
         
-        UIManager.shared.chatModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
-            UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
-                guard let `self` = self else { return }
-                
-                self.optionsContainer.alpha = state ? 0.0 : 1.0                                
-            }).startAnimation()
-        }).disposed(by: self.disposeBag)
+//        UIManager.shared.chatModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
+//            UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
+//                guard let `self` = self else { return }
+//
+//                self.optionsContainer.alpha = state ? 0.0 : 1.0
+//            }).startAnimation()
+//        }).disposed(by: self.disposeBag)
     }
     
     func toggle(_ type: LMMType)

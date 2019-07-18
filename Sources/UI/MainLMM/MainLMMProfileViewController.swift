@@ -18,7 +18,7 @@ class MainLMMProfileViewController: UIViewController
     var topVisibleBorderDistance: CGFloat = 0.0
     {
         didSet {
-            self.handleTopBorderDistanceChange(self.topVisibleBorderDistance)
+            //self.handleTopBorderDistanceChange(self.topVisibleBorderDistance)
         }
     }
     

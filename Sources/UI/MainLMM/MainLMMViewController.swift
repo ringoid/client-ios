@@ -78,7 +78,7 @@ class MainLMMViewController: BaseViewController
         self.tableView.rowHeight = cellHeight
         self.tableView.estimatedRowHeight = cellHeight
         self.tableView.contentInset = UIEdgeInsets(
-            top: self.view.safeAreaInsets.top + 60.0,
+            top: 0.0,//self.view.safeAreaInsets.top + 60.0,
             left: 0.0,
             bottom: UIScreen.main.bounds.height - cellHeight,
             right: 0.0
