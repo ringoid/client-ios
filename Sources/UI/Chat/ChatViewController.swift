@@ -235,7 +235,7 @@ class ChatViewController: BaseViewController
         if let status = OnlineStatus(rawValue: self.input.profile.status), status != .unknown {
             self.statusView.backgroundColor = status.color()
             self.statusView.isHidden = false
-            self.nameCenterOffsetConstraint.constant = 03.0
+            self.nameCenterOffsetConstraint.constant = 3.0
             self.statusCenterOffsetConstraint.constant = 19.0
         } else {
             self.statusView.isHidden = true
