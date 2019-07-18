@@ -615,7 +615,6 @@ class MainViewController: BaseViewController
                 self.input.navigationManager.mainItem.accept(.likes)
                 DispatchQueue.main.async {
                     let vc = self.containedVC as? MainLMMContainerViewController
-                    //vc?.toggle(.likesYou)
                     vc?.prepareForNavigation()
                     vc?.reload()
                 }
@@ -625,7 +624,6 @@ class MainViewController: BaseViewController
                 self.input.navigationManager.mainItem.accept(.matches)
                 DispatchQueue.main.async {
                     let vc = self.containedVC as? MainLMMContainerViewController
-                    // vc?.toggle(.matches)
                     vc?.prepareForNavigation()
                     vc?.reload()
                 }
@@ -655,15 +653,18 @@ class MainViewController: BaseViewController
         // Counters
         
         self.input.lmmManager.likesYou.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
-            self?.likeBtn.setTitle("\(profiles.count)", for: .normal)
+            let title: String? = profiles.count != 0 ? "\(profiles.count)" : nil
+            self?.likeBtn.setTitle(title, for: .normal)
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.matches.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
-            self?.matchesBtn.setTitle("\(profiles.count)", for: .normal)
+            let title: String? = profiles.count != 0 ? "\(profiles.count)" : nil
+            self?.matchesBtn.setTitle(title, for: .normal)
         }).disposed(by: self.disposeBag)
         
         self.input.lmmManager.messages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
-            self?.chatsBtn.setTitle("\(profiles.count)", for: .normal)
+            let title: String? = profiles.count != 0 ? "\(profiles.count)" : nil
+            self?.chatsBtn.setTitle(title, for: .normal)
         }).disposed(by: self.disposeBag)
         
         // Not seen profiles indicators
