@@ -53,7 +53,7 @@
 "feed_sent_empty_no_data" = "No messages yet";
 "feed_tap_to_refresh" = "Refresh";
 
-"lmm_tab_likes" = "Likes";
+"lmm_tab_likes" = "Likes You";
 "lmm_tab_matches" = "Matches";
 "lmm_tab_messages" = "Chats";
 "lmm_tab_inbox" = "Inbox";
