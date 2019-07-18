@@ -174,13 +174,11 @@ class ActionsManager
         default: break
         }
         
-        guard !self.isLikedSomeone.value else {
-            // Second like notifications access triggers
-            if !self.notifications.isRegistered && !self.notifications.isGranted.value {
-                self.notifications.register()
-            }
-            
-            return
+        guard !self.isLikedSomeone.value else { return }
+        
+        // First like notifications access triggers
+        if !self.notifications.isRegistered && !self.notifications.isGranted.value {
+            self.notifications.register()
         }
         
         self.isLikedSomeone.accept(true)
