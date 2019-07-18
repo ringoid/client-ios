@@ -64,7 +64,7 @@
                                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1b-Fl-OOW">
                                         <rect key="frame" x="150" y="0.0" width="75" height="60"/>
                                         <inset key="titleEdgeInsets" minX="4" minY="34" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="29" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="33" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="0" image="main_bar_matches"/>
                                         <connections>
                                             <action selector="onMatchesSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="4od-3g-d9e"/>
@@ -264,7 +264,7 @@
         <image name="chat_close" width="26" height="26"/>
         <image name="main_banner_bell" width="64" height="64"/>
         <image name="main_bar_like" width="29" height="27"/>
-        <image name="main_bar_matches" width="63" height="56"/>
+        <image name="main_bar_matches" width="56" height="44"/>
         <image name="main_bar_messages" width="29" height="22"/>
         <image name="main_bar_no_photo" width="3" height="10"/>
         <image name="main_bar_profile" width="27" height="31"/>
