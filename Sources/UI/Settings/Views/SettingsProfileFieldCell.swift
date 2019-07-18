@@ -152,7 +152,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
     
     override func updateLocale()
     {
-        self.titleLabel.text = "profile_field_height".localized()
+        self.titleLabel.text = self.field?.title.localized()
     }
     
     func startEditing()
