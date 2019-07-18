@@ -36,7 +36,8 @@ class NewFacesViewController: BaseViewController
     fileprivate var visibleCells: [NewFacesCell] = []
     fileprivate var shouldShowFetchActivityOnLocationPermission: Bool = false
     
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var feedTitleLabel: UILabel!
+    @IBOutlet fileprivate weak var feedTitleView: UIView!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
@@ -53,7 +54,7 @@ class NewFacesViewController: BaseViewController
         
         self.toggleActivity(.initial)
         
-        self.tableView.tableHeaderView = nil
+        self.tableView.tableHeaderView = self.feedTitleView
         self.tableView.estimatedSectionHeaderHeight = 0.0
         self.tableView.estimatedSectionFooterHeight = 0.0
         
@@ -83,7 +84,7 @@ class NewFacesViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.titleLabel.text = "feed_explore_empty_title".localized()
+        self.feedTitleLabel.text = "feed_explore_empty_title".localized()
         
         self.toggleActivity(self.currentActivityState)
     }
@@ -230,8 +231,7 @@ class NewFacesViewController: BaseViewController
         }
         
         let totalCount = profiles.count
-        let isEmpty = totalCount == 0
-        self.titleLabel.isHidden = !isEmpty
+        let isEmpty = totalCount == 0        
         
         if isEmpty && self.currentActivityState != .fetching {
             if self.currentActivityState == .contentAvailable {

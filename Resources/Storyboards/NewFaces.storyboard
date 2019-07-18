@@ -18,12 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Je-db-FTU">
-                                <rect key="frame" x="18" y="57" width="116.5" height="36"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGR-G7-fOR">
                                 <rect key="frame" x="106" y="314.5" width="163.5" height="38.5"/>
                                 <string key="text">Pull to refresh to
@@ -38,14 +32,31 @@ discover users nearby</string>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="358" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owz-cZ-1Sc">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="V9x-Tk-Mmn">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="isk-qO-AwF">
+                                            <rect key="frame" x="16" y="14" width="93.5" height="36"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="isk-qO-AwF" firstAttribute="centerY" secondItem="V9x-Tk-Mmn" secondAttribute="centerY" id="32f-ML-8ip"/>
+                                        <constraint firstItem="isk-qO-AwF" firstAttribute="leading" secondItem="V9x-Tk-Mmn" secondAttribute="leading" constant="16" id="Tma-rl-qLS"/>
+                                    </constraints>
+                                </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="2qj-wE-4hh">
-                                    <rect key="frame" x="0.0" y="359" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="423" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="new_faces_cell" id="PAB-o3-bWg" customClass="NewFacesCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1" width="375" height="358"/>
+                                        <rect key="frame" x="0.0" y="65" width="375" height="358"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PAB-o3-bWg" id="mzS-Ei-i2k">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="358"/>
@@ -117,12 +128,10 @@ discover users nearby</string>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="V4m-wZ-I6w"/>
                             <constraint firstAttribute="bottom" secondItem="Owz-cZ-1Sc" secondAttribute="bottom" id="WOb-4K-jM4"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="XVH-IB-ckJ"/>
-                            <constraint firstItem="4Je-db-FTU" firstAttribute="top" secondItem="Dzb-Wx-JQu" secondAttribute="top" constant="37" id="bKq-go-6VW"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="eOj-9V-78m"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="k2s-xp-RvI"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" id="nm8-TI-5VR"/>
                             <constraint firstAttribute="trailing" secondItem="Owz-cZ-1Sc" secondAttribute="trailing" id="sVe-sm-wMe"/>
-                            <constraint firstItem="4Je-db-FTU" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" constant="18" id="xmA-gD-zWl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dzb-Wx-JQu"/>
                     </view>
@@ -133,9 +142,10 @@ discover users nearby</string>
                         <outlet property="blockPhotoView" destination="fyV-MR-lVu" id="ZPl-Xu-U01"/>
                         <outlet property="emptyFeedActivityView" destination="Kt8-il-Lh0" id="oCN-Tl-uUi"/>
                         <outlet property="emptyFeedLabel" destination="CGR-G7-fOR" id="XU1-zR-aiG"/>
+                        <outlet property="feedTitleLabel" destination="isk-qO-AwF" id="vAP-BQ-ZbC"/>
+                        <outlet property="feedTitleView" destination="V9x-Tk-Mmn" id="5jS-kI-uLU"/>
                         <outlet property="scrollTopBtn" destination="RcH-VU-hkW" id="A6d-nd-dJD"/>
                         <outlet property="tableView" destination="Owz-cZ-1Sc" id="KNv-5u-zds"/>
-                        <outlet property="titleLabel" destination="4Je-db-FTU" id="iV1-Tj-RvH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="htw-q5-Nbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
