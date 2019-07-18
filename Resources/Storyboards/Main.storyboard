@@ -65,16 +65,18 @@
                                             <action selector="onLikeSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="GFB-fN-jRK"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1b-Fl-OOW">
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1b-Fl-OOW">
                                         <rect key="frame" x="150" y="0.0" width="75" height="60"/>
-                                        <state key="normal" title="Button"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="main_bar_matches"/>
                                         <connections>
                                             <action selector="onMatchesSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="4od-3g-d9e"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wuk-66-Oh7">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wuk-66-Oh7">
                                         <rect key="frame" x="225" y="0.0" width="75" height="60"/>
-                                        <state key="normal" title="Button"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="main_bar_messages"/>
                                         <connections>
                                             <action selector="onChatsSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="TGa-u9-jpk"/>
                                         </connections>
@@ -176,8 +178,10 @@
                     <connections>
                         <outlet property="bottomShadowView" destination="E8b-9J-Vw4" id="aOM-N5-sbu"/>
                         <outlet property="buttonsStackView" destination="QYd-HC-afs" id="6DN-vF-3cQ"/>
+                        <outlet property="chatsBtn" destination="wuk-66-Oh7" id="9Do-ET-DNs"/>
                         <outlet property="effectsView" destination="htN-cB-51n" id="eaL-Um-c0a"/>
                         <outlet property="likeBtn" destination="cD4-SP-HxY" id="1U3-57-3RL"/>
+                        <outlet property="matchesBtn" destination="m1b-Fl-OOW" id="puu-nY-d7W"/>
                         <outlet property="notificationsBannerLabel" destination="JXx-Wc-kOl" id="uXv-6v-guc"/>
                         <outlet property="notificationsBannerSubLabel" destination="djT-Hx-Dsm" id="mc6-Fj-aaz"/>
                         <outlet property="notificationsBannerView" destination="A7E-GF-7xU" id="zDw-bk-i2W"/>
@@ -215,6 +219,8 @@
         <image name="chat_close" width="26" height="26"/>
         <image name="main_banner_bell" width="64" height="64"/>
         <image name="main_bar_like" width="29" height="27"/>
+        <image name="main_bar_matches" width="47" height="42"/>
+        <image name="main_bar_messages" width="29" height="22"/>
         <image name="main_bar_no_photo" width="3" height="10"/>
         <image name="main_bar_profile" width="27" height="31"/>
         <image name="main_bar_search" width="28" height="29"/>

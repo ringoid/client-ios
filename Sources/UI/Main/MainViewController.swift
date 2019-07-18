@@ -57,6 +57,8 @@ class MainViewController: BaseViewController
     
     @IBOutlet fileprivate weak var searchBtn: UIButton!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
+    @IBOutlet fileprivate weak var matchesBtn: UIButton!
+    @IBOutlet fileprivate weak var chatsBtn: UIButton!
     @IBOutlet fileprivate weak var profileBtn: UIButton!
     @IBOutlet fileprivate weak var profileIndicatorView: UIView!
     @IBOutlet fileprivate weak var effectsView: MainEffectsView!
@@ -204,6 +206,8 @@ class MainViewController: BaseViewController
         case .search:
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedNewFaces()
             break
@@ -211,27 +215,35 @@ class MainViewController: BaseViewController
         case .likes:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedLikes()
             break
             
         case .matches:
-//            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
-//            self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
-//            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_bar_matches_selected"), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedMatches()
             break
             
         case .chats:
-//            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
-//            self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
-//            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages_selected"), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedChats()
             break
             
         case .profile:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
             self.embedUserProfile()
             break
@@ -239,6 +251,8 @@ class MainViewController: BaseViewController
         case .profileAndPick:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
             self.embedUserProfileAndPick()
             break
@@ -246,6 +260,8 @@ class MainViewController: BaseViewController
         case .profileAndFetch:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
             self.embedUserProfileAndFetch()
             break
@@ -253,6 +269,8 @@ class MainViewController: BaseViewController
         case .searchAndFetch:
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedNewFacesAndFetch()
             break
@@ -260,6 +278,8 @@ class MainViewController: BaseViewController
         case .likeAndFetch:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
+            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedMainLMMAndFetch()
             break
