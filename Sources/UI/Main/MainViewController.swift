@@ -65,6 +65,10 @@ class MainViewController: BaseViewController
     @IBOutlet fileprivate weak var buttonsStackView: UIView!
     @IBOutlet fileprivate weak var bottomShadowView: UIView!
     
+    @IBOutlet fileprivate weak var likesYouIndicatorView: UIView!
+    @IBOutlet fileprivate weak var matchesIndicatorView: UIView!
+    @IBOutlet fileprivate weak var chatIndicatorView: UIView!
+    
     @IBOutlet fileprivate weak var notificationsBannerView: UIView!
     @IBOutlet fileprivate weak var notificationsBannerLabel: UILabel!
     @IBOutlet fileprivate weak var notificationsBannerSubLabel: UILabel!
@@ -660,6 +664,33 @@ class MainViewController: BaseViewController
         
         self.input.lmmManager.messages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
             self?.chatsBtn.setTitle("\(profiles.count)", for: .normal)
+        }).disposed(by: self.disposeBag)
+        
+        // Not seen profiles indicators
+        
+        self.input.lmmManager.notSeenLikesYouCount.subscribe(onNext: { [weak self] count in
+            guard let `self` = self else { return }
+            
+            self.likesYouIndicatorView.isHidden = count == 0
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.notSeenMatchesCount.subscribe(onNext: { [weak self] count in
+            guard let `self` = self else { return }
+            
+            self.matchesIndicatorView.isHidden = count == 0
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.notSeenMessagesCount.subscribe(onNext: { [weak self] count in
+            guard let `self` = self else { return }
+            
+            self.chatIndicatorView.isHidden = count == 0
+        }).disposed(by: self.disposeBag)
+        
+        UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
+            let alpha: CGFloat = state ? 0.0 : 1.0
+            self?.likesYouIndicatorView.alpha = alpha
+            self?.matchesIndicatorView.alpha = alpha
+            self?.chatIndicatorView.alpha = alpha
         }).disposed(by: self.disposeBag)
     }
 }

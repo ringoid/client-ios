@@ -150,9 +150,49 @@
                                     <outletCollection property="gestureRecognizers" destination="s8X-vX-UNW" appends="YES" id="0dC-zE-Weq"/>
                                 </connections>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUg-31-Hnn">
+                                <rect key="frame" x="122.5" y="635" width="6" height="6"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="Jx8-Wg-lzT"/>
+                                    <constraint firstAttribute="width" constant="6" id="KYR-tE-CUw"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFf-Gx-gkI">
+                                <rect key="frame" x="197.5" y="635" width="6" height="6"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="4Yh-7c-Dy7"/>
+                                    <constraint firstAttribute="width" constant="6" id="c36-cs-L7c"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xc-oL-Jti">
+                                <rect key="frame" x="271.5" y="635" width="6" height="6"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="A78-Em-Jhy"/>
+                                    <constraint firstAttribute="width" constant="6" id="HWl-4l-gE3"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="NUg-31-Hnn" firstAttribute="centerY" secondItem="1xc-oL-Jti" secondAttribute="centerY" id="5sm-hZ-gvH"/>
                             <constraint firstAttribute="bottom" secondItem="QYd-HC-afs" secondAttribute="bottom" id="9Yo-yT-drm"/>
                             <constraint firstAttribute="trailing" secondItem="ZFd-I1-dCK" secondAttribute="trailing" id="CEJ-uj-wFU"/>
                             <constraint firstAttribute="trailing" secondItem="QYd-HC-afs" secondAttribute="trailing" id="DVv-Ea-hMC"/>
@@ -165,14 +205,19 @@
                             <constraint firstAttribute="bottom" secondItem="htN-cB-51n" secondAttribute="bottom" id="Qps-4C-BS6"/>
                             <constraint firstItem="A7E-GF-7xU" firstAttribute="leading" secondItem="PZo-jV-0xV" secondAttribute="leading" id="Tst-8I-GYi"/>
                             <constraint firstAttribute="bottom" secondItem="E8b-9J-Vw4" secondAttribute="bottom" id="U9q-bB-TTW"/>
+                            <constraint firstItem="1xc-oL-Jti" firstAttribute="centerX" secondItem="wuk-66-Oh7" secondAttribute="centerX" constant="12" id="UFs-Kb-M3y"/>
                             <constraint firstItem="WgY-Bd-4Qd" firstAttribute="top" secondItem="IC7-wg-nDT" secondAttribute="top" constant="25" id="Uqk-zw-kTg"/>
                             <constraint firstItem="ZFd-I1-dCK" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="ZhW-CE-RaR"/>
                             <constraint firstItem="QYd-HC-afs" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="b5h-B3-qAm"/>
+                            <constraint firstItem="NUg-31-Hnn" firstAttribute="centerX" secondItem="cD4-SP-HxY" secondAttribute="centerX" constant="13" id="bNP-o6-CT8"/>
                             <constraint firstAttribute="trailing" secondItem="E8b-9J-Vw4" secondAttribute="trailing" id="hcZ-sj-eTO"/>
                             <constraint firstItem="PZo-jV-0xV" firstAttribute="bottom" secondItem="QYd-HC-afs" secondAttribute="top" constant="60" id="i4t-Gf-cAe"/>
                             <constraint firstItem="A7E-GF-7xU" firstAttribute="trailing" secondItem="PZo-jV-0xV" secondAttribute="trailing" id="jC2-ly-w3h"/>
                             <constraint firstItem="PZo-jV-0xV" firstAttribute="bottom" secondItem="E8b-9J-Vw4" secondAttribute="top" constant="72" id="jS5-2i-i9y"/>
                             <constraint firstItem="htN-cB-51n" firstAttribute="top" secondItem="GM2-8q-nY9" secondAttribute="top" id="jZm-uA-obf"/>
+                            <constraint firstItem="wFf-Gx-gkI" firstAttribute="centerX" secondItem="m1b-Fl-OOW" secondAttribute="centerX" constant="13" id="nCE-o3-kzw"/>
+                            <constraint firstItem="cD4-SP-HxY" firstAttribute="bottom" secondItem="NUg-31-Hnn" secondAttribute="bottom" constant="26" id="oMl-1U-vOI"/>
+                            <constraint firstItem="wFf-Gx-gkI" firstAttribute="centerY" secondItem="1xc-oL-Jti" secondAttribute="centerY" id="uD8-EN-axl"/>
                             <constraint firstItem="ZFd-I1-dCK" firstAttribute="top" secondItem="GM2-8q-nY9" secondAttribute="top" id="yMd-wt-oZo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PZo-jV-0xV"/>
@@ -180,10 +225,13 @@
                     <connections>
                         <outlet property="bottomShadowView" destination="E8b-9J-Vw4" id="aOM-N5-sbu"/>
                         <outlet property="buttonsStackView" destination="QYd-HC-afs" id="6DN-vF-3cQ"/>
+                        <outlet property="chatIndicatorView" destination="1xc-oL-Jti" id="MpX-CM-YK4"/>
                         <outlet property="chatsBtn" destination="wuk-66-Oh7" id="9Do-ET-DNs"/>
                         <outlet property="effectsView" destination="htN-cB-51n" id="eaL-Um-c0a"/>
                         <outlet property="likeBtn" destination="cD4-SP-HxY" id="1U3-57-3RL"/>
+                        <outlet property="likesYouIndicatorView" destination="NUg-31-Hnn" id="nH4-Ah-eJd"/>
                         <outlet property="matchesBtn" destination="m1b-Fl-OOW" id="puu-nY-d7W"/>
+                        <outlet property="matchesIndicatorView" destination="wFf-Gx-gkI" id="Wis-Gd-2hN"/>
                         <outlet property="notificationsBannerLabel" destination="JXx-Wc-kOl" id="uXv-6v-guc"/>
                         <outlet property="notificationsBannerSubLabel" destination="djT-Hx-Dsm" id="mc6-Fj-aaz"/>
                         <outlet property="notificationsBannerView" destination="A7E-GF-7xU" id="zDw-bk-i2W"/>
