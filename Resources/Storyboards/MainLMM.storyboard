@@ -199,14 +199,31 @@ see who likes you</string>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="358" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="kbx-tQ-FPO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="NDb-Xg-b58">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKC-OF-Xth">
+                                            <rect key="frame" x="16" y="22" width="69" height="36"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="QKC-OF-Xth" firstAttribute="leading" secondItem="NDb-Xg-b58" secondAttribute="leading" constant="16" id="B1v-LN-EYD"/>
+                                        <constraint firstItem="QKC-OF-Xth" firstAttribute="centerY" secondItem="NDb-Xg-b58" secondAttribute="centerY" id="xqi-FI-4wA"/>
+                                    </constraints>
+                                </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="mBt-Er-aiS">
-                                    <rect key="frame" x="0.0" y="386" width="375" height="40"/>
+                                    <rect key="frame" x="0.0" y="466" width="375" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="main_llm_cell" id="Way-Aw-DVV" customClass="MainLMMCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="358"/>
+                                        <rect key="frame" x="0.0" y="108" width="375" height="358"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Way-Aw-DVV" id="M06-Hj-Ah5">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="358"/>
@@ -322,6 +339,8 @@ see who likes you</string>
                         <outlet property="chatContainerView" destination="Ey6-2A-Ohd" id="Fd7-eT-6cV"/>
                         <outlet property="emptyFeedActivityView" destination="pJn-VE-YRs" id="l9t-IH-Boy"/>
                         <outlet property="emptyFeedLabel" destination="h51-ww-FZ6" id="BKR-9v-s1U"/>
+                        <outlet property="feedTitleLabel" destination="QKC-OF-Xth" id="IZV-BJ-hGe"/>
+                        <outlet property="feedTitleView" destination="NDb-Xg-b58" id="IUK-ol-AGK"/>
                         <outlet property="scrollTopBtn" destination="Q8X-YU-toI" id="E1j-Er-aIg"/>
                         <outlet property="tableView" destination="kbx-tQ-FPO" id="Gw2-gy-S9q"/>
                         <outlet property="updateBtn" destination="gHe-x4-G7n" id="eeY-uy-yP3"/>

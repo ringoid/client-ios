@@ -93,8 +93,7 @@ class MainLMMViewModel
     }
     
     func moveToProfile()
-    {
-        UIManager.shared.discoverAddPhotoModeEnabled.accept(true)
+    {        
         self.navigationManager.mainItem.accept(.profileAndPick)
     }
     
