@@ -44,12 +44,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QYd-HC-afs">
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLq-rW-238">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLq-rW-238">
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="J7Y-VQ-XLa"/>
-                                        </constraints>
-                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="main_bar_search"/>
                                         <connections>
@@ -65,27 +61,26 @@
                                             <action selector="onLikeSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="GFB-fN-jRK"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1b-Fl-OOW">
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1b-Fl-OOW">
                                         <rect key="frame" x="150" y="0.0" width="75" height="60"/>
-                                        <inset key="titleEdgeInsets" minX="4" minY="28" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
+                                        <inset key="titleEdgeInsets" minX="4" minY="34" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="29" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="0" image="main_bar_matches"/>
                                         <connections>
                                             <action selector="onMatchesSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="4od-3g-d9e"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wuk-66-Oh7">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wuk-66-Oh7">
                                         <rect key="frame" x="225" y="0.0" width="75" height="60"/>
-                                        <inset key="titleEdgeInsets" minX="4" minY="28" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
+                                        <inset key="titleEdgeInsets" minX="4" minY="34" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="31" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="0" image="main_bar_messages"/>
                                         <connections>
                                             <action selector="onChatsSelected" destination="tm0-Vf-3el" eventType="touchUpInside" id="TGa-u9-jpk"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IC7-wg-nDT">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IC7-wg-nDT">
                                         <rect key="frame" x="300" y="0.0" width="75" height="60"/>
-                                        <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="28" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="main_bar_profile"/>
                                         <connections>
@@ -95,7 +90,7 @@
                                 </subviews>
                             </stackView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_bar_no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="WgY-Bd-4Qd">
-                                <rect key="frame" x="337" y="632" width="3" height="10"/>
+                                <rect key="frame" x="346" y="636" width="3" height="10"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7E-GF-7xU">
@@ -151,7 +146,7 @@
                                 </connections>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUg-31-Hnn">
-                                <rect key="frame" x="122.5" y="635" width="6" height="6"/>
+                                <rect key="frame" x="122.5" y="633" width="6" height="6"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="6" id="Jx8-Wg-lzT"/>
@@ -164,7 +159,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFf-Gx-gkI">
-                                <rect key="frame" x="197.5" y="635" width="6" height="6"/>
+                                <rect key="frame" x="197.5" y="633" width="6" height="6"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="6" id="4Yh-7c-Dy7"/>
@@ -177,7 +172,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xc-oL-Jti">
-                                <rect key="frame" x="271.5" y="635" width="6" height="6"/>
+                                <rect key="frame" x="271.5" y="633" width="6" height="6"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="6" id="A78-Em-Jhy"/>
@@ -196,17 +191,18 @@
                             <constraint firstAttribute="bottom" secondItem="QYd-HC-afs" secondAttribute="bottom" id="9Yo-yT-drm"/>
                             <constraint firstAttribute="trailing" secondItem="ZFd-I1-dCK" secondAttribute="trailing" id="CEJ-uj-wFU"/>
                             <constraint firstAttribute="trailing" secondItem="QYd-HC-afs" secondAttribute="trailing" id="DVv-Ea-hMC"/>
+                            <constraint firstItem="WgY-Bd-4Qd" firstAttribute="centerX" secondItem="IC7-wg-nDT" secondAttribute="centerX" constant="10" id="EW9-pa-34W"/>
                             <constraint firstItem="htN-cB-51n" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="FCs-AF-JJv"/>
                             <constraint firstAttribute="trailing" secondItem="htN-cB-51n" secondAttribute="trailing" id="FhK-dC-Yle"/>
                             <constraint firstItem="E8b-9J-Vw4" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="J9K-us-tve"/>
                             <constraint firstItem="A7E-GF-7xU" firstAttribute="top" secondItem="PZo-jV-0xV" secondAttribute="top" constant="120" id="JYU-le-UnZ"/>
-                            <constraint firstItem="WgY-Bd-4Qd" firstAttribute="trailing" secondItem="IC7-wg-nDT" secondAttribute="trailing" constant="-35" id="K3y-Aa-Ja4"/>
+                            <constraint firstItem="NUg-31-Hnn" firstAttribute="top" secondItem="QYd-HC-afs" secondAttribute="top" constant="26" id="PYb-f9-tK5"/>
                             <constraint firstAttribute="bottom" secondItem="ZFd-I1-dCK" secondAttribute="bottom" id="Qjc-t6-IL0"/>
                             <constraint firstAttribute="bottom" secondItem="htN-cB-51n" secondAttribute="bottom" id="Qps-4C-BS6"/>
                             <constraint firstItem="A7E-GF-7xU" firstAttribute="leading" secondItem="PZo-jV-0xV" secondAttribute="leading" id="Tst-8I-GYi"/>
                             <constraint firstAttribute="bottom" secondItem="E8b-9J-Vw4" secondAttribute="bottom" id="U9q-bB-TTW"/>
                             <constraint firstItem="1xc-oL-Jti" firstAttribute="centerX" secondItem="wuk-66-Oh7" secondAttribute="centerX" constant="12" id="UFs-Kb-M3y"/>
-                            <constraint firstItem="WgY-Bd-4Qd" firstAttribute="top" secondItem="IC7-wg-nDT" secondAttribute="top" constant="25" id="Uqk-zw-kTg"/>
+                            <constraint firstItem="WgY-Bd-4Qd" firstAttribute="top" secondItem="IC7-wg-nDT" secondAttribute="top" constant="29" id="Uqk-zw-kTg"/>
                             <constraint firstItem="ZFd-I1-dCK" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="ZhW-CE-RaR"/>
                             <constraint firstItem="QYd-HC-afs" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="b5h-B3-qAm"/>
                             <constraint firstItem="NUg-31-Hnn" firstAttribute="centerX" secondItem="cD4-SP-HxY" secondAttribute="centerX" constant="13" id="bNP-o6-CT8"/>
@@ -216,7 +212,6 @@
                             <constraint firstItem="PZo-jV-0xV" firstAttribute="bottom" secondItem="E8b-9J-Vw4" secondAttribute="top" constant="72" id="jS5-2i-i9y"/>
                             <constraint firstItem="htN-cB-51n" firstAttribute="top" secondItem="GM2-8q-nY9" secondAttribute="top" id="jZm-uA-obf"/>
                             <constraint firstItem="wFf-Gx-gkI" firstAttribute="centerX" secondItem="m1b-Fl-OOW" secondAttribute="centerX" constant="13" id="nCE-o3-kzw"/>
-                            <constraint firstItem="cD4-SP-HxY" firstAttribute="bottom" secondItem="NUg-31-Hnn" secondAttribute="bottom" constant="26" id="oMl-1U-vOI"/>
                             <constraint firstItem="wFf-Gx-gkI" firstAttribute="centerY" secondItem="1xc-oL-Jti" secondAttribute="centerY" id="uD8-EN-axl"/>
                             <constraint firstItem="ZFd-I1-dCK" firstAttribute="top" secondItem="GM2-8q-nY9" secondAttribute="top" id="yMd-wt-oZo"/>
                         </constraints>
@@ -269,7 +264,7 @@
         <image name="chat_close" width="26" height="26"/>
         <image name="main_banner_bell" width="64" height="64"/>
         <image name="main_bar_like" width="29" height="27"/>
-        <image name="main_bar_matches" width="47" height="42"/>
+        <image name="main_bar_matches" width="63" height="56"/>
         <image name="main_bar_messages" width="29" height="22"/>
         <image name="main_bar_no_photo" width="3" height="10"/>
         <image name="main_bar_profile" width="27" height="31"/>
