@@ -12,14 +12,22 @@ import RxCocoa
 
 enum SelectionState {
     case search
-    case like
+    case likes
+    case matches
+    case chats
     case profile
-    case messages
     
     case searchAndFetch
     case profileAndPick
     case profileAndFetch
     case likeAndFetch
+}
+
+enum CachedUIState
+{
+    case discover
+    case lmm
+    case profile
 }
 
 enum RemoteFeedType: String
@@ -39,7 +47,7 @@ class MainViewController: BaseViewController
     fileprivate var containerVC: ContainerViewController!
     fileprivate weak var containedVC: UIViewController?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
-    fileprivate var menuVCCache: [SelectionState: UIViewController] = [:]
+    fileprivate var menuVCCache: [CachedUIState: UIViewController] = [:]
     fileprivate var prevState: SelectionState? = nil
     fileprivate var isBannerClosedManually: Bool = false
     
@@ -51,7 +59,6 @@ class MainViewController: BaseViewController
     @IBOutlet fileprivate weak var likeBtn: UIButton!
     @IBOutlet fileprivate weak var profileBtn: UIButton!
     @IBOutlet fileprivate weak var profileIndicatorView: UIView!
-    @IBOutlet fileprivate weak var lmmNotSeenIndicatorView: UIView!
     @IBOutlet fileprivate weak var effectsView: MainEffectsView!
     @IBOutlet fileprivate weak var buttonsStackView: UIView!
     @IBOutlet fileprivate weak var bottomShadowView: UIView!
@@ -133,7 +140,7 @@ class MainViewController: BaseViewController
     
     @IBAction func onLikeSelected()
     {
-        self.viewModel?.moveToLike()
+        self.viewModel?.moveToLikes()
     }
     
     @IBAction func onProfileSelected()
@@ -141,9 +148,14 @@ class MainViewController: BaseViewController
         self.viewModel?.moveToProfile()
     }
     
-    @IBAction func onMessagesSelected()
+    @IBAction func onMatchesSelected()
     {
-        self.viewModel?.moveToMessages()
+        self.viewModel?.moveToMatches()
+    }
+    
+    @IBAction func onChatsSelected()
+    {
+        self.viewModel?.moveToChats()
     }
     
     @IBAction fileprivate func onBannerTap()
@@ -196,11 +208,25 @@ class MainViewController: BaseViewController
             self.embedNewFaces()
             break
             
-        case .like:
+        case .likes:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
-            self.embedMainLMM()
+            self.embedLikes()
+            break
+            
+        case .matches:
+//            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
+//            self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
+//            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.embedMatches()
+            break
+            
+        case .chats:
+//            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
+//            self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
+//            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.embedChats()
             break
             
         case .profile:
@@ -208,13 +234,6 @@ class MainViewController: BaseViewController
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
             self.embedUserProfile()
-            break
-            
-        case .messages:
-            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
-            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
-            self.embedMessages()
             break
             
         case .profileAndPick:
@@ -264,18 +283,37 @@ class MainViewController: BaseViewController
         }
     }
     
-    fileprivate func embedMainLMM()
+    fileprivate func embedLikes()
     {
         guard let vc = self.getMainLMMVC() else { return }
         self.containedVC = vc
         self.containerVC.embed(vc)
+        
+        DispatchQueue.main.async {
+            vc.toggle(.likesYou)
+        }
     }
     
-    fileprivate func embedMessages()
+    fileprivate func embedMatches()
     {
-        guard let vc = self.getMessages() else { return }
+        guard let vc = self.getMainLMMVC() else { return }
         self.containedVC = vc
         self.containerVC.embed(vc)
+        
+        DispatchQueue.main.async {
+            vc.toggle(.matches)
+        }
+    }
+    
+    fileprivate func embedChats()
+    {
+        guard let vc = self.getMainLMMVC() else { return }
+        self.containedVC = vc
+        self.containerVC.embed(vc)
+        
+        DispatchQueue.main.async {
+            vc.toggle(.messages)
+        }
     }
     
     fileprivate func embedUserProfile()
@@ -320,12 +358,7 @@ class MainViewController: BaseViewController
     
     fileprivate func getMainLMMVC() -> MainLMMContainerViewController?
     {
-        if let vc = self.menuVCCache[.like] {
-            self.containedVC = vc
-            self.containerVC.embed(vc)
-            
-            return nil
-        }
+        if let vc = self.menuVCCache[.lmm] as? MainLMMContainerViewController { return vc }
         
         let storyboard = Storyboards.mainLMM()
         guard let vc = storyboard.instantiateInitialViewController() as? MainLMMContainerViewController else { return nil }
@@ -343,36 +376,7 @@ class MainViewController: BaseViewController
             settings: self.input.settingsManager
         )
         
-        self.menuVCCache[.like] = vc
-        
-        return vc
-    }
-    
-    fileprivate func getMessages() -> MainLMMMessagesContainerViewController?
-    {
-        if let vc = self.menuVCCache[.messages] {
-            self.containerVC.embed(vc)
-            
-            return nil
-        }
-        
-        let storyboard = Storyboards.mainLMM()
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "messages_vc") as? MainLMMMessagesContainerViewController else { return nil }
-        vc.input = MainLMMVMInput(
-            lmmManager: self.input.lmmManager,
-            actionsManager: self.input.actionsManager,
-            chatManager: self.input.chatManager,
-            profileManager: self.input.profileManager,
-            navigationManager: self.input.navigationManager,
-            newFacesManager: self.input.newFacesManager,
-            notifications: self.input.notifications,
-            location: self.input.location,
-            scenario: self.input.scenario,
-            transition: self.input.transition,
-            settings: self.input.settingsManager
-        )
-        
-        self.menuVCCache[.messages] = vc
+        self.menuVCCache[.lmm] = vc
         
         return vc
     }
@@ -405,7 +409,7 @@ class MainViewController: BaseViewController
     
     fileprivate func getNewFacesVC() -> NewFacesViewController?
     {
-        if let vc = self.menuVCCache[.search] as? NewFacesViewController { return vc }
+        if let vc = self.menuVCCache[.discover] as? NewFacesViewController { return vc }
         
         let storyboard = Storyboards.newFaces()
         guard let vc = storyboard.instantiateInitialViewController() as? NewFacesViewController else { return nil }
@@ -421,7 +425,7 @@ class MainViewController: BaseViewController
             transition: self.input.transition
         )
         
-        self.menuVCCache[.search] = vc
+        self.menuVCCache[.discover] = vc
         
         return vc
     }
@@ -441,12 +445,7 @@ class MainViewController: BaseViewController
         self.viewModel?.availablePhotosCount.subscribe(onNext: { [weak self] count in
             self?.profileIndicatorView.isHidden = count != 0
         }).disposed(by: self.disposeBag)
-        
-        self.viewModel?.isNotSeenProfilesAvailable.asObservable().subscribe(onNext: { [weak self] state in
-            self?.lmmNotSeenIndicatorView.isHidden = !state
-        }).disposed(by: self.disposeBag)
-        
-        self.viewModel?.notSeenProfilesTotalCount.observeOn(MainScheduler.instance).subscribe(onNext: { value in
+         self.viewModel?.notSeenProfilesTotalCount.observeOn(MainScheduler.instance).subscribe(onNext: { value in
             UIApplication.shared.applicationIconBadgeNumber = value
         }).disposed(by: self.disposeBag)
         
@@ -550,7 +549,7 @@ class MainViewController: BaseViewController
         
         UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             let alpha:CGFloat = state ? 0.0 : 1.0            
-            self?.lmmNotSeenIndicatorView.alpha = alpha
+            
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.chatModeEnabled.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
@@ -558,7 +557,6 @@ class MainViewController: BaseViewController
             
             self.buttonsStackView.isHidden = state
             self.profileIndicatorView.alpha = state ? 0.0 : 1.0
-            self.lmmNotSeenIndicatorView.alpha = state ? 0.0 : 1.0
             self.bottomShadowView.isHidden = state
             
             if state  {
@@ -582,7 +580,6 @@ class MainViewController: BaseViewController
         UIManager.shared.blockModeEnabled.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             self?.buttonsStackView.isHidden = state
             self?.profileIndicatorView.alpha = state ? 0.0 : 1.0
-            self?.lmmNotSeenIndicatorView.alpha = state ? 0.0 : 1.0            
             self?.bottomShadowView.isHidden = state
         }).disposed(by: self.disposeBag)
         
@@ -601,30 +598,30 @@ class MainViewController: BaseViewController
             switch type {
             case .unknown: break
             case .likesYou:
-                self.input.navigationManager.mainItem.accept(.like)
+                self.input.navigationManager.mainItem.accept(.likes)
                 DispatchQueue.main.async {
                     let vc = self.containedVC as? MainLMMContainerViewController
-                    vc?.toggle(.likesYou)
+                    //vc?.toggle(.likesYou)
                     vc?.prepareForNavigation()
                     vc?.reload()
                 }
                 break
                 
             case .matches:
-                self.input.navigationManager.mainItem.accept(.like)
+                self.input.navigationManager.mainItem.accept(.matches)
                 DispatchQueue.main.async {
                     let vc = self.containedVC as? MainLMMContainerViewController
-                    vc?.toggle(.matches)
+                    // vc?.toggle(.matches)
                     vc?.prepareForNavigation()
                     vc?.reload()
                 }
                 break
                 
             case .messages:
-                self.input.navigationManager.mainItem.accept(.like)
+                self.input.navigationManager.mainItem.accept(.chats)
                 DispatchQueue.main.async {
                     let vc = self.containedVC as? MainLMMContainerViewController
-                    vc?.toggle(.messages)
+                    //vc?.toggle(.messages)
                     vc?.prepareForNavigation()
                     vc?.reload()
                 }
@@ -649,9 +646,10 @@ extension MainNavigationItem
     {
         switch self {
         case .search: return .search
-        case .like: return .like
+        case .likes: return .likes
+        case .matches: return .matches
+        case .chats: return .chats
         case .profile: return .profile
-        case .messages: return .messages
         
         case .profileAndFetch: return .profileAndFetch
         case .profileAndPick: return .profileAndPick
