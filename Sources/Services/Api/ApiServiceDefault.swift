@@ -194,6 +194,7 @@ class ApiServiceDefault: ApiService
     }
     
     // MARK: - Feeds
+    
     func getLMM(_ resolution: String, lastActionDate: Date?, source: SourceFeedType) -> Observable<ApiLMMResult>
     {
         var params: [String: Any] = [
@@ -304,6 +305,8 @@ class ApiServiceDefault: ApiService
             })
     }
     
+    
+    
     func getNewFaces(_ resolution: String, lastActionDate: Date?) -> Observable<[ApiProfile]>
     {
         var params: [String: Any] = [
@@ -319,6 +322,48 @@ class ApiServiceDefault: ApiService
         let trace = Performance.startTrace(name: "feeds/get_new_faces")
         
         return self.requestGET(path: "feeds/get_new_faces", params: params, trace: trace)
+            .flatMap { jsonDict -> Observable<[ApiProfile]> in
+                guard let profilesArray = jsonDict["profiles"] as? [[String: Any]] else {
+                    let error = createError("ApiService: wrong profiles data format", type: .hidden)
+                    
+                    return .error(error)
+                }
+                
+                return .just(profilesArray.compactMap({ ApiProfile.parse($0) }))
+        }
+    }
+    
+    func discover(_ resolution: String, lastActionDate: Date?, minAge: Int?, maxAge: Int?, maxDistance: Int?) -> Observable<[ApiProfile]>
+    {
+        var params: [String: Any] = [
+            "resolution": resolution,
+            "lastActionTime": lastActionDate == nil ? 0 : Int(lastActionDate!.timeIntervalSince1970 * 1000.0),
+            "limit": 50
+        ]
+        
+        if let accessToken = self.accessToken {
+            params["accessToken"] = accessToken
+        }
+        
+        var filter: [String: Any] = [:]
+        
+        if let minAge = minAge {
+            filter["minAge"] = minAge
+        }
+        
+        if let maxAge = maxAge {
+            filter["maxAge"] = maxAge
+        }
+        
+        if let maxDistance = maxDistance {
+            filter["maxDistance"] = maxDistance
+        }
+        
+        params["filter"] = filter
+        
+        let trace = Performance.startTrace(name: "feeds/discover")
+        
+        return self.request(.post, path: "feeds/discover", jsonBody: params, trace: trace)
             .flatMap { jsonDict -> Observable<[ApiProfile]> in
                 guard let profilesArray = jsonDict["profiles"] as? [[String: Any]] else {
                     let error = createError("ApiService: wrong profiles data format", type: .hidden)
