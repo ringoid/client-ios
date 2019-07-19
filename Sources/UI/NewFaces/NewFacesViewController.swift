@@ -45,6 +45,7 @@ class NewFacesViewController: BaseViewController
     @IBOutlet fileprivate weak var blockContainerView: UIView!
     @IBOutlet fileprivate weak var blockPhotoView: UIImageView!
     @IBOutlet fileprivate weak var blockPhotoAspectConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var filterContainerView: UIView!
     
     override func viewDidLoad()
     {
@@ -74,6 +75,17 @@ class NewFacesViewController: BaseViewController
         
         self.isTabSwitched = true
         self.updateFeed()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == SegueIds.fiter, let vc = segue.destination as? NewFacesFilterViewController {
+            vc.input = NewFacesFilterVMInput(filter: self.input.filter)
+            vc.onClose = { [weak self] in
+                self?.filterContainerView.isHidden = true
+                self?.reload()
+            }
+        }
     }
         
     override func updateTheme()
@@ -167,6 +179,11 @@ class NewFacesViewController: BaseViewController
         let topOffset = self.view.safeAreaInsets.top + self.tableView.contentInset.top
         self.tableView.setContentOffset(CGPoint(x: 0.0, y: -topOffset), animated: false)
         self.input.actionsManager.commit()
+    }
+    
+    @IBAction func onShowFilter()
+    {
+        self.showFilter()
     }
     
     // MARK: -
@@ -411,6 +428,11 @@ class NewFacesViewController: BaseViewController
         
         self.present(alertVC, animated: true, completion: nil)
     }
+    
+    fileprivate func showFilter()
+    {
+        self.filterContainerView.isHidden = false
+    }
 }
 
 extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
@@ -554,5 +576,13 @@ extension NewFacesViewController: UIScrollViewDelegate
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView)
     {
         _ = self.input.actionsManager.checkConnectionState()
+    }
+}
+
+extension NewFacesViewController
+{
+    struct SegueIds
+    {
+        static let fiter = "embed_filter"
     }
 }

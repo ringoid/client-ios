@@ -115,22 +115,44 @@ discover users nearby</string>
                                     <constraint firstAttribute="trailing" secondItem="fyV-MR-lVu" secondAttribute="trailing" id="wUQ-hF-jVK"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNb-ZP-bBP">
+                                <rect key="frame" x="16" y="140" width="30" height="30"/>
+                                <state key="normal" title="F">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onShowFilter" destination="m48-Io-6eu" eventType="touchUpInside" id="KFi-N1-LMf"/>
+                                </connections>
+                            </button>
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCJ-aN-hEm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="u0R-SQ-uHN" kind="embed" identifier="embed_filter" id="Evg-3y-qa7"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Dzb-Wx-JQu" firstAttribute="bottom" secondItem="RcH-VU-hkW" secondAttribute="bottom" constant="66" id="0ND-j5-wxd"/>
+                            <constraint firstAttribute="bottom" secondItem="XCJ-aN-hEm" secondAttribute="bottom" id="198-XP-QZd"/>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="2o9-jA-DjX"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="7aY-ua-nbS"/>
+                            <constraint firstItem="eNb-ZP-bBP" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" constant="16" id="CeT-Vr-2sO"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="DIr-zl-DwV"/>
                             <constraint firstItem="RcH-VU-hkW" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" constant="16" id="M0s-yz-w5X"/>
                             <constraint firstAttribute="bottom" secondItem="f5P-fA-3ZX" secondAttribute="bottom" id="TVP-3o-yBY"/>
                             <constraint firstItem="Dzb-Wx-JQu" firstAttribute="trailing" secondItem="f5P-fA-3ZX" secondAttribute="trailing" id="UYa-cj-LJ4"/>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="V4m-wZ-I6w"/>
+                            <constraint firstAttribute="trailing" secondItem="XCJ-aN-hEm" secondAttribute="trailing" id="W2B-gB-fEY"/>
                             <constraint firstAttribute="bottom" secondItem="Owz-cZ-1Sc" secondAttribute="bottom" id="WOb-4K-jM4"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="XVH-IB-ckJ"/>
+                            <constraint firstItem="XCJ-aN-hEm" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="bAS-ly-0lX"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="eOj-9V-78m"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="k2s-xp-RvI"/>
+                            <constraint firstItem="eNb-ZP-bBP" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" constant="140" id="nQo-tV-9dQ"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" id="nm8-TI-5VR"/>
+                            <constraint firstItem="XCJ-aN-hEm" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="sB4-XN-YpT"/>
                             <constraint firstAttribute="trailing" secondItem="Owz-cZ-1Sc" secondAttribute="trailing" id="sVe-sm-wMe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dzb-Wx-JQu"/>
@@ -144,6 +166,7 @@ discover users nearby</string>
                         <outlet property="emptyFeedLabel" destination="CGR-G7-fOR" id="XU1-zR-aiG"/>
                         <outlet property="feedTitleLabel" destination="isk-qO-AwF" id="vAP-BQ-ZbC"/>
                         <outlet property="feedTitleView" destination="V9x-Tk-Mmn" id="5jS-kI-uLU"/>
+                        <outlet property="filterContainerView" destination="XCJ-aN-hEm" id="zJw-Nj-RPF"/>
                         <outlet property="scrollTopBtn" destination="RcH-VU-hkW" id="A6d-nd-dJD"/>
                         <outlet property="tableView" destination="Owz-cZ-1Sc" id="KNv-5u-zds"/>
                     </connections>
@@ -406,7 +429,7 @@ discover users nearby</string>
         <!--New Faces Filter View Controller-->
         <scene sceneID="Wjn-aH-flw">
             <objects>
-                <viewController id="u0R-SQ-uHN" customClass="NewFacesFilterViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="new_faces_filter" id="u0R-SQ-uHN" customClass="NewFacesFilterViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YAj-2J-iuz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -460,7 +483,8 @@ discover users nearby</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="u6y-KQ-QNN" firstAttribute="leading" secondItem="YAj-2J-iuz" secondAttribute="leading" constant="16" id="4D6-vm-5oB"/>
                             <constraint firstAttribute="trailing" secondItem="u6y-KQ-QNN" secondAttribute="trailing" constant="16" id="huH-yp-mFs"/>
@@ -468,10 +492,14 @@ discover users nearby</string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JYm-ck-JIx"/>
                     </view>
+                    <connections>
+                        <outlet property="filtersView" destination="u6y-KQ-QNN" id="YiA-La-WWA"/>
+                        <outlet property="rangeSlider" destination="fZg-8W-enD" id="6UM-LM-lnr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wdY-Q3-xZ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10" y="836"/>
+            <point key="canvasLocation" x="33" y="832"/>
         </scene>
         <!--New Face Photo View Controller-->
         <scene sceneID="cdS-un-COh">

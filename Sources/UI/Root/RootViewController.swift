@@ -105,7 +105,8 @@ class RootViewController: BaseViewController {
             location: self.appManager.locationManager,
             scenario: self.appManager.scenarioManager,
             transition: self.appManager.transitionManager,
-            db: self.appManager.db
+            db: self.appManager.db,
+            filter: self.appManager.filterManager
         )
         
         self.containerView.embed(vc, to: self)

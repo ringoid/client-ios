@@ -21,6 +21,7 @@ struct NewFacesVMInput
     let location: LocationManager
     let scenario: AnalyticsScenarioManager
     let transition: TransitionManager
+    let filter: FilterManager
 }
 
 class NewFacesViewModel

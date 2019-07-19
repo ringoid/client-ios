@@ -446,7 +446,8 @@ class MainViewController: BaseViewController
             notifications: self.input.notifications,
             location: self.input.location,
             scenario: self.input.scenario,
-            transition: self.input.transition
+            transition: self.input.transition,
+            filter: self.input.filter
         )
         
         self.menuVCCache[.discover] = vc

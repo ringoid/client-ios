@@ -26,6 +26,7 @@ struct MainVMInput
     let scenario: AnalyticsScenarioManager
     let transition: TransitionManager
     let db: DBService
+    let filter: FilterManager
 }
 
 class MainViewModel
