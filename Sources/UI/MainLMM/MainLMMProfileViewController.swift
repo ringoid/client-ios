@@ -374,6 +374,7 @@ class MainLMMProfileViewController: UIViewController
         }
     }
     
+    /*
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
     {
         if let optionBtnOpacity = self.bottomOpacityFor(self.optionsBtn.frame, offset: value) {
@@ -417,6 +418,25 @@ class MainLMMProfileViewController: UIViewController
             if let titleLabelControlOpacity = self.bottomOpacityFor(controls.titleLabel.frame, offset: value) {
                 controls.titleLabel.alpha = self.discreetOpacity(for: titleLabelControlOpacity)
             }
+        }
+    }
+ */
+    fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
+    {
+        self.optionsBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
+        self.messageBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.messageBtn.frame, offset: value) ?? 1.0)
+        self.pagesControl.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
+        self.statusView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
+        self.statusLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusLabel.frame, offset: value) ?? 1.0)
+        self.nameLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.nameLabel.frame, offset: value) ?? 1.0)
+        self.aboutLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.aboutLabel.frame, offset: value) ?? 1.0)
+        self.likeBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.likeBtn.frame, offset: value) ?? 1.0)
+        
+        
+        (self.leftFieldsControls + self.rightFieldsControls).forEach { controls in
+            controls.iconView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(controls.iconView.frame, offset: value) ?? 1.0)
+            controls.titleLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(controls.titleLabel.frame, offset: value) ?? 1.0)
+            
         }
     }
     
