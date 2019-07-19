@@ -403,6 +403,76 @@ discover users nearby</string>
             </objects>
             <point key="canvasLocation" x="788" y="93.103448275862078"/>
         </scene>
+        <!--New Faces Filter View Controller-->
+        <scene sceneID="Wjn-aH-flw">
+            <objects>
+                <viewController id="u0R-SQ-uHN" customClass="NewFacesFilterViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YAj-2J-iuz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6y-KQ-QNN">
+                                <rect key="frame" x="16" y="100" width="343" height="240"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZg-8W-enD" customClass="RangeSeekSlider" customModule="Ringoid" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="44" width="311" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="nMO-zr-eM9"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                                                <real key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                                <real key="value" value="55"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="selectedMinValue">
+                                                <real key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="selectedMaxValue">
+                                                <real key="value" value="55"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="colorBetweenHandles">
+                                                <color key="value" red="0.27234223359999998" green="0.50438956140000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="enableStep" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="step">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="initialColor">
+                                                <color key="value" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="fZg-8W-enD" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="16" id="9jA-NU-cbH"/>
+                                    <constraint firstAttribute="trailing" secondItem="fZg-8W-enD" secondAttribute="trailing" constant="16" id="E4l-ce-DUy"/>
+                                    <constraint firstItem="fZg-8W-enD" firstAttribute="top" secondItem="u6y-KQ-QNN" secondAttribute="top" constant="44" id="deB-Yn-CnA"/>
+                                    <constraint firstAttribute="height" constant="240" id="p7V-Vx-TK7"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="u6y-KQ-QNN" firstAttribute="leading" secondItem="YAj-2J-iuz" secondAttribute="leading" constant="16" id="4D6-vm-5oB"/>
+                            <constraint firstAttribute="trailing" secondItem="u6y-KQ-QNN" secondAttribute="trailing" constant="16" id="huH-yp-mFs"/>
+                            <constraint firstItem="u6y-KQ-QNN" firstAttribute="top" secondItem="YAj-2J-iuz" secondAttribute="top" constant="100" id="oHG-pj-yFu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JYm-ck-JIx"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wdY-Q3-xZ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10" y="836"/>
+        </scene>
         <!--New Face Photo View Controller-->
         <scene sceneID="cdS-un-COh">
             <objects>

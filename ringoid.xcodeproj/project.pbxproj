@@ -85,6 +85,18 @@
 		574A7DA722434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574F4ACA22520B230027A083 /* SettingsNotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */; };
 		574F4ACB22520B230027A083 /* SettingsNotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */; };
+		5751561422E1D8F2009E7743 /* NewFacesFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751561322E1D8F2009E7743 /* NewFacesFilterViewController.swift */; };
+		5751561522E1D8F2009E7743 /* NewFacesFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751561322E1D8F2009E7743 /* NewFacesFilterViewController.swift */; };
+		5751561722E1D90D009E7743 /* NewFacesFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751561622E1D90D009E7743 /* NewFacesFilterViewModel.swift */; };
+		5751561822E1D90D009E7743 /* NewFacesFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751561622E1D90D009E7743 /* NewFacesFilterViewModel.swift */; };
+		5751561B22E1DBF7009E7743 /* FilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751561A22E1DBF7009E7743 /* FilterManager.swift */; };
+		5751561C22E1DBF7009E7743 /* FilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751561A22E1DBF7009E7743 /* FilterManager.swift */; };
+		5751562222E1EA9D009E7743 /* RangeSeekSliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751561F22E1EA9D009E7743 /* RangeSeekSliderDelegate.swift */; };
+		5751562322E1EA9E009E7743 /* RangeSeekSliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751561F22E1EA9D009E7743 /* RangeSeekSliderDelegate.swift */; };
+		5751562422E1EA9E009E7743 /* RangeSeekSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751562022E1EA9D009E7743 /* RangeSeekSlider.swift */; };
+		5751562522E1EA9E009E7743 /* RangeSeekSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751562022E1EA9D009E7743 /* RangeSeekSlider.swift */; };
+		5751562622E1EA9E009E7743 /* TapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751562122E1EA9D009E7743 /* TapticEngine.swift */; };
+		5751562722E1EA9E009E7743 /* TapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751562122E1EA9D009E7743 /* TapticEngine.swift */; };
 		57528C712292BCE4003F01E3 /* SettingsNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57528C702292BCE4003F01E3 /* SettingsNotificationsViewController.swift */; };
 		57528C722292BCE4003F01E3 /* SettingsNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57528C702292BCE4003F01E3 /* SettingsNotificationsViewController.swift */; };
 		57528C742292E621003F01E3 /* SettingsNotificationsEveningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57528C732292E621003F01E3 /* SettingsNotificationsEveningCell.swift */; };
@@ -472,6 +484,12 @@
 		573D768922D73C1300E1576B /* SettingsProfileFieldsSuggest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileFieldsSuggest.swift; sourceTree = "<group>"; };
 		574A7DA522434EFE0065AE56 /* PromotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionManager.swift; sourceTree = "<group>"; };
 		574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsCell.swift; sourceTree = "<group>"; };
+		5751561322E1D8F2009E7743 /* NewFacesFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesFilterViewController.swift; sourceTree = "<group>"; };
+		5751561622E1D90D009E7743 /* NewFacesFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesFilterViewModel.swift; sourceTree = "<group>"; };
+		5751561A22E1DBF7009E7743 /* FilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterManager.swift; sourceTree = "<group>"; };
+		5751561F22E1EA9D009E7743 /* RangeSeekSliderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSeekSliderDelegate.swift; sourceTree = "<group>"; };
+		5751562022E1EA9D009E7743 /* RangeSeekSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSeekSlider.swift; sourceTree = "<group>"; };
+		5751562122E1EA9D009E7743 /* TapticEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapticEngine.swift; sourceTree = "<group>"; };
 		57528C702292BCE4003F01E3 /* SettingsNotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsViewController.swift; sourceTree = "<group>"; };
 		57528C732292E621003F01E3 /* SettingsNotificationsEveningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsEveningCell.swift; sourceTree = "<group>"; };
 		57528C762292E761003F01E3 /* SettingsNotificationsLikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsLikeCell.swift; sourceTree = "<group>"; };
@@ -693,6 +711,7 @@
 		570D047221DCE3DA00E0DCFB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5751561D22E1EA9D009E7743 /* Thirdparty */,
 				570D049F21DD01FB00E0DCFB /* Helpers */,
 				570D047C21DCED1800E0DCFB /* Services */,
 				570D04A221DD084500E0DCFB /* Managers */,
@@ -789,6 +808,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				5751561922E1DBC9009E7743 /* Filter */,
 				573D1167228DA37F00CD9C2D /* FeedbackMananger */,
 				573663C52272D8700041C5DB /* GlobalAnimationManager */,
 				573663C12271B7650041C5DB /* Transition */,
@@ -958,6 +978,32 @@
 			path = Promotion;
 			sourceTree = "<group>";
 		};
+		5751561922E1DBC9009E7743 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				5751561A22E1DBF7009E7743 /* FilterManager.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		5751561D22E1EA9D009E7743 /* Thirdparty */ = {
+			isa = PBXGroup;
+			children = (
+				5751561E22E1EA9D009E7743 /* RangeSeekSlider */,
+			);
+			path = Thirdparty;
+			sourceTree = "<group>";
+		};
+		5751561E22E1EA9D009E7743 /* RangeSeekSlider */ = {
+			isa = PBXGroup;
+			children = (
+				5751561F22E1EA9D009E7743 /* RangeSeekSliderDelegate.swift */,
+				5751562022E1EA9D009E7743 /* RangeSeekSlider.swift */,
+				5751562122E1EA9D009E7743 /* TapticEngine.swift */,
+			);
+			path = RangeSeekSlider;
+			sourceTree = "<group>";
+		};
 		57585D3421E3308300038798 /* NewFaces */ = {
 			isa = PBXGroup;
 			children = (
@@ -967,6 +1013,8 @@
 				57FB7BCD21E74A3700AAA29D /* NewFaceProfileViewController.swift */,
 				57FB7BCF21E74AAC00AAA29D /* NewFaceProfileViewModel.swift */,
 				57FB7BD421E7661200AAA29D /* NewFacePhotoViewController.swift */,
+				5751561322E1D8F2009E7743 /* NewFacesFilterViewController.swift */,
+				5751561622E1D90D009E7743 /* NewFacesFilterViewModel.swift */,
 			);
 			path = NewFaces;
 			sourceTree = "<group>";
@@ -1883,12 +1931,15 @@
 				57EE64C1221478A600246B45 /* SettingsLegalViewController.swift in Sources */,
 				57801A87222FF049005A9731 /* SettingsDebugLogViewController.swift in Sources */,
 				57ED486D224B82C10033EB0B /* NotificationsService.swift in Sources */,
+				5751562622E1EA9E009E7743 /* TapticEngine.swift in Sources */,
 				57B863F621EF5C4900B9CC70 /* ApiBlockAction.swift in Sources */,
 				57585D6421E4C73600038798 /* NewFacesViewModel.swift in Sources */,
 				573A5C0E222409F10094A9FA /* EmptyFeed.swift in Sources */,
 				577DDAD922647975001D7D24 /* LocationServiceDefault.swift in Sources */,
 				573D768A22D73C1400E1576B /* SettingsProfileFieldsSuggest.swift in Sources */,
 				57EEB08C22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */,
+				5751561422E1D8F2009E7743 /* NewFacesFilterViewController.swift in Sources */,
+				5751561B22E1DBF7009E7743 /* FilterManager.swift in Sources */,
 				573A5C202226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
 				57585D3C21E34AFC00038798 /* ApiProfile.swift in Sources */,
 				573663C72272D8870041C5DB /* GlobalAnimationManager.swift in Sources */,
@@ -1910,6 +1961,7 @@
 				57B863CF21ECD98F00B9CC70 /* MainLMMCell.swift in Sources */,
 				57801A84222E4378005A9731 /* SettingsDebugItemCell.swift in Sources */,
 				57EEB06722BCEC10005770B3 /* EducationLevel.swift in Sources */,
+				5751561722E1D90D009E7743 /* NewFacesFilterViewModel.swift in Sources */,
 				57B863FC21EF5DDF00B9CC70 /* ApiViewChatAction.swift in Sources */,
 				57585D5B21E4A0F100038798 /* FilePath.swift in Sources */,
 				573A5C1B222556AD0094A9FA /* LogService.swift in Sources */,
@@ -1918,6 +1970,7 @@
 				57585D4621E3570B00038798 /* NewFaceProfile.swift in Sources */,
 				576FC10821FEC9C400BA5ABE /* ActionPhoto.swift in Sources */,
 				57B863C521ECC34C00B9CC70 /* LMMManager.swift in Sources */,
+				5751562422E1EA9E009E7743 /* RangeSeekSlider.swift in Sources */,
 				57EEB06422BCE8E5005770B3 /* Transport.swift in Sources */,
 				57EEB08222BE62FF005770B3 /* SettingsProfileHeightCell.swift in Sources */,
 				57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */,
@@ -1947,6 +2000,7 @@
 				579CD7BC21F8C4D800C3AEE3 /* SettingsManager.swift in Sources */,
 				57B863EB21EE33D200B9CC70 /* ActionsManager.swift in Sources */,
 				57EEB07922BE3E2C005770B3 /* SettingsProfileViewController.swift in Sources */,
+				5751562222E1EA9D009E7743 /* RangeSeekSliderDelegate.swift in Sources */,
 				57EEB0AD22C20CF4005770B3 /* IncomeTitles.swift in Sources */,
 				57EE655D2216DCA700246B45 /* SentryService.swift in Sources */,
 				579CD7CF21FAE2D100C3AEE3 /* ChatManager.swift in Sources */,
@@ -2078,12 +2132,15 @@
 				57EE65102216711000246B45 /* SettingsLegalLicensesCell.swift in Sources */,
 				57801A88222FF04A005A9731 /* SettingsDebugLogViewController.swift in Sources */,
 				57ED486E224B82C10033EB0B /* NotificationsService.swift in Sources */,
+				5751562722E1EA9E009E7743 /* TapticEngine.swift in Sources */,
 				57EE65112216711000246B45 /* FileServiceDefault.swift in Sources */,
 				57EE65122216711000246B45 /* SettingsLegalViewController.swift in Sources */,
 				573A5C0F22240C160094A9FA /* EmptyFeed.swift in Sources */,
 				577DDADA22647975001D7D24 /* LocationServiceDefault.swift in Sources */,
 				573D768B22D73C1400E1576B /* SettingsProfileFieldsSuggest.swift in Sources */,
 				57EEB08D22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */,
+				5751561522E1D8F2009E7743 /* NewFacesFilterViewController.swift in Sources */,
+				5751561C22E1DBF7009E7743 /* FilterManager.swift in Sources */,
 				573A5C212226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
 				57EE65132216711000246B45 /* ApiBlockAction.swift in Sources */,
 				573663C82272D8870041C5DB /* GlobalAnimationManager.swift in Sources */,
@@ -2105,6 +2162,7 @@
 				57EE651F2216711000246B45 /* Photo.swift in Sources */,
 				57801A85222E4379005A9731 /* SettingsDebugItemCell.swift in Sources */,
 				57EEB06822BCEC10005770B3 /* EducationLevel.swift in Sources */,
+				5751561822E1D90D009E7743 /* NewFacesFilterViewModel.swift in Sources */,
 				57EE65202216711000246B45 /* DBServiceObject.swift in Sources */,
 				57EE65212216711000246B45 /* MainLMMCell.swift in Sources */,
 				573A5C1C222556AD0094A9FA /* LogService.swift in Sources */,
@@ -2113,6 +2171,7 @@
 				57EE65242216711000246B45 /* MainViewController.swift in Sources */,
 				57EE65252216711000246B45 /* Colors.swift in Sources */,
 				57EE65262216711000246B45 /* NewFaceProfile.swift in Sources */,
+				5751562522E1EA9E009E7743 /* RangeSeekSlider.swift in Sources */,
 				57EEB06522BCE8E5005770B3 /* Transport.swift in Sources */,
 				57EEB08322BE62FF005770B3 /* SettingsProfileHeightCell.swift in Sources */,
 				57EE65272216711000246B45 /* ActionPhoto.swift in Sources */,
@@ -2142,6 +2201,7 @@
 				57EE65382216711000246B45 /* AppConfig.swift in Sources */,
 				57EE65392216711000246B45 /* MainViewModel.swift in Sources */,
 				57EEB07A22BE3E2C005770B3 /* SettingsProfileViewController.swift in Sources */,
+				5751562322E1EA9E009E7743 /* RangeSeekSliderDelegate.swift in Sources */,
 				57EEB0AE22C20CF4005770B3 /* IncomeTitles.swift in Sources */,
 				57EE653A2216711000246B45 /* SettingsManager.swift in Sources */,
 				57EE653B2216711000246B45 /* ActionsManager.swift in Sources */,

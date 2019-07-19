@@ -37,6 +37,7 @@ class AppManager
     var locationManager: LocationManager!
     var scenarioManager: AnalyticsScenarioManager!
     var transitionManager: TransitionManager!
+    var filterManager: FilterManager!
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var resignDate: Date? = nil
@@ -141,7 +142,8 @@ class AppManager
     fileprivate func setupManagers(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?)
     {
         self.actionsManager = ActionsManager(self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, reachability: self.reachability, notifications: self.notifications)
-        self.newFacesManager = NewFacesManager(self.db, api: self.apiService, device: self.deviceService, actionsManager: self.actionsManager)
+        self.filterManager = FilterManager()
+        self.newFacesManager = NewFacesManager(self.db, api: self.apiService, device: self.deviceService, actionsManager: self.actionsManager, filterManager: self.filterManager)
         self.lmmManager = LMMManager(self.db, api: self.apiService, device: self.deviceService, actionsManager: self.actionsManager, storage: self.defaultStorage, notifications: self.notifications)
         self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader, fileService: self.fileService, device: self.deviceService, storage: self.defaultStorage, lmm: self.lmmManager)
         self.scenarioManager = AnalyticsScenarioManager(AnalyticsManager.shared)
