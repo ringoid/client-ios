@@ -18,6 +18,7 @@ class NewFacesFilterViewController: BaseViewController
     
     @IBOutlet fileprivate weak var filtersView: UIView!
     @IBOutlet fileprivate weak var rangeSlider: RangeSeekSlider!
+    @IBOutlet fileprivate weak var distanceSlider: UISlider!
     
     override func viewDidLoad()
     {
@@ -42,6 +43,11 @@ class NewFacesFilterViewController: BaseViewController
         guard !self.filtersView.frame.contains(recognizer.location(in: self.view)) else { return }
         
         self.onClose?()
+    }
+    
+    @IBAction fileprivate func onDistanceChange(_ slider: UISlider)
+    {
+        self.viewModel.maxDistance.accept(Int(slider.value))
     }
 }
 

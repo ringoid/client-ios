@@ -468,11 +468,20 @@ discover users nearby</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="Nth-j2-I1X">
+                                        <rect key="frame" x="14" y="160" width="315" height="31"/>
+                                        <connections>
+                                            <action selector="onDistanceChange:" destination="u0R-SQ-uHN" eventType="valueChanged" id="FsC-AH-DCR"/>
+                                        </connections>
+                                    </slider>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="fZg-8W-enD" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="16" id="9jA-NU-cbH"/>
                                     <constraint firstAttribute="trailing" secondItem="fZg-8W-enD" secondAttribute="trailing" constant="16" id="E4l-ce-DUy"/>
+                                    <constraint firstItem="Nth-j2-I1X" firstAttribute="top" secondItem="u6y-KQ-QNN" secondAttribute="top" constant="160" id="Qab-5C-VlB"/>
+                                    <constraint firstAttribute="trailing" secondItem="Nth-j2-I1X" secondAttribute="trailing" constant="16" id="VCo-0R-h4z"/>
+                                    <constraint firstItem="Nth-j2-I1X" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="16" id="X1n-R5-mAj"/>
                                     <constraint firstItem="fZg-8W-enD" firstAttribute="top" secondItem="u6y-KQ-QNN" secondAttribute="top" constant="44" id="deB-Yn-CnA"/>
                                     <constraint firstAttribute="height" constant="240" id="p7V-Vx-TK7"/>
                                 </constraints>
@@ -493,6 +502,7 @@ discover users nearby</string>
                         <viewLayoutGuide key="safeArea" id="JYm-ck-JIx"/>
                     </view>
                     <connections>
+                        <outlet property="distanceSlider" destination="Nth-j2-I1X" id="0Ib-Ef-ufr"/>
                         <outlet property="filtersView" destination="u6y-KQ-QNN" id="YiA-La-WWA"/>
                         <outlet property="rangeSlider" destination="fZg-8W-enD" id="6UM-LM-lnr"/>
                     </connections>
