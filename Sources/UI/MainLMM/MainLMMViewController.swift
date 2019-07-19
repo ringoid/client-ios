@@ -53,6 +53,8 @@ class MainLMMViewController: BaseViewController
     fileprivate var isUpdateBtnVisible: Bool = false
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
+    @IBOutlet fileprivate weak var feedTitleLabel: UILabel!
+    @IBOutlet fileprivate weak var feedTitleView: UIView!
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
     @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
     @IBOutlet fileprivate weak var tableView: UITableView!
@@ -60,7 +62,7 @@ class MainLMMViewController: BaseViewController
     @IBOutlet fileprivate weak var blockContainerView: UIView!
     @IBOutlet fileprivate weak var blockPhotoView: UIImageView!
     @IBOutlet fileprivate weak var blockPhotoAspectConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var updateBtn: UIButton!    
+    @IBOutlet fileprivate weak var updateBtn: UIButton!
     
     override func viewDidLoad()
     {
@@ -74,11 +76,11 @@ class MainLMMViewController: BaseViewController
         self.tableView.estimatedSectionFooterHeight = 0.0
         
         let cellHeight = UIScreen.main.bounds.width * AppConfig.photoRatio
-        self.tableView.tableHeaderView = nil
+        self.tableView.tableHeaderView = self.feedTitleView
         self.tableView.rowHeight = cellHeight
         self.tableView.estimatedRowHeight = cellHeight
         self.tableView.contentInset = UIEdgeInsets(
-            top: self.view.safeAreaInsets.top + 60.0,
+            top: 0.0,//self.view.safeAreaInsets.top + 60.0,
             left: 0.0,
             bottom: UIScreen.main.bounds.height - cellHeight,
             right: 0.0
@@ -111,6 +113,7 @@ class MainLMMViewController: BaseViewController
     override func updateLocale()
     {
         self.toggleActivity(self.currentActivityState)
+        self.updateFeedTitle()
         
         self.updateBtn.setTitle("feed_tap_to_refresh".localized(), for: .normal)
     }
@@ -309,9 +312,20 @@ class MainLMMViewController: BaseViewController
         self.input.actionsManager.commit()
         
         self.isTabSwitched = true
+        self.updateFeedTitle()
         self.updateBindings()
         
         self.checkForUpdates()
+    }
+    
+    fileprivate func updateFeedTitle()
+    {
+        switch self.type.value {
+        case .likesYou: self.feedTitleLabel.text = "lmm_tab_likes".localized()
+        case .matches: self.feedTitleLabel.text = "lmm_tab_matches".localized()
+        case .messages: self.feedTitleLabel.text = "lmm_tab_messages".localized()
+        default: return
+        }
     }
     
     fileprivate func profiles() -> BehaviorRelay<[LMMProfile]>?
@@ -524,7 +538,7 @@ class MainLMMViewController: BaseViewController
         self.chatContainerView.embed(vc, to: self)
         self.chatContainerView.isHidden = false
                 
-        self.scrollTop(to: indexPath.row, offset: 64.0, animated: false)
+        self.scrollTop(to: indexPath.row, offset: 0.0, animated: false)
         profileVC?.hideNotChatControls()
     }
     
@@ -541,7 +555,7 @@ class MainLMMViewController: BaseViewController
         self.chatContainerView.isHidden = true
         self.chatContainerView.remove()
         
-        self.scrollTop(to: indexPath.row, offset: 64.0, animated: false)
+        self.scrollTop(to: indexPath.row, offset: 0.0, animated: false)
         self.isChatShown = false
     }
     
@@ -670,8 +684,8 @@ class MainLMMViewController: BaseViewController
             let cellTopOffset = CGFloat(index) * cell.bounds.height
             let cellBottomOffset = cellTopOffset + cell.bounds.height
             
-            vc.topVisibleBorderDistance = cellTopOffset - contentOffset - self.view.safeAreaInsets.top - 72.0
-            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 72.0
+            //vc.topVisibleBorderDistance = cellTopOffset - contentOffset - self.view.safeAreaInsets.top - 72.0
+            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 72.0 - 64.0
         }
     }
     
@@ -753,7 +767,7 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
                 guard let `cell` = cell else { return }
                 guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
                 
-                self?.scrollTop(to: cellIndexPath.row, offset: 64.0, animated: false)
+                self?.scrollTop(to: cellIndexPath.row, offset: 0.0, animated: false)
             }
             
             profileVC.currentIndex.asObservable().subscribe(onNext: { index in

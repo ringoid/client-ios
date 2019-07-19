@@ -110,6 +110,8 @@ class SettingsManager
     
     func reset()
     {
+        MainLMMViewController.resetStates()
+        
         self.notifications.reset()
         self.actions.reset()
         self.profile.reset()

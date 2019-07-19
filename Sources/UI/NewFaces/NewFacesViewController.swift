@@ -36,7 +36,8 @@ class NewFacesViewController: BaseViewController
     fileprivate var visibleCells: [NewFacesCell] = []
     fileprivate var shouldShowFetchActivityOnLocationPermission: Bool = false
     
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var feedTitleLabel: UILabel!
+    @IBOutlet fileprivate weak var feedTitleView: UIView!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
@@ -53,7 +54,7 @@ class NewFacesViewController: BaseViewController
         
         self.toggleActivity(.initial)
         
-        self.tableView.tableHeaderView = nil
+        self.tableView.tableHeaderView = self.feedTitleView
         self.tableView.estimatedSectionHeaderHeight = 0.0
         self.tableView.estimatedSectionFooterHeight = 0.0
         
@@ -83,7 +84,7 @@ class NewFacesViewController: BaseViewController
     
     override func updateLocale()
     {
-        self.titleLabel.text = "feed_explore_empty_title".localized()
+        self.feedTitleLabel.text = "feed_explore_empty_title".localized()
         
         self.toggleActivity(self.currentActivityState)
     }
@@ -230,8 +231,7 @@ class NewFacesViewController: BaseViewController
         }
         
         let totalCount = profiles.count
-        let isEmpty = totalCount == 0
-        self.titleLabel.isHidden = !isEmpty
+        let isEmpty = totalCount == 0        
         
         if isEmpty && self.currentActivityState != .fetching {
             if self.currentActivityState == .contentAvailable {
@@ -367,7 +367,7 @@ class NewFacesViewController: BaseViewController
             let cellTopOffset = CGFloat(index) * cell.bounds.height
             let cellBottomOffset = cellTopOffset + cell.bounds.height
             
-            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 72.0
+            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 72.0 - 64.0
         }
     }
     
@@ -520,7 +520,7 @@ extension NewFacesViewController: UIScrollViewDelegate
         self.updateVisibleCellsBorders(offset)
         
         // Bottom new page trigger
-        let bottomOffset = scrollView.contentSize.height - scrollView.bounds.height - scrollView.contentInset.bottom - scrollView.contentInset.top - offset
+        let bottomOffset = scrollView.contentSize.height - scrollView.bounds.height - scrollView.contentInset.bottom - scrollView.contentInset.top - offset - 64.0
         if bottomOffset < 0.0 && self.viewModel?.isFetching.value == false {
             if let profiles = self.viewModel?.profiles.value, profiles.count > 2 {
                 self.onFetchMore()

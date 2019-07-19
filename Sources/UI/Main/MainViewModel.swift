@@ -93,14 +93,19 @@ class MainViewModel
         self.input.navigationManager.mainItem.accept(.search)
     }
     
-    func moveToLike()
+    func moveToLikes()
     {
-        self.input.navigationManager.mainItem.accept(.like)
+        self.input.navigationManager.mainItem.accept(.likes)
     }
     
-    func moveToMessages()
+    func moveToMatches()
     {
-        self.input.navigationManager.mainItem.accept(.messages)
+        self.input.navigationManager.mainItem.accept(.matches)
+    }
+    
+    func moveToChats()
+    {
+        self.input.navigationManager.mainItem.accept(.chats)
     }
     
     func moveToProfile()

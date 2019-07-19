@@ -45,8 +45,12 @@ extension EducationLevel
                 return .university2
             }
             
+            guard index < englishIndexMap.count else { return .unknown }
+            
             return englishIndexMap[index]
         }
+        
+        guard index < indexMap.count else { return .unknown }
         
         return indexMap[index]
     }
