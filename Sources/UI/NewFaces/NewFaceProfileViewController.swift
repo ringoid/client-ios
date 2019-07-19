@@ -357,6 +357,8 @@ class NewFaceProfileViewController: UIViewController
     
     fileprivate func updateFieldsContent(_ page: Int)
     {
+        guard !self.input.profile.isInvalidated else { return }
+        
         let genderStr: String = self.input.profile.gender ?? "male"
         let gender = Sex(rawValue: genderStr)
         
