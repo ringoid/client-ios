@@ -643,7 +643,7 @@ discover users nearby</string>
         <image name="feed_like_selected" width="36" height="33"/>
         <image name="feed_options" width="32" height="12"/>
         <image name="feed_scroll_top" width="65" height="65"/>
-        <image name="feed_slider_handle" width="27" height="44"/>
+        <image name="feed_slider_handle" width="25" height="44"/>
         <image name="profile_fields_children" width="30" height="30"/>
     </resources>
 </document>
