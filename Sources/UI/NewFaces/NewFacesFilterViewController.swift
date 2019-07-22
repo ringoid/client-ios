@@ -50,6 +50,13 @@ class NewFacesFilterViewController: BaseViewController
         // Distance
         self.distanceSlider.setThumbImage(UIImage(named: "feed_slider_handle"), for: .normal)
         self.distanceSlider.value = Float(self.viewModel.maxDistance.value ?? 350)
+        
+        self.filtersView.layer.cornerRadius = 16.0
+        self.filtersView.clipsToBounds = true
+        self.filtersView.layer.maskedCorners = [
+            .layerMinXMaxYCorner,
+            .layerMaxXMaxYCorner
+        ]
     }
     
     override func viewWillLayoutSubviews()
