@@ -555,11 +555,14 @@ discover users nearby</string>
                     </view>
                     <connections>
                         <outlet property="ageLabel" destination="CfW-5n-TFY" id="gfU-Uy-XCb"/>
+                        <outlet property="ageTitleLabel" destination="WCe-JM-wIu" id="juc-by-sVR"/>
+                        <outlet property="discoverBtn" destination="ntC-hs-FdS" id="FqW-Yj-Ulm"/>
                         <outlet property="distanceLabel" destination="owg-0e-K47" id="2ec-Nh-Wqf"/>
                         <outlet property="distanceSlider" destination="Nth-j2-I1X" id="0Ib-Ef-ufr"/>
                         <outlet property="filtersAreaHeightConstraint" destination="Byn-V5-0JJ" id="jOd-UY-dnM"/>
                         <outlet property="filtersAreaOffsetConstraint" destination="AcB-q2-OJd" id="nng-pM-vDC"/>
                         <outlet property="filtersView" destination="u6y-KQ-QNN" id="YiA-La-WWA"/>
+                        <outlet property="maxDistanceTitleLabel" destination="KOr-bi-Pjj" id="LBk-kP-qLi"/>
                         <outlet property="rangeSlider" destination="fZg-8W-enD" id="6UM-LM-lnr"/>
                     </connections>
                 </viewController>

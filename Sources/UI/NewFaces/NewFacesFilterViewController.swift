@@ -27,6 +27,10 @@ class NewFacesFilterViewController: BaseViewController
     @IBOutlet fileprivate weak var filtersAreaOffsetConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var filtersAreaHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet fileprivate weak var maxDistanceTitleLabel: UILabel!
+    @IBOutlet fileprivate weak var ageTitleLabel: UILabel!
+    @IBOutlet fileprivate weak var discoverBtn: UIButton!
+    
     override func viewDidLoad()
     {
         assert(self.input != nil)
@@ -101,6 +105,13 @@ class NewFacesFilterViewController: BaseViewController
         UIView.animate(withDuration: 0.2) {
             self.view.layoutSubviews()
         }
+    }
+    
+    override func updateLocale()
+    {
+        self.ageTitleLabel.text = "filter_age".localized()
+        self.maxDistanceTitleLabel.text = "filter_max_distance".localized()
+        self.discoverBtn.setTitle("filter_discover".localized(), for: .normal)
     }
     
     override func updateTheme() {}

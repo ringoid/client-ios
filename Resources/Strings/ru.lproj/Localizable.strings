@@ -179,3 +179,7 @@
 "profile_field_transport_car" = "Есть автомобиль";
 "profile_field_transport_taxi" = "Езжу на такси / Uber";
 "profile_field_transport_chauffeur" = "Личный водитель";
+
+"filter_max_distance" = "Максимальная дистанция";
+"filter_age" = "Возраст";
+"filter_discover" = "Искать";

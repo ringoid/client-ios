@@ -177,3 +177,7 @@
 "profile_field_transport_car" = "Own a car";
 "profile_field_transport_taxi" = "Use Taxi / Uber";
 "profile_field_transport_chauffeur" = "Hire Chauffeur";
+
+"filter_max_distance" = "Maximum Distance";
+"filter_age" = "Age";
+"filter_discover" = "Discover";
