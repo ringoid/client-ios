@@ -31,7 +31,14 @@ class NewFacesFilterViewController: BaseViewController
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onCloseAction))
         self.view.addGestureRecognizer(recognizer)
         
+        // Range
+        self.rangeSlider.selectedMinValue = CGFloat(self.viewModel.minAge.value ?? 18)
+        self.rangeSlider.selectedMaxValue = CGFloat(self.viewModel.maxAge.value ?? 55)
         self.rangeSlider.delegate = self
+        
+        // Distance
+        self.distanceSlider.setThumbImage(UIImage(named: "feed_slider_handle"), for: .normal)
+        self.distanceSlider.value = Float(self.viewModel.maxDistance.value ?? 350)
     }
     
     override func updateTheme() {}

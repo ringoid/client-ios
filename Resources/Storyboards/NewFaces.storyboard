@@ -115,9 +115,13 @@ discover users nearby</string>
                                     <constraint firstAttribute="trailing" secondItem="fyV-MR-lVu" secondAttribute="trailing" id="wUQ-hF-jVK"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNb-ZP-bBP">
-                                <rect key="frame" x="16" y="140" width="30" height="30"/>
-                                <state key="normal" title="F">
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNb-ZP-bBP">
+                                <rect key="frame" x="0.0" y="140" width="72" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="BV6-CE-Dwu"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" image="feed_filter_btn">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -138,7 +142,6 @@ discover users nearby</string>
                             <constraint firstAttribute="bottom" secondItem="XCJ-aN-hEm" secondAttribute="bottom" id="198-XP-QZd"/>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="2o9-jA-DjX"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="7aY-ua-nbS"/>
-                            <constraint firstItem="eNb-ZP-bBP" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" constant="16" id="CeT-Vr-2sO"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="DIr-zl-DwV"/>
                             <constraint firstItem="RcH-VU-hkW" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" constant="16" id="M0s-yz-w5X"/>
                             <constraint firstAttribute="bottom" secondItem="f5P-fA-3ZX" secondAttribute="bottom" id="TVP-3o-yBY"/>
@@ -146,6 +149,7 @@ discover users nearby</string>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="V4m-wZ-I6w"/>
                             <constraint firstAttribute="trailing" secondItem="XCJ-aN-hEm" secondAttribute="trailing" id="W2B-gB-fEY"/>
                             <constraint firstAttribute="bottom" secondItem="Owz-cZ-1Sc" secondAttribute="bottom" id="WOb-4K-jM4"/>
+                            <constraint firstItem="eNb-ZP-bBP" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="X8W-Nc-2BZ"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="XVH-IB-ckJ"/>
                             <constraint firstItem="XCJ-aN-hEm" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="bAS-ly-0lX"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="eOj-9V-78m"/>
@@ -435,11 +439,18 @@ discover users nearby</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6y-KQ-QNN">
-                                <rect key="frame" x="16" y="100" width="343" height="240"/>
+                                <rect key="frame" x="16" y="20" width="343" height="240"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOr-bi-Pjj">
+                                        <rect key="frame" x="16" y="32" width="145.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZg-8W-enD" customClass="RangeSeekSlider" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="44" width="311" height="44"/>
+                                        <rect key="frame" x="8" y="128" width="327" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="nMO-zr-eM9"/>
                                         </constraints>
@@ -457,32 +468,56 @@ discover users nearby</string>
                                                 <real key="value" value="55"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="colorBetweenHandles">
-                                                <color key="value" red="0.27234223359999998" green="0.50438956140000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.0" green="0.61176470588235299" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="enableStep" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="enableStep" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="step">
-                                                <real key="value" value="4"/>
+                                                <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="initialColor">
-                                                <color key="value" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="labelsFixed" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hideLabels" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="disableRange" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="handleImage" value="feed_slider_handle"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="selectedHandleDiameterMultiplier">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minDistance">
+                                                <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="Nth-j2-I1X">
-                                        <rect key="frame" x="14" y="160" width="315" height="31"/>
+                                        <rect key="frame" x="14" y="61" width="315" height="31"/>
+                                        <color key="minimumTrackTintColor" red="0.0" green="0.61176470588235299" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="onDistanceChange:" destination="u0R-SQ-uHN" eventType="valueChanged" id="FsC-AH-DCR"/>
                                         </connections>
                                     </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCe-JM-wIu">
+                                        <rect key="frame" x="16" y="107" width="30" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="fZg-8W-enD" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="16" id="9jA-NU-cbH"/>
-                                    <constraint firstAttribute="trailing" secondItem="fZg-8W-enD" secondAttribute="trailing" constant="16" id="E4l-ce-DUy"/>
-                                    <constraint firstItem="Nth-j2-I1X" firstAttribute="top" secondItem="u6y-KQ-QNN" secondAttribute="top" constant="160" id="Qab-5C-VlB"/>
+                                    <constraint firstItem="WCe-JM-wIu" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="16" id="37k-Ek-oIW"/>
+                                    <constraint firstItem="fZg-8W-enD" firstAttribute="top" secondItem="WCe-JM-wIu" secondAttribute="bottom" id="5D9-ZE-QML"/>
+                                    <constraint firstItem="WCe-JM-wIu" firstAttribute="top" secondItem="Nth-j2-I1X" secondAttribute="bottom" constant="16" id="6z0-yh-97x"/>
+                                    <constraint firstItem="fZg-8W-enD" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="8" id="9jA-NU-cbH"/>
+                                    <constraint firstAttribute="trailing" secondItem="fZg-8W-enD" secondAttribute="trailing" constant="8" id="E4l-ce-DUy"/>
                                     <constraint firstAttribute="trailing" secondItem="Nth-j2-I1X" secondAttribute="trailing" constant="16" id="VCo-0R-h4z"/>
+                                    <constraint firstItem="KOr-bi-Pjj" firstAttribute="top" secondItem="u6y-KQ-QNN" secondAttribute="top" constant="32" id="W7q-Gr-l8H"/>
                                     <constraint firstItem="Nth-j2-I1X" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="16" id="X1n-R5-mAj"/>
-                                    <constraint firstItem="fZg-8W-enD" firstAttribute="top" secondItem="u6y-KQ-QNN" secondAttribute="top" constant="44" id="deB-Yn-CnA"/>
+                                    <constraint firstItem="KOr-bi-Pjj" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="16" id="XFt-qA-GIu"/>
+                                    <constraint firstItem="Nth-j2-I1X" firstAttribute="top" secondItem="KOr-bi-Pjj" secondAttribute="bottom" constant="8" id="YgV-7M-YDN"/>
                                     <constraint firstAttribute="height" constant="240" id="p7V-Vx-TK7"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -496,8 +531,8 @@ discover users nearby</string>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="u6y-KQ-QNN" firstAttribute="leading" secondItem="YAj-2J-iuz" secondAttribute="leading" constant="16" id="4D6-vm-5oB"/>
+                            <constraint firstItem="u6y-KQ-QNN" firstAttribute="top" secondItem="JYm-ck-JIx" secondAttribute="top" id="MhE-1z-2Y4"/>
                             <constraint firstAttribute="trailing" secondItem="u6y-KQ-QNN" secondAttribute="trailing" constant="16" id="huH-yp-mFs"/>
-                            <constraint firstItem="u6y-KQ-QNN" firstAttribute="top" secondItem="YAj-2J-iuz" secondAttribute="top" constant="100" id="oHG-pj-yFu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JYm-ck-JIx"/>
                     </view>
@@ -585,10 +620,12 @@ discover users nearby</string>
         </scene>
     </scenes>
     <resources>
+        <image name="feed_filter_btn" width="39" height="44"/>
         <image name="feed_like" width="36" height="33"/>
         <image name="feed_like_selected" width="36" height="33"/>
         <image name="feed_options" width="32" height="12"/>
         <image name="feed_scroll_top" width="65" height="65"/>
+        <image name="feed_slider_handle" width="27" height="44"/>
         <image name="profile_fields_children" width="30" height="30"/>
     </resources>
 </document>
