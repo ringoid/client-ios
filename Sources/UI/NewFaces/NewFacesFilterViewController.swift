@@ -19,6 +19,8 @@ class NewFacesFilterViewController: BaseViewController
     @IBOutlet fileprivate weak var filtersView: UIView!
     @IBOutlet fileprivate weak var rangeSlider: RangeSeekSlider!
     @IBOutlet fileprivate weak var distanceSlider: UISlider!
+    @IBOutlet fileprivate weak var distanceLabel: UILabel!
+    @IBOutlet fileprivate weak var ageLabel: UILabel!
     
     override func viewDidLoad()
     {
@@ -54,7 +56,9 @@ class NewFacesFilterViewController: BaseViewController
     
     @IBAction fileprivate func onDistanceChange(_ slider: UISlider)
     {
-        self.viewModel.maxDistance.accept(Int(slider.value))
+        let distanceValue = Int(slider.value)
+        self.viewModel.maxDistance.accept(distanceValue)
+        self.distanceLabel.text = "\(distanceValue)"
     }
 }
 
@@ -62,7 +66,13 @@ extension NewFacesFilterViewController: RangeSeekSliderDelegate
 {
     func rangeSeekSlider(_ slider: RangeSeekSlider, didChange minValue: CGFloat, maxValue: CGFloat)
     {
-        self.viewModel.minAge.accept(Int(minValue))
-        self.viewModel.maxAge.accept(Int(maxValue))
+        let minAgeValue = Int(minValue)
+        let maxAgeValue = Int(maxValue)
+        
+        self.viewModel.minAge.accept(minAgeValue)
+        self.viewModel.maxAge.accept(maxAgeValue < 55 ? maxAgeValue : nil)
+
+        let maxAgeStr = maxAgeValue < 55 ? "\(maxAgeValue)" : "55+"
+        self.ageLabel.text = "\(minAgeValue) - \(maxAgeStr)"
     }
 }

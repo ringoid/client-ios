@@ -144,6 +144,7 @@ discover users nearby</string>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="7aY-ua-nbS"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="DIr-zl-DwV"/>
                             <constraint firstItem="RcH-VU-hkW" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" constant="16" id="M0s-yz-w5X"/>
+                            <constraint firstItem="eNb-ZP-bBP" firstAttribute="top" secondItem="Dzb-Wx-JQu" secondAttribute="top" constant="120" id="QSW-CX-ALx"/>
                             <constraint firstAttribute="bottom" secondItem="f5P-fA-3ZX" secondAttribute="bottom" id="TVP-3o-yBY"/>
                             <constraint firstItem="Dzb-Wx-JQu" firstAttribute="trailing" secondItem="f5P-fA-3ZX" secondAttribute="trailing" id="UYa-cj-LJ4"/>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="V4m-wZ-I6w"/>
@@ -154,7 +155,6 @@ discover users nearby</string>
                             <constraint firstItem="XCJ-aN-hEm" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="bAS-ly-0lX"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="eOj-9V-78m"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="k2s-xp-RvI"/>
-                            <constraint firstItem="eNb-ZP-bBP" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" constant="140" id="nQo-tV-9dQ"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" id="nm8-TI-5VR"/>
                             <constraint firstItem="XCJ-aN-hEm" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="sB4-XN-YpT"/>
                             <constraint firstAttribute="trailing" secondItem="Owz-cZ-1Sc" secondAttribute="trailing" id="sVe-sm-wMe"/>
@@ -478,7 +478,7 @@ discover users nearby</string>
                                                 <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="labelsFixed" value="NO"/>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hideLabels" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hideLabels" value="YES"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="disableRange" value="NO"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
                                                 <real key="value" value="2"/>
@@ -488,7 +488,7 @@ discover users nearby</string>
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minDistance">
-                                                <real key="value" value="1"/>
+                                                <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
@@ -505,20 +505,36 @@ discover users nearby</string>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owg-0e-K47">
+                                        <rect key="frame" x="289" y="32" width="38" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 - 55+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfW-5n-TFY">
+                                        <rect key="frame" x="261.5" y="107" width="65.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="WCe-JM-wIu" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="16" id="37k-Ek-oIW"/>
+                                    <constraint firstAttribute="trailing" secondItem="CfW-5n-TFY" secondAttribute="trailing" constant="16" id="4rN-au-4iI"/>
                                     <constraint firstItem="fZg-8W-enD" firstAttribute="top" secondItem="WCe-JM-wIu" secondAttribute="bottom" id="5D9-ZE-QML"/>
                                     <constraint firstItem="WCe-JM-wIu" firstAttribute="top" secondItem="Nth-j2-I1X" secondAttribute="bottom" constant="16" id="6z0-yh-97x"/>
                                     <constraint firstItem="fZg-8W-enD" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="8" id="9jA-NU-cbH"/>
                                     <constraint firstAttribute="trailing" secondItem="fZg-8W-enD" secondAttribute="trailing" constant="8" id="E4l-ce-DUy"/>
+                                    <constraint firstItem="CfW-5n-TFY" firstAttribute="centerY" secondItem="WCe-JM-wIu" secondAttribute="centerY" id="GR1-5u-cDc"/>
                                     <constraint firstAttribute="trailing" secondItem="Nth-j2-I1X" secondAttribute="trailing" constant="16" id="VCo-0R-h4z"/>
                                     <constraint firstItem="KOr-bi-Pjj" firstAttribute="top" secondItem="u6y-KQ-QNN" secondAttribute="top" constant="32" id="W7q-Gr-l8H"/>
+                                    <constraint firstItem="owg-0e-K47" firstAttribute="centerY" secondItem="KOr-bi-Pjj" secondAttribute="centerY" id="WFJ-ee-uB2"/>
                                     <constraint firstItem="Nth-j2-I1X" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="16" id="X1n-R5-mAj"/>
                                     <constraint firstItem="KOr-bi-Pjj" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="16" id="XFt-qA-GIu"/>
                                     <constraint firstItem="Nth-j2-I1X" firstAttribute="top" secondItem="KOr-bi-Pjj" secondAttribute="bottom" constant="8" id="YgV-7M-YDN"/>
                                     <constraint firstAttribute="height" constant="240" id="p7V-Vx-TK7"/>
+                                    <constraint firstAttribute="trailing" secondItem="owg-0e-K47" secondAttribute="trailing" constant="16" id="ve3-GI-Olw"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -537,6 +553,8 @@ discover users nearby</string>
                         <viewLayoutGuide key="safeArea" id="JYm-ck-JIx"/>
                     </view>
                     <connections>
+                        <outlet property="ageLabel" destination="CfW-5n-TFY" id="gfU-Uy-XCb"/>
+                        <outlet property="distanceLabel" destination="owg-0e-K47" id="2ec-Nh-Wqf"/>
                         <outlet property="distanceSlider" destination="Nth-j2-I1X" id="0Ib-Ef-ufr"/>
                         <outlet property="filtersView" destination="u6y-KQ-QNN" id="YiA-La-WWA"/>
                         <outlet property="rangeSlider" destination="fZg-8W-enD" id="6UM-LM-lnr"/>
