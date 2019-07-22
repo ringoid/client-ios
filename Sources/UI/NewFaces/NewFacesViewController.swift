@@ -44,8 +44,7 @@ class NewFacesViewController: BaseViewController
     @IBOutlet fileprivate weak var emptyFeedActivityView: UIActivityIndicatorView!
     @IBOutlet fileprivate weak var blockContainerView: UIView!
     @IBOutlet fileprivate weak var blockPhotoView: UIImageView!
-    @IBOutlet fileprivate weak var blockPhotoAspectConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var filterContainerView: UIView!
+    @IBOutlet fileprivate weak var blockPhotoAspectConstraint: NSLayoutConstraint!    
     
     override func viewDidLoad()
     {
@@ -76,18 +75,7 @@ class NewFacesViewController: BaseViewController
         self.isTabSwitched = true
         self.updateFeed()
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if segue.identifier == SegueIds.fiter, let vc = segue.destination as? NewFacesFilterViewController {
-            vc.input = NewFacesFilterVMInput(filter: self.input.filter)
-            vc.onClose = { [weak self] in
-                self?.filterContainerView.isHidden = true
-                self?.reload()
-            }
-        }
-    }
-        
+
     override func updateTheme()
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
@@ -431,12 +419,13 @@ class NewFacesViewController: BaseViewController
     
     fileprivate func showFilter()
     {
-        //self.filterContainerView.isHidden = false
         let storyboard = Storyboards.newFaces()
         let vc = storyboard.instantiateViewController(withIdentifier: "new_faces_filter") as! NewFacesFilterViewController
         vc.input = NewFacesFilterVMInput(filter: self.input.filter)
-        vc.onClose = { [weak self] in
+        vc.onClose = { [weak self] isUpdated in
             ModalUIManager.shared.hide(animated: false)
+            
+            if isUpdated { self?.reload() }
         }
         
         ModalUIManager.shared.show(vc, animated: false)

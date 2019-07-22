@@ -128,18 +128,10 @@ discover users nearby</string>
                                     <action selector="onShowFilter" destination="m48-Io-6eu" eventType="touchUpInside" id="KFi-N1-LMf"/>
                                 </connections>
                             </button>
-                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCJ-aN-hEm">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <segue destination="u0R-SQ-uHN" kind="embed" identifier="embed_filter" id="Evg-3y-qa7"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Dzb-Wx-JQu" firstAttribute="bottom" secondItem="RcH-VU-hkW" secondAttribute="bottom" constant="66" id="0ND-j5-wxd"/>
-                            <constraint firstAttribute="bottom" secondItem="XCJ-aN-hEm" secondAttribute="bottom" id="198-XP-QZd"/>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="2o9-jA-DjX"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="7aY-ua-nbS"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="DIr-zl-DwV"/>
@@ -148,15 +140,12 @@ discover users nearby</string>
                             <constraint firstAttribute="bottom" secondItem="f5P-fA-3ZX" secondAttribute="bottom" id="TVP-3o-yBY"/>
                             <constraint firstItem="Dzb-Wx-JQu" firstAttribute="trailing" secondItem="f5P-fA-3ZX" secondAttribute="trailing" id="UYa-cj-LJ4"/>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="V4m-wZ-I6w"/>
-                            <constraint firstAttribute="trailing" secondItem="XCJ-aN-hEm" secondAttribute="trailing" id="W2B-gB-fEY"/>
                             <constraint firstAttribute="bottom" secondItem="Owz-cZ-1Sc" secondAttribute="bottom" id="WOb-4K-jM4"/>
                             <constraint firstItem="eNb-ZP-bBP" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="X8W-Nc-2BZ"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="XVH-IB-ckJ"/>
-                            <constraint firstItem="XCJ-aN-hEm" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="bAS-ly-0lX"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="eOj-9V-78m"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="k2s-xp-RvI"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" id="nm8-TI-5VR"/>
-                            <constraint firstItem="XCJ-aN-hEm" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="sB4-XN-YpT"/>
                             <constraint firstAttribute="trailing" secondItem="Owz-cZ-1Sc" secondAttribute="trailing" id="sVe-sm-wMe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dzb-Wx-JQu"/>
@@ -170,7 +159,6 @@ discover users nearby</string>
                         <outlet property="emptyFeedLabel" destination="CGR-G7-fOR" id="XU1-zR-aiG"/>
                         <outlet property="feedTitleLabel" destination="isk-qO-AwF" id="vAP-BQ-ZbC"/>
                         <outlet property="feedTitleView" destination="V9x-Tk-Mmn" id="5jS-kI-uLU"/>
-                        <outlet property="filterContainerView" destination="XCJ-aN-hEm" id="zJw-Nj-RPF"/>
                         <outlet property="scrollTopBtn" destination="RcH-VU-hkW" id="A6d-nd-dJD"/>
                         <outlet property="tableView" destination="Owz-cZ-1Sc" id="KNv-5u-zds"/>
                     </connections>
@@ -523,6 +511,9 @@ discover users nearby</string>
                                         <state key="normal" title="Discover">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onDiscoverAction" destination="u0R-SQ-uHN" eventType="touchUpInside" id="Wh0-T8-mqH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.17892765410958905" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
