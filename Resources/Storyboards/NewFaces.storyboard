@@ -32,31 +32,14 @@ discover users nearby</string>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="358" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owz-cZ-1Sc">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="V9x-Tk-Mmn">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="isk-qO-AwF">
-                                            <rect key="frame" x="16" y="14" width="93.5" height="36"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstItem="isk-qO-AwF" firstAttribute="centerY" secondItem="V9x-Tk-Mmn" secondAttribute="centerY" id="32f-ML-8ip"/>
-                                        <constraint firstItem="isk-qO-AwF" firstAttribute="leading" secondItem="V9x-Tk-Mmn" secondAttribute="leading" constant="16" id="Tma-rl-qLS"/>
-                                    </constraints>
-                                </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="2qj-wE-4hh">
-                                    <rect key="frame" x="0.0" y="423" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="359" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="new_faces_cell" id="PAB-o3-bWg" customClass="NewFacesCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="65" width="375" height="358"/>
+                                        <rect key="frame" x="0.0" y="1" width="375" height="358"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PAB-o3-bWg" id="mzS-Ei-i2k">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="358"/>
@@ -86,6 +69,39 @@ discover users nearby</string>
                                     <outlet property="delegate" destination="m48-Io-6eu" id="N5r-HP-NWd"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9x-Tk-Mmn">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="isk-qO-AwF">
+                                        <rect key="frame" x="16" y="34" width="93.5" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNb-ZP-bBP">
+                                        <rect key="frame" x="303" y="30" width="72" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" id="BV6-CE-Dwu"/>
+                                            <constraint firstAttribute="height" constant="44" id="jzx-sZ-cTm"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="feed_filter_btn">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onShowFilter" destination="m48-Io-6eu" eventType="touchUpInside" id="KFi-N1-LMf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.082352941176470587" green="0.098039215686274508" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="JrX-dP-RaM"/>
+                                    <constraint firstAttribute="bottom" secondItem="isk-qO-AwF" secondAttribute="bottom" constant="14" id="LPb-l7-frR"/>
+                                    <constraint firstItem="isk-qO-AwF" firstAttribute="leading" secondItem="V9x-Tk-Mmn" secondAttribute="leading" constant="16" id="Tma-rl-qLS"/>
+                                    <constraint firstItem="eNb-ZP-bBP" firstAttribute="centerY" secondItem="isk-qO-AwF" secondAttribute="centerY" id="iHz-Ae-sxc"/>
+                                    <constraint firstAttribute="trailing" secondItem="eNb-ZP-bBP" secondAttribute="trailing" id="lRt-af-CPq"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcH-VU-hkW">
                                 <rect key="frame" x="16" y="517" width="84" height="84"/>
                                 <constraints>
@@ -115,19 +131,6 @@ discover users nearby</string>
                                     <constraint firstAttribute="trailing" secondItem="fyV-MR-lVu" secondAttribute="trailing" id="wUQ-hF-jVK"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNb-ZP-bBP">
-                                <rect key="frame" x="0.0" y="140" width="72" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="72" id="BV6-CE-Dwu"/>
-                                </constraints>
-                                <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" image="feed_filter_btn">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="onShowFilter" destination="m48-Io-6eu" eventType="touchUpInside" id="KFi-N1-LMf"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -135,14 +138,15 @@ discover users nearby</string>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="2o9-jA-DjX"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="7aY-ua-nbS"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="DIr-zl-DwV"/>
+                            <constraint firstItem="V9x-Tk-Mmn" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="DOQ-LY-jyo" userLabel="TopBarOffset"/>
                             <constraint firstItem="RcH-VU-hkW" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" constant="16" id="M0s-yz-w5X"/>
-                            <constraint firstItem="eNb-ZP-bBP" firstAttribute="top" secondItem="Dzb-Wx-JQu" secondAttribute="top" constant="120" id="QSW-CX-ALx"/>
                             <constraint firstAttribute="bottom" secondItem="f5P-fA-3ZX" secondAttribute="bottom" id="TVP-3o-yBY"/>
                             <constraint firstItem="Dzb-Wx-JQu" firstAttribute="trailing" secondItem="f5P-fA-3ZX" secondAttribute="trailing" id="UYa-cj-LJ4"/>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="V4m-wZ-I6w"/>
                             <constraint firstAttribute="bottom" secondItem="Owz-cZ-1Sc" secondAttribute="bottom" id="WOb-4K-jM4"/>
-                            <constraint firstItem="eNb-ZP-bBP" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="X8W-Nc-2BZ"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="XVH-IB-ckJ"/>
+                            <constraint firstItem="V9x-Tk-Mmn" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" id="c5b-cm-k8j"/>
+                            <constraint firstItem="V9x-Tk-Mmn" firstAttribute="trailing" secondItem="Dzb-Wx-JQu" secondAttribute="trailing" id="cKL-eN-vCX"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="eOj-9V-78m"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="k2s-xp-RvI"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" id="nm8-TI-5VR"/>
@@ -158,9 +162,10 @@ discover users nearby</string>
                         <outlet property="emptyFeedActivityView" destination="Kt8-il-Lh0" id="oCN-Tl-uUi"/>
                         <outlet property="emptyFeedLabel" destination="CGR-G7-fOR" id="XU1-zR-aiG"/>
                         <outlet property="feedTitleLabel" destination="isk-qO-AwF" id="vAP-BQ-ZbC"/>
-                        <outlet property="feedTitleView" destination="V9x-Tk-Mmn" id="5jS-kI-uLU"/>
                         <outlet property="scrollTopBtn" destination="RcH-VU-hkW" id="A6d-nd-dJD"/>
                         <outlet property="tableView" destination="Owz-cZ-1Sc" id="KNv-5u-zds"/>
+                        <outlet property="tapBarHeightConstraint" destination="JrX-dP-RaM" id="THQ-yo-FbA"/>
+                        <outlet property="topBarOffsetConstraint" destination="DOQ-LY-jyo" id="fuF-ks-ek0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="htw-q5-Nbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -516,7 +521,7 @@ discover users nearby</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.17892765410958905" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.1803921568627451" green="0.17892765998840332" blue="0.17892765998840332" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="WCe-JM-wIu" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="16" id="37k-Ek-oIW"/>
                                     <constraint firstAttribute="trailing" secondItem="CfW-5n-TFY" secondAttribute="trailing" constant="16" id="4rN-au-4iI"/>

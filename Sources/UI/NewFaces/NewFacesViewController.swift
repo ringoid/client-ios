@@ -37,14 +37,15 @@ class NewFacesViewController: BaseViewController
     fileprivate var shouldShowFetchActivityOnLocationPermission: Bool = false
     
     @IBOutlet fileprivate weak var feedTitleLabel: UILabel!
-    @IBOutlet fileprivate weak var feedTitleView: UIView!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
     @IBOutlet fileprivate weak var emptyFeedActivityView: UIActivityIndicatorView!
     @IBOutlet fileprivate weak var blockContainerView: UIView!
     @IBOutlet fileprivate weak var blockPhotoView: UIImageView!
-    @IBOutlet fileprivate weak var blockPhotoAspectConstraint: NSLayoutConstraint!    
+    @IBOutlet fileprivate weak var blockPhotoAspectConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var tapBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var topBarOffsetConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -54,14 +55,17 @@ class NewFacesViewController: BaseViewController
         
         self.toggleActivity(.initial)
         
-        self.tableView.tableHeaderView = self.feedTitleView
         self.tableView.estimatedSectionHeaderHeight = 0.0
         self.tableView.estimatedSectionFooterHeight = 0.0
         
         let rowHeight = UIScreen.main.bounds.width * AppConfig.photoRatio
         self.tableView.rowHeight = rowHeight
         self.tableView.estimatedRowHeight = rowHeight
-        self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: UIScreen.main.bounds.height - rowHeight, right: 0.0)
+        self.tableView.contentInset = UIEdgeInsets(
+            top: 64.0,
+            left: 0.0,
+            bottom: UIScreen.main.bounds.height - rowHeight,
+            right: 0.0)
         
         self.blockPhotoAspectConstraint.constant = AppConfig.photoRatio
         
@@ -74,6 +78,13 @@ class NewFacesViewController: BaseViewController
         
         self.isTabSwitched = true
         self.updateFeed()
+    }
+    
+    override func viewWillLayoutSubviews()
+    {
+        super.viewWillLayoutSubviews()
+    
+        self.tapBarHeightConstraint.constant = self.view.safeAreaInsets.top + 64.0
     }
 
     override func updateTheme()
@@ -142,6 +153,7 @@ class NewFacesViewController: BaseViewController
     {
         AnalyticsManager.shared.send(.pullToRefresh(SourceFeedType.newFaces.rawValue))
         self.hideScrollToTopOption()
+        self.showTopBar()
         self.reload()
     }
     
@@ -164,6 +176,7 @@ class NewFacesViewController: BaseViewController
     @IBAction func onScrollTop()
     {
         self.hideScrollToTopOption()
+        self.showTopBar()
         let topOffset = self.view.safeAreaInsets.top + self.tableView.contentInset.top
         self.tableView.setContentOffset(CGPoint(x: 0.0, y: -topOffset), animated: false)
         self.input.actionsManager.commit()
@@ -372,7 +385,7 @@ class NewFacesViewController: BaseViewController
             let cellTopOffset = CGFloat(index) * cell.bounds.height
             let cellBottomOffset = cellTopOffset + cell.bounds.height
             
-            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 72.0 - 64.0
+            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 72.0
         }
     }
     
@@ -429,6 +442,22 @@ class NewFacesViewController: BaseViewController
         }
         
         ModalUIManager.shared.show(vc, animated: false)
+    }
+    
+    fileprivate func showTopBar()
+    {
+        self.topBarOffsetConstraint.constant = 0.0
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutSubviews()
+        }
+    }
+    
+    fileprivate func hideTopBar()
+    {
+        self.topBarOffsetConstraint.constant = -1.0 * (self.view.safeAreaInsets.top + 64.0)
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutSubviews()
+        }
     }
 }
 
@@ -550,6 +579,7 @@ extension NewFacesViewController: UIScrollViewDelegate
         
         guard offset > topTrashhold else {
             self.hideScrollToTopOption()
+            self.showTopBar()
             self.prevScrollingOffset = 0.0
             
             return
@@ -557,6 +587,7 @@ extension NewFacesViewController: UIScrollViewDelegate
         
         if offset - self.prevScrollingOffset <  -1.0 * midTrashhold {
             self.showScrollToTopOption()
+            self.showTopBar()
             self.prevScrollingOffset = offset
             
             return
@@ -564,6 +595,7 @@ extension NewFacesViewController: UIScrollViewDelegate
         
         if offset - self.prevScrollingOffset > midTrashhold {
             self.hideScrollToTopOption()
+            self.hideTopBar()
             self.prevScrollingOffset = offset
             
             return
