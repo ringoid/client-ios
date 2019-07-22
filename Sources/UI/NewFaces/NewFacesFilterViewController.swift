@@ -38,6 +38,10 @@ class NewFacesFilterViewController: BaseViewController
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onCloseAction))
         self.view.addGestureRecognizer(recognizer)
         
+        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(onCloseAction))
+        swipeRecognizer.direction = .up
+        self.view.addGestureRecognizer(swipeRecognizer)
+        
         // Range
         self.prevMinAge = self.viewModel?.minAge.value
         self.prevMaxAge = self.viewModel?.maxAge.value
