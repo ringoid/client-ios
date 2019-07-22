@@ -356,7 +356,7 @@ class ApiServiceDefault: ApiService
         }
         
         if let maxDistance = maxDistance {
-            filter["maxDistance"] = maxDistance
+            filter["maxDistance"] = maxDistance * 1000
         }
         
         params["filter"] = filter

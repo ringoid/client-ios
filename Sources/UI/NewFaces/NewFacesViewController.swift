@@ -431,7 +431,15 @@ class NewFacesViewController: BaseViewController
     
     fileprivate func showFilter()
     {
-        self.filterContainerView.isHidden = false
+        //self.filterContainerView.isHidden = false
+        let storyboard = Storyboards.newFaces()
+        let vc = storyboard.instantiateViewController(withIdentifier: "new_faces_filter") as! NewFacesFilterViewController
+        vc.input = NewFacesFilterVMInput(filter: self.input.filter)
+        vc.onClose = { [weak self] in
+            ModalUIManager.shared.hide(animated: false)
+        }
+        
+        ModalUIManager.shared.show(vc, animated: false)
     }
 }
 

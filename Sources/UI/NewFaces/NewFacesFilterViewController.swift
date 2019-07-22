@@ -58,7 +58,7 @@ class NewFacesFilterViewController: BaseViewController
     {
         let distanceValue = Int(slider.value)
         self.viewModel.maxDistance.accept(distanceValue)
-        self.distanceLabel.text = "\(distanceValue)"
+        self.distanceLabel.text = "\(distanceValue) km"
     }
 }
 
