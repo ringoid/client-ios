@@ -51,9 +51,30 @@ class NewFacesFilterViewController: BaseViewController
         self.rangeSlider.selectedMaxValue = CGFloat(self.viewModel.maxAge.value ?? 55)
         self.rangeSlider.delegate = self
         
+        var ageText: String = ""
+        if let minAge = self.viewModel.minAge.value {
+            ageText += "\(minAge)"
+        } else {
+            ageText += "18"
+        }
+        
+        if let maxAge = self.viewModel.maxAge.value {
+            ageText += " - \(maxAge)"
+        } else {
+            ageText += " - 55+"
+        }
+        
+        self.ageLabel.text = ageText
+        
         // Distance
         self.distanceSlider.setThumbImage(UIImage(named: "feed_slider_handle"), for: .normal)
         self.distanceSlider.value = Float(self.viewModel.maxDistance.value ?? 350)
+        
+        if let maxDistance = self.viewModel.maxDistance.value {
+            self.distanceLabel.text = "\(maxDistance)"
+        } else {
+            self.distanceLabel.text = "150+"
+        }
         
         self.filtersView.layer.cornerRadius = 16.0
         self.filtersView.clipsToBounds = true
