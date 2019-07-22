@@ -432,7 +432,7 @@ discover users nearby</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6y-KQ-QNN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOr-bi-Pjj">
                                         <rect key="frame" x="16" y="52" width="145.5" height="21"/>
@@ -511,7 +511,7 @@ discover users nearby</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntC-hs-FdS">
-                                        <rect key="frame" x="267" y="224" width="92" height="40"/>
+                                        <rect key="frame" x="267" y="209" width="92" height="40"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                                         <state key="normal" title="Discover">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -536,7 +536,6 @@ discover users nearby</string>
                                     <constraint firstItem="KOr-bi-Pjj" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="16" id="XFt-qA-GIu"/>
                                     <constraint firstAttribute="bottom" secondItem="ntC-hs-FdS" secondAttribute="bottom" constant="16" id="Xeu-Bl-5C3"/>
                                     <constraint firstItem="Nth-j2-I1X" firstAttribute="top" secondItem="KOr-bi-Pjj" secondAttribute="bottom" constant="8" id="YgV-7M-YDN"/>
-                                    <constraint firstAttribute="height" constant="280" id="p7V-Vx-TK7"/>
                                     <constraint firstAttribute="trailing" secondItem="owg-0e-K47" secondAttribute="trailing" constant="16" id="ve3-GI-Olw"/>
                                     <constraint firstAttribute="trailing" secondItem="ntC-hs-FdS" secondAttribute="trailing" constant="16" id="w84-1b-tGh"/>
                                 </constraints>
@@ -545,6 +544,7 @@ discover users nearby</string>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="u6y-KQ-QNN" firstAttribute="bottom" secondItem="JYm-ck-JIx" secondAttribute="top" constant="245" id="1pf-tY-Xay"/>
                             <constraint firstItem="u6y-KQ-QNN" firstAttribute="leading" secondItem="YAj-2J-iuz" secondAttribute="leading" id="4D6-vm-5oB"/>
                             <constraint firstItem="u6y-KQ-QNN" firstAttribute="top" secondItem="YAj-2J-iuz" secondAttribute="top" id="AcB-q2-OJd"/>
                             <constraint firstItem="KOr-bi-Pjj" firstAttribute="top" secondItem="JYm-ck-JIx" secondAttribute="top" constant="32" id="ebN-x0-L9m"/>
