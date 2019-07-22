@@ -435,13 +435,13 @@ discover users nearby</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOr-bi-Pjj">
-                                        <rect key="frame" x="16" y="52" width="145.5" height="21"/>
+                                        <rect key="frame" x="16" y="53" width="145.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZg-8W-enD" customClass="RangeSeekSlider" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="4" y="148" width="367" height="44"/>
+                                        <rect key="frame" x="4" y="149" width="367" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -486,26 +486,26 @@ discover users nearby</string>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="Nth-j2-I1X">
-                                        <rect key="frame" x="14" y="81" width="347" height="31"/>
+                                        <rect key="frame" x="14" y="82" width="347" height="31"/>
                                         <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="onDistanceChange:" destination="u0R-SQ-uHN" eventType="valueChanged" id="FsC-AH-DCR"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCe-JM-wIu">
-                                        <rect key="frame" x="16" y="127" width="30" height="21"/>
+                                        <rect key="frame" x="16" y="128" width="30" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owg-0e-K47">
-                                        <rect key="frame" x="319" y="52" width="40" height="21"/>
+                                        <rect key="frame" x="319" y="53" width="40" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 - 55+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfW-5n-TFY">
-                                        <rect key="frame" x="290" y="127" width="69" height="21"/>
+                                        <rect key="frame" x="290" y="128" width="69" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -528,6 +528,7 @@ discover users nearby</string>
                                     <constraint firstItem="fZg-8W-enD" firstAttribute="top" secondItem="WCe-JM-wIu" secondAttribute="bottom" id="5D9-ZE-QML"/>
                                     <constraint firstItem="WCe-JM-wIu" firstAttribute="top" secondItem="Nth-j2-I1X" secondAttribute="bottom" constant="16" id="6z0-yh-97x"/>
                                     <constraint firstItem="fZg-8W-enD" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="4" id="9jA-NU-cbH"/>
+                                    <constraint firstAttribute="height" constant="265" id="Byn-V5-0JJ"/>
                                     <constraint firstAttribute="trailing" secondItem="fZg-8W-enD" secondAttribute="trailing" constant="4" id="E4l-ce-DUy"/>
                                     <constraint firstItem="CfW-5n-TFY" firstAttribute="centerY" secondItem="WCe-JM-wIu" secondAttribute="centerY" id="GR1-5u-cDc"/>
                                     <constraint firstAttribute="trailing" secondItem="Nth-j2-I1X" secondAttribute="trailing" constant="16" id="VCo-0R-h4z"/>
@@ -538,16 +539,15 @@ discover users nearby</string>
                                     <constraint firstItem="Nth-j2-I1X" firstAttribute="top" secondItem="KOr-bi-Pjj" secondAttribute="bottom" constant="8" id="YgV-7M-YDN"/>
                                     <constraint firstAttribute="trailing" secondItem="owg-0e-K47" secondAttribute="trailing" constant="16" id="ve3-GI-Olw"/>
                                     <constraint firstAttribute="trailing" secondItem="ntC-hs-FdS" secondAttribute="trailing" constant="16" id="w84-1b-tGh"/>
+                                    <constraint firstItem="ntC-hs-FdS" firstAttribute="top" secondItem="fZg-8W-enD" secondAttribute="bottom" constant="16" id="zjl-S5-AzX"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="u6y-KQ-QNN" firstAttribute="bottom" secondItem="JYm-ck-JIx" secondAttribute="top" constant="245" id="1pf-tY-Xay"/>
                             <constraint firstItem="u6y-KQ-QNN" firstAttribute="leading" secondItem="YAj-2J-iuz" secondAttribute="leading" id="4D6-vm-5oB"/>
-                            <constraint firstItem="u6y-KQ-QNN" firstAttribute="top" secondItem="YAj-2J-iuz" secondAttribute="top" id="AcB-q2-OJd"/>
-                            <constraint firstItem="KOr-bi-Pjj" firstAttribute="top" secondItem="JYm-ck-JIx" secondAttribute="top" constant="32" id="ebN-x0-L9m"/>
+                            <constraint firstItem="u6y-KQ-QNN" firstAttribute="top" secondItem="YAj-2J-iuz" secondAttribute="top" id="AcB-q2-OJd" userLabel="FiltersAreaTop"/>
                             <constraint firstAttribute="trailing" secondItem="u6y-KQ-QNN" secondAttribute="trailing" id="huH-yp-mFs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JYm-ck-JIx"/>
@@ -556,6 +556,8 @@ discover users nearby</string>
                         <outlet property="ageLabel" destination="CfW-5n-TFY" id="gfU-Uy-XCb"/>
                         <outlet property="distanceLabel" destination="owg-0e-K47" id="2ec-Nh-Wqf"/>
                         <outlet property="distanceSlider" destination="Nth-j2-I1X" id="0Ib-Ef-ufr"/>
+                        <outlet property="filtersAreaHeightConstraint" destination="Byn-V5-0JJ" id="jOd-UY-dnM"/>
+                        <outlet property="filtersAreaOffsetConstraint" destination="AcB-q2-OJd" id="nng-pM-vDC"/>
                         <outlet property="filtersView" destination="u6y-KQ-QNN" id="YiA-La-WWA"/>
                         <outlet property="rangeSlider" destination="fZg-8W-enD" id="6UM-LM-lnr"/>
                     </connections>

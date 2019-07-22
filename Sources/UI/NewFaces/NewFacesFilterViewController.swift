@@ -24,6 +24,8 @@ class NewFacesFilterViewController: BaseViewController
     @IBOutlet fileprivate weak var distanceSlider: UISlider!
     @IBOutlet fileprivate weak var distanceLabel: UILabel!
     @IBOutlet fileprivate weak var ageLabel: UILabel!
+    @IBOutlet fileprivate weak var filtersAreaOffsetConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var filtersAreaHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -50,6 +52,25 @@ class NewFacesFilterViewController: BaseViewController
         self.distanceSlider.value = Float(self.viewModel.maxDistance.value ?? 350)
     }
     
+    override func viewWillLayoutSubviews()
+    {
+        super.viewWillLayoutSubviews()
+        
+        let height = self.view.safeAreaInsets.top + 245.0
+        self.filtersAreaHeightConstraint.constant = height
+        self.filtersAreaOffsetConstraint.constant = -height
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        
+        self.filtersAreaOffsetConstraint.constant = 0.0
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutSubviews()
+        }
+    }
+    
     override func updateTheme() {}
     
     // MARK: - Actionss
@@ -59,7 +80,14 @@ class NewFacesFilterViewController: BaseViewController
         let isUpdated = self.prevMinAge != self.viewModel?.minAge.value ||
             self.prevMaxAge != self.viewModel?.maxAge.value ||
             self.prevMaxDistance != self.viewModel?.maxDistance.value
-        self.onClose?(isUpdated)
+        
+        let height = self.view.safeAreaInsets.top + 245.0
+        self.filtersAreaOffsetConstraint.constant = -height
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutSubviews()
+        }) { _ in
+            self.onClose?(isUpdated)
+        }
     }
     
     @objc fileprivate func onCloseAction(_ recognizer: UIGestureRecognizer)
@@ -69,7 +97,14 @@ class NewFacesFilterViewController: BaseViewController
         let isUpdated = self.prevMinAge != self.viewModel?.minAge.value ||
             self.prevMaxAge != self.viewModel?.maxAge.value ||
             self.prevMaxDistance != self.viewModel?.maxDistance.value
-        self.onClose?(isUpdated)
+        
+        let height = self.view.safeAreaInsets.top + 245.0
+        self.filtersAreaOffsetConstraint.constant = -height
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutSubviews()
+        }) { _ in
+            self.onClose?(isUpdated)
+        }
     }
     
     @IBAction fileprivate func onDistanceChange(_ slider: UISlider)
