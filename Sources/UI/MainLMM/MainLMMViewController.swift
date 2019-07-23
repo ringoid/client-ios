@@ -194,8 +194,15 @@ class MainLMMViewController: BaseViewController
             guard state else { return }
             
             self?.hideScrollToTopOption()
-            self?.hideTopBar()
             self?.updateBtn.alpha = 0.0
+        }).disposed(by: self.disposeBag)
+        
+        UIManager.shared.lcTopBarShouldBeHidden.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
+            guard let `self` = self else { return }
+            guard state else { return }
+            guard self.tableView.contentOffset.y > topTrashhold else { return }
+            
+            self.hideTopBar()
         }).disposed(by: self.disposeBag)
         
         self.input.transition.destination.subscribe(onNext: { feedType in

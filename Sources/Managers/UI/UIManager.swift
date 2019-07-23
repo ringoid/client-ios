@@ -17,6 +17,9 @@ class UIManager
     let discoverAddPhotoModeEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     let feedsFabShouldBeHidden: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
+    let discoverTopBarShouldBeHidden: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    let lcTopBarShouldBeHidden: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    
     // Profile
     let userProfileLikesVisible: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     

@@ -752,6 +752,7 @@ extension MainLMMProfileViewController: UIPageViewControllerDelegate, UIPageView
         
         self.preheater.startPreheating(with: urls.compactMap({ $0 }))
         UIManager.shared.feedsFabShouldBeHidden.accept(true)
+        UIManager.shared.lcTopBarShouldBeHidden.accept(true)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController?
