@@ -43,7 +43,7 @@ class NewFacesFilterViewController: BaseViewController
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onCloseAction))
         self.view.addGestureRecognizer(recognizer)
         
-        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(onCloseAction))
+        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(onCloseSwipeAction))
         swipeRecognizer.direction = .up
         self.view.addGestureRecognizer(swipeRecognizer)
         
@@ -124,12 +124,18 @@ class NewFacesFilterViewController: BaseViewController
     @objc fileprivate func onCloseAction(_ recognizer: UIGestureRecognizer)
     {
         guard !self.filtersView.frame.contains(recognizer.location(in: self.view)) else { return }
-        
-        let isUpdated = self.prevMinAge != self.viewModel?.minAge.value ||
-            self.prevMaxAge != self.viewModel?.maxAge.value ||
-            self.prevMaxDistance != self.viewModel?.maxDistance.value
-        self.onUpdate?(isUpdated)
-        
+
+        let height = self.view.safeAreaInsets.top + 245.0
+        self.filtersAreaOffsetConstraint.constant = -height
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutSubviews()
+        }) { _ in
+            self.onClose?()
+        }
+    }
+    
+    @objc fileprivate func onCloseSwipeAction(_ recognizer: UIGestureRecognizer)
+    {
         let height = self.view.safeAreaInsets.top + 245.0
         self.filtersAreaOffsetConstraint.constant = -height
         UIView.animate(withDuration: 0.2, animations: {
