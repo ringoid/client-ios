@@ -31,16 +31,16 @@ class FilterManager
         var maxAge: Int = 55
         
         if gender == .male {
-            minAge = age - 5
+            minAge = age - 10
             maxAge = age
         } else {
             minAge = age
-            maxAge = age + 5
+            maxAge = age + 10
         }
         
         guard minAge > 18 else {
             self.minAge.accept(18)
-            self.maxAge.accept(23)
+            self.maxAge.accept(27)
             
             return
         }
