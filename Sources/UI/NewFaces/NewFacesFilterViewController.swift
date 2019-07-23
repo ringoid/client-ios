@@ -12,7 +12,8 @@ import RxSwift
 class NewFacesFilterViewController: BaseViewController
 {
     var input: NewFacesFilterVMInput!
-    var onClose: ( (Bool) -> ())?
+    var onUpdate: ((Bool) -> ())?
+    var onClose: (() -> ())?
     
     fileprivate var viewModel: NewFacesFilterViewModel!
     fileprivate var prevMinAge: Int? = nil
@@ -75,9 +76,9 @@ class NewFacesFilterViewController: BaseViewController
         self.distanceSlider.value = Float(self.viewModel.maxDistance.value ?? 350)
         
         if let maxDistance = self.viewModel.maxDistance.value {
-            self.distanceLabel.text = "\(maxDistance)"
+            self.distanceLabel.text = "\(maxDistance) km"
         } else {
-            self.distanceLabel.text = "150+"
+            self.distanceLabel.text = "150+ km"
         }
         
         self.filtersView.layer.cornerRadius = 16.0
@@ -94,17 +95,6 @@ class NewFacesFilterViewController: BaseViewController
         
         let height = self.view.safeAreaInsets.top + 245.0
         self.filtersAreaHeightConstraint.constant = height
-        self.filtersAreaOffsetConstraint.constant = -height
-    }
-    
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
-        
-        self.filtersAreaOffsetConstraint.constant = 0.0
-        UIView.animate(withDuration: 0.2) {
-            self.view.layoutSubviews()
-        }
     }
     
     override func updateLocale()
@@ -120,16 +110,14 @@ class NewFacesFilterViewController: BaseViewController
     
     @IBAction func onDiscoverAction()
     {
-        let isUpdated = self.prevMinAge != self.viewModel?.minAge.value ||
-            self.prevMaxAge != self.viewModel?.maxAge.value ||
-            self.prevMaxDistance != self.viewModel?.maxDistance.value
+        self.onUpdate?(true)
         
         let height = self.view.safeAreaInsets.top + 245.0
         self.filtersAreaOffsetConstraint.constant = -height
         UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutSubviews()
         }) { _ in
-            self.onClose?(isUpdated)
+            self.onClose?()
         }
     }
     
@@ -140,13 +128,14 @@ class NewFacesFilterViewController: BaseViewController
         let isUpdated = self.prevMinAge != self.viewModel?.minAge.value ||
             self.prevMaxAge != self.viewModel?.maxAge.value ||
             self.prevMaxDistance != self.viewModel?.maxDistance.value
+        self.onUpdate?(isUpdated)
         
         let height = self.view.safeAreaInsets.top + 245.0
         self.filtersAreaOffsetConstraint.constant = -height
         UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutSubviews()
         }) { _ in
-            self.onClose?(isUpdated)
+            self.onClose?()
         }
     }
     

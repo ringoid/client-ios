@@ -435,10 +435,11 @@ class NewFacesViewController: BaseViewController
         let storyboard = Storyboards.newFaces()
         let vc = storyboard.instantiateViewController(withIdentifier: "new_faces_filter") as! NewFacesFilterViewController
         vc.input = NewFacesFilterVMInput(filter: self.input.filter)
-        vc.onClose = { [weak self] isUpdated in
-            ModalUIManager.shared.hide(animated: false)
-            
+        vc.onUpdate = { [weak self] isUpdated in
             if isUpdated { self?.reload() }
+        }
+        vc.onClose = {
+            ModalUIManager.shared.hide(animated: false)
         }
         
         ModalUIManager.shared.show(vc, animated: false)
