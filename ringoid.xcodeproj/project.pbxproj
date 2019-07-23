@@ -132,6 +132,10 @@
 		57585D6A21E4FF2400038798 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D6921E4FF2400038798 /* Colors.swift */; };
 		57585D7021E500FD00038798 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D6F21E500FD00038798 /* ThemeManager.swift */; };
 		57585D7221E5055D00038798 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57585D7121E5055D00038798 /* BaseViewController.swift */; };
+		5764B91E22E7364700B9EE42 /* MainLCFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5764B91D22E7364600B9EE42 /* MainLCFilterViewController.swift */; };
+		5764B91F22E7364700B9EE42 /* MainLCFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5764B91D22E7364600B9EE42 /* MainLCFilterViewController.swift */; };
+		5764B92122E7365D00B9EE42 /* MainLCFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5764B92022E7365D00B9EE42 /* MainLCFilterViewModel.swift */; };
+		5764B92222E7365D00B9EE42 /* MainLCFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5764B92022E7365D00B9EE42 /* MainLCFilterViewModel.swift */; };
 		576FC10821FEC9C400BA5ABE /* ActionPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10721FEC9C400BA5ABE /* ActionPhoto.swift */; };
 		576FC10A21FEC9FF00BA5ABE /* ActionProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10921FEC9FF00BA5ABE /* ActionProfile.swift */; };
 		576FC10D21FF33EA00BA5ABE /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FC10C21FF33EA00BA5ABE /* NavigationManager.swift */; };
@@ -519,6 +523,8 @@
 		57585D6921E4FF2400038798 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		57585D6F21E500FD00038798 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		57585D7121E5055D00038798 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		5764B91D22E7364600B9EE42 /* MainLCFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLCFilterViewController.swift; sourceTree = "<group>"; };
+		5764B92022E7365D00B9EE42 /* MainLCFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLCFilterViewModel.swift; sourceTree = "<group>"; };
 		576FC10721FEC9C400BA5ABE /* ActionPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionPhoto.swift; sourceTree = "<group>"; };
 		576FC10921FEC9FF00BA5ABE /* ActionProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionProfile.swift; sourceTree = "<group>"; };
 		576FC10C21FF33EA00BA5ABE /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
@@ -1351,6 +1357,8 @@
 				57B863D221EDB18600B9CC70 /* MainLMMProfileViewModel.swift */,
 				57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */,
 				57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */,
+				5764B91D22E7364600B9EE42 /* MainLCFilterViewController.swift */,
+				5764B92022E7365D00B9EE42 /* MainLCFilterViewModel.swift */,
 			);
 			path = MainLMM;
 			sourceTree = "<group>";
@@ -1865,6 +1873,7 @@
 				57EEB09E22C09245005770B3 /* ApiUserProfileInfo.swift in Sources */,
 				577DDAF5226F0FB2001D7D24 /* FlurryAnalytics.swift in Sources */,
 				57B863D721EE179F00B9CC70 /* TouchThroughView.swift in Sources */,
+				5764B91E22E7364700B9EE42 /* MainLCFilterViewController.swift in Sources */,
 				574A7DA622434EFE0065AE56 /* PromotionManager.swift in Sources */,
 				57801A81222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */,
 				57585D5421E48E3700038798 /* Image.swift in Sources */,
@@ -1874,6 +1883,7 @@
 				579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */,
 				57585D4E21E3897800038798 /* UserPhoto.swift in Sources */,
 				57386E40220B27C00000E5D9 /* LocalizedTableViewCell.swift in Sources */,
+				5764B92122E7365D00B9EE42 /* MainLCFilterViewModel.swift in Sources */,
 				570D04B821DE2B6400E0DCFB /* XStorageService.swift in Sources */,
 				576FC12A22086B6C00BA5ABE /* ApiUserPhoto.swift in Sources */,
 				57EEB07C22BE3E4F005770B3 /* SettingsProfileViewModel.swift in Sources */,
@@ -2066,6 +2076,7 @@
 				57EEB09F22C09245005770B3 /* ApiUserProfileInfo.swift in Sources */,
 				577DDAF6226F0FB2001D7D24 /* FlurryAnalytics.swift in Sources */,
 				57EE64E92216711000246B45 /* NewFacesManager.swift in Sources */,
+				5764B91F22E7364700B9EE42 /* MainLCFilterViewController.swift in Sources */,
 				574A7DA722434EFE0065AE56 /* PromotionManager.swift in Sources */,
 				57801A82222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */,
 				57EE64EA2216711000246B45 /* VerticalGradientView.swift in Sources */,
@@ -2075,6 +2086,7 @@
 				57EE64ED2216711000246B45 /* TouchThroughAreaView.swift in Sources */,
 				57EE64EE2216711000246B45 /* UserProfileManager.swift in Sources */,
 				57EE64EF2216711000246B45 /* UserProfilePhotoViewController.swift in Sources */,
+				5764B92222E7365D00B9EE42 /* MainLCFilterViewModel.swift in Sources */,
 				57EE64F02216711000246B45 /* UserPhoto.swift in Sources */,
 				57EE64F12216711000246B45 /* LocalizedTableViewCell.swift in Sources */,
 				57EEB07D22BE3E4F005770B3 /* SettingsProfileViewModel.swift in Sources */,

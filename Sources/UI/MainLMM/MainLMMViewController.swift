@@ -159,6 +159,10 @@ class MainLMMViewController: BaseViewController
         self.reload()
     }
     
+    @IBAction func onShowFilter()
+    {
+        self.showFilter()
+    }    
     
     // MARK: -
     
@@ -699,6 +703,21 @@ class MainLMMViewController: BaseViewController
         }))
         
         self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func showFilter()
+    {
+        let storyboard = Storyboards.mainLMM()
+        let vc = storyboard.instantiateViewController(withIdentifier: "main_lc_filter") as! MainLCFilterViewController
+        vc.input = MainLCFilterVMInput(filter: self.input.filter)
+        vc.onUpdate = { [weak self] isUpdated in
+            if isUpdated { self?.reload() }
+        }
+        vc.onClose = {
+            ModalUIManager.shared.hide(animated: false)
+        }
+        
+        ModalUIManager.shared.show(vc, animated: false)
     }
     
     fileprivate func showTopBar()

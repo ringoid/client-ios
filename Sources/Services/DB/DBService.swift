@@ -530,8 +530,7 @@ class DBService
         var shouldUpdateLikesYou: Bool = false
         var shouldUpdateMessages: Bool = false
         var shouldUpdateInbox: Bool = false
-        var shouldUpdateSent: Bool = false
-        var shouldUpdateMatches: Bool = false
+        var shouldUpdateSent: Bool = false        
         var shouldUpdateUserPhotos: Bool = false
         var shouldUpdateUserProfile: Bool = false
         

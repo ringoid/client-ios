@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable open class RangeSeekSlider: UIControl {
+open class RangeSeekSlider: UIControl {
 
     // MARK: - initializers
 

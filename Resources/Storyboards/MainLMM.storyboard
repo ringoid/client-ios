@@ -255,6 +255,9 @@ see who likes you</string>
                                         <state key="normal" image="feed_filter_btn">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="onShowFilter" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="pDc-0u-EHi"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.08235294118" green="0.098039215690000001" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -653,6 +656,153 @@ see who likes you</string>
             </objects>
             <point key="canvasLocation" x="1740" y="115"/>
         </scene>
+        <!--MainLC Filter View Controller-->
+        <scene sceneID="OHv-aT-DVt">
+            <objects>
+                <viewController storyboardIdentifier="main_lc_filter" id="6W7-DY-enp" customClass="MainLCFilterViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IIw-fv-rTx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Sy-fB-ipy">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5B-Rp-Kon">
+                                        <rect key="frame" x="16" y="53" width="145.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Lf-4r-dly" customClass="RangeSeekSlider" customModule="Ringoid" customModuleProvider="target">
+                                        <rect key="frame" x="4" y="149" width="367" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="BUw-QP-WfY"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                                                <real key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                                                <real key="value" value="55"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="selectedMinValue">
+                                                <real key="value" value="18"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="selectedMaxValue">
+                                                <real key="value" value="55"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="colorBetweenHandles">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="enableStep" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="step">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="initialColor">
+                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="labelsFixed" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hideLabels" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="disableRange" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="lineHeight">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="handleImage" value="feed_slider_handle"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="selectedHandleDiameterMultiplier">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minDistance">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="vNu-wU-VbT">
+                                        <rect key="frame" x="14" y="82" width="347" height="31"/>
+                                        <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="onDistanceChange:" destination="6W7-DY-enp" eventType="valueChanged" id="Bpp-XN-7hw"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcN-J1-Kxf">
+                                        <rect key="frame" x="16" y="128" width="30" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWq-bC-1H6">
+                                        <rect key="frame" x="319" y="53" width="40" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 - 55+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRZ-T5-xXu">
+                                        <rect key="frame" x="290" y="128" width="69" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdT-us-om5">
+                                        <rect key="frame" x="267" y="209" width="92" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                        <state key="normal" title="Discover">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onDiscoverAction" destination="6W7-DY-enp" eventType="touchUpInside" id="leO-3s-opx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.08235294118" green="0.098039215690000001" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="265" id="1BH-0B-acl"/>
+                                    <constraint firstItem="7Lf-4r-dly" firstAttribute="leading" secondItem="9Sy-fB-ipy" secondAttribute="leading" constant="4" id="ASA-D0-w8N"/>
+                                    <constraint firstItem="vNu-wU-VbT" firstAttribute="leading" secondItem="9Sy-fB-ipy" secondAttribute="leading" constant="16" id="KPp-tj-MyV"/>
+                                    <constraint firstAttribute="bottom" secondItem="GdT-us-om5" secondAttribute="bottom" constant="16" id="LmC-bt-NmD"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Lf-4r-dly" secondAttribute="trailing" constant="4" id="SZW-dZ-rY1"/>
+                                    <constraint firstItem="HWq-bC-1H6" firstAttribute="centerY" secondItem="e5B-Rp-Kon" secondAttribute="centerY" id="aX4-az-71Y"/>
+                                    <constraint firstItem="7Lf-4r-dly" firstAttribute="top" secondItem="zcN-J1-Kxf" secondAttribute="bottom" id="ciA-CZ-oh8"/>
+                                    <constraint firstItem="GdT-us-om5" firstAttribute="top" secondItem="7Lf-4r-dly" secondAttribute="bottom" constant="16" id="cvp-BG-gjd"/>
+                                    <constraint firstItem="VRZ-T5-xXu" firstAttribute="centerY" secondItem="zcN-J1-Kxf" secondAttribute="centerY" id="gtZ-sL-Lgv"/>
+                                    <constraint firstAttribute="trailing" secondItem="vNu-wU-VbT" secondAttribute="trailing" constant="16" id="jiv-lJ-H7p"/>
+                                    <constraint firstItem="vNu-wU-VbT" firstAttribute="top" secondItem="e5B-Rp-Kon" secondAttribute="bottom" constant="8" id="lof-h0-v3D"/>
+                                    <constraint firstItem="e5B-Rp-Kon" firstAttribute="leading" secondItem="9Sy-fB-ipy" secondAttribute="leading" constant="16" id="m3O-il-7uZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="GdT-us-om5" secondAttribute="trailing" constant="16" id="nH9-cT-xP8"/>
+                                    <constraint firstItem="zcN-J1-Kxf" firstAttribute="top" secondItem="vNu-wU-VbT" secondAttribute="bottom" constant="16" id="nPv-Ck-uH4"/>
+                                    <constraint firstItem="zcN-J1-Kxf" firstAttribute="leading" secondItem="9Sy-fB-ipy" secondAttribute="leading" constant="16" id="njK-vs-8a7"/>
+                                    <constraint firstAttribute="trailing" secondItem="VRZ-T5-xXu" secondAttribute="trailing" constant="16" id="tIC-2m-Mm5"/>
+                                    <constraint firstAttribute="trailing" secondItem="HWq-bC-1H6" secondAttribute="trailing" constant="16" id="ubf-40-7bn"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="9Sy-fB-ipy" firstAttribute="leading" secondItem="IIw-fv-rTx" secondAttribute="leading" id="87C-E4-nzL"/>
+                            <constraint firstAttribute="trailing" secondItem="9Sy-fB-ipy" secondAttribute="trailing" id="Dwp-mA-Zbo"/>
+                            <constraint firstItem="9Sy-fB-ipy" firstAttribute="top" secondItem="IIw-fv-rTx" secondAttribute="top" id="hsE-48-ukz" userLabel="FiltersAreaTop"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gf4-Kr-6ca"/>
+                    </view>
+                    <connections>
+                        <outlet property="ageLabel" destination="VRZ-T5-xXu" id="JbV-Tm-uCR"/>
+                        <outlet property="ageTitleLabel" destination="zcN-J1-Kxf" id="ID7-4k-xNi"/>
+                        <outlet property="discoverBtn" destination="GdT-us-om5" id="Omb-RU-Kew"/>
+                        <outlet property="distanceLabel" destination="HWq-bC-1H6" id="JIW-xI-Njr"/>
+                        <outlet property="distanceSlider" destination="vNu-wU-VbT" id="f4z-rP-SKN"/>
+                        <outlet property="filtersAreaHeightConstraint" destination="1BH-0B-acl" id="TuW-Er-gbz"/>
+                        <outlet property="filtersAreaOffsetConstraint" destination="hsE-48-ukz" id="2Ei-Kb-OVe"/>
+                        <outlet property="filtersView" destination="9Sy-fB-ipy" id="2fI-qJ-rCb"/>
+                        <outlet property="maxDistanceTitleLabel" destination="e5B-Rp-Kon" id="RWc-qN-SK4"/>
+                        <outlet property="rangeSlider" destination="7Lf-4r-dly" id="nvK-vc-4ST"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZsV-Vj-YXY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-687" y="795"/>
+        </scene>
     </scenes>
     <resources>
         <image name="feed_filter_btn" width="39" height="44"/>
@@ -660,6 +810,7 @@ see who likes you</string>
         <image name="feed_messages_empty" width="36" height="35"/>
         <image name="feed_options" width="32" height="12"/>
         <image name="feed_scroll_top" width="65" height="65"/>
+        <image name="feed_slider_handle" width="25" height="44"/>
         <image name="profile_fields_children" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>

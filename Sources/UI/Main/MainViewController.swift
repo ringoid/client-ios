@@ -359,7 +359,8 @@ class MainViewController: BaseViewController
             location: self.input.location,
             scenario: self.input.scenario,
             transition: self.input.transition,
-            settings: self.input.settingsManager
+            settings: self.input.settingsManager,
+            filter: self.input.filter
         )
         
         self.menuVCCache[.lmm] = vc

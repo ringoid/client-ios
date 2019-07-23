@@ -22,6 +22,7 @@ struct MainLMMVMInput
     let scenario: AnalyticsScenarioManager
     let transition: TransitionManager
     let settings: SettingsManager
+    let filter: FilterManager
 }
 
 enum LMMType: String
