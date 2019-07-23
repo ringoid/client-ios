@@ -276,7 +276,7 @@ class ApiServiceDefault: ApiService
         
         log("LC source: \(source.rawValue)", level: .low)
         
-        return self.requestGET(path: "feeds/get_lc", params: params, trace: trace)
+        return self.request(.post, path: "feeds/get_lc", jsonBody: params, trace: trace)
             //.timeout(2.0, scheduler: MainScheduler.instance)
             .flatMap ({ jsonDict -> Observable<ApiLMMResult> in
             guard let likesYouArray = jsonDict["likesYou"] as? [[String: Any]] else {
