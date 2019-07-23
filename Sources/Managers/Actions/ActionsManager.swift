@@ -168,7 +168,6 @@ class ActionsManager
         
         switch source {
         case .whoLikedMe:  AnalyticsManager.shared.send(.likedFromLikes); break
-        case .matches: AnalyticsManager.shared.send(.likedFromMatches); break
         case .messages: AnalyticsManager.shared.send(.likedFromMessages); break
             
         default: break
@@ -196,7 +195,6 @@ class ActionsManager
         
         switch source {
         case .whoLikedMe:  AnalyticsManager.shared.send(.unlikedFromLikes); break
-        case .matches: AnalyticsManager.shared.send(.unlikedFromMatches); break
         case .messages: AnalyticsManager.shared.send(.unlikedFromMessages); break
             
         default: break
@@ -224,7 +222,6 @@ class ActionsManager
         
         switch source {
         case .whoLikedMe:  AnalyticsManager.shared.send(.messagedFromLikes); break
-        case .matches: AnalyticsManager.shared.send(.messagedFromMatches); break
         case .messages: AnalyticsManager.shared.send(.messagedFromMessages); break
             
         default: break
@@ -238,7 +235,7 @@ class ActionsManager
         self.viewActionsMap[photo.id] = Date()
         self.viewMap[profile.id] = true
         
-        guard sourceType == .whoLikedMe || sourceType == .matches || sourceType == .messages else { return }
+        guard sourceType == .whoLikedMe || sourceType == .messages else { return }
         
         var profiles = self.lmmViewingProfiles.value
         profiles.insert(profile.id)
@@ -268,7 +265,7 @@ class ActionsManager
         
         self.viewActionsMap[photo.id] = Date()
         
-        guard sourceType == .whoLikedMe || sourceType == .matches || sourceType == .messages else { return }
+        guard sourceType == .whoLikedMe || sourceType == .messages else { return }
         
         var profiles = self.lmmViewingProfiles.value
         profiles.insert(profile.id)

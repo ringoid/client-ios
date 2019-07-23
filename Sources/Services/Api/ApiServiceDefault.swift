@@ -244,7 +244,7 @@ class ApiServiceDefault: ApiService
             })
     }
     
-    func getLMHIS(_ resolution: String, lastActionDate: Date?, source: SourceFeedType) -> Observable<ApiLMMResult>
+    func getLC(_ resolution: String, lastActionDate: Date?, source: SourceFeedType, minAge: Int?, maxAge: Int?, maxDistance: Int?) -> Observable<ApiLMMResult>
     {
         var params: [String: Any] = [
             "resolution": resolution,
@@ -256,11 +256,27 @@ class ApiServiceDefault: ApiService
             params["accessToken"] = accessToken
         }
         
-        let trace = Performance.startTrace(name: "feeds/get_lmhis")
+        var filter: [String: Any] = [:]
         
-        log("LMHIS source: \(source.rawValue)", level: .low)
+        if let minAge = minAge {
+            filter["minAge"] = minAge
+        }
         
-        return self.requestGET(path: "feeds/get_lmhis", params: params, trace: trace)
+        if let maxAge = maxAge {
+            filter["maxAge"] = maxAge
+        }
+        
+        if let maxDistance = maxDistance {
+            filter["maxDistance"] = maxDistance * 1000
+        }
+        
+        params["filter"] = filter
+        
+        let trace = Performance.startTrace(name: "feeds/get_lc")
+        
+        log("LC source: \(source.rawValue)", level: .low)
+        
+        return self.requestGET(path: "feeds/get_lc", params: params, trace: trace)
             //.timeout(2.0, scheduler: MainScheduler.instance)
             .flatMap ({ jsonDict -> Observable<ApiLMMResult> in
             guard let likesYouArray = jsonDict["likesYou"] as? [[String: Any]] else {
@@ -304,8 +320,6 @@ class ApiServiceDefault: ApiService
                 log("ERROR: feeds/get_lmm: \(error)", level: .high)
             })
     }
-    
-    
     
     func getNewFaces(_ resolution: String, lastActionDate: Date?) -> Observable<[ApiProfile]>
     {

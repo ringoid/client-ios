@@ -35,6 +35,7 @@ class LMMManager
     let deviceService: DeviceService
     let storage: XStorageService
     let notifications: NotificationService
+    let filter: FilterManager
     
     fileprivate var disposeBag: DisposeBag = DisposeBag()
     
@@ -157,7 +158,7 @@ class LMMManager
     var matchesUpdatesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     var messagesUpdatesAvailable: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
-    init(_ db: DBService, api: ApiService, device: DeviceService, actionsManager: ActionsManager, storage: XStorageService, notifications: NotificationService)
+    init(_ db: DBService, api: ApiService, device: DeviceService, actionsManager: ActionsManager, storage: XStorageService, notifications: NotificationService, filter: FilterManager)
     {
         self.db = db
         self.apiService = api
@@ -165,6 +166,7 @@ class LMMManager
         self.actionsManager = actionsManager
         self.storage = storage
         self.notifications = notifications
+        self.filter = filter
         
         self.loadPrevState()
         self.setupBindings()
@@ -184,18 +186,24 @@ class LMMManager
         
         self.updateProfilesPrevState(false)
         
-        return self.apiService.getLMM(self.deviceService.photoResolution, lastActionDate: self.actionsManager.lastActionDate.value,source: from).flatMap({ [weak self] result -> Observable<Void> in
+        
+        return self.apiService.getLC(self.deviceService.photoResolution,
+                              lastActionDate: self.actionsManager.lastActionDate.value,
+                              source: from,
+                              minAge: self.filter.minAge.value,
+                              maxAge: self.filter.maxAge.value,
+                              maxDistance: self.filter.maxDistance.value
+        ).flatMap({ [weak self] result -> Observable<Void> in
             
             self!.resetNotificationProfiles()
             self!.purge()
             
-            let localLikesYou = createProfiles(result.likesYou, type: .likesYou)
-            let matches = createProfiles(result.matches, type: .matches)
+            let localLikesYou = createProfiles(result.likesYou, type: .likesYou)            
             let messages = createProfiles(result.messages, type: .messages)
             let inbox = createProfiles(result.inbox, type: .inbox)
             let sent = createProfiles(result.sent, type: .sent)
             
-            (matches + messages).forEach { remoteProfile in
+            messages.forEach { remoteProfile in
                 guard remoteProfile.messages.count != 0 else { return }
                 
                 remoteProfile.notRead = remoteProfile.messages.count > 0
@@ -211,7 +219,7 @@ class LMMManager
                 }
             }
             
-            return self!.db.add(localLikesYou + matches + messages + inbox + sent).asObservable().do(onNext: { [weak self] _ in
+            return self!.db.add(localLikesYou + messages + inbox + sent).asObservable().do(onNext: { [weak self] _ in
                 self?.updateProfilesPrevState(true)
             })
         }).asObservable().delay(0.05, scheduler: MainScheduler.instance).do(
@@ -283,7 +291,6 @@ class LMMManager
     func markAsTransitioned(_ profileId: String, in feed: LMMType)
     {
         switch feed {
-        case .matches: self.prevNotSeenMatches.insert(profileId)
         case .messages: self.prevNotReadMessages.insert(profileId)
             
         default: return
@@ -373,14 +380,6 @@ class LMMManager
             self?.likesYou.accept(profiles)
         }).disposed(by: self.disposeBag)
 
-        self.db.matches().subscribe(onNext: { [weak self] profiles in
-            self?.matchesCached = profiles
-            
-            guard self?.contentShouldBeHidden == false else { return }
-            
-            self?.matches.accept(profiles)
-        }).disposed(by: self.disposeBag)
-        
         self.db.messages().subscribe(onNext: { [weak self] profiles in
             self?.messagesCached = profiles
             
@@ -456,20 +455,7 @@ class LMMManager
                 self.prevNotSeenLikes.insert(profileId)
                 
                 break
-                
-            case .matches:
-                self.likesYouNotificationProfiles.remove(profileId)
-                self.matchesNotificationProfiles.insert(profileId)
-                
-                let notSeenCount = self.matches.value.notSeenIDs().union(self.matchesNotificationProfiles).count
-                self.notSeenMatchesCount.accept(notSeenCount)
-                
-                let notSeenLikesCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
-                self.notSeenLikesYouCount.accept(notSeenLikesCount)
-                
-                self.prevNotSeenMatches.insert(profileId)
-                break
-                
+                                
             case .messages:
                 self.updateChat(profileId)
                 

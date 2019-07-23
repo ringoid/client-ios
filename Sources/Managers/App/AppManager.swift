@@ -144,7 +144,7 @@ class AppManager
         self.actionsManager = ActionsManager(self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, reachability: self.reachability, notifications: self.notifications)
         self.filterManager = FilterManager()
         self.newFacesManager = NewFacesManager(self.db, api: self.apiService, device: self.deviceService, actionsManager: self.actionsManager, filterManager: self.filterManager)
-        self.lmmManager = LMMManager(self.db, api: self.apiService, device: self.deviceService, actionsManager: self.actionsManager, storage: self.defaultStorage, notifications: self.notifications)
+        self.lmmManager = LMMManager(self.db, api: self.apiService, device: self.deviceService, actionsManager: self.actionsManager, storage: self.defaultStorage, notifications: self.notifications, filter: self.filterManager)
         self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader, fileService: self.fileService, device: self.deviceService, storage: self.defaultStorage, lmm: self.lmmManager, filter: self.filterManager)
         self.scenarioManager = AnalyticsScenarioManager(AnalyticsManager.shared)
         self.chatManager = ChatManager(self.db, actionsManager: self.actionsManager, scenario: self.scenarioManager)

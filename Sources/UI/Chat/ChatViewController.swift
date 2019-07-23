@@ -19,9 +19,6 @@ class ChatViewController: BaseViewController
     
     fileprivate var viewModel: ChatViewModel?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
-    fileprivate let singleMessageSources: [SourceFeedType] = [    
-        .matches,        
-    ]
     
     fileprivate static var messagesCache: [String: String] = [:]
     
@@ -136,15 +133,7 @@ class ChatViewController: BaseViewController
             return
         }
         
-        let shouldCloseAutomatically = self.singleMessageSources.contains(self.viewModel!.input.source) && self.viewModel?.messages.value.count == 0
-        
         self.viewModel?.send(text)
-        
-        guard !shouldCloseAutomatically else {
-            self.closeChat(true)
-            
-            return
-        }
     }
     
     @IBAction func onBlock()
@@ -280,17 +269,7 @@ class ChatViewController: BaseViewController
     }
     
     func closeChat(_ shouldMoveToMessages: Bool)
-    {
-        if self.viewModel?.messages.value.count != 0 || shouldMoveToMessages {
-            switch self.input.source {
-            case .matches:
-                self.input.transition.move(input.profile, to: .messages)
-                break
-                
-            default: break
-            }
-        }
-        
+    {        
         self.viewModel?.markAsRead()
         ChatViewController.messagesCache[self.input.profile.id] = self.messageTextView.text
         

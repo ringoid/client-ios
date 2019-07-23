@@ -12,8 +12,7 @@ import RxCocoa
 enum MainNavigationItem
 {
     case search
-    case likes
-    case matches
+    case likes    
     case chats
     case profile
     

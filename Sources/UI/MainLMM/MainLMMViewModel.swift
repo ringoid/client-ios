@@ -26,8 +26,7 @@ struct MainLMMVMInput
 
 enum LMMType: String
 {
-    case likesYou = "likesYou"
-    case matches = "matches"
+    case likesYou = "likesYou"    
     case messages = "messages"
     case inbox = "inbox"
     case sent = "sent"
@@ -146,7 +145,6 @@ extension RemoteFeedType
     {
         switch self {
         case .likesYou: return .likesYou
-        case .matches: return .matches
         case .messages: return .messages
             
         default: return nil

@@ -238,8 +238,7 @@ class MainLMMProfileViewController: UIViewController
             guard let `self` = self else { return }
             
             self.messageBtn.isHidden =  ![
-                LMMType.messages,
-                LMMType.matches
+                LMMType.messages
                 ].contains(self.input.feedType)  || state
             
             self.likeBtn.isHidden =  ![
@@ -253,8 +252,7 @@ class MainLMMProfileViewController: UIViewController
             guard let `self` = self else { return }
             
             self.messageBtn.isHidden =  ![
-                LMMType.messages,
-                LMMType.matches
+                LMMType.messages                
                 ].contains(self.input.feedType)  || state
             
             self.likeBtn.isHidden =  ![

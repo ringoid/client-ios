@@ -31,8 +31,7 @@ class NewFacePhotoViewController: UIViewController
     fileprivate weak var activeDisappearAnimator: UIViewPropertyAnimator?
 
     fileprivate let chatSources: [SourceFeedType] = [
-        .messages,
-        .matches,
+        .messages,        
         .inbox,
         .sent
     ]
@@ -153,7 +152,7 @@ class NewFacePhotoViewController: UIViewController
         case .whoLikedMe:
             if let lmmProfile = input.profile as? LMMProfile {
                 GlobalAnimationManager.shared.playFlyUpIconAnimation(UIImage(named: "feed_effect_match")!, from: self.view, point: at, scaleFactor: 0.75)
-                self.input.transitionManager.move(lmmProfile, to: .matches)
+                self.input.transitionManager.move(lmmProfile, to: .messages)
             }
             
         case .newFaces:
@@ -232,7 +231,6 @@ extension LMMType
     {
         switch self {
         case .likesYou: return .whoLikedMe
-        case .matches: return .matches
         case .messages: return .messages
         case .inbox: return .inbox
         case .sent: return .sent

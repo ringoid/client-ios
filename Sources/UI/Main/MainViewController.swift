@@ -13,7 +13,6 @@ import RxCocoa
 enum SelectionState {
     case search
     case likes
-    case matches
     case chats
     case profile
     
@@ -34,7 +33,6 @@ enum RemoteFeedType: String
 {
     case unknown = "unknown"
     case likesYou = "NEW_LIKE_PUSH_TYPE"
-    case matches = "NEW_MATCH_PUSH_TYPE"
     case messages = "NEW_MESSAGE_PUSH_TYPE"
 }
 
@@ -52,12 +50,10 @@ class MainViewController: BaseViewController
     fileprivate var isBannerClosedManually: Bool = false
     
     fileprivate var preshownLikesCount: Int = 0
-    fileprivate var preshownMatchesCount: Int = 0
     fileprivate var preshownMessagesCount: Int = 0
     
     @IBOutlet fileprivate weak var searchBtn: UIButton!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
-    @IBOutlet fileprivate weak var matchesBtn: UIButton!
     @IBOutlet fileprivate weak var chatsBtn: UIButton!
     @IBOutlet fileprivate weak var profileBtn: UIButton!
     @IBOutlet fileprivate weak var profileIndicatorView: UIView!
@@ -66,7 +62,6 @@ class MainViewController: BaseViewController
     @IBOutlet fileprivate weak var bottomShadowView: UIView!
     
     @IBOutlet fileprivate weak var likesYouIndicatorView: UIView!
-    @IBOutlet fileprivate weak var matchesIndicatorView: UIView!
     @IBOutlet fileprivate weak var chatIndicatorView: UIView!
     
     @IBOutlet fileprivate weak var notificationsBannerView: UIView!
@@ -154,11 +149,6 @@ class MainViewController: BaseViewController
         self.viewModel?.moveToProfile()
     }
     
-    @IBAction func onMatchesSelected()
-    {
-        self.viewModel?.moveToMatches()
-    }
-    
     @IBAction func onChatsSelected()
     {
         self.viewModel?.moveToChats()
@@ -210,7 +200,6 @@ class MainViewController: BaseViewController
         case .search:
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
             self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedNewFaces()
@@ -219,26 +208,15 @@ class MainViewController: BaseViewController
         case .likes:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
-            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
             self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedLikes()
-            break
-            
-        case .matches:
-            self.matchesBtn.setImage(UIImage(named: "main_bar_matches_selected"), for: .normal)
-            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
-            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
-            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
-            self.embedMatches()
             break
             
         case .chats:
             self.chatsBtn.setImage(UIImage(named: "main_bar_messages_selected"), for: .normal)
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedChats()
             break
@@ -246,7 +224,6 @@ class MainViewController: BaseViewController
         case .profile:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
             self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
             self.embedUserProfile()
@@ -255,7 +232,6 @@ class MainViewController: BaseViewController
         case .profileAndPick:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
             self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
             self.embedUserProfileAndPick()
@@ -264,7 +240,6 @@ class MainViewController: BaseViewController
         case .profileAndFetch:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
             self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
             self.embedUserProfileAndFetch()
@@ -273,7 +248,6 @@ class MainViewController: BaseViewController
         case .searchAndFetch:
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
             self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedNewFacesAndFetch()
@@ -282,7 +256,6 @@ class MainViewController: BaseViewController
         case .likeAndFetch:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
-            self.matchesBtn.setImage(UIImage(named: "main_bar_matches"), for: .normal)
             self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedMainLMMAndFetch()
@@ -315,17 +288,6 @@ class MainViewController: BaseViewController
         
         DispatchQueue.main.async {
             vc.toggle(.likesYou)
-        }
-    }
-    
-    fileprivate func embedMatches()
-    {
-        guard let vc = self.getMainLMMVC() else { return }
-        self.containedVC = vc
-        self.containerVC.embed(vc)
-        
-        DispatchQueue.main.async {
-            vc.toggle(.matches)
         }
     }
     
@@ -487,24 +449,6 @@ class MainViewController: BaseViewController
             self.effectsView.animateLikes(countToShow, from: position)
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.incomingMatches.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
-            guard let `self` = self else { return }
-            
-            let countToShow: Int = count - self.preshownMatchesCount
-            if countToShow > 0 {
-                self.preshownMatchesCount = 0
-            } else {
-                self.preshownMatchesCount -= count
-                
-                return
-            }
-            
-            let size = self.likeBtn.bounds.size
-            let center = self.likeBtn.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), to: nil)
-            let position = CGPoint(x: 44.0, y: center.y + 16.0)
-            self.effectsView.animateMatches(countToShow, from: position)
-        }).disposed(by: self.disposeBag)
-        
         self.viewModel?.incomingMessages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
@@ -541,15 +485,7 @@ class MainViewController: BaseViewController
                 self.effectsView.animateLikes(1, from: position)
                 
                 break
-                
-            case .matches:
-                guard !self.input.lmmManager.matches.value.map({ $0.id }).contains(profileId) else { return }
-                
-                self.preshownMatchesCount += 1
-                self.effectsView.animateMatches(1, from: position)
-                
-                break
-                
+                                
             case .messages:
                 if self.viewModel?.isMessageProcessed(profileId) == true { return }
                 
@@ -620,16 +556,7 @@ class MainViewController: BaseViewController
                     vc?.reload()
                 }
                 break
-                
-            case .matches:
-                self.input.navigationManager.mainItem.accept(.matches)
-                DispatchQueue.main.async {
-                    let vc = self.containedVC as? MainLMMContainerViewController
-                    vc?.prepareForNavigation()
-                    vc?.reload()
-                }
-                break
-                
+                                
             case .messages:
                 self.input.navigationManager.mainItem.accept(.chats)
                 DispatchQueue.main.async {
@@ -658,11 +585,6 @@ class MainViewController: BaseViewController
             self?.likeBtn.setTitle(title, for: .normal)
         }).disposed(by: self.disposeBag)
         
-        self.input.lmmManager.matches.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
-            let title: String? = profiles.count != 0 ? "\(profiles.count)" : nil
-            self?.matchesBtn.setTitle(title, for: .normal)
-        }).disposed(by: self.disposeBag)
-        
         self.input.lmmManager.messages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
             let title: String? = profiles.count != 0 ? "\(profiles.count)" : nil
             self?.chatsBtn.setTitle(title, for: .normal)
@@ -675,13 +597,7 @@ class MainViewController: BaseViewController
             
             self.likesYouIndicatorView.isHidden = count == 0
         }).disposed(by: self.disposeBag)
-        
-        self.input.lmmManager.notSeenMatchesCount.subscribe(onNext: { [weak self] count in
-            guard let `self` = self else { return }
-            
-            self.matchesIndicatorView.isHidden = count == 0
-        }).disposed(by: self.disposeBag)
-        
+                
         self.input.lmmManager.notSeenMessagesCount.subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
@@ -691,7 +607,6 @@ class MainViewController: BaseViewController
         UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
             let alpha: CGFloat = state ? 0.0 : 1.0
             self?.likesYouIndicatorView.alpha = alpha
-            self?.matchesIndicatorView.alpha = alpha
             self?.chatIndicatorView.alpha = alpha
         }).disposed(by: self.disposeBag)
     }
@@ -704,7 +619,6 @@ extension MainNavigationItem
         switch self {
         case .search: return .search
         case .likes: return .likes
-        case .matches: return .matches
         case .chats: return .chats
         case .profile: return .profile
         

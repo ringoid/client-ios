@@ -46,8 +46,7 @@ class TransitionManager
         guard let from = FeedType(rawValue: profile.type) else { return }
         
         switch to {
-        case .likesYou: self.db.updateOrder(lmm.likesYou.value, silently: true)
-        case .matches: self.db.updateOrder(lmm.matches.value, silently: true)
+        case .likesYou: self.db.updateOrder(lmm.likesYou.value, silently: true)        
         case .messages: self.db.updateOrder(lmm.messages.value, silently: true)
         case .inbox: self.db.updateOrder(lmm.inbox.value, silently: true)
         case .sent: self.db.updateOrder(lmm.sent.value, silently: true)
@@ -62,14 +61,14 @@ class TransitionManager
         })
         
         switch to {
-        case .likesYou, .matches, .messages: self.db.forceUpdateLMM()
+        case .likesYou, .messages: self.db.forceUpdateLMM()
         case .inbox, .sent: self.db.forceUpdateMessages()
         }
         
         guard from != to.feedType() else { return }
         
         switch from {
-        case .likesYou, .matches, .messages: self.db.forceUpdateLMM()
+        case .likesYou, .messages: self.db.forceUpdateLMM()
         case .inbox, .sent: self.db.forceUpdateMessages()
         case .unknown: return
         }
@@ -84,7 +83,6 @@ class TransitionManager
         
         switch to {
         case .likesYou: self.db.updateOrder(lmm.likesYou.value, silently: true)
-        case .matches: self.db.updateOrder(lmm.matches.value, silently: true)
         case .messages: self.db.updateOrder(lmm.messages.value, silently: true)
         case .inbox: self.db.updateOrder(lmm.inbox.value, silently: true)
         case .sent: self.db.updateOrder(lmm.sent.value, silently: true)
@@ -99,7 +97,7 @@ class TransitionManager
         })
         
         switch to {
-        case .likesYou, .matches, .messages: self.db.forceUpdateLMM()
+        case .likesYou, .messages: self.db.forceUpdateLMM()
         case .inbox, .sent: self.db.forceUpdateMessages()
         }
         
@@ -109,7 +107,7 @@ class TransitionManager
         self.lmm.markAsTransitioned(profile.id, in: to)
         
         switch from {
-        case .likesYou, .matches, .messages: self.db.forceUpdateLMM()
+        case .likesYou, .messages: self.db.forceUpdateLMM()
         case .inbox, .sent: self.db.forceUpdateMessages()
         case .unknown: return
         }
@@ -121,8 +119,7 @@ extension LMMType
     func feedType() -> FeedType
     {
         switch self {
-        case .likesYou: return .likesYou
-        case .matches: return .matches
+        case .likesYou: return .likesYou        
         case .messages: return .messages
         case .inbox: return .inbox
         case .sent: return .sent

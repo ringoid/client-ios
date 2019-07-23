@@ -49,7 +49,7 @@ protocol ApiService
     func getNewFaces(_ resolution: String, lastActionDate: Date?) -> Observable<[ApiProfile]>
     func discover(_ resolution: String, lastActionDate: Date?, minAge: Int?, maxAge: Int?, maxDistance: Int?) -> Observable<[ApiProfile]>
     func getLMM(_ resolution: String, lastActionDate: Date?, source: SourceFeedType) -> Observable<ApiLMMResult>
-    func getLMHIS(_ resolution: String, lastActionDate: Date?, source: SourceFeedType) -> Observable<ApiLMMResult>
+    func getLC(_ resolution: String, lastActionDate: Date?, source: SourceFeedType, minAge: Int?, maxAge: Int?, maxDistance: Int?) -> Observable<ApiLMMResult>
     func getChat(_ profileId: String, resolution: String, lastActionDate: Date?) -> Observable<(ApiChatUpdate, Int)>
     
     func getProfile() -> Observable<ApiUserProfileInfo>

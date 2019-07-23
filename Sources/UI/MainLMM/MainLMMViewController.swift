@@ -29,8 +29,7 @@ class MainLMMViewController: BaseViewController
     var type: BehaviorRelay<LMMType> = BehaviorRelay<LMMType>(value: .likesYou)
     
     fileprivate static var feedsState: [LMMType: FeedState] = [
-        .likesYou: FeedState(),
-        .matches: FeedState(),
+        .likesYou: FeedState(),        
         .messages: FeedState(),
         .inbox: FeedState(),
         .sent: FeedState()
@@ -217,13 +216,7 @@ class MainLMMViewController: BaseViewController
             
             self?.checkForUpdates()
         }).disposed(by: self.disposeBag)
-        
-        self.input.lmmManager.matchesUpdatesAvailable.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self ] _ in
-            guard self?.type.value == .matches else { return }
-            
-            self?.checkForUpdates()
-        }).disposed(by: self.disposeBag)
-        
+                
         self.input.lmmManager.messagesUpdatesAvailable.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self ] _ in
             guard self?.type.value == .messages else { return }
             
@@ -331,8 +324,7 @@ class MainLMMViewController: BaseViewController
     fileprivate func updateFeedTitle()
     {
         switch self.type.value {
-        case .likesYou: self.feedTitleLabel.text = "lmm_tab_likes".localized()
-        case .matches: self.feedTitleLabel.text = "lmm_tab_matches".localized()
+        case .likesYou: self.feedTitleLabel.text = "lmm_tab_likes".localized()        
         case .messages: self.feedTitleLabel.text = "lmm_tab_messages".localized()
         default: return
         }
@@ -343,9 +335,6 @@ class MainLMMViewController: BaseViewController
         switch self.type.value {
         case .likesYou:
             return self.viewModel?.likesYou
-            
-        case .matches:
-            return self.viewModel?.matches
             
         case .messages:
             return self.viewModel?.messages
@@ -361,8 +350,7 @@ class MainLMMViewController: BaseViewController
     fileprivate func isUpdatesAvailable() -> Bool
     {
         switch self.type.value {
-        case .likesYou: return self.input.lmmManager.likesYouUpdatesAvailable.value
-        case .matches: return self.input.lmmManager.matchesUpdatesAvailable.value
+        case .likesYou: return self.input.lmmManager.likesYouUpdatesAvailable.value        
         case .messages: return self.input.lmmManager.messagesUpdatesAvailable.value
             
         default: return false
@@ -379,10 +367,6 @@ class MainLMMViewController: BaseViewController
         // Analytics
         if self.type.value == .likesYou && updatedProfiles.count > 0 {
             self.input.scenario.checkLikesYou(self.type.value.sourceType())
-        }
-        
-        if self.type.value == .matches && updatedProfiles.count > 0 {
-            self.input.scenario.checkFirstMatch(self.type.value.sourceType())
         }
         
         defer {
@@ -607,7 +591,6 @@ class MainLMMViewController: BaseViewController
         MainLMMViewController.photoIndexes = [:]
         MainLMMViewController.feedsState = [
             .likesYou: FeedState(offset: 0.0),
-            .matches: FeedState(offset: 0.0),
             .messages: FeedState(offset: 0.0),
             .inbox: FeedState(offset: 0.0),
             .sent: FeedState(offset: 0.0)
@@ -675,7 +658,6 @@ class MainLMMViewController: BaseViewController
         
         switch self.type.value {
         case .likesYou: return "feed_likes_you_empty_no_data".localized()
-        case .matches: return "feed_matches_empty_no_data".localized()
         case .messages: return "feed_messages_empty_no_data".localized()
         case .inbox: return "feed_inbox_empty_no_data".localized()
         case .sent: return "feed_sent_empty_no_data".localized()
@@ -889,8 +871,7 @@ extension SourceFeedType
     func lmmType() -> LMMType?
     {
         switch self {
-        case .whoLikedMe: return .likesYou
-        case .matches: return .matches
+        case .whoLikedMe: return .likesYou        
         case .messages: return .messages
         case .inbox: return .inbox
         case .sent: return .sent

@@ -75,11 +75,6 @@ class MainLMMContainerViewController: BaseViewController
         self.toggle(.likesYou)
     }
     
-    @IBAction func onMatchesSelected()
-    {
-        self.toggle(.matches)
-    }
-    
     @IBAction func onChatSelected()
     {
         self.toggle(.messages)

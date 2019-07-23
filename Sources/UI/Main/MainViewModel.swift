@@ -99,11 +99,6 @@ class MainViewModel
         self.input.navigationManager.mainItem.accept(.likes)
     }
     
-    func moveToMatches()
-    {
-        self.input.navigationManager.mainItem.accept(.matches)
-    }
-    
     func moveToChats()
     {
         self.input.navigationManager.mainItem.accept(.chats)
