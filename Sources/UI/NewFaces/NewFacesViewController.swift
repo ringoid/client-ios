@@ -226,6 +226,7 @@ class NewFacesViewController: BaseViewController
             guard state else { return }
             
             self?.hideScrollToTopOption()
+            self?.hideTopBar()
         }).disposed(by: self.disposeBag)
     }
     
