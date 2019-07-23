@@ -54,7 +54,6 @@ class MainLMMViewController: BaseViewController
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var feedTitleLabel: UILabel!
-    @IBOutlet fileprivate weak var feedTitleView: UIView!
     @IBOutlet fileprivate weak var chatContainerView: ContainerView!
     @IBOutlet fileprivate weak var scrollTopBtn: UIButton!
     @IBOutlet fileprivate weak var tableView: UITableView!
@@ -63,6 +62,8 @@ class MainLMMViewController: BaseViewController
     @IBOutlet fileprivate weak var blockPhotoView: UIImageView!
     @IBOutlet fileprivate weak var blockPhotoAspectConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var updateBtn: UIButton!
+    @IBOutlet fileprivate weak var tapBarHeightConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var topBarOffsetConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -76,11 +77,10 @@ class MainLMMViewController: BaseViewController
         self.tableView.estimatedSectionFooterHeight = 0.0
         
         let cellHeight = UIScreen.main.bounds.width * AppConfig.photoRatio
-        self.tableView.tableHeaderView = self.feedTitleView
         self.tableView.rowHeight = cellHeight
         self.tableView.estimatedRowHeight = cellHeight
         self.tableView.contentInset = UIEdgeInsets(
-            top: 0.0,//self.view.safeAreaInsets.top + 60.0,
+            top: 64.0,
             left: 0.0,
             bottom: UIScreen.main.bounds.height - cellHeight,
             right: 0.0
@@ -102,6 +102,13 @@ class MainLMMViewController: BaseViewController
         self.isTabSwitched = true
         self.updateFeed(true)
         self.checkForUpdates()
+    }
+    
+    override func viewWillLayoutSubviews()
+    {
+        super.viewWillLayoutSubviews()
+        
+        self.tapBarHeightConstraint.constant = self.view.safeAreaInsets.top + 64.0
     }
     
     override func updateTheme()
@@ -136,6 +143,7 @@ class MainLMMViewController: BaseViewController
     @IBAction func onScrollTop()
     {
         self.hideScrollToTopOption()
+        self.showTopBar()
         self.updateBtn.alpha = 1.0
         let topOffset = self.view.safeAreaInsets.top + self.tableView.contentInset.top
         self.tableView.setContentOffset(CGPoint(x: 0.0, y: -topOffset), animated: false)
@@ -148,6 +156,7 @@ class MainLMMViewController: BaseViewController
         AnalyticsManager.shared.send(.tapToRefresh(self.type.value.sourceType().rawValue))
         
         self.hideScrollToTopOption()
+        self.showTopBar()
         self.reload()
     }
     
@@ -186,6 +195,7 @@ class MainLMMViewController: BaseViewController
             guard state else { return }
             
             self?.hideScrollToTopOption()
+            self?.hideTopBar()
             self?.updateBtn.alpha = 0.0
         }).disposed(by: self.disposeBag)
         
@@ -685,7 +695,7 @@ class MainLMMViewController: BaseViewController
             let cellBottomOffset = cellTopOffset + cell.bounds.height
             
             //vc.topVisibleBorderDistance = cellTopOffset - contentOffset - self.view.safeAreaInsets.top - 72.0
-            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 72.0 - 64.0
+            vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 72.0
         }
     }
     
@@ -700,6 +710,22 @@ class MainLMMViewController: BaseViewController
         }))
         
         self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func showTopBar()
+    {
+        self.topBarOffsetConstraint.constant = 0.0
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutSubviews()
+        }
+    }
+    
+    fileprivate func hideTopBar()
+    {
+        self.topBarOffsetConstraint.constant = -1.0 * (self.view.safeAreaInsets.top + 64.0)
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutSubviews()
+        }
     }
 }
 
@@ -832,6 +858,7 @@ extension MainLMMViewController: UIScrollViewDelegate
         
         guard offset > topTrashhold else {
             self.hideScrollToTopOption()
+            self.showTopBar()
             self.updateBtn.alpha = 1.0
             self.prevScrollingOffset = 0.0
             
@@ -840,6 +867,7 @@ extension MainLMMViewController: UIScrollViewDelegate
         
         if offset - self.prevScrollingOffset <  -1.0 * midTrashhold {
             self.showScrollToTopOption()
+            self.showTopBar()
             self.prevScrollingOffset = offset
             
             return
@@ -847,6 +875,7 @@ extension MainLMMViewController: UIScrollViewDelegate
         
         if offset - self.prevScrollingOffset > midTrashhold {
             self.hideScrollToTopOption()
+            self.hideTopBar()
             self.updateBtn.alpha = 0.0
             self.prevScrollingOffset = offset
             
