@@ -12,6 +12,7 @@ import RxSwift
 class MainLCFilterViewController: BaseViewController
 {
     var input: MainLCFilterVMInput!
+    var onShowAll: (() -> ())?
     var onUpdate: ((Bool) -> ())?
     var onClose: (() -> ())?
     
@@ -30,7 +31,8 @@ class MainLCFilterViewController: BaseViewController
     
     @IBOutlet fileprivate weak var maxDistanceTitleLabel: UILabel!
     @IBOutlet fileprivate weak var ageTitleLabel: UILabel!
-    @IBOutlet fileprivate weak var discoverBtn: UIButton!
+    @IBOutlet fileprivate weak var filterBtn: UIButton!
+    @IBOutlet fileprivate weak var showAllBtn: UIButton!
     
     override func viewDidLoad()
     {
@@ -101,16 +103,30 @@ class MainLCFilterViewController: BaseViewController
     {
         self.ageTitleLabel.text = "filter_age".localized()
         self.maxDistanceTitleLabel.text = "filter_max_distance".localized()
-        self.discoverBtn.setTitle("filter_discover".localized(), for: .normal)
+        self.filterBtn.setTitle("filter_filter".localized(), for: .normal)
+        self.showAllBtn.setTitle("filter_show_all".localized(), for: .normal)
     }
     
     override func updateTheme() {}
     
     // MARK: - Actionss
     
-    @IBAction func onDiscoverAction()
+    @IBAction func onFilterAction()
     {
         self.onUpdate?(true)
+        
+        let height = self.view.safeAreaInsets.top + 245.0
+        self.filtersAreaOffsetConstraint.constant = -height
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutSubviews()
+        }) { _ in
+            self.onClose?()
+        }
+    }
+    
+    @IBAction func onShowAllAction()
+    {
+        self.onShowAll?()
         
         let height = self.view.safeAreaInsets.top + 245.0
         self.filtersAreaOffsetConstraint.constant = -height

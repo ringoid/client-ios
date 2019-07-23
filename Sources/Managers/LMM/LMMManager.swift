@@ -172,7 +172,7 @@ class LMMManager
         self.setupBindings()
     }
     
-    fileprivate func refresh(_ from: SourceFeedType) -> Observable<Void>
+    fileprivate func refresh(_ from: SourceFeedType, isFilterEnabled: Bool) -> Observable<Void>
     {
         log("LMM reloading process started", level: .high)
         self.isFetching.accept(true)
@@ -190,9 +190,9 @@ class LMMManager
         return self.apiService.getLC(self.deviceService.photoResolution,
                               lastActionDate: self.actionsManager.lastActionDate.value,
                               source: from,
-                              minAge: self.filter.minAge.value,
-                              maxAge: self.filter.maxAge.value,
-                              maxDistance: self.filter.maxDistance.value
+                              minAge: isFilterEnabled ? self.filter.minAge.value : nil,
+                              maxAge: isFilterEnabled ? self.filter.maxAge.value : nil,
+                              maxDistance: isFilterEnabled ? self.filter.maxDistance.value : nil
         ).flatMap({ [weak self] result -> Observable<Void> in
             
             self!.resetNotificationProfiles()
@@ -233,16 +233,16 @@ class LMMManager
     
     func refreshInBackground(_ from: SourceFeedType)
     {
-        self.refreshProtected(from).subscribe().disposed(by: self.disposeBag)
+        self.refreshProtected(from, isFilterEnabled: true).subscribe().disposed(by: self.disposeBag)
     }
     
-    func refreshProtected(_ from: SourceFeedType) -> Observable<Void>
+    func refreshProtected(_ from: SourceFeedType, isFilterEnabled: Bool) -> Observable<Void>
     {
         // let startDate = Date()
         
         return self.actionsManager.sendQueue().flatMap ({ [weak self] _ -> Observable<Void> in
             
-            return self!.refresh(from).asObservable()
+            return self!.refresh(from, isFilterEnabled: isFilterEnabled).asObservable()
         }).do(onNext: { _ in
 //            if Date().timeIntervalSince(startDate) < 2.0 {
 //                SentryService.shared.send(.waitingForResponseLLM)

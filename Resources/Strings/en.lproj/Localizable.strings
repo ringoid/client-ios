@@ -181,3 +181,5 @@
 "filter_max_distance" = "Maximum Distance";
 "filter_age" = "Age";
 "filter_discover" = "Discover";
+"filter_filter" = "Filter";
+"filter_show_all" = "Show all";

@@ -744,13 +744,23 @@ see who likes you</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdT-us-om5">
-                                        <rect key="frame" x="267" y="209" width="92" height="40"/>
+                                        <rect key="frame" x="306" y="209" width="53" height="40"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
-                                        <state key="normal" title="Discover">
+                                        <state key="normal" title="Filter">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="onDiscoverAction" destination="6W7-DY-enp" eventType="touchUpInside" id="leO-3s-opx"/>
+                                            <action selector="onFilterAction" destination="6W7-DY-enp" eventType="touchUpInside" id="aMu-8O-Dn2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhP-8n-acO">
+                                        <rect key="frame" x="16" y="209" width="91" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                        <state key="normal" title="Show All">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onShowAllAction" destination="6W7-DY-enp" eventType="touchUpInside" id="OAt-wX-wHA"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -758,6 +768,8 @@ see who likes you</string>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="265" id="1BH-0B-acl"/>
+                                    <constraint firstItem="bhP-8n-acO" firstAttribute="leading" secondItem="9Sy-fB-ipy" secondAttribute="leading" constant="16" id="6G8-8E-0dw"/>
+                                    <constraint firstItem="GdT-us-om5" firstAttribute="centerY" secondItem="bhP-8n-acO" secondAttribute="centerY" id="9eh-R7-aBi"/>
                                     <constraint firstItem="7Lf-4r-dly" firstAttribute="leading" secondItem="9Sy-fB-ipy" secondAttribute="leading" constant="4" id="ASA-D0-w8N"/>
                                     <constraint firstItem="vNu-wU-VbT" firstAttribute="leading" secondItem="9Sy-fB-ipy" secondAttribute="leading" constant="16" id="KPp-tj-MyV"/>
                                     <constraint firstAttribute="bottom" secondItem="GdT-us-om5" secondAttribute="bottom" constant="16" id="LmC-bt-NmD"/>
@@ -789,14 +801,15 @@ see who likes you</string>
                     <connections>
                         <outlet property="ageLabel" destination="VRZ-T5-xXu" id="JbV-Tm-uCR"/>
                         <outlet property="ageTitleLabel" destination="zcN-J1-Kxf" id="ID7-4k-xNi"/>
-                        <outlet property="discoverBtn" destination="GdT-us-om5" id="Omb-RU-Kew"/>
                         <outlet property="distanceLabel" destination="HWq-bC-1H6" id="JIW-xI-Njr"/>
                         <outlet property="distanceSlider" destination="vNu-wU-VbT" id="f4z-rP-SKN"/>
+                        <outlet property="filterBtn" destination="GdT-us-om5" id="vHR-Ba-nlZ"/>
                         <outlet property="filtersAreaHeightConstraint" destination="1BH-0B-acl" id="TuW-Er-gbz"/>
                         <outlet property="filtersAreaOffsetConstraint" destination="hsE-48-ukz" id="2Ei-Kb-OVe"/>
                         <outlet property="filtersView" destination="9Sy-fB-ipy" id="2fI-qJ-rCb"/>
                         <outlet property="maxDistanceTitleLabel" destination="e5B-Rp-Kon" id="RWc-qN-SK4"/>
                         <outlet property="rangeSlider" destination="7Lf-4r-dly" id="nvK-vc-4ST"/>
+                        <outlet property="showAllBtn" destination="bhP-8n-acO" id="D9X-an-8oE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZsV-Vj-YXY" userLabel="First Responder" sceneMemberID="firstResponder"/>

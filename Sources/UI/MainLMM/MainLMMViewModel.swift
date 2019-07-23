@@ -85,11 +85,11 @@ class MainLMMViewModel
         self.setupBindings()
     }
     
-    func refresh(_ from: LMMType) -> Observable<Void>
+    func refresh(_ from: LMMType, isFilterEnabled: Bool) -> Observable<Void>
     {
         self.profileManager.refreshInBackground()
         
-        return self.lmmManager.refreshProtected(from.sourceType())
+        return self.lmmManager.refreshProtected(from.sourceType(), isFilterEnabled: isFilterEnabled)
     }
     
     func moveToProfile()

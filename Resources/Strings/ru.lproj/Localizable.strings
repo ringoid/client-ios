@@ -183,3 +183,5 @@
 "filter_max_distance" = "Максимальная дистанция";
 "filter_age" = "Возраст";
 "filter_discover" = "Искать";
+"filter_filter" = "Фильтровать";
+"filter_show_all" = "Показать все";

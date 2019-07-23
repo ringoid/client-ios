@@ -156,13 +156,13 @@ class MainLMMViewController: BaseViewController
         
         self.hideScrollToTopOption()
         self.showTopBar()
-        self.reload()
+        self.reload(true)
     }
     
     @IBAction func onShowFilter()
     {
         self.showFilter()
-    }    
+    }
     
     // MARK: -
     
@@ -271,7 +271,7 @@ class MainLMMViewController: BaseViewController
         UIManager.shared.chatModeEnabled.accept(false)
     }
     
-    @objc func reload()
+    func reload(_ isFilterEnabled: Bool)
     {
         AnalyticsManager.shared.send(.pullToRefresh(self.type.value.sourceType().rawValue))
         
@@ -310,7 +310,7 @@ class MainLMMViewController: BaseViewController
         // TODO: move "finishViewActions" logic inside view model
         self.input.actionsManager.finishViewActions(for: self.profiles()?.value ?? [], source: self.type.value.sourceType())
         
-        self.viewModel?.refresh(self.type.value).subscribe(
+        self.viewModel?.refresh(self.type.value, isFilterEnabled: isFilterEnabled).subscribe(
             onNext: { [weak self ] _ in
                 self?.tableView.panGestureRecognizer.isEnabled = true                
             }, onError:{ [weak self] error in
@@ -710,8 +710,11 @@ class MainLMMViewController: BaseViewController
         let storyboard = Storyboards.mainLMM()
         let vc = storyboard.instantiateViewController(withIdentifier: "main_lc_filter") as! MainLCFilterViewController
         vc.input = MainLCFilterVMInput(filter: self.input.filter)
+        vc.onShowAll = { [weak self] in
+            self?.reload(false)
+        }
         vc.onUpdate = { [weak self] isUpdated in
-            if isUpdated { self?.reload() }
+            if isUpdated { self?.reload(true) }
         }
         vc.onClose = {
             ModalUIManager.shared.hide(animated: false)

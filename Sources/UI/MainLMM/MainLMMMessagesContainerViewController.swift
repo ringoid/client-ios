@@ -56,7 +56,7 @@ class MainLMMMessagesContainerViewController: BaseViewController
     
     func reload()
     {
-        self.lmmVC?.reload()
+        self.lmmVC?.reload(true)
     }
     
     // MARK: - Actions
