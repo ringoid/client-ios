@@ -21,6 +21,7 @@ class SettingsManager
     let notifications: NotificationService
     let scenario: AnalyticsScenarioManager
     let profile: UserProfileManager
+    let filter: FilterManager
     
     let isFirstLaunch: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
@@ -52,7 +53,7 @@ class SettingsManager
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager, lmm: LMMManager, newFaces: NewFacesManager, notifications: NotificationService, scenario: AnalyticsScenarioManager, profile: UserProfileManager)
+    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager, lmm: LMMManager, newFaces: NewFacesManager, notifications: NotificationService, scenario: AnalyticsScenarioManager, profile: UserProfileManager, filter: FilterManager)
     {
         self.db = db
         self.api = api
@@ -64,6 +65,7 @@ class SettingsManager
         self.notifications = notifications
         self.scenario = scenario
         self.profile = profile
+        self.filter = filter
         
         self.loadSettings()
         self.updateRemoteSettings()
@@ -120,6 +122,7 @@ class SettingsManager
         self.isFirstLaunch.accept(true)
         self.fs.reset()
         self.scenario.reset()
+        self.filter.reset()
         self.db.reset()
         
         // TODO: separate UI layers

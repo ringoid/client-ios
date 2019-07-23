@@ -18,6 +18,7 @@ class UserProfileManager
     let deviceService: DeviceService
     let storage: XStorageService
     let lmm: LMMManager
+    let filter: FilterManager
     
     let photos: BehaviorRelay<[UserPhoto]> = BehaviorRelay<[UserPhoto]>(value: [])
     let lastPhotoId: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
@@ -39,7 +40,7 @@ class UserProfileManager
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(_ db: DBService, api: ApiService, uploader: UploaderService, fileService: FileService, device: DeviceService, storage: XStorageService, lmm: LMMManager)
+    init(_ db: DBService, api: ApiService, uploader: UploaderService, fileService: FileService, device: DeviceService, storage: XStorageService, lmm: LMMManager, filter: FilterManager)
     {
         self.db = db
         self.apiService = api
@@ -48,6 +49,7 @@ class UserProfileManager
         self.deviceService = device
         self.storage = storage
         self.lmm = lmm
+        self.filter = filter
         
         self.checkProfile()
         self.loadProfileInfo()
@@ -199,18 +201,22 @@ class UserProfileManager
             self.lmm.contentShouldBeHidden = true            
         }).disposed(by: self.disposeBag)
         
-        self.gender.subscribe(onNext: { value in
+        self.gender.subscribe(onNext: { [weak self] value in
             guard let value = value else { return }
             
             UserDefaults.standard.setValue(value.rawValue, forKey: "profile_sex")
             UserDefaults.standard.synchronize()
+            
+            self?.checkFilterDefaults()
         }).disposed(by: self.disposeBag)
         
-        self.yob.subscribe(onNext: { value in
+        self.yob.subscribe(onNext: { [weak self] value in
             guard let value = value else { return }
             
             UserDefaults.standard.setValue(value, forKey: "profile_yob")
             UserDefaults.standard.synchronize()
+            
+            self?.checkFilterDefaults()
         }).disposed(by: self.disposeBag)
         
         self.creationDate.subscribe(onNext: { value in
@@ -303,5 +309,13 @@ class UserProfileManager
         if self.profile.value == nil {
             self.createProfile()
         }
+    }
+    
+    fileprivate func checkFilterDefaults()
+    {
+        guard let yob = self.yob.value, let gender = self.gender.value else { return }
+        
+        let age = Calendar.current.component(.year, from: Date()) - yob
+        self.filter.checkDefaultValues(gender, age: age)
     }
 }

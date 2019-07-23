@@ -23,6 +23,46 @@ class FilterManager
         self.setupBindings()
     }
     
+    func checkDefaultValues(_ gender: Sex, age: Int)
+    {
+        guard self.minAge.value == nil, self.maxAge.value == nil, self.maxDistance.value == nil else { return }
+        
+        var minAge: Int = 18
+        var maxAge: Int = 55
+        
+        if gender == .male {
+            minAge = age - 5
+            maxAge = age
+        } else {
+            minAge = age
+            maxAge = age + 5
+        }
+        
+        guard minAge > 18 else {
+            self.minAge.accept(18)
+            self.maxAge.accept(23)
+            
+            return
+        }
+        
+        guard maxAge < 55 else {
+            self.maxAge.accept(nil)
+            self.minAge.accept(46)
+            
+            return
+        }
+        
+        self.minAge.accept(minAge)
+        self.maxAge.accept(maxAge)
+    }
+    
+    func reset()
+    {
+        self.minAge.accept(nil)
+        self.maxAge.accept(nil)
+        self.maxDistance.accept(nil)
+    }
+    
     // MARK: -
     
     fileprivate func loadSettings()
