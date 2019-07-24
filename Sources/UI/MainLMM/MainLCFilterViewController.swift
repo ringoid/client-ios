@@ -17,6 +17,7 @@ class MainLCFilterViewController: BaseViewController
     var onClose: (() -> ())?
     
     fileprivate var viewModel: MainLCFilterViewModel!
+    fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var prevMinAge: Int? = nil
     fileprivate var prevMaxAge: Int? = nil
     fileprivate var prevMaxDistance: Int? = nil
@@ -89,6 +90,8 @@ class MainLCFilterViewController: BaseViewController
             .layerMinXMaxYCorner,
             .layerMaxXMaxYCorner
         ]
+        
+        self.setupBindings()
     }
     
     override func viewWillLayoutSubviews()
@@ -103,22 +106,14 @@ class MainLCFilterViewController: BaseViewController
     {
         self.ageTitleLabel.text = "filter_age".localized()
         self.maxDistanceTitleLabel.text = "filter_max_distance".localized()
-        self.filterBtn.setTitle("filter_filter".localized(), for: .normal)
         
-        var totalCount: Int = 0
-        
-        switch self.input.feedType {
-        case .likesYou: totalCount = self.input.lmm.allLikesYouProfilesCount.value
-        case .messages: totalCount = self.input.lmm.allMessagesProfilesCount.value
-        default: break
-        }
-        
-        self.showAllBtn.setTitle("filter_show_all".localized() + " (\(totalCount))", for: .normal)
+        self.updateFilterBtn()
+        self.updateShowAllBtn()
     }
     
     override func updateTheme() {}
     
-    // MARK: - Actionss
+    // MARK: - Actions
     
     @IBAction func onFilterAction()
     {
@@ -177,6 +172,54 @@ class MainLCFilterViewController: BaseViewController
         
         let distanceStr: String = distanceValue < 150 ? "\(distanceValue)" : "150+"
         self.distanceLabel.text = "\(distanceStr) km"
+        
+        self.viewModel.update()
+    }
+    
+    // MARK: -
+    
+    fileprivate func setupBindings()
+    {
+        switch self.input.feedType {
+        case .likesYou:
+            self.input.lmm.filteredLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+                self?.updateFilterBtn()
+            }).disposed(by: self.disposeBag)
+            break
+            
+        case .messages:
+            self.input.lmm.filteredMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+                self?.updateFilterBtn()
+            }).disposed(by: self.disposeBag)
+            break
+            
+        default: break
+        }
+    }
+    
+    fileprivate func updateFilterBtn()
+    {
+        var count: Int = 0
+        switch self.input.feedType {
+        case .likesYou: count = self.input.lmm.filteredLikesYouProfilesCount.value
+        case .messages: count = self.input.lmm.filteredMessagesProfilesCount.value
+        default: break
+        }
+        
+        self.filterBtn.setTitle("filter_filter".localized() + " (\(count))", for: .normal)
+    }
+    
+    fileprivate func updateShowAllBtn()
+    {
+        var totalCount: Int = 0
+        
+        switch self.input.feedType {
+        case .likesYou: totalCount = self.input.lmm.allLikesYouProfilesCount.value
+        case .messages: totalCount = self.input.lmm.allMessagesProfilesCount.value
+        default: break
+        }
+        
+        self.showAllBtn.setTitle("filter_show_all".localized() + " (\(totalCount))", for: .normal)
     }
 }
 
@@ -192,5 +235,7 @@ extension MainLCFilterViewController: RangeSeekSliderDelegate
         
         let maxAgeStr: String = maxAgeValue < 55 ? "\(maxAgeValue)" : "55+"
         self.ageLabel.text = "\(minAgeValue) - \(maxAgeStr)"
+        
+        self.viewModel.update()
     }
 }

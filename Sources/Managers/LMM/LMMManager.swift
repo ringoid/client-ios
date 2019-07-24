@@ -47,6 +47,8 @@ class LMMManager
     
     let allLikesYouProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     let allMessagesProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    let filteredLikesYouProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    let filteredMessagesProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     
     let isFetching: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
@@ -177,7 +179,7 @@ class LMMManager
     
     fileprivate func refresh(_ from: SourceFeedType, isFilterEnabled: Bool) -> Observable<Void>
     {
-        log("LMM reloading process started", level: .high)
+        log("LC reloading process started", level: .high)
         self.isFetching.accept(true)
         let chatCache = (
             self.messages.value +
@@ -223,6 +225,8 @@ class LMMManager
             return self!.db.add(localLikesYou + messages).asObservable().do(onNext: { [weak self] _ in
                 self?.updateProfilesPrevState(true)
                 
+                self?.filteredLikesYouProfilesCount.accept(localLikesYou.count)
+                self?.filteredMessagesProfilesCount.accept(messages.count)
                 self?.allLikesYouProfilesCount.accept(result.allLikesYouProfilesNum)
                 self?.allMessagesProfilesCount.accept(result.allMessagesProfilesNum)
             })
@@ -257,6 +261,32 @@ class LMMManager
     func purge()
     {
         self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
+    }
+    
+    fileprivate var isFiltersUpdating: Bool = false
+    func updateFilterCounters(_ from: SourceFeedType)
+    {
+        guard !self.isFiltersUpdating else { return }
+        
+        self.isFiltersUpdating = true
+        self.apiService.getLC(self.deviceService.photoResolution,
+                                     lastActionDate: self.actionsManager.lastActionDate.value,
+                                     source: from,
+                                     minAge: self.filter.minAge.value,
+                                     maxAge: self.filter.maxAge.value,
+                                     maxDistance: self.filter.maxDistance.value
+            ).do(onNext: { [weak self] _ in
+                self?.isFiltersUpdating = false
+            }, onError: { [weak self] _ in
+                    self?.isFiltersUpdating = false
+            }).flatMap({ [weak self] result -> Observable<Void> in
+                self?.filteredLikesYouProfilesCount.accept(result.likesYou.count)
+                self?.filteredMessagesProfilesCount.accept(result.messages.count)
+                self?.allLikesYouProfilesCount.accept(result.allLikesYouProfilesNum)
+                self?.allMessagesProfilesCount.accept(result.allMessagesProfilesNum)
+                
+                return .just(())
+            }).subscribe().disposed(by: self.disposeBag)
     }
     
     func topOrder(_ profileId: String, type: LMMType)

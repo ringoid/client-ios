@@ -19,10 +19,14 @@ struct MainLCFilterVMInput
 class MainLCFilterViewModel
 {
     let filter: FilterManager
+    let lmm: LMMManager
+    let type: LMMType
     
     init(_ input: MainLCFilterVMInput)
     {
         self.filter = input.filter
+        self.lmm = input.lmm
+        self.type = input.feedType
     }
     
     var minAge: BehaviorRelay<Int?>
@@ -38,5 +42,10 @@ class MainLCFilterViewModel
     var maxDistance: BehaviorRelay<Int?>
     {
         return self.filter.maxDistance
+    }
+    
+    func update()
+    {
+        self.lmm.updateFilterCounters(self.type.sourceType())
     }
 }
