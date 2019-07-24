@@ -234,7 +234,10 @@ class UserProfilePhotosViewController: BaseViewController
             profileManager: self.input.profileManager,
             device: self.input.device,
             db: self.input.db,
-            navigationManager: self.input.navigationManager
+            navigationManager: self.input.navigationManager,
+            filter: self.input.filter,
+            lmm: self.input.lmmManager,
+            newFaces: self.input.newFacesManager
         )
         
         ModalUIManager.shared.show(navVC, animated: true)

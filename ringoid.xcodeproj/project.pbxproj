@@ -231,6 +231,12 @@
 		57BEB67B2213D7E6000BD768 /* SettingsLocaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67A2213D7E6000BD768 /* SettingsLocaleViewController.swift */; };
 		57BEB67D2213D806000BD768 /* SettingsLocaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */; };
 		57BEB67F2213F306000BD768 /* SettingsLocaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */; };
+		57CFFB6822E8474400DC2378 /* SettingsFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CFFB6722E8474400DC2378 /* SettingsFilterViewController.swift */; };
+		57CFFB6922E8474400DC2378 /* SettingsFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CFFB6722E8474400DC2378 /* SettingsFilterViewController.swift */; };
+		57CFFB6B22E8476000DC2378 /* SettingsFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CFFB6A22E8476000DC2378 /* SettingsFilterViewModel.swift */; };
+		57CFFB6C22E8476000DC2378 /* SettingsFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CFFB6A22E8476000DC2378 /* SettingsFilterViewModel.swift */; };
+		57CFFB7122E858A000DC2378 /* SettingsFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CFFB7022E858A000DC2378 /* SettingsFilterCell.swift */; };
+		57CFFB7222E858A000DC2378 /* SettingsFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CFFB7022E858A000DC2378 /* SettingsFilterCell.swift */; };
 		57E23141227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */; };
 		57E23142227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */; };
 		57E6DBEA229820FC00713A79 /* ApiUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6DBE9229820FB00713A79 /* ApiUserProfile.swift */; };
@@ -603,6 +609,9 @@
 		57BEB67C2213D806000BD768 /* SettingsLocaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleViewModel.swift; sourceTree = "<group>"; };
 		57BEB67E2213F306000BD768 /* SettingsLocaleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocaleCell.swift; sourceTree = "<group>"; };
 		57BEB6802213FEA8000BD768 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		57CFFB6722E8474400DC2378 /* SettingsFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFilterViewController.swift; sourceTree = "<group>"; };
+		57CFFB6A22E8476000DC2378 /* SettingsFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFilterViewModel.swift; sourceTree = "<group>"; };
+		57CFFB7022E858A000DC2378 /* SettingsFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFilterCell.swift; sourceTree = "<group>"; };
 		57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMessagesContainerViewController.swift; sourceTree = "<group>"; };
 		57E6DBE9229820FB00713A79 /* ApiUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUserProfile.swift; sourceTree = "<group>"; };
 		57ED48692249FC070033EB0B /* Ringoid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ringoid.entitlements; sourceTree = "<group>"; };
@@ -1256,6 +1265,8 @@
 				57528C702292BCE4003F01E3 /* SettingsNotificationsViewController.swift */,
 				57EEB07822BE3E2C005770B3 /* SettingsProfileViewController.swift */,
 				57EEB07B22BE3E4F005770B3 /* SettingsProfileViewModel.swift */,
+				57CFFB6722E8474400DC2378 /* SettingsFilterViewController.swift */,
+				57CFFB6A22E8476000DC2378 /* SettingsFilterViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1289,6 +1300,7 @@
 				57EEB08122BE62FF005770B3 /* SettingsProfileHeightCell.swift */,
 				57EEB08722BE63C0005770B3 /* SettingsProfileFieldCell.swift */,
 				573D768922D73C1300E1576B /* SettingsProfileFieldsSuggest.swift */,
+				57CFFB7022E858A000DC2378 /* SettingsFilterCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1858,6 +1870,7 @@
 				576FC116220188AB00BA5ABE /* DeviceServiceDefault.swift in Sources */,
 				57B863C221ECB94800B9CC70 /* Message.swift in Sources */,
 				57B863ED21EF448100B9CC70 /* Action.swift in Sources */,
+				57CFFB7122E858A000DC2378 /* SettingsFilterCell.swift in Sources */,
 				573A5C14222541FF0094A9FA /* SettingsDebugCell.swift in Sources */,
 				57B863D321EDB18600B9CC70 /* MainLMMProfileViewModel.swift in Sources */,
 				57EEB09B22BFB352005770B3 /* HeightTitles.swift in Sources */,
@@ -1936,6 +1949,7 @@
 				57B863D921EE18ED00B9CC70 /* DiagonalGradientView.swift in Sources */,
 				57EE64CD2215394A00246B45 /* SettingsLegalLicensesCell.swift in Sources */,
 				57EEB0A722C20131005770B3 /* ChildrenTitles.swift in Sources */,
+				57CFFB6822E8474400DC2378 /* SettingsFilterViewController.swift in Sources */,
 				57585D5921E4928600038798 /* FileServiceDefault.swift in Sources */,
 				57EEB09822BFA3DA005770B3 /* EducationTitles.swift in Sources */,
 				57EE64C1221478A600246B45 /* SettingsLegalViewController.swift in Sources */,
@@ -1947,6 +1961,7 @@
 				573A5C0E222409F10094A9FA /* EmptyFeed.swift in Sources */,
 				577DDAD922647975001D7D24 /* LocationServiceDefault.swift in Sources */,
 				573D768A22D73C1400E1576B /* SettingsProfileFieldsSuggest.swift in Sources */,
+				57CFFB6B22E8476000DC2378 /* SettingsFilterViewModel.swift in Sources */,
 				57EEB08C22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */,
 				5751561422E1D8F2009E7743 /* NewFacesFilterViewController.swift in Sources */,
 				5751561B22E1DBF7009E7743 /* FilterManager.swift in Sources */,
@@ -2061,6 +2076,7 @@
 				57EE64E22216711000246B45 /* UploaderService.swift in Sources */,
 				57EE64E32216711000246B45 /* DeviceServiceDefault.swift in Sources */,
 				57EE64E42216711000246B45 /* Message.swift in Sources */,
+				57CFFB7222E858A000DC2378 /* SettingsFilterCell.swift in Sources */,
 				573A5C15222541FF0094A9FA /* SettingsDebugCell.swift in Sources */,
 				57EE64E52216711000246B45 /* Action.swift in Sources */,
 				57EEB09C22BFB352005770B3 /* HeightTitles.swift in Sources */,
@@ -2139,6 +2155,7 @@
 				57EE650D2216711000246B45 /* ChatBaseCell.swift in Sources */,
 				57EE650E2216711000246B45 /* ApiAction.swift in Sources */,
 				57EEB0A822C20132005770B3 /* ChildrenTitles.swift in Sources */,
+				57CFFB6922E8474400DC2378 /* SettingsFilterViewController.swift in Sources */,
 				57EE650F2216711000246B45 /* DiagonalGradientView.swift in Sources */,
 				57EEB09922BFA3DA005770B3 /* EducationTitles.swift in Sources */,
 				57EE65102216711000246B45 /* SettingsLegalLicensesCell.swift in Sources */,
@@ -2150,6 +2167,7 @@
 				573A5C0F22240C160094A9FA /* EmptyFeed.swift in Sources */,
 				577DDADA22647975001D7D24 /* LocationServiceDefault.swift in Sources */,
 				573D768B22D73C1400E1576B /* SettingsProfileFieldsSuggest.swift in Sources */,
+				57CFFB6C22E8476000DC2378 /* SettingsFilterViewModel.swift in Sources */,
 				57EEB08D22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */,
 				5751561522E1D8F2009E7743 /* NewFacesFilterViewController.swift in Sources */,
 				5751561C22E1DBF7009E7743 /* FilterManager.swift in Sources */,
@@ -2455,7 +2473,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ringoid.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = PXR6CFL6JF;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
@@ -2466,7 +2484,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ringoid.dating-st";
 				PRODUCT_NAME = "Ringoid st";
-				PROVISIONING_PROFILE_SPECIFIER = "ringoid dating stage prod";
+				PROVISIONING_PROFILE_SPECIFIER = "ringoid dating stage dev";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = STAGE;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

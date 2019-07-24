@@ -23,6 +23,7 @@ struct UserProfilePhotosVCInput
     let location: LocationManager
     let scenario: AnalyticsScenarioManager
     let db: DBService
+    let filter: FilterManager
 }
 
 class UserProfilePhotosViewModel

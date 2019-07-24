@@ -35,6 +35,13 @@ class NewFacesManager
         self.setupBindings()
     }
     
+    func refreshInBackground()
+    {
+        self.actionsManager.sendQueue().flatMap ({ [weak self] _ -> Observable<Void> in
+            return self!.refresh()
+        }).subscribe().disposed(by: self.disposeBag)
+    }
+    
     func refresh() -> Observable<Void>
     {
         return self.purge().asObservable().flatMap({ _ -> Observable<Void> in

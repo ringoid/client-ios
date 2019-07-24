@@ -18,6 +18,9 @@ struct SettingsVMInput
     let device: DeviceService
     let db: DBService
     let navigationManager: NavigationManager
+    let filter: FilterManager
+    let lmm: LMMManager
+    let newFaces: NewFacesManager
 }
 
 class SettingsViewModel

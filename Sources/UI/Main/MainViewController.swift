@@ -386,7 +386,8 @@ class MainViewController: BaseViewController
             device: self.input.device,
             location: self.input.location,
             scenario: self.input.scenario,
-            db: self.input.db
+            db: self.input.db,
+            filter: self.input.filter
         )
         
         self.menuVCCache[.profile] = vc

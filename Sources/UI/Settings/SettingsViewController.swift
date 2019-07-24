@@ -22,27 +22,29 @@ fileprivate struct SettingsOption
 
 fileprivate enum SettingsOptionType: Int
 {
-    case profile = 0
-    case push = 1
-    case theme = 2
-    case language = 3
-    case legal = 4
-    case support = 5
-    case suggest = 6
-    case delete = 7
+    case filter = 0
+    case profile = 1
+    case push = 2
+    case theme = 3
+    case language = 4
+    case legal = 5
+    case support = 6
+    case suggest = 7
+    case delete = 8
 }
 
 #else
 
 fileprivate enum SettingsOptionType: Int
 {
-    case profile = 0
-    case push = 1
-    case language = 2
-    case legal = 3
-    case support = 4
-    case suggest = 5
-    case delete = 6
+    case filter = 0
+    case profile = 1
+    case push = 2
+    case language = 3
+    case legal = 4
+    case support = 5
+    case suggest = 6
+    case delete = 7
 }
 
 #endif
@@ -53,6 +55,7 @@ class SettingsViewController: BaseViewController
     
      #if STAGE
     fileprivate let options = [
+        SettingsOption(cellIdentifier: "filter_cell", height: 56.0),
         SettingsOption(cellIdentifier: "profile_cell", height: 56.0),
         SettingsOption(cellIdentifier: "push_cell", height: 56.0),
         SettingsOption(cellIdentifier: "theme_cell", height: 56.0),
@@ -64,6 +67,7 @@ class SettingsViewController: BaseViewController
     ]
     #else
     fileprivate let options = [
+        SettingsOption(cellIdentifier: "filter_cell", height: 56.0),
         SettingsOption(cellIdentifier: "profile_cell", height: 56.0),
         SettingsOption(cellIdentifier: "push_cell", height: 56.0),
         SettingsOption(cellIdentifier: "language_cell", height: 56.0),
@@ -108,6 +112,14 @@ class SettingsViewController: BaseViewController
                 profileManager: self.input.profileManager,
                 db: self.input.db,
                 navigationManager: self.input.navigationManager
+            )
+        }
+        
+        if segue.identifier == SegueIds.filter, let vc = segue.destination as? SettingsFilterViewController {
+            vc.input = SettingsFilterVMInput(
+                filter: self.input.filter,
+                lmm: self.input.lmm,
+                newFaces: self.input.newFaces
             )
         }
     }
@@ -194,6 +206,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         guard let option = SettingsOptionType(rawValue: indexPath.row) else { return }
         
         switch option {
+        case .filter:
+            self.performSegue(withIdentifier: SegueIds.filter, sender: nil)
+            break
+            
         case .profile:
             self.performSegue(withIdentifier: SegueIds.profile, sender: nil)
             break
@@ -251,6 +267,7 @@ extension SettingsViewController
 {
     fileprivate struct SegueIds
     {
+        static let filter = "filter_vc"
         static let locale = "locale_vc"
         static let legal = "legal_vc"
         static let pushes = "pushes_vc"
