@@ -339,7 +339,7 @@ class MainLMMViewController: BaseViewController
         case .likesYou:
             var title = "lmm_tab_likes".localized()
             if let count = self.profiles()?.value.count, count != self.input.lmmManager.allLikesYouProfilesCount.value {
-                title += "( \(count) of \(self.input.lmmManager.allLikesYouProfilesCount.value))"
+                title += " (\(count) of \(self.input.lmmManager.allLikesYouProfilesCount.value))"
             }
             self.feedTitleLabel.text = title
             break
@@ -347,7 +347,7 @@ class MainLMMViewController: BaseViewController
         case .messages:
             var title = "lmm_tab_messages".localized()
             if let count = self.profiles()?.value.count, count != self.input.lmmManager.allMessagesProfilesCount.value {
-                title += "( \(count) of \(self.input.lmmManager.allMessagesProfilesCount.value))"
+                title += " (\(count) of \(self.input.lmmManager.allMessagesProfilesCount.value))"
             }
             self.feedTitleLabel.text = title
             break

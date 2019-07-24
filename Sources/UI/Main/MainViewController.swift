@@ -582,13 +582,13 @@ class MainViewController: BaseViewController
         
         // Counters
         
-        self.input.lmmManager.likesYou.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
-            let title: String? = profiles.count != 0 ? "\(profiles.count)" : nil
+        self.input.lmmManager.allLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
+            let title: String? = count != 0 ? "\(count)" : nil
             self?.likeBtn.setTitle(title, for: .normal)
         }).disposed(by: self.disposeBag)
         
-        self.input.lmmManager.messages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
-            let title: String? = profiles.count != 0 ? "\(profiles.count)" : nil
+        self.input.lmmManager.allMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
+            let title: String? = count != 0 ? "\(count)" : nil
             self?.chatsBtn.setTitle(title, for: .normal)
         }).disposed(by: self.disposeBag)
         

@@ -240,13 +240,13 @@ see who likes you</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKC-OF-Xth">
-                                        <rect key="frame" x="16" y="36.5" width="64.5" height="33.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
+                                        <rect key="frame" x="16" y="38.5" width="60" height="31.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PY7-l4-9js">
-                                        <rect key="frame" x="303" y="31.5" width="72" height="44"/>
+                                        <rect key="frame" x="303" y="32.5" width="72" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="9pR-Sl-07y"/>
                                             <constraint firstAttribute="width" constant="72" id="hhG-Zn-gss"/>
