@@ -245,6 +245,7 @@ class MainLMMViewController: BaseViewController
                 return
             }
             
+            self?.updateFeedTitle()
             self?.updateFeed(false)
         }).disposed(by: self.feedDisposeBag)
     }
@@ -335,8 +336,22 @@ class MainLMMViewController: BaseViewController
     fileprivate func updateFeedTitle()
     {
         switch self.type.value {
-        case .likesYou: self.feedTitleLabel.text = "lmm_tab_likes".localized()        
-        case .messages: self.feedTitleLabel.text = "lmm_tab_messages".localized()
+        case .likesYou:
+            var title = "lmm_tab_likes".localized()
+            if let count = self.profiles()?.value.count, count != self.input.lmmManager.allLikesYouProfilesCount.value {
+                title += "( \(count) of \(self.input.lmmManager.allLikesYouProfilesCount.value))"
+            }
+            self.feedTitleLabel.text = title
+            break
+            
+        case .messages:
+            var title = "lmm_tab_messages".localized()
+            if let count = self.profiles()?.value.count, count != self.input.lmmManager.allMessagesProfilesCount.value {
+                title += "( \(count) of \(self.input.lmmManager.allMessagesProfilesCount.value))"
+            }
+            self.feedTitleLabel.text = title
+            break
+            
         default: return
         }
     }

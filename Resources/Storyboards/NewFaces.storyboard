@@ -73,13 +73,13 @@ discover users nearby</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="isk-qO-AwF">
-                                        <rect key="frame" x="16" y="34" width="93.5" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                        <rect key="frame" x="16" y="36.5" width="87" height="33.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNb-ZP-bBP">
-                                        <rect key="frame" x="303" y="30" width="72" height="44"/>
+                                        <rect key="frame" x="303" y="31.5" width="72" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="BV6-CE-Dwu"/>
                                             <constraint firstAttribute="height" constant="44" id="jzx-sZ-cTm"/>
