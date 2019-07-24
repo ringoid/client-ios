@@ -52,6 +52,11 @@ class TransitionManager
         case .sent: self.db.updateOrder(lmm.sent.value, silently: true)
         }
         
+        switch from {
+        case .likesYou: self.lmm.allLikesYouProfilesCount.accept( self.lmm.allLikesYouProfilesCount.value - 1)
+        default: break
+        }
+        
         // Manually transitioned profile is already seen
         self.lmm.markAsTransitioned(profile.id, in: to)
         
