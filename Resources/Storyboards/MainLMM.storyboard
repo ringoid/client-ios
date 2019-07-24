@@ -260,7 +260,7 @@ see who likes you</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.08235294118" green="0.098039215690000001" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.08235294118" green="0.098039215690000001" blue="0.1137254902" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="84" id="0cV-sh-rv0"/>
                                     <constraint firstItem="QKC-OF-Xth" firstAttribute="leading" secondItem="NDb-Xg-b58" secondAttribute="leading" constant="16" id="B1v-LN-EYD"/>

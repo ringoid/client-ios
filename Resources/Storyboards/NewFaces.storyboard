@@ -93,7 +93,7 @@ discover users nearby</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.082352941176470587" green="0.098039215686274508" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.082352941176470587" green="0.098039215686274508" blue="0.11372549019607843" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="84" id="JrX-dP-RaM"/>
                                     <constraint firstAttribute="bottom" secondItem="isk-qO-AwF" secondAttribute="bottom" constant="14" id="LPb-l7-frR"/>
