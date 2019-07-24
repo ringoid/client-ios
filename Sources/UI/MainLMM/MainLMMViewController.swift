@@ -726,7 +726,8 @@ class MainLMMViewController: BaseViewController
         let vc = storyboard.instantiateViewController(withIdentifier: "main_lc_filter") as! MainLCFilterViewController
         vc.input = MainLCFilterVMInput(
             filter: self.input.filter,
-            lmm: self.input.lmmManager
+            lmm: self.input.lmmManager,
+            feedType: self.type.value
         )
         vc.onShowAll = { [weak self] in
             self?.reload(false)

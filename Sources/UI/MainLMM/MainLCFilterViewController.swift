@@ -105,7 +105,14 @@ class MainLCFilterViewController: BaseViewController
         self.maxDistanceTitleLabel.text = "filter_max_distance".localized()
         self.filterBtn.setTitle("filter_filter".localized(), for: .normal)
         
-        let totalCount = self.input.lmm.allLikesYouProfilesCount.value + self.input.lmm.allMessagesProfilesCount.value
+        var totalCount: Int = 0
+        
+        switch self.input.feedType {
+        case .likesYou: totalCount = self.input.lmm.allLikesYouProfilesCount.value
+        case .messages: totalCount = self.input.lmm.allMessagesProfilesCount.value
+        default: break
+        }
+        
         self.showAllBtn.setTitle("filter_show_all".localized() + " (\(totalCount))", for: .normal)
     }
     

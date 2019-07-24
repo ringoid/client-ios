@@ -13,6 +13,7 @@ struct MainLCFilterVMInput
 {
     let filter: FilterManager
     let lmm: LMMManager
+    let feedType: LMMType
 }
 
 class MainLCFilterViewModel
