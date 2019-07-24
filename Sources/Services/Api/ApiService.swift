@@ -9,7 +9,7 @@
 import RxSwift
 import RxCocoa
 
-typealias ApiLMMResult = (likesYou: [ApiLMMProfile],  matches: [ApiLMMProfile], messages: [ApiLMMProfile], inbox: [ApiLMMProfile], sent: [ApiLMMProfile])
+typealias ApiLMMResult = (likesYou: [ApiLMMProfile], messages: [ApiLMMProfile])
 
 enum ApiErrorType: String
 {

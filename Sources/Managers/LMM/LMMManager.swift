@@ -200,9 +200,7 @@ class LMMManager
             
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)            
             let messages = createProfiles(result.messages, type: .messages)
-            let inbox = createProfiles(result.inbox, type: .inbox)
-            let sent = createProfiles(result.sent, type: .sent)
-            
+                        
             messages.forEach { remoteProfile in
                 guard remoteProfile.messages.count != 0 else { return }
                 
@@ -219,7 +217,7 @@ class LMMManager
                 }
             }
             
-            return self!.db.add(localLikesYou + messages + inbox + sent).asObservable().do(onNext: { [weak self] _ in
+            return self!.db.add(localLikesYou + messages).asObservable().do(onNext: { [weak self] _ in
                 self?.updateProfilesPrevState(true)
             })
         }).asObservable().delay(0.05, scheduler: MainScheduler.instance).do(
