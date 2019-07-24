@@ -45,6 +45,9 @@ class LMMManager
     var inbox: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     var sent: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     
+    let allLikesYouProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    let allMessagesProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    
     let isFetching: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     let chatUpdateInterval: BehaviorRelay<Double> = BehaviorRelay<Double>(value: 5.0)
@@ -219,6 +222,9 @@ class LMMManager
             
             return self!.db.add(localLikesYou + messages).asObservable().do(onNext: { [weak self] _ in
                 self?.updateProfilesPrevState(true)
+                
+                self?.allLikesYouProfilesCount.accept(result.allLikesYouProfilesNum)
+                self?.allMessagesProfilesCount.accept(result.allMessagesProfilesNum)
             })
         }).asObservable().delay(0.05, scheduler: MainScheduler.instance).do(
             onNext: { [weak self] _ in

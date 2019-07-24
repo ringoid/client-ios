@@ -104,7 +104,9 @@ class MainLCFilterViewController: BaseViewController
         self.ageTitleLabel.text = "filter_age".localized()
         self.maxDistanceTitleLabel.text = "filter_max_distance".localized()
         self.filterBtn.setTitle("filter_filter".localized(), for: .normal)
-        self.showAllBtn.setTitle("filter_show_all".localized(), for: .normal)
+        
+        let totalCount = self.input.lmm.allLikesYouProfilesCount.value + self.input.lmm.allMessagesProfilesCount.value
+        self.showAllBtn.setTitle("filter_show_all".localized() + " (\(totalCount))", for: .normal)
     }
     
     override func updateTheme() {}

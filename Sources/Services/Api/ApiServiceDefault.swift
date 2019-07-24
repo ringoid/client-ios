@@ -228,7 +228,9 @@ class ApiServiceDefault: ApiService
                 
                 return .just((
                     likesYou: likesYouArray.compactMap({ApiLMMProfile.lmmParse($0)}),
-                    messages: messagesArray.compactMap({ApiLMMProfile.lmmParse($0)})
+                    messages: messagesArray.compactMap({ApiLMMProfile.lmmParse($0)}),
+                    allLikesYouProfilesNum: 0,
+                    allMessagesProfilesNum: 0
                 ))
             }).do(onError: { error in
                 log("ERROR: feeds/get_lmm: \(error)", level: .high)
@@ -270,22 +272,36 @@ class ApiServiceDefault: ApiService
         return self.request(.post, path: "feeds/get_lc", jsonBody: params, trace: trace)
             //.timeout(2.0, scheduler: MainScheduler.instance)
             .flatMap ({ jsonDict -> Observable<ApiLMMResult> in
-            guard let likesYouArray = jsonDict["likesYou"] as? [[String: Any]] else {
-                let error = createError("ApiService: wrong likesYou profiles data format", type: .hidden)
+                guard let likesYouArray = jsonDict["likesYou"] as? [[String: Any]] else {
+                    let error = createError("ApiService: wrong likesYou profiles data format", type: .hidden)
+                    
+                    return .error(error)
+                }
                 
-                return .error(error)
-            }
-
                 guard let messagesArray = jsonDict["messages"] as? [[String: Any]] else {
                     let error = createError("ApiService: wrong messages profiles data format", type: .hidden)
                     
                     return .error(error)
                 }
                 
-            return .just((
-                likesYou: likesYouArray.compactMap({ApiLMMProfile.lmmParse($0)}),
-                messages: messagesArray.compactMap({ApiLMMProfile.lmmParse($0)})
-            ))
+                guard let allLikesYouProfilesNum = jsonDict["allLikesYouProfilesNum"] as? Int else {
+                    let error = createError("ApiService: wrong allLikesYouProfilesNum data format", type: .hidden)
+                    
+                    return .error(error)
+                }
+                
+                guard let allMessagesProfilesNum = jsonDict["allMessagesProfilesNum"] as? Int else {
+                    let error = createError("ApiService: wrong allMessagesProfilesNum data format", type: .hidden)
+                    
+                    return .error(error)
+                }
+                
+                return .just((
+                    likesYou: likesYouArray.compactMap({ApiLMMProfile.lmmParse($0)}),
+                    messages: messagesArray.compactMap({ApiLMMProfile.lmmParse($0)}),
+                    allLikesYouProfilesNum: allLikesYouProfilesNum,
+                    allMessagesProfilesNum: allMessagesProfilesNum
+                ))
             }).do(onError: { error in
                 log("ERROR: feeds/get_lс: \(error)", level: .high)
             })

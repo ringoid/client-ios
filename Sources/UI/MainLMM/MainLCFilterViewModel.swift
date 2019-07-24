@@ -12,6 +12,7 @@ import RxSwift
 struct MainLCFilterVMInput
 {
     let filter: FilterManager
+    let lmm: LMMManager
 }
 
 class MainLCFilterViewModel
