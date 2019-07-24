@@ -435,13 +435,13 @@ discover users nearby</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOr-bi-Pjj">
-                                        <rect key="frame" x="16" y="53" width="145.5" height="21"/>
+                                        <rect key="frame" x="16" y="55" width="145.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZg-8W-enD" customClass="RangeSeekSlider" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="4" y="149" width="367" height="44"/>
+                                        <rect key="frame" x="0.0" y="151" width="375" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -486,33 +486,33 @@ discover users nearby</string>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="Nth-j2-I1X">
-                                        <rect key="frame" x="14" y="82" width="347" height="31"/>
+                                        <rect key="frame" x="14" y="84" width="347" height="31"/>
                                         <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="onDistanceChange:" destination="u0R-SQ-uHN" eventType="valueChanged" id="FsC-AH-DCR"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCe-JM-wIu">
-                                        <rect key="frame" x="16" y="128" width="30" height="21"/>
+                                        <rect key="frame" x="16" y="130" width="30" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owg-0e-K47">
-                                        <rect key="frame" x="319" y="53" width="40" height="21"/>
+                                        <rect key="frame" x="319" y="55" width="40" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 - 55+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfW-5n-TFY">
-                                        <rect key="frame" x="290" y="128" width="69" height="21"/>
+                                        <rect key="frame" x="290" y="130" width="69" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntC-hs-FdS">
-                                        <rect key="frame" x="267" y="209" width="92" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                        <rect key="frame" x="274" y="211" width="85" height="38"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                         <state key="normal" title="Discover">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -528,9 +528,9 @@ discover users nearby</string>
                                     <constraint firstAttribute="trailing" secondItem="CfW-5n-TFY" secondAttribute="trailing" constant="16" id="4rN-au-4iI"/>
                                     <constraint firstItem="fZg-8W-enD" firstAttribute="top" secondItem="WCe-JM-wIu" secondAttribute="bottom" id="5D9-ZE-QML"/>
                                     <constraint firstItem="WCe-JM-wIu" firstAttribute="top" secondItem="Nth-j2-I1X" secondAttribute="bottom" constant="16" id="6z0-yh-97x"/>
-                                    <constraint firstItem="fZg-8W-enD" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" constant="4" id="9jA-NU-cbH"/>
+                                    <constraint firstItem="fZg-8W-enD" firstAttribute="leading" secondItem="u6y-KQ-QNN" secondAttribute="leading" id="9jA-NU-cbH"/>
                                     <constraint firstAttribute="height" constant="265" id="Byn-V5-0JJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="fZg-8W-enD" secondAttribute="trailing" constant="4" id="E4l-ce-DUy"/>
+                                    <constraint firstAttribute="trailing" secondItem="fZg-8W-enD" secondAttribute="trailing" id="E4l-ce-DUy"/>
                                     <constraint firstItem="CfW-5n-TFY" firstAttribute="centerY" secondItem="WCe-JM-wIu" secondAttribute="centerY" id="GR1-5u-cDc"/>
                                     <constraint firstAttribute="trailing" secondItem="Nth-j2-I1X" secondAttribute="trailing" constant="16" id="VCo-0R-h4z"/>
                                     <constraint firstItem="owg-0e-K47" firstAttribute="centerY" secondItem="KOr-bi-Pjj" secondAttribute="centerY" id="WFJ-ee-uB2"/>

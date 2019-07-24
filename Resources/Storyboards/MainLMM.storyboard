@@ -668,13 +668,13 @@ see who likes you</string>
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Maximum Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5B-Rp-Kon">
-                                        <rect key="frame" x="16" y="53" width="145.5" height="21"/>
+                                        <rect key="frame" x="16" y="58" width="145.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Lf-4r-dly" customClass="RangeSeekSlider" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="4" y="149" width="367" height="44"/>
+                                        <rect key="frame" x="0.0" y="154" width="375" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -719,33 +719,33 @@ see who likes you</string>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="150" translatesAutoresizingMaskIntoConstraints="NO" id="vNu-wU-VbT">
-                                        <rect key="frame" x="14" y="82" width="347" height="31"/>
+                                        <rect key="frame" x="14" y="87" width="347" height="31"/>
                                         <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="onDistanceChange:" destination="6W7-DY-enp" eventType="valueChanged" id="Bpp-XN-7hw"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcN-J1-Kxf">
-                                        <rect key="frame" x="16" y="128" width="30" height="21"/>
+                                        <rect key="frame" x="16" y="133" width="30" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWq-bC-1H6">
-                                        <rect key="frame" x="319" y="53" width="40" height="21"/>
+                                        <rect key="frame" x="319" y="58" width="40" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 - 55+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRZ-T5-xXu">
-                                        <rect key="frame" x="290" y="128" width="69" height="21"/>
+                                        <rect key="frame" x="290" y="133" width="69" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GdT-us-om5">
-                                        <rect key="frame" x="306" y="209" width="53" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                        <rect key="frame" x="313" y="214" width="46" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                         <state key="normal" title="Filter">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -754,8 +754,8 @@ see who likes you</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhP-8n-acO">
-                                        <rect key="frame" x="16" y="209" width="91" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                        <rect key="frame" x="16" y="214" width="77" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                                         <state key="normal" title="Show All">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -770,10 +770,10 @@ see who likes you</string>
                                     <constraint firstAttribute="height" constant="265" id="1BH-0B-acl"/>
                                     <constraint firstItem="bhP-8n-acO" firstAttribute="leading" secondItem="9Sy-fB-ipy" secondAttribute="leading" constant="16" id="6G8-8E-0dw"/>
                                     <constraint firstItem="GdT-us-om5" firstAttribute="centerY" secondItem="bhP-8n-acO" secondAttribute="centerY" id="9eh-R7-aBi"/>
-                                    <constraint firstItem="7Lf-4r-dly" firstAttribute="leading" secondItem="9Sy-fB-ipy" secondAttribute="leading" constant="4" id="ASA-D0-w8N"/>
+                                    <constraint firstItem="7Lf-4r-dly" firstAttribute="leading" secondItem="9Sy-fB-ipy" secondAttribute="leading" id="ASA-D0-w8N"/>
                                     <constraint firstItem="vNu-wU-VbT" firstAttribute="leading" secondItem="9Sy-fB-ipy" secondAttribute="leading" constant="16" id="KPp-tj-MyV"/>
                                     <constraint firstAttribute="bottom" secondItem="GdT-us-om5" secondAttribute="bottom" constant="16" id="LmC-bt-NmD"/>
-                                    <constraint firstAttribute="trailing" secondItem="7Lf-4r-dly" secondAttribute="trailing" constant="4" id="SZW-dZ-rY1"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Lf-4r-dly" secondAttribute="trailing" id="SZW-dZ-rY1"/>
                                     <constraint firstItem="HWq-bC-1H6" firstAttribute="centerY" secondItem="e5B-Rp-Kon" secondAttribute="centerY" id="aX4-az-71Y"/>
                                     <constraint firstItem="7Lf-4r-dly" firstAttribute="top" secondItem="zcN-J1-Kxf" secondAttribute="bottom" id="ciA-CZ-oh8"/>
                                     <constraint firstItem="GdT-us-om5" firstAttribute="top" secondItem="7Lf-4r-dly" secondAttribute="bottom" constant="16" id="cvp-BG-gjd"/>
