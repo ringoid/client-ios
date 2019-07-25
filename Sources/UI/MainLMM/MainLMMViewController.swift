@@ -104,6 +104,7 @@ class MainLMMViewController: BaseViewController
         self.isTabSwitched = true
         self.updateFeed(true)
         self.checkForUpdates()
+        self.showTopBar(false)
     }
     
     override func viewWillLayoutSubviews()
@@ -145,7 +146,7 @@ class MainLMMViewController: BaseViewController
     @IBAction func onScrollTop()
     {
         self.hideScrollToTopOption()
-        self.showTopBar()
+        self.showTopBar(true)
         self.updateBtn.alpha = 1.0
         let topOffset = self.view.safeAreaInsets.top + self.tableView.contentInset.top
         self.tableView.setContentOffset(CGPoint(x: 0.0, y: -topOffset), animated: false)
@@ -158,7 +159,7 @@ class MainLMMViewController: BaseViewController
         AnalyticsManager.shared.send(.tapToRefresh(self.type.value.sourceType().rawValue))
         
         self.hideScrollToTopOption()
-        self.showTopBar()
+        self.showTopBar(true)
         self.reload(true)
     }
     
@@ -173,7 +174,7 @@ class MainLMMViewController: BaseViewController
         guard self.feedBottomLabel.text != nil else { return }
         
         self.showFilter()
-        self.showTopBar()
+        self.showTopBar(true)
     }
     
     // MARK: -
@@ -829,11 +830,16 @@ class MainLMMViewController: BaseViewController
         ModalUIManager.shared.show(vc, animated: false)
     }
     
-    fileprivate func showTopBar()
+    fileprivate func showTopBar(_ animated: Bool)
     {
         self.topBarOffsetConstraint.constant = 0.0
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutSubviews()
+        
+        if animated {
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutSubviews()
+            }
+        } else {
+            self.view.setNeedsLayout()
         }
     }
     
@@ -978,7 +984,7 @@ extension MainLMMViewController: UIScrollViewDelegate
         
         guard offset > topTrashhold else {
             self.hideScrollToTopOption()
-            self.showTopBar()
+            self.showTopBar(true)
             self.updateBtn.alpha = 1.0
             self.prevScrollingOffset = 0.0
             
@@ -987,7 +993,7 @@ extension MainLMMViewController: UIScrollViewDelegate
         
         if offset - self.prevScrollingOffset <  -1.0 * midTrashhold {
             self.showScrollToTopOption()
-            self.showTopBar()
+            self.showTopBar(true)
             self.prevScrollingOffset = offset
             
             return
