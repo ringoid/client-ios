@@ -78,7 +78,7 @@
 "profile_empty_images" = "Добавь фото, чтобы\nполучать лайки";
 "profile_empty_title" = "Профиль";
 
-"settings_filter" = "Фильтр";
+"settings_filter" = "Фильтры";
 "settings_profile" = "Профиль";
 "settings_account_delete" = "Удалить аккаунт";
 "settings_account_delete_dialog_title" = "Удалить аккаунт?";
