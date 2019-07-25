@@ -63,6 +63,8 @@ class MainLMMViewController: BaseViewController
     @IBOutlet fileprivate weak var updateBtn: UIButton!
     @IBOutlet fileprivate weak var tapBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var topBarOffsetConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var feedBottomView: UIView!
+    @IBOutlet fileprivate weak var feedBottomLabel: UILabel!
     
     override func viewDidLoad()
     {
@@ -84,6 +86,7 @@ class MainLMMViewController: BaseViewController
             bottom: UIScreen.main.bounds.height - cellHeight,
             right: 0.0
         )
+        self.tableView.tableFooterView = self.feedBottomView
         
         self.blockPhotoAspectConstraint.constant = AppConfig.photoRatio
 
@@ -654,22 +657,26 @@ class MainLMMViewController: BaseViewController
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.text = self.initialLabelTitle()
             self.emptyFeedLabel.isHidden = false
+            self.feedBottomLabel.text = nil
             break
             
         case .fetching:
             self.emptyFeedActivityView.startAnimating()
             self.emptyFeedLabel.isHidden = true
+            self.feedBottomLabel.text = nil
             break
             
         case .empty:
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.text = self.emptyLabelTitle()
             self.emptyFeedLabel.isHidden = false
+            self.feedBottomLabel.text = nil
             break
             
         case .contentAvailable:
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.isHidden = true
+            self.feedBottomLabel.text = self.bottomLabelTitle()
             break
         }
         
@@ -702,6 +709,30 @@ class MainLMMViewController: BaseViewController
         default: return ""
         }
     }
+    
+    fileprivate func bottomLabelTitle() -> String?
+    {
+        switch self.type.value {
+        case .likesYou:
+            let totalCount = self.input.lmmManager.allLikesYouProfilesCount.value
+            if let count = self.profiles()?.value.count, totalCount != count {
+                return String(format: "feed_profiles_filtered".localized(), totalCount - count)
+            }
+            
+            return nil
+            
+        case .messages:
+            let totalCount = self.input.lmmManager.allMessagesProfilesCount.value
+            if let count = self.profiles()?.value.count, totalCount != count {
+                return String(format: "feed_profiles_filtered".localized(), totalCount - count)
+            }
+            
+            return nil
+            
+        default: return nil
+        }
+    }
+
     
     fileprivate func initialLabelTitle() -> String
     {
@@ -825,7 +856,8 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
                                                                 profileManager: self.input.profileManager,
                                                                 navigationManager: self.input.navigationManager,
                                                                 scenarioManager: self.input.scenario,
-                                                                transitionManager: self.input.transition
+                                                                transitionManager: self.input.transition,
+                                                                lmmManager: self.input.lmmManager
             )
             weak var weakProfileVC = profileVC
             profileVC.onChatShow = { [weak self, weak cell] profile, photo, vc in

@@ -20,6 +20,7 @@ struct MainLMMProfileVMInput
     let navigationManager: NavigationManager
     let scenarioManager: AnalyticsScenarioManager
     let transitionManager: TransitionManager
+    let lmmManager: LMMManager
 }
 
 class MainLMMProfileViewModel
@@ -40,6 +41,21 @@ class MainLMMProfileViewModel
     func block(at photoIndex: Int, reason: BlockReason)
     {
         guard let actionProfile = self.input.profile.actionInstance() else { return }
+        
+        switch self.input.feedType {
+        case .likesYou:
+            self.input.lmmManager.allLikesYouProfilesCount.accept(self.input.lmmManager.allLikesYouProfilesCount.value - 1)
+            self.input.lmmManager.filteredLikesYouProfilesCount.accept(self.input.lmmManager.filteredLikesYouProfilesCount.value - 1)
+            break
+            
+        case .messages:
+            self.input.lmmManager.allMessagesProfilesCount.accept(self.input.lmmManager.allMessagesProfilesCount.value - 1)
+            self.input.lmmManager.filteredMessagesProfilesCount.accept(self.input.lmmManager.filteredMessagesProfilesCount.value - 1)
+            break
+            
+        default: break
+        }
+        
         
         self.input.actionsManager.blockActionProtected(
             reason,
