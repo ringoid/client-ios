@@ -342,17 +342,27 @@ class MainLMMViewController: BaseViewController
         switch self.type.value {
         case .likesYou:
             var title = "lmm_tab_likes".localized()
-            if let count = self.profiles()?.value.count, count != self.input.lmmManager.allLikesYouProfilesCount.value {
-                title += " (\(count) of \(self.input.lmmManager.allLikesYouProfilesCount.value))"
+            if let count = self.profiles()?.value.count {
+                if count != self.input.lmmManager.allLikesYouProfilesCount.value {
+                    title += String(format: "filter_range".localized(), count, self.input.lmmManager.allLikesYouProfilesCount.value)
+                } else if self.input.lmmManager.allLikesYouProfilesCount.value != 0 {
+                    title += " (\(count))"
+                }
             }
+            
             self.feedTitleLabel.text = title
             break
             
         case .messages:
             var title = "lmm_tab_messages".localized()
-            if let count = self.profiles()?.value.count, count != self.input.lmmManager.allMessagesProfilesCount.value {
-                title += " (\(count) of \(self.input.lmmManager.allMessagesProfilesCount.value))"
+            if let count = self.profiles()?.value.count {
+                if count != self.input.lmmManager.allMessagesProfilesCount.value {
+                title += String(format: "filter_range".localized(), count, self.input.lmmManager.allMessagesProfilesCount.value)
+                } else if self.input.lmmManager.allMessagesProfilesCount.value != 0 {
+                    title += " (\(count))"
+                }
             }
+            
             self.feedTitleLabel.text = title
             break
             
@@ -846,6 +856,8 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
         let index = indexPath.row
         if  let profiles = self.profiles()?.value, profiles.count > index {
             let profile = profiles[index]
+            guard !profile.isInvalidated else { return cell }
+            
             let profileId = profile.id!
             let photoIndex: Int = MainLMMViewController.photoIndexes[profileId] ?? 0
             let profileVC = MainLMMProfileViewController.create(profile,

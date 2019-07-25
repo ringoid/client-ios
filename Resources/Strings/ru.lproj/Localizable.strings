@@ -187,3 +187,4 @@
 "filter_discover" = "Искать";
 "filter_filter" = "Фильтровать";
 "filter_show_all" = "Показать все";
+"filter_range" = " (%d из %d)";

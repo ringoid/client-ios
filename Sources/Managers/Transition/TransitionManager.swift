@@ -55,7 +55,9 @@ class TransitionManager
         switch from {
         case .likesYou:
             self.lmm.allLikesYouProfilesCount.accept( self.lmm.allLikesYouProfilesCount.value - 1)
+            self.lmm.allMessagesProfilesCount.accept( self.lmm.allMessagesProfilesCount.value + 1)
             self.lmm.filteredLikesYouProfilesCount.accept( self.lmm.filteredLikesYouProfilesCount.value - 1)
+            self.lmm.filteredMessagesProfilesCount.accept( self.lmm.filteredMessagesProfilesCount.value + 1)
             break
         default: break
         }

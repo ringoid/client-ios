@@ -185,3 +185,4 @@
 "filter_discover" = "Discover";
 "filter_filter" = "Filter";
 "filter_show_all" = "Show all";
+"filter_range" = " (%d of %d)";
