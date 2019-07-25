@@ -368,7 +368,7 @@ class NewFacesViewController: BaseViewController
             
         case .empty:
             self.emptyFeedActivityView.stopAnimating()
-            self.emptyFeedLabel.text =  self.isTabSwitched ? "common_pull_to_refresh".localized() : "feed_explore_empty_no_data".localized()
+            self.emptyFeedLabel.text = "feed_explore_empty_no_data".localized()
             self.emptyFeedLabel.isHidden = false
             break
             
