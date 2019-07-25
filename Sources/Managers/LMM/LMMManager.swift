@@ -65,6 +65,11 @@ class LMMManager
     fileprivate var messagesNotificationProfiles: Set<String> = []
     fileprivate var processedNotificationsProfiles: Set<String> = []
     
+    // Filtered content cache
+    fileprivate var filteredLikesYouCache: [ApiLMMProfile]? = nil
+    fileprivate var filteredMessagesCache: [ApiLMMProfile]? = nil
+    fileprivate var fiteredCacheTimer: Timer? = nil
+    
     var contentShouldBeHidden: Bool = false
     {
         didSet {
@@ -183,14 +188,46 @@ class LMMManager
         self.isFetching.accept(true)
         let chatCache = (
             self.messages.value +
-            self.likesYou.value +
-            self.matches.value +
-            self.inbox.value +
-            self.sent.value
-        ).map({ ChatProfileCache.create($0) })
+                self.likesYou.value +
+                self.matches.value +
+                self.inbox.value +
+                self.sent.value
+            ).map({ ChatProfileCache.create($0) })
         
         self.updateProfilesPrevState(false)
         
+        // Checking cache
+        if let likesYouResult = self.filteredLikesYouCache, let messagesResult = self.filteredMessagesCache {
+            self.clearFilteredCahe()
+            self.resetNotificationProfiles()
+            self.purge()
+            
+            let localLikesYou = createProfiles(likesYouResult, type: .likesYou)
+            let messages = createProfiles(messagesResult, type: .messages)
+            
+            messages.forEach { remoteProfile in
+                guard remoteProfile.messages.count != 0 else { return }
+                
+                remoteProfile.notRead = remoteProfile.messages.count > 0
+                
+                chatCache.forEach { localChatProfile in
+                    if localChatProfile.id == remoteProfile.id {
+                        if localChatProfile.messagesCount == remoteProfile.messages.count {
+                            remoteProfile.notRead = localChatProfile.notRead
+                        } else {
+                            remoteProfile.notRead = true
+                        }
+                    }
+                }
+            }
+            
+            self.isFetching.accept(false)
+            return self.db.add(localLikesYou + messages).asObservable().do(onNext: { [weak self] _ in
+                self?.updateProfilesPrevState(true)
+            })
+        }
+    
+        // Proceeding without cache
         
         return self.apiService.getLC(self.deviceService.photoResolution,
                               lastActionDate: self.actionsManager.lastActionDate.value,
@@ -294,6 +331,16 @@ class LMMManager
             }, onError: { [weak self] _ in
                     self?.isFiltersUpdating = false
             }).flatMap({ [weak self] result -> Observable<Void> in
+                // Storing data for cache
+                self?.filteredLikesYouCache = result.likesYou
+                self?.filteredMessagesCache = result.messages
+                let timer = Timer(timeInterval: 10.0, repeats: false, block: { [weak self] _ in
+                    self?.clearFilteredCahe()
+                })
+                self?.fiteredCacheTimer = timer
+                RunLoop.main.add(timer, forMode: .common)
+                
+                // Updating counters
                 self?.filteredLikesYouProfilesCount.accept(result.likesYou.count)
                 self?.filteredMessagesProfilesCount.accept(result.messages.count)
                 self?.allLikesYouProfilesCount.accept(result.allLikesYouProfilesNum)
@@ -301,6 +348,15 @@ class LMMManager
                 
                 return .just(())
             }).subscribe().disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func clearFilteredCahe()
+    {
+        self.fiteredCacheTimer?.invalidate()
+        self.fiteredCacheTimer = nil
+        
+        self.filteredLikesYouCache = nil
+        self.filteredMessagesCache = nil
     }
     
     func topOrder(_ profileId: String, type: LMMType)
