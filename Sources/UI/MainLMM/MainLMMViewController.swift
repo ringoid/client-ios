@@ -845,6 +845,8 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func hideTopBar()
     {
+        guard !self.isTabSwitched else { return }
+        
         self.topBarOffsetConstraint.constant = -1.0 * (self.view.safeAreaInsets.top + 64.0)
         UIView.animate(withDuration: 0.3) {
             self.view.layoutSubviews()

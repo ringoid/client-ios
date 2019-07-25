@@ -78,6 +78,7 @@ class NewFacesViewController: BaseViewController
         
         self.isTabSwitched = true
         self.updateFeed()
+        self.showTopBar(false)
     }
     
     override func viewWillLayoutSubviews()
@@ -153,7 +154,7 @@ class NewFacesViewController: BaseViewController
     {
         AnalyticsManager.shared.send(.pullToRefresh(SourceFeedType.newFaces.rawValue))
         self.hideScrollToTopOption()
-        self.showTopBar()
+        self.showTopBar(true)
         self.reload()
     }
     
@@ -176,7 +177,7 @@ class NewFacesViewController: BaseViewController
     @IBAction func onScrollTop()
     {
         self.hideScrollToTopOption()
-        self.showTopBar()
+        self.showTopBar(true)
         let topOffset = self.view.safeAreaInsets.top + self.tableView.contentInset.top
         self.tableView.setContentOffset(CGPoint(x: 0.0, y: -topOffset), animated: false)
         self.input.actionsManager.commit()
@@ -453,16 +454,23 @@ class NewFacesViewController: BaseViewController
         ModalUIManager.shared.show(vc, animated: false)
     }
     
-    fileprivate func showTopBar()
+    fileprivate func showTopBar(_ animated: Bool)
     {
         self.topBarOffsetConstraint.constant = 0.0
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutSubviews()
+        
+        if animated {            
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutSubviews()
+            }
+        } else {
+            self.view.setNeedsLayout()
         }
     }
     
     fileprivate func hideTopBar()
     {
+        guard !self.isTabSwitched else { return }
+        
         self.topBarOffsetConstraint.constant = -1.0 * (self.view.safeAreaInsets.top + 64.0)
         UIView.animate(withDuration: 0.3) {
             self.view.layoutSubviews()
@@ -588,7 +596,7 @@ extension NewFacesViewController: UIScrollViewDelegate
         
         guard offset > topTrashhold else {
             self.hideScrollToTopOption()
-            self.showTopBar()
+            self.showTopBar(true)
             self.prevScrollingOffset = 0.0
             
             return
@@ -596,7 +604,7 @@ extension NewFacesViewController: UIScrollViewDelegate
         
         if offset - self.prevScrollingOffset <  -1.0 * midTrashhold {
             self.showScrollToTopOption()
-            self.showTopBar()
+            self.showTopBar(true)
             self.prevScrollingOffset = offset
             
             return
