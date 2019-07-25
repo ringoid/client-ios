@@ -54,6 +54,7 @@
 "feed_inbox_empty_no_data" = "Входящих ещё нет";
 "feed_sent_empty_no_data" = "Отправленных ещё нет";
 "feed_tap_to_refresh" = "Обновить";
+"feed_profiles_filtered" = "%d профилей скрыто из-за фильтров";
 
 "lmm_tab_likes" = "Ты нравишься";
 "lmm_tab_matches" = "Взаимно";

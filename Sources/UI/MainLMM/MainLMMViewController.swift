@@ -652,7 +652,7 @@ class MainLMMViewController: BaseViewController
         switch state {
         case .initial:
             self.emptyFeedActivityView.stopAnimating()
-            self.emptyFeedLabel.text = "common_pull_to_refresh".localized()
+            self.emptyFeedLabel.text = self.initialLabelTitle()
             self.emptyFeedLabel.isHidden = false
             break
             
@@ -679,14 +679,52 @@ class MainLMMViewController: BaseViewController
     fileprivate func emptyLabelTitle() -> String
     {
         guard !self.isTabSwitched else {
-            return "common_pull_to_refresh".localized()
+            return self.initialLabelTitle()
         }
         
         switch self.type.value {
-        case .likesYou: return "feed_likes_you_empty_no_data".localized()
-        case .messages: return "feed_messages_empty_no_data".localized()
-        case .inbox: return "feed_inbox_empty_no_data".localized()
-        case .sent: return "feed_sent_empty_no_data".localized()
+        case .likesYou:
+            let totalCount = self.input.lmmManager.allLikesYouProfilesCount.value
+            if let count = self.profiles()?.value.count, totalCount != count {
+                return String(format: "feed_profiles_filtered".localized(), totalCount - count)
+            }
+            
+            return "feed_likes_you_empty_no_data".localized()
+            
+        case .messages:
+            let totalCount = self.input.lmmManager.allMessagesProfilesCount.value
+            if let count = self.profiles()?.value.count, totalCount != count {
+                return String(format: "feed_profiles_filtered".localized(), totalCount - count)
+            }
+            
+            return "feed_messages_empty_no_data".localized()
+            
+        default: return ""
+        }
+    }
+    
+    fileprivate func initialLabelTitle() -> String
+    {
+        switch self.type.value {
+        case .likesYou:
+            let totalCount = self.input.lmmManager.allLikesYouProfilesCount.value
+            let count = self.input.lmmManager.filteredLikesYouProfilesCount.value
+            if totalCount != count {
+                return String(format: "feed_profiles_filtered".localized(), totalCount - count)
+            }
+            
+            return "common_pull_to_refresh".localized()
+            
+        case .messages:
+            let totalCount = self.input.lmmManager.allMessagesProfilesCount.value
+            let count = self.input.lmmManager.filteredMessagesProfilesCount.value
+            if totalCount != count {
+                return String(format: "feed_profiles_filtered".localized(), totalCount - count)
+            }
+            
+            return "common_pull_to_refresh".localized()
+            
+        default: return ""
         }
     }
     
