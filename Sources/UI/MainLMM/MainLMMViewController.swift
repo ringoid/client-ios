@@ -250,6 +250,7 @@ class MainLMMViewController: BaseViewController
             
             self?.updateFeedTitle()
             self?.updateFeed(false)
+            self?.feedBottomLabel.text = self?.bottomLabelTitle()
         }).disposed(by: self.feedDisposeBag)
     }
     
@@ -670,13 +671,11 @@ class MainLMMViewController: BaseViewController
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.text = self.emptyLabelTitle()
             self.emptyFeedLabel.isHidden = false
-            self.feedBottomLabel.text = nil
             break
             
         case .contentAvailable:
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.isHidden = true
-            self.feedBottomLabel.text = self.bottomLabelTitle()
             break
         }
         
@@ -715,7 +714,7 @@ class MainLMMViewController: BaseViewController
         switch self.type.value {
         case .likesYou:
             let totalCount = self.input.lmmManager.allLikesYouProfilesCount.value
-            if let count = self.profiles()?.value.count, totalCount != count {
+            if let count = self.profiles()?.value.count, totalCount != count, count != 0 {
                 return String(format: "feed_profiles_filtered".localized(), totalCount - count)
             }
             
@@ -723,7 +722,7 @@ class MainLMMViewController: BaseViewController
             
         case .messages:
             let totalCount = self.input.lmmManager.allMessagesProfilesCount.value
-            if let count = self.profiles()?.value.count, totalCount != count {
+            if let count = self.profiles()?.value.count, totalCount != count, count != 0 {
                 return String(format: "feed_profiles_filtered".localized(), totalCount - count)
             }
             
