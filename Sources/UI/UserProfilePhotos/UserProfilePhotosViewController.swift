@@ -48,6 +48,7 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var aboutHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var fieldsBottomConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var pencilIconView: UIImageView!
+    @IBOutlet fileprivate weak var addPhotoCenterBtn: UIButton!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -255,10 +256,12 @@ class UserProfilePhotosViewController: BaseViewController
                 self.statusView.isHidden = true
                 self.statusLabel.isHidden = true
                 self.pencilIconView.isHidden = true
+                self.addPhotoCenterBtn.isEnabled = true
             } else if self.viewModel?.status.value != nil {
                 self.statusView.isHidden = false
                 self.statusLabel.isHidden = false
                 self.pencilIconView.isHidden = false
+                self.addPhotoCenterBtn.isEnabled = false
             }
             
             self.nameLabel.alpha = photos.count == 0 ? 0.0 : 1.0

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aaf-t7-SOT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aaf-t7-SOT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -78,6 +78,16 @@ see how many likes you get</string>
                                     <outlet property="delegate" destination="aaf-t7-SOT" id="gev-Qx-7GI"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ouZ-cc-Vmf">
+                                <rect key="frame" x="87.5" y="293.5" width="200" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="00j-Fc-hjB"/>
+                                    <constraint firstAttribute="height" constant="80" id="suJ-L4-9X9"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="addPhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="Cf8-Xu-9Aa"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ze-nT-pEZ">
                                 <rect key="frame" x="0.0" y="20" width="76" height="60"/>
                                 <constraints>
@@ -231,6 +241,7 @@ see how many likes you get</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.88299978599999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ouZ-cc-Vmf" firstAttribute="centerY" secondItem="c03-Vj-oKe" secondAttribute="centerY" id="13U-xz-Mio"/>
                             <constraint firstItem="Pzg-eZ-8Og" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" id="1qb-Vr-aDl" userLabel="PagesTop"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="4hG-ZS-M4a"/>
                             <constraint firstItem="27t-IX-qLF" firstAttribute="top" secondItem="BK0-ML-AsK" secondAttribute="top" id="7OO-HH-heM"/>
@@ -274,6 +285,7 @@ see how many likes you get</string>
                             <constraint firstItem="R3C-Zv-Ixf" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="j5U-ve-N2a"/>
                             <constraint firstItem="dx0-jU-NB1" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" constant="16" id="kx5-M7-Z82"/>
                             <constraint firstItem="Pzg-eZ-8Og" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="lmb-XL-cwr"/>
+                            <constraint firstItem="ouZ-cc-Vmf" firstAttribute="centerX" secondItem="c03-Vj-oKe" secondAttribute="centerX" id="mVV-ig-PQV"/>
                             <constraint firstItem="UMb-Bl-CM4" firstAttribute="leading" secondItem="npc-Nn-Arv" secondAttribute="trailing" constant="8" id="nbI-uK-HDi"/>
                             <constraint firstAttribute="trailing" secondItem="R3C-Zv-Ixf" secondAttribute="trailing" id="pCc-QK-Puc"/>
                             <constraint firstItem="hwe-yx-WQU" firstAttribute="trailing" secondItem="eno-1i-kP1" secondAttribute="trailing" id="rcT-sX-GtD"/>
@@ -291,6 +303,7 @@ see how many likes you get</string>
                         <outlet property="aboutHeightConstraint" destination="Y3k-7L-Z9z" id="0Jp-We-7ta"/>
                         <outlet property="aboutLabel" destination="dx0-jU-NB1" id="3kl-Ou-LG6"/>
                         <outlet property="addBtn" destination="R3C-Zv-Ixf" id="3Be-pJ-u5T"/>
+                        <outlet property="addPhotoCenterBtn" destination="ouZ-cc-Vmf" id="6tH-WG-ktP"/>
                         <outlet property="containerTableView" destination="GhS-rk-bVb" id="o6E-fd-3zd"/>
                         <outlet property="deleteBtn" destination="32r-W0-czT" id="qDq-QL-d5e"/>
                         <outlet property="emptyFeedLabel" destination="c03-Vj-oKe" id="HhA-IN-Ey8"/>
@@ -484,8 +497,8 @@ see how many likes you get</string>
         <image name="common_back" width="11" height="20"/>
         <image name="common_done" width="26" height="21"/>
         <image name="feed_options" width="32" height="12"/>
-        <image name="feed_pencil" width="64" height="64"/>
-        <image name="profile_fields_children" width="30" height="30"/>
+        <image name="feed_pencil" width="32" height="32"/>
+        <image name="profile_fields_children" width="15" height="15"/>
         <image name="profile_photo_add" width="34" height="34"/>
         <image name="profile_settings" width="30" height="30"/>
     </resources>
