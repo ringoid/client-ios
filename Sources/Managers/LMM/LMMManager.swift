@@ -263,10 +263,15 @@ class LMMManager
         self.db.resetLMM().subscribe().disposed(by: self.disposeBag)
     }
     
+    fileprivate var isFiltersUpdateDelayed: Bool = false
     fileprivate var isFiltersUpdating: Bool = false
     func updateFilterCounters(_ from: SourceFeedType)
     {
-        guard !self.isFiltersUpdating else { return }
+        guard !self.isFiltersUpdating else {
+            self.isFiltersUpdateDelayed = true
+            
+            return
+        }
         
         self.isFiltersUpdating = true
         self.apiService.getLC(self.deviceService.photoResolution,
@@ -276,7 +281,16 @@ class LMMManager
                                      maxAge: self.filter.maxAge.value,
                                      maxDistance: self.filter.maxDistance.value
             ).do(onNext: { [weak self] _ in
-                self?.isFiltersUpdating = false
+                guard let `self` = self else { return }
+                
+                self.isFiltersUpdating = false
+                
+                guard self.isFiltersUpdateDelayed else { return }
+                
+                self.isFiltersUpdateDelayed = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
+                    self.updateFilterCounters(from)
+                })
             }, onError: { [weak self] _ in
                     self?.isFiltersUpdating = false
             }).flatMap({ [weak self] result -> Observable<Void> in
