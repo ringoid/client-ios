@@ -167,6 +167,15 @@ class MainLMMViewController: BaseViewController
         self.showFilter()
     }
     
+    @IBAction func onShowFilterFromBottom()
+    {
+        // TODO: add proper model check
+        guard self.feedBottomLabel.text != nil else { return }
+        
+        self.showFilter()
+        self.showTopBar()
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
