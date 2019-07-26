@@ -10,7 +10,7 @@ import UIKit
 
 class GlobalAnimationManager
 {
-    var animationView: UIView!
+    weak var animationView: UIView!
     
     static let shared: GlobalAnimationManager = GlobalAnimationManager()
     

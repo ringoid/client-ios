@@ -550,7 +550,8 @@ class MainViewController: BaseViewController
         }).disposed(by: self.disposeBag)
         
         
-        UIManager.shared.wakeUpDelayTriggered.observeOn(MainScheduler.instance).subscribe(onNext: { state in
+        UIManager.shared.wakeUpDelayTriggered.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
+            guard let `self` = self else { return }
             guard state else { return }
             
             if self.input.notifications.isRegistered {
