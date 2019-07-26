@@ -33,6 +33,7 @@ enum RemoteFeedType: String
 {
     case unknown = "unknown"
     case likesYou = "NEW_LIKE_PUSH_TYPE"
+    case matches = "NEW_MATCH_PUSH_TYPE"
     case messages = "NEW_MESSAGE_PUSH_TYPE"
 }
 
@@ -50,6 +51,7 @@ class MainViewController: BaseViewController
     fileprivate var isBannerClosedManually: Bool = false
     
     fileprivate var preshownLikesCount: Int = 0
+    fileprivate var preshownMatchesCount: Int = 0
     fileprivate var preshownMessagesCount: Int = 0
     
     @IBOutlet fileprivate weak var searchBtn: UIButton!
@@ -451,6 +453,24 @@ class MainViewController: BaseViewController
             self.effectsView.animateLikes(countToShow, from: position)
         }).disposed(by: self.disposeBag)
         
+        self.viewModel?.incomingMatches.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
+            guard let `self` = self else { return }
+            
+            let countToShow: Int = count - self.preshownMatchesCount
+            if countToShow > 0 {
+                self.preshownMatchesCount = 0
+            } else {
+                self.preshownMatchesCount -= count
+                
+                return
+            }
+            
+            let size = self.likeBtn.bounds.size
+            let center = self.likeBtn.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), to: nil)
+            let position = CGPoint(x: 44.0, y: center.y + 16.0)
+            self.effectsView.animateMatches(countToShow, from: position)
+        }).disposed(by: self.disposeBag)
+        
         self.viewModel?.incomingMessages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
@@ -485,6 +505,14 @@ class MainViewController: BaseViewController
             case .likesYou:
                 self.preshownLikesCount += 1
                 self.effectsView.animateLikes(1, from: position)
+                
+                break
+                
+            case .matches:
+                guard !self.input.lmmManager.messages.value.map({ $0.id }).contains(profileId) else { return }
+                
+                self.preshownMatchesCount += 1
+                self.effectsView.animateMatches(1, from: position)
                 
                 break
                                 
@@ -558,7 +586,16 @@ class MainViewController: BaseViewController
                     vc?.reload()
                 }
                 break
-                                
+                
+            case .matches:
+                self.input.navigationManager.mainItem.accept(.chats)
+                DispatchQueue.main.async {
+                    let vc = self.containedVC as? MainLMMContainerViewController
+                    vc?.prepareForNavigation()
+                    vc?.reload()
+                }
+                break
+            
             case .messages:
                 self.input.navigationManager.mainItem.accept(.chats)
                 DispatchQueue.main.async {

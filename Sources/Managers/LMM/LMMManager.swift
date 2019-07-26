@@ -131,8 +131,8 @@ class LMMManager
     fileprivate var prevNotSeenMatches: Set<String> = []
     var incomingMatches: Observable<Int>
     {
-        return self.matches.asObservable().map { profiles -> Int in
-            var notSeenProfiles = profiles.notSeenIDs()
+        return self.messages.asObservable().map { profiles -> Int in
+            var notSeenProfiles = profiles.filter({ $0.messages.count == 0 }).notSeenIDs()
             notSeenProfiles.remove(self.apiService.customerId.value)
 
             return notSeenProfiles.subtracting(self.prevNotSeenMatches).count
@@ -143,7 +143,7 @@ class LMMManager
     var incomingMessages: Observable<Int>
     {
         return self.messages.asObservable().map { profiles -> Int in
-            var notReadProfiles = profiles.notReadIDs()
+            var notReadProfiles = profiles.filter({ $0.messages.count != 0 }).notReadIDs()
             notReadProfiles.remove(self.apiService.customerId.value)
             
             if let openedProfileId = ChatViewController.openedProfileId {
@@ -186,13 +186,7 @@ class LMMManager
     {
         log("LC reloading process started", level: .high)
         self.isFetching.accept(true)
-        let chatCache = (
-            self.messages.value +
-                self.likesYou.value +
-                self.matches.value +
-                self.inbox.value +
-                self.sent.value
-            ).map({ ChatProfileCache.create($0) })
+        let chatCache = (self.messages.value + self.likesYou.value).map({ ChatProfileCache.create($0) })
         
         self.updateProfilesPrevState(false)
         
@@ -206,9 +200,12 @@ class LMMManager
             let messages = createProfiles(messagesResult, type: .messages)
             
             messages.forEach { remoteProfile in
-                guard remoteProfile.messages.count != 0 else { return }
-                
                 remoteProfile.notRead = remoteProfile.messages.count > 0
+               
+                // matches case
+                if remoteProfile.messages.count == 0 {
+                    remoteProfile.notSeen = true
+                }
                 
                 chatCache.forEach { localChatProfile in
                     if localChatProfile.id == remoteProfile.id {
@@ -244,9 +241,12 @@ class LMMManager
             let messages = createProfiles(result.messages, type: .messages)
                         
             messages.forEach { remoteProfile in
-                guard remoteProfile.messages.count != 0 else { return }
-                
                 remoteProfile.notRead = remoteProfile.messages.count > 0
+                
+                // matches case
+                if remoteProfile.messages.count == 0 {
+                    remoteProfile.notSeen = true
+                }
                 
                 chatCache.forEach { localChatProfile in
                     if localChatProfile.id == remoteProfile.id {
@@ -254,6 +254,11 @@ class LMMManager
                             remoteProfile.notRead = localChatProfile.notRead
                         } else {
                             remoteProfile.notRead = true
+                        }
+                        
+                        // matches case
+                        if remoteProfile.messages.count == 0 , localChatProfile.messagesCount == remoteProfile.messages.count {
+                            remoteProfile.notSeen = localChatProfile.notSeen
                         }
                     }
                 }
@@ -566,6 +571,19 @@ class LMMManager
                 self.notSeenLikesYouCount.accept(notSeenCount)
                 self.prevNotSeenLikes.insert(profileId)
                 
+                break
+                
+            case .matches:
+                self.likesYouNotificationProfiles.remove(profileId)
+                self.matchesNotificationProfiles.insert(profileId)
+                
+                let notSeenCount = self.matches.value.notSeenIDs().union(self.matchesNotificationProfiles).count
+                self.notSeenMatchesCount.accept(notSeenCount)
+                
+                let notSeenLikesCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
+                self.notSeenLikesYouCount.accept(notSeenLikesCount)
+                
+                self.prevNotSeenMatches.insert(profileId)
                 break
                                 
             case .messages:

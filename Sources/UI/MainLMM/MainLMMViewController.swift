@@ -400,8 +400,11 @@ class MainLMMViewController: BaseViewController
     fileprivate func isUpdatesAvailable() -> Bool
     {
         switch self.type.value {
-        case .likesYou: return self.input.lmmManager.likesYouUpdatesAvailable.value        
-        case .messages: return self.input.lmmManager.messagesUpdatesAvailable.value
+        case .likesYou: return self.input.lmmManager.likesYouUpdatesAvailable.value
+        case .messages:
+            let isUpdated = self.input.lmmManager.messagesUpdatesAvailable.value ||
+                self.input.lmmManager.matchesUpdatesAvailable.value
+            return isUpdated
             
         default: return false
         }
