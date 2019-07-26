@@ -262,8 +262,11 @@ class LMMManager
             return self!.db.add(localLikesYou + messages).asObservable().do(onNext: { [weak self] _ in
                 self?.updateProfilesPrevState(true)
                 
-                self?.filteredLikesYouProfilesCount.accept(localLikesYou.count)
-                self?.filteredMessagesProfilesCount.accept(messages.count)
+                if isFilterEnabled {
+                    self?.filteredLikesYouProfilesCount.accept(localLikesYou.count)
+                    self?.filteredMessagesProfilesCount.accept(messages.count)
+                }
+                
                 self?.allLikesYouProfilesCount.accept(result.allLikesYouProfilesNum)
                 self?.allMessagesProfilesCount.accept(result.allMessagesProfilesNum)
             })
