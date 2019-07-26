@@ -420,6 +420,11 @@ class LMMManager
     
     func reset()
     {
+        self.allLikesYouProfilesCount.accept(0)
+        self.allMessagesProfilesCount.accept(0)
+        self.filteredLikesYouProfilesCount.accept(0)
+        self.filteredMessagesProfilesCount.accept(0)
+        
         self.storage.remove("prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("prevNotSeenHellos").subscribe().disposed(by: self.disposeBag)
