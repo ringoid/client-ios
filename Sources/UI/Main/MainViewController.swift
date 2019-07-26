@@ -640,7 +640,13 @@ class MainViewController: BaseViewController
         self.input.lmmManager.notSeenMessagesCount.subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
-            self.chatIndicatorView.isHidden = count == 0
+            self.chatIndicatorView.isHidden = !(count != 0 || self.input.lmmManager.notSeenMatchesCount.value != 0)
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.notSeenMatchesCount.subscribe(onNext: { [weak self] count in
+            guard let `self` = self else { return }
+            
+            self.chatIndicatorView.isHidden = !(count != 0 || self.input.lmmManager.notSeenMessagesCount.value != 0)
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
