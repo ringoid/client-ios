@@ -86,9 +86,9 @@ class MainViewController: BaseViewController
         
         self.setupBindings()
         
-//        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showDebugLikes))
-//        tapRecognizer.numberOfTapsRequired = 2
-//        self.likeBtn.addGestureRecognizer(tapRecognizer)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showDebugLikes))
+        tapRecognizer.numberOfTapsRequired = 2
+        self.likeBtn.addGestureRecognizer(tapRecognizer)
     }
     
     #if STAGE

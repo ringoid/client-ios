@@ -20,6 +20,7 @@ class SettingsFilterViewController: BaseViewController
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var backBtn: UIButton!
+    @IBOutlet fileprivate weak var suggestLabel: UILabel!
     
     @IBOutlet fileprivate weak var rangeSlider: RangeSeekSlider!
     @IBOutlet fileprivate weak var distanceSlider: UISlider!
@@ -77,6 +78,7 @@ class SettingsFilterViewController: BaseViewController
         self.ageTitleLabel.text = "filter_age".localized()
         self.maxDistanceTitleLabel.text = "filter_max_distance".localized()
         self.titleLabel.text = "settings_filter".localized()
+        self.suggestLabel.text = "feedback_suggest_improvements".localized()
     }
     
     override func updateTheme()
@@ -101,6 +103,11 @@ class SettingsFilterViewController: BaseViewController
         
         let distanceStr: String = distanceValue < 150 ? "\(distanceValue)" : "150+"
         self.distanceLabel.text = "\(distanceStr) km"
+    }
+    
+    @IBAction fileprivate func onSuggest()
+    {
+        FeedbackManager.shared.showSuggestion(self, source: .filtersSettings, feedSource: nil)
     }
     
     // MARK: -
