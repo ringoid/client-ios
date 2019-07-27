@@ -756,10 +756,10 @@ class LMMManager
         let notSeenLikes = self.likesYou.value.notSeenIDs()
         if notSeenLikes.count > 0 || !avoidEmptyFeeds { self.prevNotSeenLikes = notSeenLikes }
         
-        let notSeenMatches = self.matches.value.notSeenIDs()
+        let notSeenMatches = self.messages.value.filter({ $0.messages.count == 0 }).notSeenIDs()
         if notSeenMatches.count > 0 || !avoidEmptyFeeds { self.prevNotSeenMatches = notSeenMatches }
         
-        let notSeenMessages = self.messages.value.notReadIDs()
+        let notSeenMessages = self.messages.value.filter({ $0.messages.count != 0 }).notReadIDs()
         if notSeenMessages.count > 0 || !avoidEmptyFeeds { self.prevNotReadMessages = notSeenMessages }
         
         self.storage.store(self.prevNotSeenLikes, key: "prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
