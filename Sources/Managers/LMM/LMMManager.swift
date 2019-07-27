@@ -530,28 +530,16 @@ class LMMManager
             self.updateLocalLmmCount()
         }).disposed(by: self.disposeBag)
         
-        self.matches.asObservable().subscribe(onNext:{ [weak self] profiles in
-            guard let `self` = self else { return }
-            
-            let nonSeenCount = profiles.notSeenIDs().union(self.matchesNotificationProfiles).count
-            self.notSeenMatchesCount.accept(nonSeenCount)
-            
-            
-            let nonSeenMessagesCount = profiles.notReadIDs()
-                .union(self.messagesNotificationProfiles)
-                .union(self.messages.value.notReadIDs()).count
-            self.notSeenMessagesCount.accept(nonSeenMessagesCount)
-            
-            self.updateLmmCount()
-            self.updateLocalLmmCount()
-        }).disposed(by: self.disposeBag)
-
+    
         self.messages.asObservable().subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
    
+            let notSeenMatchesFromMessagesCount = profiles.filter({ $0.messages.count == 0 }).notSeenIDs().union(self.matchesNotificationProfiles).count
+            self.notSeenMatchesCount.accept(notSeenMatchesFromMessagesCount)
+            
             let nonSeenCount = profiles.notReadIDs()
                 .union(self.messagesNotificationProfiles)
-                .union(self.matches.value.notReadIDs()).count
+                .union(self.matchesNotificationProfiles).count
             
             self.notSeenMessagesCount.accept(nonSeenCount)
             self.updateLmmCount()
@@ -577,7 +565,7 @@ class LMMManager
                 self.likesYouNotificationProfiles.remove(profileId)
                 self.matchesNotificationProfiles.insert(profileId)
                 
-                let notSeenCount = self.matches.value.notSeenIDs().union(self.matchesNotificationProfiles).count
+                let notSeenCount = self.messages.value.filter({ $0.messages.count == 0 }).notSeenIDs().union(self.matchesNotificationProfiles).count
                 self.notSeenMatchesCount.accept(notSeenCount)
                 
                 let notSeenLikesCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
@@ -606,7 +594,7 @@ class LMMManager
                     .union(self.messagesNotificationProfiles).count
                 self.notSeenMessagesCount.accept(notSeenCount)
                 
-                let notSeenMatchesCount = self.matches.value.notSeenIDs().union(self.matchesNotificationProfiles).count
+                let notSeenMatchesCount = self.messages.value.filter({ $0.messages.count == 0 }).notSeenIDs().union(self.matchesNotificationProfiles).count
                 self.notSeenMatchesCount.accept(notSeenMatchesCount)
                 
                 let notSeenLikesCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
@@ -673,7 +661,7 @@ class LMMManager
             let nonSeenLikesYouCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
             self.notSeenLikesYouCount.accept(nonSeenLikesYouCount)
             
-            let nonSeenMatchesCount = self.matches.value.notSeenIDs().union(self.matchesNotificationProfiles).count
+            let nonSeenMatchesCount = self.messages.value.filter({ $0.messages.count == 0 }).notSeenIDs().union(self.matchesNotificationProfiles).count
             self.notSeenMatchesCount.accept(nonSeenMatchesCount)
             
             let nonSeenMessagesCount = self.messages.value.notReadIDs()
@@ -754,13 +742,16 @@ class LMMManager
     fileprivate func updateProfilesPrevState(_ avoidEmptyFeeds: Bool)
     {
         let notSeenLikes = self.likesYou.value.notSeenIDs()
-        if notSeenLikes.count > 0 || !avoidEmptyFeeds { self.prevNotSeenLikes = notSeenLikes }
+        if notSeenLikes.count > 0 || !avoidEmptyFeeds { self.prevNotSeenLikes.formUnion(notSeenLikes) }
         
         let notSeenMatches = self.messages.value.filter({ $0.messages.count == 0 }).notSeenIDs()
-        if notSeenMatches.count > 0 || !avoidEmptyFeeds { self.prevNotSeenMatches = notSeenMatches }
+        if notSeenMatches.count > 0 || !avoidEmptyFeeds { self.prevNotSeenMatches.formUnion(notSeenMatches) }
         
         let notSeenMessages = self.messages.value.filter({ $0.messages.count != 0 }).notReadIDs()
-        if notSeenMessages.count > 0 || !avoidEmptyFeeds { self.prevNotReadMessages = notSeenMessages }
+        let seenMessages = self.messages.value.filter({ $0.messages.count != 0 }).readIDs()
+        if notSeenMessages.count > 0 || !avoidEmptyFeeds {
+            self.prevNotReadMessages.subtract(seenMessages)
+        }
         
         self.storage.store(self.prevNotSeenLikes, key: "prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
         self.storage.store(self.prevNotSeenMatches, key: "prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
@@ -929,6 +920,19 @@ extension Array where Element: LMMProfile
             guard !profile.isInvalidated else { return }
             
             if profile.notRead { accamulator.insert(profile.id) }
+        })
+        
+        return accamulator
+    }
+    
+    func readIDs() -> Set<String>
+    {
+        var accamulator: Set<String> = []
+        
+        self.forEach({ profile in
+            guard !profile.isInvalidated else { return }
+            
+            if !profile.notRead { accamulator.insert(profile.id) }
         })
         
         return accamulator
