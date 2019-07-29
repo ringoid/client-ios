@@ -193,7 +193,6 @@ class LMMManager
         // Checking cache
         if let likesYouResult = self.filteredLikesYouCache, let messagesResult = self.filteredMessagesCache {
             self.clearFilteredCahe()
-            self.resetNotificationProfiles()
             self.purge()
             
             let localLikesYou = createProfiles(likesYouResult, type: .likesYou)
@@ -233,8 +232,6 @@ class LMMManager
                               maxAge: isFilterEnabled ? self.filter.maxAge.value : nil,
                               maxDistance: isFilterEnabled ? self.filter.maxDistance.value : nil
         ).flatMap({ [weak self] result -> Observable<Void> in
-            
-            self!.resetNotificationProfiles()
             self!.purge()
             
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)            
