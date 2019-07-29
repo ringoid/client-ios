@@ -14,6 +14,7 @@ class FilterManager
     let minAge: BehaviorRelay<Int?> = BehaviorRelay<Int?>(value: nil)
     let maxAge: BehaviorRelay<Int?> = BehaviorRelay<Int?>(value: nil)
     let maxDistance: BehaviorRelay<Int?> = BehaviorRelay<Int?>(value: nil)
+    let isFilteringEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     

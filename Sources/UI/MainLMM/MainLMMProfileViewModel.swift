@@ -21,6 +21,7 @@ struct MainLMMProfileVMInput
     let scenarioManager: AnalyticsScenarioManager
     let transitionManager: TransitionManager
     let lmmManager: LMMManager
+    let filter: FilterManager
 }
 
 class MainLMMProfileViewModel
@@ -45,12 +46,19 @@ class MainLMMProfileViewModel
         switch self.input.feedType {
         case .likesYou:
             self.input.lmmManager.allLikesYouProfilesCount.accept(self.input.lmmManager.allLikesYouProfilesCount.value - 1)
-            self.input.lmmManager.filteredLikesYouProfilesCount.accept(self.input.lmmManager.filteredLikesYouProfilesCount.value - 1)
+            
+            if self.input.filter.isFilteringEnabled.value {
+                self.input.lmmManager.filteredLikesYouProfilesCount.accept(self.input.lmmManager.filteredLikesYouProfilesCount.value - 1)
+            }
+            
             break
             
         case .messages:
             self.input.lmmManager.allMessagesProfilesCount.accept(self.input.lmmManager.allMessagesProfilesCount.value - 1)
-            self.input.lmmManager.filteredMessagesProfilesCount.accept(self.input.lmmManager.filteredMessagesProfilesCount.value - 1)
+            
+            if self.input.filter.isFilteringEnabled.value {                
+                self.input.lmmManager.filteredMessagesProfilesCount.accept(self.input.lmmManager.filteredMessagesProfilesCount.value - 1)
+            }
             break
             
         default: break

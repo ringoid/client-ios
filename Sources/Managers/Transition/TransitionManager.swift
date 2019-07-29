@@ -16,14 +16,16 @@ class TransitionManager
     
     fileprivate let db: DBService
     fileprivate let lmm: LMMManager
+    fileprivate let filter: FilterManager
     fileprivate var destinationObserver: AnyObserver<SourceFeedType>!
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(_ db: DBService, lmm: LMMManager)
+    init(_ db: DBService, lmm: LMMManager, filter: FilterManager)
     {
         self.db = db
         self.lmm = lmm
+        self.filter = filter
         
         self.destination = Observable<SourceFeedType>.create({ [weak self] observer -> Disposable in
             self?.destinationObserver = observer
@@ -56,8 +58,11 @@ class TransitionManager
         case .likesYou:
             self.lmm.allLikesYouProfilesCount.accept( self.lmm.allLikesYouProfilesCount.value - 1)
             self.lmm.allMessagesProfilesCount.accept( self.lmm.allMessagesProfilesCount.value + 1)
-            self.lmm.filteredLikesYouProfilesCount.accept( self.lmm.filteredLikesYouProfilesCount.value - 1)
-            self.lmm.filteredMessagesProfilesCount.accept( self.lmm.filteredMessagesProfilesCount.value + 1)
+            
+            if self.filter.isFilteringEnabled.value {
+                self.lmm.filteredLikesYouProfilesCount.accept( self.lmm.filteredLikesYouProfilesCount.value - 1)
+                self.lmm.filteredMessagesProfilesCount.accept( self.lmm.filteredMessagesProfilesCount.value + 1)
+            }
             break
         default: break
         }

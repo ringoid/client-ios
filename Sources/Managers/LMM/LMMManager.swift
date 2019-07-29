@@ -292,7 +292,7 @@ class LMMManager
     func refreshProtected(_ from: SourceFeedType, isFilterEnabled: Bool) -> Observable<Void>
     {
         // let startDate = Date()
-        
+        self.filter.isFilteringEnabled.accept(isFilterEnabled)
         return self.actionsManager.sendQueue().flatMap ({ [weak self] _ -> Observable<Void> in
             
             return self!.refresh(from, isFilterEnabled: isFilterEnabled).asObservable()

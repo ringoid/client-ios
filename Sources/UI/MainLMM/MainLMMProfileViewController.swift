@@ -78,7 +78,8 @@ class MainLMMProfileViewController: UIViewController
                        navigationManager: NavigationManager,
                        scenarioManager: AnalyticsScenarioManager,
                        transitionManager: TransitionManager,
-                       lmmManager: LMMManager
+                       lmmManager: LMMManager,
+                       filter: FilterManager
         ) -> MainLMMProfileViewController
     {
         let storyboard = Storyboards.mainLMM()
@@ -92,7 +93,8 @@ class MainLMMProfileViewController: UIViewController
             navigationManager: navigationManager,
             scenarioManager: scenarioManager,
             transitionManager: transitionManager,
-            lmmManager: lmmManager
+            lmmManager: lmmManager,
+            filter: filter
         )
         
         return vc
