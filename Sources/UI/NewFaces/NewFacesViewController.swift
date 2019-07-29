@@ -527,7 +527,7 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
             }
             
             let profileId = profile.id!
-            profileVC.currentIndex.asObservable().subscribe(onNext:{ [weak self] index in
+            profileVC.currentIndex.skip(1).subscribe(onNext:{ [weak self] index in
                 self?.photoIndexes[profileId] = index
             }).disposed(by: self.disposeBag)
         }

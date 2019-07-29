@@ -923,7 +923,7 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
                 self?.blockContainerView.isHidden = true
             }
             
-            profileVC.currentIndex.asObservable().subscribe(onNext: { index in
+            profileVC.currentIndex.skip(1).subscribe(onNext: { index in
                 MainLMMViewController.photoIndexes[profileId] = index
             }).disposed(by: self.disposeBag)
             
