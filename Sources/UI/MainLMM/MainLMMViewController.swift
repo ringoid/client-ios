@@ -101,10 +101,18 @@ class MainLMMViewController: BaseViewController
     {
         super.viewWillAppear(animated)
         
+        self.feedTitleLabel.isHidden = true
         self.isTabSwitched = true
         self.updateFeed(true)
-        self.checkForUpdates()
+        self.checkForUpdates()            
         self.showTopBar(false)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.isTabSwitched = false
+        self.feedTitleLabel.isHidden = false
     }
     
     override func viewWillLayoutSubviews()
@@ -700,9 +708,7 @@ class MainLMMViewController: BaseViewController
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.isHidden = true
             break
-        }
-        
-        self.isTabSwitched = false
+        }                
     }
     
     fileprivate func emptyLabelTitle() -> String
