@@ -425,7 +425,9 @@ class MainViewController: BaseViewController
     {
         self.viewModel = MainViewModel(self.input)
         self.viewModel?.input.navigationManager.mainItem.skip(1).asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] item in
-            self?.select(item.selectionState())
+            UIView.performWithoutAnimation {
+                self?.select(item.selectionState())
+            }
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.availablePhotosCount.subscribe(onNext: { [weak self] count in
