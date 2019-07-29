@@ -447,6 +447,13 @@ class UserProfilePhotosViewController: BaseViewController
         self.statusLabel.alpha = 1.0
         self.statusView.alpha = 1.0
         self.pencilIconView.alpha = 1.0
+        
+        self.nameLabel.alpha = 1.0
+        self.aboutLabel.alpha = 1.0
+        (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
+            control.iconView.alpha = 1.0
+            control.titleLabel.alpha = 1.0
+        })
     }
     
     fileprivate func hideControls()
@@ -460,6 +467,13 @@ class UserProfilePhotosViewController: BaseViewController
         self.statusLabel.alpha = 0.0
         self.statusView.alpha = 0.0
         self.pencilIconView.alpha = 0.0
+        
+        self.nameLabel.alpha = 0.0
+        self.aboutLabel.alpha = 0.0
+        (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
+            control.iconView.alpha = 0.0
+            control.titleLabel.alpha = 0.0
+        })
     }
     
     fileprivate func showBlockedAlert()
