@@ -908,7 +908,7 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
                 guard let `cell` = cell else { return }
                 guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
                 
-                self?.scrollTop(to: cellIndexPath.row, offset: 0.0, animated: true)
+                self?.tableView.scrollToRow(at: cellIndexPath, at: .top, animated: true)
                 
                 guard let url = profile?.photos[index].filepath().url() else { return }
                 guard let photoView = self?.blockPhotoView else { return }
@@ -919,13 +919,8 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
                 })
             }
             
-            profileVC.onBlockOptionsWillHide = { [weak self, weak cell] in
+            profileVC.onBlockOptionsWillHide = { [weak self] in
                 self?.blockContainerView.isHidden = true
-                
-                guard let `cell` = cell else { return }
-                guard let cellIndexPath = self?.tableView.indexPath(for: cell) else { return }
-                
-                self?.scrollTop(to: cellIndexPath.row, offset: 0.0, animated: false)
             }
             
             profileVC.currentIndex.asObservable().subscribe(onNext: { index in
