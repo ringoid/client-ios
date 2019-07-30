@@ -521,7 +521,8 @@ class LMMManager
         self.likesYou.asObservable().subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
             
-            let nonSeenCount = profiles.notSeenIDs().union(self.likesYouNotificationProfiles).count
+            self.likesYouNotificationProfiles.formUnion(profiles.notSeenIDs())
+            let nonSeenCount = self.likesYouNotificationProfiles.count
             self.notSeenLikesYouCount.accept(nonSeenCount)
             self.updateLmmCount()
             self.updateLocalLmmCount()
@@ -531,12 +532,12 @@ class LMMManager
         self.messages.asObservable().subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
    
-            let notSeenMatchesFromMessagesCount = profiles.filter({ $0.messages.count == 0 }).notSeenIDs().union(self.matchesNotificationProfiles).count
+            self.matchesNotificationProfiles.formUnion(profiles.filter({ $0.messages.count == 0 }).notSeenIDs())
+            let notSeenMatchesFromMessagesCount = self.matchesNotificationProfiles.count
             self.notSeenMatchesCount.accept(notSeenMatchesFromMessagesCount)
             
-            let nonSeenCount = profiles.notReadIDs()
-                .union(self.messagesNotificationProfiles)
-                .union(self.matchesNotificationProfiles).count
+            self.messagesNotificationProfiles.formUnion(profiles.notReadIDs())
+            let nonSeenCount = self.messagesNotificationProfiles.union(self.matchesNotificationProfiles).count
             
             self.notSeenMessagesCount.accept(nonSeenCount)
             self.updateLmmCount()
@@ -582,8 +583,7 @@ class LMMManager
                 
                 if self.actionsManager.lmmViewingProfiles.value.contains(profileId) { break }
                 
-                self.likesYouNotificationProfiles.remove(profileId)
-                self.matchesNotificationProfiles.remove(profileId)
+                self.likesYouNotificationProfiles.remove(profileId)                
                 self.messagesNotificationProfiles.insert(profileId)
 
                 let notSeenCount = self.messages.value.notReadIDs()
