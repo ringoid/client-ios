@@ -198,7 +198,7 @@ class LMMManager
         (self.messages.value + self.likesYou.value).forEach({ profile in
             self.chatsCache[profile.id] = ChatProfileCache.create(profile)
         })
-                
+        
         self.updateProfilesPrevState(false)
         
         // Checking cache
@@ -545,8 +545,11 @@ class LMMManager
         self.likesYou.asObservable().subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
             
-            self.likesYouNotificationProfiles.formUnion(profiles.notSeenIDs())
-            let nonSeenCount = self.likesYouNotificationProfiles.count
+            self.prevNotSeenLikes.formUnion(profiles.notSeenIDs())
+            
+            let nonSeenCount = profiles.notSeenIDs()
+            .union(self.likesYouNotificationProfiles).count
+            
             self.notSeenLikesYouCount.accept(nonSeenCount)
             self.updateLmmCount()
             self.updateLocalLmmCount()
@@ -555,13 +558,16 @@ class LMMManager
     
         self.messages.asObservable().subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
-   
-            self.matchesNotificationProfiles.formUnion(profiles.filter({ $0.messages.count == 0 }).notSeenIDs())
-            let notSeenMatchesFromMessagesCount = self.matchesNotificationProfiles.count
+            
+            self.prevNotReadMessages.formUnion(profiles.notReadIDs())
+            
+            let notSeenMatchesFromMessagesCount = profiles.filter({ $0.messages.count == 0 }).notSeenIDs()
+                .union(self.matchesNotificationProfiles).count
             self.notSeenMatchesCount.accept(notSeenMatchesFromMessagesCount)
             
-            self.messagesNotificationProfiles.formUnion(profiles.notReadIDs())
-            let nonSeenCount = self.messagesNotificationProfiles.union(self.matchesNotificationProfiles).count
+            let nonSeenCount = profiles.notReadIDs()
+                .union(self.messagesNotificationProfiles)
+                .union(self.matchesNotificationProfiles).count
             
             self.notSeenMessagesCount.accept(nonSeenCount)
             self.updateLmmCount()
