@@ -9,17 +9,22 @@
 import RxSwift
 import RxCocoa
 
-fileprivate struct ChatProfileCache
+final class ChatProfileCache: NSObject
 {
-    let id: String
     let messagesCount: Int
     let notSeen: Bool
     let notRead: Bool
     
+    init(messagesCount: Int, notSeen: Bool, notRead: Bool)
+    {
+        self.messagesCount = messagesCount
+        self.notSeen = notSeen
+        self.notRead = notRead
+    }
+    
     static func create(_ profile: LMMProfile) -> ChatProfileCache
     {
         return ChatProfileCache(
-            id: profile.id,
             messagesCount: profile.messages.count,
             notSeen: profile.notSeen,
             notRead: profile.notRead
@@ -69,6 +74,9 @@ class LMMManager
     fileprivate var filteredLikesYouCache: [ApiLMMProfile]? = nil
     fileprivate var filteredMessagesCache: [ApiLMMProfile]? = nil
     fileprivate var fiteredCacheTimer: Timer? = nil
+    
+    // Presistent chats cache
+    fileprivate var chatsCache: [String: ChatProfileCache] = [:]
     
     var contentShouldBeHidden: Bool = false
     {
@@ -186,8 +194,11 @@ class LMMManager
     {
         log("LC reloading process started", level: .high)
         self.isFetching.accept(true)
-        let chatCache = (self.messages.value + self.likesYou.value).map({ ChatProfileCache.create($0) })
         
+        (self.messages.value + self.likesYou.value).forEach({ profile in
+            self.chatsCache[profile.id] = ChatProfileCache.create(profile)
+        })
+                
         self.updateProfilesPrevState(false)
         
         // Checking cache
@@ -205,13 +216,18 @@ class LMMManager
                 if remoteProfile.messages.count == 0 {
                     remoteProfile.notSeen = true
                 }
-                
-                chatCache.forEach { localChatProfile in
-                    if localChatProfile.id == remoteProfile.id {
-                        if localChatProfile.messagesCount == remoteProfile.messages.count {
-                            remoteProfile.notRead = localChatProfile.notRead
+
+                self.chatsCache.forEach { localProfileId, profileCache in
+                    if localProfileId == remoteProfile.id {
+                        if profileCache.messagesCount == remoteProfile.messages.count {
+                            remoteProfile.notRead = profileCache.notRead
                         } else {
                             remoteProfile.notRead = true
+                        }
+                        
+                        // matches case
+                        if remoteProfile.messages.count == 0 , profileCache.messagesCount == remoteProfile.messages.count {
+                            remoteProfile.notSeen = profileCache.notSeen
                         }
                     }
                 }
@@ -245,17 +261,17 @@ class LMMManager
                     remoteProfile.notSeen = true
                 }
                 
-                chatCache.forEach { localChatProfile in
-                    if localChatProfile.id == remoteProfile.id {
-                        if localChatProfile.messagesCount == remoteProfile.messages.count {
-                            remoteProfile.notRead = localChatProfile.notRead
+                self?.chatsCache.forEach { localProfileId, profileCache in
+                    if localProfileId == remoteProfile.id {
+                        if profileCache.messagesCount == remoteProfile.messages.count {
+                            remoteProfile.notRead = profileCache.notRead
                         } else {
                             remoteProfile.notRead = true
                         }
                         
                         // matches case
-                        if remoteProfile.messages.count == 0 , localChatProfile.messagesCount == remoteProfile.messages.count {
-                            remoteProfile.notSeen = localChatProfile.notSeen
+                        if remoteProfile.messages.count == 0 , profileCache.messagesCount == remoteProfile.messages.count {
+                            remoteProfile.notSeen = profileCache.notSeen
                         }
                     }
                 }
@@ -418,6 +434,11 @@ class LMMManager
             .subscribe().disposed(by: self.disposeBag)
         self.storage.store(self.processedNotificationsProfiles, key: "processedNotificationsProfiles")
             .subscribe().disposed(by: self.disposeBag)
+        
+        if let chatsCacheData = try? NSKeyedArchiver.archivedData(withRootObject: self.chatsCache, requiringSecureCoding: false) {
+            UserDefaults.standard.setValue(chatsCacheData, forKey: "chats_cache")
+            UserDefaults.standard.synchronize()
+        }
     }
     
     func reset()
@@ -435,6 +456,9 @@ class LMMManager
         self.storage.remove("matchesNotificationProfiles").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("messagesNotificationProfiles").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("processedNotificationsProfiles").subscribe().disposed(by: self.disposeBag)
+        
+        UserDefaults.standard.removeObject(forKey: "chats_cache")
+        UserDefaults.standard.synchronize()
         
         self.likesYouCached.removeAll()
         self.matchesCached.removeAll()
@@ -583,7 +607,7 @@ class LMMManager
                 
                 if self.actionsManager.lmmViewingProfiles.value.contains(profileId) { break }
                 
-                self.likesYouNotificationProfiles.remove(profileId)                
+                self.likesYouNotificationProfiles.remove(profileId)
                 self.messagesNotificationProfiles.insert(profileId)
 
                 let notSeenCount = self.messages.value.notReadIDs()
@@ -677,6 +701,10 @@ class LMMManager
     
     fileprivate func loadPrevState()
     {
+        if let cacheData = UserDefaults.standard.data(forKey: "chats_cache"), let cache = NSKeyedUnarchiver.unarchiveObject(with: cacheData) as? [String: ChatProfileCache] {
+            self.chatsCache = cache
+        }
+        
         self.storage.object("prevNotSeenLikes").subscribe( onSuccess: { obj in
             self.prevNotSeenLikes = Set<String>.create(obj) ?? []
         }).disposed(by: self.disposeBag)
@@ -933,6 +961,25 @@ extension Array where Element: LMMProfile
         })
         
         return accamulator
+    }
+}
+
+extension ChatProfileCache: NSCoding
+{
+    func encode(with aCoder: NSCoder)
+    {
+        aCoder.encode(self.messagesCount, forKey: "messagesCount")
+        aCoder.encode(self.notSeen, forKey: "notSeen")
+        aCoder.encode(self.notRead, forKey: "notRead")
+    }
+    
+    convenience init?(coder aDecoder: NSCoder)
+    {
+        self.init(
+            messagesCount: aDecoder.decodeInteger(forKey: "messagesCount"),
+            notSeen: aDecoder.decodeBool(forKey: "notSeen"),
+            notRead: aDecoder.decodeBool(forKey: "notRead")
+        )
     }
 }
 
