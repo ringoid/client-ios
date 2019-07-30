@@ -54,14 +54,14 @@ class NewFacesViewModel
         self.setupBindings()        
     }
     
-    func refresh() -> Observable<Void>
+    func refresh(_ isFilteringEnabled: Bool) -> Observable<Void>
     {
         self.isFetching.accept(true)
         self.profileManager.refreshInBackground()
         self.actionsManager.finishViewActions(for: self.profiles.value, source: .newFaces)
         
         return self.actionsManager.sendQueue().flatMap({ [weak self] _ -> Observable<Void> in
-            if self!.profileManager.photos.value.filter({ !$0.isBlocked }).count > 0 {
+            if self!.profileManager.photos.value.filter({ !$0.isBlocked }).count > 0 || isFilteringEnabled {
                 self!.lmmManager.refreshInBackground(.newFaces)
             }
             

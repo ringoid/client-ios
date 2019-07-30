@@ -101,7 +101,7 @@ class NewFacesViewController: BaseViewController
         self.toggleActivity(self.currentActivityState)
     }
     
-    func reload()
+    func reload(_ isFilteringEnabled: Bool)
     {
         self.tableView.panGestureRecognizer.isEnabled = false
         
@@ -137,7 +137,7 @@ class NewFacesViewController: BaseViewController
         self.lastFetchCount = -1
         self.photoIndexes.removeAll()
         
-        self.viewModel?.refresh().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+        self.viewModel?.refresh(isFilteringEnabled).observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             self?.updateFeed()
             self?.tableView.panGestureRecognizer.isEnabled = true
             }, onError:{ [weak self] error in
@@ -155,7 +155,7 @@ class NewFacesViewController: BaseViewController
         AnalyticsManager.shared.send(.pullToRefresh(SourceFeedType.newFaces.rawValue))
         self.hideScrollToTopOption()
         self.showTopBar(true)
-        self.reload()
+        self.reload(false)
     }
     
     func onFetchMore()
@@ -220,7 +220,7 @@ class NewFacesViewController: BaseViewController
         self.viewModel?.initialLocationTrigger.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] value in
             guard value else { return }
             
-            self?.reload()
+            self?.reload(false)
         }).disposed(by: self.disposeBag)
         
         UIManager.shared.feedsFabShouldBeHidden.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
@@ -445,7 +445,7 @@ class NewFacesViewController: BaseViewController
         let vc = storyboard.instantiateViewController(withIdentifier: "new_faces_filter") as! NewFacesFilterViewController
         vc.input = NewFacesFilterVMInput(filter: self.input.filter)
         vc.onUpdate = { [weak self] isUpdated in
-            if isUpdated { self?.reload() }
+            if isUpdated { self?.reload(true) }
         }
         vc.onClose = {
             ModalUIManager.shared.hide(animated: false)

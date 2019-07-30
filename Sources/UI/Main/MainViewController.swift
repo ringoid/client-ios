@@ -278,7 +278,7 @@ class MainViewController: BaseViewController
         self.containedVC = vc
         self.containerVC.embed(vc)
         DispatchQueue.main.async {
-            vc.reload()
+            vc.reload(false)
         }
     }
     

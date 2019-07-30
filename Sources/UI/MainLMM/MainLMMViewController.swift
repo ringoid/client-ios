@@ -342,6 +342,10 @@ class MainLMMViewController: BaseViewController
                 self.tableView.panGestureRecognizer.isEnabled = true
                 showError(error, vc: self)
         }).disposed(by: self.disposeBag)
+        
+        if isFilterEnabled {
+            self.input.newFacesManager.refreshInBackground()
+        }
     }
     
     fileprivate func toggle(_ type: LMMType)
