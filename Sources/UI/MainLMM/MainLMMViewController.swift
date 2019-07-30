@@ -597,7 +597,7 @@ class MainLMMViewController: BaseViewController
         self.chatContainerView.embed(vc, to: self)
         self.chatContainerView.isHidden = false
                 
-        self.scrollTop(to: indexPath.row, offset: 0.0, animated: false)
+        self.tableView.scrollToRow(at: indexPath, at: .top, animated: false)
         profileVC?.hideNotChatControls()
     }
     
@@ -613,8 +613,7 @@ class MainLMMViewController: BaseViewController
         
         self.chatContainerView.isHidden = true
         self.chatContainerView.remove()
-        
-        self.scrollTop(to: indexPath.row, offset: 0.0, animated: false)
+
         self.isChatShown = false
     }
     
