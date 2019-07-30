@@ -64,12 +64,13 @@ class MainLMMProfileViewModel
         default: break
         }
         
-        
+        let source = self.input.feedType.sourceType()
         self.input.actionsManager.blockActionProtected(
             reason,
             profile: actionProfile,
             photo: actionProfile.orderedPhotos()[photoIndex],
-            source: self.input.feedType.sourceType())
+            source: source)
+        self.input.lmmManager.updateFilterCounters(source)
     }
     
     // MARK: -

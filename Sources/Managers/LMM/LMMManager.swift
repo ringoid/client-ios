@@ -191,7 +191,7 @@ class LMMManager
         self.updateProfilesPrevState(false)
         
         // Checking cache
-        if let likesYouResult = self.filteredLikesYouCache, let messagesResult = self.filteredMessagesCache {
+        if let likesYouResult = self.filteredLikesYouCache, let messagesResult = self.filteredMessagesCache, isFilterEnabled {
             self.clearFilteredCahe()
             self.purge()
             
