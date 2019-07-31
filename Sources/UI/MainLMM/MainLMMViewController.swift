@@ -65,6 +65,7 @@ class MainLMMViewController: BaseViewController
     @IBOutlet fileprivate weak var topBarOffsetConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var feedBottomView: UIView!
     @IBOutlet fileprivate weak var feedBottomLabel: UILabel!
+    @IBOutlet fileprivate weak var feedTitleBtn: UIButton!
     
     override func viewDidLoad()
     {
@@ -181,6 +182,12 @@ class MainLMMViewController: BaseViewController
         // TODO: add proper model check
         guard self.feedBottomLabel.text != nil else { return }
         
+        self.showFilter()
+        self.showTopBar(true)
+    }
+    
+    @IBAction func onShowFilterFromEmptyFeed()
+    {
         self.showFilter()
         self.showTopBar(true)
     }
@@ -722,12 +729,14 @@ class MainLMMViewController: BaseViewController
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.text = self.initialLabelTitle()
             self.emptyFeedLabel.isHidden = false
+            self.feedTitleBtn.isHidden = false
             self.feedBottomLabel.text = nil
             break
             
         case .fetching:
             self.emptyFeedActivityView.startAnimating()
             self.emptyFeedLabel.isHidden = true
+            self.feedTitleBtn.isHidden = true
             self.feedBottomLabel.text = nil
             break
             
@@ -735,11 +744,13 @@ class MainLMMViewController: BaseViewController
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.text = self.emptyLabelTitle()
             self.emptyFeedLabel.isHidden = false
+            self.feedTitleBtn.isHidden = false
             break
             
         case .contentAvailable:
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.isHidden = true
+            self.feedTitleBtn.isHidden = true
             break
         }                
     }

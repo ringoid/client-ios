@@ -258,6 +258,17 @@ see who likes you</string>
                                     <outlet property="delegate" destination="5Bt-Xu-MH5" id="ZU8-q5-eXy"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAF-2j-vXF">
+                                <rect key="frame" x="47.5" y="301.5" width="280" height="64"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="B40-KS-WsI"/>
+                                    <constraint firstAttribute="width" constant="280" id="XAB-RR-NaS"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="onShowFilterFromEmptyFeed" destination="5Bt-Xu-MH5" eventType="touchUpInside" id="M77-he-0Fs"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NDb-Xg-b58">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                 <subviews>
@@ -358,6 +369,7 @@ see who likes you</string>
                             <constraint firstItem="h51-ww-FZ6" firstAttribute="centerX" secondItem="aDZ-sn-yKR" secondAttribute="centerX" id="NTq-DH-wWu"/>
                             <constraint firstAttribute="bottom" secondItem="Ey6-2A-Ohd" secondAttribute="bottom" id="NbN-z8-AjE"/>
                             <constraint firstItem="gHe-x4-G7n" firstAttribute="centerX" secondItem="aDZ-sn-yKR" secondAttribute="centerX" id="O3p-Dz-nGu"/>
+                            <constraint firstItem="AAF-2j-vXF" firstAttribute="centerY" secondItem="aDZ-sn-yKR" secondAttribute="centerY" id="WBD-X3-rHO"/>
                             <constraint firstItem="2sz-x1-syZ" firstAttribute="top" secondItem="aDZ-sn-yKR" secondAttribute="top" id="XHC-gs-BBK"/>
                             <constraint firstItem="pJn-VE-YRs" firstAttribute="centerY" secondItem="aDZ-sn-yKR" secondAttribute="centerY" id="XfT-5K-CPg"/>
                             <constraint firstItem="Q8X-YU-toI" firstAttribute="leading" secondItem="DRO-WM-fEC" secondAttribute="leading" constant="16" id="anz-kP-t7t"/>
@@ -366,9 +378,12 @@ see who likes you</string>
                             <constraint firstItem="kbx-tQ-FPO" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="leading" id="fH6-My-2G0"/>
                             <constraint firstItem="DRO-WM-fEC" firstAttribute="bottom" secondItem="Q8X-YU-toI" secondAttribute="bottom" constant="66" id="hFO-hJ-lIq"/>
                             <constraint firstItem="h51-ww-FZ6" firstAttribute="centerY" secondItem="aDZ-sn-yKR" secondAttribute="centerY" id="lgG-BI-cWQ"/>
+                            <constraint firstItem="h51-ww-FZ6" firstAttribute="centerY" secondItem="aDZ-sn-yKR" secondAttribute="centerY" id="m50-eJ-6hL"/>
                             <constraint firstItem="2sz-x1-syZ" firstAttribute="leading" secondItem="aDZ-sn-yKR" secondAttribute="leading" id="pmC-60-JfX"/>
                             <constraint firstItem="Ey6-2A-Ohd" firstAttribute="top" secondItem="aDZ-sn-yKR" secondAttribute="top" id="vkO-Ub-xiu"/>
                             <constraint firstAttribute="trailing" secondItem="kbx-tQ-FPO" secondAttribute="trailing" id="wLB-ID-jOj"/>
+                            <constraint firstItem="AAF-2j-vXF" firstAttribute="centerX" secondItem="aDZ-sn-yKR" secondAttribute="centerX" id="yJX-jY-jwe"/>
+                            <constraint firstItem="h51-ww-FZ6" firstAttribute="centerX" secondItem="aDZ-sn-yKR" secondAttribute="centerX" id="yuu-4e-Dot"/>
                             <constraint firstAttribute="trailing" secondItem="Ey6-2A-Ohd" secondAttribute="trailing" id="zib-Ne-dMX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DRO-WM-fEC"/>
@@ -382,6 +397,7 @@ see who likes you</string>
                         <outlet property="emptyFeedLabel" destination="h51-ww-FZ6" id="BKR-9v-s1U"/>
                         <outlet property="feedBottomLabel" destination="c2U-6p-cTz" id="lCL-l1-VNi"/>
                         <outlet property="feedBottomView" destination="mBt-Er-aiS" id="rGl-c7-S9Y"/>
+                        <outlet property="feedTitleBtn" destination="AAF-2j-vXF" id="Xty-ij-NnL"/>
                         <outlet property="feedTitleLabel" destination="QKC-OF-Xth" id="IZV-BJ-hGe"/>
                         <outlet property="scrollTopBtn" destination="Q8X-YU-toI" id="E1j-Er-aIg"/>
                         <outlet property="tableView" destination="kbx-tQ-FPO" id="Gw2-gy-S9q"/>
@@ -851,6 +867,6 @@ see who likes you</string>
         <image name="profile_fields_children" width="15" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="758-j3-FOe"/>
+        <segue reference="ioG-ig-n4r"/>
     </inferredMetricsTieBreakers>
 </document>
