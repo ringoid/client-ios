@@ -25,4 +25,10 @@ class SettingsSwitchableCell: BaseTableViewCell
     {
         self.onValueChanged?(self.valueSwitch)
     }
+    
+    func changeValue()
+    {
+        self.valueSwitch.setOn(!self.valueSwitch.isOn, animated: true)
+        self.onValueChanged?(self.valueSwitch)
+    }
 }

@@ -169,9 +169,13 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let type = SettingsNotificationsOptionType(rawValue: indexPath.row)!
-        
-        guard type == .suggest else { return }
-        
-        FeedbackManager.shared.showSuggestion(self, source: .notificationsSettings, feedSource: nil)
+        guard type != .suggest else {
+            FeedbackManager.shared.showSuggestion(self, source: .notificationsSettings, feedSource: nil)
+            
+            return
+        }
+                
+        let cell = tableView.cellForRow(at: indexPath) as! SettingsSwitchableCell
+        cell.changeValue()
     }
 }
