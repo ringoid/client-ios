@@ -73,12 +73,20 @@ class NewFacesViewController: BaseViewController
         self.setupReloader()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
         
         self.isTabSwitched = true
         self.updateFeed()
         self.showTopBar(false)
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        
+        self.isTabSwitched = false
     }
     
     override func viewWillLayoutSubviews()
@@ -378,8 +386,6 @@ class NewFacesViewController: BaseViewController
             self.emptyFeedLabel.isHidden = true
             break
         }
-        
-        self.isTabSwitched = false
     }
     
     fileprivate func updateVisibleCellsBorders(_  contentOffset: CGFloat)
