@@ -83,8 +83,7 @@ class SettingsFilterViewController: BaseViewController
     
     override func updateTheme()
     {
-        self.view.backgroundColor = BackgroundColor().uiColor()
-        self.titleLabel.textColor = ContentColor().uiColor()
+        self.view.backgroundColor = BackgroundColor().uiColor()        
         self.backBtn.tintColor = ContentColor().uiColor()
     }
     

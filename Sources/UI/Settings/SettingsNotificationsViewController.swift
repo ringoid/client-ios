@@ -64,8 +64,7 @@ class SettingsNotificationsViewController: BaseViewController
         
         UIView.animate(withDuration: 0.1) {
             self.tableView.separatorColor = (theme == .dark) ? darkThemeSeparatorColor : .lightGray
-            self.view.backgroundColor = BackgroundColor().uiColor()
-            self.titleLabel.textColor = ContentColor().uiColor()
+            self.view.backgroundColor = BackgroundColor().uiColor()            
             self.backBtn.tintColor = ContentColor().uiColor()
         }
     }
