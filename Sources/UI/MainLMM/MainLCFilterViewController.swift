@@ -92,10 +92,7 @@ class MainLCFilterViewController: BaseViewController
         ]
         
         self.setupBindings()
-        
-        if self.input.filter.isFilteringEnabled.value {
-            self.viewModel.update()
-        }
+        self.viewModel.update()        
     }
     
     override func viewWillLayoutSubviews()
