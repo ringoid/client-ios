@@ -92,7 +92,7 @@ class MainLCFilterViewController: BaseViewController
         ]
         
         self.setupBindings()
-        self.viewModel.update()        
+        self.viewModel.update()
     }
     
     override func viewWillLayoutSubviews()
@@ -186,11 +186,19 @@ class MainLCFilterViewController: BaseViewController
             self.input.lmm.filteredLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
                 self?.updateFilterBtn()
             }).disposed(by: self.disposeBag)
+            
+            self .input.lmm.allLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+                self?.updateShowAllBtn()
+            }).disposed(by: self.disposeBag)
             break
             
         case .messages:
             self.input.lmm.filteredMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
                 self?.updateFilterBtn()
+            }).disposed(by: self.disposeBag)
+            
+            self .input.lmm.allMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+                self?.updateShowAllBtn()
             }).disposed(by: self.disposeBag)
             break
             
