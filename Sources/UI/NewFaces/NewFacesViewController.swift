@@ -153,8 +153,16 @@ class NewFacesViewController: BaseViewController
         self.photoIndexes.removeAll()
         
         self.viewModel?.refresh(isFilteringEnabled).observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
-            self?.updateFeed()
-            self?.tableView.panGestureRecognizer.isEnabled = true
+            guard let `self` = self else { return }
+            
+            self.updateFeed()
+            self.tableView.panGestureRecognizer.isEnabled = true
+            
+            let isNotEmptyFeed = self.viewModel!.profiles.value.count != 0
+            let isNotEnoughUsersAvailable = self.viewModel!.profiles.value.count < 8
+            let isMaxRangeSelected = self.input.filter.isMaxRangeSelected
+            self.feedBottomLabel.isHidden = !(isNotEnoughUsersAvailable && !isMaxRangeSelected && isNotEmptyFeed)
+            self.feedBottomBtn.isHidden = !(isNotEnoughUsersAvailable && !isMaxRangeSelected && isNotEmptyFeed)
             }, onError:{ [weak self] error in
                 guard let `self` = self else { return }
                 
