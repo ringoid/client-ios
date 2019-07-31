@@ -254,6 +254,36 @@ class MainLMMViewController: BaseViewController
             
             self?.checkForUpdates()
         }).disposed(by: self.disposeBag)
+        
+        // Empty feed label
+        
+        self.input.lmmManager.allLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            guard let `self` = self else { return }
+            guard self.type.value == .likesYou else { return }
+            
+            self.updateFeedLabel()
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.filteredLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            guard let `self` = self else { return }
+            guard self.type.value == .likesYou else { return }
+            
+            self.updateFeedLabel()
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.allMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            guard let `self` = self else { return }
+            guard self.type.value == .messages else { return }
+            
+            self.updateFeedLabel()
+        }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.filteredMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            guard let `self` = self else { return }
+            guard self.type.value == .messages else { return }
+            
+            self.updateFeedLabel()
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func updateBindings()
@@ -862,6 +892,15 @@ class MainLMMViewController: BaseViewController
         self.topBarOffsetConstraint.constant = -1.0 * (self.view.safeAreaInsets.top + 64.0)
         UIView.animate(withDuration: 0.3) {
             self.view.layoutSubviews()
+        }
+    }
+    
+    fileprivate func updateFeedLabel()
+    {
+        switch self.currentActivityState {
+        case .empty: self.emptyFeedLabel.text = self.emptyLabelTitle()
+        case .initial: self.emptyFeedLabel.text = self.initialLabelTitle()
+        default: break
         }
     }
 }
