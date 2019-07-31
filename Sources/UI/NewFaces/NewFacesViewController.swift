@@ -47,6 +47,8 @@ class NewFacesViewController: BaseViewController
     @IBOutlet fileprivate weak var tapBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var topBarOffsetConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var feedTitleBtn: UIButton!
+    @IBOutlet fileprivate weak var feedBottomBtn: UIButton!
+    @IBOutlet fileprivate weak var feedBottomLabel: UILabel!
     
     override func viewDidLoad()
     {
@@ -106,6 +108,7 @@ class NewFacesViewController: BaseViewController
     override func updateLocale()
     {
         self.feedTitleLabel.text = "feed_explore_empty_title".localized()
+        self.feedBottomLabel.text = "feed_discover_expand_filters".localized()
         
         self.toggleActivity(self.currentActivityState)
     }
@@ -113,6 +116,9 @@ class NewFacesViewController: BaseViewController
     func reload(_ isFilteringEnabled: Bool)
     {
         self.tableView.panGestureRecognizer.isEnabled = false
+        
+        self.feedBottomLabel.isHidden = true
+        self.feedBottomBtn.isHidden = true
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.tableView.refreshControl?.endRefreshing()
@@ -170,12 +176,18 @@ class NewFacesViewController: BaseViewController
     func onFetchMore()
     {
         guard let count = self.viewModel?.profiles.value.count, count > 0 else { return }
-        
+ 
         log("fetching next page", level: .high)
 
         self.viewModel?.fetchNext().subscribe(
             onNext: { [weak self] _ in
                 self?.lastFetchCount = count
+                
+                let isNotEmptyFeed = self?.viewModel?.profiles.value.count != 0
+                let isNoUsersAvailable = count == self?.viewModel?.profiles.value.count
+                let isMaxRangeSelected = self?.input.filter.isMaxRangeSelected == true
+                self?.feedBottomLabel.isHidden = !(isNoUsersAvailable && !isMaxRangeSelected && isNotEmptyFeed)
+                self?.feedBottomBtn.isHidden = !(isNoUsersAvailable && !isMaxRangeSelected && isNotEmptyFeed)
             }, onError: { [weak self] error in
                 guard let `self` = self else { return }
                 
@@ -573,8 +585,8 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
         guard
             let totalCount = self.viewModel?.profiles.value.count,
             totalCount != self.lastFetchCount,
-            totalCount > 12,
-            (totalCount - indexPath.row) <= 10
+            totalCount > 8,
+            (totalCount - indexPath.row) <= 5
             else { return }
 
         self.onFetchMore()

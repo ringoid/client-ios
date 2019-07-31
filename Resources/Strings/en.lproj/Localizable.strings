@@ -53,6 +53,7 @@
 "feed_sent_empty_no_data" = "No messages yet";
 "feed_tap_to_refresh" = "Refresh";
 "feed_profiles_filtered" = "%d profiles are hidden due to filters";
+"feed_discover_expand_filters" = "Expand filters";
 
 "lmm_tab_likes" = "Likes You";
 "lmm_tab_matches" = "Matches";
