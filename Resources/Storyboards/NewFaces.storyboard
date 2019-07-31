@@ -69,6 +69,16 @@ discover users nearby</string>
                                     <outlet property="delegate" destination="m48-Io-6eu" id="N5r-HP-NWd"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9E-Qp-6Yt">
+                                <rect key="frame" x="47.5" y="301.5" width="280" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="kik-cE-VGb"/>
+                                    <constraint firstAttribute="height" constant="64" id="lu8-42-ZOb"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="showFilterFromFeed" destination="m48-Io-6eu" eventType="touchUpInside" id="xPs-Lb-fMg"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9x-Tk-Mmn">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                 <subviews>
@@ -139,7 +149,9 @@ discover users nearby</string>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="7aY-ua-nbS"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="DIr-zl-DwV"/>
                             <constraint firstItem="V9x-Tk-Mmn" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="DOQ-LY-jyo" userLabel="TopBarOffset"/>
+                            <constraint firstItem="j9E-Qp-6Yt" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="FG0-zT-miq"/>
                             <constraint firstItem="RcH-VU-hkW" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" constant="16" id="M0s-yz-w5X"/>
+                            <constraint firstItem="j9E-Qp-6Yt" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="T7G-iL-6n6"/>
                             <constraint firstAttribute="bottom" secondItem="f5P-fA-3ZX" secondAttribute="bottom" id="TVP-3o-yBY"/>
                             <constraint firstItem="Dzb-Wx-JQu" firstAttribute="trailing" secondItem="f5P-fA-3ZX" secondAttribute="trailing" id="UYa-cj-LJ4"/>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="V4m-wZ-I6w"/>
@@ -161,6 +173,7 @@ discover users nearby</string>
                         <outlet property="blockPhotoView" destination="fyV-MR-lVu" id="ZPl-Xu-U01"/>
                         <outlet property="emptyFeedActivityView" destination="Kt8-il-Lh0" id="oCN-Tl-uUi"/>
                         <outlet property="emptyFeedLabel" destination="CGR-G7-fOR" id="XU1-zR-aiG"/>
+                        <outlet property="feedTitleBtn" destination="j9E-Qp-6Yt" id="Pty-0t-XWz"/>
                         <outlet property="feedTitleLabel" destination="isk-qO-AwF" id="vAP-BQ-ZbC"/>
                         <outlet property="scrollTopBtn" destination="RcH-VU-hkW" id="A6d-nd-dJD"/>
                         <outlet property="tableView" destination="Owz-cZ-1Sc" id="KNv-5u-zds"/>

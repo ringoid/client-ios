@@ -46,6 +46,7 @@ class NewFacesViewController: BaseViewController
     @IBOutlet fileprivate weak var blockPhotoAspectConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var tapBarHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var topBarOffsetConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var feedTitleBtn: UIButton!
     
     override func viewDidLoad()
     {
@@ -193,6 +194,12 @@ class NewFacesViewController: BaseViewController
     
     @IBAction func onShowFilter()
     {
+        self.showFilter()
+    }
+    
+    @IBAction func showFilterFromFeed()
+    {
+        self.showTopBar(true)
         self.showFilter()
     }
     
@@ -364,26 +371,31 @@ class NewFacesViewController: BaseViewController
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.text = "common_pull_to_refresh".localized()
             self.emptyFeedLabel.isHidden = false
+            self.feedTitleBtn.isHidden = false
             break
             
         case .reloading:
             self.emptyFeedActivityView.startAnimating()
             self.emptyFeedLabel.isHidden = true
+            self.feedTitleBtn.isHidden = true
             break
             
         case .fetching:
             self.emptyFeedLabel.isHidden = true
+            self.feedTitleBtn.isHidden = true
             break
             
         case .empty:
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.text = "feed_explore_empty_no_data".localized()
             self.emptyFeedLabel.isHidden = false
+            self.feedTitleBtn.isHidden = false
             break
             
         case .contentAvailable:
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.isHidden = true
+            self.feedTitleBtn.isHidden = true
             break
         }
     }
