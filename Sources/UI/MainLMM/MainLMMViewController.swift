@@ -261,36 +261,6 @@ class MainLMMViewController: BaseViewController
             
             self?.checkForUpdates()
         }).disposed(by: self.disposeBag)
-        
-        // Empty feed label
-        
-        self.input.lmmManager.allLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
-            guard self.type.value == .likesYou else { return }
-            
-            self.updateFeedLabel()
-        }).disposed(by: self.disposeBag)
-        
-        self.input.lmmManager.filteredLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
-            guard self.type.value == .likesYou else { return }
-            
-            self.updateFeedLabel()
-        }).disposed(by: self.disposeBag)
-        
-        self.input.lmmManager.allMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
-            guard self.type.value == .messages else { return }
-            
-            self.updateFeedLabel()
-        }).disposed(by: self.disposeBag)
-        
-        self.input.lmmManager.filteredMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
-            guard self.type.value == .messages else { return }
-            
-            self.updateFeedLabel()
-        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func updateBindings()
@@ -307,6 +277,41 @@ class MainLMMViewController: BaseViewController
             self?.updateFeed(false)
             self?.feedBottomLabel.text = self?.bottomLabelTitle()
         }).disposed(by: self.feedDisposeBag)
+        
+        if self.type.value == .likesYou {
+            self.input.lmmManager.allLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                guard self.type.value == .likesYou else { return }
+                
+                self.updateFeedLabel()
+            }).disposed(by: self.feedDisposeBag)
+            
+            self.input.lmmManager.filteredLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                guard self.type.value == .likesYou else { return }
+                
+                self.updateFeedLabel()
+                self.updateFeedTitle()
+            }).disposed(by: self.feedDisposeBag)
+        }
+        
+        if self.type.value == .messages {
+            self.input.lmmManager.allMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                guard self.type.value == .messages else { return }
+                
+                self.updateFeedLabel()
+            }).disposed(by: self.feedDisposeBag)
+            
+            self.input.lmmManager.filteredMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else { return }
+                guard self.type.value == .messages else { return }
+                
+                self.updateFeedLabel()
+                self.updateFeedTitle()
+            }).disposed(by: self.feedDisposeBag
+            )
+        }
     }
     
     fileprivate func setupReloader()
