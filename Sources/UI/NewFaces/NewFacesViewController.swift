@@ -423,6 +423,7 @@ class NewFacesViewController: BaseViewController
     fileprivate func updateVisibleCellsBorders(_  contentOffset: CGFloat)
     {
         let tableBottomOffset = contentOffset + self.tableView.bounds.height
+        let screenHeight = UIScreen.main.bounds.height
         
         // Cells
         self.visibleCells.forEach { cell in
@@ -434,6 +435,11 @@ class NewFacesViewController: BaseViewController
             
             vc.bottomVisibleBorderDistance = tableBottomOffset - cellBottomOffset - self.view.safeAreaInsets.bottom - 64.0
         }
+        
+        // Titles
+        let feedBottomLabelFrame = self.feedBottomLabel.convert(self.feedBottomLabel.bounds, to: self.view)
+        let feedBottomLabelBottom = feedBottomLabelFrame.maxY
+        self.feedBottomLabel.alpha = feedBottomLabelBottom <  screenHeight -  self.view.safeAreaInsets.bottom - 56.0 ? 1.0 : 0.0
     }
     
     fileprivate func showScrollToTopOption()
