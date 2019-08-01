@@ -145,7 +145,6 @@ class MainLMMViewController: BaseViewController
         // Applying offset after view size is set
         guard isInitialLayout else { return }
         
-        self.isTabSwitched = true
         self.isInitialLayout = false
         self.updateFeed(true)
     }
@@ -394,7 +393,6 @@ class MainLMMViewController: BaseViewController
     {
         self.input.actionsManager.commit()
         
-        self.isTabSwitched = true
         self.updateFeedTitle()
         self.updateBindings()
         
