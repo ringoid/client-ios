@@ -332,43 +332,49 @@ class LMMManager
         }
         
         self.isFiltersUpdating = true
-        self.apiService.getLC(self.deviceService.photoResolution,
-                                     lastActionDate: self.actionsManager.lastActionDate.value,
-                                     source: from,
-                                     minAge: self.filter.minAge.value,
-                                     maxAge: self.filter.maxAge.value,
-                                     maxDistance: self.filter.maxDistance.value
-            ).do(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
-                
-                self.isFiltersUpdating = false
-                
-                guard self.isFiltersUpdateDelayed else { return }
-                
-                self.isFiltersUpdateDelayed = false
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
-                    self.updateFilterCounters(from)
-                })
-            }, onError: { [weak self] _ in
-                    self?.isFiltersUpdating = false
-            }).flatMap({ [weak self] result -> Observable<Void> in
-                // Storing data for cache
-                self?.filteredLikesYouCache = result.likesYou
-                self?.filteredMessagesCache = result.messages
-                let timer = Timer(timeInterval: 10.0, repeats: false, block: { [weak self] _ in
-                    self?.clearFilteredCahe()
-                })
-                self?.fiteredCacheTimer = timer
-                RunLoop.main.add(timer, forMode: .common)
-                
-                // Updating counters
-                self?.filteredLikesYouProfilesCount.accept(result.likesYou.count)
-                self?.filteredMessagesProfilesCount.accept(result.messages.count)
-                self?.allLikesYouProfilesCount.accept(result.allLikesYouProfilesNum)
-                self?.allMessagesProfilesCount.accept(result.allMessagesProfilesNum)
-                
-                return .just(())
-            }).subscribe().disposed(by: self.disposeBag)
+        
+        self.actionsManager.sendQueue().subscribe(onNext: { [weak self] _ in
+            guard let `self` = self else { return }
+            
+            self.apiService.getLC(self.deviceService.photoResolution,
+                                  lastActionDate: self.actionsManager.lastActionDate.value,
+                                  source: from,
+                                  minAge: self.filter.minAge.value,
+                                  maxAge: self.filter.maxAge.value,
+                                  maxDistance: self.filter.maxDistance.value
+                ).do(onNext: { [weak self] _ in
+                    guard let `self` = self else { return }
+                    
+                    self.isFiltersUpdating = false
+                    
+                    guard self.isFiltersUpdateDelayed else { return }
+                    
+                    self.isFiltersUpdateDelayed = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
+                        self.updateFilterCounters(from)
+                    })
+                    }, onError: { [weak self] _ in
+                        self?.isFiltersUpdating = false
+                }).flatMap({ [weak self] result -> Observable<Void> in
+                    // Storing data for cache
+                    self?.filteredLikesYouCache = result.likesYou
+                    self?.filteredMessagesCache = result.messages
+                    let timer = Timer(timeInterval: 10.0, repeats: false, block: { [weak self] _ in
+                        self?.clearFilteredCahe()
+                    })
+                    self?.fiteredCacheTimer = timer
+                    RunLoop.main.add(timer, forMode: .common)
+                    
+                    // Updating counters
+                    self?.filteredLikesYouProfilesCount.accept(result.likesYou.count)
+                    self?.filteredMessagesProfilesCount.accept(result.messages.count)
+                    self?.allLikesYouProfilesCount.accept(result.allLikesYouProfilesNum)
+                    self?.allMessagesProfilesCount.accept(result.allMessagesProfilesNum)
+                    
+                    return .just(())
+                }).subscribe().disposed(by: self.disposeBag)
+            
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func clearFilteredCahe()
