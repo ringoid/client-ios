@@ -420,10 +420,30 @@ class MainLMMProfileViewController: UIViewController
  */
     fileprivate func handleBottomBorderDistanceChange(_ value: CGFloat)
     {
-        self.optionsBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.optionsBtn.frame, offset: value) ?? 1.0)
+        // Options button interaction area special case
+        let optionsOrig = self.optionsBtn.frame.origin
+        let optionsSize = self.optionsBtn.frame.size
+        let optionsFrame = CGRect(
+            x: optionsOrig.x,
+            y: optionsOrig.y + 11.0,
+            width: optionsSize.width,
+            height: optionsSize.height - 22.0
+        )
+        self.optionsBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(optionsFrame, offset: value) ?? 1.0)
+        
+        // Status view interaction area special case
+        let statusViewOrig = self.statusView.frame.origin
+        let statusViewSize = self.statusView.frame.size
+        let statusViewFrame = CGRect(
+            x: statusViewOrig.x,
+            y: statusViewOrig.y - 4.0,
+            width: statusViewSize.width,
+            height: statusViewSize.height + 8.0
+            )
+        self.statusView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(statusViewFrame, offset: value) ?? 1.0)
+        
         self.messageBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.messageBtn.frame, offset: value) ?? 1.0)
         self.pagesControl.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.pagesControl.frame, offset: value) ?? 1.0)
-        self.statusView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusView.frame, offset: value) ?? 1.0)
         self.statusLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusLabel.frame, offset: value) ?? 1.0)
         self.nameLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.nameLabel.frame, offset: value) ?? 1.0)
         self.aboutLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.aboutLabel.frame, offset: value) ?? 1.0)
