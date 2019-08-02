@@ -403,26 +403,38 @@ class MainLMMViewController: BaseViewController
     {
         switch self.type.value {
         case .likesYou:
-            var title = "lmm_tab_likes".localized()
-            if let count = self.profiles()?.value.count {
-                if count != self.input.lmmManager.allLikesYouProfilesCount.value {
-                    title += String(format: "filter_range".localized(), count, self.input.lmmManager.allLikesYouProfilesCount.value)
-                } else if self.input.lmmManager.allLikesYouProfilesCount.value != 0 {
-                    title += " (\(count))"
+            var title: String = ""
+            let filteredCount = self.input.lmmManager.filteredLikesYouProfilesCount.value
+            let totalCount = self.input.lmmManager.allLikesYouProfilesCount.value
+            let hiddenCount = totalCount - filteredCount
+            
+            if self.input.filter.isFilteringEnabled.value {
+                if hiddenCount > 0 {
+                    title = String(format: "filter_range_likes".localized(), filteredCount, hiddenCount)
+                } else {
+                    title = String(format: "filter_all_range_likes".localized(), filteredCount)
                 }
+            } else {
+                title = String(format: "filter_all_range_likes".localized(), totalCount)
             }
             
             self.feedTitleLabel.text = title
             break
             
         case .messages:
-            var title = "lmm_tab_messages".localized()
-            if let count = self.profiles()?.value.count {
-                if count != self.input.lmmManager.allMessagesProfilesCount.value {
-                title += String(format: "filter_range".localized(), count, self.input.lmmManager.allMessagesProfilesCount.value)
-                } else if self.input.lmmManager.allMessagesProfilesCount.value != 0 {
-                    title += " (\(count))"
+            var title: String = ""
+            let filteredCount = self.input.lmmManager.filteredMessagesProfilesCount.value
+            let totalCount = self.input.lmmManager.allMessagesProfilesCount.value
+            let hiddenCount = totalCount - filteredCount
+            
+            if self.input.filter.isFilteringEnabled.value {
+                if hiddenCount > 0 {
+                    title = String(format: "filter_range_chats".localized(), filteredCount, hiddenCount)
+                } else {
+                    title = String(format: "filter_all_range_chats".localized(), filteredCount)
                 }
+            } else {
+                title = String(format: "filter_all_range_chats".localized(), totalCount)
             }
             
             self.feedTitleLabel.text = title

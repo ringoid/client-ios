@@ -188,4 +188,7 @@
 "filter_discover" = "Искать";
 "filter_filter" = "Фильтровать";
 "filter_show_all" = "Показать все";
-"filter_range" = " (%d из %d)";
+"filter_range_likes" = "%d лайков (%d спрятано)";
+"filter_range_chats" = "%d чатов (%d спрятано)";
+"filter_all_range_likes" = "%d лайков";
+"filter_all_range_chats" = "%d чатов";

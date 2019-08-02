@@ -186,4 +186,7 @@
 "filter_discover" = "Discover";
 "filter_filter" = "Filter";
 "filter_show_all" = "Show all";
-"filter_range" = " (%d of %d)";
+"filter_range_likes" = "%d likes (%d hidden)";
+"filter_range_chats" = "%d chats (%d hidden)";
+"filter_all_range_likes" = "%d likes";
+"filter_all_range_chats" = "%d chats";
