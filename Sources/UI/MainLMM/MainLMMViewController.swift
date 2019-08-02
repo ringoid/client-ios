@@ -274,7 +274,7 @@ class MainLMMViewController: BaseViewController
             
             self?.updateFeedTitle()
             self?.updateFeed(false)
-            self?.feedBottomLabel.text = self?.bottomLabelTitle()
+            // self?.feedBottomLabel.text = self?.bottomLabelTitle()
         }).disposed(by: self.feedDisposeBag)
         
         if self.type.value == .likesYou {
@@ -733,14 +733,14 @@ class MainLMMViewController: BaseViewController
             self.emptyFeedLabel.text = self.initialLabelTitle()
             self.emptyFeedLabel.isHidden = false
             self.feedTitleBtn.isHidden = false
-            self.feedBottomLabel.text = nil
+            // self.feedBottomLabel.text = nil
             break
             
         case .fetching:
             self.emptyFeedActivityView.startAnimating()
             self.emptyFeedLabel.isHidden = true
             self.feedTitleBtn.isHidden = true
-            self.feedBottomLabel.text = nil
+            // self.feedBottomLabel.text = nil
             break
             
         case .empty:
@@ -852,9 +852,9 @@ class MainLMMViewController: BaseViewController
         }
         
         // Titles
-        let feedBottomLabelFrame = self.feedBottomLabel.convert(self.feedBottomLabel.bounds, to: self.view)
-        let feedBottomLabelBottom = feedBottomLabelFrame.maxY
-        self.feedBottomLabel.alpha = feedBottomLabelBottom <  screenHeight -  self.view.safeAreaInsets.bottom - 56.0 ? 1.0 : 0.0
+//        let feedBottomLabelFrame = self.feedBottomLabel.convert(self.feedBottomLabel.bounds, to: self.view)
+//        let feedBottomLabelBottom = feedBottomLabelFrame.maxY
+//        self.feedBottomLabel.alpha = feedBottomLabelBottom <  screenHeight -  self.view.safeAreaInsets.bottom - 56.0 ? 1.0 : 0.0
     }
     
     fileprivate func showLocationsSettingsAlert()
