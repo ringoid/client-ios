@@ -65,7 +65,7 @@ class MainLMMContainerViewController: BaseViewController
     
     func reload()
     {
-        self.lmmVC?.reload(true)
+        self.lmmVC?.reload(false)
     }
     
     // MARK: - Actions

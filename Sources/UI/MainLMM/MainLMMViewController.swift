@@ -168,7 +168,7 @@ class MainLMMViewController: BaseViewController
         
         // self.hideScrollToTopOption()
         self.showTopBar(true)
-        self.reload(true)
+        self.reload(false)
     }
     
     @IBAction func onShowFilter()
