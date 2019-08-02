@@ -153,7 +153,7 @@ class MainLMMViewController: BaseViewController
     
     @IBAction func onScrollTop()
     {
-        self.hideScrollToTopOption()
+        // self.hideScrollToTopOption()
         self.showTopBar(true)
         self.updateBtn.alpha = 1.0
         let topOffset = self.view.safeAreaInsets.top + self.tableView.contentInset.top
@@ -166,7 +166,7 @@ class MainLMMViewController: BaseViewController
     {
         AnalyticsManager.shared.send(.tapToRefresh(self.type.value.sourceType().rawValue))
         
-        self.hideScrollToTopOption()
+        // self.hideScrollToTopOption()
         self.showTopBar(true)
         self.reload(true)
     }
@@ -224,7 +224,7 @@ class MainLMMViewController: BaseViewController
         UIManager.shared.feedsFabShouldBeHidden.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             guard state else { return }
             
-            self?.hideScrollToTopOption()
+            // self?.hideScrollToTopOption()
             self?.updateBtn.alpha = 0.0
         }).disposed(by: self.disposeBag)
         
@@ -574,13 +574,13 @@ class MainLMMViewController: BaseViewController
             self.tableView.layoutIfNeeded()
             self.tableView.setContentOffset(CGPoint(x: 0.0, y: cachedOffset), animated: false)
             
-            if cachedOffset > 75.0 && totalCount > 0 && totalCount > 0{
-                self.scrollTopBtn.alpha = 1.0
-                self.isScrollTopVisible = true
-            } else {
-                self.scrollTopBtn.alpha = 0.0
-                self.isScrollTopVisible = false
-            }
+//            if cachedOffset > 75.0 && totalCount > 0 && totalCount > 0{
+//                self.scrollTopBtn.alpha = 1.0
+//                self.isScrollTopVisible = true
+//            } else {
+//                self.scrollTopBtn.alpha = 0.0
+//                self.isScrollTopVisible = false
+//            }
         }
     }
     
@@ -657,6 +657,7 @@ class MainLMMViewController: BaseViewController
         self.isChatShown = false
     }
     
+    /*
     fileprivate func showScrollToTopOption()
     {
         guard !self.isScrollTopVisible else { return }
@@ -689,7 +690,9 @@ class MainLMMViewController: BaseViewController
         
         animator.startAnimation()
     }
-    
+
+ */
+ 
     static func resetStates()
     {
         MainLMMViewController.photoIndexes = [:]
@@ -837,7 +840,7 @@ class MainLMMViewController: BaseViewController
     fileprivate func updateVisibleCellsBorders(_  contentOffset: CGFloat)
     {
         let tableBottomOffset = contentOffset + self.tableView.bounds.height
-        let screenHeight = UIScreen.main.bounds.height
+        //let screenHeight = UIScreen.main.bounds.height
         
         // Cells
         self.tableView.visibleCells.forEach { cell in
@@ -1052,7 +1055,7 @@ extension MainLMMViewController: UIScrollViewDelegate
         // Scroll to top FAB
         
         guard offset > topTrashhold else {
-            self.hideScrollToTopOption()
+            // self.hideScrollToTopOption()
             self.showTopBar(true)
             self.updateBtn.alpha = 1.0
             self.prevScrollingOffset = 0.0
@@ -1061,7 +1064,7 @@ extension MainLMMViewController: UIScrollViewDelegate
         }
         
         if offset - self.prevScrollingOffset <  -1.0 * midTrashhold {
-            self.showScrollToTopOption()
+            // self.showScrollToTopOption()
             self.showTopBar(true)
             self.prevScrollingOffset = offset
             
@@ -1069,7 +1072,7 @@ extension MainLMMViewController: UIScrollViewDelegate
         }
         
         if offset - self.prevScrollingOffset > midTrashhold {
-            self.hideScrollToTopOption()
+            // self.hideScrollToTopOption()
             self.hideTopBar()
             self.updateBtn.alpha = 0.0
             self.prevScrollingOffset = offset

@@ -176,7 +176,7 @@ class NewFacesViewController: BaseViewController
     @objc fileprivate func onReload()
     {
         AnalyticsManager.shared.send(.pullToRefresh(SourceFeedType.newFaces.rawValue))
-        self.hideScrollToTopOption()
+        // self.hideScrollToTopOption()
         self.showTopBar(true)
         self.reload(false)
     }
@@ -205,7 +205,7 @@ class NewFacesViewController: BaseViewController
     
     @IBAction func onScrollTop()
     {
-        self.hideScrollToTopOption()
+        //self.hideScrollToTopOption()
         self.showTopBar(true)
         let topOffset = self.view.safeAreaInsets.top + self.tableView.contentInset.top
         self.tableView.setContentOffset(CGPoint(x: 0.0, y: -topOffset), animated: false)
@@ -258,11 +258,11 @@ class NewFacesViewController: BaseViewController
             self?.reload(false)
         }).disposed(by: self.disposeBag)
         
-        UIManager.shared.feedsFabShouldBeHidden.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
-            guard state else { return }
-            
-            self?.hideScrollToTopOption()
-        }).disposed(by: self.disposeBag)
+//        UIManager.shared.feedsFabShouldBeHidden.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
+//            guard state else { return }
+//
+//            self?.hideScrollToTopOption()
+//        }).disposed(by: self.disposeBag)
         
         UIManager.shared.discoverTopBarShouldBeHidden.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
@@ -363,18 +363,18 @@ class NewFacesViewController: BaseViewController
         }
 
         // No update case
-        guard totalCount != lastItemsCount else {
-            let offset = self.tableView.contentOffset.y
-            if offset > 75.0 && totalCount > 0 {
-                self.scrollTopBtn.alpha = 1.0
-                self.isScrollTopVisible = true
-            } else {
-                self.scrollTopBtn.alpha = 0.0
-                self.isScrollTopVisible = false
-            }
-            
-            return
-        }
+//        guard totalCount != lastItemsCount else {
+//            let offset = self.tableView.contentOffset.y
+//            if offset > 75.0 && totalCount > 0 {
+//                self.scrollTopBtn.alpha = 1.0
+//                self.isScrollTopVisible = true
+//            } else {
+//                self.scrollTopBtn.alpha = 0.0
+//                self.isScrollTopVisible = false
+//            }
+//
+//            return
+//        }
         
         // Paging case
         let pageRange = lastItemsCount..<totalCount        
@@ -442,33 +442,33 @@ class NewFacesViewController: BaseViewController
         self.feedBottomLabel.alpha = feedBottomLabelBottom <  screenHeight -  self.view.safeAreaInsets.bottom - 56.0 ? 1.0 : 0.0
     }
     
-    fileprivate func showScrollToTopOption()
-    {
-        guard !self.isScrollTopVisible else { return }
-        
-        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
-            self.scrollTopBtn.alpha = 1.0
-        }
-        animator.addCompletion { _ in
-            self.isScrollTopVisible = true
-        }
-        
-        animator.startAnimation()
-    }
-    
-    fileprivate func hideScrollToTopOption()
-    {
-        guard self.isScrollTopVisible else { return }
-        
-        let animator = UIViewPropertyAnimator(duration: 0.15, curve: .linear) {
-            self.scrollTopBtn.alpha = 0.0
-        }
-        animator.addCompletion { _ in
-            self.isScrollTopVisible = false
-        }
-        
-        animator.startAnimation()
-    }
+//    fileprivate func showScrollToTopOption()
+//    {
+//        guard !self.isScrollTopVisible else { return }
+//
+//        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
+//            self.scrollTopBtn.alpha = 1.0
+//        }
+//        animator.addCompletion { _ in
+//            self.isScrollTopVisible = true
+//        }
+//
+//        animator.startAnimation()
+//    }
+//
+//    fileprivate func hideScrollToTopOption()
+//    {
+//        guard self.isScrollTopVisible else { return }
+//
+//        let animator = UIViewPropertyAnimator(duration: 0.15, curve: .linear) {
+//            self.scrollTopBtn.alpha = 0.0
+//        }
+//        animator.addCompletion { _ in
+//            self.isScrollTopVisible = false
+//        }
+//
+//        animator.startAnimation()
+//    }
     
     fileprivate func showLocationsSettingsAlert()
     {
@@ -639,7 +639,7 @@ extension NewFacesViewController: UIScrollViewDelegate
         // Scroll to top FAB
         
         guard offset > topTrashhold else {
-            self.hideScrollToTopOption()
+            // self.hideScrollToTopOption()
             self.showTopBar(true)
             self.prevScrollingOffset = 0.0
             
@@ -647,7 +647,7 @@ extension NewFacesViewController: UIScrollViewDelegate
         }
         
         if offset - self.prevScrollingOffset <  -1.0 * midTrashhold {
-            self.showScrollToTopOption()
+            // self.showScrollToTopOption()
             self.showTopBar(true)
             self.prevScrollingOffset = offset
             
@@ -655,7 +655,7 @@ extension NewFacesViewController: UIScrollViewDelegate
         }
         
         if offset - self.prevScrollingOffset > midTrashhold {
-            self.hideScrollToTopOption()
+            // self.hideScrollToTopOption()
             self.hideTopBar()
             self.prevScrollingOffset = offset
             
