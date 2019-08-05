@@ -183,21 +183,21 @@ class MainLCFilterViewController: BaseViewController
     {
         switch self.input.feedType {
         case .likesYou:
-            self.input.lmm.filteredLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            self.input.lmm.tmpFilteredLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
                 self?.updateFilterBtn()
             }).disposed(by: self.disposeBag)
             
-            self .input.lmm.allLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            self .input.lmm.tmpAllLikesYouProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
                 self?.updateShowAllBtn()
             }).disposed(by: self.disposeBag)
             break
             
         case .messages:
-            self.input.lmm.filteredMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            self.input.lmm.tmpFilteredMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
                 self?.updateFilterBtn()
             }).disposed(by: self.disposeBag)
             
-            self .input.lmm.allMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            self .input.lmm.tmpAllMessagesProfilesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
                 self?.updateShowAllBtn()
             }).disposed(by: self.disposeBag)
             break
@@ -210,8 +210,8 @@ class MainLCFilterViewController: BaseViewController
     {
         var count: Int = 0
         switch self.input.feedType {
-        case .likesYou: count = self.input.lmm.filteredLikesYouProfilesCount.value
-        case .messages: count = self.input.lmm.filteredMessagesProfilesCount.value
+        case .likesYou: count = self.input.lmm.tmpFilteredLikesYouProfilesCount.value
+        case .messages: count = self.input.lmm.tmpFilteredMessagesProfilesCount.value
         default: break
         }
         

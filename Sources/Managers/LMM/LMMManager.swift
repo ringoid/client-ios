@@ -55,6 +55,11 @@ class LMMManager
     let filteredLikesYouProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     let filteredMessagesProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     
+    let tmpAllLikesYouProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    let tmpAllMessagesProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    let tmpFilteredLikesYouProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    let tmpFilteredMessagesProfilesCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
+    
     let isFetching: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
     let chatUpdateInterval: BehaviorRelay<Double> = BehaviorRelay<Double>(value: 5.0)
@@ -295,10 +300,14 @@ class LMMManager
                 if isFilterEnabled {
                     self?.filteredLikesYouProfilesCount.accept(localLikesYou.count)
                     self?.filteredMessagesProfilesCount.accept(messages.count)
+                    self?.tmpFilteredLikesYouProfilesCount.accept(localLikesYou.count)
+                    self?.tmpFilteredMessagesProfilesCount.accept(messages.count)
                 }
                 
                 self?.allLikesYouProfilesCount.accept(result.allLikesYouProfilesNum)
                 self?.allMessagesProfilesCount.accept(result.allMessagesProfilesNum)
+                self?.tmpAllLikesYouProfilesCount.accept(result.allLikesYouProfilesNum)
+                self?.tmpAllMessagesProfilesCount.accept(result.allMessagesProfilesNum)
             })
         }).asObservable().delay(0.05, scheduler: MainScheduler.instance).do(
             onNext: { [weak self] _ in
@@ -378,10 +387,10 @@ class LMMManager
                     RunLoop.main.add(timer, forMode: .common)
                     
                     // Updating counters
-                    self?.filteredLikesYouProfilesCount.accept(result.likesYou.count)
-                    self?.filteredMessagesProfilesCount.accept(result.messages.count)
-                    self?.allLikesYouProfilesCount.accept(result.allLikesYouProfilesNum)
-                    self?.allMessagesProfilesCount.accept(result.allMessagesProfilesNum)
+                    self?.tmpFilteredLikesYouProfilesCount.accept(result.likesYou.count)
+                    self?.tmpFilteredMessagesProfilesCount.accept(result.messages.count)
+                    self?.tmpAllLikesYouProfilesCount.accept(result.allLikesYouProfilesNum)
+                    self?.tmpAllMessagesProfilesCount.accept(result.allMessagesProfilesNum)
                     
                     return .just(())
                 }).subscribe().disposed(by: self.disposeBag)
@@ -465,6 +474,11 @@ class LMMManager
         self.allMessagesProfilesCount.accept(0)
         self.filteredLikesYouProfilesCount.accept(0)
         self.filteredMessagesProfilesCount.accept(0)
+        
+        self.tmpAllLikesYouProfilesCount.accept(0)
+        self.tmpAllMessagesProfilesCount.accept(0)
+        self.tmpFilteredLikesYouProfilesCount.accept(0)
+        self.tmpFilteredMessagesProfilesCount.accept(0)
         
         self.storage.remove("prevNotSeenLikes").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("prevNotSeenMatches").subscribe().disposed(by: self.disposeBag)
