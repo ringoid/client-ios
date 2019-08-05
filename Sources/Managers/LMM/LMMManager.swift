@@ -207,7 +207,9 @@ class LMMManager
         self.updateProfilesPrevState(false)
         
         // Checking cache
-        if let likesYouResult = self.filteredLikesYouCache, let messagesResult = self.filteredMessagesCache, isFilterEnabled {
+        if let likesYouResult = self.filteredLikesYouCache,
+            let messagesResult = self.filteredMessagesCache,
+            isFilterEnabled, !self.isFiltersUpdating {
             self.clearFilteredCahe()
             self.purge()
             
@@ -241,6 +243,11 @@ class LMMManager
             self.likesYouNotificationProfiles.formIntersection(localLikesYou.map({ $0.id }))
             self.matchesNotificationProfiles.formIntersection(messages.map({ $0.id }))
             self.messagesNotificationProfiles.formIntersection(messages.map({ $0.id }))
+            
+            self.filteredLikesYouProfilesCount.accept(self.tmpFilteredLikesYouProfilesCount.value)
+            self.filteredMessagesProfilesCount.accept(self.tmpFilteredMessagesProfilesCount.value)
+            self.allLikesYouProfilesCount.accept(self.tmpAllLikesYouProfilesCount.value)
+            self.allMessagesProfilesCount.accept(self.tmpAllMessagesProfilesCount.value)
             
             self.isFetching.accept(false)
             return self.db.add(localLikesYou + messages).asObservable().do(onNext: { [weak self] _ in
