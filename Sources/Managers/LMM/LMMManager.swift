@@ -299,7 +299,7 @@ class LMMManager
     
     func refreshInBackground(_ from: SourceFeedType)
     {
-        self.refreshProtected(from, isFilterEnabled: true).subscribe().disposed(by: self.disposeBag)
+        self.refreshProtected(from, isFilterEnabled: false).subscribe().disposed(by: self.disposeBag)
     }
     
     func refreshProtected(_ from: SourceFeedType, isFilterEnabled: Bool) -> Observable<Void>
