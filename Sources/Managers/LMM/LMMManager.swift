@@ -853,7 +853,7 @@ class LMMManager
         let lmmProfiles = Set((self.likesYou.value + self.matches.value + self.messages.value).map({ $0.id }))
         self.localLmmCount.accept(lmmProfiles.count)
     }
-    
+ 
     fileprivate func updateAvailability()
     {
         // Likes you
@@ -861,13 +861,13 @@ class LMMManager
         self.prevLikesYouUpdatedProfiles = self.likesYouNotificationProfiles
         
         if updatedLikesYouProfiles.count > 0 { self.likesYouUpdatesAvailable.accept(true) }
-        if self.likesYouNotificationProfiles.count == 0 { self.likesYouUpdatesAvailable.accept(false) }
+        if self.likesYouNotificationProfiles.count == 0, self.likesYouUpdatesAvailable.value { self.likesYouUpdatesAvailable.accept(false) }
         
         // Matches
         let updatedMatchesProfiles = self.matchesNotificationProfiles.subtracting(self.prevMatchesUpdatedProfiles)
         self.prevMatchesUpdatedProfiles = self.matchesNotificationProfiles
         
-        if updatedMatchesProfiles.count > 0 { self.matchesUpdatesAvailable.accept(true) }
+        if updatedMatchesProfiles.count > 0, !self.matchesUpdatesAvailable.value { self.matchesUpdatesAvailable.accept(true) }
         if self.matchesNotificationProfiles.count == 0 { self.matchesUpdatesAvailable.accept(false) }
 
         // Messages
@@ -881,7 +881,7 @@ class LMMManager
             self.messagesUpdatesAvailable.accept(true)
         }
         
-        if messagesNotificationProfiles.count == 0 { self.messagesUpdatesAvailable.accept(false) }
+        if messagesNotificationProfiles.count == 0, self.messagesUpdatesAvailable.value { self.messagesUpdatesAvailable.accept(false) }
     }
     
     fileprivate func resetNotificationProfiles()

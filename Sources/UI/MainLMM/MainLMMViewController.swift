@@ -1077,6 +1077,7 @@ extension MainLMMViewController: UIScrollViewDelegate
         
         if offset - self.prevScrollingOffset <  -1.0 * midTrashhold {
             // self.showScrollToTopOption()
+            self.updateBtn.alpha = 1.0
             self.showTopBar(true)
             self.prevScrollingOffset = offset
             
