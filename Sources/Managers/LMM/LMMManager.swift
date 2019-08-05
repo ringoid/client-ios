@@ -233,6 +233,10 @@ class LMMManager
                 }
             }
             
+            self.likesYouNotificationProfiles.formIntersection(localLikesYou.map({ $0.id }))
+            self.matchesNotificationProfiles.formIntersection(messages.map({ $0.id }))
+            self.messagesNotificationProfiles.formIntersection(messages.map({ $0.id }))
+            
             self.isFetching.accept(false)
             return self.db.add(localLikesYou + messages).asObservable().do(onNext: { [weak self] _ in
                 self?.updateProfilesPrevState(true)
@@ -248,7 +252,9 @@ class LMMManager
                               maxAge: isFilterEnabled ? self.filter.maxAge.value : nil,
                               maxDistance: isFilterEnabled ? self.filter.maxDistance.value : nil
         ).flatMap({ [weak self] result -> Observable<Void> in
-            self!.purge()
+            guard let `self` = self else { return .just(()) }
+            
+            self.purge()
             
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)            
             let messages = createProfiles(result.messages, type: .messages)
@@ -261,7 +267,7 @@ class LMMManager
                     remoteProfile.notSeen = true
                 }
                 
-                self?.chatsCache.forEach { localProfileId, profileCache in
+                self.chatsCache.forEach { localProfileId, profileCache in
                     if localProfileId == remoteProfile.id {
                         if profileCache.messagesCount == remoteProfile.messages.count {
                             remoteProfile.notRead = profileCache.notRead
@@ -277,7 +283,13 @@ class LMMManager
                 }
             }
             
-            return self!.db.add(localLikesYou + messages).asObservable().do(onNext: { [weak self] _ in
+            if self.filter.isFilteringEnabled.value {
+                self.likesYouNotificationProfiles.formIntersection(localLikesYou.map({ $0.id }))
+                self.matchesNotificationProfiles.formIntersection(messages.map({ $0.id }))
+                self.messagesNotificationProfiles.formIntersection(messages.map({ $0.id }))
+            }
+            
+            return self.db.add(localLikesYou + messages).asObservable().do(onNext: { [weak self] _ in
                 self?.updateProfilesPrevState(true)
                 
                 if isFilterEnabled {
@@ -588,50 +600,60 @@ class LMMManager
             
             switch remoteFeedType {
             case .likesYou:
-                self.likesYouNotificationProfiles.insert(profileId)
-                let notSeenCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
-                self.notSeenLikesYouCount.accept(notSeenCount)
-                self.prevNotSeenLikes.insert(profileId)
-                
+                let isContainedInFiltered = self.filter.isFilteringEnabled.value && self.likesYou.value.map({ $0.id }).contains(profileId)
+                if !self.filter.isFilteringEnabled.value || isContainedInFiltered {
+                    self.likesYouNotificationProfiles.insert(profileId)
+                    let notSeenCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
+                    self.notSeenLikesYouCount.accept(notSeenCount)
+                    self.prevNotSeenLikes.insert(profileId)
+                }
+
                 break
                 
             case .matches:
-                self.likesYouNotificationProfiles.remove(profileId)
-                self.matchesNotificationProfiles.insert(profileId)
+                let isContainedInFiltered = self.filter.isFilteringEnabled.value && self.messages.value.map({ $0.id }).contains(profileId)
+                if !self.filter.isFilteringEnabled.value || isContainedInFiltered {
+                    self.likesYouNotificationProfiles.remove(profileId)
+                    self.matchesNotificationProfiles.insert(profileId)
+                    
+                    let notSeenCount = self.messages.value.filter({ $0.messages.count == 0 }).notSeenIDs().union(self.matchesNotificationProfiles).count
+                    self.notSeenMatchesCount.accept(notSeenCount)
+                    
+                    let notSeenLikesCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
+                    self.notSeenLikesYouCount.accept(notSeenLikesCount)
+                    
+                    self.prevNotSeenMatches.insert(profileId)
+                }
                 
-                let notSeenCount = self.messages.value.filter({ $0.messages.count == 0 }).notSeenIDs().union(self.matchesNotificationProfiles).count
-                self.notSeenMatchesCount.accept(notSeenCount)
-                
-                let notSeenLikesCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
-                self.notSeenLikesYouCount.accept(notSeenLikesCount)
-                
-                self.prevNotSeenMatches.insert(profileId)
                 break
                                 
             case .messages:
-                self.updateChat(profileId)
-                
-                if ChatViewController.openedProfileId == profileId { break }
-                if self.messagesNotificationProfiles.contains(profileId) { break }
-                                
-                self.db.updateRead(profileId, isRead: false)
-                self.prevNotReadMessages.insert(profileId)
-                
-                if self.actionsManager.lmmViewingProfiles.value.contains(profileId) { break }
-                
-                self.likesYouNotificationProfiles.remove(profileId)
-                self.messagesNotificationProfiles.insert(profileId)
-
-                let notSeenCount = self.messages.value.notReadIDs()
-                    .union(self.matches.value.notReadIDs())
-                    .union(self.messagesNotificationProfiles).count
-                self.notSeenMessagesCount.accept(notSeenCount)
-                
-                let notSeenMatchesCount = self.messages.value.filter({ $0.messages.count == 0 }).notSeenIDs().union(self.matchesNotificationProfiles).count
-                self.notSeenMatchesCount.accept(notSeenMatchesCount)
-                
-                let notSeenLikesCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
-                self.notSeenLikesYouCount.accept(notSeenLikesCount)
+                let isContainedInFiltered = self.filter.isFilteringEnabled.value && self.messages.value.map({ $0.id }).contains(profileId)
+                if !self.filter.isFilteringEnabled.value || isContainedInFiltered {
+                    self.updateChat(profileId)
+                    
+                    if ChatViewController.openedProfileId == profileId { break }
+                    if self.messagesNotificationProfiles.contains(profileId) { break }
+                    
+                    self.db.updateRead(profileId, isRead: false)
+                    self.prevNotReadMessages.insert(profileId)
+                    
+                    if self.actionsManager.lmmViewingProfiles.value.contains(profileId) { break }
+                    
+                    self.likesYouNotificationProfiles.remove(profileId)
+                    self.messagesNotificationProfiles.insert(profileId)
+                    
+                    let notSeenCount = self.messages.value.notReadIDs()
+                        .union(self.matches.value.notReadIDs())
+                        .union(self.messagesNotificationProfiles).count
+                    self.notSeenMessagesCount.accept(notSeenCount)
+                    
+                    let notSeenMatchesCount = self.messages.value.filter({ $0.messages.count == 0 }).notSeenIDs().union(self.matchesNotificationProfiles).count
+                    self.notSeenMatchesCount.accept(notSeenMatchesCount)
+                    
+                    let notSeenLikesCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
+                    self.notSeenLikesYouCount.accept(notSeenLikesCount)
+                }
                 
                 break
                 
