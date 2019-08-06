@@ -487,6 +487,11 @@ class LMMManager
         self.storage.remove("messagesNotificationProfiles").subscribe().disposed(by: self.disposeBag)
         self.storage.remove("processedNotificationsProfiles").subscribe().disposed(by: self.disposeBag)
         
+        UserDefaults.standard.removeObject(forKey: "filtered_likes_profiles_count")
+        UserDefaults.standard.removeObject(forKey: "filtered_messages_profiles_count")
+        UserDefaults.standard.removeObject(forKey: "filtered_all_likes_profiles_count")
+        UserDefaults.standard.removeObject(forKey: "filtered_all_messages_profiles_count")
+        
         UserDefaults.standard.removeObject(forKey: "chats_cache")
         UserDefaults.standard.synchronize()
         
