@@ -212,6 +212,7 @@ class LMMManager
             isFilterEnabled, !self.isFiltersUpdating {
             self.clearFilteredCahe()
             self.purge()
+            self.resetNotificationProfiles()
             
             let localLikesYou = createProfiles(likesYouResult, type: .likesYou)
             let messages = createProfiles(messagesResult, type: .messages)
@@ -239,10 +240,6 @@ class LMMManager
                     }
                 }
             }
-            
-            self.likesYouNotificationProfiles.formIntersection(localLikesYou.map({ $0.id }))
-            self.matchesNotificationProfiles.formIntersection(messages.map({ $0.id }))
-            self.messagesNotificationProfiles.formIntersection(messages.map({ $0.id }))
             
             self.filteredLikesYouProfilesCount.accept(self.tmpFilteredLikesYouProfilesCount.value)
             self.filteredMessagesProfilesCount.accept(self.tmpFilteredMessagesProfilesCount.value)
@@ -293,12 +290,6 @@ class LMMManager
                         }
                     }
                 }
-            }
-            
-            if self.filter.isFilteringEnabled.value {
-                self.likesYouNotificationProfiles.formIntersection(localLikesYou.map({ $0.id }))
-                self.matchesNotificationProfiles.formIntersection(messages.map({ $0.id }))
-                self.messagesNotificationProfiles.formIntersection(messages.map({ $0.id }))
             }
             
             return self.db.add(localLikesYou + messages).asObservable().do(onNext: { [weak self] _ in
@@ -621,8 +612,8 @@ class LMMManager
             
             switch remoteFeedType {
             case .likesYou:
-                let isContainedInFiltered = self.filter.isFilteringEnabled.value && self.likesYou.value.map({ $0.id }).contains(profileId)
-                if !self.filter.isFilteringEnabled.value || isContainedInFiltered {
+                let isContaintedLocally = self.likesYou.value.map({ $0.id }).contains(profileId)
+                if  !isContaintedLocally {
                     self.likesYouNotificationProfiles.insert(profileId)
                     let notSeenCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
                     self.notSeenLikesYouCount.accept(notSeenCount)
@@ -632,8 +623,8 @@ class LMMManager
                 break
                 
             case .matches:
-                let isContainedInFiltered = self.filter.isFilteringEnabled.value && self.messages.value.map({ $0.id }).contains(profileId)
-                if !self.filter.isFilteringEnabled.value || isContainedInFiltered {
+                let isContaintedLocally = self.messages.value.map({ $0.id }).contains(profileId)
+                if isContaintedLocally {
                     self.likesYouNotificationProfiles.remove(profileId)
                     self.matchesNotificationProfiles.insert(profileId)
                     
@@ -649,31 +640,22 @@ class LMMManager
                 break
                                 
             case .messages:
-                let isContainedInFiltered = self.filter.isFilteringEnabled.value && self.messages.value.map({ $0.id }).contains(profileId)
-                if !self.filter.isFilteringEnabled.value || isContainedInFiltered {
+                let isContaintedLocally = self.messages.value.map({ $0.id }).contains(profileId)
+                if isContaintedLocally {
                     self.updateChat(profileId)
                     
                     if ChatViewController.openedProfileId == profileId { break }
-                    if self.messagesNotificationProfiles.contains(profileId) { break }
+                    if self.actionsManager.lmmViewingProfiles.value.contains(profileId) { break }
                     
                     self.db.updateRead(profileId, isRead: false)
                     self.prevNotReadMessages.insert(profileId)
                     
-                    if self.actionsManager.lmmViewingProfiles.value.contains(profileId) { break }
-                    
+                    self.updateNotSeenCounters()
+                } else {
                     self.likesYouNotificationProfiles.remove(profileId)
                     self.messagesNotificationProfiles.insert(profileId)
                     
-                    let notSeenCount = self.messages.value.notReadIDs()
-                        .union(self.matches.value.notReadIDs())
-                        .union(self.messagesNotificationProfiles).count
-                    self.notSeenMessagesCount.accept(notSeenCount)
-                    
-                    let notSeenMatchesCount = self.messages.value.filter({ $0.messages.count == 0 }).notSeenIDs().union(self.matchesNotificationProfiles).count
-                    self.notSeenMatchesCount.accept(notSeenMatchesCount)
-                    
-                    let notSeenLikesCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
-                    self.notSeenLikesYouCount.accept(notSeenLikesCount)
+                    self.updateNotSeenCounters()
                 }
                 
                 break
@@ -752,6 +734,20 @@ class LMMManager
             UserDefaults.standard.set(interval, forKey: "chat_update_interval")
             UserDefaults.standard.synchronize()
         }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func updateNotSeenCounters()
+    {
+        let notSeenCount = self.messages.value.notReadIDs()
+            .union(self.matches.value.notReadIDs())
+            .union(self.messagesNotificationProfiles).count
+        self.notSeenMessagesCount.accept(notSeenCount)
+        
+        let notSeenMatchesCount = self.messages.value.filter({ $0.messages.count == 0 }).notSeenIDs().union(self.matchesNotificationProfiles).count
+        self.notSeenMatchesCount.accept(notSeenMatchesCount)
+        
+        let notSeenLikesCount = self.likesYou.value.notSeenIDs().union(self.likesYouNotificationProfiles).count
+        self.notSeenLikesYouCount.accept(notSeenLikesCount)
     }
     
     fileprivate func loadPrevState()
