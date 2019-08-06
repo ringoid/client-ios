@@ -734,6 +734,23 @@ class LMMManager
             UserDefaults.standard.set(interval, forKey: "chat_update_interval")
             UserDefaults.standard.synchronize()
         }).disposed(by: self.disposeBag)
+        
+        // Storing current counters value
+        self.filteredLikesYouProfilesCount.subscribe(onNext: { value in
+            UserDefaults.standard.set(value, forKey: "filtered_likes_profiles_count")
+        }).disposed(by: self.disposeBag)
+        
+        self.filteredMessagesProfilesCount.subscribe(onNext: { value in
+            UserDefaults.standard.set(value, forKey: "filtered_messages_profiles_count")
+        }).disposed(by: self.disposeBag)
+        
+        self.allLikesYouProfilesCount.subscribe(onNext: { value in
+            UserDefaults.standard.set(value, forKey: "filtered_all_likes_profiles_count")
+        }).disposed(by: self.disposeBag)
+        
+        self.allMessagesProfilesCount.subscribe(onNext: { value in
+            UserDefaults.standard.set(value, forKey: "filtered_all_messages_profiles_count")
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func updateNotSeenCounters()
@@ -790,6 +807,19 @@ class LMMManager
         if interval >= 0.5 {
             self.chatUpdateInterval.accept(interval)
         }
+        
+        // Filter counters
+        let storedLikesProfilesCount = UserDefaults.standard.integer(forKey: "filtered_likes_profiles_count")
+        self.filteredLikesYouProfilesCount.accept(storedLikesProfilesCount)
+        
+        let storedMessagesProfilesCount = UserDefaults.standard.integer(forKey: "filtered_messages_profiles_count")
+        self.filteredMessagesProfilesCount.accept(storedMessagesProfilesCount)
+        
+        let storedAllLikesProfilesCount = UserDefaults.standard.integer(forKey: "filtered_all_likes_profiles_count")
+        self.allLikesYouProfilesCount.accept(storedAllLikesProfilesCount)
+        
+        let storedAllMessagesProfilesCount = UserDefaults.standard.integer(forKey: "filtered_all_messages_profiles_count")
+        self.allMessagesProfilesCount.accept(storedAllMessagesProfilesCount)
     }
     
     fileprivate func updateLocalProfile(_ id: String, update: ApiChatUpdate)
