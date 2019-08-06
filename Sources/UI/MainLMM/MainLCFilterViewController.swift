@@ -223,8 +223,8 @@ class MainLCFilterViewController: BaseViewController
         var totalCount: Int = 0
         
         switch self.input.feedType {
-        case .likesYou: totalCount = self.input.lmm.allLikesYouProfilesCount.value
-        case .messages: totalCount = self.input.lmm.allMessagesProfilesCount.value
+        case .likesYou: totalCount = self.input.lmm.tmpAllLikesYouProfilesCount.value
+        case .messages: totalCount = self.input.lmm.tmpAllMessagesProfilesCount.value
         default: break
         }
         
