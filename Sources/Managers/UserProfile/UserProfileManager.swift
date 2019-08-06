@@ -207,6 +207,8 @@ class UserProfileManager
             UserDefaults.standard.setValue(value.rawValue, forKey: "profile_sex")
             UserDefaults.standard.synchronize()
             
+            AnalyticsManager.shared.gender = value
+            
             self?.checkFilterDefaults()
         }).disposed(by: self.disposeBag)
         
@@ -215,6 +217,8 @@ class UserProfileManager
             
             UserDefaults.standard.setValue(value, forKey: "profile_yob")
             UserDefaults.standard.synchronize()
+            
+            AnalyticsManager.shared.yob = value
             
             self?.checkFilterDefaults()
         }).disposed(by: self.disposeBag)

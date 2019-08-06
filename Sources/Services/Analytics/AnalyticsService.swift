@@ -11,6 +11,7 @@ import Foundation
 enum AnalyticsEvent
 {
     case signedUp;
+    
     case profileCreated(Int, String);
     case profileDeleted;
     case liked(String);
@@ -42,8 +43,11 @@ enum AnalyticsEvent
     
 }
 
-protocol AnalyticsService
+protocol AnalyticsService: class
 {
+    var gender: Sex? { get set }
+    var yob: Int? { get set }
+    
     func send(_ event: AnalyticsEvent)
     func reset()
 }

@@ -12,6 +12,20 @@ class AnalyticsManager
 {
     static let shared = AnalyticsManager()
     
+    var gender: Sex?
+    {
+        didSet {
+            self.services.forEach({ $0.gender = self.gender })
+        }
+    }
+    
+    var yob: Int?
+    {
+        didSet {
+            self.services.forEach({  $0.yob = self.yob })
+        }
+    }
+    
     fileprivate let services: [AnalyticsService] = [
         FirebaseAnalytics(),
         FlurryAnalytics()

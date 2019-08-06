@@ -12,6 +12,10 @@ class FirebaseAnalytics: AnalyticsService
 {
     fileprivate var userId: String = ""
     
+    // Not used in Firebase analytics
+    var gender: Sex?
+    var yob: Int?
+    
     init()
     {
         self.userId = UserDefaults.standard.string(forKey: "analytics_firebase_key") ?? UUID().uuidString

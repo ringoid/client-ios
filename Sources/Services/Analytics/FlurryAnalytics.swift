@@ -12,6 +12,22 @@ class FlurryAnalytics: AnalyticsService
 {
     fileprivate var userId: String = ""
     
+    var gender: Sex?
+    {
+        didSet {
+            Flurry.setGender(self.gender == .female ? "f" : "m")
+        }
+    }
+    
+    var yob: Int?
+    {
+        didSet {
+            let calendar = Calendar.current
+            let currentYear = calendar.component(.year, from: Date())
+            Flurry.setAge(Int32(currentYear - (self.yob ?? 2001)))
+        }
+    }
+    
     init()
     {
         self.userId = UserDefaults.standard.string(forKey: "analytics_flurry_key") ?? UUID().uuidString
