@@ -205,6 +205,7 @@ class LMMManager
         })
         
         self.updateProfilesPrevState(false)
+        self.resetNotificationProfiles()
         
         // Checking cache
         if let likesYouResult = self.filteredLikesYouCache,
@@ -212,7 +213,6 @@ class LMMManager
             isFilterEnabled, !self.isFiltersUpdating {
             self.clearFilteredCahe()
             self.purge()
-            self.resetNotificationProfiles()
             
             let localLikesYou = createProfiles(likesYouResult, type: .likesYou)
             let messages = createProfiles(messagesResult, type: .messages)
