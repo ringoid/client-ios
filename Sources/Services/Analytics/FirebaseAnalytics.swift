@@ -21,8 +21,8 @@ class FirebaseAnalytics: AnalyticsService
         self.userId = UserDefaults.standard.string(forKey: "analytics_firebase_key") ?? UUID().uuidString
         UserDefaults.standard.setValue(self.userId, forKey: "analytics_firebase_key")
         UserDefaults.standard.synchronize()
-        
-        AnalyticsConfiguration.shared().setAnalyticsCollectionEnabled(true)
+                
+        Analytics.setAnalyticsCollectionEnabled(true)
         Analytics.setUserID(self.userId)
     }
     

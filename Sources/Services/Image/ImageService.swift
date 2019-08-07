@@ -44,7 +44,7 @@ class ImageService
             self.viewMap[url] = to
             
             ImagePipeline.shared.rx.loadImage(with: url).asObservable()
-                .retryOnConnect(timeout: 10.0)
+                .retryOnConnect(timeout: .seconds(10))
                 .retry(3)
                 .subscribe(onNext: { response in
                     self.taskMap.removeValue(forKey: url)
@@ -64,14 +64,14 @@ class ImageService
         var thumbnailResponse: ImageResponse? = nil
         
         ImagePipeline.shared.rx.loadImage(with: thumbnailUrl).asObservable()
-            .retryOnConnect(timeout: 10.0)
+            .retryOnConnect(timeout: .seconds(10))
             .retry(3)
             .flatMap({ response -> Observable<ImageResponse> in                
                 to.image = response.image
                 thumbnailResponse = response
                 
                 return ImagePipeline.shared.rx.loadImage(with: request).asObservable()
-                    .retryOnConnect(timeout: 10.0)
+                    .retryOnConnect(timeout: .seconds(10))
                     .retry(3)
             }).subscribe(onNext: { response in
                 self.taskMap.removeValue(forKey: url)

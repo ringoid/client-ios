@@ -1,145 +1,146 @@
 PODS:
-  - Alamofire (4.8.1)
-  - Bolts (1.9.0):
-    - Bolts/AppLinks (= 1.9.0)
-    - Bolts/Tasks (= 1.9.0)
-  - Bolts/AppLinks (1.9.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.9.0)
-  - Branch (0.25.11):
-    - Branch/Core (= 0.25.11)
-  - Branch/Core (0.25.11)
-  - Crashlytics (3.12.0):
-    - Fabric (~> 1.9.0)
-  - DeviceKit (1.11.0)
-  - Fabric (1.9.0)
-  - FBSDKCoreKit (4.40.0):
-    - Bolts (~> 1.9)
-  - Firebase/Core (5.18.0):
+  - Alamofire (4.8.2)
+  - Branch (0.27.1):
+    - Branch/Core (= 0.27.1)
+  - Branch/Core (0.27.1)
+  - Crashlytics (3.13.4):
+    - Fabric (~> 1.10.2)
+  - DeviceKit (1.13.0)
+  - Fabric (1.10.2)
+  - FBSDKCoreKit (5.3.0):
+    - FBSDKCoreKit/Basics (= 5.3.0)
+    - FBSDKCoreKit/Core (= 5.3.0)
+  - FBSDKCoreKit/Basics (5.3.0)
+  - FBSDKCoreKit/Core (5.3.0):
+    - FBSDKCoreKit/Basics
+  - Firebase/Core (6.5.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.7.0)
-  - Firebase/CoreOnly (5.18.0):
-    - FirebaseCore (= 5.3.1)
-  - Firebase/Messaging (5.18.0):
+    - FirebaseAnalytics (= 6.0.4)
+  - Firebase/CoreOnly (6.5.0):
+    - FirebaseCore (= 6.1.0)
+  - Firebase/Messaging (6.5.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (= 3.3.2)
-  - Firebase/Performance (5.18.0):
-    - Firebase/Core
-    - FirebasePerformance (= 2.2.3)
-  - FirebaseABTesting (2.0.0):
-    - FirebaseCore (~> 5.0)
+    - FirebaseMessaging (~> 4.1.1)
+  - Firebase/Performance (6.5.0):
+    - Firebase/CoreOnly
+    - FirebasePerformance (~> 3.1.1)
+  - FirebaseABTesting (3.0.0):
+    - FirebaseCore (~> 6.0)
     - Protobuf (~> 3.5)
-  - FirebaseAnalytics (5.7.0):
-    - FirebaseCore (~> 5.3)
-    - FirebaseInstanceID (~> 3.6)
-    - GoogleAppMeasurement (= 5.7.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
-    - GoogleUtilities/MethodSwizzler (~> 5.2)
-    - GoogleUtilities/Network (~> 5.2)
-    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+  - FirebaseAnalytics (6.0.4):
+    - FirebaseCore (~> 6.1)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleAppMeasurement (= 6.0.4)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
   - FirebaseAnalyticsInterop (1.2.0)
-  - FirebaseCore (5.3.1):
-    - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseInstanceID (3.7.0):
-    - FirebaseCore (~> 5.2)
-    - GoogleUtilities/Environment (~> 5.2)
-    - GoogleUtilities/UserDefaults (~> 5.2)
-  - FirebaseMessaging (3.3.2):
+  - FirebaseCore (6.1.0):
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/Logger (~> 6.0)
+  - FirebaseInstanceID (4.2.2):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+  - FirebaseMessaging (4.1.1):
     - FirebaseAnalyticsInterop (~> 1.1)
-    - FirebaseCore (~> 5.2)
-    - FirebaseInstanceID (~> 3.6)
-    - GoogleUtilities/Environment (~> 5.3)
-    - GoogleUtilities/Reachability (~> 5.3)
-    - GoogleUtilities/UserDefaults (~> 5.3)
+    - FirebaseCore (~> 6.0)
+    - FirebaseInstanceID (~> 4.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.2)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Reachability (~> 6.2)
+    - GoogleUtilities/UserDefaults (~> 6.2)
     - Protobuf (~> 3.1)
-  - FirebasePerformance (2.2.3):
-    - FirebaseAnalytics (~> 5.6)
-    - FirebaseInstanceID (~> 3.5)
-    - FirebaseRemoteConfig (~> 3.1)
+  - FirebasePerformance (3.1.1):
+    - FirebaseCore (~> 6.0)
+    - FirebaseInstanceID (~> 4.2)
+    - FirebaseRemoteConfig (~> 4.2)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-    - GoogleUtilities/ISASwizzler (~> 5.2)
-    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/ISASwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
     - Protobuf (~> 3.5)
-  - FirebaseRemoteConfig (3.1.0):
-    - FirebaseABTesting (~> 2.0)
-    - FirebaseAnalytics (~> 5.3)
-    - FirebaseCore (~> 5.1)
-    - FirebaseInstanceID (~> 3.3)
-    - GoogleUtilities/Environment (~> 5.2)
-    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+  - FirebaseRemoteConfig (4.2.1):
+    - FirebaseABTesting (~> 3.0)
+    - FirebaseCore (~> 6.1)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleUtilities/Environment (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - Protobuf (~> 3.5)
   - Flurry-iOS-SDK/FlurrySDK (9.3.1)
-  - GoogleAppMeasurement (5.7.0):
-    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
-    - GoogleUtilities/MethodSwizzler (~> 5.2)
-    - GoogleUtilities/Network (~> 5.2)
-    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+  - GoogleAppMeasurement (6.0.4):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - GoogleToolboxForMac/Defines (2.2.0)
-  - GoogleToolboxForMac/Logger (2.2.0):
-    - GoogleToolboxForMac/Defines (= 2.2.0)
-  - "GoogleToolboxForMac/NSData+zlib (2.2.0)":
-    - GoogleToolboxForMac/Defines (= 2.2.0)
-  - GoogleUtilities/AppDelegateSwizzler (5.3.7):
+  - GoogleToolboxForMac/Defines (2.2.1)
+  - GoogleToolboxForMac/Logger (2.2.1):
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - "GoogleToolboxForMac/NSData+zlib (2.2.1)":
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - GoogleUtilities/AppDelegateSwizzler (6.2.3):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.3.7)
-  - GoogleUtilities/ISASwizzler (5.3.7)
-  - GoogleUtilities/Logger (5.3.7):
+  - GoogleUtilities/Environment (6.2.3)
+  - GoogleUtilities/ISASwizzler (6.2.3)
+  - GoogleUtilities/Logger (6.2.3):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.3.7):
+  - GoogleUtilities/MethodSwizzler (6.2.3):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.3.7):
+  - GoogleUtilities/Network (6.2.3):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.3.7)"
-  - GoogleUtilities/Reachability (5.3.7):
+  - "GoogleUtilities/NSData+zlib (6.2.3)"
+  - GoogleUtilities/Reachability (6.2.3):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (5.3.7):
+  - GoogleUtilities/UserDefaults (6.2.3):
     - GoogleUtilities/Logger
-  - GTMSessionFetcher/Core (1.2.1)
+  - GTMSessionFetcher/Core (1.2.2)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - Nuke (7.5.2)
-  - Protobuf (3.7.0)
-  - ReachabilitySwift (4.3.0)
-  - Realm (3.13.1):
-    - Realm/Headers (= 3.13.1)
-  - Realm/Headers (3.13.1)
-  - RealmSwift (3.13.1):
-    - Realm (= 3.13.1)
-  - RxAlamofire (4.3.0):
-    - RxAlamofire/Core (= 4.3.0)
-  - RxAlamofire/Core (4.3.0):
-    - Alamofire (~> 4.5)
-    - RxSwift (~> 4)
-  - RxAtomic (4.4.2)
-  - RxCocoa (4.4.2):
-    - RxSwift (>= 4.4.2, ~> 4.4)
-  - RxNuke (0.7):
-    - Nuke (~> 7.0)
-    - RxSwift (~> 4.0)
-  - RxReachability (0.1.8):
-    - ReachabilitySwift (~> 4.3.0)
-    - RxCocoa (~> 4)
-    - RxSwift (~> 4)
-  - RxRealm (0.7.6):
-    - RealmSwift (~> 3.0)
-    - RxSwift (~> 4.0)
-  - RxSwift (4.4.2):
-    - RxAtomic (>= 4.4.2, ~> 4.4)
+  - Nuke (8.0.1)
+  - Protobuf (3.9.0)
+  - ReachabilitySwift (4.3.1)
+  - Realm (3.17.3):
+    - Realm/Headers (= 3.17.3)
+  - Realm/Headers (3.17.3)
+  - RealmSwift (3.17.3):
+    - Realm (= 3.17.3)
+  - RxAlamofire (5.0.0):
+    - RxAlamofire/Core (= 5.0.0)
+  - RxAlamofire/Core (5.0.0):
+    - Alamofire (~> 4.8)
+    - RxSwift (~> 5.0)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxNuke (0.10):
+    - Nuke (~> 8.0)
+    - RxSwift (~> 5.0)
+  - RxReachability (1.0.0):
+    - ReachabilitySwift (~> 4.3.1)
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+  - RxRealm (1.0.0):
+    - RealmSwift (~> 3.14)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
   - Sentry (4.1.0):
     - Sentry/Core (= 4.1.0)
   - Sentry/Core (4.1.0)
-  - Valet (3.2.3)
+  - Valet (3.2.5)
 
 DEPENDENCIES:
   - Branch
@@ -162,7 +163,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - Bolts
     - Branch
     - Crashlytics
     - DeviceKit
@@ -189,11 +189,11 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - RxAlamofire
-    - RxAtomic
     - RxCocoa
     - RxNuke
     - RxReachability
     - RxRealm
+    - RxRelay
     - RxSwift
     - Valet
 
@@ -208,42 +208,41 @@ CHECKOUT OPTIONS:
     :tag: 4.1.0
 
 SPEC CHECKSUMS:
-  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Branch: 3cc6dcfd726db42ced22c418c0fb09aa5e90a847
-  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
-  DeviceKit: a3a86f8dddbe1317a9a243cdf9646858bf135dce
-  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
-  FBSDKCoreKit: ae214474b25033399c131dc81d258e412582a2ba
-  Firebase: 02f3281965c075426141a0ce1277e9de6649cab9
-  FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
-  FirebaseAnalytics: 23851fe602c872130a2c5c55040b302120346cc2
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Branch: 1ace77c04b6e3efbf982bf4364f0662bfac156a0
+  Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
+  DeviceKit: 5a4accdb2918ce0b69e62dc3bef6e4d2cc06e2e4
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  FBSDKCoreKit: 39748deefe37a005f983722e433be2ddcdd83ae7
+  Firebase: dedc9e48ea3f3649ad5f6b982f8a0c73508a14b5
+  FirebaseABTesting: a32c488eb75089a61eb3d86db061dfb909d765db
+  FirebaseAnalytics: 3fb375bc9d13779add4039716f868d233a473fad
   FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
-  FirebaseCore: 52f851b30e11360f1e67cf04b1edfebf0a47a2d3
-  FirebaseInstanceID: bd6fc5a258884e206fd5c474ebe4f5b00e21770e
-  FirebaseMessaging: d740150547f7686b33799f6489f5b69a4706631b
-  FirebasePerformance: b97b1c301790b4fddc9fe675bca05b71c04e24a6
-  FirebaseRemoteConfig: 7e11c65f0769c09bff6947997c209515058c5318
+  FirebaseCore: aecf02fb2274ec361b9bebeac112f5daa18273bd
+  FirebaseInstanceID: 662b8108a09fe9ed01aafdedba100fde8536b0f6
+  FirebaseMessaging: 6bb0bdaf64c55fef7a219b7bb1e94e94a0855ced
+  FirebasePerformance: bd3666700af4d43caf2a13b93718f3b532b8a5ff
+  FirebaseRemoteConfig: ed74d16d7e5b19e77a4c3e3eee4fe363039b0834
   Flurry-iOS-SDK: 5d782d740c5e95389c327d38245b3db4bb471fd7
-  GoogleAppMeasurement: 6cf307834da065863f9faf4c0de0a936d81dd832
-  GoogleToolboxForMac: ff31605b7d66400dcec09bed5861689aebadda4d
-  GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
-  GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
+  GoogleAppMeasurement: 183bd916af7f80deb67c01888368f1108d641832
+  GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
+  GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
+  GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  Nuke: 0350d346a688426e8f2331253ef28dc2fc4f6178
-  Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
-  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
-  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
-  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
-  RxAlamofire: 09624d0f2d48ed8b686e4eb4cf68e28cbd2df556
-  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
-  RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
-  RxNuke: 8be1b71b08b238608834e5ffac597bcafab1e66f
-  RxReachability: 053f2d913db44998242ade488ccaef558f3ce7cb
-  RxRealm: 5379eddd74f8d617ca7681d1f8d144af25b432b0
-  RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
+  Nuke: e6a65472f59c1bfe779cb495760951f0121ef7c0
+  Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  Realm: 5a1d9d47bfc101dd597668b1a8af4288a2557f6d
+  RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
+  RxAlamofire: e7875a012aff55345672d0f70a2a9cd6aeb0f211
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxNuke: 652444aba1d46941b6bf3f225f3f1b458f60bcba
+  RxReachability: 21d3e96f39bc166a21c357e923f47dec148ca97b
+  RxRealm: 1e81dcfca1fb50c3e9b3e1f8102bc875c5156a2e
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
-  Valet: 4af0382d4a94db5c7861504f751884f653437d24
+  Valet: 41882ffa9ed80c5358584837bcf762dfd1888818
 
 PODFILE CHECKSUM: 1bcee23d7f08d7373487e9155490956383ec122b
 

@@ -665,7 +665,7 @@ class ApiServiceDefault: ApiService
                     log("repeating after \(repeatAfter) \(url)", level: .low)
                     
                     return Observable<Void>.just(())
-                        .delay(RxTimeInterval(Double(repeatAfter) / 1000.0), scheduler: MainScheduler.instance)
+                        .delay(RxTimeInterval.microseconds(repeatAfter), scheduler: MainScheduler.instance)
                         .flatMap ({ _ -> Observable<[String: Any]> in
                             return self!.request(method, path: path, jsonBody: jsonBody, id: requestId, trace: trace)
                     })
@@ -753,7 +753,7 @@ class ApiServiceDefault: ApiService
                     log("repeating after \(repeatAfter) \(url)", level: .low)
                     
                     return Observable<Void>.just(())
-                        .delay(RxTimeInterval(Double(repeatAfter) / 1000.0), scheduler: MainScheduler.instance)
+                        .delay(RxTimeInterval.microseconds(repeatAfter), scheduler: MainScheduler.instance)
                         .flatMap ({ _ -> Observable<[String: Any]> in
                             return self!.requestGET(path: path, params: params, id: requestId, trace: trace)
                         })

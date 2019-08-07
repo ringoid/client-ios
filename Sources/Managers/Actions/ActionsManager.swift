@@ -306,7 +306,7 @@ class ActionsManager
             //log("Actions sendinging in progress - delaying request", level: .medium)
             
             return Observable<Void>.just(())
-                .delay(RxTimeInterval(0.2), scheduler: MainScheduler.instance)
+                .delay(RxTimeInterval.microseconds(200), scheduler: MainScheduler.instance)
                 .flatMap ({ _ -> Observable<Void> in
                     return self.sendQueue()
                 })

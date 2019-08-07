@@ -47,7 +47,7 @@ class AppManager
         _ = AnalyticsManager.shared
         
         let application = UIApplication.shared
-        FBSDKApplicationDelegate.sharedInstance()?.application(application, didFinishLaunchingWithOptions: launchOptions)
+        ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         self.setupServices(launchOptions)
         self.setupManagers(launchOptions)
@@ -66,7 +66,7 @@ class AppManager
         self.settingsMananger.updateRemoteSettings()
         
         self.notifications.update()
-        FBSDKAppEvents.activateApp()
+        AppEvents.activateApp()
         
         if let resignDate = self.resignDate, Date().timeIntervalSince(resignDate) > 300.0 {
             UIManager.shared.wakeUpDelayTriggered.accept(true)
@@ -86,14 +86,14 @@ class AppManager
     func onOpen(_ url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool
     {
         let application = UIApplication.shared
-        if FBSDKApplicationDelegate.sharedInstance()!.application(application, open: url, options: options) {
+        if ApplicationDelegate.shared.application(application, open: url, options: options) {
             return true
         }
         
         guard let sourceApp = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
             let annotation = options[UIApplication.OpenURLOptionsKey.annotation] else { return false }
         
-        if FBSDKApplicationDelegate.sharedInstance()!.application(application, open: url, sourceApplication: sourceApp, annotation: annotation) {
+        if ApplicationDelegate.shared.application(application, open: url, sourceApplication: sourceApp, annotation: annotation) {
             return true
         }
         
