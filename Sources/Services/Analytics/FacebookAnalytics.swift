@@ -223,6 +223,12 @@ class FacebookAnalytics: AnalyticsService
                 "UUID" : self.userId,
                 ])
             break
+            
+        case .firstFieldSet:
+            AppEvents.logEvent(AppEvents.Name(rawValue: "AHA_FIRST_FIELD_SET"), parameters: [
+                "UUID" : self.userId,
+                ])
+            break
         }
 
     }

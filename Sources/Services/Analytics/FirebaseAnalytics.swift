@@ -212,6 +212,12 @@ class FirebaseAnalytics: AnalyticsService
                 "UUID": self.userId,
                 ])
             break
+            
+        case .firstFieldSet:
+            Analytics.logEvent("AHA_FIRST_FIELD_SET", parameters: [
+                "UUID": self.userId,
+                ])
+            break
         }
     }
     

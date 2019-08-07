@@ -228,6 +228,12 @@ class FlurryAnalytics: AnalyticsService
                 "UUID": self.userId,
                 ])
             break
+            
+        case .firstFieldSet:
+            Flurry.logEvent("AHA_FIRST_FIELD_SET", withParameters: [
+                "UUID": self.userId,
+                ])
+            break
         }
     }
     

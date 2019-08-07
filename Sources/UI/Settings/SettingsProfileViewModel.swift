@@ -32,6 +32,13 @@ class SettingsProfileViewModel
     {
         guard let profile = self.profileManager.profile.value else { return }
         
+        if !UserDefaults.standard.bool(forKey: "is_profile_field_stored") && value != nil {
+            UserDefaults.standard.set(true, forKey: "is_profile_field_stored")
+            UserDefaults.standard.synchronize()
+            
+            AnalyticsManager.shared.send(.firstFieldSet)
+        }
+        
         switch type {
             
         case .height:

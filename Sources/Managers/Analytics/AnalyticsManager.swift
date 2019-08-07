@@ -49,5 +49,7 @@ class AnalyticsManager
     func reset()
     {
         self.services.forEach({ $0.reset() })
+        
+        UserDefaults.standard.removeObject(forKey: "is_profile_field_stored")
     }
 }

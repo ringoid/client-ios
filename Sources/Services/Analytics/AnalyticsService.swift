@@ -40,6 +40,7 @@ enum AnalyticsEvent
     case firstMessageReceived(String);
     case firstReplyReceived(String);
     case photoAddedManually;
+    case firstFieldSet;
     
 }
 
