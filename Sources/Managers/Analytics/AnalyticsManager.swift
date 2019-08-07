@@ -26,10 +26,18 @@ class AnalyticsManager
         }
     }
     
+    #if STAGE
     fileprivate let services: [AnalyticsService] = [
         FirebaseAnalytics(),
         FlurryAnalytics()
     ]
+    #else
+    fileprivate let services: [AnalyticsService] = [
+        FirebaseAnalytics(),
+        FlurryAnalytics(),
+        FacebookAnalytics()
+    ]
+    #endif
     
     private init() {}
     

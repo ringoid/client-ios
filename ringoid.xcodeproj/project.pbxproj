@@ -85,6 +85,7 @@
 		574A7DA722434EFE0065AE56 /* PromotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574A7DA522434EFE0065AE56 /* PromotionManager.swift */; };
 		574F4ACA22520B230027A083 /* SettingsNotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */; };
 		574F4ACB22520B230027A083 /* SettingsNotificationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */; };
+		574F627D22FAD61F00E27A6A /* FacebookAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574F627C22FAD61F00E27A6A /* FacebookAnalytics.swift */; };
 		5751561422E1D8F2009E7743 /* NewFacesFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751561322E1D8F2009E7743 /* NewFacesFilterViewController.swift */; };
 		5751561522E1D8F2009E7743 /* NewFacesFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751561322E1D8F2009E7743 /* NewFacesFilterViewController.swift */; };
 		5751561722E1D90D009E7743 /* NewFacesFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751561622E1D90D009E7743 /* NewFacesFilterViewModel.swift */; };
@@ -494,6 +495,7 @@
 		573D768922D73C1300E1576B /* SettingsProfileFieldsSuggest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileFieldsSuggest.swift; sourceTree = "<group>"; };
 		574A7DA522434EFE0065AE56 /* PromotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionManager.swift; sourceTree = "<group>"; };
 		574F4AC922520B230027A083 /* SettingsNotificationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsCell.swift; sourceTree = "<group>"; };
+		574F627C22FAD61F00E27A6A /* FacebookAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAnalytics.swift; sourceTree = "<group>"; };
 		5751561322E1D8F2009E7743 /* NewFacesFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesFilterViewController.swift; sourceTree = "<group>"; };
 		5751561622E1D90D009E7743 /* NewFacesFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFacesFilterViewModel.swift; sourceTree = "<group>"; };
 		5751561A22E1DBF7009E7743 /* FilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterManager.swift; sourceTree = "<group>"; };
@@ -1227,6 +1229,7 @@
 				578502F322564E860056120A /* AnalyticsService.swift */,
 				578502F622564E9D0056120A /* FirebaseAnalytics.swift */,
 				577DDAF4226F0FB1001D7D24 /* FlurryAnalytics.swift */,
+				574F627C22FAD61F00E27A6A /* FacebookAnalytics.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -1895,6 +1898,7 @@
 				5764B92122E7365D00B9EE42 /* MainLCFilterViewModel.swift in Sources */,
 				570D04B821DE2B6400E0DCFB /* XStorageService.swift in Sources */,
 				576FC12A22086B6C00BA5ABE /* ApiUserPhoto.swift in Sources */,
+				574F627D22FAD61F00E27A6A /* FacebookAnalytics.swift in Sources */,
 				57EEB07C22BE3E4F005770B3 /* SettingsProfileViewModel.swift in Sources */,
 				57B6DB1A22A50577000BD1C2 /* ApiChatUpdate.swift in Sources */,
 				57585D6021E4BF4900038798 /* UploaderServiceDefault.swift in Sources */,
