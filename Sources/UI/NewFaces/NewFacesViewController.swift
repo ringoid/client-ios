@@ -305,6 +305,9 @@ class NewFacesViewController: BaseViewController
         
         if !isEmpty {
             self.toggleActivity(.contentAvailable)
+        } else {
+            self.feedBottomLabel.isHidden = true
+            self.feedBottomBtn.isHidden = true
         }
         
         let lastItemsCount = self.lastFeedIds.count
