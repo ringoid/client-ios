@@ -609,6 +609,7 @@ class ApiServiceDefault: ApiService
         let metric = HTTPMetric(url: URL(string: url)!, httpMethod: method.firebase())
         metric?.start()
         
+        print("retry count: \(retryCount)")
         log("STARTED: \(method) \(url)", level: .low)
         
         return RxAlamofire.request(method, url, parameters: jsonBody, encoding: JSONEncoding.default, headers: [
@@ -666,7 +667,7 @@ class ApiServiceDefault: ApiService
                     log("repeating after \(repeatAfter) \(url)", level: .low)
                     
                     return Observable<Void>.just(())
-                        .delay(RxTimeInterval.microseconds(repeatAfter), scheduler: MainScheduler.instance)
+                        .delay(RxTimeInterval.milliseconds(repeatAfter), scheduler: MainScheduler.instance)
                         .flatMap ({ _ -> Observable<[String: Any]> in
                             return self!.request(method, path: path, jsonBody: jsonBody, id: requestId, trace: trace)
                     })
@@ -755,7 +756,7 @@ class ApiServiceDefault: ApiService
                     log("repeating after \(repeatAfter) \(url)", level: .low)
                     
                     return Observable<Void>.just(())
-                        .delay(RxTimeInterval.microseconds(repeatAfter), scheduler: MainScheduler.instance)
+                        .delay(RxTimeInterval.milliseconds(repeatAfter), scheduler: MainScheduler.instance)
                         .flatMap ({ _ -> Observable<[String: Any]> in
                             return self!.requestGET(path: path, params: params, id: requestId, trace: trace)
                         })
