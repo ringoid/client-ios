@@ -583,8 +583,7 @@ class LMMManager
             self.updateLmmCount()
             self.updateLocalLmmCount()
         }).disposed(by: self.disposeBag)
-        
-    
+            
         self.messages.asObservable().subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
             
