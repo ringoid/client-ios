@@ -45,7 +45,6 @@ class LMMManager
     fileprivate var disposeBag: DisposeBag = DisposeBag()
     
     var likesYou: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
-    var matches: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     var messages: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     var inbox: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
     var sent: BehaviorRelay<[LMMProfile]> = BehaviorRelay<[LMMProfile]>(value: [])
@@ -65,7 +64,6 @@ class LMMManager
     let chatUpdateInterval: BehaviorRelay<Double> = BehaviorRelay<Double>(value: 5.0)
     
     fileprivate var likesYouCached: [LMMProfile] = []
-    fileprivate var matchesCached: [LMMProfile] = []
     fileprivate var messagesCached: [LMMProfile] = []
     fileprivate var inboxCached: [LMMProfile] = []
     fileprivate var sentCached: [LMMProfile] = []
@@ -90,13 +88,11 @@ class LMMManager
             
             if self.contentShouldBeHidden {
                 self.likesYou.accept([])
-                self.matches.accept([])
                 self.messages.accept([])
                 self.inbox.accept([])
                 self.sent.accept([])
             } else {
                 self.likesYou.accept(self.likesYouCached)
-                self.matches.accept(self.matchesCached)
                 self.messages.accept(self.messagesCached)
                 self.inbox.accept(self.inboxCached)
                 self.sent.accept(self.sentCached)
@@ -496,7 +492,6 @@ class LMMManager
         UserDefaults.standard.synchronize()
         
         self.likesYouCached.removeAll()
-        self.matchesCached.removeAll()
         self.messagesCached.removeAll()
         self.inboxCached.removeAll()
         self.sentCached.removeAll()
@@ -508,7 +503,6 @@ class LMMManager
         self.processedNotificationsProfiles.removeAll()
         
         self.likesYou.accept([])
-        self.matches.accept([])
         self.messages.accept([])
         self.inbox.accept([])
         self.sent.accept([])
@@ -538,7 +532,7 @@ class LMMManager
     
     func isMessageProfileNotRead(_ profileId: String) -> Bool
     {
-        return (self.matches.value + self.messages.value).filter({ $0.notRead }).map({ $0.id }).contains(profileId)
+        return self.messages.value.filter({ $0.notRead }).map({ $0.id }).contains(profileId)
     }
     
     // MARK: -
@@ -629,7 +623,7 @@ class LMMManager
                 
             case .matches:
                 let isContaintedLocally = self.messages.value.map({ $0.id }).contains(profileId)
-                if isContaintedLocally {
+                if !isContaintedLocally {
                     self.likesYouNotificationProfiles.remove(profileId)
                     self.matchesNotificationProfiles.insert(profileId)
                     
@@ -728,7 +722,6 @@ class LMMManager
             self.notSeenMatchesCount.accept(nonSeenMatchesCount)
             
             let nonSeenMessagesCount = self.messages.value.notReadIDs()
-                .union(self.matches.value.notReadIDs())
                 .union(self.messagesNotificationProfiles).count
             self.notSeenMessagesCount.accept(nonSeenMessagesCount)
             
@@ -761,7 +754,6 @@ class LMMManager
     fileprivate func updateNotSeenCounters()
     {
         let notSeenCount = self.messages.value.notReadIDs()
-            .union(self.matches.value.notReadIDs())
             .union(self.messagesNotificationProfiles).count
         self.notSeenMessagesCount.accept(notSeenCount)
         
@@ -871,7 +863,7 @@ class LMMManager
     
     fileprivate func updateLmmCount()
     {
-        var lmmProfiles = Set((self.likesYou.value + self.matches.value + self.messages.value).map({ $0.id }))
+        var lmmProfiles = Set((self.likesYou.value + self.messages.value).map({ $0.id }))
         lmmProfiles = lmmProfiles.union(self.likesYouNotificationProfiles)
         lmmProfiles = lmmProfiles.union(self.matchesNotificationProfiles)
         lmmProfiles = lmmProfiles.union(self.messagesNotificationProfiles)
@@ -881,7 +873,7 @@ class LMMManager
     
     fileprivate func updateLocalLmmCount()
     {
-        let lmmProfiles = Set((self.likesYou.value + self.matches.value + self.messages.value).map({ $0.id }))
+        let lmmProfiles = Set((self.likesYou.value + self.messages.value).map({ $0.id }))
         self.localLmmCount.accept(lmmProfiles.count)
     }
  

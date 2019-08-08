@@ -121,12 +121,7 @@ class MainLMMViewModel
         self.lmmManager.likesYou.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
             self?.likesYou.accept(profiles)
         }).disposed(by: self.disposeBag)
-        
-        self.lmmManager.matches.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
-            self?.matches.accept(profiles)
-        }).disposed(by: self.disposeBag)
-        
-        self.lmmManager.messages.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+   self.lmmManager.messages.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
             self?.messages.accept(profiles)
         }).disposed(by: self.disposeBag)
         

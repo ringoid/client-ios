@@ -123,12 +123,7 @@ class NewFacesViewModel
         self.lmmManager.likesYou.subscribe(onNext: { [weak self] _ in
             self?.updateProfiles()
         }).disposed(by: self.disposeBag)
-        
-        self.lmmManager.matches.subscribe(onNext: { [weak self] _ in
-            self?.updateProfiles()
-        }).disposed(by: self.disposeBag)
-        
-        
+
         self.lmmManager.messages.subscribe(onNext: { [weak self] _ in
             self?.updateProfiles()
         }).disposed(by: self.disposeBag)
@@ -151,10 +146,7 @@ class NewFacesViewModel
         var lmhisMap: [String: Bool] = [:]
         (
             self.lmmManager.likesYou.value +
-                self.lmmManager.matches.value +
-                self.lmmManager.messages.value +
-                self.lmmManager.inbox.value +
-                self.lmmManager.sent.value
+                self.lmmManager.messages.value
             ).forEach({ profile in
                 lmhisMap[profile.id] = true
             })
