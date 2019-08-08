@@ -265,7 +265,7 @@ class ApiServiceDefault: ApiService
         
         params["filter"] = filter
         
-        let trace = Performance.startTrace(name: "feeds/get_lc")
+        let trace = Performance.startTrace(name: "refresh_lc")
         
         log("LC source: \(source.rawValue)", level: .low)
         
@@ -361,7 +361,7 @@ class ApiServiceDefault: ApiService
         
         params["filter"] = filter
         
-        let trace = Performance.startTrace(name: "feeds/discover")
+        let trace = Performance.startTrace(name: "refresh_discover")
         
         return self.request(.post, path: "feeds/discover", jsonBody: params, trace: trace)
             .flatMap { jsonDict -> Observable<[ApiProfile]> in
@@ -619,6 +619,7 @@ class ApiServiceDefault: ApiService
             }).retry(3)
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
+                trace?.incrementMetric("failed", by: 1)
                 metric?.stop()
                 trace?.stop()
             })
@@ -702,6 +703,7 @@ class ApiServiceDefault: ApiService
             }).retry(3)
             .do(onError: { [weak self] error in
                 self?.checkConnectionError(error as NSError)
+                trace?.incrementMetric("failed", by: 1)
                 metric?.stop()
                 trace?.stop()
             }, onDispose: {

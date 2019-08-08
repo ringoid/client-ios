@@ -33,7 +33,7 @@ class ReachabilityServiceDefault: ReachabilityService
     
     func check() -> Observable<Bool>
     {
-        return self.isInternetAvailable.asObservable().delay(0.35, scheduler: MainScheduler.instance)
+        return self.isInternetAvailable.asObservable().delay(.milliseconds(350), scheduler: MainScheduler.instance)
     }
     
     // MARK: -
