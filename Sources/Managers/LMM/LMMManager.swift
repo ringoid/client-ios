@@ -593,9 +593,8 @@ class LMMManager
                 .union(self.matchesNotificationProfiles).count
             self.notSeenMatchesCount.accept(notSeenMatchesFromMessagesCount)
             
-            let nonSeenCount = profiles.notReadIDs()
-                .union(self.messagesNotificationProfiles)
-                .union(self.matchesNotificationProfiles).count
+            let nonSeenCount = profiles.filter({ $0.messages.count > 0 }).notReadIDs()
+                .union(self.messagesNotificationProfiles).count
             
             self.notSeenMessagesCount.accept(nonSeenCount)
             self.updateLmmCount()
@@ -720,7 +719,7 @@ class LMMManager
             let nonSeenMatchesCount = self.messages.value.filter({ $0.messages.count == 0 }).notSeenIDs().union(self.matchesNotificationProfiles).count
             self.notSeenMatchesCount.accept(nonSeenMatchesCount)
             
-            let nonSeenMessagesCount = self.messages.value.notReadIDs()
+            let nonSeenMessagesCount = self.messages.value.filter({ $0.messages.count > 0 }).notReadIDs()
                 .union(self.messagesNotificationProfiles).count
             self.notSeenMessagesCount.accept(nonSeenMessagesCount)
             
@@ -752,7 +751,7 @@ class LMMManager
     
     fileprivate func updateNotSeenCounters()
     {
-        let notSeenCount = self.messages.value.notReadIDs()
+        let notSeenCount = self.messages.value.filter({ $0.messages.count > 0 }).notReadIDs()
             .union(self.messagesNotificationProfiles).count
         self.notSeenMessagesCount.accept(notSeenCount)
         
