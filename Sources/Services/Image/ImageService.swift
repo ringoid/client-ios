@@ -49,7 +49,10 @@ class ImageService
                 .subscribe(onNext: { response in
                     self.taskMap.removeValue(forKey: url)
                     self.viewMap.removeValue(forKey: url)
-                    to.image = response.image
+                    
+                    DispatchQueue.main.async {
+                        to.image = response.image
+                    }
                 }, onError: { _ in
                     self.taskMap.removeValue(forKey: url)
                     self.viewMap.removeValue(forKey: url)
@@ -66,8 +69,11 @@ class ImageService
         ImagePipeline.shared.rx.loadImage(with: thumbnailUrl).asObservable()
             .retryOnConnect(timeout: .seconds(10))
             .retry(3)
-            .flatMap({ response -> Observable<ImageResponse> in                
-                to.image = response.image
+            .flatMap({ response -> Observable<ImageResponse> in
+                DispatchQueue.main.async {
+                    to.image = response.image
+                }
+                
                 thumbnailResponse = response
                 
                 return ImagePipeline.shared.rx.loadImage(with: request).asObservable()
@@ -77,21 +83,23 @@ class ImageService
                 self.taskMap.removeValue(forKey: url)
                 self.viewMap.removeValue(forKey: url)
                 
-                let thumbView = UIImageView(frame: to.bounds)
-                thumbView.image = thumbnailResponse?.image
-                thumbView.contentMode = .scaleAspectFill
-                to.addSubview(thumbView)
-                to.image = response.image
-                
-                let animator = UIViewPropertyAnimator(duration: 0.05, curve: .linear, animations: {
-                    thumbView.alpha = 0.0
-                })
-                
-                animator.addCompletion({ _ in
-                    thumbView.removeFromSuperview()
-                })
-                
-                animator.startAnimation()
+                DispatchQueue.main.async {
+                    let thumbView = UIImageView(frame: to.bounds)
+                    thumbView.image = thumbnailResponse?.image
+                    thumbView.contentMode = .scaleAspectFill
+                    to.addSubview(thumbView)
+                    to.image = response.image
+                    
+                    let animator = UIViewPropertyAnimator(duration: 0.05, curve: .linear, animations: {
+                        thumbView.alpha = 0.0
+                    })
+                    
+                    animator.addCompletion({ _ in
+                        thumbView.removeFromSuperview()
+                    })
+                    
+                    animator.startAnimation()
+                }
             }, onError: { _ in
                 self.taskMap.removeValue(forKey: url)
                 self.viewMap.removeValue(forKey: url)
