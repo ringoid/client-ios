@@ -107,16 +107,15 @@ discover users nearby</string>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="isk-qO-AwF">
                                         <rect key="frame" x="16" y="43.5" width="69" height="26.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
-                                        <color key="textColor" red="0.72941176470000002" green="0.72941176470000002" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNb-ZP-bBP">
-                                        <rect key="frame" x="303" y="35" width="72" height="44"/>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNb-ZP-bBP">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="72" id="BV6-CE-Dwu"/>
                                             <constraint firstAttribute="height" constant="44" id="jzx-sZ-cTm"/>
                                         </constraints>
-                                        <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="32" maxY="0.0"/>
                                         <state key="normal" image="feed_filter_btn">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -127,6 +126,7 @@ discover users nearby</string>
                                 </subviews>
                                 <color key="backgroundColor" red="0.082352941176470587" green="0.098039215686274508" blue="0.11372549019607843" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="eNb-ZP-bBP" firstAttribute="leading" secondItem="V9x-Tk-Mmn" secondAttribute="leading" id="Fhs-Sg-gHh"/>
                                     <constraint firstAttribute="height" constant="84" id="JrX-dP-RaM"/>
                                     <constraint firstAttribute="bottom" secondItem="isk-qO-AwF" secondAttribute="bottom" constant="14" id="LPb-l7-frR"/>
                                     <constraint firstItem="isk-qO-AwF" firstAttribute="leading" secondItem="V9x-Tk-Mmn" secondAttribute="leading" constant="16" id="Tma-rl-qLS"/>

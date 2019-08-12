@@ -275,16 +275,15 @@ see who likes you</string>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKC-OF-Xth">
                                         <rect key="frame" x="16" y="46" width="47" height="24"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                        <color key="textColor" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PY7-l4-9js">
-                                        <rect key="frame" x="303" y="36" width="72" height="44"/>
+                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PY7-l4-9js">
+                                        <rect key="frame" x="0.0" y="36" width="375" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="9pR-Sl-07y"/>
-                                            <constraint firstAttribute="width" constant="72" id="hhG-Zn-gss"/>
                                         </constraints>
-                                        <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="32" maxY="0.0"/>
                                         <state key="normal" image="feed_filter_btn">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -297,6 +296,7 @@ see who likes you</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="84" id="0cV-sh-rv0"/>
                                     <constraint firstItem="QKC-OF-Xth" firstAttribute="leading" secondItem="NDb-Xg-b58" secondAttribute="leading" constant="16" id="B1v-LN-EYD"/>
+                                    <constraint firstItem="PY7-l4-9js" firstAttribute="leading" secondItem="NDb-Xg-b58" secondAttribute="leading" id="HnJ-vC-Tip"/>
                                     <constraint firstAttribute="trailing" secondItem="PY7-l4-9js" secondAttribute="trailing" id="flK-8e-xTZ"/>
                                     <constraint firstItem="PY7-l4-9js" firstAttribute="centerY" secondItem="QKC-OF-Xth" secondAttribute="centerY" id="nDL-h0-qSx"/>
                                     <constraint firstAttribute="bottom" secondItem="QKC-OF-Xth" secondAttribute="bottom" constant="14" id="p9m-Hu-nuN"/>
