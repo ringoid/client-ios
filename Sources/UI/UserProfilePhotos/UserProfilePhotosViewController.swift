@@ -732,16 +732,16 @@ class UserProfilePhotosViewController: BaseViewController
         
         var title: String = ""
         if let name = profile.name, name != "unknown" {
-            title += "\(name), "
+            title += "\(name)"
         } else {
             let gender = self.input.profileManager.gender.value ?? .male
             let genderStr = gender == .male ? "common_sex_male".localized() : "common_sex_female".localized()
-            title += "\(genderStr), "
+            title += "\(genderStr)"
         }
         
         if let yob = self.input.profileManager.yob.value {
             let age =  Calendar.current.component(.year, from: Date()) - yob
-            title += "\(age)"
+            title += ", \(age)"
         }
         
         self.nameLabel.text = title

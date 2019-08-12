@@ -152,6 +152,8 @@ class ProfileFieldsConfiguration
             case .male: return self.leftColumsMale(profile)
             case .female: return self.leftColumsFemale(profile)
             }
+        } else {
+            return self.leftColumsMale(profile)
         }
         
         return []
@@ -396,7 +398,7 @@ class ProfileFieldsConfiguration
     
     func leftUserColumns(_ profile: UserProfile) -> [ProfileFileRow]
     {
-        guard let gender = self.profileManager.gender.value else { return [] }
+        let gender: Sex = self.profileManager.gender.value ?? .male
         
         switch gender {
         case .male: return self.leftUserColumnsMale(profile)

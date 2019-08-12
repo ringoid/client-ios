@@ -375,7 +375,7 @@ class NewFaceProfileViewController: UIViewController
         guard !self.input.profile.isInvalidated else { return }
         
         let genderStr: String = self.input.profile.gender ?? "male"
-        let gender = Sex(rawValue: genderStr)
+        let gender: Sex = Sex(rawValue: genderStr) ?? .male
         
         // MALE
         if gender == .male {
