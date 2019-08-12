@@ -163,7 +163,10 @@ see how many likes you get</string>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27t-IX-qLF">
-                                <rect key="frame" x="39" y="485" width="30.5" height="15"/>
+                                <rect key="frame" x="39" y="485" width="160" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="fMC-QO-nvs"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -178,7 +181,7 @@ see how many likes you get</string>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMb-Bl-CM4">
-                                <rect key="frame" x="39" y="460" width="30.5" height="15"/>
+                                <rect key="frame" x="39" y="460" width="160" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -241,6 +244,7 @@ see how many likes you get</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.88299978599999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="27t-IX-qLF" firstAttribute="width" secondItem="UMb-Bl-CM4" secondAttribute="width" id="0oE-CE-nYr"/>
                             <constraint firstItem="ouZ-cc-Vmf" firstAttribute="centerY" secondItem="c03-Vj-oKe" secondAttribute="centerY" id="13U-xz-Mio"/>
                             <constraint firstItem="Pzg-eZ-8Og" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" id="1qb-Vr-aDl" userLabel="PagesTop"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="4hG-ZS-M4a"/>
@@ -308,6 +312,7 @@ see how many likes you get</string>
                         <outlet property="deleteBtn" destination="32r-W0-czT" id="qDq-QL-d5e"/>
                         <outlet property="emptyFeedLabel" destination="c03-Vj-oKe" id="HhA-IN-Ey8"/>
                         <outlet property="fieldsBottomConstraint" destination="fCJ-dj-Vw9" id="APm-Wb-AYV"/>
+                        <outlet property="leftColumnConstraint" destination="fMC-QO-nvs" id="qBE-IC-lDQ"/>
                         <outlet property="leftFieldIcon1" destination="BK0-ML-AsK" id="z5b-ra-CwL"/>
                         <outlet property="leftFieldIcon2" destination="npc-Nn-Arv" id="cY5-EL-I20"/>
                         <outlet property="leftFieldLabel1" destination="27t-IX-qLF" id="2cU-Op-ngI"/>
