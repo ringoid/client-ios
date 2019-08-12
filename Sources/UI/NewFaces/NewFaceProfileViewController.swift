@@ -474,7 +474,7 @@ class NewFaceProfileViewController: UIViewController
         let rightCount = rightRows.count
         
         var nameOffset: CGFloat = 86.0
-        let rightFieldMaxWidth: CGFloat = 128.0
+        let rightFieldMaxWidth: CGFloat = 132.0
         var rightColumnMaxWidth: CGFloat = 0.0
         
         defer {
@@ -483,7 +483,7 @@ class NewFaceProfileViewController: UIViewController
             let rightColumnWidth = rightColumnMaxWidth < rightFieldMaxWidth ? ( rightColumnMaxWidth + 4.0) : (rightFieldMaxWidth + 4.0)
             self.rightColumnConstraint.constant = rightColumnWidth
             
-            let leftFieldMaxWidth = UIScreen.main.bounds.width - rightColumnWidth - 64.0
+            let leftFieldMaxWidth = UIScreen.main.bounds.width - rightColumnWidth - 72.0
             self.leftColumnConstraint.constant = leftFieldMaxWidth
             self.view.layoutIfNeeded()
         }

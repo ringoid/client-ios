@@ -55,6 +55,7 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var nameLabel: UILabel!
     @IBOutlet fileprivate weak var nameConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutLabel: UILabel!
+    @IBOutlet fileprivate weak var leftColumnConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
@@ -655,11 +656,17 @@ class MainLMMProfileViewController: UIViewController
         let rightCount = rightRows.count
         
         var nameOffset: CGFloat = 86.0
+        let rightFieldMaxWidth: CGFloat = 132.0
         var rightColumnMaxWidth: CGFloat = 0.0
         
         defer {
             self.nameConstraint.constant = nameOffset
-            self.rightColumnConstraint.constant = rightColumnMaxWidth + 4.0
+            
+            let rightColumnWidth = rightColumnMaxWidth < rightFieldMaxWidth ? ( rightColumnMaxWidth + 4.0) : (rightFieldMaxWidth + 4.0)
+            self.rightColumnConstraint.constant = rightColumnWidth
+            
+            let leftFieldMaxWidth = UIScreen.main.bounds.width - rightColumnWidth - 72.0
+            self.leftColumnConstraint.constant = leftFieldMaxWidth
             self.view.layoutIfNeeded()
         }
         

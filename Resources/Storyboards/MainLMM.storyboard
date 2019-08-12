@@ -518,7 +518,10 @@ see who likes you</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1y-kA-ocU">
-                                <rect key="frame" x="39" y="612" width="30.5" height="15"/>
+                                <rect key="frame" x="39" y="612" width="160" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="waD-ec-ptr"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -533,7 +536,7 @@ see who likes you</string>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lT4-ql-cww">
-                                <rect key="frame" x="39" y="587" width="30.5" height="15"/>
+                                <rect key="frame" x="39" y="587" width="160" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -617,6 +620,7 @@ see who likes you</string>
                             <constraint firstItem="vBP-lc-cHQ" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="ECr-X5-BTY"/>
                             <constraint firstItem="kYa-nc-a14" firstAttribute="centerY" secondItem="lT4-ql-cww" secondAttribute="centerY" id="EoK-2T-KKP"/>
                             <constraint firstAttribute="bottom" secondItem="vBP-lc-cHQ" secondAttribute="bottom" id="FHi-0r-u0u"/>
+                            <constraint firstItem="r1y-kA-ocU" firstAttribute="width" secondItem="lT4-ql-cww" secondAttribute="width" id="J6R-md-nNE"/>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
                             <constraint firstItem="5Gj-0E-Tsq" firstAttribute="top" secondItem="SiD-cq-hiE" secondAttribute="bottom" constant="4" id="Kep-a2-sVe"/>
@@ -662,6 +666,7 @@ see who likes you</string>
                     <connections>
                         <outlet property="aboutHeightConstraint" destination="z8t-gy-CDV" id="LN9-8N-5zU"/>
                         <outlet property="aboutLabel" destination="5Gj-0E-Tsq" id="4dT-FC-efz"/>
+                        <outlet property="leftColumnConstraint" destination="waD-ec-ptr" id="kuQ-RU-GWR"/>
                         <outlet property="leftFieldIcon1" destination="BPd-OE-Pen" id="FgO-Dj-dsK"/>
                         <outlet property="leftFieldIcon2" destination="kYa-nc-a14" id="Vyh-sI-QII"/>
                         <outlet property="leftFieldLabel1" destination="r1y-kA-ocU" id="Eab-tf-Tvb"/>
