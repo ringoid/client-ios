@@ -292,7 +292,10 @@ discover users nearby</string>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqK-UA-iee">
-                                <rect key="frame" x="39" y="612" width="30.5" height="15"/>
+                                <rect key="frame" x="39" y="612" width="140" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="XrK-En-WMf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -340,7 +343,7 @@ discover users nearby</string>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGd-FX-LHF">
-                                <rect key="frame" x="39" y="587" width="30.5" height="15"/>
+                                <rect key="frame" x="39" y="587" width="140" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -401,6 +404,7 @@ discover users nearby</string>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="WHJ-8A-QCL"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="top" secondItem="UGd-FX-LHF" secondAttribute="bottom" constant="10" id="WWM-Rn-t9O"/>
                             <constraint firstItem="hpB-3V-fnF" firstAttribute="centerY" secondItem="UGd-FX-LHF" secondAttribute="centerY" id="XI4-5X-8P5"/>
+                            <constraint firstItem="HqK-UA-iee" firstAttribute="width" secondItem="UGd-FX-LHF" secondAttribute="width" id="XRt-63-qqY"/>
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="-12" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
                             <constraint firstAttribute="trailing" secondItem="xjV-mO-k6V" secondAttribute="trailing" id="Yvo-8E-AMH"/>
@@ -437,6 +441,7 @@ discover users nearby</string>
                     <connections>
                         <outlet property="aboutHeightConstraint" destination="gkf-JW-gIn" id="ZTZ-35-etM"/>
                         <outlet property="aboutLabel" destination="DEy-yV-NWA" id="TMy-zX-d0I"/>
+                        <outlet property="leftColumnConstraint" destination="XrK-En-WMf" id="mqN-pF-lHT"/>
                         <outlet property="leftFieldIcon1" destination="mUh-fA-frq" id="ZHg-m3-vHG"/>
                         <outlet property="leftFieldIcon2" destination="hpB-3V-fnF" id="sm3-ni-SEd"/>
                         <outlet property="leftFieldLabel1" destination="HqK-UA-iee" id="8o7-EW-XrV"/>
