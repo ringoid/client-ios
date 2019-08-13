@@ -637,8 +637,10 @@ class LMMManager
                 break
                                 
             case .messages:
-                let isContaintedLocally = self.messages.value.map({ $0.id }).contains(profileId)
-                if isContaintedLocally {
+                let isContainedLocally = self.messages.value.map({ $0.id }).contains(profileId)
+                let isContainedInRead = self.messages.value.filter({ !$0.notRead }).map({ $0.id }).contains(profileId)
+                let isVisible = self.actionsManager.lmmViewingProfiles.value.contains(profileId)
+                if isContainedLocally {
                     self.updateChat(profileId)
                     
                     if ChatViewController.openedProfileId == profileId { break }
@@ -648,6 +650,10 @@ class LMMManager
                     self.prevNotReadMessages.insert(profileId)
                     
                     self.updateNotSeenCounters()
+                    
+                    if !isVisible && isContainedInRead {                        
+                        self.messagesNotificationProfiles.insert(profileId)
+                    }
                 } else {
                     self.likesYouNotificationProfiles.remove(profileId)
                     self.messagesNotificationProfiles.insert(profileId)
