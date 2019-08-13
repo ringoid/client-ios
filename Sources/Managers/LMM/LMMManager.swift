@@ -489,6 +489,7 @@ class LMMManager
         UserDefaults.standard.removeObject(forKey: "filtered_all_messages_profiles_count")
         
         UserDefaults.standard.removeObject(forKey: "chats_cache")
+        UserDefaults.standard.removeObject(forKey: "is_first_match_recorded")
         UserDefaults.standard.synchronize()
         
         self.likesYouCached.removeAll()
@@ -586,6 +587,14 @@ class LMMManager
             
         self.messages.asObservable().subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
+            
+            let isFirstMatchRecorded = UserDefaults.standard.bool(forKey: "is_first_match_recorded")
+            if  !isFirstMatchRecorded, profiles.filter({ $0.messages.count == 0 }).count > 0 {
+                AnalyticsManager.shared.send(.firstMatch(SourceFeedType.messages.rawValue))
+                
+                UserDefaults.standard.setValue(true, forKey: "is_first_match_recorded")
+                UserDefaults.standard.synchronize()
+            }
             
             self.prevNotReadMessages.formUnion(profiles.notReadIDs())
             
