@@ -76,6 +76,10 @@ class FeedbackManager
             reportText.append("*\(age) \(gender == .male ? "M" : "F")* ")
         }
         
+        if let city = self.profileManager.profile.value?.whereLive {
+            reportText.append("_\(city)_ ")
+        }
+        
         if let feedSource = feedSource {
             reportText.append("from `\(source.rawValue)` - `\(feedSource.rawValue)`\n\n")
         } else {
