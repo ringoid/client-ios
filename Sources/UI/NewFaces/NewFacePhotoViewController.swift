@@ -183,6 +183,8 @@ class NewFacePhotoViewController: UIViewController
             return
         }
         
+        ImageService.shared.cancel(url)
+        ImageService.shared.cancel(thumbnailUrl)
         ImageService.shared.load(url, thumbnailUrl: thumbnailUrl, to: photoView)
     }
     
