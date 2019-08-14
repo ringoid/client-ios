@@ -29,9 +29,7 @@ class ImageService
     {
         let request = ImageRequest(url: url)
         if let cachedImage = ImageCache.shared[request] {
-            DispatchQueue.main.async {
-                to.image = cachedImage
-            }            
+            to.image = cachedImage
             
             return
         }
@@ -50,9 +48,7 @@ class ImageService
                     self.taskMap.removeValue(forKey: url)
                     self.viewMap.removeValue(forKey: url)
                     
-                    DispatchQueue.main.async {
-                        to.image = response.image
-                    }
+                    to.image = response.image
                 }, onError: { _ in
                     self.taskMap.removeValue(forKey: url)
                     self.viewMap.removeValue(forKey: url)
@@ -82,24 +78,22 @@ class ImageService
             }).subscribe(onNext: { response in
                 self.taskMap.removeValue(forKey: url)
                 self.viewMap.removeValue(forKey: url)
+
+                let thumbView = UIImageView(frame: to.bounds)
+                thumbView.image = thumbnailResponse?.image
+                thumbView.contentMode = .scaleAspectFill
+                to.addSubview(thumbView)
+                to.image = response.image
                 
-                DispatchQueue.main.async {
-                    let thumbView = UIImageView(frame: to.bounds)
-                    thumbView.image = thumbnailResponse?.image
-                    thumbView.contentMode = .scaleAspectFill
-                    to.addSubview(thumbView)
-                    to.image = response.image
-                    
-                    let animator = UIViewPropertyAnimator(duration: 0.05, curve: .linear, animations: {
-                        thumbView.alpha = 0.0
-                    })
-                    
-                    animator.addCompletion({ _ in
-                        thumbView.removeFromSuperview()
-                    })
-                    
-                    animator.startAnimation()
-                }
+                let animator = UIViewPropertyAnimator(duration: 0.05, curve: .linear, animations: {
+                    thumbView.alpha = 0.0
+                })
+                
+                animator.addCompletion({ _ in
+                    thumbView.removeFromSuperview()
+                })
+                
+                animator.startAnimation()
             }, onError: { _ in
                 self.taskMap.removeValue(forKey: url)
                 self.viewMap.removeValue(forKey: url)
