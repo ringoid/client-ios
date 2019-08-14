@@ -93,6 +93,7 @@ class NewFaceProfileViewController: UIViewController
     }
     
     deinit {
+        self.preheater.stopPreheating()
         self.preheaterTimer?.invalidate()
         self.preheaterTimer = nil
     }
