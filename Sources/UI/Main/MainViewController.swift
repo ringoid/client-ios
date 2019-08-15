@@ -54,6 +54,8 @@ class MainViewController: BaseViewController
     fileprivate var preshownMatchesCount: Int = 0
     fileprivate var preshownMessagesCount: Int = 0
     
+    fileprivate var feedbackGenerator: UIImpactFeedbackGenerator?
+    
     @IBOutlet fileprivate weak var searchBtn: UIButton!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
     @IBOutlet fileprivate weak var chatsBtn: UIButton!
@@ -83,6 +85,9 @@ class MainViewController: BaseViewController
         super.viewDidLoad()
         
         GlobalAnimationManager.shared.animationView = self.effectsView
+        
+        self.feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        self.feedbackGenerator?.prepare()
         
         self.setupBindings()
         
@@ -506,6 +511,7 @@ class MainViewController: BaseViewController
             switch remoteFeed {
             case .likesYou:
                 self.preshownLikesCount += 1
+                self.fireImpact()
                 self.effectsView.animateLikes(1, from: position)
                 
                 break
@@ -514,6 +520,7 @@ class MainViewController: BaseViewController
                 guard !self.input.lmmManager.messages.value.map({ $0.id }).contains(profileId) else { return }
                 
                 self.preshownMatchesCount += 1
+                self.fireImpact()
                 self.effectsView.animateMatches(1, from: position)
                 
                 break
@@ -522,6 +529,7 @@ class MainViewController: BaseViewController
                 if self.viewModel?.isMessageProcessed(profileId) == true { return }
                 
                 self.preshownMessagesCount += 1
+                self.fireImpact()
                 self.effectsView.animateMessages(1, from: position)
                 
                 DispatchQueue.main.async {
@@ -657,6 +665,13 @@ class MainViewController: BaseViewController
             self?.likesYouIndicatorView.alpha = alpha
             self?.chatIndicatorView.alpha = alpha
         }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func fireImpact()
+    {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            self.feedbackGenerator?.impactOccurred()
+        })
     }
 }
 
