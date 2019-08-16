@@ -285,7 +285,7 @@ class MainEffectsView: TouchThroughView
         }
         
         appearAnimator.addCompletion { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                 disappearAnimator.startAnimation()
             })
         }

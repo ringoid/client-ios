@@ -127,42 +127,14 @@ class LMMManager
     // Incoming counters
     
     fileprivate var prevNotSeenLikes: Set<String> = []
-    var incomingLikesYouCount: Observable<Int>
-    {
-        return self.likesYou.asObservable().map { profiles -> Int in
-            var notSeenProfiles = profiles.notSeenIDs()
-            notSeenProfiles.remove(self.apiService.customerId.value)
-            
-            return notSeenProfiles.subtracting(self.prevNotSeenLikes).count            
-        }
-    }
+    let incomingLikesYouCount: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     
     fileprivate var prevNotSeenMatches: Set<String> = []
-    var incomingMatches: Observable<Int>
-    {
-        return self.messages.asObservable().map { profiles -> Int in
-            var notSeenProfiles = profiles.filter({ $0.messages.count == 0 }).notSeenIDs()
-            notSeenProfiles.remove(self.apiService.customerId.value)
-
-            return notSeenProfiles.subtracting(self.prevNotSeenMatches).count
-        }
-    }
+    let incomingMatches: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
     
     fileprivate var prevNotReadMessages: Set<String> = []
-    var incomingMessages: Observable<Int>
-    {
-        return self.messages.asObservable().map { profiles -> Int in
-            var notReadProfiles = profiles.filter({ $0.messages.count != 0 }).notReadIDs()
-            notReadProfiles.remove(self.apiService.customerId.value)
-            
-            if let openedProfileId = ChatViewController.openedProfileId {
-                notReadProfiles.remove(openedProfileId)
-            }
+    let incomingMessages: BehaviorRelay<Int> = BehaviorRelay<Int>(value: 0)
 
-            return notReadProfiles.subtracting(self.prevNotReadMessages).count
-        }
-    }
-    
     fileprivate var notSeenLikesYouPrevCount: Int = 0
     fileprivate var notSeenMatchesPrevCount: Int = 0
     fileprivate var notSeenMessagesPrevCount: Int = 0
@@ -540,6 +512,37 @@ class LMMManager
     
     fileprivate func setupBindings()
     {
+        self.db.likesYou().subscribe(onNext: { [weak self] profiles in
+            guard let `self` = self else { return }
+            
+            var notSeenProfiles = profiles.notSeenIDs()
+            notSeenProfiles.remove(self.apiService.customerId.value)
+            
+            self.incomingLikesYouCount.accept(notSeenProfiles.subtracting(self.prevNotSeenLikes).count)
+        }).disposed(by: self.disposeBag)
+        
+        self.db.messages().subscribe(onNext: { [weak self] profiles in
+            guard let `self` = self else { return }
+            
+            var notSeenProfiles = profiles.filter({ $0.messages.count == 0 }).notSeenIDs()
+            notSeenProfiles.remove(self.apiService.customerId.value)
+            
+            self.incomingMatches.accept(notSeenProfiles.subtracting(self.prevNotSeenMatches).count)
+        }).disposed(by: self.disposeBag)
+        
+        self.db.messages().subscribe(onNext: { [weak self] profiles in
+            guard let `self` = self else { return }
+            
+            var notReadProfiles = profiles.filter({ $0.messages.count != 0 }).notReadIDs()
+            notReadProfiles.remove(self.apiService.customerId.value)
+            
+            if let openedProfileId = ChatViewController.openedProfileId {
+                notReadProfiles.remove(openedProfileId)
+            }
+            
+            self.incomingMessages.accept(notReadProfiles.subtracting(self.prevNotReadMessages).count)
+        }).disposed(by: self.disposeBag)
+        
         self.db.likesYou().subscribe(onNext: { [weak self] profiles in
             self?.likesYouCached = profiles
             

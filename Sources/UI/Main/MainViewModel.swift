@@ -50,17 +50,17 @@ class MainViewModel
         }
     }
     
-    var incomingLikesCount: Observable<Int>
+    var incomingLikesCount: BehaviorRelay<Int>
     {
         return self.input.lmmManager.incomingLikesYouCount
     }
     
-    var incomingMatches: Observable<Int>
+    var incomingMatches: BehaviorRelay<Int>
     {
         return self.input.lmmManager.incomingMatches
     }
     
-    var incomingMessages: Observable<Int>
+    var incomingMessages: BehaviorRelay<Int>
     {
         return self.input.lmmManager.incomingMessages
     }
