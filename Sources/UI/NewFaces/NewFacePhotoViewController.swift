@@ -183,8 +183,6 @@ class NewFacePhotoViewController: UIViewController
             return
         }
         
-        ImageService.shared.cancel(url)
-        ImageService.shared.cancel(thumbnailUrl)
         ImageService.shared.load(url, thumbnailUrl: thumbnailUrl, to: photoView)
     }
     
@@ -195,6 +193,11 @@ class NewFacePhotoViewController: UIViewController
  
     @objc fileprivate func onAppBecomeActive()
     {
+        if let url = self.photo?.filepath().url(), let thumbnailUrl = self.photo?.thumbnailFilepath().url() {
+            ImageService.shared.cancel(url)
+            ImageService.shared.cancel(thumbnailUrl)            
+        }
+        
         self.update()
         
         guard self.isVisible else { return }
