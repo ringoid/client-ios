@@ -107,7 +107,8 @@ class RootViewController: BaseViewController {
             transition: self.appManager.transitionManager,
             db: self.appManager.db,
             filter: self.appManager.filterManager,
-            impact: self.appManager.impact
+            impact: self.appManager.impact,
+            achivement: self.appManager.achivementManager
         )
         
         self.containerView.embed(vc, to: self)

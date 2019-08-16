@@ -208,6 +208,8 @@
 		57AE8969230676A600123AA6 /* ImpactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE8967230676A600123AA6 /* ImpactService.swift */; };
 		57AE896B2306779800123AA6 /* ImpactServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE896A2306779800123AA6 /* ImpactServiceDefault.swift */; };
 		57AE896C2306779800123AA6 /* ImpactServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE896A2306779800123AA6 /* ImpactServiceDefault.swift */; };
+		57AE8976230692EC00123AA6 /* AchivementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE8975230692EC00123AA6 /* AchivementManager.swift */; };
+		57AE8977230692EC00123AA6 /* AchivementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE8975230692EC00123AA6 /* AchivementManager.swift */; };
 		57B6DB1A22A50577000BD1C2 /* ApiChatUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6DB1922A50577000BD1C2 /* ApiChatUpdate.swift */; };
 		57B6DB1B22A50577000BD1C2 /* ApiChatUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6DB1922A50577000BD1C2 /* ApiChatUpdate.swift */; };
 		57B863BC21EC74BF00B9CC70 /* ApiLMMProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */; };
@@ -589,6 +591,7 @@
 		579CD7D121FB43E200C3AEE3 /* UserProfileContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileContainerCell.swift; sourceTree = "<group>"; };
 		57AE8967230676A600123AA6 /* ImpactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactService.swift; sourceTree = "<group>"; };
 		57AE896A2306779800123AA6 /* ImpactServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactServiceDefault.swift; sourceTree = "<group>"; };
+		57AE8975230692EC00123AA6 /* AchivementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchivementManager.swift; sourceTree = "<group>"; };
 		57B6DB1922A50577000BD1C2 /* ApiChatUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiChatUpdate.swift; sourceTree = "<group>"; };
 		57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLMMProfile.swift; sourceTree = "<group>"; };
 		57B863BD21EC758200B9CC70 /* ApiMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMessage.swift; sourceTree = "<group>"; };
@@ -832,6 +835,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				57AE8974230692D100123AA6 /* Achivement */,
 				5751561922E1DBC9009E7743 /* Filter */,
 				573D1167228DA37F00CD9C2D /* FeedbackMananger */,
 				573663C52272D8700041C5DB /* GlobalAnimationManager */,
@@ -1370,6 +1374,14 @@
 			path = Impact;
 			sourceTree = "<group>";
 		};
+		57AE8974230692D100123AA6 /* Achivement */ = {
+			isa = PBXGroup;
+			children = (
+				57AE8975230692EC00123AA6 /* AchivementManager.swift */,
+			);
+			path = Achivement;
+			sourceTree = "<group>";
+		};
 		57B863C321ECC33500B9CC70 /* LMM */ = {
 			isa = PBXGroup;
 			children = (
@@ -1902,6 +1914,7 @@
 				577DDAF5226F0FB2001D7D24 /* FlurryAnalytics.swift in Sources */,
 				57B863D721EE179F00B9CC70 /* TouchThroughView.swift in Sources */,
 				5764B91E22E7364700B9EE42 /* MainLCFilterViewController.swift in Sources */,
+				57AE8976230692EC00123AA6 /* AchivementManager.swift in Sources */,
 				574A7DA622434EFE0065AE56 /* PromotionManager.swift in Sources */,
 				57801A81222BD39C005A9731 /* UpdateVersionViewController.swift in Sources */,
 				57585D5421E48E3700038798 /* Image.swift in Sources */,
@@ -2212,6 +2225,7 @@
 				57EE651F2216711000246B45 /* Photo.swift in Sources */,
 				57801A85222E4379005A9731 /* SettingsDebugItemCell.swift in Sources */,
 				57EEB06822BCEC10005770B3 /* EducationLevel.swift in Sources */,
+				57AE8977230692EC00123AA6 /* AchivementManager.swift in Sources */,
 				5751561822E1D90D009E7743 /* NewFacesFilterViewModel.swift in Sources */,
 				57EE65202216711000246B45 /* DBServiceObject.swift in Sources */,
 				57EE65212216711000246B45 /* MainLMMCell.swift in Sources */,

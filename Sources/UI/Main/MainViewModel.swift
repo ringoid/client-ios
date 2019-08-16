@@ -28,6 +28,7 @@ struct MainVMInput
     let db: DBService
     let filter: FilterManager
     let impact: ImpactService
+    let achivement: AchivementManager
 }
 
 class MainViewModel

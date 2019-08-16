@@ -661,6 +661,10 @@ class MainViewController: BaseViewController
             self?.likesYouIndicatorView.alpha = alpha
             self?.chatIndicatorView.alpha = alpha
         }).disposed(by: self.disposeBag)
+        
+        self.input.achivement.text.skip(1).observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] text in
+            self?.effectsView.animateAchivementText(text, color: UIColor(red: 1.0, green: 0.15, blue: 0.0, alpha: 1.0))
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func fireImpact()
