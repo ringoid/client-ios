@@ -251,4 +251,45 @@ class MainEffectsView: TouchThroughView
 
         appearAnimator.startAnimation()
     }
+    
+    func animateText(_ text: String, color: UIColor)
+    {
+        let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 300.0, height: 44.0))
+        label.font = .systemFont(ofSize: 28.0, weight: .bold)
+        label.textAlignment = .center
+        label.text = text
+        label.textColor = color
+        label.alpha = 0.0
+        label.center = CGPoint(
+            x: self.bounds.width / 2.0,
+            y: self.bounds.height - 40.0
+        )
+        
+        self.addSubview(label)
+        
+        let appearAnimator = UIViewPropertyAnimator(duration: 2.0, curve: .easeOut ) {        
+            label.center = CGPoint(
+                x: self.bounds.width / 2.0,
+                y: self.bounds.height / 2.0
+            )
+            
+            label.alpha = 1.0
+        }
+        
+        let disappearAnimator = UIViewPropertyAnimator(duration: 1.0, curve: .easeOut) {
+            label.alpha = 0.0
+        }
+        
+        disappearAnimator.addCompletion { _ in
+            label.removeFromSuperview()
+        }
+        
+        appearAnimator.addCompletion { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                disappearAnimator.startAnimation()
+            })
+        }
+        
+        appearAnimator.startAnimation()
+    }
 }

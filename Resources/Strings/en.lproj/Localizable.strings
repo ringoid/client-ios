@@ -192,3 +192,4 @@
 "filter_all_range_chats" = "%d chats";
 
 "achievement_likes_malestone" = "%d likes received!";
+"incoming_likes" = "+%d likes";
