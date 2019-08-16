@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g3D-bb-6vc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g3D-bb-6vc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,10 +35,10 @@
                                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="numberPad" keyboardAppearance="alert"/>
                                             </textField>
                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_bar_no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="4p3-Hn-SSD">
-                                                <rect key="frame" x="191" y="19.5" width="3" height="10"/>
+                                                <rect key="frame" x="178" y="16.5" width="16" height="16"/>
                                             </imageView>
                                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="gnK-Jn-JRz">
-                                                <rect key="frame" x="176.5" y="8.5" width="32" height="32"/>
+                                                <rect key="frame" x="178" y="16.5" width="16" height="16"/>
                                                 <color key="tintColor" red="0.3921568627" green="0.66666666669999997" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
                                             </imageView>
                                         </subviews>
@@ -65,10 +65,10 @@
                                         <rect key="frame" x="83.5" y="150" width="98" height="98"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_male_logo" translatesAutoresizingMaskIntoConstraints="NO" id="cA5-0H-fcR">
-                                                <rect key="frame" x="32" y="10" width="34" height="50"/>
+                                                <rect key="frame" x="41" y="10" width="16" height="16"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nn1-Tx-MyN">
-                                                <rect key="frame" x="33" y="72" width="32.5" height="18"/>
+                                                <rect key="frame" x="33" y="38" width="32.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                 <color key="textColor" red="0.37647058823529411" green="0.65098039215686276" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -97,10 +97,10 @@
                                         <rect key="frame" x="191.5" y="150" width="98" height="98"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_female_logo" translatesAutoresizingMaskIntoConstraints="NO" id="pXK-b7-zje">
-                                                <rect key="frame" x="31" y="12" width="36" height="50"/>
+                                                <rect key="frame" x="41" y="12" width="16" height="16"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qvw-hC-UD2">
-                                                <rect key="frame" x="24.5" y="72" width="49.5" height="18"/>
+                                                <rect key="frame" x="24.5" y="38" width="49.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                 <color key="textColor" red="1" green="0.38431372549019605" blue="0.6705882352941176" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -169,7 +169,7 @@
                                         <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </activityIndicatorView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLp-TM-j8c">
-                                        <rect key="frame" x="310" y="28" width="49" height="36"/>
+                                        <rect key="frame" x="343" y="28" width="16" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="fXm-zr-0sK"/>
                                         </constraints>
@@ -243,7 +243,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="auth_checkmark" width="32" height="32"/>
+        <image name="auth_checkmark" width="16" height="16"/>
         <image name="auth_female_logo" width="36" height="50"/>
         <image name="auth_male_logo" width="34" height="50"/>
         <image name="auth_theme_btn_day" width="49" height="36"/>

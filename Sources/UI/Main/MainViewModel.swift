@@ -27,6 +27,7 @@ struct MainVMInput
     let transition: TransitionManager
     let db: DBService
     let filter: FilterManager
+    let impact: ImpactService
 }
 
 class MainViewModel

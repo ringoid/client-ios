@@ -54,8 +54,6 @@ class MainViewController: BaseViewController
     fileprivate var preshownMatchesCount: Int = 0
     fileprivate var preshownMessagesCount: Int = 0
     
-    fileprivate var feedbackGenerator: UIImpactFeedbackGenerator?
-    
     @IBOutlet fileprivate weak var searchBtn: UIButton!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
     @IBOutlet fileprivate weak var chatsBtn: UIButton!
@@ -85,9 +83,6 @@ class MainViewController: BaseViewController
         super.viewDidLoad()
         
         GlobalAnimationManager.shared.animationView = self.effectsView
-        
-        self.feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-        self.feedbackGenerator?.prepare()
         
         self.setupBindings()
         
@@ -457,6 +452,7 @@ class MainViewController: BaseViewController
             let size = self.likeBtn.bounds.size
             let center = self.likeBtn.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), to: nil)
             let position = CGPoint(x: 44.0, y: center.y + 16.0)
+            // self.effectsView.animateText("+\(countToShow) Likes", color: .red)
             self.effectsView.animateLikes(countToShow, from: position)
         }).disposed(by: self.disposeBag)
         
@@ -670,7 +666,7 @@ class MainViewController: BaseViewController
     fileprivate func fireImpact()
     {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-            self.feedbackGenerator?.impactOccurred()
+            self.input.impact.perform(.light)
         })
     }
 }

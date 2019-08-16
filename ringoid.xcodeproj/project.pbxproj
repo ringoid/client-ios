@@ -204,6 +204,10 @@
 		579CD7CC21FA094600C3AEE3 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7CB21FA094600C3AEE3 /* KeyboardListener.swift */; };
 		579CD7CF21FAE2D100C3AEE3 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7CE21FAE2D000C3AEE3 /* ChatManager.swift */; };
 		579CD7D221FB43E200C3AEE3 /* UserProfileContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7D121FB43E200C3AEE3 /* UserProfileContainerCell.swift */; };
+		57AE8968230676A600123AA6 /* ImpactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE8967230676A600123AA6 /* ImpactService.swift */; };
+		57AE8969230676A600123AA6 /* ImpactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE8967230676A600123AA6 /* ImpactService.swift */; };
+		57AE896B2306779800123AA6 /* ImpactServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE896A2306779800123AA6 /* ImpactServiceDefault.swift */; };
+		57AE896C2306779800123AA6 /* ImpactServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE896A2306779800123AA6 /* ImpactServiceDefault.swift */; };
 		57B6DB1A22A50577000BD1C2 /* ApiChatUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6DB1922A50577000BD1C2 /* ApiChatUpdate.swift */; };
 		57B6DB1B22A50577000BD1C2 /* ApiChatUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6DB1922A50577000BD1C2 /* ApiChatUpdate.swift */; };
 		57B863BC21EC74BF00B9CC70 /* ApiLMMProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */; };
@@ -583,6 +587,8 @@
 		579CD7CB21FA094600C3AEE3 /* KeyboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
 		579CD7CE21FAE2D000C3AEE3 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		579CD7D121FB43E200C3AEE3 /* UserProfileContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileContainerCell.swift; sourceTree = "<group>"; };
+		57AE8967230676A600123AA6 /* ImpactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactService.swift; sourceTree = "<group>"; };
+		57AE896A2306779800123AA6 /* ImpactServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactServiceDefault.swift; sourceTree = "<group>"; };
 		57B6DB1922A50577000BD1C2 /* ApiChatUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiChatUpdate.swift; sourceTree = "<group>"; };
 		57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLMMProfile.swift; sourceTree = "<group>"; };
 		57B863BD21EC758200B9CC70 /* ApiMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMessage.swift; sourceTree = "<group>"; };
@@ -760,6 +766,7 @@
 		570D047C21DCED1800E0DCFB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				57AE89662306767E00123AA6 /* Impact */,
 				577DDAD422647910001D7D24 /* Location */,
 				578502F222564E680056120A /* Analytics */,
 				578502E72253B09F0056120A /* Image */,
@@ -1354,6 +1361,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		57AE89662306767E00123AA6 /* Impact */ = {
+			isa = PBXGroup;
+			children = (
+				57AE8967230676A600123AA6 /* ImpactService.swift */,
+				57AE896A2306779800123AA6 /* ImpactServiceDefault.swift */,
+			);
+			path = Impact;
+			sourceTree = "<group>";
+		};
 		57B863C321ECC33500B9CC70 /* LMM */ = {
 			isa = PBXGroup;
 			children = (
@@ -1894,6 +1910,7 @@
 				570D04B221DDE4E200E0DCFB /* UserProfileManager.swift in Sources */,
 				579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */,
 				57585D4E21E3897800038798 /* UserPhoto.swift in Sources */,
+				57AE8968230676A600123AA6 /* ImpactService.swift in Sources */,
 				57386E40220B27C00000E5D9 /* LocalizedTableViewCell.swift in Sources */,
 				5764B92122E7365D00B9EE42 /* MainLCFilterViewModel.swift in Sources */,
 				570D04B821DE2B6400E0DCFB /* XStorageService.swift in Sources */,
@@ -1942,6 +1959,7 @@
 				57585D4C21E388EC00038798 /* UserProfilePhotosViewController.swift in Sources */,
 				57386E46220B33FE0000E5D9 /* SettingsDeleteCell.swift in Sources */,
 				57B863D121EDB16300B9CC70 /* MainLMMProfileViewController.swift in Sources */,
+				57AE896B2306779800123AA6 /* ImpactServiceDefault.swift in Sources */,
 				57B863F221EF5AFB00B9CC70 /* ApiLikeAction.swift in Sources */,
 				579CD7CC21FA094600C3AEE3 /* KeyboardListener.swift in Sources */,
 				579CD7CA21F9DB8B00C3AEE3 /* ChatBaseCell.swift in Sources */,
@@ -2147,6 +2165,7 @@
 				574F4ACB22520B230027A083 /* SettingsNotificationsCell.swift in Sources */,
 				57EE65062216711000246B45 /* Errors.swift in Sources */,
 				57EE65072216711000246B45 /* NavigationManager.swift in Sources */,
+				57AE896C2306779800123AA6 /* ImpactServiceDefault.swift in Sources */,
 				57EE65082216711000246B45 /* UserProfilePhotosViewController.swift in Sources */,
 				57EE65092216711000246B45 /* SettingsDeleteCell.swift in Sources */,
 				57EE650A2216711000246B45 /* MainLMMProfileViewController.swift in Sources */,
@@ -2170,6 +2189,7 @@
 				57CFFB6C22E8476000DC2378 /* SettingsFilterViewModel.swift in Sources */,
 				57EEB08D22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */,
 				5751561522E1D8F2009E7743 /* NewFacesFilterViewController.swift in Sources */,
+				57AE8969230676A600123AA6 /* ImpactService.swift in Sources */,
 				5751561C22E1DBF7009E7743 /* FilterManager.swift in Sources */,
 				573A5C212226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
 				57EE65132216711000246B45 /* ApiBlockAction.swift in Sources */,

@@ -22,6 +22,7 @@ class AppManager
     var db: DBService!
     var notifications: NotificationService!
     var location: LocationService!
+    var impact: ImpactService!
     
     var actionsManager: ActionsManager!
     var profileManager: UserProfileManager!
@@ -129,6 +130,7 @@ class AppManager
         self.reachability = ReachabilityServiceDefault()
         self.notifications = NotificationsServiceDefault()
         self.location = LocationServiceDefault()
+        self.impact = ImpactServiceDefault()
         
         #if STAGE
         let apiConfig = ApiServiceConfigStage()

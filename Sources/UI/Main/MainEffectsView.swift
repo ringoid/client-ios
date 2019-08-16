@@ -210,4 +210,33 @@ class MainEffectsView: TouchThroughView
         RunLoop.main.add(durationTimer, forMode: .common)
         RunLoop.main.add(removalTimer, forMode: .common)
     }
+    
+    func animateText(_ text: String, color: UIColor)
+    {
+        let label = UILabel()
+        label.text = text
+        label.textColor = color
+        label.alpha = 0.0
+        label.center = CGPoint(
+            x: self.bounds.width / 2.0,
+            y: self.bounds.height - 40.0
+        )
+        
+        self.addSubview(label)
+        
+        let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeOut) {
+            label.center = CGPoint(
+                x: self.bounds.width / 2.0,
+                y: self.bounds.height / 2.0
+            )
+            
+            label.alpha = 1.0
+        }
+        
+        animator.addCompletion { _ in
+            label.removeFromSuperview()
+        }
+        
+        animator.startAnimation()
+    }
 }
