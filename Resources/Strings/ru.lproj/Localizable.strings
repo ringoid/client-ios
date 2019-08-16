@@ -192,3 +192,5 @@
 "filter_range_chats" = "%d чатов (%d спрятано)";
 "filter_all_range_likes" = "%d лайков";
 "filter_all_range_chats" = "%d чатов";
+
+"achievement_likes_malestone" = "%d лайков получено!";

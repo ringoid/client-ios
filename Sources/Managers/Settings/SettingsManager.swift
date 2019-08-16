@@ -22,6 +22,7 @@ class SettingsManager
     let scenario: AnalyticsScenarioManager
     let profile: UserProfileManager
     let filter: FilterManager
+    let achievement: AchivementManager
     
     let isFirstLaunch: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
@@ -53,7 +54,7 @@ class SettingsManager
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager, lmm: LMMManager, newFaces: NewFacesManager, notifications: NotificationService, scenario: AnalyticsScenarioManager, profile: UserProfileManager, filter: FilterManager)
+    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager, lmm: LMMManager, newFaces: NewFacesManager, notifications: NotificationService, scenario: AnalyticsScenarioManager, profile: UserProfileManager, filter: FilterManager, achievement: AchivementManager)
     {
         self.db = db
         self.api = api
@@ -66,6 +67,7 @@ class SettingsManager
         self.scenario = scenario
         self.profile = profile
         self.filter = filter
+        self.achievement = achievement
         
         self.loadSettings()
         self.updateRemoteSettings()
@@ -114,6 +116,7 @@ class SettingsManager
     {
         MainLMMViewController.resetStates()
         
+        self.achievement.reset()
         self.notifications.reset()
         self.actions.reset()
         self.profile.reset()

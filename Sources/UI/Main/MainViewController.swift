@@ -454,6 +454,7 @@ class MainViewController: BaseViewController
             let position = CGPoint(x: 44.0, y: center.y + 16.0)
             // self.effectsView.animateText("+\(countToShow) Likes", color: .red)
             self.effectsView.animateLikes(countToShow, from: position)
+            self.input.achivement.addLikes(countToShow)
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.incomingMatches.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
@@ -472,6 +473,7 @@ class MainViewController: BaseViewController
             let center = self.likeBtn.convert(CGPoint(x: size.width / 2.0, y: size.height / 2.0), to: nil)
             let position = CGPoint(x: 44.0, y: center.y + 16.0)
             self.effectsView.animateMatches(countToShow, from: position)
+            self.input.achivement.addLikes(countToShow)
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.incomingMessages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
@@ -509,6 +511,7 @@ class MainViewController: BaseViewController
                 self.preshownLikesCount += 1
                 self.fireImpact()
                 self.effectsView.animateLikes(1, from: position)
+                self.input.achivement.addLikes(1)
                 
                 break
                 
@@ -517,6 +520,7 @@ class MainViewController: BaseViewController
                 
                 self.preshownMatchesCount += 1
                 self.fireImpact()
+                self.input.achivement.addLikes(1)
                 self.effectsView.animateMatches(1, from: position)
                 
                 break

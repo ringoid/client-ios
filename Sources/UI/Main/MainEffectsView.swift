@@ -214,7 +214,7 @@ class MainEffectsView: TouchThroughView
     func animateAchivementText(_ text: String, color: UIColor)
     {
         let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 300.0, height: 44.0))
-        label.font = .systemFont(ofSize: 32.0, weight: .bold)
+        label.font = .systemFont(ofSize: 28.0, weight: .bold)
         label.textAlignment = .center
         label.text = text
         label.textColor = color

@@ -151,7 +151,8 @@ class AppManager
         self.profileManager = UserProfileManager(self.db, api: self.apiService, uploader: self.uploader, fileService: self.fileService, device: self.deviceService, storage: self.defaultStorage, lmm: self.lmmManager, filter: self.filterManager)
         self.scenarioManager = AnalyticsScenarioManager(AnalyticsManager.shared)
         self.chatManager = ChatManager(self.db, actionsManager: self.actionsManager, scenario: self.scenarioManager)
-        self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, actions: self.actionsManager, lmm: self.lmmManager, newFaces: self.newFacesManager, notifications: self.notifications, scenario: self.scenarioManager, profile: self.profileManager, filter: self.filterManager)
+        self.achivementManager = AchivementManager()
+        self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, actions: self.actionsManager, lmm: self.lmmManager, newFaces: self.newFacesManager, notifications: self.notifications, scenario: self.scenarioManager, profile: self.profileManager, filter: self.filterManager, achievement: self.achivementManager)
         self.navigationManager = NavigationManager()
         self.errorsManager = ErrorsManager(self.apiService, settings: self.settingsMananger)
         self.promotionManager = PromotionManager(launchOptions, api: self.apiService)
@@ -159,7 +160,6 @@ class AppManager
         self.syncManager = SyncManager(self.notifications, lmm: self.lmmManager, newFaces: self.newFacesManager, profile: self.profileManager, navigation: self.navigationManager)
         self.locationManager = LocationManager(self.location, actions: self.actionsManager)
         self.transitionManager = TransitionManager(self.db, lmm: self.lmmManager, filter: self.filterManager)
-        self.achivementManager = AchivementManager(self.lmmManager)
         
         ThemeManager.shared.storageService = self.defaultStorage
         LocaleManager.shared.storage = self.defaultStorage
