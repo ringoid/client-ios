@@ -211,18 +211,22 @@ class MainEffectsView: TouchThroughView
         RunLoop.main.add(removalTimer, forMode: .common)
     }
     
-    func animateAchivementText(_ text: String, color: UIColor)
+    func animateAchivementText(_ text: String)
     {
         let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 300.0, height: 44.0))
-        label.font = .systemFont(ofSize: 28.0, weight: .bold)
+        label.font = .systemFont(ofSize: 24.0, weight: .bold)
         label.textAlignment = .center
         label.text = text
-        label.textColor = color
+        label.textColor = .white
         label.alpha = 0.0
         label.center = CGPoint(
             x: self.bounds.width / 2.0,
             y: self.bounds.height - 40.0
         )
+        //label.backgroundColor = UIColor(red: 67.0 / 255.0, green: 140.0 / 255.0, blue: 43.0 / 255.0, alpha: 1.0)
+        label.backgroundColor = UIColor(red: 255.0 / 255.0, green: 69.0 / 255.0, blue: 0.0, alpha: 1.0)
+        label.layer.cornerRadius = 22.0
+        label.clipsToBounds = true
         
         self.addSubview(label)
         

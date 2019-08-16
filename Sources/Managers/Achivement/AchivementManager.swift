@@ -53,7 +53,7 @@ class AchivementManager
         var maxAchivementCount: Int? = nil
         for achievementCount in self.likesAchievements {
             guard achievementCount > self.lastLikesAchivementCount else { continue }
-            guard achievementCount == self.likesCount else { continue }
+            guard achievementCount <= self.likesCount else { continue }
 
             self.lastLikesAchivementCount = achievementCount
             UserDefaults.standard.set(achievementCount, forKey: "achievement_last_likes_count")

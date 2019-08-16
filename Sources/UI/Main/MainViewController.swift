@@ -667,7 +667,7 @@ class MainViewController: BaseViewController
         }).disposed(by: self.disposeBag)
         
         self.input.achivement.text.skip(1).observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] text in
-            self?.effectsView.animateAchivementText(text, color: UIColor(red: 1.0, green: 0.15, blue: 0.0, alpha: 1.0))
+            self?.effectsView.animateAchivementText(text)
         }).disposed(by: self.disposeBag)
     }
     
