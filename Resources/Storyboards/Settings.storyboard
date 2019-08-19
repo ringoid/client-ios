@@ -1254,7 +1254,18 @@
                                 <state key="normal" image="common_back"/>
                                 <connections>
                                     <action selector="onBack" destination="fnZ-VO-K5I" eventType="touchUpInside" id="2eC-hl-HVl"/>
-                                    <action selector="onBack" destination="i4T-DQ-OzO" eventType="touchUpInside" id="WV0-68-3f3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgE-yd-Eq2">
+                                <rect key="frame" x="311" y="29" width="64" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="fcD-cp-JC7"/>
+                                    <constraint firstAttribute="width" constant="64" id="gUs-NJ-x4c"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="common_done"/>
+                                <connections>
+                                    <action selector="onBack" destination="fnZ-VO-K5I" eventType="touchUpInside" id="HlF-4G-k3t"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eep-iH-J9c">
@@ -1458,8 +1469,10 @@
                             <constraint firstItem="Eep-iH-J9c" firstAttribute="centerY" secondItem="KiB-6c-Ta5" secondAttribute="centerY" id="VaY-Ql-Pd3"/>
                             <constraint firstItem="J6Q-9D-Lij" firstAttribute="leading" secondItem="Yyv-Qu-g8q" secondAttribute="leading" id="Wpv-OD-du4"/>
                             <constraint firstItem="KiB-6c-Ta5" firstAttribute="leading" secondItem="Yyv-Qu-g8q" secondAttribute="leading" constant="2" id="YH2-mM-Cbq"/>
+                            <constraint firstAttribute="trailing" secondItem="EgE-yd-Eq2" secondAttribute="trailing" id="Yc4-6V-yLf"/>
                             <constraint firstAttribute="bottom" secondItem="J6Q-9D-Lij" secondAttribute="bottom" id="YwS-G5-E6L"/>
                             <constraint firstItem="Eep-iH-J9c" firstAttribute="centerX" secondItem="Yyv-Qu-g8q" secondAttribute="centerX" id="iT1-Iy-BUS"/>
+                            <constraint firstItem="EgE-yd-Eq2" firstAttribute="centerY" secondItem="KiB-6c-Ta5" secondAttribute="centerY" id="pRe-4k-D5R"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TNy-oZ-D4d"/>
                     </view>
@@ -1645,7 +1658,8 @@
     <resources>
         <image name="common_back" width="11" height="20"/>
         <image name="common_disclosure" width="12" height="22"/>
-        <image name="feed_filter_btn" width="19.5" height="22"/>
+        <image name="common_done" width="26" height="21"/>
+        <image name="feed_filter_btn" width="22" height="22"/>
         <image name="feed_slider_handle" width="12.5" height="22"/>
         <image name="profile_fields_education" width="15" height="15"/>
         <image name="profile_fields_ruler" width="15" height="15"/>
