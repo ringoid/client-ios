@@ -28,7 +28,7 @@ class AchivementManager
     {
         self.likesCount += count
         UserDefaults.standard.set(self.likesCount, forKey: "achievement_likes_count")
-        self.checkLikesAchivement()
+        // self.checkLikesAchivement()
     }
     
     func reset()
