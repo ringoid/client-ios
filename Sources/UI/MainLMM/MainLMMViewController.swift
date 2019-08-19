@@ -414,6 +414,8 @@ class MainLMMViewController: BaseViewController
                 } else {
                     title = String(format: "filter_all_range_likes".localized(), filteredCount)
                 }
+            } else if totalCount == 0 {
+                title = String(format: "lmm_tab_likes".localized(), totalCount)
             } else {
                 title = String(format: "filter_all_range_likes".localized(), totalCount)
             }
@@ -433,6 +435,8 @@ class MainLMMViewController: BaseViewController
                 } else {
                     title = String(format: "filter_all_range_chats".localized(), filteredCount)
                 }
+            } else if totalCount == 0 {
+                title = String(format: "lmm_tab_messages".localized(), totalCount)
             } else {
                 title = String(format: "filter_all_range_chats".localized(), totalCount)
             }
