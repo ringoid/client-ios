@@ -26,7 +26,7 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tog-9D-Erh">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.15306613869863014" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view alpha="0.14999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cjc-8j-yFq" userLabel="BottomBarView">
                                 <rect key="frame" x="0.0" y="627" width="375" height="40"/>
