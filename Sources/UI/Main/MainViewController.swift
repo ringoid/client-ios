@@ -454,7 +454,7 @@ class MainViewController: BaseViewController
             let position = CGPoint(x: 44.0, y: center.y + 16.0)            
             self.effectsView.animateLikes(countToShow, from: position)
             self.input.achivement.addLikes(countToShow)
-            self.effectsView.animateText(String(format: "incoming_likes".localized(), countToShow), color: .red)
+            // self.effectsView.animateText(String(format: "incoming_likes".localized(), countToShow), color: .red)
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.incomingMatches.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
