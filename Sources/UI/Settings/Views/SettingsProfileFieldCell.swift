@@ -145,6 +145,14 @@ class SettingsProfileFieldCell: BaseTableViewCell
         self.valueTextView?.delegate = self
     }
     
+    override func prepareForReuse()
+    {
+        super.prepareForReuse()
+        
+        self.valueField?.text = nil
+        self.valueTextView?.text = nil
+    }
+    
     override func updateTheme()
     {
         self.tintColor = ContentColor().uiColor()
