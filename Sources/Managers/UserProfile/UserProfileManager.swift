@@ -208,8 +208,6 @@ class UserProfileManager
             UserDefaults.standard.synchronize()
             
             AnalyticsManager.shared.gender = value
-            
-            self?.checkFilterDefaults()
         }).disposed(by: self.disposeBag)
         
         self.yob.subscribe(onNext: { [weak self] value in
