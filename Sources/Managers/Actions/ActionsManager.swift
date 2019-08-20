@@ -313,7 +313,6 @@ class ActionsManager
         }
         
         let enqued = self.queue
-        self.queue.removeFirst(enqued.count)
         self.sendingActions.append(contentsOf: enqued)
         
         log("Sending events: \(self.sendingActions.count)", level: .high)
@@ -322,23 +321,28 @@ class ActionsManager
         let localLastActionTime = sortedActions.last?.actionTime ?? Date()
         
         return self.apiService.sendActions(sortedActions.compactMap({ $0.apiAction() }))
-            .do(onNext: { [weak self] date in
+            .do(onError: { [weak self] _ in
                 guard let `self` = self else { return }
+                
+                self.queue.insert(contentsOf: self.sendingActions, at: 0)
+                self.sendingActions.removeAll()
+            })
+            .flatMap({ [weak self] (date) -> Observable<Void> in
+                guard let `self` = self else { return .just(()) }
                 
                 if abs(date.timeIntervalSince1970 - localLastActionTime.timeIntervalSince1970) > 0.001 {
                     log("ERROR: last action times not equal", level: .high)
                     SentryService.shared.send(.lastActionTimeError)
                 }
                 
+                print("Actions sent: \(sortedActions.count)")
                 self.lastActionDate.accept(date)
                 self.db.delete(self.sendingActions).subscribe().disposed(by: self.disposeBag)
                 self.sendingActions.removeAll()
-                }, onError: { [weak self] _ in
-                    guard let `self` = self else { return }
-                    
-                    self.queue.insert(contentsOf: self.sendingActions, at: 0)
-                    self.sendingActions.removeAll()
-            }).map({ _ -> Void in return () })
+                self.queue.removeFirst(enqued.count)
+                
+                return .just(())
+            })
     }
     
     func checkConnectionState() -> Bool
