@@ -17,6 +17,7 @@ enum SelectionState {
     case profile
     
     case searchAndFetch
+    case searchAndFetchFirstTime
     case profileAndPick
     case profileAndFetch
     case likeAndFetch
@@ -255,6 +256,14 @@ class MainViewController: BaseViewController
             self.embedNewFacesAndFetch()
             break
             
+        case .searchAndFetchFirstTime:
+            self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.embedNewFacesAndFetchFirstTime()
+            break
+            
         case .likeAndFetch:
             self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
@@ -279,6 +288,18 @@ class MainViewController: BaseViewController
         self.containerVC.embed(vc)
         DispatchQueue.main.async {
             vc.reload(false)
+        }
+    }
+    
+    fileprivate func embedNewFacesAndFetchFirstTime()
+    {
+        guard let vc = self.getNewFacesVC() else { return }
+        
+        self.containedVC = vc
+        self.containerVC.embed(vc)
+        DispatchQueue.main.async {
+            vc.reload(false)
+            vc.showFilterFromFeed()
         }
     }
     
@@ -692,6 +713,7 @@ extension MainNavigationItem
         case .profileAndFetch: return .profileAndFetch
         case .profileAndPick: return .profileAndPick
         case .searchAndFetch: return .searchAndFetch
+        case .searchAndFetchFirstTime: return .searchAndFetchFirstTime
         case .likeAndFetch: return .likeAndFetch
         }
     }

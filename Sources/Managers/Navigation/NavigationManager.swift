@@ -17,6 +17,7 @@ enum MainNavigationItem
     case profile
     
     case searchAndFetch
+    case searchAndFetchFirstTime
     case profileAndFetch
     case profileAndPick
     

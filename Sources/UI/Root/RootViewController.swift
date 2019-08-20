@@ -17,6 +17,7 @@ fileprivate enum AppUIMode
     case auth
     case main
     case search
+    case searchFirstTime
     case userProfile
 }
 
@@ -77,6 +78,13 @@ class RootViewController: BaseViewController {
             self.embedMainVC()
             DispatchQueue.main.async {
                 self.appManager.navigationManager.mainItem.accept(.searchAndFetch)
+            }
+            break
+            
+        case .searchFirstTime:
+            self.embedMainVC()
+            DispatchQueue.main.async {
+                self.appManager.navigationManager.mainItem.accept(.searchAndFetchFirstTime)
             }
             break
             
@@ -195,7 +203,7 @@ class RootViewController: BaseViewController {
                 }
             } else {
                 if self?.appManager.settingsMananger.isFirstLaunch.value == true {
-                    self?.move(to: .search)
+                    self?.move(to: .searchFirstTime)
                     self?.appManager.settingsMananger.isFirstLaunch.accept(false)
                 } else {
                     self?.move(to: .search)
