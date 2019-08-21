@@ -411,11 +411,13 @@ class MainLMMViewController: BaseViewController
             if self.input.filter.isFilteringEnabled.value {
                 if hiddenCount > 0 {
                     title = String(format: "filter_range_likes".localized(), filteredCount, hiddenCount)
+                } else if filteredCount == 0 {
+                    title = "lmm_tab_likes".localized()
                 } else {
                     title = String(format: "filter_all_range_likes".localized(), filteredCount)
                 }
             } else if totalCount == 0 {
-                title = String(format: "lmm_tab_likes".localized(), totalCount)
+                title = "lmm_tab_likes".localized()
             } else {
                 title = String(format: "filter_all_range_likes".localized(), totalCount)
             }
@@ -432,11 +434,13 @@ class MainLMMViewController: BaseViewController
             if self.input.filter.isFilteringEnabled.value {
                 if hiddenCount > 0 {
                     title = String(format: "filter_range_chats".localized(), filteredCount, hiddenCount)
+                } else if filteredCount == 0 {
+                    title = "lmm_tab_messages".localized()
                 } else {
                     title = String(format: "filter_all_range_chats".localized(), filteredCount)
                 }
             } else if totalCount == 0 {
-                title = String(format: "lmm_tab_messages".localized(), totalCount)
+                title = "lmm_tab_messages".localized()
             } else {
                 title = String(format: "filter_all_range_chats".localized(), totalCount)
             }
