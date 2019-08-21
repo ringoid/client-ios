@@ -790,7 +790,7 @@ class MainLMMViewController: BaseViewController
         switch self.type.value {
         case .likesYou:
             let totalCount = self.input.lmmManager.allLikesYouProfilesCount.value
-            if let count = self.profiles()?.value.count, totalCount != count {
+            if let count = self.profiles()?.value.count, totalCount > count {
                 return String(format: "feed_profiles_filtered".localized(), totalCount - count)
             }
             
@@ -798,7 +798,7 @@ class MainLMMViewController: BaseViewController
             
         case .messages:
             let totalCount = self.input.lmmManager.allMessagesProfilesCount.value
-            if let count = self.profiles()?.value.count, totalCount != count {
+            if let count = self.profiles()?.value.count, totalCount > count {
                 return String(format: "feed_profiles_filtered".localized(), totalCount - count)
             }
             
