@@ -428,6 +428,11 @@ class LMMManager
         self.storage.store(self.processedNotificationsProfiles, key: "processedNotificationsProfiles")
             .subscribe().disposed(by: self.disposeBag)
         
+        // Updating & storing chats cache
+        (self.messages.value + self.likesYou.value).forEach({ profile in
+            self.chatsCache[profile.id] = ChatProfileCache.create(profile)
+        })
+        
         if let chatsCacheData = try? NSKeyedArchiver.archivedData(withRootObject: self.chatsCache, requiringSecureCoding: false) {
             UserDefaults.standard.setValue(chatsCacheData, forKey: "chats_cache")
             UserDefaults.standard.synchronize()
