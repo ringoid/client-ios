@@ -94,6 +94,7 @@ extension Set: XStorageObject where Element == String
     
     static func create(_ from: Any) -> Set<String>?
     {
+        guard let fromStr = from as? String, fromStr.count > 0 else { return nil }
         guard let components = (from as? String)?.components(separatedBy: CharacterSet(charactersIn: ",")) else { return nil }
         
         return Set<String>(components)
