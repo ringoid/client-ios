@@ -115,7 +115,7 @@ discover users nearby</string>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="jzx-sZ-cTm"/>
                                         </constraints>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="32" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="18" maxY="0.0"/>
                                         <state key="normal" image="feed_filter_btn">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -686,7 +686,7 @@ discover users nearby</string>
         </scene>
     </scenes>
     <resources>
-        <image name="feed_filter_btn" width="19.5" height="22"/>
+        <image name="feed_filter_btn" width="22" height="22"/>
         <image name="feed_like" width="36" height="33"/>
         <image name="feed_like_selected" width="36" height="33"/>
         <image name="feed_options" width="32" height="12"/>
