@@ -93,17 +93,17 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.viewModel?.configuration.settingsFields.count ?? 0) + 1
+        return self.viewModel?.configuration.settingsFields.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         // Suggest
-        if let count = self.viewModel?.configuration.settingsFields.count, indexPath.row == count {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "profile_suggest_cell") as? SettingsProfileFieldsSuggest else { return UITableViewCell() }
-            
-            return cell
-        }
+//        if let count = self.viewModel?.configuration.settingsFields.count, indexPath.row == count {
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "profile_suggest_cell") as? SettingsProfileFieldsSuggest else { return UITableViewCell() }
+//
+//            return cell
+//        }
         
         // Fields
         guard let field = self.viewModel?.configuration.settingsFields[indexPath.row] else { return UITableViewCell() }
