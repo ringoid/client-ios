@@ -240,9 +240,21 @@ see how many likes you get</string>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello! 😍 This is my status... 👋" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXO-bm-eHo">
+                                <rect key="frame" x="16" y="200" width="124" height="222"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="124" id="xJY-7D-Ghf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.88299978599999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="XXO-bm-eHo" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" constant="180" id="0ck-pO-rtP"/>
                             <constraint firstItem="27t-IX-qLF" firstAttribute="width" secondItem="UMb-Bl-CM4" secondAttribute="width" id="0oE-CE-nYr"/>
                             <constraint firstItem="ouZ-cc-Vmf" firstAttribute="centerY" secondItem="c03-Vj-oKe" secondAttribute="centerY" id="13U-xz-Mio"/>
                             <constraint firstItem="Pzg-eZ-8Og" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" id="1qb-Vr-aDl" userLabel="PagesTop"/>
@@ -299,6 +311,7 @@ see how many likes you get</string>
                             <constraint firstAttribute="trailing" secondItem="oTk-g9-AL2" secondAttribute="trailing" constant="16" id="tsO-dr-syS"/>
                             <constraint firstItem="hwe-yx-WQU" firstAttribute="top" secondItem="eno-1i-kP1" secondAttribute="bottom" constant="10" id="v4k-mc-rpn"/>
                             <constraint firstItem="04l-Dx-sJ6" firstAttribute="centerY" secondItem="eno-1i-kP1" secondAttribute="centerY" id="vAW-Ox-lLb"/>
+                            <constraint firstItem="XXO-bm-eHo" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" constant="16" id="xhI-bj-MpI"/>
                             <constraint firstItem="BK0-ML-AsK" firstAttribute="centerY" secondItem="27t-IX-qLF" secondAttribute="centerY" id="ykd-OM-KkI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Yc6-CF-qSL"/>
@@ -328,6 +341,7 @@ see how many likes you get</string>
                         <outlet property="rightFieldIcon2" destination="04l-Dx-sJ6" id="AiS-xp-RK6"/>
                         <outlet property="rightFieldLabel1" destination="hwe-yx-WQU" id="R7I-JL-JKQ"/>
                         <outlet property="rightFieldLabel2" destination="eno-1i-kP1" id="soL-48-o7f"/>
+                        <outlet property="statusInfoLabel" destination="XXO-bm-eHo" id="VUX-BY-62Z"/>
                         <outlet property="statusLabel" destination="ct4-pd-6bj" id="4Pk-p6-3Tj"/>
                         <outlet property="statusView" destination="Qh3-mN-wQe" id="VOD-VX-wE6"/>
                         <outlet property="titleLabel" destination="UJu-F3-4rH" id="DNT-SD-cx5"/>

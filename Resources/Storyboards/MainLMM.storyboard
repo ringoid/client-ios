@@ -603,11 +603,23 @@ see who likes you</string>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello! 😍 This is my status... 👋" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugG-Ly-0mR">
+                                <rect key="frame" x="16" y="222.5" width="124" height="222"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="124" id="89g-vP-zYC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="5Gj-0E-Tsq" secondAttribute="trailing" constant="16" id="1MR-ih-tS6"/>
                             <constraint firstItem="r1y-kA-ocU" firstAttribute="top" secondItem="BPd-OE-Pen" secondAttribute="top" id="20K-6b-kWb"/>
+                            <constraint firstItem="ugG-Ly-0mR" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="3bv-o7-Qrl"/>
                             <constraint firstAttribute="trailing" secondItem="lGR-yG-LEW" secondAttribute="trailing" id="3dD-ad-k8o"/>
                             <constraint firstItem="QvJ-Gq-VGZ" firstAttribute="top" secondItem="IJx-PC-azo" secondAttribute="top" id="41Q-jW-lrZ"/>
                             <constraint firstItem="r1y-kA-ocU" firstAttribute="bottom" secondItem="BPd-OE-Pen" secondAttribute="bottom" id="4s8-S8-C3q"/>
@@ -641,6 +653,7 @@ see who likes you</string>
                             <constraint firstItem="5Gj-0E-Tsq" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="ZwV-Ec-4fp"/>
                             <constraint firstAttribute="trailing" secondItem="HAT-kr-d5R" secondAttribute="trailing" id="a9U-P4-pGu"/>
                             <constraint firstItem="eDJ-qT-P4s" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="20" id="bgx-sm-BG8"/>
+                            <constraint firstItem="ugG-Ly-0mR" firstAttribute="centerY" secondItem="ekE-T8-wuA" secondAttribute="centerY" id="dgN-dR-Hoa"/>
                             <constraint firstItem="QvJ-Gq-VGZ" firstAttribute="bottom" secondItem="IJx-PC-azo" secondAttribute="bottom" id="edq-uS-xmI"/>
                             <constraint firstAttribute="trailing" secondItem="vBP-lc-cHQ" secondAttribute="trailing" id="f65-Rk-K0U"/>
                             <constraint firstItem="IJx-PC-azo" firstAttribute="centerY" secondItem="QvJ-Gq-VGZ" secondAttribute="centerY" id="fv6-g6-hIG"/>
@@ -685,6 +698,7 @@ see who likes you</string>
                         <outlet property="rightFieldLabel1" destination="QvJ-Gq-VGZ" id="kEq-1X-nkK"/>
                         <outlet property="rightFieldLabel2" destination="GNe-2F-xlI" id="9gl-ws-uIS"/>
                         <outlet property="seenLabel" destination="cOc-LA-9UX" id="6Hb-uX-gKP"/>
+                        <outlet property="statusInfoLabel" destination="ugG-Ly-0mR" id="bL8-4h-FuO"/>
                         <outlet property="statusLabel" destination="InC-ES-1Or" id="AZL-iZ-hJK"/>
                         <outlet property="statusView" destination="eDJ-qT-P4s" id="1tB-AI-68b"/>
                     </connections>

@@ -41,6 +41,7 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var pagesTopConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var statusView: UIView!
     @IBOutlet fileprivate weak var statusLabel: UILabel!
+    @IBOutlet fileprivate weak var statusInfoLabel: UILabel!
     @IBOutlet fileprivate weak var nameLabel: UILabel!
     @IBOutlet fileprivate weak var nameConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutLabel: UILabel!
@@ -86,6 +87,7 @@ class UserProfilePhotosViewController: BaseViewController
         self.setupReloader()
         
         self.applyName()
+        self.applyStatusInfo()
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -325,6 +327,7 @@ class UserProfilePhotosViewController: BaseViewController
                 
                 self.updateFieldsContent(self.currentIndex.value)
                 self.applyName()
+                self.applyStatusInfo()
             }).disposed(by: self.disposeBag)
         }
     }
@@ -745,6 +748,17 @@ class UserProfilePhotosViewController: BaseViewController
         }
         
         self.nameLabel.text = title
+    }
+    
+    fileprivate func applyStatusInfo()
+    {
+        guard let profile = self.input.profileManager.profile.value, !profile.isInvalidated else { return }
+        
+        if let statusText = profile.statusInfo, statusText != "unknown" {
+            self.statusInfoLabel.text = statusText
+        } else {
+            self.statusInfoLabel.text = nil
+        }
     }
 }
 

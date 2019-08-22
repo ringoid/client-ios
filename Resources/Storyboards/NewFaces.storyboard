@@ -470,6 +470,7 @@ discover users nearby</string>
                         <outlet property="rightFieldIcon2" destination="Ne3-kc-nB2" id="2PM-9P-rf1"/>
                         <outlet property="rightFieldLabel1" destination="Sxp-7c-isg" id="4Tf-TB-Dkw"/>
                         <outlet property="rightFieldLabel2" destination="5TG-AM-TBD" id="mA9-nY-pJP"/>
+                        <outlet property="statusInfoLabel" destination="jkx-2O-t4k" id="Fwz-jo-L25"/>
                         <outlet property="statusLabel" destination="bby-nO-FSI" id="eKh-um-gb0"/>
                         <outlet property="statusView" destination="HGV-Wh-HTU" id="LSt-g1-wGN"/>
                     </connections>

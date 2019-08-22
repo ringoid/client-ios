@@ -52,6 +52,7 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
     @IBOutlet fileprivate weak var statusView: UIView!
     @IBOutlet fileprivate weak var statusLabel: UILabel!
+    @IBOutlet fileprivate weak var statusInfoLabel: UILabel!
     @IBOutlet fileprivate weak var nameLabel: UILabel!
     @IBOutlet fileprivate weak var nameConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutLabel: UILabel!
@@ -163,6 +164,7 @@ class MainLMMProfileViewController: UIViewController
         self.statusView.layer.borderColor = UIColor.lightGray.cgColor  
         self.applyStatuses()
         self.applyName()
+        self.applyStatusInfo()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -766,6 +768,16 @@ class MainLMMProfileViewController: UIViewController
         
         title += "\(profile.age)"
         self.nameLabel.text = title
+    }
+    
+    fileprivate func applyStatusInfo()
+    {
+        let profile = self.input.profile
+        if let statusText = profile.statusInfo, statusText != "unknown" {
+            self.statusInfoLabel.text = statusText
+        } else {
+            self.statusInfoLabel.text = nil
+        }
     }
 }
 
