@@ -116,7 +116,7 @@ class DBService
                 migration.enumerateObjects(ofType: Profile.className(), { (_, newObject) in
                     newObject?["statusInfo"] = nil
                 })
-            }            
+            }
         }, deleteRealmIfMigrationNeeded: false)
         
         self.realm = try! Realm(configuration: config)

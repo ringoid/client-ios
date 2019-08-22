@@ -296,4 +296,46 @@ class MainEffectsView: TouchThroughView
         
         appearAnimator.startAnimation()
     }
+    
+    func animateLikesDelta(_ count: Int)
+    {
+        let label = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 300.0, height: 44.0))
+        label.font = .systemFont(ofSize: 40.0, weight: .bold)
+        label.textAlignment = .center
+        label.text = "+\(count) likes"
+        label.textColor = .yellow//UIColor(red: 255.0 / 255.0, green: 3.0 / 255.0, blue: 57.0 / 255.0, alpha: 1.0)
+        label.shadowColor = .black//UIColor(red: 252.0 / 255.0, green: 12.0 / 255.0, blue: 12.0 / 255.0, alpha: 1.0)
+        label.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        label.alpha = 1.0
+        label.center = CGPoint(
+            x: self.bounds.width / 2.0,
+            y: self.bounds.height - 40.0
+        )
+        label.transform = .init(scaleX: 0.5, y: 0.5)
+
+        self.addSubview(label)
+        
+        let appearAnimator = UIViewPropertyAnimator(duration: 1.5, dampingRatio: 0.75) {
+            label.center = CGPoint(
+                x: self.bounds.width / 2.0,
+                y: self.bounds.height / 2.0
+            )
+            
+            label.transform = .init(scaleX: 1.2, y: 1.2)
+        }
+        
+        let disappearAnimator = UIViewPropertyAnimator(duration: 0.3, curve: .linear) {
+            label.alpha = 0.0            
+        }
+        
+        disappearAnimator.addCompletion { _ in
+            label.removeFromSuperview()
+        }
+        
+        appearAnimator.addCompletion { _ in
+                disappearAnimator.startAnimation()
+        }
+        
+        appearAnimator.startAnimation()
+    }
 }
