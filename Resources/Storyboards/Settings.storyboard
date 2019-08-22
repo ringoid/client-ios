@@ -1729,7 +1729,7 @@
         <image name="feed_slider_handle" width="12.5" height="22"/>
         <image name="profile_fields_education" width="15" height="15"/>
         <image name="profile_fields_ruler" width="15" height="15"/>
-        <image name="profile_fields_status" width="15" height="15"/>
+        <image name="profile_fields_status" width="15" height="13"/>
         <image name="settings_delete_account" width="11" height="15"/>
         <image name="settings_moon" width="15" height="15"/>
         <image name="settings_profile" width="15" height="15"/>

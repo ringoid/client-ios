@@ -98,7 +98,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
             guard let text = self.valueText else { return }
             
             switch type {
-            case .education, .name, .instagram, .tiktok, .bio, .job, .whereLive, .company:
+            case .education, .name, .instagram, .tiktok, .bio, .job, .whereLive, .company, .status:
                 self.valueField?.text = text
                 self.valueTextView?.text = text
                 break

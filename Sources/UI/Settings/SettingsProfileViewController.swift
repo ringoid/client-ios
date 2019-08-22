@@ -134,7 +134,7 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
             case .job: cell.valueText = profile.jobTitle
             case .company: cell.valueText = profile.company
             case .whereLive: cell.valueText = profile.whereLive
-            case .bio: cell.valueText = profile.about
+            case .bio: cell.valueText = profile.about                
             }
             
             let isNameEmpty: Bool = profile.name == nil || profile.name == "unknown"
