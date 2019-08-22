@@ -267,11 +267,13 @@ class UserProfilePhotosViewController: BaseViewController
                 self.addPhotoCenterBtn.isEnabled = false
             }
             
-            self.nameLabel.alpha = photos.count == 0 ? 0.0 : 1.0
-            self.aboutLabel.alpha = photos.count == 0 ? 0.0 : 1.0
+            let alpha: CGFloat = photos.count == 0 ? 0.0 : 1.0
+            self.nameLabel.alpha = alpha
+            self.aboutLabel.alpha = alpha
+            self.statusInfoLabel.alpha = alpha
             (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
-                control.iconView.alpha = photos.count == 0 ? 0.0 : 1.0
-                control.titleLabel.alpha = photos.count == 0 ? 0.0 : 1.0
+                control.iconView.alpha = alpha
+                control.titleLabel.alpha = alpha
             })
             
             self.updatePages()
@@ -454,6 +456,7 @@ class UserProfilePhotosViewController: BaseViewController
         
         self.nameLabel.alpha = 1.0
         self.aboutLabel.alpha = 1.0
+        self.statusInfoLabel.alpha = 1.0
         (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
             control.iconView.alpha = 1.0
             control.titleLabel.alpha = 1.0
@@ -474,6 +477,7 @@ class UserProfilePhotosViewController: BaseViewController
         
         self.nameLabel.alpha = 0.0
         self.aboutLabel.alpha = 0.0
+        self.statusInfoLabel.alpha = 0.0
         (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
             control.iconView.alpha = 0.0
             control.titleLabel.alpha = 0.0
