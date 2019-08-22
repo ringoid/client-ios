@@ -18,7 +18,7 @@ class SettingsProfileFieldCell: BaseTableViewCell
             guard let type = field?.fieldType else { return }
             
             switch type {
-            case .bio, .company, .education, .instagram, .job, .name, .tiktok, .whereLive:
+            case .bio, .company, .education, .instagram, .job, .name, .tiktok, .whereLive, .status:
                 self.setupTextPlaceholder()
                 break
                 

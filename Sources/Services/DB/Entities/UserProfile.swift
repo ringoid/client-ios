@@ -19,6 +19,7 @@ class UserProfile: DBServiceObject
     let hairColor: RealmOptional<Int> = RealmOptional<Int>()
     let children: RealmOptional<Int> = RealmOptional<Int>()
     
+    @objc dynamic var statusInfo: String? = nil
     @objc dynamic var name: String? = nil
     @objc dynamic var jobTitle: String? = nil
     @objc dynamic var company: String? = nil

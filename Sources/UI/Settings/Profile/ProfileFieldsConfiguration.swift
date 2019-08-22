@@ -29,6 +29,13 @@ class ProfileFieldsConfiguration
     
     let settingsFields: [ProfileField] = [
         ProfileField(
+            title: "profile_field_status",
+            icon: "profile_fields_status",
+            placeholder: nil,
+            cellIdentifier: "profile_status_cell",
+            fieldType: .status
+        ),
+        ProfileField(
             title: "profile_field_name",
             icon: "settings_profile",
             placeholder: nil,

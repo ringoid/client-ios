@@ -1280,8 +1280,60 @@
                                 <color key="separatorColor" red="0.80392156859999997" green="0.80784313730000001" blue="0.82745098039999998" alpha="0.13219713180000001" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="18" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="profile_height_cell" id="884-vZ-XDe" customClass="SettingsProfileHeightCell" customModule="Ringoid" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="profile_status_cell" id="xVI-S6-aMc" customClass="SettingsProfileStatusCell" customModule="Ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xVI-S6-aMc" id="tHq-Qe-h9x">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_status" translatesAutoresizingMaskIntoConstraints="NO" id="J2L-1O-MiH">
+                                                    <rect key="frame" x="16" y="8" width="15" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="Tal-Nc-bHv"/>
+                                                        <constraint firstAttribute="width" constant="15" id="Wu3-9U-rA6"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L05-nD-BTL">
+                                                    <rect key="frame" x="39" y="7.5" width="39" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AZD-PS-STr">
+                                                    <rect key="frame" x="39" y="31.5" width="320" height="32"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="ch0-SD-CNz"/>
+                                                    </constraints>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
+                                                    <connections>
+                                                        <action selector="onReturn" destination="xVI-S6-aMc" eventType="editingDidEndOnExit" id="KgJ-1W-P7S"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="AZD-PS-STr" firstAttribute="top" secondItem="L05-nD-BTL" secondAttribute="bottom" constant="8" id="2Gh-dF-iFv"/>
+                                                <constraint firstAttribute="trailing" secondItem="AZD-PS-STr" secondAttribute="trailing" constant="16" id="6Iv-xv-Zrv"/>
+                                                <constraint firstItem="L05-nD-BTL" firstAttribute="leading" secondItem="J2L-1O-MiH" secondAttribute="trailing" constant="8" id="7cl-hD-lhy"/>
+                                                <constraint firstItem="J2L-1O-MiH" firstAttribute="leading" secondItem="tHq-Qe-h9x" secondAttribute="leading" constant="16" id="A6k-Lv-r77"/>
+                                                <constraint firstItem="L05-nD-BTL" firstAttribute="centerY" secondItem="J2L-1O-MiH" secondAttribute="centerY" id="dlK-yn-lhl"/>
+                                                <constraint firstItem="AZD-PS-STr" firstAttribute="leading" secondItem="L05-nD-BTL" secondAttribute="leading" id="fu4-Bt-LKd"/>
+                                                <constraint firstItem="J2L-1O-MiH" firstAttribute="top" secondItem="tHq-Qe-h9x" secondAttribute="top" constant="8" id="wBR-cB-sCr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="iconView" destination="J2L-1O-MiH" id="rdC-Ji-Wur"/>
+                                            <outlet property="titleLabel" destination="L05-nD-BTL" id="WAB-cj-z40"/>
+                                            <outlet property="valueField" destination="AZD-PS-STr" id="8jx-PD-HoS"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="profile_height_cell" id="884-vZ-XDe" customClass="SettingsProfileHeightCell" customModule="Ringoid" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="100" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="884-vZ-XDe" id="GxJ-F7-hvh">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
@@ -1330,7 +1382,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="profile_field_cell" id="OIG-Zi-YJk" customClass="SettingsProfileFieldCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="100" width="375" height="72"/>
+                                        <rect key="frame" x="0.0" y="172" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OIG-Zi-YJk" id="rCo-bh-Yl5">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
@@ -1382,7 +1434,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="profile_field_text_cell" rowHeight="160" id="PFC-KI-6V9" customClass="SettingsProfileFieldCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="172" width="375" height="160"/>
+                                        <rect key="frame" x="0.0" y="244" width="375" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PFC-KI-6V9" id="g4j-ok-kAC">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
@@ -1429,7 +1481,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="profile_suggest_cell" id="Tma-SR-Rtc" customClass="SettingsProfileFieldsSuggest" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="332" width="375" height="72"/>
+                                        <rect key="frame" x="0.0" y="404" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tma-SR-Rtc" id="Tuo-f8-oVH">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="72"/>
@@ -1677,6 +1729,7 @@
         <image name="feed_slider_handle" width="12.5" height="22"/>
         <image name="profile_fields_education" width="15" height="15"/>
         <image name="profile_fields_ruler" width="15" height="15"/>
+        <image name="profile_fields_status" width="15" height="15"/>
         <image name="settings_delete_account" width="11" height="15"/>
         <image name="settings_moon" width="15" height="15"/>
         <image name="settings_profile" width="15" height="15"/>

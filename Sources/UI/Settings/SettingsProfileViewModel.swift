@@ -97,6 +97,14 @@ class SettingsProfileViewModel
             }
             break
             
+        case .status:
+            let text = value?.trimContent()
+            
+            self.db.write {
+                profile.statusInfo = text
+            }
+            break
+            
         case .name:
             let text = value?.trimContent()
             

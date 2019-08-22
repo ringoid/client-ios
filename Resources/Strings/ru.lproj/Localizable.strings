@@ -117,6 +117,7 @@
 "feedback_thanks_alert" = "Спасибо! Мы прочитаем ваши предложения в ближайшие минуты.";
 
 "profile_field_not_selected" = "Не выбрано";
+"profile_field_status" = "Статус";
 "profile_field_name" = "Имя";
 "profile_field_height" = "Рост";
 "profile_field_hair" = "Цвет волос";

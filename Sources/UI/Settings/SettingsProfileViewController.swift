@@ -128,6 +128,7 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
             case .property: cell.valueIndex = Property(rawValue: profile.property.value ?? 0)?.index() ?? 0
             case .education: cell.valueText = profile.education
             case .name: cell.valueText = profile.name
+            case .status: cell.valueText = profile.statusInfo
             case .tiktok: cell.valueText = profile.tikTok
             case .instagram: cell.valueText = profile.instagram
             case .job: cell.valueText = profile.jobTitle
@@ -166,16 +167,10 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        // Suggest
-        if let count = self.viewModel?.configuration.settingsFields.count, indexPath.row == count {
-            
-            return 124.0
-        }
-        
-        // Fields
         guard let field = self.viewModel?.configuration.settingsFields[indexPath.row] else { return 0.0 }
         
         if field.fieldType == .bio { return 110.0 }
+        if field.fieldType == .status { return 110.0 }
         
         return 72.0
     }

@@ -204,6 +204,8 @@
 		579CD7CC21FA094600C3AEE3 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7CB21FA094600C3AEE3 /* KeyboardListener.swift */; };
 		579CD7CF21FAE2D100C3AEE3 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7CE21FAE2D000C3AEE3 /* ChatManager.swift */; };
 		579CD7D221FB43E200C3AEE3 /* UserProfileContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7D121FB43E200C3AEE3 /* UserProfileContainerCell.swift */; };
+		57ACA02A230E71A5009F8800 /* SettingsProfileStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ACA029230E71A5009F8800 /* SettingsProfileStatusCell.swift */; };
+		57ACA02B230E71A5009F8800 /* SettingsProfileStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ACA029230E71A5009F8800 /* SettingsProfileStatusCell.swift */; };
 		57AE8968230676A600123AA6 /* ImpactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE8967230676A600123AA6 /* ImpactService.swift */; };
 		57AE8969230676A600123AA6 /* ImpactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE8967230676A600123AA6 /* ImpactService.swift */; };
 		57AE896B2306779800123AA6 /* ImpactServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE896A2306779800123AA6 /* ImpactServiceDefault.swift */; };
@@ -589,6 +591,7 @@
 		579CD7CB21FA094600C3AEE3 /* KeyboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
 		579CD7CE21FAE2D000C3AEE3 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		579CD7D121FB43E200C3AEE3 /* UserProfileContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileContainerCell.swift; sourceTree = "<group>"; };
+		57ACA029230E71A5009F8800 /* SettingsProfileStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileStatusCell.swift; sourceTree = "<group>"; };
 		57AE8967230676A600123AA6 /* ImpactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactService.swift; sourceTree = "<group>"; };
 		57AE896A2306779800123AA6 /* ImpactServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactServiceDefault.swift; sourceTree = "<group>"; };
 		57AE8975230692EC00123AA6 /* AchivementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchivementManager.swift; sourceTree = "<group>"; };
@@ -1315,6 +1318,7 @@
 				57EEB08722BE63C0005770B3 /* SettingsProfileFieldCell.swift */,
 				573D768922D73C1300E1576B /* SettingsProfileFieldsSuggest.swift */,
 				57CFFB7022E858A000DC2378 /* SettingsFilterCell.swift */,
+				57ACA029230E71A5009F8800 /* SettingsProfileStatusCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2054,6 +2058,7 @@
 				57FB7BCA21E63D6800AAA29D /* MainViewModel.swift in Sources */,
 				577DDADD2264830D001D7D24 /* LocationManager.swift in Sources */,
 				579CD7BC21F8C4D800C3AEE3 /* SettingsManager.swift in Sources */,
+				57ACA02A230E71A5009F8800 /* SettingsProfileStatusCell.swift in Sources */,
 				57B863EB21EE33D200B9CC70 /* ActionsManager.swift in Sources */,
 				57EEB07922BE3E2C005770B3 /* SettingsProfileViewController.swift in Sources */,
 				5751562222E1EA9D009E7743 /* RangeSeekSliderDelegate.swift in Sources */,
@@ -2205,6 +2210,7 @@
 				57AE8969230676A600123AA6 /* ImpactService.swift in Sources */,
 				5751561C22E1DBF7009E7743 /* FilterManager.swift in Sources */,
 				573A5C212226AD820094A9FA /* NoConnectionViewController.swift in Sources */,
+				57ACA02B230E71A5009F8800 /* SettingsProfileStatusCell.swift in Sources */,
 				57EE65132216711000246B45 /* ApiBlockAction.swift in Sources */,
 				573663C82272D8870041C5DB /* GlobalAnimationManager.swift in Sources */,
 				578502EE22561ADA0056120A /* SyncManager.swift in Sources */,
