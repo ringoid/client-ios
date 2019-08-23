@@ -206,7 +206,9 @@ class RootViewController: BaseViewController {
                     self?.move(to: .searchFirstTime)
                     self?.appManager.settingsMananger.isFirstLaunch.accept(false)
                 } else {
-                    self?.move(to: .search)
+                    self?.move(to: .userProfile)
+                    self?.appManager.lmmManager.refreshInBackground(.profile)
+                    self?.appManager.newFacesManager.refreshInBackground()
                 }
             }
         }).disposed(by: disposeBag)
