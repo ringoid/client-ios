@@ -51,6 +51,7 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var fieldsBottomConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var pencilIconView: UIImageView!
     @IBOutlet fileprivate weak var addPhotoCenterBtn: UIButton!
+    @IBOutlet fileprivate weak var statusInfoCenterConstraing: NSLayoutConstraint!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -70,7 +71,7 @@ class UserProfilePhotosViewController: BaseViewController
         super.viewDidLoad()
         
         self.fieldsBottomConstraint.constant = self.photoHeight + 20.0
-        self.setupFieldsControls()
+        self.setupFieldsControls()        
         
         let height = UIScreen.main.bounds.width * AppConfig.photoRatio
         self.containerTableView.rowHeight = height
@@ -111,6 +112,13 @@ class UserProfilePhotosViewController: BaseViewController
         super.viewWillDisappear(animated)
         
         self.isViewShown = false
+    }
+    
+    override func viewWillLayoutSubviews()
+    {
+        super.viewWillLayoutSubviews()
+        
+        self.setupStatusInfoConstraint()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -534,6 +542,13 @@ class UserProfilePhotosViewController: BaseViewController
             ProfileFieldControl(iconView: self.rightFieldIcon1, titleLabel: self.rightFieldLabel1),
             ProfileFieldControl(iconView: self.rightFieldIcon2, titleLabel: self.rightFieldLabel2),
         ]
+    }
+    
+    fileprivate func setupStatusInfoConstraint()
+    {
+        let screenHeight = UIScreen.main.bounds.height
+        let topOffset = self.view.safeAreaInsets.top + 56.0 + self.photoHeight / 2.0
+        self.statusInfoCenterConstraing.constant = topOffset - screenHeight / 2.0
     }
     
     fileprivate func updateFieldsContent(_ page: Int)
