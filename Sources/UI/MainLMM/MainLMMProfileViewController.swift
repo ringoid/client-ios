@@ -454,7 +454,6 @@ class MainLMMProfileViewController: UIViewController
         self.statusInfoLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusInfoLabel.frame, offset: value) ?? 1.0)
         self.likeBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.likeBtn.frame, offset: value) ?? 1.0)
         
-        
         (self.leftFieldsControls + self.rightFieldsControls).forEach { controls in
             controls.iconView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(controls.iconView.frame, offset: value) ?? 1.0)
             controls.titleLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(controls.titleLabel.frame, offset: value) ?? 1.0)
@@ -775,6 +774,13 @@ class MainLMMProfileViewController: UIViewController
     {
         let profile = self.input.profile
         if let statusText = profile.statusInfo, statusText != "unknown" {
+            let words = statusText.components(separatedBy: .whitespaces)
+            var containsLongWorg = false
+            words.forEach({ word in
+                if word.count > 7 { containsLongWorg = true }
+            })
+            
+            self.statusInfoLabel.lineBreakMode = containsLongWorg ? .byCharWrapping : .byWordWrapping
             self.statusInfoLabel.text = statusText
         } else {
             self.statusInfoLabel.text = nil

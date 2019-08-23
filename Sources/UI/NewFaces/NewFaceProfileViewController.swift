@@ -365,6 +365,13 @@ class NewFaceProfileViewController: UIViewController
     {
         let profile = self.input.profile
         if let statusText = profile.statusInfo, statusText != "unknown" {
+            let words = statusText.components(separatedBy: .whitespaces)
+            var containsLongWorg = false
+            words.forEach({ word in
+                if word.count > 7 { containsLongWorg = true }
+            })
+            
+            self.statusInfoLabel.lineBreakMode = containsLongWorg ? .byCharWrapping : .byWordWrapping
             self.statusInfoLabel.text = statusText
         } else {
             self.statusInfoLabel.text = nil
