@@ -804,6 +804,9 @@ class UserProfilePhotosViewController: BaseViewController
             
             self.statusInfoLabel.lineBreakMode = containsLongWorg ? .byCharWrapping : .byWordWrapping
             self.statusInfoLabel.text = statusText
+        } else if UserDefaults.standard.integer(forKey: "settings_profile_fields_opened") < 2 {
+            self.statusInfoLabel.lineBreakMode = .byWordWrapping
+            self.statusInfoLabel.text = "profile_field_status_placeholder".localized()
         } else {
             self.statusInfoLabel.text = nil
         }

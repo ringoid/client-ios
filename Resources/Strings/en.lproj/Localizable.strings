@@ -135,6 +135,7 @@
 "profile_field_company_placeholder" = "Name of company or industry";
 "profile_field_education_placeholder" = "University, college. Graduation year";
 "profile_field_where_live_placeholder" = "Where I live";
+"profile_field_status_placeholder" = "Hello! 😍 This is my status... 👋";
 
 "profile_field_hair_black_male" = "Black";
 "profile_field_hair_blonde_male" = "Blonde";

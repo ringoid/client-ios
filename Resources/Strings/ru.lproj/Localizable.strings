@@ -137,6 +137,7 @@
 "profile_field_company_placeholder" = "Название фирмы или индустрии";
 "profile_field_education_placeholder" = "Университет, колледж. Год выпуска";
 "profile_field_where_live_placeholder" = "Где я живу";
+"profile_field_status_placeholder" = "Привет! 😍 Это мой статус... 👋";
 
 "profile_field_hair_black_male" = "Брюнет";
 "profile_field_hair_blonde_male" = "Блондин";
