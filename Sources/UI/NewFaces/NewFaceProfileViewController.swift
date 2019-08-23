@@ -283,6 +283,7 @@ class NewFaceProfileViewController: UIViewController
         self.statusLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusLabel.frame, offset: value) ?? 1.0)
         self.nameLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.nameLabel.frame, offset: value) ?? 1.0)
         self.aboutLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.aboutLabel.frame, offset: value) ?? 1.0)
+        self.statusInfoLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusInfoLabel.frame, offset: value) ?? 1.0)
         self.likeBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.likeBtn.frame, offset: value) ?? 1.0)
         
         (self.leftFieldsControls + self.rightFieldsControls).forEach { controls in
