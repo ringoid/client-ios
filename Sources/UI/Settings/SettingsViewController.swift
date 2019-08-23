@@ -111,7 +111,8 @@ class SettingsViewController: BaseViewController
             vc.input = SettingsProfileVMInput(
                 profileManager: self.input.profileManager,
                 db: self.input.db,
-                navigationManager: self.input.navigationManager
+                navigationManager: self.input.navigationManager,
+                defaultField: nil
             )
         }
         

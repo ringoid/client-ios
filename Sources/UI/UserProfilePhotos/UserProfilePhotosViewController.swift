@@ -42,6 +42,7 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var statusView: UIView!
     @IBOutlet fileprivate weak var statusLabel: UILabel!
     @IBOutlet fileprivate weak var statusInfoLabel: UILabel!
+    @IBOutlet fileprivate weak var statusInfoBtn: UIButton!
     @IBOutlet fileprivate weak var nameLabel: UILabel!
     @IBOutlet fileprivate weak var nameConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutLabel: UILabel!
@@ -255,6 +256,22 @@ class UserProfilePhotosViewController: BaseViewController
         ModalUIManager.shared.show(navVC, animated: true)
     }
     
+    @IBAction func onStatusTap()
+    {
+        let storyboard = Storyboards.settings()
+        guard let profileVC = storyboard.instantiateViewController(withIdentifier: "settings_profile") as? SettingsProfileViewController else { return }
+        
+        profileVC.input = SettingsProfileVMInput(
+            profileManager: self.input.profileManager,
+            db: self.input.db,
+            navigationManager: self.input.navigationManager,
+            defaultField: .status
+        )
+        profileVC.isModal = true
+        
+        ModalUIManager.shared.show(profileVC, animated: true)
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
@@ -279,6 +296,7 @@ class UserProfilePhotosViewController: BaseViewController
             self.nameLabel.alpha = alpha
             self.aboutLabel.alpha = alpha
             self.statusInfoLabel.alpha = alpha
+            self.statusInfoBtn.isHidden = photos.count == 0
             (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
                 control.iconView.alpha = alpha
                 control.titleLabel.alpha = alpha
@@ -386,7 +404,8 @@ class UserProfilePhotosViewController: BaseViewController
             vc.input = SettingsProfileVMInput(
                 profileManager: self.input.profileManager,
                 db: self.input.db,
-                navigationManager: self.input.navigationManager
+                navigationManager: self.input.navigationManager,
+                defaultField: nil
             )
             
             return vc
@@ -465,6 +484,7 @@ class UserProfilePhotosViewController: BaseViewController
         self.nameLabel.alpha = 1.0
         self.aboutLabel.alpha = 1.0
         self.statusInfoLabel.alpha = 1.0
+        self .statusInfoBtn.isHidden = false
         (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
             control.iconView.alpha = 1.0
             control.titleLabel.alpha = 1.0
@@ -486,6 +506,7 @@ class UserProfilePhotosViewController: BaseViewController
         self.nameLabel.alpha = 0.0
         self.aboutLabel.alpha = 0.0
         self.statusInfoLabel.alpha = 0.0
+        self.statusInfoBtn.isHidden = true
         (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
             control.iconView.alpha = 0.0
             control.titleLabel.alpha = 0.0
@@ -511,7 +532,8 @@ class UserProfilePhotosViewController: BaseViewController
         profileVC.input = SettingsProfileVMInput(
             profileManager: self.input.profileManager,
             db: self.input.db,
-            navigationManager: self.input.navigationManager
+            navigationManager: self.input.navigationManager,
+            defaultField: nil
         )
         profileVC.isModal = true
         

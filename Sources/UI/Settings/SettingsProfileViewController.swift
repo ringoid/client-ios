@@ -141,12 +141,17 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
             let isCityEmpty: Bool = profile.whereLive == nil || profile.whereLive == "unknown"
             let isStatusEmpty: Bool = profile.statusInfo == nil || profile.statusInfo == "unknown"
             
-            if field.fieldType == .name, isNameEmpty {
+            if  let defaultField = self.input.defaultField {
+                if field.fieldType == defaultField {
+                    cell.startEditing()
+                }
+            } else { if field.fieldType == .name, isNameEmpty {
                 cell.startEditing()
             } else if field.fieldType == .whereLive, !isNameEmpty, isCityEmpty {
                 cell.startEditing()
             } else if field.fieldType == .status, !isNameEmpty, !isCityEmpty, isStatusEmpty {
                 cell.startEditing()
+                }
             }
         }
         

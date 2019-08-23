@@ -13,6 +13,7 @@ struct SettingsProfileVMInput
     let profileManager: UserProfileManager
     let db: DBService
     let navigationManager: NavigationManager
+    let defaultField: ProfileFieldType?
 }
 
 class SettingsProfileViewModel
