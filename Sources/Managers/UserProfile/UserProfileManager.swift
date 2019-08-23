@@ -147,7 +147,8 @@ class UserProfileManager
             instagram: profile.instagram ?? "unknown",
             tikTok: profile.tikTok ?? "unknown",
             whereLive: profile.whereLive ?? "unknown",
-            whereFrom: profile.whereFrom ?? "unknown"
+            whereFrom: profile.whereFrom ?? "unknown",
+            statusText: profile.statusInfo ?? "unknown"
         )
         
         self.apiService.updateProfile(apiProfile).subscribe().disposed(by: self.disposeBag)
@@ -201,7 +202,7 @@ class UserProfileManager
             self.lmm.contentShouldBeHidden = true            
         }).disposed(by: self.disposeBag)
         
-        self.gender.subscribe(onNext: { [weak self] value in
+        self.gender.subscribe(onNext: { value in
             guard let value = value else { return }
             
             UserDefaults.standard.setValue(value.rawValue, forKey: "profile_sex")

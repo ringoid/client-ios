@@ -26,6 +26,7 @@ struct ApiUserProfileInfo
     let tikTok: String
     let whereLive: String
     let whereFrom: String
+    let statusText: String
 }
 
 extension ApiUserProfileInfo
@@ -48,6 +49,7 @@ extension ApiUserProfileInfo
         guard let tikTok = dict["tikTok"] as? String else { return nil }
         guard let whereLive = dict["whereLive"] as? String else { return nil }
         guard let whereFrom = dict["whereFrom"] as? String else { return nil }
+        guard let statusText = dict["statusText"] as? String else { return nil }
         
         return ApiUserProfileInfo(
             property: property,
@@ -65,7 +67,8 @@ extension ApiUserProfileInfo
             instagram: instagram,
             tikTok: tikTok,
             whereLive: whereLive,
-            whereFrom: whereFrom
+            whereFrom: whereFrom,
+            statusText: statusText
         )
     }
     
@@ -87,7 +90,8 @@ extension ApiUserProfileInfo
             "instagram": self.instagram,
             "tikTok": self.tikTok,
             "whereLive": self.whereLive,
-            "whereFrom": self.whereFrom
+            "whereFrom": self.whereFrom,
+            "statusText": self.statusText
         ]
     }
 }

@@ -1003,6 +1003,7 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         localProfile.tikTok = profile.info.tikTok
         localProfile.whereLive = profile.info.whereLive
         localProfile.whereFrom = profile.info.whereFrom
+        localProfile.statusInfo = profile.info.statusText
         
         return localProfile
     })
