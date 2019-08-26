@@ -169,6 +169,17 @@ class SettingsProfileFieldCell: BaseTableViewCell
         self.valueTextView?.becomeFirstResponder()
     }
     
+    func startEditingWithSelection()
+    {
+        self.valueField?.becomeFirstResponder()
+        self.valueTextView?.becomeFirstResponder()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.valueField?.selectAll(nil)
+            self.valueTextView?.selectAll(nil)
+        }
+    }
+    
     @objc func stopEditing()
     {
         self.valueField?.resignFirstResponder()

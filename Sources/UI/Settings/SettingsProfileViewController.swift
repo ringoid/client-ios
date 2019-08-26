@@ -146,7 +146,7 @@ extension SettingsProfileViewController: UITableViewDataSource, UITableViewDeleg
             
             if  let defaultField = self.input.defaultField {
                 if field.fieldType == defaultField {
-                    cell.startEditing()
+                    cell.startEditingWithSelection()
                 }
             } else { if field.fieldType == .name, isNameEmpty {
                 cell.startEditing()
