@@ -395,92 +395,47 @@ class NewFaceProfileViewController: UIViewController
     {
         guard !self.input.profile.isInvalidated else { return }
         
-        let genderStr: String = self.input.profile.gender ?? "male"
-        let gender: Sex = Sex(rawValue: genderStr) ?? .male
-        
-        // MALE
-        if gender == .male {
-            if page == 0 {
-                self.aboutLabel.isHidden = true
-                self.updateProfileRows(0)
-                
-                return
-            }
+        if page == 0 {
+            self.aboutLabel.isHidden = true
+            self.updateProfileRows(0)
             
-            if page == 1 {
-                if let aboutText = self.input.profile.about, aboutText != "unknown" {
-                    (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
-                        controls.iconView.isHidden = true
-                        controls.titleLabel.isHidden = true
-                    })
-                    
-                    var height = (aboutText as NSString).boundingRect(
-                        with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
-                        options: .usesLineFragmentOrigin,
-                        attributes: [NSAttributedString.Key.font: self.aboutLabel.font],
-                        context: nil
-                        ).size.height
-                    height = height < 64.0 ? height : 64.0
-                    
-                    self.aboutLabel.text = aboutText
-                    self.aboutLabel.isHidden = false
-                    self.nameConstraint.constant = height + 36.0
-                    self.aboutHeightConstraint.constant = height + 4.0
-                    self.view.layoutIfNeeded()
-                } else {
-                    self.aboutLabel.isHidden = true
-                    self.updateProfileRows(1)
-                }
-                
-                return
-            }
-            
-            if let aboutText = self.input.profile.about, aboutText != "unknown" {
-                self.aboutLabel.isHidden = true
-                self.updateProfileRows(page - 1)
-            } else {
-                self.aboutLabel.isHidden = true
-                self.updateProfileRows(page)
-            }
+            return
         }
         
-        // FEMALE
-        if gender == .female {
-            if page == 0 {
-                if let aboutText = self.input.profile.about, aboutText != "unknown" {
-                    (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
-                        controls.iconView.isHidden = true
-                        controls.titleLabel.isHidden = true
-                    })
-                    
-                    var height = (aboutText as NSString).boundingRect(
-                        with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
-                        options: .usesLineFragmentOrigin,
-                        attributes: [NSAttributedString.Key.font: self.aboutLabel.font],
-                        context: nil
-                        ).size.height + 4.0
-                    height = height < 64.0 ? height : 64.0
-                    
-                    self.aboutLabel.text = aboutText
-                    self.aboutLabel.isHidden = false
-                    self.nameConstraint.constant = height + 36.0
-                    self.aboutHeightConstraint.constant = height
-                    self.view.layoutIfNeeded()
-                } else {
-                    self.aboutLabel.isHidden = true
-                    self.updateProfileRows(0)
-                }
-                
-                return
-            }
-            
+        if page == 1 {
             if let aboutText = self.input.profile.about, aboutText != "unknown" {
-                self.aboutLabel.isHidden = true
-                self.updateProfileRows(page - 1)
+                (self.leftFieldsControls + self.rightFieldsControls).forEach({ controls in
+                    controls.iconView.isHidden = true
+                    controls.titleLabel.isHidden = true
+                })
+                
+                var height = (aboutText as NSString).boundingRect(
+                    with: CGSize(width: self.aboutLabel.bounds.width, height: 999.0),
+                    options: .usesLineFragmentOrigin,
+                    attributes: [NSAttributedString.Key.font: self.aboutLabel.font],
+                    context: nil
+                    ).size.height
+                height = height < 64.0 ? height : 64.0
+                
+                self.aboutLabel.text = aboutText
+                self.aboutLabel.isHidden = false
+                self.nameConstraint.constant = height + 36.0
+                self.aboutHeightConstraint.constant = height + 4.0
+                self.view.layoutIfNeeded()
             } else {
                 self.aboutLabel.isHidden = true
-                self.updateProfileRows(page)
+                self.updateProfileRows(1)
             }
+            
+            return
+        }
+        
+        if let aboutText = self.input.profile.about, aboutText != "unknown" {
+            self.aboutLabel.isHidden = true
+            self.updateProfileRows(page - 1)
+        } else {
+            self.aboutLabel.isHidden = true
+            self.updateProfileRows(page)
         }
     }
     
