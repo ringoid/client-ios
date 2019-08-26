@@ -290,6 +290,9 @@ class UserProfilePhotosViewController: BaseViewController
                 self.statusLabel.isHidden = false
                 self.pencilIconView.isHidden = false
                 self.addPhotoCenterBtn.isEnabled = false
+            } else {
+                self.pencilIconView.isHidden = false
+                self.addPhotoCenterBtn.isEnabled = false
             }
             
             let alpha: CGFloat = photos.count == 0 ? 0.0 : 1.0
