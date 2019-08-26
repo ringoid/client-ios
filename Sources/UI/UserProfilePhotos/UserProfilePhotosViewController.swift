@@ -823,12 +823,12 @@ class UserProfilePhotosViewController: BaseViewController
         
         if let statusText = profile.statusInfo, statusText != "unknown" {
             let words = statusText.components(separatedBy: .whitespaces)
-            var containsLongWorg = false
+            var containsLongWord = false
             words.forEach({ word in
-                if word.count > 7 { containsLongWorg = true }
+                if word.count > 7 { containsLongWord = true }
             })
             
-            self.statusInfoLabel.lineBreakMode = containsLongWorg ? .byCharWrapping : .byWordWrapping
+            self.statusInfoLabel.lineBreakMode = containsLongWord ? .byCharWrapping : .byWordWrapping
             self.statusInfoLabel.text = statusText
         } else if UserDefaults.standard.integer(forKey: "settings_profile_fields_opened") < 2 {
             self.statusInfoLabel.lineBreakMode = .byWordWrapping

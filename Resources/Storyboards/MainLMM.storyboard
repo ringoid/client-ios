@@ -604,9 +604,9 @@ see who likes you</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello! 😍 This is my status... 👋" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugG-Ly-0mR">
-                                <rect key="frame" x="16" y="222.5" width="124" height="222"/>
+                                <rect key="frame" x="16" y="222.5" width="140" height="222"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="124" id="89g-vP-zYC"/>
+                                    <constraint firstAttribute="width" constant="140" id="89g-vP-zYC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

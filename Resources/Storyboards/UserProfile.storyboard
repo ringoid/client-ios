@@ -251,9 +251,10 @@ see how many likes you get</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello! 😍 This is my status... 👋" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXO-bm-eHo">
-                                <rect key="frame" x="16" y="222.5" width="126" height="222"/>
+                                <rect key="frame" x="16" y="222.5" width="140" height="222"/>
+                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="126" id="xJY-7D-Ghf"/>
+                                    <constraint firstAttribute="width" constant="140" id="xJY-7D-Ghf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="34"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -262,7 +263,7 @@ see how many likes you get</string>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMl-hP-vFu">
-                                <rect key="frame" x="16" y="222.5" width="126" height="222"/>
+                                <rect key="frame" x="16" y="222.5" width="140" height="222"/>
                                 <connections>
                                     <action selector="onStatusTap" destination="aaf-t7-SOT" eventType="touchUpInside" id="83H-Fv-fRv"/>
                                 </connections>
