@@ -133,6 +133,16 @@ see how many likes you get</string>
                                     <constraint firstAttribute="height" constant="24" id="Ued-jg-br3"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoX-Ai-V1C">
+                                <rect key="frame" x="315" y="194" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="AEj-ZY-z90"/>
+                                    <constraint firstAttribute="height" constant="64" id="cdW-Rk-fKe"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="onEditProfileFields" destination="aaf-t7-SOT" eventType="touchUpInside" id="QPt-q9-h3E"/>
+                                </connections>
+                            </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ct4-pd-6bj">
                                 <rect key="frame" x="36" y="97.5" width="50" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -263,12 +273,14 @@ see how many likes you get</string>
                             <constraint firstItem="27t-IX-qLF" firstAttribute="width" secondItem="UMb-Bl-CM4" secondAttribute="width" id="0oE-CE-nYr"/>
                             <constraint firstItem="ouZ-cc-Vmf" firstAttribute="centerY" secondItem="c03-Vj-oKe" secondAttribute="centerY" id="13U-xz-Mio"/>
                             <constraint firstItem="Pzg-eZ-8Og" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" id="1qb-Vr-aDl" userLabel="PagesTop"/>
+                            <constraint firstItem="oTk-g9-AL2" firstAttribute="centerY" secondItem="zoX-Ai-V1C" secondAttribute="centerY" id="2Vx-Sm-agd"/>
                             <constraint firstItem="c03-Vj-oKe" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="4hG-ZS-M4a"/>
                             <constraint firstItem="27t-IX-qLF" firstAttribute="top" secondItem="BK0-ML-AsK" secondAttribute="top" id="7OO-HH-heM"/>
                             <constraint firstItem="eno-1i-kP1" firstAttribute="top" secondItem="04l-Dx-sJ6" secondAttribute="top" id="7WD-NF-NK7"/>
                             <constraint firstItem="eno-1i-kP1" firstAttribute="leading" secondItem="04l-Dx-sJ6" secondAttribute="trailing" constant="8" id="7cR-Tm-BZD"/>
                             <constraint firstItem="hwe-yx-WQU" firstAttribute="leading" secondItem="Kqw-ue-cJ1" secondAttribute="trailing" constant="8" id="8Ky-oi-8Gr"/>
                             <constraint firstItem="27t-IX-qLF" firstAttribute="top" secondItem="UMb-Bl-CM4" secondAttribute="bottom" constant="10" id="94T-2b-xeh"/>
+                            <constraint firstItem="oTk-g9-AL2" firstAttribute="centerX" secondItem="zoX-Ai-V1C" secondAttribute="centerX" id="Bgp-jQ-BGu"/>
                             <constraint firstItem="R3C-Zv-Ixf" firstAttribute="leading" secondItem="0Ze-nT-pEZ" secondAttribute="trailing" constant="16" id="DXD-i0-dIg"/>
                             <constraint firstItem="32r-W0-czT" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="60" id="EDx-rN-Hng"/>
                             <constraint firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" id="EeI-Bh-ckx"/>
@@ -345,6 +357,7 @@ see how many likes you get</string>
                         <outlet property="optionsBtn" destination="0Ze-nT-pEZ" id="xcA-G9-NaZ"/>
                         <outlet property="pagesControl" destination="Pzg-eZ-8Og" id="SO3-57-aFu"/>
                         <outlet property="pagesTopConstraint" destination="1qb-Vr-aDl" id="YPv-qn-fr3"/>
+                        <outlet property="pencilBtn" destination="zoX-Ai-V1C" id="8Sp-Gh-O1X"/>
                         <outlet property="pencilIconView" destination="oTk-g9-AL2" id="JSc-jA-5Dj"/>
                         <outlet property="rightColumnConstraint" destination="K10-1e-Xd7" id="rCd-mT-Jrn"/>
                         <outlet property="rightFieldIcon1" destination="Kqw-ue-cJ1" id="P1Z-aM-iA6"/>

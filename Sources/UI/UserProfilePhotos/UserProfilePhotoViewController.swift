@@ -22,6 +22,8 @@ class UserProfilePhotoViewController: UIViewController
         }
     }
     
+    var tapHandler: (() -> ())?
+    
     static func create() -> UserProfilePhotoViewController
     {
         return Storyboards.userProfile().instantiateViewController(withIdentifier: "user_profile_photo_vc") as! UserProfilePhotoViewController
@@ -51,13 +53,7 @@ class UserProfilePhotoViewController: UIViewController
     
     @IBAction func onTap()
     {
-        let storyboard = Storyboards.settings()
-        guard let profileVC = storyboard.instantiateViewController(withIdentifier: "settings_profile") as? SettingsProfileViewController else { return }
-        
-        profileVC.input = input
-        profileVC.isModal = true
-        
-        ModalUIManager.shared.show(profileVC, animated: true)
+        self.tapHandler?()
     }
     
     // MARK: -

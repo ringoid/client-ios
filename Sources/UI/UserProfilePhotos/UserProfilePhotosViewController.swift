@@ -53,6 +53,7 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var pencilIconView: UIImageView!
     @IBOutlet fileprivate weak var addPhotoCenterBtn: UIButton!
     @IBOutlet fileprivate weak var statusInfoCenterConstraing: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var pencilBtn: UIButton!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -272,6 +273,22 @@ class UserProfilePhotosViewController: BaseViewController
         ModalUIManager.shared.show(profileVC, animated: true)
     }
     
+    @IBAction func onEditProfileFields()
+    {
+        let storyboard = Storyboards.settings()
+        guard let profileVC = storyboard.instantiateViewController(withIdentifier: "settings_profile") as? SettingsProfileViewController else { return }
+        
+        profileVC.input = SettingsProfileVMInput(
+            profileManager: self.input.profileManager,
+            db: self.input.db,
+            navigationManager: self.input.navigationManager,
+            defaultField: nil
+        )
+        profileVC.isModal = true
+        
+        ModalUIManager.shared.show(profileVC, animated: true)
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
@@ -284,14 +301,17 @@ class UserProfilePhotosViewController: BaseViewController
                 self.statusView.isHidden = true
                 self.statusLabel.isHidden = true
                 self.pencilIconView.isHidden = true
+                self.pencilBtn.isEnabled = false
                 self.addPhotoCenterBtn.isEnabled = true
             } else if self.viewModel?.status.value != nil {
                 self.statusView.isHidden = false
                 self.statusLabel.isHidden = false
                 self.pencilIconView.isHidden = false
+                self.pencilBtn.isEnabled = true
                 self.addPhotoCenterBtn.isEnabled = false
             } else {
                 self.pencilIconView.isHidden = false
+                self.pencilBtn.isEnabled = true
                 self.addPhotoCenterBtn.isEnabled = false
             }
             
@@ -410,6 +430,9 @@ class UserProfilePhotosViewController: BaseViewController
                 navigationManager: self.input.navigationManager,
                 defaultField: nil
             )
+            vc.tapHandler = { [weak self] in
+                self?.addPhoto()
+            }
             
             return vc
         })
