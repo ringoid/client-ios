@@ -72,7 +72,7 @@ class AppManager
         
         if let resignDate = self.resignDate, Date().timeIntervalSince(resignDate) > 300.0 {
             UIManager.shared.wakeUpDelayTriggered.accept(true)
-            self.newFacesManager.refresh().subscribe().disposed(by: self.disposeBag)
+            self.newFacesManager.refresh(true).subscribe().disposed(by: self.disposeBag)
             self.lmmManager.refreshInBackground(.profile)
             self.profileManager.refreshInBackground()
         }

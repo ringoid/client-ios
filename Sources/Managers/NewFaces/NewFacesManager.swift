@@ -38,18 +38,16 @@ class NewFacesManager
     func refreshInBackground()
     {
         self.actionsManager.sendQueue().flatMap ({ [weak self] _ -> Observable<Void> in
-            return self!.refresh()
+            return self!.refresh(true)
         }).subscribe().disposed(by: self.disposeBag)
     }
     
-    func refresh() -> Observable<Void>
+    func refresh(_ shouldPurgeOnSuccess: Bool) -> Observable<Void>
     {
-        return self.purge().asObservable().flatMap({ _ -> Observable<Void> in
-            return self.fetch()
-        })
+        return self.fetch(shouldPurgeOnSuccess)
     }
     
-    func fetch() -> Observable<Void>
+    func fetch(_ shouldPurgeOnSuccess: Bool) -> Observable<Void>
     {
         return self.apiService.discover(self.deviceService.photoResolution,
                                         lastActionDate: self.actionsManager.lastActionDate.value,
@@ -57,6 +55,10 @@ class NewFacesManager
                                         maxAge: self.filterManager.maxAge.value,
                                         maxDistance: self.filterManager.maxDistance.value
             ).flatMap({ [weak self] profiles -> Observable<Void> in
+                
+            if shouldPurgeOnSuccess {
+                self!.purge().subscribe().disposed(by: self!.disposeBag)
+            }
             
             var localOrderPosition: Int = 0
             

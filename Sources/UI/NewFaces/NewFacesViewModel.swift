@@ -65,7 +65,7 @@ class NewFacesViewModel
                 self!.lmmManager.refreshInBackground(.newFaces)
             }
             
-            return self!.newFacesManager.refresh()
+            return self!.newFacesManager.refresh(true)
         })
     }
     
@@ -82,7 +82,7 @@ class NewFacesViewModel
         return self.actionsManager.sendQueue().flatMap { [weak self] _ -> Observable<Void> in
             guard let `self` = self else { return .just(()) } // view model deleted
             
-            return self.newFacesManager.fetch()
+            return self.newFacesManager.fetch(false)
         }
     }
     

@@ -153,9 +153,11 @@ class NewFacesViewController: BaseViewController
         self.lastFetchCount = -1
         self.photoIndexes.removeAll()
         
+        self.tableView.dataSource = EmptyFeed.shared
         self.viewModel?.refresh(isFilteringEnabled).observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             guard let `self` = self else { return }
             
+            self.tableView.dataSource = self
             self.updateFeed()
             self.tableView.panGestureRecognizer.isEnabled = true
             
@@ -283,6 +285,7 @@ class NewFacesViewController: BaseViewController
     
     fileprivate func updateFeed()
     {
+        guard self.tableView.dataSource !== EmptyFeed.shared else { return }
         guard let profiles = self.viewModel?.profiles.value else { return }
         
         let feedIds = profiles.compactMap({ $0.id })
