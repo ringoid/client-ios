@@ -8,6 +8,7 @@
 
 "button_add_photo" = "Добавить фото";
 "button_cancel" = "Отмена";
+"button_retry" = "Повторить";
 "button_close" = "Закрыть";
 "button_delete" = "Удалить";
 "button_later" = "Не сейчас";
@@ -24,6 +25,7 @@
 "common_clipboard" = "Скопировано в буфер";
 
 "error_common" = "Ой! Что-то пошло не так";
+"error_timeout" = "Ошибка соединения";
 
 "debug_email_support_button_label" = "Написать support@ringoid.com";
 

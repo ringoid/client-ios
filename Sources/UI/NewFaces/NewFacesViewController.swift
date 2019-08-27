@@ -158,7 +158,7 @@ class NewFacesViewController: BaseViewController
             guard let `self` = self else { return }
             
             self.tableView.dataSource = self
-            self.updateFeed()
+            self.tableView.reloadData()
             self.tableView.panGestureRecognizer.isEnabled = true
             
             let isNotEmptyFeed = self.viewModel!.profiles.value.count != 0
@@ -169,9 +169,11 @@ class NewFacesViewController: BaseViewController
             }, onError:{ [weak self] error in
                 guard let `self` = self else { return }
                 
-                self.updateFeed()
                 self.tableView.panGestureRecognizer.isEnabled = true
-                showError(error, vc: self)
+                self.feedBottomLabel.isHidden = true
+                self.feedBottomBtn.isHidden = true
+                
+                self.showErrorAlert()
         }).disposed(by: self.disposeBag)
     }
     
@@ -179,7 +181,6 @@ class NewFacesViewController: BaseViewController
     @objc fileprivate func onReload()
     {
         AnalyticsManager.shared.send(.pullToRefresh(SourceFeedType.newFaces.rawValue))
-        // self.hideScrollToTopOption()
         self.showTopBar(true)
         self.reload(false)
     }
@@ -525,6 +526,23 @@ class NewFacesViewController: BaseViewController
         UIView.animate(withDuration: 0.3) {
             self.view.layoutSubviews()
         }
+    }
+    
+    fileprivate func showErrorAlert()
+    {
+        let alertVC = UIAlertController(title: nil, message: "error_timeout".localized(), preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { [weak self] _ in
+            guard let `self` = self else { return }
+            
+            self.tableView.dataSource = self
+            self.tableView.reloadData()
+        }))
+        
+        alertVC.addAction(UIAlertAction(title: "button_retry".localized(), style: .default, handler: { [weak self] _ in
+            self?.onReload()
+        }))
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
 

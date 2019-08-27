@@ -8,6 +8,7 @@
 
 "button_add_photo" = "Add photo";
 "button_cancel" = "Cancel";
+"button_retry" = "Retry";
 "button_close" = "Close";
 "button_delete" = "Delete";
 "button_later" = "Not now";
@@ -24,6 +25,7 @@
 "common_clipboard" = "Copied to clipboard";
 
 "error_common" = "Oops! Something went wrong";
+"error_timeout" = "Connection timeout";
 
 "error_screen_no_network_connection" = "No internet";
 "error_screen_no_network_connection_button_label" = "Retry";
