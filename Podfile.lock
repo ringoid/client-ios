@@ -5,56 +5,65 @@ PODS:
   - Branch/Core (0.27.1)
   - Crashlytics (3.13.4):
     - Fabric (~> 1.10.2)
-  - DeviceKit (1.13.0)
+  - DeviceKit (2.0.0)
   - Fabric (1.10.2)
-  - FBSDKCoreKit (5.3.0):
-    - FBSDKCoreKit/Basics (= 5.3.0)
-    - FBSDKCoreKit/Core (= 5.3.0)
-  - FBSDKCoreKit/Basics (5.3.0)
-  - FBSDKCoreKit/Core (5.3.0):
+  - FBSDKCoreKit (5.4.1):
+    - FBSDKCoreKit/Basics (= 5.4.1)
+    - FBSDKCoreKit/Core (= 5.4.1)
+  - FBSDKCoreKit/Basics (5.4.1)
+  - FBSDKCoreKit/Core (5.4.1):
     - FBSDKCoreKit/Basics
-  - Firebase/Core (6.5.0):
+  - Firebase/Core (6.7.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.0.4)
-  - Firebase/CoreOnly (6.5.0):
-    - FirebaseCore (= 6.1.0)
-  - Firebase/Messaging (6.5.0):
+    - FirebaseAnalytics (= 6.1.1)
+  - Firebase/CoreOnly (6.7.0):
+    - FirebaseCore (= 6.2.1)
+  - Firebase/Messaging (6.7.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 4.1.1)
-  - Firebase/Performance (6.5.0):
+    - FirebaseMessaging (~> 4.1.3)
+  - Firebase/Performance (6.7.0):
     - Firebase/CoreOnly
-    - FirebasePerformance (~> 3.1.1)
-  - FirebaseABTesting (3.0.0):
-    - FirebaseCore (~> 6.0)
-    - Protobuf (~> 3.5)
-  - FirebaseAnalytics (6.0.4):
+    - FirebasePerformance (~> 3.1.2)
+  - FirebaseABTesting (3.1.0):
+    - FirebaseAnalyticsInterop (~> 1.3)
     - FirebaseCore (~> 6.1)
+    - Protobuf (~> 3.8)
+  - FirebaseAnalytics (6.1.1):
+    - FirebaseCore (~> 6.2)
     - FirebaseInstanceID (~> 4.2)
-    - GoogleAppMeasurement (= 6.0.4)
+    - GoogleAppMeasurement (= 6.1.1)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - FirebaseAnalyticsInterop (1.2.0)
-  - FirebaseCore (6.1.0):
-    - GoogleUtilities/Environment (~> 6.0)
-    - GoogleUtilities/Logger (~> 6.0)
-  - FirebaseInstanceID (4.2.2):
+  - FirebaseAnalyticsInterop (1.4.0)
+  - FirebaseCore (6.2.1):
+    - FirebaseCoreDiagnostics (~> 1.0)
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnostics (1.0.1):
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleDataTransportCCTSupport (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnosticsInterop (1.0.0)
+  - FirebaseInstanceID (4.2.3):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - FirebaseMessaging (4.1.1):
-    - FirebaseAnalyticsInterop (~> 1.1)
-    - FirebaseCore (~> 6.0)
+  - FirebaseMessaging (4.1.3):
+    - FirebaseAnalyticsInterop (~> 1.3)
+    - FirebaseCore (~> 6.2)
     - FirebaseInstanceID (~> 4.1)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.2)
     - GoogleUtilities/Environment (~> 6.2)
     - GoogleUtilities/Reachability (~> 6.2)
     - GoogleUtilities/UserDefaults (~> 6.2)
     - Protobuf (~> 3.1)
-  - FirebasePerformance (3.1.1):
-    - FirebaseCore (~> 6.0)
+  - FirebasePerformance (3.1.2):
+    - FirebaseCore (~> 6.2)
     - FirebaseInstanceID (~> 4.2)
     - FirebaseRemoteConfig (~> 4.2)
     - GoogleToolboxForMac/Logger (~> 2.1)
@@ -64,43 +73,48 @@ PODS:
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GTMSessionFetcher/Core (~> 1.1)
     - Protobuf (~> 3.5)
-  - FirebaseRemoteConfig (4.2.1):
-    - FirebaseABTesting (~> 3.0)
-    - FirebaseCore (~> 6.1)
+  - FirebaseRemoteConfig (4.3.0):
+    - FirebaseABTesting (~> 3.1)
+    - FirebaseAnalyticsInterop (~> 1.4)
+    - FirebaseCore (~> 6.2)
     - FirebaseInstanceID (~> 4.2)
     - GoogleUtilities/Environment (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - Protobuf (~> 3.5)
   - Flurry-iOS-SDK/FlurrySDK (9.3.1)
-  - GoogleAppMeasurement (6.0.4):
+  - GoogleAppMeasurement (6.1.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
+  - GoogleDataTransport (1.1.3)
+  - GoogleDataTransportCCTSupport (1.0.2):
+    - GoogleDataTransport (~> 1.1)
+    - nanopb
   - GoogleToolboxForMac/Defines (2.2.1)
   - GoogleToolboxForMac/Logger (2.2.1):
     - GoogleToolboxForMac/Defines (= 2.2.1)
   - "GoogleToolboxForMac/NSData+zlib (2.2.1)":
     - GoogleToolboxForMac/Defines (= 2.2.1)
-  - GoogleUtilities/AppDelegateSwizzler (6.2.3):
+  - GoogleUtilities/AppDelegateSwizzler (6.2.5):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.2.3)
-  - GoogleUtilities/ISASwizzler (6.2.3)
-  - GoogleUtilities/Logger (6.2.3):
+  - GoogleUtilities/Environment (6.2.5)
+  - GoogleUtilities/ISASwizzler (6.2.5)
+  - GoogleUtilities/Logger (6.2.5):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.2.3):
+  - GoogleUtilities/MethodSwizzler (6.2.5):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.2.3):
+  - GoogleUtilities/Network (6.2.5):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.2.3)"
-  - GoogleUtilities/Reachability (6.2.3):
+  - "GoogleUtilities/NSData+zlib (6.2.5)"
+  - GoogleUtilities/Reachability (6.2.5):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.2.3):
+  - GoogleUtilities/UserDefaults (6.2.5):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.2)
   - nanopb (0.3.901):
@@ -108,7 +122,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - Nuke (8.0.1)
+  - Nuke (8.1)
   - Protobuf (3.9.0)
   - ReachabilitySwift (4.3.1)
   - Realm (3.17.3):
@@ -140,13 +154,12 @@ PODS:
   - Sentry (4.1.0):
     - Sentry/Core (= 4.1.0)
   - Sentry/Core (4.1.0)
-  - Valet (3.2.5)
+  - Valet (3.2.6)
 
 DEPENDENCIES:
   - Branch
   - Crashlytics
   - DeviceKit
-  - DeviceKit (~> 1.3)
   - Fabric
   - FBSDKCoreKit
   - Firebase/Core
@@ -174,12 +187,16 @@ SPEC REPOS:
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
     - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
     - FirebaseInstanceID
     - FirebaseMessaging
     - FirebasePerformance
     - FirebaseRemoteConfig
     - Flurry-iOS-SDK
     - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
     - GoogleToolboxForMac
     - GoogleUtilities
     - GTMSessionFetcher
@@ -212,25 +229,29 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Branch: 1ace77c04b6e3efbf982bf4364f0662bfac156a0
   Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
-  DeviceKit: 5a4accdb2918ce0b69e62dc3bef6e4d2cc06e2e4
+  DeviceKit: 72d36709552d4b3582abd76a53949148acad9811
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
-  FBSDKCoreKit: 39748deefe37a005f983722e433be2ddcdd83ae7
-  Firebase: dedc9e48ea3f3649ad5f6b982f8a0c73508a14b5
-  FirebaseABTesting: a32c488eb75089a61eb3d86db061dfb909d765db
-  FirebaseAnalytics: 3fb375bc9d13779add4039716f868d233a473fad
-  FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
-  FirebaseCore: aecf02fb2274ec361b9bebeac112f5daa18273bd
-  FirebaseInstanceID: 662b8108a09fe9ed01aafdedba100fde8536b0f6
-  FirebaseMessaging: 6bb0bdaf64c55fef7a219b7bb1e94e94a0855ced
-  FirebasePerformance: bd3666700af4d43caf2a13b93718f3b532b8a5ff
-  FirebaseRemoteConfig: ed74d16d7e5b19e77a4c3e3eee4fe363039b0834
+  FBSDKCoreKit: 5144671077d67f07d7d243dbc7fd57a171f73954
+  Firebase: 291d7b0a7b393f252358083b5d224884126fa46d
+  FirebaseABTesting: a0622113a60c4dce068765e16a77e20c3331c44a
+  FirebaseAnalytics: 843c7f64a8f9c79f0d03281197ebe7bb1d58d477
+  FirebaseAnalyticsInterop: d48b6ab67bcf016a05e55b71fc39c61c0cb6b7f3
+  FirebaseCore: 32b48f41c84a56fbde73b35ed01a830b3b6dc048
+  FirebaseCoreDiagnostics: 4c04ae09d0ab027c30179828c6bb47764df1bd13
+  FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
+  FirebaseInstanceID: 8b42755db950682e7de0d167bc6fb26a57b244af
+  FirebaseMessaging: 930e4cce01f8f1e634cfdd1881db471fb61be883
+  FirebasePerformance: 270bab0bfa55e067ffd839e4ce4e592a1bdeebd6
+  FirebaseRemoteConfig: 938b338e9e56f73b4e3880213cc01287b8582468
   Flurry-iOS-SDK: 5d782d740c5e95389c327d38245b3db4bb471fd7
-  GoogleAppMeasurement: 183bd916af7f80deb67c01888368f1108d641832
+  GoogleAppMeasurement: 86a82f0e1f20b8eedf8e20326530138fd71409de
+  GoogleDataTransport: 91e682bd60a49d3f8f69f2e909a66efaed5a1e7a
+  GoogleDataTransportCCTSupport: 6b545f7149111180763dc18c6f372c963de4a310
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
-  GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
+  GoogleUtilities: e7dc37039b19df7fe543479d3e4a02ac8d11bb69
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  Nuke: e6a65472f59c1bfe779cb495760951f0121ef7c0
+  Nuke: bdf9670042513ede94ea9bd97e902936e055ff64
   Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   Realm: 5a1d9d47bfc101dd597668b1a8af4288a2557f6d
@@ -243,8 +264,8 @@ SPEC CHECKSUMS:
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
-  Valet: 41882ffa9ed80c5358584837bcf762dfd1888818
+  Valet: dcc4ff74f0d010be665239ab89c7a4a5cd39ee33
 
-PODFILE CHECKSUM: 62daf7491dbae30717b6aa1fc9331e7dd609c5c0
+PODFILE CHECKSUM: 0d82690f6e718a7b73af6d1443f6dc86d8365fcd
 
 COCOAPODS: 1.6.0

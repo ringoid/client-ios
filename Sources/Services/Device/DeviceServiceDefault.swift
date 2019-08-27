@@ -38,8 +38,8 @@ class DeviceServiceDefault: DeviceService
     }
     
     var deviceName: String
-    {
-        return Device().description
+    {        
+        return Device.current.description
     }
     
     var appVersion: String

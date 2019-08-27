@@ -162,7 +162,7 @@ class SettingsViewController: BaseViewController
     {
         guard MFMailComposeViewController.canSendMail() else { return }
         
-        let device = Device()
+        let device = Device.current
         let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") ?? ""
         
         let vc = MFMailComposeViewController()

@@ -44,7 +44,7 @@ class ApiServiceDefault: ApiService
     
     func createProfile(year: Int, sex: Sex, privateKey: String?, referralCode: String?) -> Observable<Void>
     {
-        let device = Device()
+        let device = Device.current
         
         var params: [String: Any] = [
             "yearOfBirth": year,

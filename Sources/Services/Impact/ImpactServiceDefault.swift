@@ -45,7 +45,7 @@ class ImpactServiceDefault: ImpactService
         let unsupportedDevices: [Device] = [.iPhone4, .iPhone5, .iPhone5s, .iPhone6, .iPhone6s]
         let minSystemVersion: Double = 10
         
-        let currentDevice = Device()
-        return !currentDevice.isOneOf(unsupportedDevices) && ((currentDevice.systemVersion as NSString).doubleValue) >= minSystemVersion
+        let currentDevice = Device.current
+        return !currentDevice.isOneOf(unsupportedDevices) && ((currentDevice.systemVersion as NSString?)?.doubleValue ?? 0.0) >= minSystemVersion
     }
 }

@@ -13,7 +13,7 @@ def common_pods
 	pod 'Crashlytics'
 	pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '4.1.0'
 	pod 'RxReachability'
-	pod 'DeviceKit', '~> 1.3'
+	pod 'DeviceKit'
 	pod 'Valet'
 	pod 'Branch'
 	pod 'Firebase/Core'
@@ -21,7 +21,6 @@ def common_pods
 	pod 'Firebase/Messaging'
 	pod 'Flurry-iOS-SDK/FlurrySDK'
 	pod 'FBSDKCoreKit'
-	pod 'DeviceKit'
 end
 
 target 'ringoid' do

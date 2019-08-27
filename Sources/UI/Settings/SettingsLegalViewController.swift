@@ -120,7 +120,7 @@ class SettingsLegalViewController: BaseViewController
     {
         guard MFMailComposeViewController.canSendMail() else { return }
         
-        let device = Device()
+        let device = Device.current
         let body: NSString = NSString(format: "settings_info_email_officer_mail_subject".localized() as NSString, self.viewModel?.customerId.value ?? "")
         
         let vc = MFMailComposeViewController()
