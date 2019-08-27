@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 import Nuke
+import Differ
 
 fileprivate struct FeedState
 {
@@ -494,8 +495,10 @@ class MainLMMViewController: BaseViewController
             self.input.scenario.checkLikesYou(self.type.value.sourceType())
         }
         
+        let feedIds = updatedProfiles.compactMap({ $0.id })
+        
         defer {
-            self.lastFeedIds = updatedProfiles.map { $0.id }
+            self.lastFeedIds = feedIds
             self.lastUpdateFeedType = self.type.value
             
             let offset = self.tableView.contentOffset.y
@@ -518,68 +521,40 @@ class MainLMMViewController: BaseViewController
             self.toggleActivity(.contentAvailable)
         }
 
-        // Checking for blocking scenario
-        if totalCount == self.lastFeedIds.count - 1, (self.lastFeedIds.count > 1 || self.input.transition.afterTransition), self.lastUpdateFeedType == self.type.value {
-            var diffCount: Int = 0
-            var diffIndex: Int = 0
-            var j: Int = 0
-            
-            for i in 0..<totalCount {
-                let profile = updatedProfiles[i]
-                if profile.isInvalidated { break } // Deprecated profiles
-                if j >= self.lastFeedIds.count { break }
-
-                if profile.id != self.lastFeedIds[j] {
-                    diffIndex = i
-                    diffCount += 1
-                    j = j + 1
-                }
-                
-                j = j + 1
+        let diff = patch(from: self.lastFeedIds, to: feedIds)
+        
+        // No changes
+        guard !diff.isEmpty else { return }
+        
+        // Counting operations
+        var insertionsCount: Int = 0
+        var deletionsCount: Int = 0
+        diff.forEach { path in
+            switch path {
+            case .insertion(_, _): insertionsCount += 1; break
+            case .deletion(_): deletionsCount += 1; break
             }
-            
-            // Blocking scenario confirmed
-            if diffCount == 1 {
-                self.tableView.performBatchUpdates({
-                    self.tableView.deleteRows(at: [IndexPath(row: diffIndex, section: 0)], with: .top)
-                }, completion: nil)
-                self.tableView.layer.removeAllAnimations()
-
-                return
-            } else if diffCount == 0 { // Last profile should be removed
-                if totalCount > 0 {
-                    self.tableView.isUserInteractionEnabled = false
-                    self.tableView.scrollToRow(at:  IndexPath(row: totalCount - 1, section: 0), at: .top, animated: true)
-                }
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-                    self.tableView.isUserInteractionEnabled = true
-                    
-                    if self.profiles()?.value.count == totalCount - 1 {
-                        self.tableView.performBatchUpdates({
-                            self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
-                        }, completion: nil)
-                    } else {
-                        self.tableView.reloadData()
-                    }
-                }
-                
-                return
-            }
-            
-            // Returning to default scenario
         }
         
-        // No changes scenario check
-        if  totalCount > 0, self.lastFeedIds.count == totalCount {
-            var checkIds = self.lastFeedIds
-            updatedProfiles.forEach { profile in
-                guard let index = checkIds.firstIndex(of: profile.id) else { return }
-                
-                checkIds.remove(at: index)
+        // Single item removal - blocking case
+        if insertionsCount == 0, deletionsCount == 1 {
+            if let path = diff.first {
+                switch path {
+                case .deletion(let index):
+                    self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .top)                    
+                    self.tableView.layer.removeAllAnimations()
+                    
+                    if !isEmpty, index == totalCount {
+                        self.tableView.scrollToRow(at:  IndexPath(row: totalCount - 1, section: 0), at: .top, animated: true)
+                    }
+                    
+                    break
+                    
+                default: break
+                }
             }
             
-            if checkIds.count == 0 && !force { return }
+            return
         }
         
         // Default scenario - reloading and applying stored offset
@@ -593,14 +568,6 @@ class MainLMMViewController: BaseViewController
             
             self.tableView.layoutIfNeeded()
             self.tableView.setContentOffset(CGPoint(x: 0.0, y: cachedOffset), animated: false)
-            
-//            if cachedOffset > 75.0 && totalCount > 0 && totalCount > 0{
-//                self.scrollTopBtn.alpha = 1.0
-//                self.isScrollTopVisible = true
-//            } else {
-//                self.scrollTopBtn.alpha = 0.0
-//                self.isScrollTopVisible = false
-//            }
         }
     }
     

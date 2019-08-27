@@ -313,7 +313,7 @@ class NewFacesViewController: BaseViewController
             self.feedBottomBtn.isHidden = true
         }
         
-        let diff = patch(from: lastFeedIds, to: feedIds)
+        let diff = patch(from: self.lastFeedIds, to: feedIds)
         
         // No signle profile data changed
         if diff.isEmpty {
@@ -343,10 +343,8 @@ class NewFacesViewController: BaseViewController
         if insertionsCount == 0, deletionsCount == 1 {
             if let path = diff.first {
                 switch path {
-                case .deletion(let index):
-                    self.tableView.performBatchUpdates({
-                        self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .top)
-                    }, completion: nil)
+                case .deletion(let index):                    
+                    self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .top)
                     self.tableView.layer.removeAllAnimations()
                     
                     if !isEmpty, index == totalCount {
