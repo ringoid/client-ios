@@ -21,6 +21,7 @@ def common_pods
 	pod 'Firebase/Messaging'
 	pod 'Flurry-iOS-SDK/FlurrySDK'
 	pod 'FBSDKCoreKit'
+	pod 'Differ'
 end
 
 target 'ringoid' do

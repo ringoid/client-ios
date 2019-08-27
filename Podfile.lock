@@ -6,6 +6,7 @@ PODS:
   - Crashlytics (3.13.4):
     - Fabric (~> 1.10.2)
   - DeviceKit (2.0.0)
+  - Differ (1.4.3)
   - Fabric (1.10.2)
   - FBSDKCoreKit (5.4.1):
     - FBSDKCoreKit/Basics (= 5.4.1)
@@ -160,6 +161,7 @@ DEPENDENCIES:
   - Branch
   - Crashlytics
   - DeviceKit
+  - Differ
   - Fabric
   - FBSDKCoreKit
   - Firebase/Core
@@ -180,6 +182,7 @@ SPEC REPOS:
     - Branch
     - Crashlytics
     - DeviceKit
+    - Differ
     - Fabric
     - FBSDKCoreKit
     - Firebase
@@ -230,6 +233,7 @@ SPEC CHECKSUMS:
   Branch: 1ace77c04b6e3efbf982bf4364f0662bfac156a0
   Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
   DeviceKit: 72d36709552d4b3582abd76a53949148acad9811
+  Differ: 6c7477d6187e8c36d02ec342a3c321061b85a0ea
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   FBSDKCoreKit: 5144671077d67f07d7d243dbc7fd57a171f73954
   Firebase: 291d7b0a7b393f252358083b5d224884126fa46d
@@ -266,6 +270,6 @@ SPEC CHECKSUMS:
   Sentry: 44b85e768f435ede4d12ea279af588ff275c3939
   Valet: dcc4ff74f0d010be665239ab89c7a4a5cd39ee33
 
-PODFILE CHECKSUM: 0d82690f6e718a7b73af6d1443f6dc86d8365fcd
+PODFILE CHECKSUM: 28ff887a3983ea5bd2aa7bb60aa672dbf3181746
 
 COCOAPODS: 1.6.0

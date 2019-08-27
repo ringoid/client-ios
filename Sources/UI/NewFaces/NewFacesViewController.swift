@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import Nuke
+import Differ
 
 fileprivate enum NewFacesFeedActivityState
 {
@@ -283,9 +284,11 @@ class NewFacesViewController: BaseViewController
     fileprivate func updateFeed()
     {
         guard let profiles = self.viewModel?.profiles.value else { return }
-
+        
+        let feedIds = profiles.compactMap({ $0.id })
+        
         defer {
-            self.lastFeedIds = profiles.map({ $0.id })
+            self.lastFeedIds = feedIds
             
             let offset = self.tableView.contentOffset.y
             self.updateVisibleCellsBorders(offset)
@@ -293,13 +296,13 @@ class NewFacesViewController: BaseViewController
         }
         
         let totalCount = profiles.count
-        let isEmpty = totalCount == 0        
+        let isEmpty = totalCount == 0
         
         if isEmpty && self.currentActivityState != .fetching {
             if self.currentActivityState == .contentAvailable {
-                 self.toggleActivity(.initial)
+                self.toggleActivity(.initial)
             } else if self.currentActivityState != .initial{
-               self.toggleActivity(.empty)
+                self.toggleActivity(.empty)
             }
         }
         
@@ -310,80 +313,79 @@ class NewFacesViewController: BaseViewController
             self.feedBottomBtn.isHidden = true
         }
         
-        let lastItemsCount = self.lastFeedIds.count
-
+        let diff = patch(from: lastFeedIds, to: feedIds)
+        
         // No signle profile data changed
-        if totalCount == 1, lastItemsCount == 1, profiles.first?.id == self.lastFeedIds.last {
+        if diff.isEmpty {
             print("NO PROFILE DATA CHANGED")
+            
             return
         }
         
-        // No items or several items removal case
-        if lastItemsCount <= 1 || totalCount < (lastItemsCount - 1) {
+        // Counting operations
+        var insertionsCount: Int = 0
+        var deletionsCount: Int = 0
+        diff.forEach { path in
+            switch path {
+            case .insertion(_, _): insertionsCount += 1; break
+            case .deletion(_): deletionsCount += 1; break
+            }
+        }
+        
+        // Items update or several items removal case
+        if deletionsCount > 1 || (deletionsCount > 0 && insertionsCount > 0) {
             self.tableView.reloadData()
-
+            
             return
         }
         
         // Single item removal - blocking case
-        if totalCount == lastItemsCount - 1 {
-            for i in 0..<totalCount {
-                let profile = profiles[i]
-                
-                // Check for deprecated state
-                guard !profile.isInvalidated else { self.tableView.reloadData(); return }
-                
-                // Found diff - playing animation
-                if profile.id != self.lastFeedIds[i] {
+        if insertionsCount == 0, deletionsCount == 1 {
+            if let path = diff.first {
+                switch path {
+                case .deletion(let index):
                     self.tableView.performBatchUpdates({
-                        self.tableView.deleteRows(at: [IndexPath(row: i, section: 0)], with: .top)
+                        self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .top)
                     }, completion: nil)
                     self.tableView.layer.removeAllAnimations()
+                    
+                    if !isEmpty, index == totalCount {
+                        self.tableView.scrollToRow(at:  IndexPath(row: totalCount - 1, section: 0), at: .top, animated: true)
+                    }
 
-                    return
+                    break
+                    
+                default: break
                 }
             }
             
-            // Diff should be last item
-            if totalCount > 0 {
-                self.tableView.isUserInteractionEnabled = false
-                self.tableView.scrollToRow(at:  IndexPath(row: totalCount - 1, section: 0), at: .top, animated: true)
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-                self.tableView.isUserInteractionEnabled = true
-                
-                guard let profiles = self.viewModel?.profiles.value, profiles.count == totalCount else { return }
-                
-                self.lastFeedIds = profiles.map({ $0.id })
-                
-                self.tableView.performBatchUpdates({
-                    self.tableView.deleteRows(at: [IndexPath(row: totalCount, section: 0)], with: .top)
-                }, completion: nil)
-            }
-
             return
         }
-
-        // No update case
-//        guard totalCount != lastItemsCount else {
-//            let offset = self.tableView.contentOffset.y
-//            if offset > 75.0 && totalCount > 0 {
-//                self.scrollTopBtn.alpha = 1.0
-//                self.isScrollTopVisible = true
-//            } else {
-//                self.scrollTopBtn.alpha = 0.0
-//                self.isScrollTopVisible = false
-//            }
-//
-//            return
-//        }
         
         // Paging case
-        let pageRange = lastItemsCount..<totalCount        
-        self.lastFeedIds.append(contentsOf: profiles[pageRange].map({ $0.id }))        
-        self.tableView.insertRows(at: pageRange.map({ IndexPath(row: $0, section: 0) }), with: .none)
+        if insertionsCount > 0, deletionsCount == 0, self.lastFeedIds.count != 0 {
+            
+            var insertionIndexes: [IndexPath] = []
+            diff.forEach { path in
+                switch path {
+                case .insertion(let index, _):
+                    insertionIndexes.append(IndexPath(row: index, section: 0))
+                    break
+                    
+                default: break
+                }
+            }
+            
+            self.tableView.insertRows(at: insertionIndexes, with: .none)
+            self.tableView.layer.removeAllAnimations()
+            
+            return
+        }
+        
+        // Rest cases
+        self.tableView.reloadData()
     }
+        
     
     fileprivate func toggleActivity(_ state: NewFacesFeedActivityState)
     {
@@ -613,7 +615,7 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
     {
         guard let newFacesCell = cell as? NewFacesCell else { return }
         
-        if let indexToRemove = self.visibleCells.index(of: newFacesCell) {
+        if let indexToRemove = self.visibleCells.firstIndex(of: newFacesCell) {
             self.visibleCells.remove(at: indexToRemove)
         }
         
