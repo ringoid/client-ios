@@ -121,6 +121,11 @@ class MainViewModel
         self.input.lmmManager.markNotificationAsProcessed(profileId)
     }
     
+    func isBlocked(_ profileId: String) -> Bool
+    {
+        return self.input.lmmManager.isBlocked(profileId)
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()

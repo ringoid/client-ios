@@ -513,6 +513,11 @@ class LMMManager
         return self.messages.value.filter({ $0.notRead }).map({ $0.id }).contains(profileId)
     }
     
+    func isBlocked(_ profileId: String) -> Bool
+    {
+        return self.db.isBlocked(profileId)
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()

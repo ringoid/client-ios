@@ -531,6 +531,7 @@ class MainViewController: BaseViewController
             guard let typeStr = userInfo["type"] as? String else { return }
             guard let remoteFeed = RemoteFeedType(rawValue: typeStr) else { return }
             guard let profileId = userInfo["oppositeUserId"] as? String else { return }
+            guard self.viewModel?.isBlocked(profileId) == false else { return }
             guard ChatViewController.openedProfileId != profileId else { return }
             
             let size = self.likeBtn.bounds.size

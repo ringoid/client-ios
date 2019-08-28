@@ -131,6 +131,11 @@ class DBService
         return self.userProfileObservable
     }
     
+    func isBlocked(_ profileId: String) -> Bool
+    {
+        return self.realm.objects(BlockedProfile.self).map({ $0.id }).contains(profileId)
+    }
+    
     // MARK: - New Faces
     func newFaces() -> Observable<[NewFaceProfile]>
     {
