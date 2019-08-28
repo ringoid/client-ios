@@ -430,10 +430,7 @@ class UserProfilePhotosViewController: BaseViewController
                 navigationManager: self.input.navigationManager,
                 defaultField: nil
             )
-            vc.tapHandler = { [weak self] in
-                self?.addPhoto()
-            }
-            
+
             return vc
         })
         
