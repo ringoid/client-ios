@@ -614,6 +614,8 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
             distance = distance < 0 ? 0 : distance
             distance = distance > 4 ? 4 : distance
             
+            guard indexPath.row + distance < profiles.count else { return }
+            
             let urls = profiles[indexPath.row..<(indexPath.row + distance)].compactMap({ $0.orderedPhotos().first?.thumbnailFilepath().url() })
             self.preheater.startPreheating(with: urls)
         }
