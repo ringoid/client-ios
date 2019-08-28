@@ -206,7 +206,6 @@ class MainLMMViewController: BaseViewController
             if state {
                 MainLMMViewController.resetStates()
                 self?.toggleActivity(.fetching)
-                self?.tableView.dataSource = EmptyFeed.shared
                 self?.lastFeedIds.removeAll()
                 self?.tableView.reloadData()
                 self?.updateBtn.isHidden = true
@@ -216,8 +215,6 @@ class MainLMMViewController: BaseViewController
                 UIManager.shared.lmmRefreshModeEnabled.accept(false)
                 let isEmpty = self?.profiles()?.value.count == 0
                 self?.toggleActivity(isEmpty ? .empty : .contentAvailable)
-                self?.tableView.dataSource = self
-                self?.updateFeed(true)
                 self?.checkForUpdates()
             }
         }).disposed(by: self.disposeBag)
@@ -375,14 +372,19 @@ class MainLMMViewController: BaseViewController
         // TODO: move "finishViewActions" logic inside view model
         self.input.actionsManager.finishViewActions(for: self.profiles()?.value ?? [], source: self.type.value.sourceType())
         
+        self.tableView.dataSource = EmptyFeed.shared
         self.viewModel?.refresh(self.type.value, isFilterEnabled: isFilterEnabled).subscribe(
             onNext: { [weak self ] _ in
-                self?.tableView.panGestureRecognizer.isEnabled = true                
+                guard let `self` = self else { return }
+                
+                self.tableView.dataSource = self
+                self.tableView.reloadData()
+                self.tableView.panGestureRecognizer.isEnabled = true
             }, onError:{ [weak self] error in
                 guard let `self` = self else { return }
                 
                 self.tableView.panGestureRecognizer.isEnabled = true
-                showError(error, vc: self)
+                self.showErrorAlert()
         }).disposed(by: self.disposeBag)
         
         if isFilterEnabled {
@@ -541,7 +543,7 @@ class MainLMMViewController: BaseViewController
             if let path = diff.first {
                 switch path {
                 case .deletion(let index):
-                    self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .top)                    
+                    self.tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .top)
                     self.tableView.layer.removeAllAnimations()
                     
                     if !isEmpty, index == totalCount {
@@ -912,6 +914,23 @@ class MainLMMViewController: BaseViewController
         case .initial: self.emptyFeedLabel.text = self.initialLabelTitle()
         default: break
         }
+    }
+    
+    fileprivate func showErrorAlert()
+    {
+        let alertVC = UIAlertController(title: nil, message: "error_timeout".localized(), preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { [weak self] _ in
+            guard let `self` = self else { return }
+            
+            self.tableView.dataSource = self
+            self.tableView.reloadData()
+        }))
+        
+        alertVC.addAction(UIAlertAction(title: "button_retry".localized(), style: .default, handler: { [weak self] _ in
+            self?.onRefresh()
+        }))
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
 
