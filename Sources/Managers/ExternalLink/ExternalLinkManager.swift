@@ -27,4 +27,19 @@ class ExternalLinkManager
         
         return result
     }
+    
+    func availableServices(_ profile: UserProfile) -> [(ExternalLinkService, String)]
+    {
+        var result: [(ExternalLinkService, String)] = []
+        
+        if let link = profile.instagram, self.instagram.isValid(link) {
+            result.append((self.instagram, self.instagram.extractId(link)))
+        }
+        
+        if let link = profile.tikTok, self.tiktok.isValid(link) {
+            result.append((self.tiktok, self.tiktok.extractId(link)))
+        }
+        
+        return result
+    }
 }

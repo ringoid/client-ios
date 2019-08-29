@@ -268,9 +268,16 @@ see how many likes you get</string>
                                     <action selector="onStatusTap" destination="aaf-t7-SOT" eventType="touchUpInside" id="83H-Fv-fRv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5m-10-RfN">
+                                <rect key="frame" x="0.0" y="444.5" width="375" height="65.5"/>
+                                <connections>
+                                    <action selector="onBottomOptions" destination="aaf-t7-SOT" eventType="touchUpInside" id="MvC-fv-9xH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.88299978599999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="f5m-10-RfN" secondAttribute="trailing" id="0Ya-fA-TaK"/>
                             <constraint firstItem="27t-IX-qLF" firstAttribute="width" secondItem="UMb-Bl-CM4" secondAttribute="width" id="0oE-CE-nYr"/>
                             <constraint firstItem="ouZ-cc-Vmf" firstAttribute="centerY" secondItem="c03-Vj-oKe" secondAttribute="centerY" id="13U-xz-Mio"/>
                             <constraint firstItem="Pzg-eZ-8Og" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" id="1qb-Vr-aDl" userLabel="PagesTop"/>
@@ -282,6 +289,7 @@ see how many likes you get</string>
                             <constraint firstItem="hwe-yx-WQU" firstAttribute="leading" secondItem="Kqw-ue-cJ1" secondAttribute="trailing" constant="8" id="8Ky-oi-8Gr"/>
                             <constraint firstItem="27t-IX-qLF" firstAttribute="top" secondItem="UMb-Bl-CM4" secondAttribute="bottom" constant="10" id="94T-2b-xeh"/>
                             <constraint firstItem="oTk-g9-AL2" firstAttribute="centerX" secondItem="zoX-Ai-V1C" secondAttribute="centerX" id="Bgp-jQ-BGu"/>
+                            <constraint firstItem="dx0-jU-NB1" firstAttribute="bottom" secondItem="f5m-10-RfN" secondAttribute="bottom" id="Bzz-gJ-wL6"/>
                             <constraint firstItem="R3C-Zv-Ixf" firstAttribute="leading" secondItem="0Ze-nT-pEZ" secondAttribute="trailing" constant="16" id="DXD-i0-dIg"/>
                             <constraint firstItem="32r-W0-czT" firstAttribute="top" secondItem="GhS-rk-bVb" secondAttribute="top" constant="60" id="EDx-rN-Hng"/>
                             <constraint firstAttribute="bottom" secondItem="GhS-rk-bVb" secondAttribute="bottom" id="EeI-Bh-ckx"/>
@@ -296,6 +304,7 @@ see how many likes you get</string>
                             <constraint firstAttribute="trailing" secondItem="czw-ci-QbL" secondAttribute="trailing" id="NuO-3f-hgg"/>
                             <constraint firstItem="CMl-hP-vFu" firstAttribute="trailing" secondItem="XXO-bm-eHo" secondAttribute="trailing" id="O5g-hP-qei"/>
                             <constraint firstItem="Kqw-ue-cJ1" firstAttribute="centerY" secondItem="hwe-yx-WQU" secondAttribute="centerY" id="Opw-DD-8ao"/>
+                            <constraint firstItem="f5m-10-RfN" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" id="PN6-VG-Dxz"/>
                             <constraint firstItem="GhS-rk-bVb" firstAttribute="top" secondItem="Yc6-CF-qSL" secondAttribute="top" id="Q1a-Y0-U7m"/>
                             <constraint firstItem="ct4-pd-6bj" firstAttribute="leading" secondItem="Qh3-mN-wQe" secondAttribute="trailing" constant="8" id="QgN-ka-zPI"/>
                             <constraint firstItem="UMb-Bl-CM4" firstAttribute="bottom" secondItem="npc-Nn-Arv" secondAttribute="bottom" id="SCh-0L-Ydf"/>
@@ -322,6 +331,7 @@ see how many likes you get</string>
                             <constraint firstItem="dx0-jU-NB1" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" constant="16" id="kx5-M7-Z82"/>
                             <constraint firstItem="Pzg-eZ-8Og" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="lmb-XL-cwr"/>
                             <constraint firstItem="ouZ-cc-Vmf" firstAttribute="centerX" secondItem="c03-Vj-oKe" secondAttribute="centerX" id="mVV-ig-PQV"/>
+                            <constraint firstItem="f5m-10-RfN" firstAttribute="top" secondItem="CMl-hP-vFu" secondAttribute="bottom" id="nDh-n1-8b2"/>
                             <constraint firstItem="CMl-hP-vFu" firstAttribute="top" secondItem="XXO-bm-eHo" secondAttribute="top" id="nP0-hS-XDe"/>
                             <constraint firstItem="UMb-Bl-CM4" firstAttribute="leading" secondItem="npc-Nn-Arv" secondAttribute="trailing" constant="8" id="nbI-uK-HDi"/>
                             <constraint firstItem="CMl-hP-vFu" firstAttribute="leading" secondItem="XXO-bm-eHo" secondAttribute="leading" id="oEp-vD-mPA"/>
@@ -344,6 +354,7 @@ see how many likes you get</string>
                         <outlet property="aboutLabel" destination="dx0-jU-NB1" id="3kl-Ou-LG6"/>
                         <outlet property="addBtn" destination="R3C-Zv-Ixf" id="3Be-pJ-u5T"/>
                         <outlet property="addPhotoCenterBtn" destination="ouZ-cc-Vmf" id="6tH-WG-ktP"/>
+                        <outlet property="bottomOptionsBtn" destination="f5m-10-RfN" id="O4e-gY-2DN"/>
                         <outlet property="containerTableView" destination="GhS-rk-bVb" id="o6E-fd-3zd"/>
                         <outlet property="deleteBtn" destination="32r-W0-czT" id="qDq-QL-d5e"/>
                         <outlet property="emptyFeedLabel" destination="c03-Vj-oKe" id="HhA-IN-Ey8"/>

@@ -24,6 +24,7 @@ struct UserProfilePhotosVCInput
     let scenario: AnalyticsScenarioManager
     let db: DBService
     let filter: FilterManager
+    let externalLinkManager: ExternalLinkManager
 }
 
 class UserProfilePhotosViewModel

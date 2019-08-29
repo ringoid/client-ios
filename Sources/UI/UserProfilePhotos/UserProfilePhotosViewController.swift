@@ -54,6 +54,7 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var addPhotoCenterBtn: UIButton!
     @IBOutlet fileprivate weak var statusInfoCenterConstraing: NSLayoutConstraint!
     @IBOutlet fileprivate weak var pencilBtn: UIButton!
+    @IBOutlet fileprivate weak var bottomOptionsBtn: UIButton!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -289,6 +290,13 @@ class UserProfilePhotosViewController: BaseViewController
         ModalUIManager.shared.show(profileVC, animated: true)
     }
     
+    @IBAction func onBottomOptions()
+    {
+        guard self.input.actionsManager.checkConnectionState() else { return }
+        
+        self.showBottomOptions()
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
@@ -320,6 +328,8 @@ class UserProfilePhotosViewController: BaseViewController
             self.aboutLabel.alpha = alpha
             self.statusInfoLabel.alpha = alpha
             self.statusInfoBtn.isHidden = photos.count == 0
+            self.bottomOptionsBtn.isHidden = photos.count == 0
+            
             (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
                 control.iconView.alpha = alpha
                 control.titleLabel.alpha = alpha
@@ -471,6 +481,45 @@ class UserProfilePhotosViewController: BaseViewController
         self.present(alertVC, animated: true, completion: nil)
     }
     
+    fileprivate func showBottomOptions()
+    {
+        guard let profile = self.input.profileManager.profile.value else { return }
+        
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // Options
+        self.input.externalLinkManager.availableServices(profile).forEach({ serviceResult in
+            let service = serviceResult.0
+            let userId = serviceResult.1
+            let title = "\("profile_option_open".localized()) \(service.title): @\(userId)"
+            alertVC.addAction(UIAlertAction(title: title, style: .default, handler: { _ in
+                service.move(userId)
+            }))
+        })
+        
+        // Delete
+        alertVC.addAction(UIAlertAction(title: "profile_button_delete_image".localized(), style: .destructive, handler: ({ _ in
+            guard let photo = self.viewModel?.photos.value[self.currentIndex.value] else { return }
+            
+            if photo.likes > 0 {
+                self.showDeletionConfirmationAlert()
+                
+                return
+            }
+            
+            self.showControls()
+            self.viewModel?.delete(photo)
+        })))
+        
+        // Cancel
+        alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
+            self.showControls()
+        }))
+        
+        self.hideControls()
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
     fileprivate func showDeletionConfirmationAlert()
     {
         let alertVC = UIAlertController(
@@ -508,6 +557,7 @@ class UserProfilePhotosViewController: BaseViewController
         self.aboutLabel.alpha = 1.0
         self.statusInfoLabel.alpha = 1.0
         self .statusInfoBtn.isHidden = false
+        self.bottomOptionsBtn.isHidden = false
         (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
             control.iconView.alpha = 1.0
             control.titleLabel.alpha = 1.0
@@ -530,6 +580,8 @@ class UserProfilePhotosViewController: BaseViewController
         self.aboutLabel.alpha = 0.0
         self.statusInfoLabel.alpha = 0.0
         self.statusInfoBtn.isHidden = true
+        self.bottomOptionsBtn.isHidden = true
+        
         (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
             control.iconView.alpha = 0.0
             control.titleLabel.alpha = 0.0
