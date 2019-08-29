@@ -16,6 +16,9 @@ class ChatLeftCell: ChatBaseCell
     {
         super.awakeFromNib()
         
+        let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(copyMessage(_:)))
+        self.bubbleImageView.addGestureRecognizer(recognizer)
+        
         self.setupContent()
     }
     

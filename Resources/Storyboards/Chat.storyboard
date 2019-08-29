@@ -72,8 +72,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kqb-Gc-IsO">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kqb-Gc-IsO">
                                                     <rect key="frame" x="15" y="6.5" width="245" height="45"/>
+                                                    <gestureRecognizers/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello!" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOn-Rh-5Bc">
                                                     <rect key="frame" x="32" y="18.5" width="211" height="21"/>
@@ -111,7 +112,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iPA-GY-O3g">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iPA-GY-O3g">
                                                     <rect key="frame" x="115" y="6.5" width="245" height="45"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello!" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9f-eP-Rf0">
@@ -241,6 +242,22 @@
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copied to clipboard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Jt-P8-5dR">
+                                <rect key="frame" x="79.5" y="575" width="216" height="36"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.75" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="MBX-sq-ktc"/>
+                                    <constraint firstAttribute="width" constant="216" id="sAP-Dg-ugd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -270,9 +287,11 @@
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="trailing" secondItem="qPj-U6-bjV" secondAttribute="trailing" id="iZx-Xs-XS7"/>
                             <constraint firstAttribute="trailing" secondItem="Y4U-O2-Qkv" secondAttribute="trailing" id="jEu-u2-fwH"/>
                             <constraint firstAttribute="trailing" secondItem="H3p-mh-W6s" secondAttribute="trailing" id="kFu-OV-Myh"/>
+                            <constraint firstItem="9Jt-P8-5dR" firstAttribute="centerX" secondItem="H5L-B8-AIS" secondAttribute="centerX" id="nhf-kj-v47"/>
                             <constraint firstItem="UM8-yN-NFd" firstAttribute="bottom" secondItem="b2c-7o-Xv8" secondAttribute="top" constant="64" id="oFa-rW-1Op"/>
                             <constraint firstItem="ZHb-Cm-ZEN" firstAttribute="top" secondItem="b2c-7o-Xv8" secondAttribute="top" id="oiM-pY-2o4"/>
                             <constraint firstItem="Tog-9D-Erh" firstAttribute="bottom" secondItem="Y4U-O2-Qkv" secondAttribute="bottom" id="p6d-ar-lq6"/>
+                            <constraint firstItem="cjc-8j-yFq" firstAttribute="top" secondItem="9Jt-P8-5dR" secondAttribute="bottom" constant="16" id="psS-tf-7wH"/>
                             <constraint firstAttribute="trailing" secondItem="ZHb-Cm-ZEN" secondAttribute="trailing" id="rbp-Qe-zWF"/>
                             <constraint firstItem="UM8-yN-NFd" firstAttribute="top" secondItem="H5L-B8-AIS" secondAttribute="top" id="ueT-H0-mbG"/>
                             <constraint firstItem="cjc-8j-yFq" firstAttribute="leading" secondItem="H5L-B8-AIS" secondAttribute="leading" id="v0j-UO-ASI"/>
@@ -283,6 +302,7 @@
                         <viewLayoutGuide key="safeArea" id="b2c-7o-Xv8"/>
                     </view>
                     <connections>
+                        <outlet property="clipboardLabel" destination="9Jt-P8-5dR" id="wKf-Nl-lkY"/>
                         <outlet property="inputBottomConstraint" destination="wfc-o3-Tec" id="cNo-PT-KqS"/>
                         <outlet property="inputHeightConstraint" destination="Wjg-rX-7Lb" id="19f-jC-htu"/>
                         <outlet property="messageTextView" destination="FHy-pP-KSv" id="aLs-qn-RyH"/>

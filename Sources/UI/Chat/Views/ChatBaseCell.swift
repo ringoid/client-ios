@@ -19,6 +19,8 @@ class ChatBaseCell: UITableViewCell
         }
     }
     
+    var onCopyMessage: ((String) -> ())?
+    
     var topVisibleBorderDistance: CGFloat = 999.0
     {
         didSet {
@@ -49,6 +51,14 @@ class ChatBaseCell: UITableViewCell
         super.awakeFromNib()
         
         self.transform = CGAffineTransform(rotationAngle: .pi)
+    }
+    
+    @objc func copyMessage(_ recognizer: UILongPressGestureRecognizer)
+    {
+        guard recognizer.state == .began else { return }
+        guard let text = self.message?.text else { return }
+        
+        self.onCopyMessage?(text)
     }
     
     // MARK: -

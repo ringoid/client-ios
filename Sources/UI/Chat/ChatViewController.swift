@@ -34,6 +34,8 @@ class ChatViewController: BaseViewController
     @IBOutlet fileprivate weak var statusCenterOffsetConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var nameCenterOffsetConstraint: NSLayoutConstraint!
     
+    @IBOutlet fileprivate weak var clipboardLabel: UILabel!
+    
     static func create() -> ChatViewController
     {
         let storyboard = Storyboards.chat()
@@ -106,7 +108,7 @@ class ChatViewController: BaseViewController
     
     override func updateLocale()
     {
-        
+        self.clipboardLabel.text = "common_clipboard".localized()
     }
     
     // MARK: - Actions
@@ -297,6 +299,25 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ChatBaseCell else { return UITableViewCell() }
         
         cell.message = message
+        cell.onCopyMessage = { [weak self] text in
+            UIPasteboard.general.string = text
+            
+            let appearAnimator = UIViewPropertyAnimator(duration: 0.2, curve: .linear, animations: {
+                self?.clipboardLabel.alpha = 1.0
+            })
+            
+            let disappearAnimator = UIViewPropertyAnimator(duration: 0.2, curve: .linear, animations: {
+                self?.clipboardLabel.alpha = 0.0
+            })
+            
+            appearAnimator.addCompletion({ _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                    disappearAnimator.startAnimation()
+                })
+            })
+            
+            appearAnimator.startAnimation()
+        }
         
         return cell
     }
