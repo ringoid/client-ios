@@ -252,6 +252,8 @@
 		57CFFB6C22E8476000DC2378 /* SettingsFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CFFB6A22E8476000DC2378 /* SettingsFilterViewModel.swift */; };
 		57CFFB7122E858A000DC2378 /* SettingsFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CFFB7022E858A000DC2378 /* SettingsFilterCell.swift */; };
 		57CFFB7222E858A000DC2378 /* SettingsFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CFFB7022E858A000DC2378 /* SettingsFilterCell.swift */; };
+		57D4FB392317D99300EF80EB /* TiktokService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D4FB382317D99300EF80EB /* TiktokService.swift */; };
+		57D4FB3A2317D99300EF80EB /* TiktokService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D4FB382317D99300EF80EB /* TiktokService.swift */; };
 		57E23141227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */; };
 		57E23142227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */; };
 		57E6DBEA229820FC00713A79 /* ApiUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6DBE9229820FB00713A79 /* ApiUserProfile.swift */; };
@@ -635,6 +637,7 @@
 		57CFFB6722E8474400DC2378 /* SettingsFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFilterViewController.swift; sourceTree = "<group>"; };
 		57CFFB6A22E8476000DC2378 /* SettingsFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFilterViewModel.swift; sourceTree = "<group>"; };
 		57CFFB7022E858A000DC2378 /* SettingsFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFilterCell.swift; sourceTree = "<group>"; };
+		57D4FB382317D99300EF80EB /* TiktokService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiktokService.swift; sourceTree = "<group>"; };
 		57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMessagesContainerViewController.swift; sourceTree = "<group>"; };
 		57E6DBE9229820FB00713A79 /* ApiUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUserProfile.swift; sourceTree = "<group>"; };
 		57ED48692249FC070033EB0B /* Ringoid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ringoid.entitlements; sourceTree = "<group>"; };
@@ -1385,6 +1388,7 @@
 			children = (
 				57AABCD9231791FB0014EE3B /* ExternalLinkService.swift */,
 				57AABCDC231792980014EE3B /* InstagramService.swift */,
+				57D4FB382317D99300EF80EB /* TiktokService.swift */,
 			);
 			path = ExternalLink;
 			sourceTree = "<group>";
@@ -2059,6 +2063,7 @@
 				57B863FC21EF5DDF00B9CC70 /* ApiViewChatAction.swift in Sources */,
 				57585D5B21E4A0F100038798 /* FilePath.swift in Sources */,
 				573A5C1B222556AD0094A9FA /* LogService.swift in Sources */,
+				57D4FB392317D99300EF80EB /* TiktokService.swift in Sources */,
 				57FB7BC421E61BE400AAA29D /* MainViewController.swift in Sources */,
 				57585D6A21E4FF2400038798 /* Colors.swift in Sources */,
 				57585D4621E3570B00038798 /* NewFaceProfile.swift in Sources */,
@@ -2215,6 +2220,7 @@
 				57ED4871224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */,
 				57528C812292EF29003F01E3 /* SettingsSwitchableCell.swift in Sources */,
 				57EE65042216711000246B45 /* AuthViewModel.swift in Sources */,
+				57D4FB3A2317D99300EF80EB /* TiktokService.swift in Sources */,
 				57EEB08922BE63C0005770B3 /* SettingsProfileFieldCell.swift in Sources */,
 				57EE65052216711000246B45 /* SettingsThemeCell.swift in Sources */,
 				574F4ACB22520B230027A083 /* SettingsNotificationsCell.swift in Sources */,

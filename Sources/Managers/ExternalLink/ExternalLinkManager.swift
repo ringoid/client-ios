@@ -11,6 +11,7 @@ import Foundation
 class ExternalLinkManager
 {
     fileprivate let instagram = InstagramService()
+    fileprivate let tiktok = TiktokService()
 
     func availableServices(_ profile: Profile) -> [(ExternalLinkService, String)]
     {
@@ -18,6 +19,10 @@ class ExternalLinkManager
         
         if let link = profile.instagram, self.instagram.isValid(link) {
             result.append((self.instagram, self.instagram.extractId(link)))
+        }
+        
+        if let link = profile.tikTok, self.tiktok.isValid(link) {
+            result.append((self.tiktok, self.tiktok.extractId(link)))
         }
         
         return result

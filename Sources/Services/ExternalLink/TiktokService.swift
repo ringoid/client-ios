@@ -1,5 +1,5 @@
 //
-//  InstagramService.swift
+//  TiktokService.swift
 //  ringoid
 //
 //  Created by Victor Sukochev on 29/08/2019.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-fileprivate let instagramEscapeCharacters = CharacterSet(charactersIn: "@")
+fileprivate let tiktokEscapeCharacters = CharacterSet(charactersIn: "@")
 
-class InstagramService: ExternalLinkService
+class TiktokService: ExternalLinkService
 {
     var title: String
     {
-        return "Instagram"
+        return "Tiktok"
     }
     
     func isValid(_ link: String) -> Bool
@@ -27,9 +27,9 @@ class InstagramService: ExternalLinkService
         var result: String = ""
         
         if link.isUrlLink() {
-            result = (link as NSString).lastPathComponent.trimmingCharacters(in: instagramEscapeCharacters).trimmingCharacters(in: .whitespaces)
+            result = (link as NSString).lastPathComponent.trimmingCharacters(in: tiktokEscapeCharacters).trimmingCharacters(in: .whitespaces)
         } else {
-            result = link.trimmingCharacters(in: instagramEscapeCharacters).trimmingCharacters(in: .whitespaces)
+            result = link.trimmingCharacters(in: tiktokEscapeCharacters).trimmingCharacters(in: .whitespaces)
         }
         
         return result
@@ -39,8 +39,8 @@ class InstagramService: ExternalLinkService
     {
         let userId = self.extractId(to)
         
-        guard let url = URL(string: "instagram://user?username=\(userId)") else { return }
-
+        guard let url = URL(string: "https://www.tiktok.com/@\(userId)") else { return }
+        
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
