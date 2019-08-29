@@ -614,6 +614,15 @@ see who likes you</string>
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5I-DL-ga6">
+                                <rect key="frame" x="0.0" y="587" width="375" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="C3g-vd-Ded"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="onBottomOptions" destination="Nf7-hc-eWV" eventType="touchUpInside" id="Lgh-DA-sd0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -627,11 +636,13 @@ see who likes you</string>
                             <constraint firstItem="lT4-ql-cww" firstAttribute="leading" secondItem="kYa-nc-a14" secondAttribute="trailing" constant="8" id="5x3-HN-72m"/>
                             <constraint firstItem="cOc-LA-9UX" firstAttribute="centerX" secondItem="ekE-T8-wuA" secondAttribute="centerX" id="6Uy-2i-XPh"/>
                             <constraint firstItem="QvJ-Gq-VGZ" firstAttribute="leading" secondItem="IJx-PC-azo" secondAttribute="trailing" constant="8" id="889-Wz-PT6"/>
+                            <constraint firstAttribute="trailing" secondItem="L5I-DL-ga6" secondAttribute="trailing" id="Adg-GU-lCp"/>
                             <constraint firstItem="r1y-kA-ocU" firstAttribute="leading" secondItem="BPd-OE-Pen" secondAttribute="trailing" constant="8" id="C5w-Cc-kmk"/>
                             <constraint firstItem="qVA-P0-T2F" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="Cw3-cN-Upn"/>
                             <constraint firstItem="vBP-lc-cHQ" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="ECr-X5-BTY"/>
                             <constraint firstItem="kYa-nc-a14" firstAttribute="centerY" secondItem="lT4-ql-cww" secondAttribute="centerY" id="EoK-2T-KKP"/>
                             <constraint firstAttribute="bottom" secondItem="vBP-lc-cHQ" secondAttribute="bottom" id="FHi-0r-u0u"/>
+                            <constraint firstAttribute="bottom" secondItem="L5I-DL-ga6" secondAttribute="bottom" id="HGG-9B-AqC"/>
                             <constraint firstItem="r1y-kA-ocU" firstAttribute="width" secondItem="lT4-ql-cww" secondAttribute="width" id="J6R-md-nNE"/>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
@@ -640,6 +651,7 @@ see who likes you</string>
                             <constraint firstItem="GNe-2F-xlI" firstAttribute="top" secondItem="Y6w-eN-oCn" secondAttribute="top" id="M3J-bw-5kd"/>
                             <constraint firstItem="Y6w-eN-oCn" firstAttribute="centerY" secondItem="GNe-2F-xlI" secondAttribute="centerY" id="NNr-yW-K5g"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="centerX" secondItem="lGR-yG-LEW" secondAttribute="centerX" id="NaJ-Wi-l5L"/>
+                            <constraint firstItem="L5I-DL-ga6" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="PX0-1X-tgG"/>
                             <constraint firstAttribute="bottomMargin" secondItem="duK-qX-ktj" secondAttribute="bottom" id="SYR-al-KFo"/>
                             <constraint firstItem="lT4-ql-cww" firstAttribute="bottom" secondItem="kYa-nc-a14" secondAttribute="bottom" id="UCV-bF-ytY"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="118" id="UE3-94-yVQ" userLabel="MessageTopOffset"/>
