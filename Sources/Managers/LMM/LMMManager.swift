@@ -628,6 +628,7 @@ class LMMManager
             guard let typeStr = userInfo["type"] as? String else { return }
             guard let remoteFeedType = RemoteFeedType(rawValue: typeStr) else { return }
             guard let profileId = userInfo["oppositeUserId"] as? String else { return }
+            guard !self.isBlocked(profileId) else { return }
             
             switch remoteFeedType {
             case .likesYou:
