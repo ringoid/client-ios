@@ -23,6 +23,7 @@ struct MainLMMVMInput
     let transition: TransitionManager
     let settings: SettingsManager
     let filter: FilterManager
+    let externalLinkManager: ExternalLinkManager
 }
 
 enum LMMType: String

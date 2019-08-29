@@ -204,6 +204,12 @@
 		579CD7CC21FA094600C3AEE3 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7CB21FA094600C3AEE3 /* KeyboardListener.swift */; };
 		579CD7CF21FAE2D100C3AEE3 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7CE21FAE2D000C3AEE3 /* ChatManager.swift */; };
 		579CD7D221FB43E200C3AEE3 /* UserProfileContainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7D121FB43E200C3AEE3 /* UserProfileContainerCell.swift */; };
+		57AABCDA231791FC0014EE3B /* ExternalLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AABCD9231791FB0014EE3B /* ExternalLinkService.swift */; };
+		57AABCDB231791FC0014EE3B /* ExternalLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AABCD9231791FB0014EE3B /* ExternalLinkService.swift */; };
+		57AABCDD231792980014EE3B /* InstagramService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AABCDC231792980014EE3B /* InstagramService.swift */; };
+		57AABCDE231792980014EE3B /* InstagramService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AABCDC231792980014EE3B /* InstagramService.swift */; };
+		57AABCE1231797240014EE3B /* ExternalLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AABCE0231797240014EE3B /* ExternalLinkManager.swift */; };
+		57AABCE2231797240014EE3B /* ExternalLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AABCE0231797240014EE3B /* ExternalLinkManager.swift */; };
 		57ACA02A230E71A5009F8800 /* SettingsProfileStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ACA029230E71A5009F8800 /* SettingsProfileStatusCell.swift */; };
 		57ACA02B230E71A5009F8800 /* SettingsProfileStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57ACA029230E71A5009F8800 /* SettingsProfileStatusCell.swift */; };
 		57AE8968230676A600123AA6 /* ImpactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE8967230676A600123AA6 /* ImpactService.swift */; };
@@ -591,6 +597,9 @@
 		579CD7CB21FA094600C3AEE3 /* KeyboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
 		579CD7CE21FAE2D000C3AEE3 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		579CD7D121FB43E200C3AEE3 /* UserProfileContainerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileContainerCell.swift; sourceTree = "<group>"; };
+		57AABCD9231791FB0014EE3B /* ExternalLinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkService.swift; sourceTree = "<group>"; };
+		57AABCDC231792980014EE3B /* InstagramService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramService.swift; sourceTree = "<group>"; };
+		57AABCE0231797240014EE3B /* ExternalLinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkManager.swift; sourceTree = "<group>"; };
 		57ACA029230E71A5009F8800 /* SettingsProfileStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProfileStatusCell.swift; sourceTree = "<group>"; };
 		57AE8967230676A600123AA6 /* ImpactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactService.swift; sourceTree = "<group>"; };
 		57AE896A2306779800123AA6 /* ImpactServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactServiceDefault.swift; sourceTree = "<group>"; };
@@ -772,6 +781,7 @@
 		570D047C21DCED1800E0DCFB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				57AABCD8231791D30014EE3B /* ExternalLink */,
 				57AE89662306767E00123AA6 /* Impact */,
 				577DDAD422647910001D7D24 /* Location */,
 				578502F222564E680056120A /* Analytics */,
@@ -838,6 +848,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				57AABCDF231796AC0014EE3B /* ExternalLink */,
 				57AE8974230692D100123AA6 /* Achivement */,
 				5751561922E1DBC9009E7743 /* Filter */,
 				573D1167228DA37F00CD9C2D /* FeedbackMananger */,
@@ -1367,6 +1378,23 @@
 				573A5C282227AD0D0094A9FA /* UserProfileCropOverlayView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		57AABCD8231791D30014EE3B /* ExternalLink */ = {
+			isa = PBXGroup;
+			children = (
+				57AABCD9231791FB0014EE3B /* ExternalLinkService.swift */,
+				57AABCDC231792980014EE3B /* InstagramService.swift */,
+			);
+			path = ExternalLink;
+			sourceTree = "<group>";
+		};
+		57AABCDF231796AC0014EE3B /* ExternalLink */ = {
+			isa = PBXGroup;
+			children = (
+				57AABCE0231797240014EE3B /* ExternalLinkManager.swift */,
+			);
+			path = ExternalLink;
 			sourceTree = "<group>";
 		};
 		57AE89662306767E00123AA6 /* Impact */ = {
@@ -1913,6 +1941,7 @@
 				57FB7BD321E74C3E00AAA29D /* Storyboards.swift in Sources */,
 				576FC1142201876A00BA5ABE /* DeviceService.swift in Sources */,
 				57850300225725810056120A /* AnalyticsManager.swift in Sources */,
+				57AABCE1231797240014EE3B /* ExternalLinkManager.swift in Sources */,
 				57E23141227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift in Sources */,
 				573663BC227062120041C5DB /* AnalyticsScenarioManager.swift in Sources */,
 				57585D3F21E354FA00038798 /* NewFacesManager.swift in Sources */,
@@ -1973,6 +2002,7 @@
 				579CD7B621F8947000C3AEE3 /* SettingsThemeCell.swift in Sources */,
 				57ED4870224B82D30033EB0B /* NotificationsServiceDefault.swift in Sources */,
 				57528C802292EF29003F01E3 /* SettingsSwitchableCell.swift in Sources */,
+				57AABCDA231791FC0014EE3B /* ExternalLinkService.swift in Sources */,
 				570D04A121DD021E00E0DCFB /* Errors.swift in Sources */,
 				57EEB08822BE63C0005770B3 /* SettingsProfileFieldCell.swift in Sources */,
 				576FC10D21FF33EA00BA5ABE /* NavigationManager.swift in Sources */,
@@ -2041,6 +2071,7 @@
 				57585D5721E4925600038798 /* FileService.swift in Sources */,
 				57528C7D2292E79F003F01E3 /* SettingsNotificationsMessageCell.swift in Sources */,
 				570D048121DCEF3800E0DCFB /* ApiServiceConfig.swift in Sources */,
+				57AABCDD231792980014EE3B /* InstagramService.swift in Sources */,
 				573663C32271B7810041C5DB /* TransitionManager.swift in Sources */,
 				57B863CA21ECD1DC00B9CC70 /* MainLMMViewModel.swift in Sources */,
 				57EEB07622BD058D005770B3 /* SettingsProfileCell.swift in Sources */,
@@ -2099,6 +2130,7 @@
 				57EE64D52216711000246B45 /* SettingsLocaleCell.swift in Sources */,
 				57EE64D62216711000246B45 /* SettingsLegalTermsCell.swift in Sources */,
 				57EE64D72216711000246B45 /* RootViewController.swift in Sources */,
+				57AABCDE231792980014EE3B /* InstagramService.swift in Sources */,
 				57EE64D82216711000246B45 /* ApiViewAction.swift in Sources */,
 				57EE64D92216711000246B45 /* Alerts.swift in Sources */,
 				57EE64DA2216711000246B45 /* Types.swift in Sources */,
@@ -2110,6 +2142,7 @@
 				57149D63221C493400F636A4 /* ApiServiceConfigStage.swift in Sources */,
 				573A5C31222919470094A9FA /* ReachabilityServiceDefault.swift in Sources */,
 				57EE64DE2216711000246B45 /* UserProfileContainerCell.swift in Sources */,
+				57AABCE2231797240014EE3B /* ExternalLinkManager.swift in Sources */,
 				57EE64DF2216711000246B45 /* ContainerViewController.swift in Sources */,
 				57EE64E02216711000246B45 /* NewFacePhotoViewController.swift in Sources */,
 				57EE64E12216711000246B45 /* NewFacesViewController.swift in Sources */,
@@ -2263,6 +2296,7 @@
 				57EE652E2216711000246B45 /* BaseViewController.swift in Sources */,
 				57EE652F2216711000246B45 /* ApiUserPhotoPlaceholder.swift in Sources */,
 				57EE65302216711000246B45 /* ApiMessage.swift in Sources */,
+				57AABCDB231791FC0014EE3B /* ExternalLinkService.swift in Sources */,
 				57EE65312216711000246B45 /* UserProfilePhotosViewModel.swift in Sources */,
 				57EE65322216711000246B45 /* Profile.swift in Sources */,
 				573D115E228D97D700CD9C2D /* ModalUIManager.swift in Sources */,

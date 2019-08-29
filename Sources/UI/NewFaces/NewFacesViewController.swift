@@ -571,7 +571,8 @@ extension NewFacesViewController: UITableViewDataSource, UITableViewDelegate
                                                                 profileManager: self.input.profileManager,
                                                                 navigationManager: self.input.navigationManager,
                                                                 scenarioManager: self.input.scenario,
-                                                                transitionManager: self.input.transition
+                                                                transitionManager: self.input.transition,
+                                                                externalLinkManager: self.input.externalLinkManager
             )
             cell.containerView.embed(profileVC, to: self)
             

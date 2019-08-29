@@ -393,11 +393,21 @@ discover users nearby</string>
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nn8-2J-nIh">
+                                <rect key="frame" x="0.0" y="587" width="375" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="VF5-zm-qvk"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="onBottomOptions" destination="gBk-mi-2xQ" eventType="touchUpInside" id="Xrm-fw-wUM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jgt-rd-QRL" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="1TV-pF-1rd"/>
                             <constraint firstItem="DEy-yV-NWA" firstAttribute="top" secondItem="jgt-rd-QRL" secondAttribute="bottom" constant="4" id="2v2-oc-7cA"/>
+                            <constraint firstAttribute="bottom" secondItem="nn8-2J-nIh" secondAttribute="bottom" id="4dB-EU-0GF"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="hF7-La-xF3" secondAttribute="trailing" constant="8" id="5NP-6E-3NK"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="hF7-La-xF3" secondAttribute="top" id="ANk-co-dkG"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="centerY" secondItem="mUh-fA-frq" secondAttribute="centerY" id="Bn5-Xc-X65"/>
@@ -416,6 +426,7 @@ discover users nearby</string>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="WHJ-8A-QCL"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="top" secondItem="UGd-FX-LHF" secondAttribute="bottom" constant="10" id="WWM-Rn-t9O"/>
                             <constraint firstItem="hpB-3V-fnF" firstAttribute="centerY" secondItem="UGd-FX-LHF" secondAttribute="centerY" id="XI4-5X-8P5"/>
+                            <constraint firstAttribute="trailing" secondItem="nn8-2J-nIh" secondAttribute="trailing" id="XJy-l0-iyh"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="width" secondItem="UGd-FX-LHF" secondAttribute="width" id="XRt-63-qqY"/>
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="-12" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
@@ -444,6 +455,7 @@ discover users nearby</string>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="centerY" secondItem="gCQ-GT-2id" secondAttribute="centerY" id="ugI-UP-NV8"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="leading" secondItem="UGd-FX-LHF" secondAttribute="leading" id="unC-2d-8Tg"/>
                             <constraint firstItem="HGV-Wh-HTU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="20" id="vEn-VW-j7M"/>
+                            <constraint firstItem="nn8-2J-nIh" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="wrT-CK-gyr"/>
                             <constraint firstAttribute="trailing" secondItem="Jbu-JW-RgU" secondAttribute="trailing" id="x67-KR-aFy"/>
                             <constraint firstItem="UGd-FX-LHF" firstAttribute="leading" secondItem="hpB-3V-fnF" secondAttribute="trailing" constant="8" id="xFJ-Pd-Mt1"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="leading" secondItem="mUh-fA-frq" secondAttribute="trailing" constant="8" id="xeE-rt-HGB"/>

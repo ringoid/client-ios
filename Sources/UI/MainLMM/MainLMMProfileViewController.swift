@@ -81,7 +81,8 @@ class MainLMMProfileViewController: UIViewController
                        scenarioManager: AnalyticsScenarioManager,
                        transitionManager: TransitionManager,
                        lmmManager: LMMManager,
-                       filter: FilterManager
+                       filter: FilterManager,
+                       externalLinkManager: ExternalLinkManager
         ) -> MainLMMProfileViewController
     {
         let storyboard = Storyboards.mainLMM()
@@ -96,7 +97,8 @@ class MainLMMProfileViewController: UIViewController
             scenarioManager: scenarioManager,
             transitionManager: transitionManager,
             lmmManager: lmmManager,
-            filter: filter
+            filter: filter,
+            externalLinkManager: externalLinkManager
         )
         
         return vc
@@ -132,7 +134,8 @@ class MainLMMProfileViewController: UIViewController
             profileManager: self.input.profileManager,
             navigationManager: self.input.navigationManager,
             scenarioManager: self.input.scenarioManager,
-            transitionManager: self.input.transitionManager
+            transitionManager: self.input.transitionManager,
+            externalLinkManager: self.input.externalLinkManager
         )
         self.photosVCs = self.input.profile.orderedPhotos().map({ photo in
             let vc = NewFacePhotoViewController.create()

@@ -966,7 +966,8 @@ extension MainLMMViewController: UITableViewDataSource, UITableViewDelegate
                                                                 scenarioManager: self.input.scenario,
                                                                 transitionManager: self.input.transition,
                                                                 lmmManager: self.input.lmmManager,
-                                                                filter: self.input.filter
+                                                                filter: self.input.filter,
+                                                                externalLinkManager: self.input.externalLinkManager
             )
             weak var weakProfileVC = profileVC
             profileVC.onChatShow = { [weak self, weak cell] profile, photo, vc in

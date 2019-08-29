@@ -393,7 +393,8 @@ class MainViewController: BaseViewController
             scenario: self.input.scenario,
             transition: self.input.transition,
             settings: self.input.settingsManager,
-            filter: self.input.filter
+            filter: self.input.filter,
+            externalLinkManager: self.input.externalLinkManager
         )
         
         self.menuVCCache[.lmm] = vc
@@ -444,7 +445,8 @@ class MainViewController: BaseViewController
             location: self.input.location,
             scenario: self.input.scenario,
             transition: self.input.transition,
-            filter: self.input.filter
+            filter: self.input.filter,
+            externalLinkManager: self.input.externalLinkManager
         )
         
         self.menuVCCache[.discover] = vc

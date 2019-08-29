@@ -22,6 +22,7 @@ struct NewFacesVMInput
     let scenario: AnalyticsScenarioManager
     let transition: TransitionManager
     let filter: FilterManager
+    let externalLinkManager: ExternalLinkManager
 }
 
 class NewFacesViewModel

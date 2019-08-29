@@ -73,7 +73,8 @@ class NewFaceProfileViewController: UIViewController
                        profileManager: UserProfileManager,
                        navigationManager: NavigationManager,
                        scenarioManager: AnalyticsScenarioManager,
-                       transitionManager: TransitionManager
+                       transitionManager: TransitionManager,
+                       externalLinkManager: ExternalLinkManager
         ) -> NewFaceProfileViewController
     {
         let storyboard = Storyboards.newFaces()
@@ -86,7 +87,8 @@ class NewFaceProfileViewController: UIViewController
             profileManager: profileManager,
             navigationManager: navigationManager,
             scenarioManager: scenarioManager,
-            transitionManager: transitionManager
+            transitionManager: transitionManager,
+            externalLinkManager: externalLinkManager
         )
         vc.currentIndex.accept(initialIndex)
         
@@ -175,6 +177,13 @@ class NewFaceProfileViewController: UIViewController
         self.showBlockOptions()
     }
     
+    @IBAction func onBottomOptions()
+    {
+        guard self.input.actionsManager.checkConnectionState() else { return }
+        
+        self.showBottomOptions()
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
@@ -212,6 +221,42 @@ class NewFaceProfileViewController: UIViewController
         alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
             self.onBlockOptionsWillHide?()
             UIManager.shared.blockModeEnabled.accept(false)
+        }))
+        
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func showBottomOptions()
+    {
+        let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // Like
+        alertVC.addAction(UIAlertAction(title: "profile_option_like".localized(), style: .default, handler: { _ in
+            self.onLike(sender: self.view)
+        }))
+        
+        self.input.externalLinkManager.availableServices(self.input.profile).forEach({ serviceResult in
+            let service = serviceResult.0
+            let userId = serviceResult.1
+            let title = "\("profile_option_open".localized()) \(service.title): @\(userId)"
+            alertVC.addAction(UIAlertAction(title: title, style: .default, handler: { _ in
+                service.move(userId)
+            }))
+        })
+        
+        // Block
+        alertVC.addAction(UIAlertAction(title: "block_profile_button_block".localized(), style: .default, handler: { _ in
+            self.viewModel?.block(at: self.currentIndex.value, reason: BlockReason(rawValue: 0)!)
+            AnalyticsManager.shared.send(.blocked(0, SourceFeedType.newFaces.rawValue, false))
+        }))
+        
+        // Block options
+        alertVC.addAction(UIAlertAction(title: "block_profile_button_report".localized(), style: .default, handler: { _ in
+            self.showBlockReasonOptions()
+        }))
+        
+        // Cancel
+        alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
         }))
         
         self.present(alertVC, animated: true, completion: nil)

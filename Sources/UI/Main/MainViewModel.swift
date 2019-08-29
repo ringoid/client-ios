@@ -29,6 +29,7 @@ struct MainVMInput
     let filter: FilterManager
     let impact: ImpactService
     let achivement: AchivementManager
+    let externalLinkManager: ExternalLinkManager
 }
 
 class MainViewModel

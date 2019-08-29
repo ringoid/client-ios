@@ -22,6 +22,7 @@ struct MainLMMProfileVMInput
     let transitionManager: TransitionManager
     let lmmManager: LMMManager
     let filter: FilterManager
+    let externalLinkManager: ExternalLinkManager
 }
 
 class MainLMMProfileViewModel
