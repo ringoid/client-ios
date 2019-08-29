@@ -94,7 +94,7 @@
 "settings_support" = "Email support@ringoid.com";
 "settings_title" = "Settings";
 "settings_theme_dark" = "Night Mode";
-"settings_push" = "Push Notifications";
+"settings_push" = "Notifications";
 "settings_push_details" = "Once per day if you have new like, match, message, or new users";
 "settings_location_permission" = "Please enable location";
 

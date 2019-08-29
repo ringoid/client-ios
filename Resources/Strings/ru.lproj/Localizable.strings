@@ -96,7 +96,7 @@
 "settings_support" = "Написать support@ringoid.com";
 "settings_title" = "Настройки";
 "settings_theme_dark" = "Ночной режим";
-"settings_push" = "Push-уведомления";
+"settings_push" = "Уведомления";
 "settings_push_details" = "Один раз в день, если есть лайк, взаимная симпатия, сообщение, или новые люди";
 "settings_location_permission" = "Пожалуйста включите Геопозицию";
 
