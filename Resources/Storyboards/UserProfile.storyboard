@@ -269,7 +269,11 @@ see how many likes you get</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5m-10-RfN">
-                                <rect key="frame" x="0.0" y="444.5" width="375" height="65.5"/>
+                                <rect key="frame" x="0.0" y="414" width="375" height="96"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="96" id="DDu-jt-QD3"/>
+                                </constraints>
                                 <connections>
                                     <action selector="onBottomOptions" destination="aaf-t7-SOT" eventType="touchUpInside" id="MvC-fv-9xH"/>
                                 </connections>
@@ -331,7 +335,6 @@ see how many likes you get</string>
                             <constraint firstItem="dx0-jU-NB1" firstAttribute="leading" secondItem="q5L-So-vMI" secondAttribute="leading" constant="16" id="kx5-M7-Z82"/>
                             <constraint firstItem="Pzg-eZ-8Og" firstAttribute="centerX" secondItem="q5L-So-vMI" secondAttribute="centerX" id="lmb-XL-cwr"/>
                             <constraint firstItem="ouZ-cc-Vmf" firstAttribute="centerX" secondItem="c03-Vj-oKe" secondAttribute="centerX" id="mVV-ig-PQV"/>
-                            <constraint firstItem="f5m-10-RfN" firstAttribute="top" secondItem="CMl-hP-vFu" secondAttribute="bottom" id="nDh-n1-8b2"/>
                             <constraint firstItem="CMl-hP-vFu" firstAttribute="top" secondItem="XXO-bm-eHo" secondAttribute="top" id="nP0-hS-XDe"/>
                             <constraint firstItem="UMb-Bl-CM4" firstAttribute="leading" secondItem="npc-Nn-Arv" secondAttribute="trailing" constant="8" id="nbI-uK-HDi"/>
                             <constraint firstItem="CMl-hP-vFu" firstAttribute="leading" secondItem="XXO-bm-eHo" secondAttribute="leading" id="oEp-vD-mPA"/>
