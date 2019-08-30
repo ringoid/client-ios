@@ -302,16 +302,16 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate
         cell.onCopyMessage = { [weak self] text in
             UIPasteboard.general.string = text
             
-            let appearAnimator = UIViewPropertyAnimator(duration: 0.2, curve: .linear, animations: {
+            let appearAnimator = UIViewPropertyAnimator(duration: 0.3, curve: .easeOut, animations: {
                 self?.clipboardLabel.alpha = 1.0
             })
             
-            let disappearAnimator = UIViewPropertyAnimator(duration: 0.2, curve: .linear, animations: {
+            let disappearAnimator = UIViewPropertyAnimator(duration: 0.3, curve: .easeOut, animations: {
                 self?.clipboardLabel.alpha = 0.0
             })
             
             appearAnimator.addCompletion({ _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35, execute: {
                     disappearAnimator.startAnimation()
                 })
             })
