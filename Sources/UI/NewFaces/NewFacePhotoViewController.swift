@@ -11,6 +11,8 @@ import Nuke
 import RxSwift
 import RxCocoa
 
+fileprivate var autoLikePhotoId: String? = nil
+
 class NewFacePhotoViewController: UIViewController
 {
     var input: NewFaceProfileVMInput!
@@ -100,6 +102,14 @@ class NewFacePhotoViewController: UIViewController
             photo: actionPhoto,
             sourceType: self.input?.sourceType ?? .whoLikedMe
         )
+        
+        if autoLikePhotoId == actionPhoto.id, self.input.profileManager.photos.value.count > 0 {
+            autoLikePhotoId = nil
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.handleTap(self.view.center)
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -221,6 +231,7 @@ class NewFacePhotoViewController: UIViewController
     {
         let alertVC = UIAlertController(title: nil, message: "feed_explore_dialog_no_user_photo_description".localized(), preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "button_add_photo".localized(), style: .default, handler: { [weak self] _ in
+            autoLikePhotoId = self?.photo?.id
             UIManager.shared.discoverAddPhotoModeEnabled.accept(true)
             self?.input.navigationManager.mainItem.accept(.profileAndPick)
         }))
