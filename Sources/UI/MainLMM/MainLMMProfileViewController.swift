@@ -236,7 +236,7 @@ class MainLMMProfileViewController: UIViewController
     
     @IBAction func onBlock()
     {
-        self.block(false)
+        self.block(self.input.feedType == .messages)
     }
     
     @IBAction func onBottomOptions()
@@ -291,22 +291,55 @@ class MainLMMProfileViewController: UIViewController
     
     fileprivate func showBlockOptions(_ isChat: Bool)
     {
+        
         UIManager.shared.blockModeEnabled.accept(true)
         onBlockOptionsWillShow?(self.currentIndex.value)
         
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // Like/Chat
+        
+        let title = isChat ? "profile_option_chat".localized() : "profile_option_mutual_like".localized()
+        alertVC.addAction(UIAlertAction(title: title, style: .default, handler: { _ in
+            UIManager.shared.blockModeEnabled.accept(false)
+            self.onBlockOptionsWillHide?()
+            
+            if isChat {
+                self.onChatSelected()
+            } else {
+                self.onLike(sender: self.view)
+            }
+        }))
+        
+        self.input.externalLinkManager.availableServices(self.input.profile).forEach({ serviceResult in
+            let service = serviceResult.0
+            let userId = serviceResult.1
+            let title = "\("profile_option_open".localized()) \(service.title): @\(userId)"
+            alertVC.addAction(UIAlertAction(title: title, style: .default, handler: { _ in
+                UIManager.shared.blockModeEnabled.accept(false)
+                self.onBlockOptionsWillHide?()
+                
+                service.move(userId)
+            }))
+        })
+        
+        // Block
         alertVC.addAction(UIAlertAction(title: "block_profile_button_block".localized(), style: .default, handler: { _ in
             UIManager.shared.blockModeEnabled.accept(false)
             self.onBlockOptionsWillHide?()
             self.viewModel?.block(at: self.currentIndex.value, reason: BlockReason(rawValue: 0)!)
-            AnalyticsManager.shared.send(.blocked(0, self.input.feedType.sourceType().rawValue, isChat))
+            AnalyticsManager.shared.send(.blocked(0, SourceFeedType.newFaces.rawValue, false))
         }))
+        
+        // Block options
         alertVC.addAction(UIAlertAction(title: "block_profile_button_report".localized(), style: .default, handler: { _ in
             self.showBlockReasonOptions(isChat)
         }))
+        
+        // Cancel
         alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
-            self.onBlockOptionsWillHide?()
             UIManager.shared.blockModeEnabled.accept(false)
+            self.onBlockOptionsWillHide?()
         }))
         
         self.present(alertVC, animated: true, completion: nil)
