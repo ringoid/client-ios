@@ -209,15 +209,39 @@ class NewFaceProfileViewController: UIViewController
         self.onBlockOptionsWillShow?(self.currentIndex.value)
         
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // Like
+        alertVC.addAction(UIAlertAction(title: "profile_option_like".localized(), style: .default, handler: { _ in
+            self.onBlockOptionsWillHide?()
+            UIManager.shared.blockModeEnabled.accept(false)
+            self.onLike(sender: self.view)
+        }))
+        
+        self.input.externalLinkManager.availableServices(self.input.profile).forEach({ serviceResult in
+            let service = serviceResult.0
+            let userId = serviceResult.1
+            let title = "\("profile_option_open".localized()) \(service.title): @\(userId)"
+            alertVC.addAction(UIAlertAction(title: title, style: .default, handler: { _ in
+                self.onBlockOptionsWillHide?()
+                UIManager.shared.blockModeEnabled.accept(false)
+                service.move(userId)
+            }))
+        })
+        
+        // Block
         alertVC.addAction(UIAlertAction(title: "block_profile_button_block".localized(), style: .default, handler: { _ in
             self.onBlockOptionsWillHide?()
             UIManager.shared.blockModeEnabled.accept(false)
             self.viewModel?.block(at: self.currentIndex.value, reason: BlockReason(rawValue: 0)!)
             AnalyticsManager.shared.send(.blocked(0, SourceFeedType.newFaces.rawValue, false))
         }))
+        
+        // Block options
         alertVC.addAction(UIAlertAction(title: "block_profile_button_report".localized(), style: .default, handler: { _ in
             self.showBlockReasonOptions()
         }))
+        
+        // Cancel
         alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
             self.onBlockOptionsWillHide?()
             UIManager.shared.blockModeEnabled.accept(false)
