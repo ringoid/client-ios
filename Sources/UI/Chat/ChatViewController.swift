@@ -356,7 +356,15 @@ extension ChatViewController: UITextViewDelegate
         let currentHeight = tableView.bounds.size.height
         let textHeight = self.textSize(text).height
         
-        guard Int(textHeight / font.lineHeight) <= 4 else { return }
+        guard Int(textHeight / font.lineHeight) <= 4 else {
+            let height = font.lineHeight * 4.0 + 22.0
+            if abs(currentHeight - height) < 1.0 { return }
+            
+            self.inputHeightConstraint.constant = height
+            self.view.layoutSubviews()
+            
+            return
+        }
         
         let height = textHeight + 22.0
 
