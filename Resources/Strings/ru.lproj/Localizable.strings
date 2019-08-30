@@ -77,6 +77,9 @@
 "login_variable_policy" = "Политику конфиденциальности";
 
 "profile_button_delete_image" = "Удалить фото";
+"profile_button_add_image" = "Добавить фото";
+"profile_button_edit" = "Редактировать профиль";
+"profile_button_edit_status" = "Редактировать статус";
 "profile_dialog_image_another_button_add" = "Добавить еще фото";
 "profile_dialog_image_another_button_cancel" = "Искать новых пользователей";
 "profile_dialog_image_another_title" = "Что дальше?";

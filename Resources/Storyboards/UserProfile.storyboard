@@ -123,7 +123,7 @@ see how many likes you get</string>
                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="feed_options"/>
                                 <connections>
-                                    <action selector="deletePhoto" destination="aaf-t7-SOT" eventType="touchUpInside" id="KYt-hL-B7c"/>
+                                    <action selector="onBottomOptions" destination="aaf-t7-SOT" eventType="touchUpInside" id="652-YC-Ju3"/>
                                 </connections>
                             </button>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_pencil" translatesAutoresizingMaskIntoConstraints="NO" id="oTk-g9-AL2">

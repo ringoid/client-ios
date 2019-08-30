@@ -74,7 +74,10 @@
 "login_variable_terms" = "Terms of Service";
 "login_variable_policy" = "Privacy Policy";
 
-"profile_button_delete_image" = "Delete photo";
+"profile_button_delete_image" = "Delete Photo";
+"profile_button_add_image" = "Add Photo";
+"profile_button_edit" = "Edit Profile";
+"profile_button_edit_status" = "Edit Status";
 "profile_dialog_image_another_button_add" = "Add another photo";
 "profile_dialog_image_another_button_cancel" = "Discover new users";
 "profile_dialog_image_another_title" = "What's next?";

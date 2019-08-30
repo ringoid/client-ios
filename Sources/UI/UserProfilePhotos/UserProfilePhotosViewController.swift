@@ -487,16 +487,6 @@ class UserProfilePhotosViewController: BaseViewController
         
         let alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        // Options
-        self.input.externalLinkManager.availableServices(profile).forEach({ serviceResult in
-            let service = serviceResult.0
-            let userId = serviceResult.1
-            let title = "\("profile_option_open".localized()) \(service.title): @\(userId)"
-            alertVC.addAction(UIAlertAction(title: title, style: .default, handler: { _ in
-                service.move(userId)
-            }))
-        })
-        
         // Delete
         alertVC.addAction(UIAlertAction(title: "profile_button_delete_image".localized(), style: .destructive, handler: ({ _ in
             guard let photo = self.viewModel?.photos.value[self.currentIndex.value] else { return }
@@ -510,6 +500,35 @@ class UserProfilePhotosViewController: BaseViewController
             self.showControls()
             self.viewModel?.delete(photo)
         })))
+        
+        // Add
+        alertVC.addAction(UIAlertAction(title: "profile_button_add_image".localized(), style: .default, handler: ({ _ in
+            self.addPhoto()
+            self.showControls()
+        })))
+        
+        // Edit status
+        alertVC.addAction(UIAlertAction(title: "profile_button_edit_status".localized(), style: .default, handler: ({ _ in
+            self.onStatusTap()
+            self.showControls()
+        })))
+        
+        // Edit profile
+        alertVC.addAction(UIAlertAction(title: "profile_button_edit".localized(), style: .default, handler: ({ _ in
+            self.onEditProfileFields()
+            self.showControls()
+        })))
+        
+        // Options
+        self.input.externalLinkManager.availableServices(profile).forEach({ serviceResult in
+            let service = serviceResult.0
+            let userId = serviceResult.1
+            let title = "\("profile_option_open".localized()) \(service.title): @\(userId)"
+            alertVC.addAction(UIAlertAction(title: title, style: .default, handler: { _ in
+                service.move(userId)
+                self.showControls()
+            }))
+        })
         
         // Cancel
         alertVC.addAction(UIAlertAction(title: "button_cancel".localized(), style: .cancel, handler: { _ in
