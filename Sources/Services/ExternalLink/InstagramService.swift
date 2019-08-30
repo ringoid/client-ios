@@ -39,7 +39,7 @@ class InstagramService: ExternalLinkService
     {
         let userId = self.extractId(to)
         
-        guard let url = URL(string: "instagram://user?username=\(userId)") else { return }
+        guard let url = URL(string: "https://www.instagram.com/\(userId)/") else { return }
 
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
