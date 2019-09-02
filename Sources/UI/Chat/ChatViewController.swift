@@ -278,6 +278,38 @@ class ChatViewController: BaseViewController
         self.messageTextView.resignFirstResponder()
         self.input.onClose?()
     }
+    
+    fileprivate func updateInputLayout(_ text: String)
+    {
+        guard text.count != 0 else {
+            self.inputHeightConstraint.constant = 40.0
+            self.view.layoutSubviews()
+            
+            return
+        }
+        
+        let font = self.messageTextView.font!
+        let currentHeight = self.messageTextView.bounds.height
+        let textHeight = self.textSize(text).height
+        
+        guard Int(textHeight / font.lineHeight) <= 4 else {
+            let baseHeight = font.lineHeight * 4.0
+            let height = baseHeight + 22.0
+            if abs(currentHeight - height) < 1.0 { return }
+            
+            self.inputHeightConstraint.constant = height
+            self.view.layoutSubviews()
+            
+            return
+        }
+        
+        let height = textHeight + 22.0
+        
+        guard abs(currentHeight - height) > 1.0 else { return }
+        
+        self.inputHeightConstraint.constant = height
+        self.view.layoutSubviews()
+    }
 }
 
 extension ChatViewController: UITableViewDataSource, UITableViewDelegate
@@ -344,44 +376,26 @@ extension ChatViewController: UITextViewDelegate
 {
     func textViewDidChange(_ textView: UITextView)
     {
-        guard let text = textView.text else { return }
-        guard text.count != 0 else {
-            self.inputHeightConstraint.constant = 40.0
-            self.view.layoutSubviews()
-            
-            return
-        }
         
-        let font = textView.font!
-        let currentHeight = tableView.bounds.size.height
-        let textHeight = self.textSize(text).height
-        
-        guard Int(textHeight / font.lineHeight) <= 4 else {
-            let height = font.lineHeight * 4.0 + 22.0
-            if abs(currentHeight - height) < 1.0 { return }
-            
-            self.inputHeightConstraint.constant = height
-            self.view.layoutSubviews()
-            
-            return
-        }
-        
-        let height = textHeight + 22.0
-
-        guard abs(currentHeight - height) > 1.0 else { return }
-        
-        self.inputHeightConstraint.constant = height
-        self.view.layoutSubviews()
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
     {
-        guard text != "" else { return true } // always allowing backspaces
+        var contentText: String = textView.text
+        contentText = (contentText as NSString).replacingCharacters(in: range, with: text) as String
         
-        let contentText = textView.text as NSString
-        contentText.replacingCharacters(in: range, with: text)
+        guard text != "" else { // always allowing backspaces
+            self.updateInputLayout(contentText)
+            
+            return true
+        }
+    
+        let result = contentText.count <= 1000
+        if result {
+            self.updateInputLayout(contentText)
+        }
         
-        return contentText.length <= 1000
+        return result
     }
     
     // Cursor color fix
