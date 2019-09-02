@@ -189,6 +189,8 @@
 		57850307225745380056120A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57850306225745380056120A /* GoogleService-Info.plist */; };
 		57850309225B53D40056120A /* MainEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57850308225B53D40056120A /* MainEffectsView.swift */; };
 		5785030A225B53D40056120A /* MainEffectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57850308225B53D40056120A /* MainEffectsView.swift */; };
+		57905252231D4C9F0041B9CA /* SettingsNotificationVibrationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57905251231D4C9F0041B9CA /* SettingsNotificationVibrationCell.swift */; };
+		57905253231D4C9F0041B9CA /* SettingsNotificationVibrationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57905251231D4C9F0041B9CA /* SettingsNotificationVibrationCell.swift */; };
 		579CD7AA21F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */; };
 		579CD7AE21F8603500C3AEE3 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 579CD7AD21F8603500C3AEE3 /* Settings.storyboard */; };
 		579CD7B121F8627A00C3AEE3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */; };
@@ -584,6 +586,7 @@
 		57850304225743A50056120A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		57850306225745380056120A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		57850308225B53D40056120A /* MainEffectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainEffectsView.swift; sourceTree = "<group>"; };
+		57905251231D4C9F0041B9CA /* SettingsNotificationVibrationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationVibrationCell.swift; sourceTree = "<group>"; };
 		579CD7A921F6EC7700C3AEE3 /* UserProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		579CD7AD21F8603500C3AEE3 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		579CD7B021F8627A00C3AEE3 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -1333,6 +1336,7 @@
 				573D768922D73C1300E1576B /* SettingsProfileFieldsSuggest.swift */,
 				57CFFB7022E858A000DC2378 /* SettingsFilterCell.swift */,
 				57ACA029230E71A5009F8800 /* SettingsProfileStatusCell.swift */,
+				57905251231D4C9F0041B9CA /* SettingsNotificationVibrationCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2106,6 +2110,7 @@
 				57EE655D2216DCA700246B45 /* SentryService.swift in Sources */,
 				579CD7CF21FAE2D100C3AEE3 /* ChatManager.swift in Sources */,
 				578502E92253B0AE0056120A /* ImageService.swift in Sources */,
+				57905252231D4C9F0041B9CA /* SettingsNotificationVibrationCell.swift in Sources */,
 				57386E4B220C7A7C0000E5D9 /* UIManager.swift in Sources */,
 				57EEB05D22BCDFDF005770B3 /* UserProfile.swift in Sources */,
 				576FC11122001CD400BA5ABE /* ErrorsManager.swift in Sources */,
@@ -2233,6 +2238,7 @@
 				57EE650B2216711000246B45 /* ApiLikeAction.swift in Sources */,
 				57EE650C2216711000246B45 /* KeyboardListener.swift in Sources */,
 				57EE650D2216711000246B45 /* ChatBaseCell.swift in Sources */,
+				57905253231D4C9F0041B9CA /* SettingsNotificationVibrationCell.swift in Sources */,
 				57EE650E2216711000246B45 /* ApiAction.swift in Sources */,
 				57EEB0A822C20132005770B3 /* ChildrenTitles.swift in Sources */,
 				57CFFB6922E8474400DC2378 /* SettingsFilterViewController.swift in Sources */,

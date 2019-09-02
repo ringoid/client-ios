@@ -23,11 +23,12 @@ fileprivate struct SettingsNotificationsOption
 
 fileprivate enum SettingsNotificationsOptionType: Int
 {
-    case message = 0
-    case match = 1
-    case like = 2
-    case evening = 3
-    case suggest = 4
+    case vibration = 0
+    case message = 1
+    case match = 2
+    case like = 3
+    case evening = 4
+    case suggest = 5
 }
 
 class SettingsNotificationsViewController: BaseViewController
@@ -35,6 +36,7 @@ class SettingsNotificationsViewController: BaseViewController
     var input: SettingsNotificationsInput!
     
     fileprivate let options = [
+        SettingsNotificationsOption(cellIdentifier: "vibration_cell", height: 96.0),
         SettingsNotificationsOption(cellIdentifier: "message_cell", height: 56.0),
         SettingsNotificationsOption(cellIdentifier: "match_cell", height: 56.0),
         SettingsNotificationsOption(cellIdentifier: "like_cell", height: 56.0),
@@ -115,9 +117,11 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: option.cellIdentifier) as! SettingsSwitchableCell
         
         let notifications = self.input.settingsManager.notifications
+        let impact = self.input.settingsManager.impact
         let isEnabledBySystem = notifications.isGranted.value
         
         switch type {
+        case .vibration: cell.valueSwitch.isOn = impact.isEnabled.value
         case .evening: cell.valueSwitch.isOn = notifications.isEveningEnabled.value && isEnabledBySystem
         case .like: cell.valueSwitch.isOn = notifications.isLikeEnabled.value && isEnabledBySystem
         case .match: cell.valueSwitch.isOn = notifications.isMatchEnabled.value && isEnabledBySystem
@@ -128,6 +132,15 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
         
         cell.onValueChanged = { [weak self] valueSwitch in
             guard let `self` = self else { return }
+            
+            if type == .vibration {
+                impact.isEnabled.accept(valueSwitch.isOn)
+                
+                self.tableView.beginUpdates()
+                self.tableView.endUpdates()
+                
+                return
+            }
             
             if !notifications.isGranted.value {
                 valueSwitch.setOn(false, animated: true)

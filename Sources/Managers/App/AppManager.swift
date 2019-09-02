@@ -153,7 +153,7 @@ class AppManager
         self.scenarioManager = AnalyticsScenarioManager(AnalyticsManager.shared)
         self.chatManager = ChatManager(self.db, actionsManager: self.actionsManager, scenario: self.scenarioManager)
         self.achivementManager = AchivementManager()
-        self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, actions: self.actionsManager, lmm: self.lmmManager, newFaces: self.newFacesManager, notifications: self.notifications, scenario: self.scenarioManager, profile: self.profileManager, filter: self.filterManager, achievement: self.achivementManager)
+        self.settingsMananger = SettingsManager(db: self.db, api: self.apiService, fs: self.fileService, storage: self.defaultStorage, actions: self.actionsManager, lmm: self.lmmManager, newFaces: self.newFacesManager, notifications: self.notifications, scenario: self.scenarioManager, profile: self.profileManager, filter: self.filterManager, achievement: self.achivementManager, impact: self.impact)
         self.navigationManager = NavigationManager()
         self.errorsManager = ErrorsManager(self.apiService, settings: self.settingsMananger)
         self.promotionManager = PromotionManager(launchOptions, api: self.apiService)

@@ -23,6 +23,7 @@ class SettingsManager
     let profile: UserProfileManager
     let filter: FilterManager
     let achievement: AchivementManager
+    let impact: ImpactService
     
     let isFirstLaunch: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
@@ -54,7 +55,7 @@ class SettingsManager
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager, lmm: LMMManager, newFaces: NewFacesManager, notifications: NotificationService, scenario: AnalyticsScenarioManager, profile: UserProfileManager, filter: FilterManager, achievement: AchivementManager)
+    init(db: DBService, api: ApiService, fs: FileService, storage: XStorageService, actions: ActionsManager, lmm: LMMManager, newFaces: NewFacesManager, notifications: NotificationService, scenario: AnalyticsScenarioManager, profile: UserProfileManager, filter: FilterManager, achievement: AchivementManager, impact: ImpactService)
     {
         self.db = db
         self.api = api
@@ -68,6 +69,7 @@ class SettingsManager
         self.profile = profile
         self.filter = filter
         self.achievement = achievement
+        self.impact = impact
         
         self.loadSettings()
         self.updateRemoteSettings()
@@ -127,6 +129,7 @@ class SettingsManager
         self.scenario.reset()
         self.filter.reset()
         self.db.reset()
+        self.impact.reset()
         
         // TODO: separate UI layers
         ChatViewController.resetCache()

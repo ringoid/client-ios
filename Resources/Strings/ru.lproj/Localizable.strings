@@ -112,6 +112,7 @@
 "settings_info_privacy" = "Политика конфиденциальности";
 "settings_info_terms" = "Условия использования";
 
+"settings_notifications_vibration" = "Вибрация";
 "settings_notifications_evening" = "Вечернее уведомление";
 "settings_notifications_like" = "Новый лайк";
 "settings_notifications_match" = "Новая взаимность";

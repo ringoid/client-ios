@@ -6,7 +6,8 @@
 //  Copyright © 2019 Ringoid. All rights reserved.
 //
 
-import Foundation
+import RxSwift
+import RxCocoa
 
 enum ImpactType
 {
@@ -17,5 +18,8 @@ enum ImpactType
 
 protocol ImpactService
 {
+    var isEnabled: BehaviorRelay<Bool> { get set }
+    
     func perform(_ type: ImpactType)
+    func reset()
 }

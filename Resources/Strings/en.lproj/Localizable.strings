@@ -110,6 +110,7 @@
 "settings_info_privacy" = "Privacy Policy";
 "settings_info_terms" = "Terms of Service";
 
+"settings_notifications_vibration" = "In-App Vibration";
 "settings_notifications_evening" = "Evening Notification";
 "settings_notifications_like" = "New Like";
 "settings_notifications_match" = "New Match";
