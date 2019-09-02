@@ -21,6 +21,8 @@ class UserProfilePhotoViewController: UIViewController
             self.update()
         }
     }
+    
+    var bottomOptionsBlock: (() -> ())?
 
     static func create() -> UserProfilePhotoViewController
     {
@@ -39,7 +41,6 @@ class UserProfilePhotoViewController: UIViewController
         super.viewDidLoad()
         
         self.update()
-        self.updateBindings()
         
 //        #if STAGE
 //        self.photoIdLabel?.text = "Photo: " + String(self.photo?.id?.prefix(4) ?? "")
@@ -49,8 +50,15 @@ class UserProfilePhotoViewController: UIViewController
     
     // MARK: - IBAction
     
-    @IBAction func onTap()
+    @IBAction func onTap(_ recognizer: UIGestureRecognizer)
     {
+        let tapPoint = recognizer.location(in: self.view)
+        guard !self.checkBottomArea(tapPoint) else {
+            self.bottomOptionsBlock?()
+            
+            return
+        }
+        
         let storyboard = Storyboards.settings()
         guard let profileVC = storyboard.instantiateViewController(withIdentifier: "settings_profile") as? SettingsProfileViewController else { return }
         
@@ -74,8 +82,8 @@ class UserProfilePhotoViewController: UIViewController
         ImageService.shared.load(url, thumbnailUrl: nil, to: photoView)
     }
     
-    fileprivate func updateBindings()
+    fileprivate func checkBottomArea(_ point: CGPoint) -> Bool
     {
-        
+        return point.y > self.view.bounds.height - 96.0
     }
 }

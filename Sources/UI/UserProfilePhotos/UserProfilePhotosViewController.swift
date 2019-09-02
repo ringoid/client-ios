@@ -53,8 +53,7 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var pencilIconView: UIImageView!
     @IBOutlet fileprivate weak var addPhotoCenterBtn: UIButton!
     @IBOutlet fileprivate weak var statusInfoCenterConstraing: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var pencilBtn: UIButton!
-    @IBOutlet fileprivate weak var bottomOptionsBtn: UIButton!
+    @IBOutlet fileprivate weak var pencilBtn: UIButton!    
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -328,7 +327,6 @@ class UserProfilePhotosViewController: BaseViewController
             self.aboutLabel.alpha = alpha
             self.statusInfoLabel.alpha = alpha
             self.statusInfoBtn.isHidden = photos.count == 0
-            self.bottomOptionsBtn.isHidden = photos.count == 0
             
             (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
                 control.iconView.alpha = alpha
@@ -440,6 +438,10 @@ class UserProfilePhotosViewController: BaseViewController
                 navigationManager: self.input.navigationManager,
                 defaultField: nil
             )
+            
+            vc.bottomOptionsBlock = { [weak self] in
+                self?.showBottomOptions()
+            }
 
             return vc
         })
@@ -576,7 +578,6 @@ class UserProfilePhotosViewController: BaseViewController
         self.aboutLabel.alpha = 1.0
         self.statusInfoLabel.alpha = 1.0
         self .statusInfoBtn.isHidden = false
-        self.bottomOptionsBtn.isHidden = false
         (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
             control.iconView.alpha = 1.0
             control.titleLabel.alpha = 1.0
@@ -599,7 +600,6 @@ class UserProfilePhotosViewController: BaseViewController
         self.aboutLabel.alpha = 0.0
         self.statusInfoLabel.alpha = 0.0
         self.statusInfoBtn.isHidden = true
-        self.bottomOptionsBtn.isHidden = true
         
         (self.leftFieldsControls + self.rightFieldsControls).forEach({ control in
             control.iconView.alpha = 0.0
