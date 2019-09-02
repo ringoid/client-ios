@@ -23,7 +23,19 @@ class NewFacePhotoViewController: UIViewController
         }
     }
     
-    var onChatBlock: ( () -> () )?
+    var shouldPrioritizeDoubleTap: Bool = false
+    {
+        didSet {
+            if self.shouldPrioritizeDoubleTap {
+                self.tapRecognizer.require(toFail: self.doubleTapRecognizer)
+            } else {
+                self.doubleTapRecognizer.require(toFail: self.tapRecognizer)
+            }
+        }
+    }
+    
+    var onChatBlock: (() -> ())?
+    var onBottomOptionsBlock: (() -> ())?
     
     fileprivate var actionProfile: ActionProfile?
     fileprivate var actionPhoto: ActionPhoto?
@@ -41,6 +53,7 @@ class NewFacePhotoViewController: UIViewController
     @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var animationLikeView: UIImageView!
     @IBOutlet fileprivate weak var photoIdLabel: UILabel!
+    @IBOutlet fileprivate weak var doubleTapRecognizer: UITapGestureRecognizer!
     @IBOutlet fileprivate weak var tapRecognizer: UITapGestureRecognizer!
     
     deinit
@@ -69,9 +82,11 @@ class NewFacePhotoViewController: UIViewController
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeInactive), name: UIApplication.willResignActiveNotification, object: nil)
         
         switch self.input.sourceType {
-        case .newFaces, .whoLikedMe: self.tapRecognizer.numberOfTapsRequired = 2
-        default: self.tapRecognizer.numberOfTapsRequired = 1
+        case .newFaces, .whoLikedMe: self.doubleTapRecognizer.numberOfTapsRequired = 2
+        default: self.doubleTapRecognizer.numberOfTapsRequired = 1
         }
+        
+        self.tapRecognizer.delegate = self
         
 //        #if STAGE
 //        self.photoIdLabel.text = "Photo: " + String(self.photo?.id.prefix(4) ?? "")
@@ -176,12 +191,22 @@ class NewFacePhotoViewController: UIViewController
     
     // MARK: - Actions
     
-    @IBAction func  onTap(_ recognizer: UIGestureRecognizer)
+    @IBAction func  onDoubleTap(_ recognizer: UIGestureRecognizer)
     {
         let tapPoint = recognizer.location(in: self.view)
         self.handleTap(tapPoint)
     }
-        
+    
+    @IBAction func onTap(_ recognizer: UIGestureRecognizer)
+    {
+        self.onBottomOptionsBlock?()
+    }
+    
+    fileprivate func checkBottomArea(_ point: CGPoint) -> Bool
+    {
+        return point.y > self.view.bounds.height - 80.0
+    }
+    
     // MARK: -
     
     fileprivate func update()
@@ -238,6 +263,15 @@ class NewFacePhotoViewController: UIViewController
         alertVC.addAction(UIAlertAction(title: "button_later".localized(), style: .cancel, handler: nil))
         
         self.present(alertVC, animated: true, completion: nil)
+    }
+}
+
+extension NewFacePhotoViewController: UIGestureRecognizerDelegate
+{
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool
+    {
+        let point = touch.location(in: self.view)
+        return self.checkBottomArea(point)
     }
 }
 

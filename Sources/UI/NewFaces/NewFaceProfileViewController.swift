@@ -119,6 +119,10 @@ class NewFaceProfileViewController: UIViewController
             let vc = NewFacePhotoViewController.create()
             vc.input = self.input
             vc.photo = photo
+            vc.onBottomOptionsBlock = { [weak self] in
+                self?.showBottomOptions()
+            }
+            vc.shouldPrioritizeDoubleTap = true
             
             return vc
         })
@@ -177,13 +181,6 @@ class NewFaceProfileViewController: UIViewController
         self.showBlockOptions()
     }
     
-    @IBAction func onBottomOptions()
-    {
-        guard self.input.actionsManager.checkConnectionState() else { return }
-        
-        self.showBottomOptions()
-    }
-    
     // MARK: -
     
     fileprivate func setupBindings()
@@ -202,7 +199,7 @@ class NewFaceProfileViewController: UIViewController
             self?.updateFieldsContent(page)
         }).disposed(by: self.disposeBag)
     }
-    
+
     fileprivate func showBlockOptions()
     {
         UIManager.shared.blockModeEnabled.accept(true)

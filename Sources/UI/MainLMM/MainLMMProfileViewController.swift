@@ -145,6 +145,13 @@ class MainLMMProfileViewController: UIViewController
                 self?.onChatSelected()
             }
             
+            let isChat = self.input.feedType.sourceType() == .messages
+            vc.onBottomOptionsBlock = { [weak self] in
+                self?.showBottomOptions(isChat)
+            }
+            
+            vc.shouldPrioritizeDoubleTap = !isChat
+            
             return vc
         })
         
@@ -239,13 +246,6 @@ class MainLMMProfileViewController: UIViewController
         self.block(self.input.feedType == .messages)
     }
     
-    @IBAction func onBottomOptions()
-    {
-        guard self.input.actionsManager.checkConnectionState() else { return }
-        
-        self.showBottomOptions(self.input.feedType == .messages)
-    }
-
     // MARK: -
     
     fileprivate func setupBindings()
