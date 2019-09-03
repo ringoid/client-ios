@@ -861,6 +861,38 @@ class UserProfilePhotosViewController: BaseViewController
             self.statusInfoLabel.text = nil
         }
     }
+    
+    fileprivate func showAddMoreAlert()
+    {
+        let alertVC = UIAlertController(
+            title: nil,
+            message: "profile_dialog_image_another_title".localized(),
+            preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "profile_button_add_image".localized(), style: .default, handler: { [weak self] _ in
+            self?.pickPhoto()
+        }))
+        alertVC.addAction(UIAlertAction(title: "button_later".localized(), style: .cancel, handler: { [weak self] _ in
+            if let profile = self?.input.profileManager.profile.value {
+                if profile.name == nil ||
+                    profile.name == "unknown" ||
+                    profile.whereLive == nil ||
+                    profile.whereLive == "unknown" {
+                    self?.showFieldsEditor()
+                    
+                    return
+                }
+            }
+            
+            if UIManager.shared.discoverAddPhotoModeEnabled.value {
+                UIManager.shared.discoverAddPhotoModeEnabled.accept(false)
+                self?.input.navigationManager.mainItem.accept(.search)
+            }
+        }))
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.present(alertVC, animated: true, completion: nil)
+        }
+    }
 }
 
 extension UserProfilePhotosViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate
@@ -970,22 +1002,7 @@ extension UserProfilePhotosViewController: UserProfilePhotoCropVCDelegate
             self?.lastClientPhotoId = photo.clientId
             self?.updatePages()
             
-            if let profile = self?.input.profileManager.profile.value {
-                if profile.name == nil ||
-                    profile.name == "unknown" ||
-                    profile.whereLive == nil ||
-                    profile.whereLive == "unknown" {
-                    self?.showFieldsEditor()
-                    
-                    return
-                }
-            }
-            
-            if UIManager.shared.discoverAddPhotoModeEnabled.value {
-                UIManager.shared.discoverAddPhotoModeEnabled.accept(false)
-                self?.input.navigationManager.mainItem.accept(.search)
-            }
-            
+            self?.showAddMoreAlert()
         }), onError: ({ [weak self] error in
             guard let `self` = self else { return }
             

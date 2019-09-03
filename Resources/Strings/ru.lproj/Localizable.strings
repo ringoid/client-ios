@@ -82,7 +82,7 @@
 "profile_button_edit_status" = "Редактировать статус";
 "profile_dialog_image_another_button_add" = "Добавить еще фото";
 "profile_dialog_image_another_button_cancel" = "Искать новых пользователей";
-"profile_dialog_image_another_title" = "Что дальше?";
+"profile_dialog_image_another_title" = "Добавить еще фото?";
 "profile_dialog_image_blocked_button" = "Условия использования";
 "profile_dialog_image_blocked_title" = "Фото удалено за нарушения Условий использования";
 "profile_dialog_image_delete_title" = "Удалить фото?";
