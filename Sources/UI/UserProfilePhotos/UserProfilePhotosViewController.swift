@@ -900,6 +900,8 @@ class UserProfilePhotosViewController: BaseViewController
     
     fileprivate func showAddPhotoIfNeeded()
     {
+        guard self.viewModel?.photos.value.count == 0 else { return }
+        
         let alertVC = UIAlertController(
             title: nil,
             message: "feed_lmm_dialog_no_user_photo_description".localized(),

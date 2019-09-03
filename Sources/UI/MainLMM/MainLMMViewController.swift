@@ -272,7 +272,8 @@ class MainLMMViewController: BaseViewController
             
             self?.updateFeedTitle()
             self?.updateFeed(false)
-            // self?.feedBottomLabel.text = self?.bottomLabelTitle()
+            
+            self?.showFilterIfNeeded()
         }).disposed(by: self.feedDisposeBag)
         
         if self.type.value == .likesYou {
@@ -864,6 +865,9 @@ class MainLMMViewController: BaseViewController
     
     fileprivate func showFilter()
     {
+        UserDefaults.standard.set(true, forKey: "was_lc_filter_shown")
+        UserDefaults.standard.synchronize()
+        
         let storyboard = Storyboards.mainLMM()
         let vc = storyboard.instantiateViewController(withIdentifier: "main_lc_filter") as! MainLCFilterViewController
         vc.input = MainLCFilterVMInput(
@@ -931,6 +935,15 @@ class MainLMMViewController: BaseViewController
         }))
         
         self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    fileprivate func showFilterIfNeeded()
+    {
+        guard self.type.value == .likesYou else { return }
+        guard let updatedProfiles = self.profiles()?.value.filter({ !$0.isInvalidated }), updatedProfiles.count > 20 else { return }
+        guard UserDefaults.standard.bool(forKey: "was_lc_filter_shown") else { return }
+        
+        self.showFilter()
     }
 }
 

@@ -82,6 +82,8 @@ class AnalyticsScenarioManager
     
     func reset()
     {
+        UserDefaults.standard.removeObject(forKey: "was_lc_filter_shown")
+        
         UserDefaults.standard.removeObject(forKey: "scenario_first_swipe_key")
         UserDefaults.standard.removeObject(forKey: "scenario_first_likes_you_key")
         UserDefaults.standard.removeObject(forKey: "scenario_first_match_key")
