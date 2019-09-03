@@ -56,6 +56,10 @@ class NewFacesManager
                                         maxDistance: self.filterManager.maxDistance.value
             ).flatMap({ [weak self] profiles -> Observable<Void> in
                 
+                if self?.filterManager.maxAge.value == nil, self?.filterManager.maxDistance == nil, profiles.count == 0 {
+                    AnalyticsManager.shared.send(.emptyFeedDiscoverNoFilters)
+                }
+                
             if shouldPurgeOnSuccess {
                 self!.purge().subscribe().disposed(by: self!.disposeBag)
             }
@@ -111,6 +115,7 @@ class NewFacesManager
         }).delay(0.05, scheduler: MainScheduler.instance).single().do(onNext: { [weak self] _ in
             self?.isFetching.accept(false)
             }, onError: { [weak self] _ in
+                AnalyticsManager.shared.send(.connectionTimeout("new_faces"))
             self?.isFetching.accept(false)
         })
     }

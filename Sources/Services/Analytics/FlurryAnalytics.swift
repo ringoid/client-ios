@@ -234,6 +234,19 @@ class FlurryAnalytics: AnalyticsService
                 "UUID": self.userId,
                 ])
             break
+            
+        case .connectionTimeout(let sourceFeed):
+            Flurry.logEvent("CONNECTION_TIMEOUT", withParameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .emptyFeedDiscoverNoFilters:
+            Flurry.logEvent("EMPTY_FEED_DISCOVER_NO_FILTERS", withParameters: [
+                "UUID": self.userId,
+                ])
+            break
         }
     }
     

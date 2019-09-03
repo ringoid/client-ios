@@ -42,6 +42,8 @@ enum AnalyticsEvent
     case photoAddedManually;
     case firstFieldSet;
     
+    case connectionTimeout(String);
+    case emptyFeedDiscoverNoFilters;
 }
 
 protocol AnalyticsService: class

@@ -229,6 +229,19 @@ class FacebookAnalytics: AnalyticsService
                 "UUID" : self.userId,
                 ])
             break
+            
+        case .connectionTimeout(let sourceFeed):
+            AppEvents.logEvent(AppEvents.Name(rawValue: "CONNECTION_TIMEOUT"), parameters: [
+                "UUID" : self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .emptyFeedDiscoverNoFilters:
+            AppEvents.logEvent(AppEvents.Name(rawValue: "EMPTY_FEED_DISCOVER_NO_FILTERS"), parameters: [
+                "UUID" : self.userId,
+                ])
+            break
         }
 
     }

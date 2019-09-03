@@ -230,7 +230,7 @@ class LMMManager
                               maxDistance: isFilterEnabled ? self.filter.maxDistance.value : nil
         ).flatMap({ [weak self] result -> Observable<Void> in
             guard let `self` = self else { return .just(()) }
-            
+
             self.purge()
             
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)            
@@ -280,6 +280,8 @@ class LMMManager
                 self?.isFetching.accept(false)
         },
             onError: { [weak self] _ in
+                AnalyticsManager.shared.send(.connectionTimeout(from.rawValue))
+                
                 self?.isFetching.accept(false)
         })
     }

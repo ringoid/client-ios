@@ -218,6 +218,19 @@ class FirebaseAnalytics: AnalyticsService
                 "UUID": self.userId,
                 ])
             break
+            
+        case .connectionTimeout(let sourceFeed):
+            Analytics.logEvent("CONNECTION_TIMEOUT", parameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed
+                ])
+            break
+            
+        case .emptyFeedDiscoverNoFilters:
+            Analytics.logEvent("EMPTY_FEED_DISCOVER_NO_FILTERS", parameters: [
+                "UUID": self.userId,
+                ])
+            break
         }
     }
     
