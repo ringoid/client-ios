@@ -91,6 +91,10 @@ class UserProfilePhotosViewController: BaseViewController
         
         self.applyName()
         self.applyStatusInfo()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.showAddPhotoIfNeeded()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -892,6 +896,20 @@ class UserProfilePhotosViewController: BaseViewController
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.present(alertVC, animated: true, completion: nil)
         }
+    }
+    
+    fileprivate func showAddPhotoIfNeeded()
+    {
+        let alertVC = UIAlertController(
+            title: nil,
+            message: "feed_lmm_dialog_no_user_photo_description".localized(),
+            preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "button_add_photo".localized(), style: .default, handler: { [weak self] _ in
+            self?.pickPhoto()
+        }))
+        alertVC.addAction(UIAlertAction(title: "button_later".localized(), style: .cancel, handler: nil))
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
 }
 
