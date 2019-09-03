@@ -941,7 +941,7 @@ class MainLMMViewController: BaseViewController
     {
         guard self.type.value == .likesYou else { return }
         guard let updatedProfiles = self.profiles()?.value.filter({ !$0.isInvalidated }), updatedProfiles.count > 20 else { return }
-        guard UserDefaults.standard.bool(forKey: "was_lc_filter_shown") else { return }
+        guard !UserDefaults.standard.bool(forKey: "was_lc_filter_shown") else { return }
         
         self.showFilter()
     }
