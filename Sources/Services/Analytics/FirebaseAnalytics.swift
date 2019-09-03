@@ -231,6 +231,14 @@ class FirebaseAnalytics: AnalyticsService
                 "UUID": self.userId,
                 ])
             break
+            
+        case .spinnerShown(let sourceFeed, let duration):
+            Analytics.logEvent("SPINNER_SHOWN", parameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed,
+                "duration": duration
+                ])
+            break
         }
     }
     

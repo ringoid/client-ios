@@ -247,6 +247,14 @@ class FlurryAnalytics: AnalyticsService
                 "UUID": self.userId,
                 ])
             break
+            
+        case .spinnerShown(let sourceFeed, let duration):
+            Flurry.logEvent("SPINNER_SHOWN", withParameters: [
+                "UUID": self.userId,
+                "sourceFeed": sourceFeed,
+                "duration": duration
+                ])
+            break
         }
     }
     

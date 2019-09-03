@@ -51,6 +51,7 @@ class MainLMMViewController: BaseViewController
     fileprivate let preheater = ImagePreheater(destination: .diskCache)
     fileprivate var isTabSwitched: Bool = false
     fileprivate var isUpdateBtnVisible: Bool = false
+    fileprivate var activityStartDate: Date? = nil
     
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
     @IBOutlet fileprivate weak var feedTitleLabel: UILabel!
@@ -722,6 +723,11 @@ class MainLMMViewController: BaseViewController
         
         switch state {
         case .initial:
+            if let startDate = self.activityStartDate {
+                AnalyticsManager.shared.send(.spinnerShown(self.type.value.sourceType().rawValue, Date().timeIntervalSince(startDate)))
+                self.activityStartDate = nil
+            }
+            
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.text = self.initialLabelTitle()
             self.emptyFeedLabel.isHidden = false
@@ -730,6 +736,8 @@ class MainLMMViewController: BaseViewController
             break
             
         case .fetching:
+            self.activityStartDate = Date()
+            
             self.emptyFeedActivityView.startAnimating()
             self.emptyFeedLabel.isHidden = true
             self.feedTitleBtn.isHidden = true
@@ -737,6 +745,11 @@ class MainLMMViewController: BaseViewController
             break
             
         case .empty:
+            if let startDate = self.activityStartDate {
+                AnalyticsManager.shared.send(.spinnerShown(self.type.value.sourceType().rawValue, Date().timeIntervalSince(startDate)))
+                self.activityStartDate = nil
+            }
+            
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.text = self.emptyLabelTitle()
             self.emptyFeedLabel.isHidden = false
@@ -744,6 +757,11 @@ class MainLMMViewController: BaseViewController
             break
             
         case .contentAvailable:
+            if let startDate = self.activityStartDate {
+                AnalyticsManager.shared.send(.spinnerShown(self.type.value.sourceType().rawValue, Date().timeIntervalSince(startDate)))
+                self.activityStartDate = nil
+            }
+            
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.isHidden = true
             self.feedTitleBtn.isHidden = true

@@ -44,6 +44,7 @@ enum AnalyticsEvent
     
     case connectionTimeout(String);
     case emptyFeedDiscoverNoFilters;
+    case spinnerShown(String, Double);
 }
 
 protocol AnalyticsService: class

@@ -36,6 +36,7 @@ class NewFacesViewController: BaseViewController
     fileprivate var isTabSwitched: Bool = false
     fileprivate var visibleCells: [NewFacesCell] = []
     fileprivate var shouldShowFetchActivityOnLocationPermission: Bool = false
+    fileprivate var activityStartDate: Date? = nil
     
     @IBOutlet fileprivate weak var feedTitleLabel: UILabel!
     @IBOutlet fileprivate weak var emptyFeedLabel: UILabel!
@@ -395,6 +396,11 @@ class NewFacesViewController: BaseViewController
         
         switch state {
         case .initial:
+            if let startDate = self.activityStartDate {
+                AnalyticsManager.shared.send(.spinnerShown("new_faces", Date().timeIntervalSince(startDate)))
+                self.activityStartDate = nil
+            }
+            
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.text = "common_pull_to_refresh".localized()
             self.emptyFeedLabel.isHidden = false
@@ -402,6 +408,8 @@ class NewFacesViewController: BaseViewController
             break
             
         case .reloading:
+            self.activityStartDate = Date()
+            
             self.emptyFeedActivityView.startAnimating()
             self.emptyFeedLabel.isHidden = true
             self.feedTitleBtn.isHidden = true
@@ -413,6 +421,11 @@ class NewFacesViewController: BaseViewController
             break
             
         case .empty:
+            if let startDate = self.activityStartDate {
+                AnalyticsManager.shared.send(.spinnerShown("new_faces", Date().timeIntervalSince(startDate)))
+                self.activityStartDate = nil
+            }
+            
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.text = "feed_explore_empty_no_data".localized()
             self.emptyFeedLabel.isHidden = false
@@ -420,6 +433,11 @@ class NewFacesViewController: BaseViewController
             break
             
         case .contentAvailable:
+            if let startDate = self.activityStartDate {
+                AnalyticsManager.shared.send(.spinnerShown("new_faces", Date().timeIntervalSince(startDate)))
+                self.activityStartDate = nil
+            }
+            
             self.emptyFeedActivityView.stopAnimating()
             self.emptyFeedLabel.isHidden = true
             self.feedTitleBtn.isHidden = true

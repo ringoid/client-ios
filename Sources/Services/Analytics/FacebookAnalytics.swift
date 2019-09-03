@@ -242,6 +242,14 @@ class FacebookAnalytics: AnalyticsService
                 "UUID" : self.userId,
                 ])
             break
+            
+        case .spinnerShown(let sourceFeed, let duration):
+            AppEvents.logEvent(AppEvents.Name(rawValue: "SPINNER_SHOWN"), parameters: [
+                "UUID" : self.userId,
+                "sourceFeed": sourceFeed,
+                "duration": duration
+                ])
+            break
         }
 
     }
