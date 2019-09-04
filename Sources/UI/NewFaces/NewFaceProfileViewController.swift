@@ -54,6 +54,7 @@ class NewFaceProfileViewController: UIViewController
     @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
+    @IBOutlet fileprivate weak var totalLikesLabel: UILabel!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -145,6 +146,7 @@ class NewFaceProfileViewController: UIViewController
         
         self.applyStatuses()
         self.applyName()
+        self.applyTotalLikes()
         self.applyStatusInfo()
     }
     
@@ -351,6 +353,7 @@ class NewFaceProfileViewController: UIViewController
         self.aboutLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.aboutLabel.frame, offset: value) ?? 1.0)
         self.statusInfoLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusInfoLabel.frame, offset: value) ?? 1.0)
         self.likeBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.likeBtn.frame, offset: value) ?? 1.0)
+        self.totalLikesLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.totalLikesLabel.frame, offset: value) ?? 1.0)
         
         (self.leftFieldsControls + self.rightFieldsControls).forEach { controls in
             controls.iconView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(controls.iconView.frame, offset: value) ?? 1.0)
@@ -425,6 +428,13 @@ class NewFaceProfileViewController: UIViewController
         
         title += "\(profile.age)"
         self.nameLabel.text = title
+    }
+    
+    fileprivate func applyTotalLikes()
+    {
+        let totalLikes = self.input.profile.totalLikes
+        self.totalLikesLabel.text = "\(totalLikes)"
+        self.totalLikesLabel.isHidden = totalLikes == 0
     }
     
     fileprivate func applyStatusInfo()

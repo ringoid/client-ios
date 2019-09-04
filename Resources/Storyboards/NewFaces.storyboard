@@ -370,6 +370,14 @@ discover users nearby</string>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fn-el-Q9A">
+                                <rect key="frame" x="339" y="166" width="12" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjV-mO-k6V" userLabel="LikeButton">
                                 <rect key="frame" x="299" y="118" width="76" height="64"/>
                                 <constraints>
@@ -402,6 +410,7 @@ discover users nearby</string>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="hF7-La-xF3" secondAttribute="top" id="ANk-co-dkG"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="centerY" secondItem="mUh-fA-frq" secondAttribute="centerY" id="Bn5-Xc-X65"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="top" secondItem="mUh-fA-frq" secondAttribute="top" id="CD0-AL-1vp"/>
+                            <constraint firstItem="9Fn-el-Q9A" firstAttribute="top" secondItem="xjV-mO-k6V" secondAttribute="bottom" constant="-16" id="CHR-uX-CAI"/>
                             <constraint firstItem="DEy-yV-NWA" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="DH3-yd-MhX"/>
                             <constraint firstItem="Ne3-kc-nB2" firstAttribute="centerY" secondItem="5TG-AM-TBD" secondAttribute="centerY" id="Dof-qO-HE6"/>
                             <constraint firstAttribute="trailing" secondItem="Sxp-7c-isg" secondAttribute="trailing" constant="8" id="EbU-Gn-KJO"/>
@@ -440,6 +449,7 @@ discover users nearby</string>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="5TG-AM-TBD" secondAttribute="bottom" constant="10" id="nz5-gG-NAZ"/>
                             <constraint firstItem="bby-nO-FSI" firstAttribute="centerY" secondItem="HGV-Wh-HTU" secondAttribute="centerY" id="qne-Zl-Aoo"/>
                             <constraint firstItem="hF7-La-xF3" firstAttribute="centerY" secondItem="Sxp-7c-isg" secondAttribute="centerY" id="qsT-A0-2nD"/>
+                            <constraint firstItem="9Fn-el-Q9A" firstAttribute="centerX" secondItem="xjV-mO-k6V" secondAttribute="centerX" constant="8" id="tPc-HW-If4"/>
                             <constraint firstItem="xjV-mO-k6V" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="118" id="u02-xu-UZL"/>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="centerY" secondItem="gCQ-GT-2id" secondAttribute="centerY" id="ugI-UP-NV8"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="leading" secondItem="UGd-FX-LHF" secondAttribute="leading" id="unC-2d-8Tg"/>
@@ -473,6 +483,7 @@ discover users nearby</string>
                         <outlet property="statusInfoLabel" destination="jkx-2O-t4k" id="Fwz-jo-L25"/>
                         <outlet property="statusLabel" destination="bby-nO-FSI" id="eKh-um-gb0"/>
                         <outlet property="statusView" destination="HGV-Wh-HTU" id="LSt-g1-wGN"/>
+                        <outlet property="totalLikesLabel" destination="9Fn-el-Q9A" id="Fma-1m-qVN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="01K-Nk-QAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
