@@ -60,6 +60,7 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
+    @IBOutlet fileprivate weak var totalLikesLabel: UILabel!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -174,6 +175,7 @@ class MainLMMProfileViewController: UIViewController
         self.statusView.layer.borderColor = UIColor.lightGray.cgColor  
         self.applyStatuses()
         self.applyName()
+        self.applyTotalLikes()
         self.applyStatusInfo()
     }
     
@@ -282,6 +284,7 @@ class MainLMMProfileViewController: UIViewController
         Observable.from(object:self.input.profile).observeOn(MainScheduler.instance).subscribe({ [weak self] _ in
             self?.updateSeenState()
             self?.applyStatuses()
+            self?.applyTotalLikes()
         }).disposed(by: self.diposeBag)
         
         self.currentIndex.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] page in
@@ -453,6 +456,7 @@ class MainLMMProfileViewController: UIViewController
         self.nameLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.nameLabel.frame, offset: value) ?? 1.0)
         self.aboutLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.aboutLabel.frame, offset: value) ?? 1.0)
         self.likeBtn.alpha = self.discreetOpacity(for: self.topOpacityFor(self.likeBtn.frame, offset: value) ?? 1.0)
+        self.totalLikesLabel.alpha = self.discreetOpacity(for: self.topOpacityFor(self.totalLikesLabel.frame, offset: value) ?? 1.0)
         
         (self.leftFieldsControls + self.rightFieldsControls).forEach { controls in
             controls.iconView.alpha = self.discreetOpacity(for: self.topOpacityFor(controls.iconView.frame, offset: value) ?? 1.0)
@@ -538,6 +542,7 @@ class MainLMMProfileViewController: UIViewController
         self.aboutLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.aboutLabel.frame, offset: value) ?? 1.0)
         self.statusInfoLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.statusInfoLabel.frame, offset: value) ?? 1.0)
         self.likeBtn.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.likeBtn.frame, offset: value) ?? 1.0)
+        self.totalLikesLabel.alpha = self.discreetOpacity(for: self.bottomOpacityFor(self.totalLikesLabel.frame, offset: value) ?? 1.0)
         
         (self.leftFieldsControls + self.rightFieldsControls).forEach { controls in
             controls.iconView.alpha = self.discreetOpacity(for: self.bottomOpacityFor(controls.iconView.frame, offset: value) ?? 1.0)
@@ -808,6 +813,19 @@ class MainLMMProfileViewController: UIViewController
         
         title += "\(profile.age)"
         self.nameLabel.text = title
+    }
+    
+    fileprivate func applyTotalLikes()
+    {
+        guard self.input.feedType == .likesYou else {
+            self.totalLikesLabel.isHidden = true
+            
+            return
+        }
+        
+        let totalLikes = self.input.profile.totalLikes
+        self.totalLikesLabel.text = "\(totalLikes)"
+        self.totalLikesLabel.isHidden = totalLikes == 0
     }
     
     fileprivate func applyStatusInfo()

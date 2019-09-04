@@ -485,6 +485,14 @@ see who likes you</string>
                                     <action selector="onLikeWithSender:" destination="Nf7-hc-eWV" eventType="touchUpInside" id="588-gZ-TY2"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSe-rc-0mB">
+                                <rect key="frame" x="339" y="166" width="12" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProfileID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVA-P0-T2F">
                                 <rect key="frame" x="16" y="323" width="70" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -632,6 +640,7 @@ see who likes you</string>
                             <constraint firstItem="vBP-lc-cHQ" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="ECr-X5-BTY"/>
                             <constraint firstItem="kYa-nc-a14" firstAttribute="centerY" secondItem="lT4-ql-cww" secondAttribute="centerY" id="EoK-2T-KKP"/>
                             <constraint firstAttribute="bottom" secondItem="vBP-lc-cHQ" secondAttribute="bottom" id="FHi-0r-u0u"/>
+                            <constraint firstItem="KSe-rc-0mB" firstAttribute="top" secondItem="HAT-kr-d5R" secondAttribute="bottom" constant="-16" id="Gzz-0j-Y2Y"/>
                             <constraint firstItem="r1y-kA-ocU" firstAttribute="width" secondItem="lT4-ql-cww" secondAttribute="width" id="J6R-md-nNE"/>
                             <constraint firstAttribute="trailing" secondItem="aaP-rq-Yo0" secondAttribute="trailing" id="Jhv-Nb-9yc"/>
                             <constraint firstItem="aaP-rq-Yo0" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" id="KF4-WV-Z5I"/>
@@ -665,6 +674,7 @@ see who likes you</string>
                             <constraint firstItem="QvJ-Gq-VGZ" firstAttribute="top" secondItem="GNe-2F-xlI" secondAttribute="bottom" constant="10" id="iI3-EA-YRf"/>
                             <constraint firstItem="InC-ES-1Or" firstAttribute="leading" secondItem="eDJ-qT-P4s" secondAttribute="trailing" constant="8" id="iL5-si-XiA"/>
                             <constraint firstItem="qVA-P0-T2F" firstAttribute="centerY" secondItem="ekE-T8-wuA" secondAttribute="centerY" id="iu5-0K-I53"/>
+                            <constraint firstItem="KSe-rc-0mB" firstAttribute="centerX" secondItem="HAT-kr-d5R" secondAttribute="centerX" constant="8" id="kXb-ty-YZN"/>
                             <constraint firstItem="HAT-kr-d5R" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="118" id="nY8-Cj-EMd"/>
                             <constraint firstItem="GNe-2F-xlI" firstAttribute="leading" secondItem="Y6w-eN-oCn" secondAttribute="trailing" constant="8" id="nhz-fB-e83"/>
                             <constraint firstItem="GNe-2F-xlI" firstAttribute="bottom" secondItem="Y6w-eN-oCn" secondAttribute="bottom" id="o73-0f-a6x"/>
@@ -701,6 +711,7 @@ see who likes you</string>
                         <outlet property="statusInfoLabel" destination="ugG-Ly-0mR" id="bL8-4h-FuO"/>
                         <outlet property="statusLabel" destination="InC-ES-1Or" id="AZL-iZ-hJK"/>
                         <outlet property="statusView" destination="eDJ-qT-P4s" id="1tB-AI-68b"/>
+                        <outlet property="totalLikesLabel" destination="KSe-rc-0mB" id="heG-M1-oIV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZT-PD-qcS" userLabel="First Responder" sceneMemberID="firstResponder"/>
