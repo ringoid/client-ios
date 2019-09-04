@@ -397,7 +397,8 @@ class NewFacesViewController: BaseViewController
         switch state {
         case .initial:
             if let startDate = self.activityStartDate {
-                AnalyticsManager.shared.send(.spinnerShown("new_faces", Date().timeIntervalSince(startDate)))
+                let duration: Double =  round(Date().timeIntervalSince(startDate) * 1000.0) / 1000.0
+                AnalyticsManager.shared.send(.spinnerShown("new_faces", duration))
                 self.activityStartDate = nil
             }
             
@@ -422,7 +423,8 @@ class NewFacesViewController: BaseViewController
             
         case .empty:
             if let startDate = self.activityStartDate {
-                AnalyticsManager.shared.send(.spinnerShown("new_faces", Date().timeIntervalSince(startDate)))
+                let duration: Double =  round(Date().timeIntervalSince(startDate) * 1000.0) / 1000.0
+                AnalyticsManager.shared.send(.spinnerShown("new_faces", duration))
                 self.activityStartDate = nil
             }
             
@@ -434,7 +436,8 @@ class NewFacesViewController: BaseViewController
             
         case .contentAvailable:
             if let startDate = self.activityStartDate {
-                AnalyticsManager.shared.send(.spinnerShown("new_faces", Date().timeIntervalSince(startDate)))
+                let duration: Double =  round(Date().timeIntervalSince(startDate) * 1000.0) / 1000.0
+                AnalyticsManager.shared.send(.spinnerShown("new_faces", duration))
                 self.activityStartDate = nil
             }
             

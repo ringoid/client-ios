@@ -724,7 +724,8 @@ class MainLMMViewController: BaseViewController
         switch state {
         case .initial:
             if let startDate = self.activityStartDate {
-                AnalyticsManager.shared.send(.spinnerShown(self.type.value.sourceType().rawValue, Date().timeIntervalSince(startDate)))
+                let duration: Double =  round(Date().timeIntervalSince(startDate) * 1000.0) / 1000.0
+                AnalyticsManager.shared.send(.spinnerShown(self.type.value.sourceType().rawValue, duration))
                 self.activityStartDate = nil
             }
             
@@ -746,7 +747,8 @@ class MainLMMViewController: BaseViewController
             
         case .empty:
             if let startDate = self.activityStartDate {
-                AnalyticsManager.shared.send(.spinnerShown(self.type.value.sourceType().rawValue, Date().timeIntervalSince(startDate)))
+                let duration: Double =  round(Date().timeIntervalSince(startDate) * 1000.0) / 1000.0
+                AnalyticsManager.shared.send(.spinnerShown(self.type.value.sourceType().rawValue, duration))
                 self.activityStartDate = nil
             }
             
@@ -758,7 +760,8 @@ class MainLMMViewController: BaseViewController
             
         case .contentAvailable:
             if let startDate = self.activityStartDate {
-                AnalyticsManager.shared.send(.spinnerShown(self.type.value.sourceType().rawValue, Date().timeIntervalSince(startDate)))
+                let duration: Double =  round(Date().timeIntervalSince(startDate) * 1000.0) / 1000.0
+                AnalyticsManager.shared.send(.spinnerShown(self.type.value.sourceType().rawValue, duration))
                 self.activityStartDate = nil
             }
             
