@@ -28,7 +28,7 @@ class SettingsProfileViewController: BaseViewController
         let openingCount = UserDefaults.standard.integer(forKey: "settings_profile_fields_opened")
         UserDefaults.standard.set(openingCount + 1, forKey:"settings_profile_fields_opened")
         
-        self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 260.0, right: 0.0)
+        self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 320.0, right: 0.0)
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onHideInput))
         recognizer.delegate = self
