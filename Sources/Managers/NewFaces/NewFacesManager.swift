@@ -87,6 +87,7 @@ class NewFacesManager
                 localProfile.statusText = profile.lastOnlineText ?? ""
                 localProfile.distanceText = profile.distanceText ?? ""
                 localProfile.gender = profile.sex
+                localProfile.totalLikes = profile.totalLikes
                 
                 // Info
                 localProfile.property.value = profile.info.property

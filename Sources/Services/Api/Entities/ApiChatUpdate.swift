@@ -14,13 +14,15 @@ class ApiChatUpdate
     let status: ApiProfileStatus?
     let distanceText: String?
     let lastOnlineText: String?
+    let totalLikes: Int
     
-    init(_ messages: [ApiMessage], status: ApiProfileStatus?, distanceText: String?, lastOnlineText: String?)
+    init(_ messages: [ApiMessage], status: ApiProfileStatus?, distanceText: String?, lastOnlineText: String?, totalLikes: Int)
     {
         self.messages = messages
         self.status = status
         self.distanceText = distanceText
         self.lastOnlineText = lastOnlineText
+        self.totalLikes = totalLikes
     }
 }
 
@@ -35,7 +37,8 @@ extension ApiChatUpdate
         return ApiChatUpdate(messagesArray.compactMap({ ApiMessage.parse($0) }),                             
                              status: ApiProfileStatus(rawValue: statusStr),
                              distanceText: dict["distanceText"] as? String,
-                             lastOnlineText: dict["lastOnlineText"] as? String
+                             lastOnlineText: dict["lastOnlineText"] as? String,
+                             totalLikes: (dict["totalLikes"] as? Int) ?? 0
         )
     }
 }

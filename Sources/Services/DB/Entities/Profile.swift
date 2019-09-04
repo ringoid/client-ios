@@ -25,6 +25,7 @@ class Profile: DBServiceObject
     @objc dynamic var status: Int = 0
     @objc dynamic var statusText: String!
     @objc dynamic var distanceText: String!
+    @objc dynamic var totalLikes: Int = 0
     
     // Info fields
     let property: RealmOptional<Int> = RealmOptional<Int>()

@@ -867,7 +867,8 @@ class LMMManager
                                  messages: updatedMessages,
                                  status: update.status?.onlineStatus() ?? .unknown,
                                  statusText: update.lastOnlineText ?? "unknown",
-                                 distanceText: update.distanceText ?? "unknown"
+                                 distanceText: update.distanceText ?? "unknown",
+                                 totalLikes: update.totalLikes ?? 0
         )
     }
     
@@ -992,6 +993,7 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         localProfile.statusText = profile.lastOnlineText ?? ""
         localProfile.distanceText = profile.distanceText ?? ""
         localProfile.gender = profile.sex
+        localProfile.totalLikes = profile.totalLikes
 
         // Info
         localProfile.property.value = profile.info.property

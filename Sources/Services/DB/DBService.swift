@@ -40,7 +40,7 @@ class DBService
     
     init()
     {
-        let version: UInt64 = 10
+        let version: UInt64 = 11
         let config = Realm.Configuration(schemaVersion: version, migrationBlock: { (migration, oldVersion) in
             if oldVersion < 4 {
                 migration.enumerateObjects(ofType: Photo.className(), { (_, newObject) in
@@ -115,6 +115,12 @@ class DBService
             if oldVersion < 10 {
                 migration.enumerateObjects(ofType: Profile.className(), { (_, newObject) in
                     newObject?["statusInfo"] = nil
+                })
+            }
+            
+            if oldVersion < 11 {
+                migration.enumerateObjects(ofType: Profile.className(), { (_, newObject) in
+                    newObject?["totalLikes"] = 0
                 })
             }
         }, deleteRealmIfMigrationNeeded: false)
@@ -262,7 +268,7 @@ class DBService
     
     // MARK: - Feeds
     
-    func lmmProfileUpdate(_ id: String, messages: [Message], status: OnlineStatus, statusText: String, distanceText: String)
+    func lmmProfileUpdate(_ id: String, messages: [Message], status: OnlineStatus, statusText: String, distanceText: String, totalLikes: Int)
     {
         let predicate = NSPredicate(format: "isDeleted = false AND id = %@", id)
         if  let profile = self.realm.objects(LMMProfile.self).filter(predicate).sorted(byKeyPath: "orderPosition").first {
@@ -270,6 +276,7 @@ class DBService
                 profile.status = status.rawValue
                 profile.statusText = statusText
                 profile.distanceText = distanceText
+                profile.totalLikes = totalLikes
                 
                 let localCount = profile.messages.count
                 var notSentMessages: [Message] = []
