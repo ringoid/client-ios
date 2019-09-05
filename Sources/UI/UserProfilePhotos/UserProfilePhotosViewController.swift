@@ -91,10 +91,6 @@ class UserProfilePhotosViewController: BaseViewController
         
         self.applyName()
         self.applyStatusInfo()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            self.showAddPhotoIfNeeded()
-        }
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -214,6 +210,13 @@ class UserProfilePhotosViewController: BaseViewController
                     self?.containerTableView.refreshControl?.endRefreshing()
                 })
         }).disposed(by: self.disposeBag)
+    }
+    
+    func askIfNeeded()
+    {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.showAddPhotoIfNeeded()
+        }
     }
     
     // MARK: - Actions

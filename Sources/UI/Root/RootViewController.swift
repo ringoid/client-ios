@@ -90,7 +90,7 @@ class RootViewController: BaseViewController {
             
         case .userProfile:
             self.embedMainVC()
-            self.appManager.navigationManager.mainItem.accept(.profile)
+            self.appManager.navigationManager.mainItem.accept(.profileAndAsk)
             break
         }
     }

@@ -20,6 +20,7 @@ enum MainNavigationItem
     case searchAndFetchFirstTime
     case profileAndFetch
     case profileAndPick
+    case profileAndAsk
     
     case likeAndFetch
 }

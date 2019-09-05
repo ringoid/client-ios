@@ -20,6 +20,7 @@ enum SelectionState {
     case searchAndFetchFirstTime
     case profileAndPick
     case profileAndFetch
+    case profileAndAsk
     case likeAndFetch
 }
 
@@ -258,6 +259,14 @@ class MainViewController: BaseViewController
             self.embedUserProfileAndFetch()
             break
             
+        case .profileAndAsk:
+            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
+            self.embedUserProfileAndAsk()
+            break
+            
         case .searchAndFetch:
             self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
             self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
@@ -361,6 +370,16 @@ class MainViewController: BaseViewController
         self.containerVC.embed(vc)
         
         vc.reload()
+    }
+    
+    fileprivate func embedUserProfileAndAsk()
+    {
+        guard let vc = self.getUserProfileVC() else { return }
+        
+        self.containedVC = vc
+        self.containerVC.embed(vc)
+        
+        vc.askIfNeeded()
     }
     
     fileprivate func embedMainLMMAndFetch()
@@ -726,6 +745,7 @@ extension MainNavigationItem
         
         case .profileAndFetch: return .profileAndFetch
         case .profileAndPick: return .profileAndPick
+        case .profileAndAsk: return .profileAndAsk
         case .searchAndFetch: return .searchAndFetch
         case .searchAndFetchFirstTime: return .searchAndFetchFirstTime
         case .likeAndFetch: return .likeAndFetch
