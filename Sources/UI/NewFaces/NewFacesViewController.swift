@@ -155,6 +155,7 @@ class NewFacesViewController: BaseViewController
         self.photoIndexes.removeAll()
         
         self.tableView.dataSource = EmptyFeed.shared
+        self.tableView.reloadData()
         self.viewModel?.refresh(isFilteringEnabled).observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             guard let `self` = self else { return }
             
