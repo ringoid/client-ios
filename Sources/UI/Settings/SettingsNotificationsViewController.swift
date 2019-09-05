@@ -35,7 +35,7 @@ class SettingsNotificationsViewController: BaseViewController
 {
     var input: SettingsNotificationsInput!
     
-    fileprivate let options = [
+    fileprivate var options = [
         SettingsNotificationsOption(cellIdentifier: "vibration_cell", height: 96.0),
         SettingsNotificationsOption(cellIdentifier: "message_cell", height: 56.0),
         SettingsNotificationsOption(cellIdentifier: "match_cell", height: 56.0),
@@ -55,6 +55,16 @@ class SettingsNotificationsViewController: BaseViewController
         assert(self.input != nil)
         
         super.viewDidLoad()
+        
+        if !self.input.settingsManager.impact.isAvailable {
+            self.options = [                
+                SettingsNotificationsOption(cellIdentifier: "message_cell", height: 56.0),
+                SettingsNotificationsOption(cellIdentifier: "match_cell", height: 56.0),
+                SettingsNotificationsOption(cellIdentifier: "like_cell", height: 56.0),
+                SettingsNotificationsOption(cellIdentifier: "evening_cell", height: 96.0),
+                SettingsNotificationsOption(cellIdentifier: "profile_suggest_cell", height: 124.0),
+            ]
+        }
         
         self.setupBindings()
     }
@@ -110,7 +120,8 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let option = self.options[indexPath.row]
-        let type = SettingsNotificationsOptionType(rawValue: indexPath.row)!
+        let isAvailable = self.input.settingsManager.impact.isAvailable
+        let type = SettingsNotificationsOptionType(rawValue: isAvailable ? indexPath.row : (indexPath.row + 1))!
         
         guard type != .suggest else { return tableView.dequeueReusableCell(withIdentifier: option.cellIdentifier)! }
         
@@ -181,7 +192,8 @@ extension SettingsNotificationsViewController: UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let type = SettingsNotificationsOptionType(rawValue: indexPath.row)!
+        let isAvailable = self.input.settingsManager.impact.isAvailable
+        let type = SettingsNotificationsOptionType(rawValue: isAvailable ? indexPath.row : (indexPath.row + 1))!
         guard type != .suggest else {
             FeedbackManager.shared.showSuggestion(self, source: .notificationsSettings, feedSource: nil)
             

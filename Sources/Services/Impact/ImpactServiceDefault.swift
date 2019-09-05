@@ -16,6 +16,11 @@ class ImpactServiceDefault: ImpactService
 {
     var isEnabled: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     
+    var isAvailable: Bool
+    {
+        return !Device.current.isOneOf([.iPhone4, .iPhone5, .iPhone5s, .iPhone6])
+    }
+    
     fileprivate var lightFeedback: UIImpactFeedbackGenerator?
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
@@ -32,6 +37,7 @@ class ImpactServiceDefault: ImpactService
     
     func perform(_ type: ImpactType)
     {
+        guard self.isAvailable else { return }
         guard self.isEnabled.value else { return }
         
         if self.isImpactGeneratorSupported() {
@@ -59,7 +65,7 @@ class ImpactServiceDefault: ImpactService
     // MARK: -
     fileprivate func isImpactGeneratorSupported() -> Bool
     {
-        let unsupportedDevices: [Device] = [.iPhone4, .iPhone5, .iPhone5s, .iPhone6, .iPhone6s]
+        let unsupportedDevices: [Device] = [.iPhone6s]
         let minSystemVersion: Double = 10
         
         let currentDevice = Device.current

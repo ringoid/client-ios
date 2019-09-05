@@ -19,6 +19,7 @@ enum ImpactType
 protocol ImpactService
 {
     var isEnabled: BehaviorRelay<Bool> { get set }
+    var isAvailable: Bool { get }
     
     func perform(_ type: ImpactType)
     func reset()
