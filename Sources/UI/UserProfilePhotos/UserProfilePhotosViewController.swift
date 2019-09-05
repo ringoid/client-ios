@@ -487,16 +487,7 @@ class UserProfilePhotosViewController: BaseViewController
         
         // Delete
         alertVC.addAction(UIAlertAction(title: "profile_button_delete_image".localized(), style: .destructive, handler: ({ _ in
-            guard let photo = self.viewModel?.photos.value[self.currentIndex.value] else { return }
-            
-            if photo.likes > 0 {
-                self.showDeletionConfirmationAlert()
-                
-                return
-            }
-            
-            self.showControls()
-            self.viewModel?.delete(photo)
+            self.showDeletionConfirmationAlert()
         })))
         
         // Add
