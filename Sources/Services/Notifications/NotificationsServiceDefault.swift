@@ -111,7 +111,9 @@ class NotificationsServiceDefault: NSObject, NotificationService
         Messaging.messaging().setAPNSToken(token, type: .unknown)
 
         if let senderId = self.senderId.value {
-            self.updateFCMToken(senderId)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                self.updateFCMToken(senderId)
+            }
         }
     }
     
