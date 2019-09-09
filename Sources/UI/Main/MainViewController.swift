@@ -477,13 +477,13 @@ class MainViewController: BaseViewController
     fileprivate func setupBindings()
     {
         self.viewModel = MainViewModel(self.input)
-        self.viewModel?.input.navigationManager.mainItem.skip(1).asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] item in
+        self.viewModel?.input.navigationManager.mainItem.skip(1).observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] item in
             UIView.performWithoutAnimation {
                 self?.select(item.selectionState())
             }
         }).disposed(by: self.disposeBag)
         
-        self.viewModel?.availablePhotosCount.subscribe(onNext: { [weak self] count in
+        self.viewModel?.availablePhotosCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             self?.profileIndicatorView.isHidden = count != 0
         }).disposed(by: self.disposeBag)
          self.viewModel?.notSeenProfilesTotalCount.observeOn(MainScheduler.instance).subscribe(onNext: { value in
@@ -597,7 +597,7 @@ class MainViewController: BaseViewController
             
         }).disposed(by: self.disposeBag)
 
-        UIManager.shared.chatModeEnabled.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
+        UIManager.shared.chatModeEnabled.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             guard let `self` = self else { return }
             
             self.buttonsStackView.isHidden = state
@@ -696,25 +696,25 @@ class MainViewController: BaseViewController
         
         // Not seen profiles indicators
         
-        self.input.lmmManager.notSeenLikesYouCount.subscribe(onNext: { [weak self] count in
+        self.input.lmmManager.notSeenLikesYouCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
             self.likesYouIndicatorView.isHidden = count == 0
         }).disposed(by: self.disposeBag)
                 
-        self.input.lmmManager.notSeenMessagesCount.subscribe(onNext: { [weak self] count in
+        self.input.lmmManager.notSeenMessagesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
             self.chatIndicatorView.isHidden = !(count != 0 || self.input.lmmManager.notSeenMatchesCount.value != 0)
         }).disposed(by: self.disposeBag)
         
-        self.input.lmmManager.notSeenMatchesCount.subscribe(onNext: { [weak self] count in
+        self.input.lmmManager.notSeenMatchesCount.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] count in
             guard let `self` = self else { return }
             
             self.chatIndicatorView.isHidden = !(count != 0 || self.input.lmmManager.notSeenMessagesCount.value != 0)
         }).disposed(by: self.disposeBag)
         
-        UIManager.shared.lmmRefreshModeEnabled.asObservable().subscribe(onNext: { [weak self] state in
+        UIManager.shared.lmmRefreshModeEnabled.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             let alpha: CGFloat = state ? 0.0 : 1.0
             self?.likesYouIndicatorView.alpha = alpha
             self?.chatIndicatorView.alpha = alpha
