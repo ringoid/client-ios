@@ -587,7 +587,7 @@ class LMMManager
             self?.sent.accept(profiles)
         }).disposed(by: self.disposeBag)
 
-        self.likesYou.asObservable().subscribe(onNext:{ [weak self] profiles in
+        self.likesYou.subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
             
             self.prevNotSeenLikes.formUnion(profiles.notSeenIDs())
@@ -600,7 +600,7 @@ class LMMManager
             self.updateLocalLmmCount()
         }).disposed(by: self.disposeBag)
             
-        self.messages.asObservable().subscribe(onNext:{ [weak self] profiles in
+        self.messages.subscribe(onNext:{ [weak self] profiles in
             guard let `self` = self else { return }
             
             let isFirstMatchRecorded = UserDefaults.standard.bool(forKey: "is_first_match_recorded")
@@ -611,16 +611,17 @@ class LMMManager
                 UserDefaults.standard.synchronize()
             }
             
-            self.prevNotReadMessages.formUnion(profiles.filter({ $0.messages.count != 0 }).notReadIDs())
+            let notSeenMatches = profiles.filter({ $0.messages.count == 0 }).notSeenIDs()
+            let notReadMessages = profiles.filter({ $0.messages.count != 0 }).notReadIDs()
             
-            let notSeenMatchesFromMessagesCount = profiles.filter({ $0.messages.count == 0 }).notSeenIDs()
-                .union(self.matchesNotificationProfiles).count
-            self.notSeenMatchesCount.accept(notSeenMatchesFromMessagesCount)
+            self.prevNotReadMessages.formUnion(notReadMessages)
+            self.prevNotSeenMatches.formUnion(notSeenMatches)
             
-            let nonSeenCount = profiles.filter({ $0.messages.count > 0 }).notReadIDs()
-                .union(self.messagesNotificationProfiles).count
-            
-            self.notSeenMessagesCount.accept(nonSeenCount)
+            self.notSeenMatchesCount.accept(notSeenMatches
+                .union(self.matchesNotificationProfiles).count)
+
+            self.notSeenMessagesCount.accept(notReadMessages
+                .union(self.messagesNotificationProfiles).count)
             self.updateLmmCount()
             self.updateLocalLmmCount()
         }).disposed(by: self.disposeBag)
