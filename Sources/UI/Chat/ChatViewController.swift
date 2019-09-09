@@ -151,7 +151,7 @@ class ChatViewController: BaseViewController
     {
         self.viewModel = ChatViewModel(self.input)
         
-        self.viewModel?.messages.asObservable().subscribe(onNext: { [weak self] updatedMessages in
+        self.viewModel?.messages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] updatedMessages in
             guard let `self` = self else { return }
             
             // Analytics

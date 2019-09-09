@@ -868,7 +868,7 @@ class LMMManager
                                  status: update.status?.onlineStatus() ?? .unknown,
                                  statusText: update.lastOnlineText ?? "unknown",
                                  distanceText: update.distanceText ?? "unknown",
-                                 totalLikes: update.totalLikes ?? 0
+                                 totalLikes: update.totalLikes
         )
     }
     
