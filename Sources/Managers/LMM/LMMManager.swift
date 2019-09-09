@@ -611,7 +611,7 @@ class LMMManager
                 UserDefaults.standard.synchronize()
             }
             
-            self.prevNotReadMessages.formUnion(profiles.notReadIDs())
+            self.prevNotReadMessages.formUnion(profiles.filter({ $0.messages.count != 0 }).notReadIDs())
             
             let notSeenMatchesFromMessagesCount = profiles.filter({ $0.messages.count == 0 }).notSeenIDs()
                 .union(self.matchesNotificationProfiles).count
