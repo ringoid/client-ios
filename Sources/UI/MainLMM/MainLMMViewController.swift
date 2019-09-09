@@ -253,6 +253,12 @@ class MainLMMViewController: BaseViewController
             
             self?.checkForUpdates()
         }).disposed(by: self.disposeBag)
+        
+        self.input.lmmManager.matchesUpdatesAvailable.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self ] _ in
+            guard self?.type.value == .messages else { return }
+            
+            self?.checkForUpdates()
+        }).disposed(by: self.disposeBag)
                 
         self.input.lmmManager.messagesUpdatesAvailable.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self ] _ in
             guard self?.type.value == .messages else { return }
