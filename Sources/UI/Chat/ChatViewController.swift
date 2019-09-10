@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Nuke
+import Differ
 
 class ChatViewController: BaseViewController
 {
@@ -22,6 +23,7 @@ class ChatViewController: BaseViewController
     
     fileprivate static var messagesCache: [String: String] = [:]
     fileprivate var sendingMessagesIds: [String] = []
+    fileprivate var cellIdsMap: [String: ChatRightCell] = [:]
     
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var messageTextView: UITextView!
@@ -171,6 +173,7 @@ class ChatViewController: BaseViewController
                 }
             }
             
+            self.cellIdsMap.removeAll()
             self.tableView.reloadData()
             DispatchQueue.main.async {
                 self.updateVisibleCellsBorders(self.tableView.contentOffset.y)
@@ -186,8 +189,25 @@ class ChatViewController: BaseViewController
         }).disposed(by: self.disposeBag)
         
         self.viewModel?.activeSendingActions.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self]  messagesIds in
-            self?.sendingMessagesIds = messagesIds
-            self?.tableView.reloadData()
+            guard let `self` = self else { return }
+            
+            let diff = patch(from: self.sendingMessagesIds, to: messagesIds)
+
+            guard !diff.isEmpty else { return }
+
+            diff.forEach { path in
+                switch path {
+                case .deletion(let index):
+                    let messageId = self.sendingMessagesIds[index]
+                    self.cellIdsMap[messageId]?.state = .sent
+                    
+                    break
+                    
+                default: break
+                }
+            }
+
+            self.sendingMessagesIds = messagesIds
         }).disposed(by: self.disposeBag)
     }
     
@@ -336,8 +356,9 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate
         let identifier = message.wasYouSender ? "chat_right_cell" : "chat_left_cell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ChatBaseCell else { return UITableViewCell() }
         
-        if message.wasYouSender {
-            (cell as? ChatRightCell)?.state = self.sendingMessagesIds.contains(message.id) ? .sending : .sent
+        if message.wasYouSender, let rightCell = cell as? ChatRightCell {
+            rightCell.state = self.sendingMessagesIds.contains(message.id) ? .sending : .sent
+            self.cellIdsMap[message.id] = rightCell
         }
         
         cell.message = message
