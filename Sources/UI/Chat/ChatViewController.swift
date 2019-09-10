@@ -197,13 +197,14 @@ class ChatViewController: BaseViewController
 
             diff.forEach { path in
                 switch path {
+                case .insertion(_, let messageId):
+                    self.cellIdsMap[messageId]?.state = .sending
+                    break
+                    
                 case .deletion(let index):
                     let messageId = self.sendingMessagesIds[index]
                     self.cellIdsMap[messageId]?.state = .sent
-                    
                     break
-                    
-                default: break
                 }
             }
 

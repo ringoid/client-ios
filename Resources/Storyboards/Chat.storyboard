@@ -337,7 +337,7 @@
     </scenes>
     <resources>
         <image name="chat_back" width="32" height="32"/>
-        <image name="chat_checkmark" width="10.5" height="8"/>
+        <image name="chat_checkmark" width="11" height="8"/>
         <image name="chat_send" width="25" height="22"/>
         <image name="feed_options" width="32" height="12"/>
     </resources>
