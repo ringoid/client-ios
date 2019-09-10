@@ -18,6 +18,7 @@ struct ChatVMInput
     let lmmManager: LMMManager
     let scenario: AnalyticsScenarioManager
     let transition: TransitionManager
+    let actions: ActionsManager
     let onClose: (()->())?
     let onBlock: (()->())?
 }
@@ -27,6 +28,11 @@ class ChatViewModel
     let input: ChatVMInput
     
     let messages: BehaviorRelay<[Message]> = BehaviorRelay<[Message]>(value: [])
+    
+    var activeSendingActions: Observable<[String]>
+    {
+        return self.input.actions.activeSendingActions()
+    }
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var updateTimer: Timer?

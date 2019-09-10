@@ -21,6 +21,7 @@ class ChatViewController: BaseViewController
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
     fileprivate static var messagesCache: [String: String] = [:]
+    fileprivate var sendingMessagesIds: [String] = []
     
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var messageTextView: UITextView!
@@ -183,6 +184,11 @@ class ChatViewController: BaseViewController
         Observable.from(object:self.input.profile).observeOn(MainScheduler.instance).subscribe({ [weak self] _ in
             self?.applyStatuses()
         }).disposed(by: self.disposeBag)
+        
+        self.viewModel?.activeSendingActions.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self]  messagesIds in
+            self?.sendingMessagesIds = messagesIds
+            self?.tableView.reloadData()
+        }).disposed(by: self.disposeBag)
     }
     
     fileprivate func textSize(_ text: String) -> CGSize
@@ -329,6 +335,10 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate
         guard let message = self.viewModel?.messages.value.reversed()[indexPath.row] else { return UITableViewCell() }
         let identifier = message.wasYouSender ? "chat_right_cell" : "chat_left_cell"
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ChatBaseCell else { return UITableViewCell() }
+        
+        if message.wasYouSender {
+            (cell as? ChatRightCell)?.state = self.sendingMessagesIds.contains(message.id) ? .sending : .sent
+        }
         
         cell.message = message
         cell.onCopyMessage = { [weak self] text in

@@ -624,7 +624,8 @@ class MainLMMViewController: BaseViewController
             chatManager: self.input.chatManager,
             lmmManager: self.input.lmmManager,
             scenario: self.input.scenario,
-            transition: self.input.transition
+            transition: self.input.transition,
+            actions: self.input.actionsManager
             , onClose: { [weak self] in
                 self?.hideChat(profileVC, profile: profile, photo: photo, indexPath: indexPath)
             }, onBlock: { [weak profileVC] in

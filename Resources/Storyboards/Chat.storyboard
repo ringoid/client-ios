@@ -148,6 +148,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="bubbleImageView" destination="iPA-GY-O3g" id="ae4-AD-OIi"/>
+                                            <outlet property="checkmarckImageView" destination="Jf8-lB-BZN" id="ZCr-Fj-Jo5"/>
                                             <outlet property="contentLabel" destination="p9f-eP-Rf0" id="IBF-YL-w1T"/>
                                             <outlet property="labelHeightConstraint" destination="rCF-jL-9DE" id="y9z-tE-pvA"/>
                                             <outlet property="labelWidthConstraint" destination="rkU-gj-Vel" id="FyI-7P-7wY"/>

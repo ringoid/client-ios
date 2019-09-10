@@ -353,6 +353,13 @@ class ActionsManager
         return state
     }
     
+    func activeSendingActions() -> Observable<[String]>
+    {
+        return self.db.actions().map({ actions in
+            return actions.filter({ $0.type == ActionType.message.rawValue })
+                .compactMap({ $0.messageData()?.0 })})
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()

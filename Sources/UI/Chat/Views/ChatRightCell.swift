@@ -8,9 +8,29 @@
 
 import UIKit
 
+enum ChatMessageState {
+    case sending;
+    case sent;
+}
+
 class ChatRightCell: ChatBaseCell
 {
+    var state: ChatMessageState = .sending
+    {
+        didSet {
+            var iconName: String = ""
+            
+            switch self.state {
+            case .sending: iconName = "chat_checkmark"
+            case .sent: iconName = "chat_checkmarks"
+            }
+            
+            self.checkmarckImageView.image = UIImage(named: iconName)
+        }
+    }
+    
     @IBOutlet fileprivate weak var bubbleImageView: UIImageView!
+    @IBOutlet fileprivate weak var checkmarckImageView: UIImageView!
     
     override func awakeFromNib()
     {
