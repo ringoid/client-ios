@@ -113,10 +113,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iPA-GY-O3g">
-                                                    <rect key="frame" x="115" y="6.5" width="261" height="45"/>
+                                                    <rect key="frame" x="107" y="6.5" width="245" height="45"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello!" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9f-eP-Rf0">
-                                                    <rect key="frame" x="132" y="18.5" width="211" height="21"/>
+                                                    <rect key="frame" x="124" y="18.5" width="211" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="rCF-jL-9DE"/>
                                                         <constraint firstAttribute="width" constant="211" id="rkU-gj-Vel"/>
@@ -126,7 +126,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="Jf8-lB-BZN">
-                                                    <rect key="frame" x="354" y="31.5" width="14" height="8"/>
+                                                    <rect key="frame" x="357" y="42" width="14" height="8"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="8" id="Xpa-ft-Fiy"/>
                                                         <constraint firstAttribute="width" constant="14" id="o0c-Hg-0vy"/>
@@ -136,13 +136,13 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="p9f-eP-Rf0" firstAttribute="bottom" secondItem="iPA-GY-O3g" secondAttribute="bottom" constant="-12" id="8L9-c5-xEG"/>
-                                                <constraint firstAttribute="trailing" secondItem="p9f-eP-Rf0" secondAttribute="trailing" constant="32" id="8iC-90-II3"/>
+                                                <constraint firstAttribute="trailing" secondItem="p9f-eP-Rf0" secondAttribute="trailing" constant="40" id="8iC-90-II3"/>
                                                 <constraint firstItem="p9f-eP-Rf0" firstAttribute="top" secondItem="iPA-GY-O3g" secondAttribute="top" constant="12" id="AXu-fT-xNw"/>
                                                 <constraint firstItem="p9f-eP-Rf0" firstAttribute="centerY" secondItem="rD1-Kd-xHb" secondAttribute="centerY" id="HBS-HX-vhV"/>
-                                                <constraint firstItem="iPA-GY-O3g" firstAttribute="bottom" secondItem="Jf8-lB-BZN" secondAttribute="bottom" constant="12" id="Rha-m4-aA7"/>
-                                                <constraint firstItem="iPA-GY-O3g" firstAttribute="trailing" secondItem="Jf8-lB-BZN" secondAttribute="trailing" constant="8" id="Tnd-3j-O2a"/>
+                                                <constraint firstAttribute="trailing" secondItem="Jf8-lB-BZN" secondAttribute="trailing" constant="4" id="dpx-kI-aAU"/>
                                                 <constraint firstItem="p9f-eP-Rf0" firstAttribute="leading" secondItem="iPA-GY-O3g" secondAttribute="leading" constant="17" id="h6d-vC-LKL"/>
-                                                <constraint firstItem="p9f-eP-Rf0" firstAttribute="trailing" secondItem="iPA-GY-O3g" secondAttribute="trailing" constant="-33" id="hdM-0w-jdP"/>
+                                                <constraint firstItem="p9f-eP-Rf0" firstAttribute="trailing" secondItem="iPA-GY-O3g" secondAttribute="trailing" constant="-17" id="hdM-0w-jdP"/>
+                                                <constraint firstAttribute="bottom" secondItem="Jf8-lB-BZN" secondAttribute="bottom" constant="8" id="qyj-Nq-Taz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -337,7 +337,7 @@
     </scenes>
     <resources>
         <image name="chat_back" width="32" height="32"/>
-        <image name="chat_checkmark" width="11" height="8"/>
+        <image name="chat_checkmark" width="12" height="9"/>
         <image name="chat_send" width="25" height="22"/>
         <image name="feed_options" width="32" height="12"/>
     </resources>
