@@ -27,9 +27,9 @@ class TiktokService: ExternalLinkService
         var result: String = ""
         
         if link.isUrlLink() {
-            result = (link as NSString).lastPathComponent.trimmingCharacters(in: tiktokEscapeCharacters).trimmingCharacters(in: .whitespaces)
+            result = (link.replacingOccurrences(of: " ", with: "") as NSString).lastPathComponent.trimmingCharacters(in: tiktokEscapeCharacters)
         } else {
-            result = link.trimmingCharacters(in: tiktokEscapeCharacters).trimmingCharacters(in: .whitespaces)
+            result = link.replacingOccurrences(of: " ", with: "").trimmingCharacters(in: tiktokEscapeCharacters)
         }
         
         return result

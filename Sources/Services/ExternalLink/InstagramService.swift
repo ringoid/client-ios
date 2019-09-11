@@ -27,9 +27,9 @@ class InstagramService: ExternalLinkService
         var result: String = ""
         
         if link.isUrlLink() {
-            result = (link as NSString).lastPathComponent.trimmingCharacters(in: instagramEscapeCharacters).trimmingCharacters(in: .whitespaces)
+            result = (link.replacingOccurrences(of: " ", with: "") as NSString).lastPathComponent.trimmingCharacters(in: instagramEscapeCharacters)
         } else {
-            result = link.trimmingCharacters(in: instagramEscapeCharacters).trimmingCharacters(in: .whitespaces)
+            result = link.replacingOccurrences(of: " ", with: "").trimmingCharacters(in: instagramEscapeCharacters)
         }
         
         return result
