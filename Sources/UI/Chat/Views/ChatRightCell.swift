@@ -11,6 +11,7 @@ import UIKit
 enum ChatMessageState {
     case sending;
     case sent;
+    case read;
 }
 
 class ChatRightCell: ChatBaseCell
@@ -21,8 +22,9 @@ class ChatRightCell: ChatBaseCell
             var iconName: String = ""
             
             switch self.state {
-            case .sending: iconName = "chat_checkmark"
-            case .sent: iconName = "chat_checkmarks"
+            case .sending: iconName = ""
+            case .sent: iconName = "chat_checkmark"
+            case .read: iconName = "chat_checkmarks"
             }
             
             self.checkmarckImageView.image = UIImage(named: iconName)
