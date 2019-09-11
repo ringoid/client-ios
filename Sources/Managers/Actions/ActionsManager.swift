@@ -28,6 +28,7 @@ enum FeedAction
     case unlike
     case message(id: String, text: String)
     case viewChat(viewChatCount: Int, viewChatTime: Int, actionTime: Date)
+    case readMessage(userId: String, messageId: String, actionTime: Date)
 }
 
 class ActionsManager
@@ -467,6 +468,15 @@ extension Action {
             locationAction.lon = data?.longitude ?? 0.0
             locationAction.lat = data?.latitude ?? 0.0
             apiAction = locationAction
+            break
+            
+        case .readMessage:
+            let readAction = ApiReadMessageAction()
+            let data = self.readmMessageData()
+            readAction.userId = data?.userId ?? ""
+            readAction.messageId = data?.messageId ?? ""
+            apiAction = readAction
+            break
         }
 
         apiAction?.sourceFeed = self.sourceFeed ?? ""
@@ -520,6 +530,11 @@ extension FeedAction
             createdAction.setViewChatData(viewChatCount: viewChatCount, viewChatTime: viewChatTime)
             createdAction.actionTime = actionTime
             break
+            
+        case .readMessage(let userId, let messageId, let actionTime):
+            createdAction.type = ActionType.readMessage.rawValue
+            createdAction.setReadMessageData(userId, messageId: messageId)
+            createdAction.actionTime = actionTime
         }
         
         return createdAction

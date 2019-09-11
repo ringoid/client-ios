@@ -17,6 +17,7 @@ enum ActionType: String
     case message = "MESSAGE"
     case viewChat = "VIEW_CHAT"
     case location = "LOCATION"
+    case readMessage = "READ_MESSAGE"
 }
 
 enum SourceFeedType: String
@@ -175,6 +176,31 @@ extension Action
         self.extraData = try? JSONSerialization.data(withJSONObject: [
             "lat": location.latitude,
             "lon": location.longitude
+            ])
+    }
+}
+
+// MARK: - Read Message
+
+extension Action
+{
+    func readmMessageData() -> (userId: String, messageId: String)?
+    {
+        guard self.type == ActionType.readMessage.rawValue else { return nil }
+        guard let jsonData = self.extraData, let jsonDict = (try? JSONSerialization.jsonObject(with: jsonData)) as? [String: Any] else { return nil }
+        guard let msgId = jsonDict["msgId"] as? String else { return nil }
+        guard let userId = jsonDict["userId"] as? String else { return nil }
+        
+        return (userId: userId, messageId: msgId)
+    }
+    
+    func setReadMessageData(_ userId: String, messageId: String)
+    {
+        guard self.type == ActionType.readMessage.rawValue else { return }
+        
+        self.extraData = try? JSONSerialization.data(withJSONObject: [
+            "msgId": messageId,
+            "userId": userId
             ])
     }
 }

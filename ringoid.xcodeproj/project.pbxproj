@@ -220,6 +220,8 @@
 		57AE896C2306779800123AA6 /* ImpactServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE896A2306779800123AA6 /* ImpactServiceDefault.swift */; };
 		57AE8976230692EC00123AA6 /* AchivementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE8975230692EC00123AA6 /* AchivementManager.swift */; };
 		57AE8977230692EC00123AA6 /* AchivementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AE8975230692EC00123AA6 /* AchivementManager.swift */; };
+		57B6CCA82328D30700A26BF8 /* ApiReadMessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6CCA72328D30700A26BF8 /* ApiReadMessageAction.swift */; };
+		57B6CCA92328D30800A26BF8 /* ApiReadMessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6CCA72328D30700A26BF8 /* ApiReadMessageAction.swift */; };
 		57B6DB1A22A50577000BD1C2 /* ApiChatUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6DB1922A50577000BD1C2 /* ApiChatUpdate.swift */; };
 		57B6DB1B22A50577000BD1C2 /* ApiChatUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6DB1922A50577000BD1C2 /* ApiChatUpdate.swift */; };
 		57B863BC21EC74BF00B9CC70 /* ApiLMMProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */; };
@@ -609,6 +611,7 @@
 		57AE8967230676A600123AA6 /* ImpactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactService.swift; sourceTree = "<group>"; };
 		57AE896A2306779800123AA6 /* ImpactServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactServiceDefault.swift; sourceTree = "<group>"; };
 		57AE8975230692EC00123AA6 /* AchivementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchivementManager.swift; sourceTree = "<group>"; };
+		57B6CCA72328D30700A26BF8 /* ApiReadMessageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiReadMessageAction.swift; sourceTree = "<group>"; };
 		57B6DB1922A50577000BD1C2 /* ApiChatUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiChatUpdate.swift; sourceTree = "<group>"; };
 		57B863BB21EC74BF00B9CC70 /* ApiLMMProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiLMMProfile.swift; sourceTree = "<group>"; };
 		57B863BD21EC758200B9CC70 /* ApiMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMessage.swift; sourceTree = "<group>"; };
@@ -1473,6 +1476,7 @@
 				57B863F921EF5D2A00B9CC70 /* ApiMessageAction.swift */,
 				57B863FB21EF5DDF00B9CC70 /* ApiViewChatAction.swift */,
 				577DDAE222649B5D001D7D24 /* ApiLocationAction.swift */,
+				57B6CCA72328D30700A26BF8 /* ApiReadMessageAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -2030,6 +2034,7 @@
 				57585D5921E4928600038798 /* FileServiceDefault.swift in Sources */,
 				57EEB09822BFA3DA005770B3 /* EducationTitles.swift in Sources */,
 				57EE64C1221478A600246B45 /* SettingsLegalViewController.swift in Sources */,
+				57B6CCA82328D30700A26BF8 /* ApiReadMessageAction.swift in Sources */,
 				57801A87222FF049005A9731 /* SettingsDebugLogViewController.swift in Sources */,
 				57ED486D224B82C10033EB0B /* NotificationsService.swift in Sources */,
 				5751562622E1EA9E009E7743 /* TapticEngine.swift in Sources */,
@@ -2134,6 +2139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57B6CCA92328D30800A26BF8 /* ApiReadMessageAction.swift in Sources */,
 				577DDAF1226F0B18001D7D24 /* FlurryConfig.swift in Sources */,
 				57EE64D42216711000246B45 /* SettingsLegalAboutCell.swift in Sources */,
 				5785030A225B53D40056120A /* MainEffectsView.swift in Sources */,
