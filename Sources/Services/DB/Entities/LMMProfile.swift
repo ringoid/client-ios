@@ -21,7 +21,6 @@ class LMMProfile: Profile
 {
     @objc dynamic var defaultSortingOrderPosition: Int = 0
     @objc dynamic var notSeen: Bool = true
-    @objc dynamic var notRead: Bool = true
     @objc dynamic var type: Int = 0
     
     let messages: List<Message> = List<Message>()
@@ -47,7 +46,7 @@ extension LMMProfile
         })
         
         if isSentByNotMe {
-            return self.notRead ? .chatUnread : .chatRead
+            return self.isRead() ? .chatRead : .chatUnread 
         }
         
         return .outcomingOnly
@@ -72,5 +71,17 @@ extension LMMProfile
         }
         
         return profile
+    }
+}
+
+extension LMMProfile
+{
+    func isRead() -> Bool
+    {
+        for message in self.messages {
+            if !message.isRead { return false }
+        }
+        
+        return true
     }
 }

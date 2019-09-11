@@ -14,6 +14,7 @@ class Message: DBServiceObject
     @objc dynamic var wasYouSender: Bool = false
     @objc dynamic var text: String!
     @objc dynamic var timestamp: Date!
+    @objc dynamic var isRead: Bool = false
 }
 
 extension Message
@@ -25,6 +26,7 @@ extension Message
         message.wasYouSender = self.wasYouSender
         message.text = self.text
         message.timestamp = self.timestamp
+        message.isRead = self.isRead
         
         if self.realm?.isInWriteTransaction == true {
             self.realm?.add(message)

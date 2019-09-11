@@ -27,7 +27,7 @@ final class ChatProfileCache: NSObject
         return ChatProfileCache(
             messagesCount: profile.messages.count,
             notSeen: profile.notSeen,
-            notRead: profile.notRead
+            notRead: !profile.isRead()
         )
     }
 }
@@ -185,30 +185,6 @@ class LMMManager
             let localLikesYou = createProfiles(likesYouResult, type: .likesYou)
             let messages = createProfiles(messagesResult, type: .messages)
             
-            messages.forEach { remoteProfile in
-                remoteProfile.notRead = remoteProfile.messages.count > 0
-               
-                // matches case
-                if remoteProfile.messages.count == 0 {
-                    remoteProfile.notSeen = true
-                }
-
-                self.chatsCache.forEach { localProfileId, profileCache in
-                    if localProfileId == remoteProfile.id {
-                        if profileCache.messagesCount == remoteProfile.messages.count {
-                            remoteProfile.notRead = profileCache.notRead
-                        } else {
-                            remoteProfile.notRead = true
-                        }
-                        
-                        // matches case
-                        if remoteProfile.messages.count == 0 , profileCache.messagesCount == remoteProfile.messages.count {
-                            remoteProfile.notSeen = profileCache.notSeen
-                        }
-                    }
-                }
-            }
-            
             self.filteredLikesYouProfilesCount.accept(self.tmpFilteredLikesYouProfilesCount.value)
             self.filteredMessagesProfilesCount.accept(self.tmpFilteredMessagesProfilesCount.value)
             self.allLikesYouProfilesCount.accept(self.tmpAllLikesYouProfilesCount.value)
@@ -235,30 +211,6 @@ class LMMManager
             
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)            
             let messages = createProfiles(result.messages, type: .messages)
-                        
-            messages.forEach { remoteProfile in
-                remoteProfile.notRead = remoteProfile.messages.count > 0
-                
-                // matches case
-                if remoteProfile.messages.count == 0 {
-                    remoteProfile.notSeen = true
-                }
-                
-                self.chatsCache.forEach { localProfileId, profileCache in
-                    if localProfileId == remoteProfile.id {
-                        if profileCache.messagesCount == remoteProfile.messages.count {
-                            remoteProfile.notRead = profileCache.notRead
-                        } else {
-                            remoteProfile.notRead = true
-                        }
-                        
-                        // matches case
-                        if remoteProfile.messages.count == 0 , profileCache.messagesCount == remoteProfile.messages.count {
-                            remoteProfile.notSeen = profileCache.notSeen
-                        }
-                    }
-                }
-            }
             
             return self.db.add(localLikesYou + messages).asObservable().do(onNext: { [weak self] _ in
                 self?.updateProfilesPrevState(true)
@@ -512,7 +464,7 @@ class LMMManager
     
     func isMessageProfileNotRead(_ profileId: String) -> Bool
     {
-        return self.messages.value.filter({ $0.notRead }).map({ $0.id }).contains(profileId)
+        return self.messages.value.filter({ !$0.isRead() }).map({ $0.id }).contains(profileId)
     }
     
     func isBlocked(_ profileId: String) -> Bool
@@ -664,7 +616,7 @@ class LMMManager
                                 
             case .messages:
                 let isContainedLocally = self.messages.value.map({ $0.id }).contains(profileId)
-                let isContainedInRead = self.messages.value.filter({ !$0.notRead }).map({ $0.id }).contains(profileId)
+                let isContainedInRead = self.messages.value.filter({ $0.isRead() }).map({ $0.id }).contains(profileId)
                 let isVisible = self.actionsManager.lmmViewingProfiles.value.contains(profileId)
                 if isContainedLocally {
                     self.updateChat(profileId)
@@ -672,7 +624,6 @@ class LMMManager
                     if ChatViewController.openedProfileId == profileId { break }
                     if self.actionsManager.lmmViewingProfiles.value.contains(profileId) { break }
                     
-                    self.db.updateRead(profileId, isRead: false)
                     self.prevNotReadMessages.insert(profileId)
                     
                     self.updateNotSeenCounters()
@@ -859,6 +810,7 @@ class LMMManager
             localMessage.text = message.text
             localMessage.timestamp = message.timestamp
             localMessage.orderPosition = localOrderPosition
+            localMessage.isRead = message.isRead
             localOrderPosition += 1
             
             return localMessage
@@ -976,6 +928,7 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
             localMessage.text = message.text
             localMessage.timestamp = message.timestamp
             localMessage.orderPosition = localOrderPosition
+            localMessage.isRead = message.isRead
             localOrderPosition += 1
             
             return localMessage
@@ -986,7 +939,6 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         localProfile.id = profile.id
         localProfile.age = profile.age
         localProfile.notSeen = profile.notSeen
-        localProfile.notRead = profile.messages.count > 0
         localProfile.defaultSortingOrderPosition = profile.defaultSortingOrderPosition
         localProfile.photos.append(objectsIn: localPhotos)
         localProfile.messages.append(objectsIn: localMessages)
@@ -1055,7 +1007,7 @@ extension Array where Element: LMMProfile
         self.forEach({ profile in
             guard !profile.isInvalidated else { return }
             
-            if profile.notRead { accamulator.insert(profile.id) }
+            if !profile.isRead() { accamulator.insert(profile.id) }
         })
         
         return accamulator
@@ -1068,7 +1020,7 @@ extension Array where Element: LMMProfile
         self.forEach({ profile in
             guard !profile.isInvalidated else { return }
             
-            if !profile.notRead { accamulator.insert(profile.id) }
+            if profile.isRead() { accamulator.insert(profile.id) }
         })
         
         return accamulator

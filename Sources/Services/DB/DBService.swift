@@ -40,7 +40,7 @@ class DBService
     
     init()
     {
-        let version: UInt64 = 11
+        let version: UInt64 = 12
         let config = Realm.Configuration(schemaVersion: version, migrationBlock: { (migration, oldVersion) in
             if oldVersion < 4 {
                 migration.enumerateObjects(ofType: Photo.className(), { (_, newObject) in
@@ -123,6 +123,12 @@ class DBService
                     newObject?["totalLikes"] = 0
                 })
             }
+            
+            if oldVersion < 12 {
+                migration.enumerateObjects(ofType: Message.className(), { (_, newObject) in
+                    newObject?["isRead"] = false
+                })
+            }
         }, deleteRealmIfMigrationNeeded: false)
         
         self.realm = try! Realm(configuration: config)
@@ -202,19 +208,7 @@ class DBService
             }
         }
     }
-    
-    func updateRead(_ id: String, isRead: Bool)
-    {
-        let predicate = NSPredicate(format: "id = %@ AND isDeleted = false", id)
-        guard let lmmProfile = self.realm.objects(LMMProfile.self).filter(predicate).first else { return }
-        guard lmmProfile.notRead != !isRead else { return }
         
-        self.write {
-            lmmProfile.notRead = !isRead
-            self.checkObjectsForUpdates([lmmProfile])
-        }
-    }
-    
     func forceMark(_ profile: LMMProfile, isSeen: Bool)
     {
         if self.realm.isInWriteTransaction {
@@ -290,9 +284,7 @@ class DBService
                 profile.messages.append(objectsIn: messages)
                 profile.messages.append(objectsIn: notSentMessages)
                 self.updateOrder(Array(profile.messages), silently: true)
-  
-                profile.notRead = (localCount != profile.messages.count) ? true : profile.notRead
-                
+
                 self.checkObjectsForUpdates([profile])
             }
         }

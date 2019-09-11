@@ -82,6 +82,8 @@ class ChatViewController: BaseViewController
         
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         
+        self.viewModel?.markAsRead()
+        
         self.setupBindings()
         self.textViewDidChange(self.messageTextView)
     }
@@ -298,8 +300,7 @@ class ChatViewController: BaseViewController
     }
     
     func closeChat(_ shouldMoveToMessages: Bool)
-    {        
-        self.viewModel?.markAsRead()
+    {
         ChatViewController.messagesCache[self.input.profile.id] = self.messageTextView.text
         
         self.messageTextView.resignFirstResponder()

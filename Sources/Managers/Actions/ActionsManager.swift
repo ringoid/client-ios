@@ -103,6 +103,18 @@ class ActionsManager
         }).disposed(by: self.disposeBag)
     }
     
+    func markMessageRead(_ messageId: String, oppositeUserId: String)
+    {
+        let createdAction = Action()
+        createdAction.actionTime = Date()
+        createdAction.type = ActionType.readMessage.rawValue
+        createdAction.setReadMessageData(oppositeUserId, messageId: messageId)
+        
+        self.db.add(createdAction).subscribe(onSuccess: { [weak self] _ in
+            self?.queue.append(createdAction)
+        }).disposed(by: self.disposeBag)
+    }
+    
     func commit()
     {
         guard self.apiService.isAuthorized.value else { return }
@@ -282,9 +294,7 @@ class ActionsManager
         
         let interval = Date().timeIntervalSince(date) * 1000.0
         self.add(FeedAction.viewChat(viewChatCount: 1, viewChatTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
-        
-        self.db.updateRead(profile.id, isRead: true)
-        
+
         var profiles = self.lmmViewingProfiles.value
         profiles.remove(profile.id)
         self.lmmViewingProfiles.accept(profiles)
