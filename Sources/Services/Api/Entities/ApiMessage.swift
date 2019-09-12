@@ -25,14 +25,14 @@ extension ApiMessage
         guard let wasYouSender = dict["wasYouSender"] as? Bool else { return nil }
         guard let text = dict["text"] as? String else { return nil }
         guard let unixTimestamp = dict["msgAt"] as? Int else { return nil }
-        //guard let isRead = dict["haveBeenRead"] as? Bool else { return nil }
+        guard let isRead = dict["haveBeenRead"] as? Bool else { return nil }
         
         return ApiMessage(
             id: id,
             wasYouSender: wasYouSender,
             text: text,
             timestamp: Date(timeIntervalSince1970: Double(unixTimestamp) / 1000.0),
-            isRead: false//isRead
+            isRead: isRead
         )
     }
 }

@@ -79,6 +79,7 @@ extension LMMProfile
     func isRead() -> Bool
     {
         for message in self.messages {
+            if message.wasYouSender { continue }
             if !message.isRead { return false }
         }
         

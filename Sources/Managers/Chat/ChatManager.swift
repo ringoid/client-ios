@@ -69,6 +69,7 @@ class ChatManager
     func markAsRead(_ profile: LMMProfile)
     {
         profile.messages.forEach({ message in
+            guard !message.wasYouSender else { return }
             guard !message.isRead else { return }
             
             self.actionsManager.markMessageRead(message.id, oppositeUserId: profile.id)
@@ -77,11 +78,12 @@ class ChatManager
             })
         })
         
-        
         // Marking as seen
         self.db.lmmDuplicates(profile.id).subscribe(onSuccess: { [weak self] duplicates in
             duplicates.forEach({ self?.db.forceMark($0, isSeen: true) })
             
         }).disposed(by: self.disposeBag)
+        
+        self.actionsManager.commit()
     }
 }

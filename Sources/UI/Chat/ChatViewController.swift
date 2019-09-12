@@ -82,10 +82,10 @@ class ChatViewController: BaseViewController
         
         NotificationCenter.default.addObserver(self, selector: #selector(onAppBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         
-        self.viewModel?.markAsRead()
-        
         self.setupBindings()
         self.textViewDidChange(self.messageTextView)
+        
+        self.viewModel?.markAsRead()
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -359,7 +359,12 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate
         guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as? ChatBaseCell else { return UITableViewCell() }
         
         if message.wasYouSender, let rightCell = cell as? ChatRightCell {
-            rightCell.state = self.sendingMessagesIds.contains(message.id) ? .sending : .sent
+            if message.isRead {
+                rightCell.state = .read
+            } else {
+                rightCell.state = self.sendingMessagesIds.contains(message.id) ? .sending : .sent
+            }
+            
             self.cellIdsMap[message.id] = rightCell
         }
         
