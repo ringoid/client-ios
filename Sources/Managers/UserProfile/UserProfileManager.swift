@@ -186,7 +186,9 @@ class UserProfileManager
     
     fileprivate func setupBindings()
     {
-        self.db.userPhotos().subscribeOn(MainScheduler.instance).bind(to: self.photos).disposed(by: self.disposeBag)
+        self.db.userPhotos().subscribe(onNext: { [weak self] userPhotos in
+            self?.photos.accept(userPhotos)
+        }).disposed(by: self.disposeBag)    
         
         self.storage.object(self.photoKey).subscribe(onSuccess: { [weak self] obj in
             self?.lastPhotoId.accept(String.create(obj))

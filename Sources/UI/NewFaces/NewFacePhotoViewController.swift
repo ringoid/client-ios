@@ -106,19 +106,19 @@ class NewFacePhotoViewController: UIViewController
         super.viewDidAppear(animated)
         
         guard self.input?.profile.isInvalidated == false else { return }
-        guard let actionProfile = self.input?.profile.actionInstance(), let origPhotoId = self.photo?.id else { return }
-        guard let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == origPhotoId }).first else { return }
+        guard let createdActionProfile = self.input?.profile.actionInstance(), let origPhotoId = self.photo?.id else { return }
+        guard let createdActionPhoto = createdActionProfile.orderedPhotos().filter({ $0.id == origPhotoId }).first else { return }
         
-        self.actionProfile = actionProfile
-        self.actionPhoto = actionPhoto
+        self.actionProfile = createdActionProfile
+        self.actionPhoto = createdActionPhoto
         
         self.input?.actionsManager.startViewAction(
-            actionProfile,
-            photo: actionPhoto,
+            createdActionProfile,
+            photo: createdActionPhoto,
             sourceType: self.input?.sourceType ?? .whoLikedMe
         )
         
-        if autoLikePhotoId == actionPhoto.id, self.input.profileManager.photos.value.count > 0 {
+        if autoLikePhotoId == createdActionPhoto.id, self.input.profileManager.photos.value.count > 0 {
             autoLikePhotoId = nil
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {

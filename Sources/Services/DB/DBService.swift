@@ -401,6 +401,9 @@ class DBService
     func resetNewFaces() -> Single<Void>
     {
         let profiles = self.realm.objects(NewFaceProfile.self)
+        
+        guard profiles.count != 0 else { return .just(()) }
+        
         return self.delete(Array(profiles))
     }
     

@@ -205,6 +205,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
     {
         guard let option = SettingsOptionType(rawValue: indexPath.row) else { return }
         
+        let isConnectionAvailable = self.input.actionsManager.checkConnectionState()
+        
         switch option {
         case .filter:
             self.performSegue(withIdentifier: SegueIds.filter, sender: nil)
@@ -234,13 +236,13 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
             break
             
         case .suggest:
-            if self.input.actionsManager.checkConnectionState() {
+            if isConnectionAvailable {
                 FeedbackManager.shared.showSuggestion(self, source: .settings, feedSource: nil)
             }
             break
             
         case .delete:
-            if self.input.actionsManager.checkConnectionState() {
+            if isConnectionAvailable {
                 let settingsManager = self.input.settingsManager
                 FeedbackManager.shared.showDeletion({ [weak self] in
                     self?.block()
