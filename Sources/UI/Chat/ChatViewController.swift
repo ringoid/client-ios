@@ -120,6 +120,7 @@ class ChatViewController: BaseViewController
     
     @IBAction func onClose()
     {
+        self.viewModel?.markAsRead()
         self.closeChat(false)
     }
     

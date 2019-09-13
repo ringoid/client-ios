@@ -335,7 +335,6 @@ class ActionsManager
             .do(onError: { [weak self] _ in
                 guard let `self` = self else { return }
                 
-                self.queue.insert(contentsOf: self.sendingActions, at: 0)
                 self.sendingActions.removeAll()
             })
             .flatMap({ [weak self] (date) -> Observable<Void> in
