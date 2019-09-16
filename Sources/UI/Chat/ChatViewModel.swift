@@ -98,6 +98,18 @@ class ChatViewModel
     
     fileprivate func isContentUpdated(_ updatedMessages: [Message]) -> Bool
     {
-        return self.messages.value.count <  updatedMessages.count
+        let localMessages = self.messages.value
+        
+        guard updatedMessages.count != 0 else { return false }
+        guard localMessages.count == updatedMessages.count else { return true }
+        
+        for (i, localMessage) in localMessages.enumerated() {
+            let updatedMessage = updatedMessages[i]
+            
+            if localMessage.id != updatedMessage.id { return true }
+            if localMessage.isRead != updatedMessage.isRead { return true }
+        }
+        
+        return false
     }
 }

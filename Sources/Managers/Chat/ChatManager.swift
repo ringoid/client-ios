@@ -36,7 +36,7 @@ class ChatManager
         message.text = text
         message.wasYouSender = true
         message.timestamp = Date()
-        message.isRead = true
+        message.isRead = false
         message.msgId = ""
         
         self.db.lmmDuplicates(profile.id).subscribe(onSuccess: { profiles in

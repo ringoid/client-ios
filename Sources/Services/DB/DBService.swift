@@ -277,12 +277,17 @@ class DBService
                 let remoteMessagesIds: [String] = messages.map({ $0.id })
                 
                 profile.messages.forEach({ localMessage in
-                    if !remoteMessagesIds.contains(localMessage.id) { notSentMessages.append(localMessage) }
+                    if  localMessage.msgId == "" && !remoteMessagesIds.contains(localMessage.id) {
+                        notSentMessages.append(localMessage)
+                    }
                 })
                 
+                var mergedMessages: [Message] = []
+                mergedMessages.append(contentsOf: messages)
+                mergedMessages.append(contentsOf: notSentMessages)
+                
                 profile.messages.removeAll()
-                profile.messages.append(objectsIn: messages)
-                profile.messages.append(objectsIn: notSentMessages)
+                profile.messages.append(objectsIn: mergedMessages)
                 self.updateOrder(Array(profile.messages), silently: true)
 
                 self.checkObjectsForUpdates([profile])
