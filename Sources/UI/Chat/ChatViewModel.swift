@@ -36,6 +36,7 @@ class ChatViewModel
     
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var updateTimer: Timer?
+    fileprivate var isReadCache: [String: Bool] = [:]
     
     deinit
     {
@@ -98,18 +99,19 @@ class ChatViewModel
     
     fileprivate func isContentUpdated(_ updatedMessages: [Message]) -> Bool
     {
-        let localMessages = self.messages.value
-        
-        guard updatedMessages.count != 0 else { return false }
-        guard localMessages.count == updatedMessages.count else { return true }
-        
-        for (i, localMessage) in localMessages.enumerated() {
-            let updatedMessage = updatedMessages[i]
-            
-            if localMessage.id != updatedMessage.id { return true }
-            if localMessage.isRead != updatedMessage.isRead { return true }
+        defer {
+            updatedMessages.forEach({ self.isReadCache[$0.id] = $0.isRead })
         }
         
-        return false
+        for message in updatedMessages
+        {
+            if let isRead = self.isReadCache[message.id] {
+                if isRead != message.isRead { return true }
+            } else {
+                return true
+            }
+        }
+        
+        return false 
     }
 }
