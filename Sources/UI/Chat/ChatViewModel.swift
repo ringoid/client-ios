@@ -100,6 +100,9 @@ class ChatViewModel
     
     fileprivate func isContentUpdated(_ updatedMessages: [Message]) -> Bool
     {
+        // TODO: check this again
+        return true
+        
         defer {
             updatedMessages.forEach({ self.isReadCache[$0.id] = $0.isRead })
         }
