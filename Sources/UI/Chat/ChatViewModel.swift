@@ -54,6 +54,7 @@ class ChatViewModel
     
     func send(_ text: String)
     {
+        self.markAsRead()
         self.input.chatManager.send(text,
                                     profile: self.input.profile,
                                     photo: self.input.photo,
