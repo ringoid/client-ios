@@ -11,6 +11,7 @@ import RealmSwift
 class Message: DBServiceObject
 {
     @objc dynamic var id: String!
+    @objc dynamic var msgId: String!
     @objc dynamic var wasYouSender: Bool = false
     @objc dynamic var text: String!
     @objc dynamic var timestamp: Date!
@@ -23,6 +24,7 @@ extension Message
     {
         let message = Message()
         message.id = self.id
+        message.msgId = self.msgId
         message.wasYouSender = self.wasYouSender
         message.text = self.text
         message.timestamp = self.timestamp

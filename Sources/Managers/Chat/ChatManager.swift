@@ -37,6 +37,7 @@ class ChatManager
         message.wasYouSender = true
         message.timestamp = Date()
         message.isRead = true
+        message.msgId = ""
         
         self.db.lmmDuplicates(profile.id).subscribe(onSuccess: { profiles in
             profiles.forEach {
@@ -72,7 +73,7 @@ class ChatManager
             guard !message.wasYouSender else { return }
             guard !message.isRead else { return }
             
-            self.actionsManager.markMessageRead(message.id, oppositeUserId: profile.id)
+            self.actionsManager.markMessageRead(message.msgId, oppositeUserId: profile.id)
             self.db.write({
                 message.isRead = true
             })

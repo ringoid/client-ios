@@ -127,6 +127,7 @@ class DBService
             if oldVersion < 12 {
                 migration.enumerateObjects(ofType: Message.className(), { (_, newObject) in
                     newObject?["isRead"] = false
+                    newObject?["msgId"] = ""
                 })
             }
         }, deleteRealmIfMigrationNeeded: false)
@@ -272,7 +273,6 @@ class DBService
                 profile.distanceText = distanceText
                 profile.totalLikes = totalLikes
                 
-                let localCount = profile.messages.count
                 var notSentMessages: [Message] = []
                 let remoteMessagesIds: [String] = messages.map({ $0.id })
                 

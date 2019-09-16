@@ -11,6 +11,7 @@ import Foundation
 struct ApiMessage
 {
     let id: String
+    let msgId: String
     let wasYouSender: Bool
     let text: String
     let timestamp: Date
@@ -26,9 +27,11 @@ extension ApiMessage
         guard let text = dict["text"] as? String else { return nil }
         guard let unixTimestamp = dict["msgAt"] as? Int else { return nil }
         guard let isRead = dict["haveBeenRead"] as? Bool else { return nil }
+        guard let msgId = dict["msgId"] as? String else { return nil }
         
         return ApiMessage(
             id: id,
+            msgId: msgId,
             wasYouSender: wasYouSender,
             text: text,
             timestamp: Date(timeIntervalSince1970: Double(unixTimestamp) / 1000.0),
