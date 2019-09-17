@@ -123,6 +123,9 @@ class NewFaceProfileViewController: UIViewController
             vc.onBottomOptionsBlock = { [weak self] in
                 self?.showBottomOptions()
             }
+            vc.onLikeBlock = { [weak self] in
+                self?.likeBtn.setImage(UIImage(named: "feed_like_selected"), for: .normal)
+            }
             vc.shouldPrioritizeDoubleTap = true
             
             return vc

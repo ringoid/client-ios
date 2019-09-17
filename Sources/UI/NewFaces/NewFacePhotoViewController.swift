@@ -36,6 +36,7 @@ class NewFacePhotoViewController: UIViewController
     
     var onChatBlock: (() -> ())?
     var onBottomOptionsBlock: (() -> ())?
+    var onLikeBlock: (() -> ())?
     
     fileprivate var actionProfile: ActionProfile?
     fileprivate var actionPhoto: ActionPhoto?
@@ -176,11 +177,13 @@ class NewFacePhotoViewController: UIViewController
             
         case .whoLikedMe:
             if let lmmProfile = input.profile as? LMMProfile {
+                self.onLikeBlock?()
                 GlobalAnimationManager.shared.playFlyUpIconAnimation(UIImage(named: "feed_effect_match")!, from: self.view, point: at, scaleFactor: 0.75)
                 self.input.transitionManager.move(lmmProfile, to: .messages)
             }
             
         case .newFaces:
+            self.onLikeBlock?()
             GlobalAnimationManager.shared.playFlyUpIconAnimation(UIImage(named: "feed_effect_like")!, from: self.view, point: at)
             self.input.transitionManager.removeAsLiked(input.profile)
             break

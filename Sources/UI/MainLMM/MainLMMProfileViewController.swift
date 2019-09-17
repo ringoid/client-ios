@@ -151,6 +151,10 @@ class MainLMMProfileViewController: UIViewController
                 self?.showBottomOptions(isChat)
             }
             
+            vc.onLikeBlock = { [weak self] in
+                self?.likeBtn.setImage(UIImage(named: "feed_like_selected"), for: .normal)
+            }
+            
             vc.shouldPrioritizeDoubleTap = !isChat
             
             return vc
