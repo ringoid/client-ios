@@ -649,7 +649,7 @@ see who likes you</string>
                             <constraint firstItem="GNe-2F-xlI" firstAttribute="top" secondItem="Y6w-eN-oCn" secondAttribute="top" id="M3J-bw-5kd"/>
                             <constraint firstItem="Y6w-eN-oCn" firstAttribute="centerY" secondItem="GNe-2F-xlI" secondAttribute="centerY" id="NNr-yW-K5g"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="centerX" secondItem="lGR-yG-LEW" secondAttribute="centerX" id="NaJ-Wi-l5L"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="duK-qX-ktj" secondAttribute="bottom" id="SYR-al-KFo"/>
+                            <constraint firstAttribute="bottom" secondItem="duK-qX-ktj" secondAttribute="bottom" id="SYR-al-KFo"/>
                             <constraint firstItem="lT4-ql-cww" firstAttribute="bottom" secondItem="kYa-nc-a14" secondAttribute="bottom" id="UCV-bF-ytY"/>
                             <constraint firstItem="2Wc-Ed-6t2" firstAttribute="top" secondItem="ekE-T8-wuA" secondAttribute="top" constant="118" id="UE3-94-yVQ" userLabel="MessageTopOffset"/>
                             <constraint firstItem="SiD-cq-hiE" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="Ugn-Ij-0jh"/>
@@ -681,7 +681,7 @@ see who likes you</string>
                             <constraint firstItem="BPd-OE-Pen" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="o9z-7c-j1E"/>
                             <constraint firstAttribute="bottom" secondItem="aaP-rq-Yo0" secondAttribute="bottom" id="upb-Ga-lkN"/>
                             <constraint firstItem="r1y-kA-ocU" firstAttribute="top" secondItem="lT4-ql-cww" secondAttribute="bottom" constant="10" id="vbd-6j-QEC"/>
-                            <constraint firstItem="dlp-dl-iCM" firstAttribute="bottom" secondItem="BPd-OE-Pen" secondAttribute="bottom" constant="40" id="yDW-xc-aqJ"/>
+                            <constraint firstAttribute="bottom" secondItem="BPd-OE-Pen" secondAttribute="bottom" constant="40" id="yDW-xc-aqJ"/>
                             <constraint firstItem="eDJ-qT-P4s" firstAttribute="leading" secondItem="ekE-T8-wuA" secondAttribute="leading" constant="16" id="zuL-7R-2xV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dlp-dl-iCM"/>
