@@ -126,7 +126,7 @@ class DBService
             
             if oldVersion < 12 {
                 migration.enumerateObjects(ofType: Message.className(), { (_, newObject) in
-                    newObject?["isRead"] = false
+                    newObject?["isRead"] = true
                     newObject?["msgId"] = ""
                 })
             }
