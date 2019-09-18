@@ -40,7 +40,7 @@ class DBService
     
     init()
     {
-        let version: UInt64 = 12
+        let version: UInt64 = 13
         let config = Realm.Configuration(schemaVersion: version, migrationBlock: { (migration, oldVersion) in
             if oldVersion < 4 {
                 migration.enumerateObjects(ofType: Photo.className(), { (_, newObject) in
