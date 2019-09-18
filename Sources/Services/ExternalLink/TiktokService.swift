@@ -32,7 +32,7 @@ class TiktokService: ExternalLinkService
             result = link.replacingOccurrences(of: " ", with: "").trimmingCharacters(in: tiktokEscapeCharacters)
         }
         
-        return result
+        return result.lowercased()
     }
     
     func move(_ to: String)
