@@ -22,6 +22,7 @@ class LMMProfile: Profile
     @objc dynamic var defaultSortingOrderPosition: Int = 0
     @objc dynamic var notSeen: Bool = true
     @objc dynamic var type: Int = 0
+    @objc dynamic var notRead: Bool = true
     
     let messages: List<Message> = List<Message>()
 }
@@ -78,6 +79,9 @@ extension LMMProfile
 {
     func isRead() -> Bool
     {
+        return !self.notRead
+        
+        //TODO: use after migration
         guard self.messages.count > 0 else { return false }
         
         for message in self.messages {

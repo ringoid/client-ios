@@ -294,6 +294,10 @@ class ActionsManager
         
         let interval = Date().timeIntervalSince(date) * 1000.0
         self.add(FeedAction.viewChat(viewChatCount: 1, viewChatTime: Int(interval), actionTime: date), profile: profile, photo: photo, source: sourceType)
+        
+        // TODO: remove after migration --------
+        self.db.updateRead(profile.id, isRead: true)
+        // -----------------------------
 
         var profiles = self.lmmViewingProfiles.value
         profiles.remove(profile.id)

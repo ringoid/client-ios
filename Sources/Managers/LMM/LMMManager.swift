@@ -185,6 +185,34 @@ class LMMManager
             let localLikesYou = createProfiles(likesYouResult, type: .likesYou)
             let messages = createProfiles(messagesResult, type: .messages)
             
+            // TODO: remove after migration --------
+            
+            messages.forEach { remoteProfile in
+                remoteProfile.notRead = remoteProfile.messages.count > 0
+                
+                // matches case
+                if remoteProfile.messages.count == 0 {
+                    remoteProfile.notSeen = true
+                }
+                
+                self.chatsCache.forEach { localProfileId, profileCache in
+                    if localProfileId == remoteProfile.id {
+                        if profileCache.messagesCount == remoteProfile.messages.count {
+                            remoteProfile.notRead = profileCache.notRead
+                        } else {
+                            remoteProfile.notRead = true
+                        }
+                        
+                        // matches case
+                        if remoteProfile.messages.count == 0 , profileCache.messagesCount == remoteProfile.messages.count {
+                            remoteProfile.notSeen = profileCache.notSeen
+                        }
+                    }
+                }
+            }
+            
+            // ---------------------------------------
+            
             self.filteredLikesYouProfilesCount.accept(self.tmpFilteredLikesYouProfilesCount.value)
             self.filteredMessagesProfilesCount.accept(self.tmpFilteredMessagesProfilesCount.value)
             self.allLikesYouProfilesCount.accept(self.tmpAllLikesYouProfilesCount.value)
@@ -211,6 +239,33 @@ class LMMManager
             
             let localLikesYou = createProfiles(result.likesYou, type: .likesYou)            
             let messages = createProfiles(result.messages, type: .messages)
+            
+            // TODO: remove after migration --------
+            messages.forEach { remoteProfile in
+                remoteProfile.notRead = remoteProfile.messages.count > 0
+                
+                // matches case
+                if remoteProfile.messages.count == 0 {
+                    remoteProfile.notSeen = true
+                }
+                
+                self.chatsCache.forEach { localProfileId, profileCache in
+                    if localProfileId == remoteProfile.id {
+                        if profileCache.messagesCount == remoteProfile.messages.count {
+                            remoteProfile.notRead = profileCache.notRead
+                        } else {
+                            remoteProfile.notRead = true
+                        }
+                        
+                        // matches case
+                        if remoteProfile.messages.count == 0 , profileCache.messagesCount == remoteProfile.messages.count {
+                            remoteProfile.notSeen = profileCache.notSeen
+                        }
+                    }
+                }
+            }
+            
+            // -----------------------------------
             
             return self.db.add(localLikesYou + messages).asObservable().do(onNext: { [weak self] _ in
                 self?.updateProfilesPrevState(true)

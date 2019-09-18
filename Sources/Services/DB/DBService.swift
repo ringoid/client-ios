@@ -209,6 +209,20 @@ class DBService
             }
         }
     }
+    
+    // TODO: remove after migration --------
+    func updateRead(_ id: String, isRead: Bool)
+    {
+        let predicate = NSPredicate(format: "id = %@ AND isDeleted = false", id)
+        guard let lmmProfile = self.realm.objects(LMMProfile.self).filter(predicate).first else { return }
+        guard lmmProfile.notRead != !isRead else { return }
+        
+        self.write {
+            lmmProfile.notRead = !isRead
+            self.checkObjectsForUpdates([lmmProfile])
+        }
+    }
+    // --------------------------------
         
     func forceMark(_ profile: LMMProfile, isSeen: Bool)
     {
@@ -273,6 +287,7 @@ class DBService
                 profile.distanceText = distanceText
                 profile.totalLikes = totalLikes
                 
+                let localCount = profile.messages.count
                 var notSentMessages: [Message] = []
                 let remoteMessagesIds: [String] = messages.map({ $0.id })
                 
@@ -289,6 +304,10 @@ class DBService
                 profile.messages.removeAll()
                 profile.messages.append(objectsIn: mergedMessages)
                 self.updateOrder(Array(profile.messages), silently: true)
+                
+                // TODO: remove after migration --------
+                profile.notRead = (localCount != profile.messages.count) ? true : profile.notRead
+                // ------------------------------
 
                 self.checkObjectsForUpdates([profile])
             }

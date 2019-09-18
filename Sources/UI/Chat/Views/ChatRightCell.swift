@@ -19,15 +19,17 @@ class ChatRightCell: ChatBaseCell
     var state: ChatMessageState = .sending
     {
         didSet {
-            var iconName: String = ""
-            
-            switch self.state {
-            case .sending: iconName = ""
-            case .sent: iconName = "chat_checkmark"
-            case .read: iconName = "chat_checkmarks"
-            }
-            
-            self.checkmarckImageView.image = UIImage(named: iconName)
+            // TODO: remove after migration --------
+//            var iconName: String = ""
+//            
+//            switch self.state {
+//            case .sending: iconName = ""
+//            case .sent: iconName = "chat_checkmark"
+//            case .read: iconName = "chat_checkmarks"
+//            }
+//            
+//            self.checkmarckImageView.image = UIImage(named: iconName)
+            // ----------------------------------------------
         }
     }
     
