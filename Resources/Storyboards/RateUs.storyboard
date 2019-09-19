@@ -30,25 +30,25 @@
                                         <blurEffect style="extraLight"/>
                                     </visualEffectView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYu-YU-gJs">
-                                        <rect key="frame" x="30" y="32" width="240" height="64"/>
+                                        <rect key="frame" x="40" y="32" width="220" height="64"/>
                                         <subviews>
                                             <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2F-Vh-8Qe">
-                                                <rect key="frame" x="0.0" y="0.0" width="240" height="64"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="220" height="64"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_us_star_empty" translatesAutoresizingMaskIntoConstraints="NO" id="qbD-oj-Iak">
-                                                        <rect key="frame" x="0.0" y="0.0" width="48" height="64"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="44" height="64"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_us_star_empty" translatesAutoresizingMaskIntoConstraints="NO" id="m6Z-Sb-vbz">
-                                                        <rect key="frame" x="48" y="0.0" width="48" height="64"/>
+                                                        <rect key="frame" x="44" y="0.0" width="44" height="64"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_us_star_empty" translatesAutoresizingMaskIntoConstraints="NO" id="ag7-Pz-6Bd">
-                                                        <rect key="frame" x="96" y="0.0" width="48" height="64"/>
+                                                        <rect key="frame" x="88" y="0.0" width="44" height="64"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_us_star_empty" translatesAutoresizingMaskIntoConstraints="NO" id="DmG-qy-rVw">
-                                                        <rect key="frame" x="144" y="0.0" width="48" height="64"/>
+                                                        <rect key="frame" x="132" y="0.0" width="44" height="64"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_us_star_empty" translatesAutoresizingMaskIntoConstraints="NO" id="FcK-q3-SxI">
-                                                        <rect key="frame" x="192" y="0.0" width="48" height="64"/>
+                                                        <rect key="frame" x="176" y="0.0" width="44" height="64"/>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
@@ -63,8 +63,8 @@
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="k2F-Vh-8Qe" secondAttribute="trailing" id="EyQ-t2-3c8"/>
+                                            <constraint firstAttribute="width" constant="220" id="ZLb-YC-SJ9"/>
                                             <constraint firstItem="k2F-Vh-8Qe" firstAttribute="top" secondItem="jYu-YU-gJs" secondAttribute="top" id="aYW-ed-v35"/>
-                                            <constraint firstAttribute="width" constant="240" id="aml-Am-JqF"/>
                                             <constraint firstItem="k2F-Vh-8Qe" firstAttribute="leading" secondItem="jYu-YU-gJs" secondAttribute="leading" id="er6-a1-8oP"/>
                                             <constraint firstAttribute="height" constant="64" id="nFY-ob-9xo"/>
                                             <constraint firstAttribute="bottom" secondItem="k2F-Vh-8Qe" secondAttribute="bottom" id="p9S-MV-MTB"/>
@@ -152,6 +152,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="rate_us_star_empty" width="23" height="22"/>
+        <image name="rate_us_star_empty" width="34" height="33"/>
     </resources>
 </document>
