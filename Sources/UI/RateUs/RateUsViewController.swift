@@ -10,15 +10,18 @@ import UIKit
 
 class RateUsViewController: BaseViewController
 {
+    var onLowRate: (() -> ())?
+    
+    var starsView: [UIImageView] = []
+    var rating: Int? = nil
+    
     @IBOutlet fileprivate weak var star1ImageView: UIImageView!
     @IBOutlet fileprivate weak var star2ImageView: UIImageView!
     @IBOutlet fileprivate weak var star3ImageView: UIImageView!
     @IBOutlet fileprivate weak var star4ImageView: UIImageView!
     @IBOutlet fileprivate weak var star5ImageView: UIImageView!
     @IBOutlet fileprivate weak var panelView: UIView!
-    
-    var starsView: [UIImageView] = []
-    var rating: Int? = nil
+    @IBOutlet fileprivate weak var reviewBtn: UIButton!
     
     override func viewDidLoad()
     {
@@ -44,7 +47,16 @@ class RateUsViewController: BaseViewController
     
     @IBAction func rateAction()
     {
-        self.moveToAppstore()
+        self.dismiss(animated: false) { [weak self] in
+            guard let `self` = self else { return }
+            guard let rating = self.rating else { return }
+            
+            if rating > 3 {
+                self.moveToAppstore()
+            } else {
+                self.onLowRate?()
+            }
+        }
     }
     
     @IBAction func tapAction(_ recognizer: UITapGestureRecognizer)
@@ -54,7 +66,6 @@ class RateUsViewController: BaseViewController
         let location = recognizer.location(in: barView)
         let width = self.panelView.bounds.width
         let index = Int(location.x / (width / 5.0))
-        self.rating = index + 1
         
         self.updateStars(index)
     }
@@ -66,7 +77,6 @@ class RateUsViewController: BaseViewController
         let location = recognizer.location(in: barView)
         let width = self.panelView.bounds.width
         let index = Int(location.x / (width / 5.0))
-        self.rating = index + 1
         
         self.updateStars(index)
     }
@@ -83,6 +93,12 @@ class RateUsViewController: BaseViewController
     
     fileprivate func updateStars(_ index: Int)
     {
+        guard self.rating != index + 1 else { return }
+        
+        self.rating = index + 1
+        
+        self.reviewBtn.isEnabled = true
+        
         let emptyStarImage = UIImage(named: "rate_us_star_empty")
         let selectedStarImage = UIImage(named: "rate_us_star_selected")
         

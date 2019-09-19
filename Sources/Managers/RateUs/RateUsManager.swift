@@ -18,6 +18,9 @@ class RateUsManager
     {
         let vc = Storyboards.rateUs().instantiateViewController(withIdentifier: "rate_us") as! RateUsViewController
         vc.modalPresentationStyle = .overFullScreen
+        vc.onLowRate = {
+            FeedbackManager.shared.showSuggestion(from, source: .chat, feedSource: .messages)
+        }
         
         from.present(vc, animated: false, completion: nil)
     }
