@@ -21,6 +21,7 @@ class Storyboards
     fileprivate static let chatStoryboard: UIStoryboard = UIStoryboard(name: "Chat", bundle: nil)
     fileprivate static let settingsStoryboard: UIStoryboard = UIStoryboard(name: "Settings", bundle: nil)
     fileprivate static let feedbackStoryboard: UIStoryboard = UIStoryboard(name: "Feedback", bundle: nil)
+    fileprivate static let rateUsStoryboard: UIStoryboard = UIStoryboard(name: "RateUs", bundle: nil)
     
     static func root() -> UIStoryboard
     {
@@ -65,5 +66,10 @@ class Storyboards
     static func feedback() -> UIStoryboard
     {
         return Storyboards.feedbackStoryboard
+    }
+    
+    static func rateUs() -> UIStoryboard
+    {
+        return Storyboards.rateUsStoryboard
     }
 }

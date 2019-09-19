@@ -88,12 +88,17 @@ class MainViewController: BaseViewController
         
         self.setupBindings()
         
-//        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showDebugLikesCount))
-//        tapRecognizer.numberOfTapsRequired = 2
-//        self.likeBtn.addGestureRecognizer(tapRecognizer)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showDebugRateUsAlert))
+        tapRecognizer.numberOfTapsRequired = 2
+        self.likeBtn.addGestureRecognizer(tapRecognizer)
     }
     
     #if STAGE
+    @objc func showDebugRateUsAlert()
+    {
+        RateUsManager.shared.showAlert(self)
+    }
+    
     @objc func showDebugLikesCount()
     {
         let size = self.likeBtn.bounds.size

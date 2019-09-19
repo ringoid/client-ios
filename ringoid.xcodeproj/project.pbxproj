@@ -444,6 +444,10 @@
 		57EEB0AE22C20CF4005770B3 /* IncomeTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0AC22C20CF4005770B3 /* IncomeTitles.swift */; };
 		57EEB0B022C2100A005770B3 /* TransportTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0AF22C2100A005770B3 /* TransportTitles.swift */; };
 		57EEB0B122C2100A005770B3 /* TransportTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0AF22C2100A005770B3 /* TransportTitles.swift */; };
+		57F738742333911800E054BE /* RateUsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F738732333911800E054BE /* RateUsManager.swift */; };
+		57F738752333911800E054BE /* RateUsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F738732333911800E054BE /* RateUsManager.swift */; };
+		57F738782333955D00E054BE /* RateUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F738772333955D00E054BE /* RateUsViewController.swift */; };
+		57F738792333955D00E054BE /* RateUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F738772333955D00E054BE /* RateUsViewController.swift */; };
 		57F93C27233376BB00BCF797 /* RateUs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57F93C26233376BB00BCF797 /* RateUs.storyboard */; };
 		57F93C28233376BB00BCF797 /* RateUs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57F93C26233376BB00BCF797 /* RateUs.storyboard */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
@@ -685,6 +689,8 @@
 		57EEB0A922C20718005770B3 /* PropertyTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTitles.swift; sourceTree = "<group>"; };
 		57EEB0AC22C20CF4005770B3 /* IncomeTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeTitles.swift; sourceTree = "<group>"; };
 		57EEB0AF22C2100A005770B3 /* TransportTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportTitles.swift; sourceTree = "<group>"; };
+		57F738732333911800E054BE /* RateUsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateUsManager.swift; sourceTree = "<group>"; };
+		57F738772333955D00E054BE /* RateUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateUsViewController.swift; sourceTree = "<group>"; };
 		57F93C26233376BB00BCF797 /* RateUs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RateUs.storyboard; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
@@ -775,6 +781,7 @@
 		570D047321DCE3DA00E0DCFB /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				57F738762333953600E054BE /* RateUs */,
 				573D1163228DA08300CD9C2D /* Feedback */,
 				57FB7BD121E74C1000AAA29D /* Storyboards */,
 				57585D6521E4FEAB00038798 /* Common */,
@@ -860,6 +867,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				57F738722333902500E054BE /* RateUs */,
 				57AABCDF231796AC0014EE3B /* ExternalLink */,
 				57AE8974230692D100123AA6 /* Achivement */,
 				5751561922E1DBC9009E7743 /* Filter */,
@@ -1539,6 +1547,22 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		57F738722333902500E054BE /* RateUs */ = {
+			isa = PBXGroup;
+			children = (
+				57F738732333911800E054BE /* RateUsManager.swift */,
+			);
+			path = RateUs;
+			sourceTree = "<group>";
+		};
+		57F738762333953600E054BE /* RateUs */ = {
+			isa = PBXGroup;
+			children = (
+				57F738772333955D00E054BE /* RateUsViewController.swift */,
+			);
+			path = RateUs;
+			sourceTree = "<group>";
+		};
 		57FB7BC221E61BC700AAA29D /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -1934,6 +1958,7 @@
 				57BEB67F2213F306000BD768 /* SettingsLocaleCell.swift in Sources */,
 				57EE64CB2215304000246B45 /* SettingsLegalTermsCell.swift in Sources */,
 				570D04AD21DDD2A900E0DCFB /* RootViewController.swift in Sources */,
+				57F738742333911800E054BE /* RateUsManager.swift in Sources */,
 				57B863F421EF5BCD00B9CC70 /* ApiViewAction.swift in Sources */,
 				570D04C121DF4E1F00E0DCFB /* Alerts.swift in Sources */,
 				576FC126220486A100BA5ABE /* Types.swift in Sources */,
@@ -2043,6 +2068,7 @@
 				57B6CCA82328D30700A26BF8 /* ApiReadMessageAction.swift in Sources */,
 				57801A87222FF049005A9731 /* SettingsDebugLogViewController.swift in Sources */,
 				57ED486D224B82C10033EB0B /* NotificationsService.swift in Sources */,
+				57F738782333955D00E054BE /* RateUsViewController.swift in Sources */,
 				5751562622E1EA9E009E7743 /* TapticEngine.swift in Sources */,
 				57B863F621EF5C4900B9CC70 /* ApiBlockAction.swift in Sources */,
 				57585D6421E4C73600038798 /* NewFacesViewModel.swift in Sources */,
@@ -2248,12 +2274,14 @@
 				57EE65092216711000246B45 /* SettingsDeleteCell.swift in Sources */,
 				57EE650A2216711000246B45 /* MainLMMProfileViewController.swift in Sources */,
 				57EE650B2216711000246B45 /* ApiLikeAction.swift in Sources */,
+				57F738752333911800E054BE /* RateUsManager.swift in Sources */,
 				57EE650C2216711000246B45 /* KeyboardListener.swift in Sources */,
 				57EE650D2216711000246B45 /* ChatBaseCell.swift in Sources */,
 				57905253231D4C9F0041B9CA /* SettingsNotificationVibrationCell.swift in Sources */,
 				57EE650E2216711000246B45 /* ApiAction.swift in Sources */,
 				57EEB0A822C20132005770B3 /* ChildrenTitles.swift in Sources */,
 				57CFFB6922E8474400DC2378 /* SettingsFilterViewController.swift in Sources */,
+				57F738792333955D00E054BE /* RateUsViewController.swift in Sources */,
 				57EE650F2216711000246B45 /* DiagonalGradientView.swift in Sources */,
 				57EEB09922BFA3DA005770B3 /* EducationTitles.swift in Sources */,
 				57EE65102216711000246B45 /* SettingsLegalLicensesCell.swift in Sources */,

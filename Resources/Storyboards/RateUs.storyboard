@@ -10,15 +10,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Rate Us View Controller-->
         <scene sceneID="tLH-7v-9pO">
             <objects>
-                <viewController id="pHl-Oz-Id4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="rate_us" modalPresentationStyle="overFullScreen" id="pHl-Oz-Id4" customClass="RateUsViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fxv-za-Hxh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-bg-9D1">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-bg-9D1">
                                 <rect key="frame" x="57" y="318" width="300" height="260"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tr2-zB-hmZ">
@@ -75,6 +75,9 @@
                                             <constraint firstAttribute="height" constant="44" id="y7y-7w-xcs"/>
                                         </constraints>
                                         <state key="normal" title="Not now"/>
+                                        <connections>
+                                            <action selector="notNowAction" destination="pHl-Oz-Id4" eventType="touchUpInside" id="ae7-Zq-8O7"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqd-Wy-EeK">
                                         <rect key="frame" x="150" y="216" width="150" height="44"/>
@@ -82,6 +85,9 @@
                                             <constraint firstAttribute="height" constant="44" id="JCH-14-dVu"/>
                                         </constraints>
                                         <state key="normal" title="Review"/>
+                                        <connections>
+                                            <action selector="rateAction" destination="pHl-Oz-Id4" eventType="touchUpInside" id="7Jy-FO-GX7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
