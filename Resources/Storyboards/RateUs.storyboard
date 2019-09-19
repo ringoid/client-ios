@@ -60,6 +60,7 @@
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="k2F-Vh-8Qe" secondAttribute="trailing" id="EyQ-t2-3c8"/>
                                             <constraint firstItem="k2F-Vh-8Qe" firstAttribute="top" secondItem="jYu-YU-gJs" secondAttribute="top" id="aYW-ed-v35"/>
@@ -68,6 +69,10 @@
                                             <constraint firstAttribute="height" constant="64" id="nFY-ob-9xo"/>
                                             <constraint firstAttribute="bottom" secondItem="k2F-Vh-8Qe" secondAttribute="bottom" id="p9S-MV-MTB"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="grq-KD-Ut0" appends="YES" id="CMj-BH-L9J"/>
+                                            <outletCollection property="gestureRecognizers" destination="Wph-KB-5UQ" appends="YES" id="shA-MB-Ne4"/>
+                                        </connections>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9y3-Gw-nVq">
                                         <rect key="frame" x="0.0" y="216" width="150" height="44"/>
@@ -122,8 +127,26 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jqt-8d-6lV"/>
                     </view>
+                    <connections>
+                        <outlet property="panelView" destination="jYu-YU-gJs" id="vOc-jb-TlP"/>
+                        <outlet property="star1ImageView" destination="qbD-oj-Iak" id="16P-dN-rje"/>
+                        <outlet property="star2ImageView" destination="m6Z-Sb-vbz" id="fD6-2d-3xH"/>
+                        <outlet property="star3ImageView" destination="ag7-Pz-6Bd" id="0ji-dH-rc2"/>
+                        <outlet property="star4ImageView" destination="DmG-qy-rVw" id="sUj-2L-y0Y"/>
+                        <outlet property="star5ImageView" destination="FcK-q3-SxI" id="IfR-JB-bQX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bOL-D2-bhL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="grq-KD-Ut0">
+                    <connections>
+                        <action selector="tapAction:" destination="pHl-Oz-Id4" id="CX9-qA-7VC"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="Wph-KB-5UQ">
+                    <connections>
+                        <action selector="panAction:" destination="pHl-Oz-Id4" id="OT0-LF-N9z"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-340" y="-58"/>
         </scene>
