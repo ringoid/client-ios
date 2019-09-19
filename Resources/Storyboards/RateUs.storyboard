@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tLH-7v-9pO">
+            <objects>
+                <viewController id="pHl-Oz-Id4" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fxv-za-Hxh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lj1-bg-9D1">
+                                <rect key="frame" x="57" y="318" width="300" height="260"/>
+                                <subviews>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tr2-zB-hmZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="260"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XY0-GD-IOC">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="260"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <blurEffect style="extraLight"/>
+                                    </visualEffectView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9y3-Gw-nVq">
+                                        <rect key="frame" x="0.0" y="216" width="150" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="y7y-7w-xcs"/>
+                                        </constraints>
+                                        <state key="normal" title="Not now"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqd-Wy-EeK">
+                                        <rect key="frame" x="150" y="216" width="150" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="JCH-14-dVu"/>
+                                        </constraints>
+                                        <state key="normal" title="Review"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="nqd-Wy-EeK" firstAttribute="leading" secondItem="9y3-Gw-nVq" secondAttribute="trailing" id="2rw-Pc-gx6"/>
+                                    <constraint firstItem="nqd-Wy-EeK" firstAttribute="width" secondItem="9y3-Gw-nVq" secondAttribute="width" id="7J9-jV-Ark"/>
+                                    <constraint firstItem="tr2-zB-hmZ" firstAttribute="top" secondItem="lj1-bg-9D1" secondAttribute="top" id="97K-Ln-kjm"/>
+                                    <constraint firstItem="9y3-Gw-nVq" firstAttribute="leading" secondItem="lj1-bg-9D1" secondAttribute="leading" id="BYO-bC-mT3"/>
+                                    <constraint firstAttribute="bottom" secondItem="tr2-zB-hmZ" secondAttribute="bottom" id="G88-Ig-P7X"/>
+                                    <constraint firstAttribute="trailing" secondItem="tr2-zB-hmZ" secondAttribute="trailing" id="NbV-Aw-tSj"/>
+                                    <constraint firstAttribute="trailing" secondItem="nqd-Wy-EeK" secondAttribute="trailing" id="Onh-cj-9z9"/>
+                                    <constraint firstAttribute="width" constant="300" id="dN7-q9-L0u"/>
+                                    <constraint firstAttribute="height" constant="260" id="eEL-Fo-6lT"/>
+                                    <constraint firstAttribute="bottom" secondItem="nqd-Wy-EeK" secondAttribute="bottom" id="gzs-yq-6p2"/>
+                                    <constraint firstAttribute="bottom" secondItem="9y3-Gw-nVq" secondAttribute="bottom" id="kcm-ao-jfu"/>
+                                    <constraint firstItem="tr2-zB-hmZ" firstAttribute="leading" secondItem="lj1-bg-9D1" secondAttribute="leading" id="xSC-4V-fje"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="oGh-iJ-YOa"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="13"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lj1-bg-9D1" firstAttribute="centerY" secondItem="fxv-za-Hxh" secondAttribute="centerY" id="Fu0-22-Dc9"/>
+                            <constraint firstItem="lj1-bg-9D1" firstAttribute="centerX" secondItem="fxv-za-Hxh" secondAttribute="centerX" id="JzD-RB-Jxl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Jqt-8d-6lV"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bOL-D2-bhL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-340" y="-58"/>
+        </scene>
+    </scenes>
+</document>

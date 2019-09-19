@@ -444,6 +444,8 @@
 		57EEB0AE22C20CF4005770B3 /* IncomeTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0AC22C20CF4005770B3 /* IncomeTitles.swift */; };
 		57EEB0B022C2100A005770B3 /* TransportTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0AF22C2100A005770B3 /* TransportTitles.swift */; };
 		57EEB0B122C2100A005770B3 /* TransportTitles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EEB0AF22C2100A005770B3 /* TransportTitles.swift */; };
+		57F93C27233376BB00BCF797 /* RateUs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57F93C26233376BB00BCF797 /* RateUs.storyboard */; };
+		57F93C28233376BB00BCF797 /* RateUs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57F93C26233376BB00BCF797 /* RateUs.storyboard */; };
 		57F98DB421F2161700A09876 /* MainLMMMContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */; };
 		57F98DB621F4A23600A09876 /* DBServiceObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F98DB521F4A23600A09876 /* DBServiceObject.swift */; };
 		57FB7BC121E61B8000AAA29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB7BC021E61B8000AAA29D /* Main.storyboard */; };
@@ -683,6 +685,7 @@
 		57EEB0A922C20718005770B3 /* PropertyTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTitles.swift; sourceTree = "<group>"; };
 		57EEB0AC22C20CF4005770B3 /* IncomeTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeTitles.swift; sourceTree = "<group>"; };
 		57EEB0AF22C2100A005770B3 /* TransportTitles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportTitles.swift; sourceTree = "<group>"; };
+		57F93C26233376BB00BCF797 /* RateUs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RateUs.storyboard; sourceTree = "<group>"; };
 		57F98DB321F2161700A09876 /* MainLMMMContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMContainerViewController.swift; sourceTree = "<group>"; };
 		57F98DB521F4A23600A09876 /* DBServiceObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBServiceObject.swift; sourceTree = "<group>"; };
 		57FB7BC021E61B8000AAA29D /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -905,6 +908,7 @@
 				579CD7AD21F8603500C3AEE3 /* Settings.storyboard */,
 				579CD7BD21F99EDE00C3AEE3 /* Chat.storyboard */,
 				573D115F228D9E5000CD9C2D /* Feedback.storyboard */,
+				57F93C26233376BB00BCF797 /* RateUs.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1680,6 +1684,7 @@
 				576FC11D2201EBC400BA5ABE /* Localizable.strings in Resources */,
 				577DDAE82264B3E3001D7D24 /* InfoPlist.strings in Resources */,
 				570D04AA21DDCF3200E0DCFB /* Root.storyboard in Resources */,
+				57F93C27233376BB00BCF797 /* RateUs.storyboard in Resources */,
 				570D047621DCE3DA00E0DCFB /* Assets.xcassets in Resources */,
 				57850307225745380056120A /* GoogleService-Info.plist in Resources */,
 				57B863CC21ECD32100B9CC70 /* MainLMM.storyboard in Resources */,
@@ -1701,6 +1706,7 @@
 				57EE65482216711000246B45 /* Localizable.strings in Resources */,
 				577DDAE92264B3E3001D7D24 /* InfoPlist.strings in Resources */,
 				57EE65492216711000246B45 /* Root.storyboard in Resources */,
+				57F93C28233376BB00BCF797 /* RateUs.storyboard in Resources */,
 				57EE654A2216711000246B45 /* Assets.xcassets in Resources */,
 				57850305225743A60056120A /* GoogleService-Info.plist in Resources */,
 				57EE654B2216711000246B45 /* MainLMM.storyboard in Resources */,
