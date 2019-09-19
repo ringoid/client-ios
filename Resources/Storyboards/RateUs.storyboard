@@ -29,6 +29,46 @@
                                         </view>
                                         <blurEffect style="extraLight"/>
                                     </visualEffectView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYu-YU-gJs">
+                                        <rect key="frame" x="30" y="32" width="240" height="64"/>
+                                        <subviews>
+                                            <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2F-Vh-8Qe">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="64"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_us_star_empty" translatesAutoresizingMaskIntoConstraints="NO" id="qbD-oj-Iak">
+                                                        <rect key="frame" x="0.0" y="0.0" width="48" height="64"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_us_star_empty" translatesAutoresizingMaskIntoConstraints="NO" id="m6Z-Sb-vbz">
+                                                        <rect key="frame" x="48" y="0.0" width="48" height="64"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_us_star_empty" translatesAutoresizingMaskIntoConstraints="NO" id="ag7-Pz-6Bd">
+                                                        <rect key="frame" x="96" y="0.0" width="48" height="64"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_us_star_empty" translatesAutoresizingMaskIntoConstraints="NO" id="DmG-qy-rVw">
+                                                        <rect key="frame" x="144" y="0.0" width="48" height="64"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate_us_star_empty" translatesAutoresizingMaskIntoConstraints="NO" id="FcK-q3-SxI">
+                                                        <rect key="frame" x="192" y="0.0" width="48" height="64"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="ag7-Pz-6Bd" firstAttribute="width" secondItem="qbD-oj-Iak" secondAttribute="width" id="0PX-dm-jly"/>
+                                                    <constraint firstItem="m6Z-Sb-vbz" firstAttribute="width" secondItem="qbD-oj-Iak" secondAttribute="width" id="CV7-R2-3P3"/>
+                                                    <constraint firstItem="DmG-qy-rVw" firstAttribute="width" secondItem="qbD-oj-Iak" secondAttribute="width" id="Qhn-xL-3Xi"/>
+                                                    <constraint firstItem="FcK-q3-SxI" firstAttribute="width" secondItem="qbD-oj-Iak" secondAttribute="width" id="dTy-QA-TtY"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="k2F-Vh-8Qe" secondAttribute="trailing" id="EyQ-t2-3c8"/>
+                                            <constraint firstItem="k2F-Vh-8Qe" firstAttribute="top" secondItem="jYu-YU-gJs" secondAttribute="top" id="aYW-ed-v35"/>
+                                            <constraint firstAttribute="width" constant="240" id="aml-Am-JqF"/>
+                                            <constraint firstItem="k2F-Vh-8Qe" firstAttribute="leading" secondItem="jYu-YU-gJs" secondAttribute="leading" id="er6-a1-8oP"/>
+                                            <constraint firstAttribute="height" constant="64" id="nFY-ob-9xo"/>
+                                            <constraint firstAttribute="bottom" secondItem="k2F-Vh-8Qe" secondAttribute="bottom" id="p9S-MV-MTB"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9y3-Gw-nVq">
                                         <rect key="frame" x="0.0" y="216" width="150" height="44"/>
                                         <constraints>
@@ -53,6 +93,8 @@
                                     <constraint firstAttribute="bottom" secondItem="tr2-zB-hmZ" secondAttribute="bottom" id="G88-Ig-P7X"/>
                                     <constraint firstAttribute="trailing" secondItem="tr2-zB-hmZ" secondAttribute="trailing" id="NbV-Aw-tSj"/>
                                     <constraint firstAttribute="trailing" secondItem="nqd-Wy-EeK" secondAttribute="trailing" id="Onh-cj-9z9"/>
+                                    <constraint firstItem="jYu-YU-gJs" firstAttribute="centerX" secondItem="lj1-bg-9D1" secondAttribute="centerX" id="X93-ed-fA2"/>
+                                    <constraint firstItem="jYu-YU-gJs" firstAttribute="top" secondItem="lj1-bg-9D1" secondAttribute="top" constant="32" id="ZUj-tZ-w2B"/>
                                     <constraint firstAttribute="width" constant="300" id="dN7-q9-L0u"/>
                                     <constraint firstAttribute="height" constant="260" id="eEL-Fo-6lT"/>
                                     <constraint firstAttribute="bottom" secondItem="nqd-Wy-EeK" secondAttribute="bottom" id="gzs-yq-6p2"/>
@@ -80,4 +122,7 @@
             <point key="canvasLocation" x="-340" y="-58"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="rate_us_star_empty" width="23" height="22"/>
+    </resources>
 </document>
