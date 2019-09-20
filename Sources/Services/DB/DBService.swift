@@ -288,6 +288,13 @@ class DBService
                 profile.totalLikes = totalLikes
                 
                 let localCount = profile.messages.count
+                var localCache: [String: Bool] = [:]
+                profile.messages.forEach({ localCache[$0.id] = $0.isRead })
+                
+                messages.forEach({ remoteMessage in
+                    remoteMessage.isRead = (localCache[remoteMessage.id] == true) ? true : remoteMessage.isRead
+                })
+                
                 var notSentMessages: [Message] = []
                 let remoteMessagesIds: [String] = messages.map({ $0.id })
                 

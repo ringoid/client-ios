@@ -9,23 +9,36 @@
 import RxSwift
 import RxCocoa
 
+final class ChatMessageCache: NSObject
+{
+    let isRead: Bool
+    
+    init(isRead: Bool)
+    {
+        self.isRead = isRead
+    }
+}
+
 final class ChatProfileCache: NSObject
 {
-    let messagesCount: Int
     let notSeen: Bool
     let notRead: Bool
+    let messagesCache: [String: ChatMessageCache]
     
-    init(messagesCount: Int, notSeen: Bool, notRead: Bool)
+    init(messagesCache: [String: ChatMessageCache], notSeen: Bool, notRead: Bool)
     {
-        self.messagesCount = messagesCount
+        self.messagesCache = messagesCache
         self.notSeen = notSeen
         self.notRead = notRead
     }
     
     static func create(_ profile: LMMProfile) -> ChatProfileCache
     {
+        var messagesCache: [String: ChatMessageCache] = [:]
+        profile.messages.forEach({ messagesCache[$0.id] = ChatMessageCache(isRead: $0.isRead) })
+        
         return ChatProfileCache(
-            messagesCount: profile.messages.count,
+            messagesCache: messagesCache,
             notSeen: profile.notSeen,
             notRead: !profile.isRead()
         )
@@ -182,8 +195,8 @@ class LMMManager
             self.clearFilteredCahe()
             self.purge()
             
-            let localLikesYou = createProfiles(likesYouResult, type: .likesYou)
-            let messages = createProfiles(messagesResult, type: .messages)
+            let localLikesYou = createProfiles(likesYouResult, type: .likesYou, profilesCache: self.chatsCache)
+            let messages = createProfiles(messagesResult, type: .messages, profilesCache: self.chatsCache)
             
             // TODO: remove after migration --------
             
@@ -197,14 +210,14 @@ class LMMManager
                 
                 self.chatsCache.forEach { localProfileId, profileCache in
                     if localProfileId == remoteProfile.id {
-                        if profileCache.messagesCount == remoteProfile.messages.count {
+                        if profileCache.messagesCache.count == remoteProfile.messages.count {
                             remoteProfile.notRead = profileCache.notRead
                         } else {
                             remoteProfile.notRead = true
                         }
                         
                         // matches case
-                        if remoteProfile.messages.count == 0 , profileCache.messagesCount == remoteProfile.messages.count {
+                        if remoteProfile.messages.count == 0 , profileCache.messagesCache.count == remoteProfile.messages.count {
                             remoteProfile.notSeen = profileCache.notSeen
                         }
                     }
@@ -237,8 +250,8 @@ class LMMManager
 
             self.purge()
             
-            let localLikesYou = createProfiles(result.likesYou, type: .likesYou)            
-            let messages = createProfiles(result.messages, type: .messages)
+            let localLikesYou = createProfiles(result.likesYou, type: .likesYou, profilesCache: self.chatsCache)
+            let messages = createProfiles(result.messages, type: .messages, profilesCache: self.chatsCache)
             
             // TODO: remove after migration --------
             messages.forEach { remoteProfile in
@@ -251,14 +264,14 @@ class LMMManager
                 
                 self.chatsCache.forEach { localProfileId, profileCache in
                     if localProfileId == remoteProfile.id {
-                        if profileCache.messagesCount == remoteProfile.messages.count {
+                        if profileCache.messagesCache.count == remoteProfile.messages.count {
                             remoteProfile.notRead = profileCache.notRead
                         } else {
                             remoteProfile.notRead = true
                         }
                         
                         // matches case
-                        if remoteProfile.messages.count == 0 , profileCache.messagesCount == remoteProfile.messages.count {
+                        if remoteProfile.messages.count == 0 , profileCache.messagesCache.count == remoteProfile.messages.count {
                             remoteProfile.notSeen = profileCache.notSeen
                         }
                     }
@@ -959,11 +972,13 @@ class LMMManager
     }
 }
 
-fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMMProfile]
+fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType, profilesCache: [String: ChatProfileCache]) -> [LMMProfile]
 {
     var localOrderPosition: Int = 0
-    
+
     return from.map({ profile -> LMMProfile in
+        let profileCache = profilesCache[profile.id]
+        
         let localPhotos = profile.photos.map({ photo -> Photo in
             let localPhoto = Photo()
             localPhoto.id = photo.id
@@ -978,6 +993,8 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
         })
         
         let localMessages = profile.messages.map({ message -> Message in
+            let messageCache = profileCache?.messagesCache[message.id]
+            
             let localMessage = Message()
             localMessage.id = message.id
             localMessage.msgId = message.msgId
@@ -985,7 +1002,7 @@ fileprivate func createProfiles(_ from: [ApiLMMProfile], type: FeedType) -> [LMM
             localMessage.text = message.text
             localMessage.timestamp = message.timestamp
             localMessage.orderPosition = localOrderPosition
-            localMessage.isRead = message.isRead
+            localMessage.isRead =  (messageCache?.isRead == true) ? true : message.isRead
             localOrderPosition += 1
             
             return localMessage
@@ -1088,7 +1105,7 @@ extension ChatProfileCache: NSCoding
 {
     func encode(with aCoder: NSCoder)
     {
-        aCoder.encode(self.messagesCount, forKey: "messagesCount")
+        aCoder.encode(self.messagesCache, forKey: "messagesCache")
         aCoder.encode(self.notSeen, forKey: "notSeen")
         aCoder.encode(self.notRead, forKey: "notRead")
     }
@@ -1096,10 +1113,23 @@ extension ChatProfileCache: NSCoding
     convenience init?(coder aDecoder: NSCoder)
     {
         self.init(
-            messagesCount: aDecoder.decodeInteger(forKey: "messagesCount"),
+            messagesCache: (aDecoder.decodeObject(forKey: "messagesCache") as? [String: ChatMessageCache]) ?? [:],
             notSeen: aDecoder.decodeBool(forKey: "notSeen"),
             notRead: aDecoder.decodeBool(forKey: "notRead")
         )
     }
 }
 
+extension ChatMessageCache: NSCoding
+{
+    func encode(with aCoder: NSCoder)
+    {
+        aCoder.encode(self.isRead, forKey: "isRead")
+    }
+    
+    convenience init?(coder aDecoder: NSCoder)
+    {
+        self.init(
+            isRead: aDecoder.decodeBool(forKey: "isRead"))
+    }
+}
