@@ -32,7 +32,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="GCN-o0-JcK"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -81,6 +81,23 @@
                                             <outletCollection property="gestureRecognizers" destination="Wph-KB-5UQ" appends="YES" id="shA-MB-Ne4"/>
                                         </connections>
                                     </view>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d2t-gg-SD9">
+                                        <rect key="frame" x="16" y="133" width="268" height="6"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="268" id="zrD-Ye-vsF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nof-o4-fZx" userLabel="MidSeparatorView">
                                         <rect key="frame" x="149.5" y="147" width="1" height="45"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -128,6 +145,7 @@
                                     <constraint firstItem="jYu-YU-gJs" firstAttribute="top" secondItem="ww6-wT-X0L" secondAttribute="bottom" constant="8" id="GUF-xh-bWx"/>
                                     <constraint firstAttribute="trailing" secondItem="tr2-zB-hmZ" secondAttribute="trailing" id="NbV-Aw-tSj"/>
                                     <constraint firstAttribute="trailing" secondItem="nqd-Wy-EeK" secondAttribute="trailing" id="Onh-cj-9z9"/>
+                                    <constraint firstItem="DpE-h5-8RQ" firstAttribute="top" secondItem="d2t-gg-SD9" secondAttribute="bottom" constant="8" id="TZA-W4-83s"/>
                                     <constraint firstItem="ww6-wT-X0L" firstAttribute="top" secondItem="lj1-bg-9D1" secondAttribute="top" constant="16" id="WLs-Gf-9BK"/>
                                     <constraint firstAttribute="trailing" secondItem="DpE-h5-8RQ" secondAttribute="trailing" id="WfY-ZH-pUh"/>
                                     <constraint firstItem="jYu-YU-gJs" firstAttribute="centerX" secondItem="lj1-bg-9D1" secondAttribute="centerX" id="X93-ed-fA2"/>
@@ -136,10 +154,12 @@
                                     <constraint firstAttribute="height" constant="192" id="eEL-Fo-6lT"/>
                                     <constraint firstAttribute="bottom" secondItem="Nof-o4-fZx" secondAttribute="bottom" id="fY8-0k-hgx"/>
                                     <constraint firstAttribute="bottom" secondItem="nqd-Wy-EeK" secondAttribute="bottom" id="gzs-yq-6p2"/>
+                                    <constraint firstItem="d2t-gg-SD9" firstAttribute="top" secondItem="jYu-YU-gJs" secondAttribute="bottom" constant="4" id="jz3-xm-qXr"/>
                                     <constraint firstItem="nqd-Wy-EeK" firstAttribute="top" secondItem="DpE-h5-8RQ" secondAttribute="bottom" id="kBo-zd-vd3"/>
                                     <constraint firstAttribute="bottom" secondItem="9y3-Gw-nVq" secondAttribute="bottom" id="kcm-ao-jfu"/>
                                     <constraint firstItem="DpE-h5-8RQ" firstAttribute="leading" secondItem="lj1-bg-9D1" secondAttribute="leading" id="r2a-dF-ITb"/>
                                     <constraint firstItem="tr2-zB-hmZ" firstAttribute="leading" secondItem="lj1-bg-9D1" secondAttribute="leading" id="xSC-4V-fje"/>
+                                    <constraint firstItem="d2t-gg-SD9" firstAttribute="centerX" secondItem="lj1-bg-9D1" secondAttribute="centerX" id="y60-gd-Bxm"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="oGh-iJ-YOa"/>
                                 <userDefinedRuntimeAttributes>
@@ -151,12 +171,14 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="lj1-bg-9D1" firstAttribute="centerY" secondItem="fxv-za-Hxh" secondAttribute="centerY" id="Fu0-22-Dc9"/>
+                            <constraint firstItem="lj1-bg-9D1" firstAttribute="centerY" secondItem="fxv-za-Hxh" secondAttribute="centerY" id="Fu0-22-Dc9" userLabel="AlertMid"/>
                             <constraint firstItem="lj1-bg-9D1" firstAttribute="centerX" secondItem="fxv-za-Hxh" secondAttribute="centerX" id="JzD-RB-Jxl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jqt-8d-6lV"/>
                     </view>
                     <connections>
+                        <outlet property="alertHeightConstraint" destination="eEL-Fo-6lT" id="FSG-tM-CKF"/>
+                        <outlet property="midPositionConstraint" destination="Fu0-22-Dc9" id="Ejg-rM-K9n"/>
                         <outlet property="panelView" destination="jYu-YU-gJs" id="vOc-jb-TlP"/>
                         <outlet property="reviewBtn" destination="nqd-Wy-EeK" id="x1n-yD-1bW"/>
                         <outlet property="star1ImageView" destination="qbD-oj-Iak" id="16P-dN-rje"/>
@@ -164,6 +186,7 @@
                         <outlet property="star3ImageView" destination="ag7-Pz-6Bd" id="0ji-dH-rc2"/>
                         <outlet property="star4ImageView" destination="DmG-qy-rVw" id="sUj-2L-y0Y"/>
                         <outlet property="star5ImageView" destination="FcK-q3-SxI" id="IfR-JB-bQX"/>
+                        <outlet property="textView" destination="d2t-gg-SD9" id="xGK-bz-8s0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bOL-D2-bhL" userLabel="First Responder" sceneMemberID="firstResponder"/>

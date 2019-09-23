@@ -22,6 +22,12 @@ class RateUsViewController: BaseViewController
     @IBOutlet fileprivate weak var star5ImageView: UIImageView!
     @IBOutlet fileprivate weak var panelView: UIView!
     @IBOutlet fileprivate weak var reviewBtn: UIButton!
+    @IBOutlet fileprivate weak var textView: UITextView!
+    
+    // Constraints
+    
+    @IBOutlet fileprivate weak var midPositionConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var alertHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
@@ -109,5 +115,18 @@ class RateUsViewController: BaseViewController
                 starView.image = emptyStarImage
             }
         }
+    }
+    
+    fileprivate func showSuggestInput()
+    {
+        let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeOut) {
+            
+        }
+        
+    }
+    
+    fileprivate func hideSuggestInput()
+    {
+        
     }
 }
