@@ -129,6 +129,9 @@ class DBService
                     newObject?["isRead"] = true
                     newObject?["msgId"] = ""
                 })
+                
+                UserDefaults.standard.removeObject(forKey: "chats_cache")
+                UserDefaults.standard.synchronize()
             }
         }, deleteRealmIfMigrationNeeded: false)
         
@@ -356,6 +359,13 @@ class DBService
             
             return Disposables.create()
         }
+    }
+    
+    func updateFeeds()
+    {
+        self.updateNewFaces()
+        self.updateLikesYou()
+        self.updateMessages()
     }
     
     func updateOrder(_ object: DBServiceObject, silently: Bool)

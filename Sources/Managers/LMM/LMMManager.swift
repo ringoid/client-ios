@@ -646,6 +646,8 @@ class LMMManager
             self.updateLocalLmmCount()
         }).disposed(by: self.disposeBag)
         
+        self.db.updateFeeds()
+        
         self.notifications.notificationData.subscribe(onNext: { [weak self] userInfo in
             guard let `self` = self else { return }
             guard let typeStr = userInfo["type"] as? String else { return }

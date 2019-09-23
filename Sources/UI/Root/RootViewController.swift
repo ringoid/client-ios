@@ -208,8 +208,8 @@ class RootViewController: BaseViewController {
                     self?.appManager.settingsMananger.isFirstLaunch.accept(false)
                 } else {
                     self?.move(to: .userProfile)
-                    self?.appManager.lmmManager.refreshInBackground(.profile)
                     self?.appManager.newFacesManager.refreshInBackground()
+                    self?.appManager.lmmManager.refreshInBackground(.profile)
                 }
             }
         }).disposed(by: disposeBag)
