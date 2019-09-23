@@ -8,12 +8,19 @@
 
 import UIKit
 
+fileprivate enum RateUsState
+{
+    case initial;
+    case suggest;
+}
+
 class RateUsViewController: BaseViewController
 {
     var onLowRate: (() -> ())?
     
-    var starsView: [UIImageView] = []
-    var rating: Int? = nil
+    fileprivate var starsView: [UIImageView] = []
+    fileprivate var rating: Int? = nil
+    fileprivate var state: RateUsState = .initial
     
     @IBOutlet fileprivate weak var star1ImageView: UIImageView!
     @IBOutlet fileprivate weak var star2ImageView: UIImageView!
@@ -40,6 +47,10 @@ class RateUsViewController: BaseViewController
             self.star4ImageView,
             self.star5ImageView,
         ]
+        
+        self.textView.layer.borderColor = UIColor.lightGray.cgColor
+        self.textView.layer.borderWidth = 1.0
+        self.textView.layer.cornerRadius = 4.0
     }
     
     override func updateTheme() {}
@@ -74,6 +85,7 @@ class RateUsViewController: BaseViewController
         let index = Int(location.x / (width / 5.0))
         
         self.updateStars(index)
+        self.updateState(index + 1)
     }
     
     @IBAction func panAction(_ recognizer: UIPanGestureRecognizer)
@@ -85,9 +97,22 @@ class RateUsViewController: BaseViewController
         let index = Int(location.x / (width / 5.0))
         
         self.updateStars(index)
+        
+        guard recognizer.state == .ended || recognizer.state == .cancelled else { return }
+        
+        self.updateState(index + 1)
     }
     
     // MARK: -
+    
+    fileprivate func updateState(_ rating: Int)
+    {
+        if rating < 4 {
+            self.toggle(.suggest)
+        } else {
+            self.toggle(.initial)
+        }
+    }
     
     fileprivate func moveToAppstore()
     {
@@ -117,16 +142,42 @@ class RateUsViewController: BaseViewController
         }
     }
     
+    fileprivate func toggle(_ state: RateUsState)
+    {
+        guard self.state != state else { return }
+        
+        self.state = state
+        
+        switch state {
+        case .initial: self.hideSuggestInput()
+        case .suggest: self.showSuggestInput()
+        }
+    }
+    
     fileprivate func showSuggestInput()
     {
+        self.alertHeightConstraint.constant = 300.0
+        self.midPositionConstraint.constant = -108.0
+        self.textView.becomeFirstResponder()
+        
         let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeOut) {
-            
+            self.textView.alpha = 1.0
+            self.view.layoutSubviews()
         }
         
+        animator.startAnimation()
     }
     
     fileprivate func hideSuggestInput()
     {
+        self.alertHeightConstraint.constant = 192.0
+        self.midPositionConstraint.constant = 0.0
+        self.textView.resignFirstResponder()
         
+        let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeOut) {
+            self.textView.alpha = 0.0
+            self.view.layoutSubviews()
+        }
+        animator.startAnimation()
     }
 }
