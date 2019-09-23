@@ -17,6 +17,7 @@
 "button_settings" = "Settings";
 "button_suggest" = "Suggest";
 "button_select" = "Select";
+"button_send" = "Send";
 
 "common_pull_to_refresh" = "Pull to refresh";
 "common_sex_male" = "Male";
@@ -206,3 +207,6 @@
 
 "achievement_likes_malestone" = "%d likes received!";
 "incoming_likes" = "+%d likes";
+
+"rate_us_title" = "How likely are you recommend the Ringoid to a friend?";
+"rate_us_review" = "Review";

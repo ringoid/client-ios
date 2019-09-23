@@ -28,6 +28,9 @@ class RateUsViewController: BaseViewController
     @IBOutlet fileprivate weak var star4ImageView: UIImageView!
     @IBOutlet fileprivate weak var star5ImageView: UIImageView!
     @IBOutlet fileprivate weak var panelView: UIView!
+    
+    @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var cancelBtn: UIButton!
     @IBOutlet fileprivate weak var reviewBtn: UIButton!
     @IBOutlet fileprivate weak var textView: UITextView!
     
@@ -54,6 +57,18 @@ class RateUsViewController: BaseViewController
     }
     
     override func updateTheme() {}
+    
+    override func updateLocale()
+    {
+        self.titleLabel.text = "rate_us_title".localized()
+        self.cancelBtn.setTitle("button_later".localized(), for: .normal)
+        
+        switch self.state {
+        case .initial: self.reviewBtn.setTitle("rate_us_review".localized(), for: .normal)
+        case .suggest: self.reviewBtn.setTitle("button_send".localized(), for: .normal)
+        }
+        
+    }
     
     // MARK: - Actions
     
@@ -149,14 +164,21 @@ class RateUsViewController: BaseViewController
         self.state = state
         
         switch state {
-        case .initial: self.hideSuggestInput()
-        case .suggest: self.showSuggestInput()
+        case .initial:
+            self.hideSuggestInput()
+            self.reviewBtn.setTitle("rate_us_review".localized(), for: .normal)
+            break
+            
+        case .suggest:
+            self.showSuggestInput()
+            self.reviewBtn.setTitle("button_send".localized(), for: .normal)
+            break
         }
     }
     
     fileprivate func showSuggestInput()
     {
-        self.alertHeightConstraint.constant = 300.0
+        self.alertHeightConstraint.constant = 328.0
         self.midPositionConstraint.constant = -108.0
         self.textView.becomeFirstResponder()
         
@@ -170,7 +192,7 @@ class RateUsViewController: BaseViewController
     
     fileprivate func hideSuggestInput()
     {
-        self.alertHeightConstraint.constant = 192.0
+        self.alertHeightConstraint.constant = 220.0
         self.midPositionConstraint.constant = 0.0
         self.textView.resignFirstResponder()
         
