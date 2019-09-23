@@ -30,6 +30,7 @@ class RateUsViewController: BaseViewController
     @IBOutlet fileprivate weak var panelView: UIView!
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var feedbackLabel: UILabel!
     @IBOutlet fileprivate weak var cancelBtn: UIButton!
     @IBOutlet fileprivate weak var reviewBtn: UIButton!
     @IBOutlet fileprivate weak var textView: UITextView!
@@ -183,6 +184,7 @@ class RateUsViewController: BaseViewController
         self.textView.becomeFirstResponder()
         
         let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeOut) {
+            self.feedbackLabel.alpha = 1.0
             self.textView.alpha = 1.0
             self.view.layoutSubviews()
         }
@@ -198,6 +200,7 @@ class RateUsViewController: BaseViewController
         
         let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeOut) {
             self.textView.alpha = 0.0
+            self.feedbackLabel.alpha = 0.0
             self.view.layoutSubviews()
         }
         animator.startAnimation()
