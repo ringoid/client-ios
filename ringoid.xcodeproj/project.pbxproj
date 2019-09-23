@@ -2546,6 +2546,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Ringoid.entitlements;
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 172;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = PXR6CFL6JF;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
@@ -2554,6 +2555,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 4.0.172;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ringoid.dating-st";
 				PRODUCT_NAME = "Ringoid st";
 				PROVISIONING_PROFILE_SPECIFIER = "ringoid dating stage dev";
@@ -2571,6 +2573,7 @@
 				CODE_SIGN_ENTITLEMENTS = Ringoid.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 172;
 				DEVELOPMENT_TEAM = PXR6CFL6JF;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -2578,6 +2581,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 4.0.172;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ringoid.dating-st";
 				PRODUCT_NAME = "Ringoid st";
 				PROVISIONING_PROFILE_SPECIFIER = "ringoid dating stage dev";
