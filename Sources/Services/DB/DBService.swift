@@ -332,6 +332,13 @@ class DBService
         }
     }
     
+    func updateFeeds()
+    {
+        self.updateNewFaces()
+        self.updateLikesYou()
+        self.updateMessages()
+    }
+    
     func updateOrder(_ object: DBServiceObject, silently: Bool)
     {
         self.updateOrder([object], silently: silently)
