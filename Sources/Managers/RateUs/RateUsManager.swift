@@ -47,8 +47,12 @@ class RateUsManager
             UserDefaults.standard.setValue("canceled", forKey: "rate_us_alert_result")
             UserDefaults.standard.synchronize()
         }
-        vc.onRate = {
+        vc.onSuggest = {
             UserDefaults.standard.setValue(self.initialInterval, forKey: "rate_us_current_interval")
+            UserDefaults.standard.setValue("suggested", forKey: "rate_us_alert_result")
+            UserDefaults.standard.synchronize()
+        }
+        vc.onRate = {
             UserDefaults.standard.setValue("rated", forKey: "rate_us_alert_result")
             UserDefaults.standard.synchronize()
         }
@@ -70,6 +74,7 @@ class RateUsManager
         guard let lastShownVersion = UserDefaults.standard.string(forKey: "rate_us_alert_shown_version") else { return true }
         
         guard let lastAlertResult = UserDefaults.standard.string(forKey: "rate_us_alert_result") else { return true }
+        guard lastAlertResult != "rated" else { return false }
         
         let currentInterval = (UserDefaults.standard.value(forKey: "rate_us_current_interval") as? Double) ?? self.initialInterval
         let currentVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"

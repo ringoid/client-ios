@@ -18,6 +18,7 @@ class RateUsViewController: BaseViewController
 {
     var onCancel: (() -> ())?
     var onRate:  (() -> ())?
+    var onSuggest: (() -> ())?
     
     fileprivate var starsView: [UIImageView] = []
     fileprivate var rating: Int? = nil
@@ -83,13 +84,19 @@ class RateUsViewController: BaseViewController
     
     @IBAction func rateAction()
     {
-        self.onRate?()
         self.dismiss(animated: false) { [weak self] in
             guard let `self` = self else { return }
             
             switch self.state {
-            case .initial: self.moveToAppstore()
-            case .suggest: FeedbackManager.shared.send(self.textView.text, source: .chat, feedSource: .messages)
+            case .initial:
+                self.onRate?()
+                self.moveToAppstore()
+                break
+                
+            case .suggest:
+                self.onSuggest?()
+                FeedbackManager.shared.send(self.textView.text, source: .chat, feedSource: .messages)
+                break
             }
         }
     }
