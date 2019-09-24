@@ -10,6 +10,10 @@ import UIKit
 
 class RateUsManager
 {
+    fileprivate let initialInterval: Double = 24.0 * 3600.0
+    fileprivate let maxInterval: Double = 7.0 * 24.0 * 3600.0
+    fileprivate let diffVersionsInterval: Double = 24.0 * 3600.0
+    
     private init() {}
     
     static let shared = RateUsManager()
@@ -33,10 +37,18 @@ class RateUsManager
         vc.modalPresentationStyle = .overFullScreen
         vc.view.alpha = 0.0
         vc.onCancel = {
+            let currentInterval = (UserDefaults.standard.value(forKey: "rate_us_current_interval") as? Double) ?? self.initialInterval
+            let updatedInterval = currentInterval * 2.0
+            
+            if updatedInterval < self.maxInterval {
+                UserDefaults.standard.setValue(self.initialInterval, forKey: "rate_us_current_interval")
+            }
+                        
             UserDefaults.standard.setValue("canceled", forKey: "rate_us_alert_result")
             UserDefaults.standard.synchronize()
         }
         vc.onRate = {
+            UserDefaults.standard.setValue(self.initialInterval, forKey: "rate_us_current_interval")
             UserDefaults.standard.setValue("rated", forKey: "rate_us_alert_result")
             UserDefaults.standard.synchronize()
         }
@@ -59,14 +71,16 @@ class RateUsManager
         
         guard let lastAlertResult = UserDefaults.standard.string(forKey: "rate_us_alert_result") else { return true }
         
+        let currentInterval = (UserDefaults.standard.value(forKey: "rate_us_current_interval") as? Double) ?? self.initialInterval
         let currentVersion = (Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as?  String) ?? "0"
         
         if lastAlertResult == "canceled" {
-            return Date().timeIntervalSince(lastShownDate) > 2.0 * 24.0 * 3600.0
+            return Date().timeIntervalSince(lastShownDate) > currentInterval
         } else {
-            guard lastShownVersion != currentVersion else { return false }
+            guard let lastVer = Int(lastShownVersion), let currentVer = Int(currentVersion) else { return true }
+            guard abs(currentVer - lastVer) < 2 else { return false }
             
-            return Date().timeIntervalSince(lastShownDate) > 2.0 * 24.0 * 3600.0
+            return Date().timeIntervalSince(lastShownDate) > self.diffVersionsInterval
         }
     }
 }
