@@ -57,6 +57,8 @@ class RateUsViewController: BaseViewController
         self.textView.layer.borderColor = UIColor.lightGray.cgColor
         self.textView.layer.borderWidth = 1.0
         self.textView.layer.cornerRadius = 4.0
+        
+        AnalyticsManager.shared.send(.rateUsShown)
     }
     
     override func updateTheme() {}
@@ -71,13 +73,13 @@ class RateUsViewController: BaseViewController
         case .initial: self.reviewBtn.setTitle("rate_us_review".localized(), for: .normal)
         case .suggest: self.reviewBtn.setTitle("button_send".localized(), for: .normal)
         }
-        
     }
     
     // MARK: - Actions
     
     @IBAction func notNowAction()
     {
+        AnalyticsManager.shared.send(.rateUsCanceled)
         self.onCancel?()
         self.dismiss(animated: false, completion: nil)
     }
@@ -91,11 +93,13 @@ class RateUsViewController: BaseViewController
             case .initial:
                 self.onRate?()
                 self.moveToAppstore()
+                AnalyticsManager.shared.send(.rateUsRated(self.rating ?? 0))
                 break
                 
             case .suggest:
                 self.onSuggest?()
                 FeedbackManager.shared.send(self.textView.text, source: .chat, feedSource: .messages)
+                AnalyticsManager.shared.send(.rateUsFeedback(self.rating ?? 0))
                 break
             }
         }

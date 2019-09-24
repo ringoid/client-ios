@@ -239,6 +239,32 @@ class FirebaseAnalytics: AnalyticsService
                 "duration": duration
                 ])
             break
+            
+        case .rateUsShown:
+            Analytics.logEvent("RATE_US_ALERT_SHOWN", parameters: [
+                "UUID": self.userId,
+                ])
+            break
+        
+        case .rateUsCanceled:
+            Analytics.logEvent("RATE_US_ALERT_CANCELED", parameters: [
+                "UUID": self.userId,
+                ])
+            break
+            
+        case .rateUsRated(let rating):
+            Analytics.logEvent("RATE_US_ALERT_RATED", parameters: [
+                "UUID": self.userId,
+                "rating": rating
+                ])
+            break
+        
+        case .rateUsFeedback(let rating):
+            Analytics.logEvent("RATE_US_ALERT_FEEDBACK", parameters: [
+                "UUID": self.userId,
+                "rating": rating
+                ])
+            break
         }
     }
     

@@ -250,6 +250,32 @@ class FacebookAnalytics: AnalyticsService
                 "duration": duration
                 ])
             break
+            
+        case .rateUsShown:
+            AppEvents.logEvent(AppEvents.Name(rawValue: "RATE_US_ALERT_SHOWN"), parameters: [
+                "UUID" : self.userId,
+                ])
+            break
+            
+        case .rateUsCanceled:
+            AppEvents.logEvent(AppEvents.Name(rawValue: "RATE_US_ALERT_CANCELED"), parameters: [
+                "UUID" : self.userId,
+                ])
+            break
+            
+        case .rateUsRated(let rating):
+            AppEvents.logEvent(AppEvents.Name(rawValue: "RATE_US_ALERT_RATED"), parameters: [
+                "UUID" : self.userId,
+                "rating": rating
+                ])
+            break
+            
+        case .rateUsFeedback(let rating):
+            AppEvents.logEvent(AppEvents.Name(rawValue: "RATE_US_ALERT_FEEDBACK"), parameters: [
+                "UUID" : self.userId,
+                "rating": rating
+                ])
+            break
         }
 
     }

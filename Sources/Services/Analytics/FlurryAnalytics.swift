@@ -255,6 +255,32 @@ class FlurryAnalytics: AnalyticsService
                 "duration": duration
                 ])
             break
+            
+        case .rateUsShown:
+            Flurry.logEvent("RATE_US_ALERT_SHOWN", withParameters: [
+                "UUID": self.userId,
+                ])
+            break
+            
+        case .rateUsCanceled:
+            Flurry.logEvent("RATE_US_ALERT_CANCELED", withParameters: [
+                "UUID": self.userId,
+                ])
+            break
+            
+        case .rateUsRated(let rating):
+            Flurry.logEvent("RATE_US_ALERT_RATED", withParameters: [
+                "UUID": self.userId,
+                "rating": rating,
+                ])
+            break
+            
+        case .rateUsFeedback(let rating):
+            Flurry.logEvent("RATE_US_ALERT_FEEDBACK", withParameters: [
+                "UUID": self.userId,
+                "rating": rating,
+                ])
+            break
         }
     }
     
