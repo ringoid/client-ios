@@ -41,7 +41,7 @@ class RateUsManager
             let updatedInterval = currentInterval * 2.0
             
             if updatedInterval < self.maxInterval {
-                UserDefaults.standard.setValue(self.initialInterval, forKey: "rate_us_current_interval")
+                UserDefaults.standard.setValue(updatedInterval, forKey: "rate_us_current_interval")
             }
                         
             UserDefaults.standard.setValue("canceled", forKey: "rate_us_alert_result")
@@ -78,7 +78,7 @@ class RateUsManager
             return Date().timeIntervalSince(lastShownDate) > currentInterval
         } else {
             guard let lastVer = Int(lastShownVersion), let currentVer = Int(currentVersion) else { return true }
-            guard abs(currentVer - lastVer) < 2 else { return false }
+            guard abs(currentVer - lastVer) > 1 else { return false }
             
             return Date().timeIntervalSince(lastShownDate) > self.diffVersionsInterval
         }
