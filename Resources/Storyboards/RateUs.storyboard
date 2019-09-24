@@ -82,8 +82,11 @@
                                             <outletCollection property="gestureRecognizers" destination="Wph-KB-5UQ" appends="YES" id="shA-MB-Ne4"/>
                                         </connections>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell us how we could improve this app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVq-EQ-Fcw">
-                                        <rect key="frame" x="20.5" y="142" width="259" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell us how we could improve this app" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVq-EQ-Fcw">
+                                        <rect key="frame" x="20" y="142" width="260" height="9"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="260" id="Vpe-Zq-jZU"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -170,7 +173,7 @@
                                     <constraint firstItem="DpE-h5-8RQ" firstAttribute="leading" secondItem="lj1-bg-9D1" secondAttribute="leading" id="r2a-dF-ITb"/>
                                     <constraint firstItem="tr2-zB-hmZ" firstAttribute="leading" secondItem="lj1-bg-9D1" secondAttribute="leading" id="xSC-4V-fje"/>
                                     <constraint firstItem="d2t-gg-SD9" firstAttribute="centerX" secondItem="lj1-bg-9D1" secondAttribute="centerX" id="y60-gd-Bxm"/>
-                                    <constraint firstItem="d2t-gg-SD9" firstAttribute="top" secondItem="SVq-EQ-Fcw" secondAttribute="bottom" constant="8" id="zKg-BV-bOL"/>
+                                    <constraint firstItem="d2t-gg-SD9" firstAttribute="top" secondItem="SVq-EQ-Fcw" secondAttribute="bottom" constant="16" id="zKg-BV-bOL"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="oGh-iJ-YOa"/>
                                 <userDefinedRuntimeAttributes>

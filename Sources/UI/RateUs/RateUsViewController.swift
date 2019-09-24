@@ -62,6 +62,7 @@ class RateUsViewController: BaseViewController
     override func updateLocale()
     {
         self.titleLabel.text = "rate_us_title".localized()
+        self.feedbackLabel.text = "rate_us_feedback".localized()
         self.cancelBtn.setTitle("button_later".localized(), for: .normal)
         
         switch self.state {
