@@ -14,6 +14,11 @@ class RateUsManager
     
     static let shared = RateUsManager()
     
+    func showAlertIfNeeded(_ from: UIViewController)
+    {
+        self.showAlert(from)
+    }
+    
     func showAlert(_ from: UIViewController)
     {
         let vc = Storyboards.rateUs().instantiateViewController(withIdentifier: "rate_us") as! RateUsViewController
@@ -22,6 +27,13 @@ class RateUsManager
             FeedbackManager.shared.showSuggestion(from, source: .chat, feedSource: .messages)
         }
         
-        from.present(vc, animated: false, completion: nil)
+        vc.view.alpha = 0.0
+        
+        from.present(vc, animated: false, completion: {
+            let animator = UIViewPropertyAnimator(duration: 0.2, curve: .easeOut) {
+                vc.view.alpha = 1.0
+            }
+            animator.startAnimation()
+        })
     }
 }

@@ -653,6 +653,10 @@ class MainLMMViewController: BaseViewController
         self.chatContainerView.remove()
 
         self.isChatShown = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+            RateUsManager.shared.showAlert(self)
+        })
     }
     
     /*
