@@ -16,7 +16,8 @@ fileprivate enum RateUsState
 
 class RateUsViewController: BaseViewController
 {
-    var onLowRate: (() -> ())?
+    var onCancel: (() -> ())?
+    var onRate:  (() -> ())?
     
     fileprivate var starsView: [UIImageView] = []
     fileprivate var rating: Int? = nil
@@ -76,19 +77,19 @@ class RateUsViewController: BaseViewController
     
     @IBAction func notNowAction()
     {
+        self.onCancel?()
         self.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func rateAction()
     {
+        self.onRate?()
         self.dismiss(animated: false) { [weak self] in
             guard let `self` = self else { return }
-            guard let rating = self.rating else { return }
             
-            if rating > 3 {
-                self.moveToAppstore()
-            } else {
-                self.onLowRate?()
+            switch self.state {
+            case .initial: self.moveToAppstore()
+            case .suggest: FeedbackManager.shared.send(self.textView.text, source: .chat, feedSource: .messages)
             }
         }
     }

@@ -63,9 +63,7 @@ class FeedbackManager
         from.present(vc, animated: false, completion: nil)
     }
     
-    // MARK: -
-    
-    fileprivate func send(_ text: String, source: FeedbackSource, feedSource: SourceFeedType?)
+    func send(_ text: String, source: FeedbackSource, feedSource: SourceFeedType?)
     {
         guard text.trimmingCharacters(in: .whitespacesAndNewlines).count > 0 else { return }
         
@@ -110,6 +108,8 @@ class FeedbackManager
                 SentryService.shared.send(.feedbackFailed, params: ["text": text])
             }).disposed(by: self.disposeBag)
     }
+    
+    // MARK: -
     
     fileprivate func showThanksAlert(_ from: UIViewController)
     {
