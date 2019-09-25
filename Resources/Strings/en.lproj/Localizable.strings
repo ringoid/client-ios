@@ -208,6 +208,6 @@
 "achievement_likes_malestone" = "%d likes received!";
 "incoming_likes" = "+%d likes";
 
-"rate_us_title" = "How likely are you recommend the Ringoid to a friend?";
-"rate_us_feedback" = "Tell us how we could improve this app";
+"rate_us_title" = "Do you enjoy Ringoid?";
+"rate_us_feedback" = "Please suggest improvements";
 "rate_us_review" = "Review";

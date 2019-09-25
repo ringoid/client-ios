@@ -192,8 +192,8 @@ class RateUsViewController: BaseViewController
     
     fileprivate func showSuggestInput()
     {
-        self.alertHeightConstraint.constant = 328.0
-        self.midPositionConstraint.constant = -108.0
+        self.alertHeightConstraint.constant = 320.0
+        self.midPositionConstraint.constant = -128.0
         self.textView.becomeFirstResponder()
         
         let animator = UIViewPropertyAnimator(duration: 0.35, curve: .easeOut) {
@@ -207,7 +207,7 @@ class RateUsViewController: BaseViewController
     
     fileprivate func hideSuggestInput()
     {
-        self.alertHeightConstraint.constant = 220.0
+        self.alertHeightConstraint.constant = 192.0
         self.midPositionConstraint.constant = 0.0
         self.textView.resignFirstResponder()
         
