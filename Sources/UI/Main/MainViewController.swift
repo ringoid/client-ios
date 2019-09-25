@@ -27,7 +27,8 @@ enum SelectionState {
 enum CachedUIState
 {
     case discover
-    case lmm
+    case likes
+    case chats
     case profile
 }
 
@@ -329,9 +330,18 @@ class MainViewController: BaseViewController
     
     fileprivate func embedLikes()
     {
+        if let vc = self.menuVCCache[.likes] as? MainLMMContainerViewController {
+            self.containedVC = vc
+            self.containerVC.embed(vc)
+            
+            return
+        }
+        
         guard let vc = self.getMainLMMVC() else { return }
         self.containedVC = vc
         self.containerVC.embed(vc)
+        
+        self.menuVCCache[.likes] = vc
         
         DispatchQueue.main.async {
             vc.toggle(.likesYou)
@@ -340,9 +350,18 @@ class MainViewController: BaseViewController
     
     fileprivate func embedChats()
     {
+        if let vc = self.menuVCCache[.chats] as? MainLMMContainerViewController {
+            self.containedVC = vc
+            self.containerVC.embed(vc)
+            
+            return
+        }
+        
         guard let vc = self.getMainLMMVC() else { return }
         self.containedVC = vc
         self.containerVC.embed(vc)
+        
+        self.menuVCCache[.chats] = vc
         
         DispatchQueue.main.async {
             vc.toggle(.messages)
@@ -401,8 +420,6 @@ class MainViewController: BaseViewController
     
     fileprivate func getMainLMMVC() -> MainLMMContainerViewController?
     {
-        if let vc = self.menuVCCache[.lmm] as? MainLMMContainerViewController { return vc }
-        
         let storyboard = Storyboards.mainLMM()
         guard let vc = storyboard.instantiateInitialViewController() as? MainLMMContainerViewController else { return nil }
         vc.input = MainLMMVMInput(
@@ -420,8 +437,6 @@ class MainViewController: BaseViewController
             filter: self.input.filter,
             externalLinkManager: self.input.externalLinkManager
         )
-        
-        self.menuVCCache[.lmm] = vc
         
         return vc
     }
