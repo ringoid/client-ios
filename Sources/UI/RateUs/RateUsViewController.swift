@@ -30,6 +30,7 @@ class RateUsViewController: BaseViewController
     @IBOutlet fileprivate weak var star4ImageView: UIImageView!
     @IBOutlet fileprivate weak var star5ImageView: UIImageView!
     @IBOutlet fileprivate weak var panelView: UIView!
+    @IBOutlet fileprivate weak var alertEffectView: UIVisualEffectView!
     
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var feedbackLabel: UILabel!
@@ -61,7 +62,12 @@ class RateUsViewController: BaseViewController
         AnalyticsManager.shared.send(.rateUsShown)
     }
     
-    override func updateTheme() {}
+    override func updateTheme()
+    {
+        if #available(iOS 13, *) {
+            self.alertEffectView.effect = (self.traitCollection.userInterfaceStyle == .dark) ? UIBlurEffect(style: .dark) : UIBlurEffect(style: .extraLight)
+        }
+    }
     
     override func updateLocale()
     {

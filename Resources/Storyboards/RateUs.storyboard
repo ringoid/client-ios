@@ -191,6 +191,7 @@
                         <viewLayoutGuide key="safeArea" id="Jqt-8d-6lV"/>
                     </view>
                     <connections>
+                        <outlet property="alertEffectView" destination="tr2-zB-hmZ" id="buM-MY-Cjm"/>
                         <outlet property="alertHeightConstraint" destination="eEL-Fo-6lT" id="FSG-tM-CKF"/>
                         <outlet property="cancelBtn" destination="9y3-Gw-nVq" id="30o-Ol-aDF"/>
                         <outlet property="feedbackLabel" destination="SVq-EQ-Fcw" id="hff-JS-xF0"/>

@@ -12,6 +12,7 @@ class DeletionFeedbackViewController: BaseViewController
 {
     var onDelete: ((String)->())?
     
+    @IBOutlet fileprivate weak var alertEffectView: UIVisualEffectView!
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var noUndoLabel: UILabel!
     @IBOutlet fileprivate weak var suggestLabel: UILabel!
@@ -35,7 +36,12 @@ class DeletionFeedbackViewController: BaseViewController
         self.textView.becomeFirstResponder()
     }
     
-    override func updateTheme() {}
+    override func updateTheme()
+    {
+        if #available(iOS 13, *) {
+            self.alertEffectView.effect = (self.traitCollection.userInterfaceStyle == .dark) ? UIBlurEffect(style: .dark) : UIBlurEffect(style: .extraLight)
+        }
+    }
     
     override func updateLocale()
     {

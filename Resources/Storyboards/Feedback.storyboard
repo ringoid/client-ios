@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dK7-of-ave">
-                                <rect key="frame" x="37.5" y="72" width="300" height="260"/>
+                                <rect key="frame" x="37.5" y="52" width="300" height="260"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lT7-a3-UWY">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="260"/>
@@ -146,6 +144,7 @@
                         <viewLayoutGuide key="safeArea" id="Xeo-iS-irQ"/>
                     </view>
                     <connections>
+                        <outlet property="alertEffectView" destination="lT7-a3-UWY" id="k9g-K4-Uwr"/>
                         <outlet property="bottomSeparatorConstraint" destination="tzE-Pw-hdj" id="n23-Kx-ig8"/>
                         <outlet property="cancelBtn" destination="V9o-wk-cwq" id="hei-u9-Zeh"/>
                         <outlet property="infoLabel" destination="aMM-Mt-ozc" id="HtV-5S-3Id"/>
@@ -168,7 +167,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUX-lF-V5m">
-                                <rect key="frame" x="37.5" y="36" width="300" height="296"/>
+                                <rect key="frame" x="37.5" y="16" width="300" height="296"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmT-Tb-gm1">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="296"/>
@@ -304,6 +303,7 @@
                         <viewLayoutGuide key="safeArea" id="2aA-U2-mqb"/>
                     </view>
                     <connections>
+                        <outlet property="alertEffectView" destination="fmT-Tb-gm1" id="mNO-sy-ZPO"/>
                         <outlet property="bottomSeparatorConstraint" destination="mhD-pP-0N0" id="ohp-Cb-V72"/>
                         <outlet property="cancelBtn" destination="RlT-y4-wFe" id="KBA-wY-4JY"/>
                         <outlet property="deleteBtn" destination="tfx-pu-jaU" id="mxh-Rd-hz3"/>
