@@ -30,6 +30,7 @@ struct MainVMInput
     let impact: ImpactService
     let achivement: AchivementManager
     let externalLinkManager: ExternalLinkManager
+    let visualNotificationsManager: VisualNotificationsManager
 }
 
 class MainViewModel

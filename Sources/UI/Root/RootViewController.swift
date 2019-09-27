@@ -117,7 +117,8 @@ class RootViewController: BaseViewController {
             filter: self.appManager.filterManager,
             impact: self.appManager.impact,
             achivement: self.appManager.achivementManager,
-            externalLinkManager: self.appManager.externalLinkManager
+            externalLinkManager: self.appManager.externalLinkManager,
+            visualNotificationsManager: self.appManager.visualNotifications
         )
         
         self.containerView.embed(vc, to: self)

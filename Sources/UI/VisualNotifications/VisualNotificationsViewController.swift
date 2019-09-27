@@ -40,3 +40,32 @@ class VisualNotificationsViewController: UIViewController
         }).disposed(by: self.disposeBag)
     }
 }
+
+// MARK: - UITableViewDataSource & Delegate
+
+extension VisualNotificationsViewController: UITableViewDataSource, UITableViewDelegate
+{
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return self.items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "visual_notification_cell") as! VisualNotificaionCell
+        
+        let item = self.items[indexPath.row]
+        cell.item = item
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 48.0
+    }
+}

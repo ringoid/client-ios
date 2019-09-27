@@ -23,6 +23,8 @@ class VisualNotificationsManager
         self.notifications = notifications
         self.db = db
         self.lmm = lmm
+        
+        self.setupBindings()
     }
     
     // MARK: -
@@ -50,7 +52,7 @@ class VisualNotificationsManager
                         profileId: profileId,
                         text: "New match",
                         photoImage: nil,
-                        photoUrl: nil
+                        photoUrl: self.db.lmmProfile(profileId)?.photos.first?.filepath().url()
                        )
                        
                        var currentItems = self.items.value
@@ -64,7 +66,7 @@ class VisualNotificationsManager
                          profileId: profileId,
                          text: "New messages",
                          photoImage: nil,
-                         photoUrl: nil
+                         photoUrl: self.db.lmmProfile(profileId)?.photos.first?.filepath().url()
                         )
                         
                         var currentItems = self.items.value

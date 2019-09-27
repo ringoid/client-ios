@@ -150,6 +150,12 @@ class MainViewController: BaseViewController
         {
             self.containerVC = segue.destination as? ContainerViewController
         }
+        
+        if segue.identifier == "embed_visual_notifications"
+        {
+            let vc = segue.destination as? VisualNotificationsViewController
+            vc?.input = VisualNotificationsVMInput(manager: self.input.visualNotificationsManager)
+        }
     }
     
     // MARK: - Actions
