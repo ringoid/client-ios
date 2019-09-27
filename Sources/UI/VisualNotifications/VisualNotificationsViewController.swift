@@ -60,6 +60,7 @@ extension VisualNotificationsViewController: UITableViewDataSource, UITableViewD
         
         let item = self.items[indexPath.row]
         cell.item = item
+        cell.startAnimation()
         
         return cell
     }

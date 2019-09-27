@@ -29,6 +29,27 @@ class VisualNotificaionCell: BaseTableViewCell
         }
     }
     
+    @IBOutlet fileprivate weak var containerView: UIView!
     @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var titleLabel: UILabel!
+    
+    func startAnimation()
+    {
+        self.containerView.alpha = 1.0
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.hideContainer()
+        }
+    }
+    
+    // MARK: -
+    
+    fileprivate func hideContainer()
+    {
+        let animator = UIViewPropertyAnimator(duration: 1.0, curve: .linear) {
+            self.containerView.alpha = 0.0
+        }
+        
+        animator.startAnimation()
+    }
 }
