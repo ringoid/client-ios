@@ -67,6 +67,10 @@
 		573A5C2E2229184E0094A9FA /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C2C2229184E0094A9FA /* ReachabilityService.swift */; };
 		573A5C30222919460094A9FA /* ReachabilityServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */; };
 		573A5C31222919470094A9FA /* ReachabilityServiceDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */; };
+		573BB200233CFBFB006DD66F /* VisualNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573BB1FF233CFBFB006DD66F /* VisualNotificationsManager.swift */; };
+		573BB201233CFBFB006DD66F /* VisualNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573BB1FF233CFBFB006DD66F /* VisualNotificationsManager.swift */; };
+		573BB203233DD38A006DD66F /* VisualNotificationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573BB202233DD389006DD66F /* VisualNotificationInfo.swift */; };
+		573BB204233DD38A006DD66F /* VisualNotificationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573BB202233DD389006DD66F /* VisualNotificationInfo.swift */; };
 		573D115D228D97D700CD9C2D /* ModalUIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D115C228D97D700CD9C2D /* ModalUIManager.swift */; };
 		573D115E228D97D700CD9C2D /* ModalUIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D115C228D97D700CD9C2D /* ModalUIManager.swift */; };
 		573D1160228D9E5000CD9C2D /* Feedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 573D115F228D9E5000CD9C2D /* Feedback.storyboard */; };
@@ -512,6 +516,8 @@
 		573A5C282227AD0D0094A9FA /* UserProfileCropOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCropOverlayView.swift; sourceTree = "<group>"; };
 		573A5C2C2229184E0094A9FA /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityServiceDefault.swift; sourceTree = "<group>"; };
+		573BB1FF233CFBFB006DD66F /* VisualNotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualNotificationsManager.swift; sourceTree = "<group>"; };
+		573BB202233DD389006DD66F /* VisualNotificationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualNotificationInfo.swift; sourceTree = "<group>"; };
 		573D115C228D97D700CD9C2D /* ModalUIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalUIManager.swift; sourceTree = "<group>"; };
 		573D115F228D9E5000CD9C2D /* Feedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feedback.storyboard; sourceTree = "<group>"; };
 		573D1164228DA0A500CD9C2D /* SettingsFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFeedbackViewController.swift; sourceTree = "<group>"; };
@@ -867,6 +873,7 @@
 		570D04A221DD084500E0DCFB /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				573BB1FE233CFB3D006DD66F /* VisualNotifications */,
 				57F738722333902500E054BE /* RateUs */,
 				57AABCDF231796AC0014EE3B /* ExternalLink */,
 				57AE8974230692D100123AA6 /* Achivement */,
@@ -1014,6 +1021,15 @@
 				573A5C2F222919460094A9FA /* ReachabilityServiceDefault.swift */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		573BB1FE233CFB3D006DD66F /* VisualNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				573BB1FF233CFBFB006DD66F /* VisualNotificationsManager.swift */,
+				573BB202233DD389006DD66F /* VisualNotificationInfo.swift */,
+			);
+			path = VisualNotifications;
 			sourceTree = "<group>";
 		};
 		573D1163228DA08300CD9C2D /* Feedback */ = {
@@ -2014,6 +2030,7 @@
 				57585D6021E4BF4900038798 /* UploaderServiceDefault.swift in Sources */,
 				577DDAD622647964001D7D24 /* LocationService.swift in Sources */,
 				57EEB06D22BCED1E005770B3 /* Income.swift in Sources */,
+				573BB200233CFBFB006DD66F /* VisualNotificationsManager.swift in Sources */,
 				573D1165228DA0A500CD9C2D /* SettingsFeedbackViewController.swift in Sources */,
 				576FC12222032D7E00BA5ABE /* BlockedProfile.swift in Sources */,
 				570D04CA21E32F4800E0DCFB /* AuthViewController.swift in Sources */,
@@ -2031,6 +2048,7 @@
 				57528C7A2292E786003F01E3 /* SettingsNotificationsMatchCell.swift in Sources */,
 				570D049C21DCFB6600E0DCFB /* ApiServiceDefault.swift in Sources */,
 				576FC10A21FEC9FF00BA5ABE /* ActionProfile.swift in Sources */,
+				573BB203233DD38A006DD66F /* VisualNotificationInfo.swift in Sources */,
 				570D047A21DCE3DA00E0DCFB /* AppDelegate.swift in Sources */,
 				573D1169228DA38E00CD9C2D /* FeedbackManager.swift in Sources */,
 				57528C742292E621003F01E3 /* SettingsNotificationsEveningCell.swift in Sources */,
@@ -2179,10 +2197,12 @@
 				57EE64D62216711000246B45 /* SettingsLegalTermsCell.swift in Sources */,
 				57EE64D72216711000246B45 /* RootViewController.swift in Sources */,
 				57AABCDE231792980014EE3B /* InstagramService.swift in Sources */,
+				573BB201233CFBFB006DD66F /* VisualNotificationsManager.swift in Sources */,
 				57EE64D82216711000246B45 /* ApiViewAction.swift in Sources */,
 				57EE64D92216711000246B45 /* Alerts.swift in Sources */,
 				57EE64DA2216711000246B45 /* Types.swift in Sources */,
 				57EE64DB2216711000246B45 /* NewFaceProfileViewController.swift in Sources */,
+				573BB204233DD38A006DD66F /* VisualNotificationInfo.swift in Sources */,
 				573A5C182225440B0094A9FA /* SettingsDebugViewController.swift in Sources */,
 				577DDAF9227027E0001D7D24 /* ViewControllerBlocker.swift in Sources */,
 				57EE64DC2216711000246B45 /* ChatRightCell.swift in Sources */,
