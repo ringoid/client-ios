@@ -163,7 +163,7 @@ class AppManager
         self.locationManager = LocationManager(self.location, actions: self.actionsManager)
         self.transitionManager = TransitionManager(self.db, lmm: self.lmmManager, filter: self.filterManager)
         self.externalLinkManager = ExternalLinkManager()
-        self.visualNotifications = VisualNotificationsManager(self.notifications, lmm: self.lmmManager)
+        self.visualNotifications = VisualNotificationsManager(self.notifications, db: self.db, lmm: self.lmmManager)
         
         ThemeManager.shared.storageService = self.defaultStorage
         LocaleManager.shared.storage = self.defaultStorage

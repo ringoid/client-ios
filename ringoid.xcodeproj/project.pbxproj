@@ -262,6 +262,14 @@
 		57CFFB7222E858A000DC2378 /* SettingsFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CFFB7022E858A000DC2378 /* SettingsFilterCell.swift */; };
 		57D4FB392317D99300EF80EB /* TiktokService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D4FB382317D99300EF80EB /* TiktokService.swift */; };
 		57D4FB3A2317D99300EF80EB /* TiktokService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D4FB382317D99300EF80EB /* TiktokService.swift */; };
+		57E1547C233DEE3A00C4E724 /* VisualNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E1547B233DEE3A00C4E724 /* VisualNotificationsViewController.swift */; };
+		57E1547D233DEE3A00C4E724 /* VisualNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E1547B233DEE3A00C4E724 /* VisualNotificationsViewController.swift */; };
+		57E1547F233DEE4F00C4E724 /* VisualNotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E1547E233DEE4F00C4E724 /* VisualNotificationsViewModel.swift */; };
+		57E15480233DEE4F00C4E724 /* VisualNotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E1547E233DEE4F00C4E724 /* VisualNotificationsViewModel.swift */; };
+		57E15482233DF34100C4E724 /* VisualNotificationsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E15481233DF34100C4E724 /* VisualNotificationsTableView.swift */; };
+		57E15483233DF34100C4E724 /* VisualNotificationsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E15481233DF34100C4E724 /* VisualNotificationsTableView.swift */; };
+		57E15485233DF69800C4E724 /* VisualNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E15484233DF69800C4E724 /* VisualNotificationCell.swift */; };
+		57E15486233DF69800C4E724 /* VisualNotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E15484233DF69800C4E724 /* VisualNotificationCell.swift */; };
 		57E23141227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */; };
 		57E23142227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */; };
 		57E6DBEA229820FC00713A79 /* ApiUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6DBE9229820FB00713A79 /* ApiUserProfile.swift */; };
@@ -656,6 +664,10 @@
 		57CFFB6A22E8476000DC2378 /* SettingsFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFilterViewModel.swift; sourceTree = "<group>"; };
 		57CFFB7022E858A000DC2378 /* SettingsFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFilterCell.swift; sourceTree = "<group>"; };
 		57D4FB382317D99300EF80EB /* TiktokService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiktokService.swift; sourceTree = "<group>"; };
+		57E1547B233DEE3A00C4E724 /* VisualNotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualNotificationsViewController.swift; sourceTree = "<group>"; };
+		57E1547E233DEE4F00C4E724 /* VisualNotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualNotificationsViewModel.swift; sourceTree = "<group>"; };
+		57E15481233DF34100C4E724 /* VisualNotificationsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualNotificationsTableView.swift; sourceTree = "<group>"; };
+		57E15484233DF69800C4E724 /* VisualNotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualNotificationCell.swift; sourceTree = "<group>"; };
 		57E23140227AEBD000E77C49 /* MainLMMMessagesContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLMMMessagesContainerViewController.swift; sourceTree = "<group>"; };
 		57E6DBE9229820FB00713A79 /* ApiUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiUserProfile.swift; sourceTree = "<group>"; };
 		57ED48692249FC070033EB0B /* Ringoid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ringoid.entitlements; sourceTree = "<group>"; };
@@ -787,6 +799,7 @@
 		570D047321DCE3DA00E0DCFB /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				57E1547A233DECB000C4E724 /* VisualNotifications */,
 				57F738762333953600E054BE /* RateUs */,
 				573D1163228DA08300CD9C2D /* Feedback */,
 				57FB7BD121E74C1000AAA29D /* Storyboards */,
@@ -1509,6 +1522,17 @@
 			path = Actions;
 			sourceTree = "<group>";
 		};
+		57E1547A233DECB000C4E724 /* VisualNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				57E1547B233DEE3A00C4E724 /* VisualNotificationsViewController.swift */,
+				57E1547E233DEE4F00C4E724 /* VisualNotificationsViewModel.swift */,
+				57E15481233DF34100C4E724 /* VisualNotificationsTableView.swift */,
+				57E15484233DF69800C4E724 /* VisualNotificationCell.swift */,
+			);
+			path = VisualNotifications;
+			sourceTree = "<group>";
+		};
 		57ED486B224B825E0033EB0B /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -2083,6 +2107,7 @@
 				57585D5921E4928600038798 /* FileServiceDefault.swift in Sources */,
 				57EEB09822BFA3DA005770B3 /* EducationTitles.swift in Sources */,
 				57EE64C1221478A600246B45 /* SettingsLegalViewController.swift in Sources */,
+				57E1547F233DEE4F00C4E724 /* VisualNotificationsViewModel.swift in Sources */,
 				57B6CCA82328D30700A26BF8 /* ApiReadMessageAction.swift in Sources */,
 				57801A87222FF049005A9731 /* SettingsDebugLogViewController.swift in Sources */,
 				57ED486D224B82C10033EB0B /* NotificationsService.swift in Sources */,
@@ -2093,6 +2118,7 @@
 				573A5C0E222409F10094A9FA /* EmptyFeed.swift in Sources */,
 				577DDAD922647975001D7D24 /* LocationServiceDefault.swift in Sources */,
 				573D768A22D73C1400E1576B /* SettingsProfileFieldsSuggest.swift in Sources */,
+				57E15485233DF69800C4E724 /* VisualNotificationCell.swift in Sources */,
 				57CFFB6B22E8476000DC2378 /* SettingsFilterViewModel.swift in Sources */,
 				57EEB08C22BE6D84005770B3 /* ProfileFieldsConfiguration.swift in Sources */,
 				5751561422E1D8F2009E7743 /* NewFacesFilterViewController.swift in Sources */,
@@ -2104,6 +2130,7 @@
 				579CD7B321F890A300C3AEE3 /* SettingsViewModel.swift in Sources */,
 				57EE64CF22153B1000246B45 /* SettingsLegalEmailCell.swift in Sources */,
 				570D04C621DFBD5A00E0DCFB /* DBService.swift in Sources */,
+				57E15482233DF34100C4E724 /* VisualNotificationsTableView.swift in Sources */,
 				57EE64BF221435E100246B45 /* SettingsEmailCell.swift in Sources */,
 				57B863BC21EC74BF00B9CC70 /* ApiLMMProfile.swift in Sources */,
 				570D04BD21DE385E00E0DCFB /* DefaultStorageService.swift in Sources */,
@@ -2129,6 +2156,7 @@
 				576FC10821FEC9C400BA5ABE /* ActionPhoto.swift in Sources */,
 				57B863C521ECC34C00B9CC70 /* LMMManager.swift in Sources */,
 				5751562422E1EA9E009E7743 /* RangeSeekSlider.swift in Sources */,
+				57E1547C233DEE3A00C4E724 /* VisualNotificationsViewController.swift in Sources */,
 				57EEB06422BCE8E5005770B3 /* Transport.swift in Sources */,
 				57EEB08222BE62FF005770B3 /* SettingsProfileHeightCell.swift in Sources */,
 				57585D3A21E3499E00038798 /* ApiPhoto.swift in Sources */,
@@ -2332,6 +2360,7 @@
 				57EE651A2216711000246B45 /* ApiLMMProfile.swift in Sources */,
 				573A5C2A2227AD0D0094A9FA /* UserProfileCropOverlayView.swift in Sources */,
 				578502F522564E860056120A /* AnalyticsService.swift in Sources */,
+				57E15486233DF69800C4E724 /* VisualNotificationCell.swift in Sources */,
 				57EE651C2216711000246B45 /* DefaultStorageService.swift in Sources */,
 				573A5C272227AA080094A9FA /* UserProfilePhotoCropViewController.swift in Sources */,
 				57EE651D2216711000246B45 /* AppManager.swift in Sources */,
@@ -2342,10 +2371,12 @@
 				57EEB06822BCEC10005770B3 /* EducationLevel.swift in Sources */,
 				57AE8977230692EC00123AA6 /* AchivementManager.swift in Sources */,
 				5751561822E1D90D009E7743 /* NewFacesFilterViewModel.swift in Sources */,
+				57E1547D233DEE3A00C4E724 /* VisualNotificationsViewController.swift in Sources */,
 				57EE65202216711000246B45 /* DBServiceObject.swift in Sources */,
 				57EE65212216711000246B45 /* MainLMMCell.swift in Sources */,
 				573A5C1C222556AD0094A9FA /* LogService.swift in Sources */,
 				57EE65222216711000246B45 /* ApiViewChatAction.swift in Sources */,
+				57E15483233DF34100C4E724 /* VisualNotificationsTableView.swift in Sources */,
 				57EE65232216711000246B45 /* FilePath.swift in Sources */,
 				57EE65242216711000246B45 /* MainViewController.swift in Sources */,
 				57EE65252216711000246B45 /* Colors.swift in Sources */,
@@ -2368,6 +2399,7 @@
 				57EE652E2216711000246B45 /* BaseViewController.swift in Sources */,
 				57EE652F2216711000246B45 /* ApiUserPhotoPlaceholder.swift in Sources */,
 				57EE65302216711000246B45 /* ApiMessage.swift in Sources */,
+				57E15480233DEE4F00C4E724 /* VisualNotificationsViewModel.swift in Sources */,
 				57AABCDB231791FC0014EE3B /* ExternalLinkService.swift in Sources */,
 				57EE65312216711000246B45 /* UserProfilePhotosViewModel.swift in Sources */,
 				57EE65322216711000246B45 /* Profile.swift in Sources */,

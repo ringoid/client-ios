@@ -14,12 +14,14 @@ class VisualNotificationsManager
     var items: BehaviorRelay<[VisualNotificationInfo]> = BehaviorRelay<[VisualNotificationInfo]>(value: [])
     
     fileprivate let notifications: NotificationService
+    fileprivate let db: DBService
     fileprivate let lmm: LMMManager
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     
-    init(_ notifications: NotificationService, lmm: LMMManager)
+    init(_ notifications: NotificationService, db: DBService, lmm: LMMManager)
     {
         self.notifications = notifications
+        self.db = db
         self.lmm = lmm
     }
     
@@ -33,7 +35,8 @@ class VisualNotificationsManager
                    guard let typeStr = userInfo["type"] as? String else { return }
                    guard let remoteFeed = RemoteFeedType(rawValue: typeStr) else { return }
                    guard let profileId = userInfo["oppositeUserId"] as? String else { return }
-                   //guard self.viewModel?.isBlocked(profileId) == false else { return }
+                   guard !self.db.isBlocked(profileId) else { return }
+            
                    guard ChatViewController.openedProfileId != profileId else { return }
                    
                    switch remoteFeed {
@@ -65,7 +68,7 @@ class VisualNotificationsManager
                         )
                         
                         var currentItems = self.items.value
-                        currentItems.insert(item, at: 0)
+                        currentItems.insert(item, at: 0)                        
                         self.items.accept(currentItems)
                     
                        break
@@ -76,3 +79,4 @@ class VisualNotificationsManager
                }).disposed(by: self.disposeBag)
     }
 }
+
