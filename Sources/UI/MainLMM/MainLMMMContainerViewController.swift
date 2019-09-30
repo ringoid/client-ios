@@ -68,6 +68,11 @@ class MainLMMContainerViewController: BaseViewController
         self.lmmVC?.reload(false)
     }
     
+    func openChat(_ profileId: String)
+    {
+        self.lmmVC?.openChat(profileId)
+    }
+    
     // MARK: - Actions
     
     @IBAction func onLikesYouSelected()

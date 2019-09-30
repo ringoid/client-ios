@@ -18,11 +18,14 @@ enum MainNavigationItem
     
     case searchAndFetch
     case searchAndFetchFirstTime
+    
     case profileAndFetch
     case profileAndPick
     case profileAndAsk
     
     case likeAndFetch
+    
+    case chat(String)
 }
 
 class NavigationManager

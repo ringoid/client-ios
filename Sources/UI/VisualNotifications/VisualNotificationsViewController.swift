@@ -90,4 +90,14 @@ extension VisualNotificationsViewController: UITableViewDataSource, UITableViewD
     {
         return 48.0
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let index = indexPath.row
+        let item = self.items[index]
+        self.viewModel?.openChat(item.profileId)
+        
+        self.items.remove(at: index)
+        self.tableView.deleteRows(at: [indexPath], with: .none)
+    }
 }

@@ -15,6 +15,10 @@ class VisualNotificationsTableView: UITableView
         let hittedView = super.hitTest(point, with: event)
         
         guard let numberOfRows = self.dataSource?.tableView(self, numberOfRowsInSection: 0) else { return nil }
+        guard let rowHeight = self.delegate?.tableView?(self, heightForRowAt: IndexPath(row: 0, section: 0)) else { return nil }
+        let height = CGFloat(numberOfRows) * rowHeight
+        
+        if point.y < height { return hittedView }
         
         return nil
     }

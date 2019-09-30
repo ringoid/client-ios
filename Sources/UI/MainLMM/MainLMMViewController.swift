@@ -151,6 +151,13 @@ class MainLMMViewController: BaseViewController
         self.updateFeed(true)
     }
     
+    func openChat(_ profileId: String)
+    {
+        guard let profile = self.input.lmmManager.profile(profileId) else { return }
+        
+        self.showExternalChat(profile)
+    }
+    
     // MARK: - Actions
     
     @IBAction func onScrollTop()
@@ -649,6 +656,57 @@ class MainLMMViewController: BaseViewController
         }
         profileVC?.showNotChatControls()
         
+        self.chatContainerView.isHidden = true
+        self.chatContainerView.remove()
+
+        self.isChatShown = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+            RateUsManager.shared.showAlertIfNeeded(self)
+        })
+    }
+    
+    fileprivate func showExternalChat(_ profile: LMMProfile)
+    {
+        guard let photo = profile.photos.first else { return }
+        
+          self.isChatShown = true
+          let photoId = photo.id
+          if let actionProfile = profile.actionInstance(),
+              let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first {
+              
+              self.input.actionsManager.stopViewAction(actionProfile, photo: actionPhoto, sourceType: self.type.value.sourceType())
+              self.input.actionsManager.startViewChatAction(actionProfile, photo: actionPhoto, sourceType: self.type.value.sourceType())
+          }
+          
+          let vc = ChatViewController.create()
+          vc.input = ChatVMInput(
+              profile: profile,
+              photo: photo,
+              source: self.type.value.sourceType(),
+              chatManager: self.input.chatManager,
+              lmmManager: self.input.lmmManager,
+              scenario: self.input.scenario,
+              transition: self.input.transition,
+              actions: self.input.actionsManager
+              , onClose: { [weak self] in
+                  self?.hideExternalChat(profile, photo: photo)
+              }, onBlock: {
+                  // TODO: think about blocking
+          })
+    
+          self.chatContainerView.embed(vc, to: self)
+          self.chatContainerView.isHidden = false
+      }
+    
+    fileprivate func hideExternalChat(_ profile: LMMProfile, photo: Photo)
+    {
+        let photoId = photo.id
+        if let actionProfile = profile.actionInstance(),
+            let actionPhoto = actionProfile.orderedPhotos().filter({ $0.id == photoId }).first {
+            self.input.actionsManager.stopViewChatAction(actionProfile, photo: actionPhoto, sourceType: self.type.value.sourceType())
+            self.input.actionsManager.startViewAction(actionProfile, photo: actionPhoto, sourceType: self.type.value.sourceType())
+        }
         self.chatContainerView.isHidden = true
         self.chatContainerView.remove()
 

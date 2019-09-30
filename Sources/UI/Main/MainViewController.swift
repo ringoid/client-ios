@@ -10,20 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-enum SelectionState {
-    case search
-    case likes
-    case chats
-    case profile
-    
-    case searchAndFetch
-    case searchAndFetchFirstTime
-    case profileAndPick
-    case profileAndFetch
-    case profileAndAsk
-    case likeAndFetch
-}
-
 enum CachedUIState
 {
     case discover
@@ -154,7 +140,10 @@ class MainViewController: BaseViewController
         if segue.identifier == "embed_visual_notifications"
         {
             let vc = segue.destination as? VisualNotificationsViewController
-            vc?.input = VisualNotificationsVMInput(manager: self.input.visualNotificationsManager)
+            vc?.input = VisualNotificationsVMInput(
+                manager: self.input.visualNotificationsManager,
+                navigation: self.input.navigationManager
+            )
         }
     }
     
@@ -302,6 +291,14 @@ class MainViewController: BaseViewController
             self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
             self.embedMainLMMAndFetch()
             break
+            
+        case .chat(let profileId):
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages_selected"), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.embedChat(profileId)
+            break
         }
     }
     
@@ -371,6 +368,28 @@ class MainViewController: BaseViewController
         
         DispatchQueue.main.async {
             vc.toggle(.messages)
+        }
+    }
+    
+    fileprivate func embedChat(_ profileId: String)
+    {
+        if let vc = self.menuVCCache[.chats] as? MainLMMContainerViewController {
+            self.containedVC = vc
+            self.containerVC.embed(vc)
+            vc.openChat(profileId)
+            
+            return
+        }
+        
+        guard let vc = self.getMainLMMVC() else { return }
+        self.containedVC = vc
+        self.containerVC.embed(vc)
+        
+        self.menuVCCache[.chats] = vc
+        
+        DispatchQueue.main.async {
+            vc.toggle(.messages)
+            vc.openChat(profileId)
         }
     }
     
@@ -775,6 +794,7 @@ extension MainNavigationItem
         case .searchAndFetch: return .searchAndFetch
         case .searchAndFetchFirstTime: return .searchAndFetchFirstTime
         case .likeAndFetch: return .likeAndFetch
+        case .chat(let profileId): return .chat(profileId)
         }
     }
 }

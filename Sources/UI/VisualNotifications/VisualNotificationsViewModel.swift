@@ -12,6 +12,7 @@ import RxCocoa
 struct VisualNotificationsVMInput
 {
     let manager: VisualNotificationsManager
+    let navigation: NavigationManager
 }
 
 class VisualNotificationsViewModel
@@ -22,9 +23,16 @@ class VisualNotificationsViewModel
     }
     
     fileprivate let manager: VisualNotificationsManager
+    fileprivate let navigation: NavigationManager
     
     init(_ input: VisualNotificationsVMInput)
     {
         self.manager = input.manager
+        self.navigation = input.navigation
+    }
+    
+    func openChat(_ profileId: String)
+    {
+        self.navigation.mainItem.accept(.chat(profileId))
     }
 }
