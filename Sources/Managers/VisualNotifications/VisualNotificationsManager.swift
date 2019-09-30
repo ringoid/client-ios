@@ -52,6 +52,7 @@ class VisualNotificationsManager
                        
                        let item = VisualNotificationInfo(
                         profileId: profileId,
+                        name: "No name yet",
                         text: "New match",
                         photoImage: nil,
                         photoUrl: profile?.photos.first?.filepath().url()
@@ -64,6 +65,7 @@ class VisualNotificationsManager
                    case .messages:
                         let item = VisualNotificationInfo(
                          profileId: profileId,
+                         name: "No name yet",
                          text: "New messages",
                          photoImage: nil,
                          photoUrl: profile?.photos.first?.filepath().url()

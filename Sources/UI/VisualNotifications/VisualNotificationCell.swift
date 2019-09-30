@@ -13,7 +13,8 @@ class VisualNotificaionCell: BaseTableViewCell
     var item: VisualNotificationInfo!
     {
         didSet {
-            self.titleLabel.text = self.item.text
+            self.messageLabel.text = self.item.text
+            self.nameLabel.text = self.item.name
             
             if let image = self.item.photoImage  {
                 self.photoView.image = image
@@ -33,7 +34,8 @@ class VisualNotificaionCell: BaseTableViewCell
     
     @IBOutlet fileprivate weak var containerView: UIView!
     @IBOutlet fileprivate weak var photoView: UIImageView!
-    @IBOutlet fileprivate weak var titleLabel: UILabel!
+    @IBOutlet fileprivate weak var messageLabel: UILabel!
+    @IBOutlet fileprivate weak var nameLabel: UILabel!
     
     func startAnimation()
     {

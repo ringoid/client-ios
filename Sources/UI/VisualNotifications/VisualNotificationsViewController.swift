@@ -37,16 +37,7 @@ class VisualNotificationsViewController: UIViewController
     {
         self.viewModel?.items.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] updatedItems in
             guard let `self` = self else { return }
-            
-//            let diff = patch(from: self.items, to: updatedItems)
-//            let indexPaths = diff.compactMap ({ item -> IndexPath? in
-//                switch item {
-//                case .insertion(let index, _): return IndexPath(row: index, section: 0)
-//                default: return nil
-//                }
-//            })
-            
-            
+
             let indexPaths = (0..<updatedItems.count).map({ IndexPath(row: $0, section: 0) })
             self.items.insert(contentsOf: updatedItems, at: 0)
             self.tableView.insertRows(at: indexPaths, with: .top)
