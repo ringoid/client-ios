@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Differ
 
 class VisualNotificationsViewController: UIViewController
 {
@@ -35,8 +36,18 @@ class VisualNotificationsViewController: UIViewController
     fileprivate func setupBindings()
     {
         self.viewModel?.items.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] updatedItems in
-            self?.items = updatedItems
-            self?.tableView.reloadData()
+            guard let `self` = self else { return }
+            
+            let diff = patch(from: self.items, to: updatedItems)
+            let indexPaths = diff.compactMap ({ item -> IndexPath? in
+                switch item {
+                case .insertion(let index, _): return IndexPath(row: index, section: 0)
+                default: return nil
+                }
+            })
+            
+            self.items = updatedItems
+            self.tableView.insertRows(at: indexPaths, with: .top)
         }).disposed(by: self.disposeBag)
     }
 }

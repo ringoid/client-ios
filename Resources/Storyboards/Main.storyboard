@@ -83,9 +83,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBS-em-p9g" customClass="TouchThroughView" customModule="Ringoid" customModuleProvider="target">
-                                <rect key="frame" x="37.5" y="0.0" width="300" height="320"/>
+                                <rect key="frame" x="37.5" y="0.0" width="300" height="667"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="Y0a-PO-IQc"/>
                                     <constraint firstAttribute="width" constant="300" id="t69-Yj-7QF"/>
                                 </constraints>
                                 <connections>
@@ -181,6 +180,7 @@
                             <constraint firstItem="WgY-Bd-4Qd" firstAttribute="centerX" secondItem="IC7-wg-nDT" secondAttribute="centerX" constant="10" id="EW9-pa-34W"/>
                             <constraint firstItem="htN-cB-51n" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="FCs-AF-JJv"/>
                             <constraint firstAttribute="trailing" secondItem="htN-cB-51n" secondAttribute="trailing" id="FhK-dC-Yle"/>
+                            <constraint firstAttribute="bottom" secondItem="tBS-em-p9g" secondAttribute="bottom" id="HeA-yV-GSb"/>
                             <constraint firstItem="E8b-9J-Vw4" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="J9K-us-tve"/>
                             <constraint firstItem="A7E-GF-7xU" firstAttribute="top" secondItem="PZo-jV-0xV" secondAttribute="top" constant="120" id="JYU-le-UnZ"/>
                             <constraint firstItem="NUg-31-Hnn" firstAttribute="top" secondItem="QYd-HC-afs" secondAttribute="top" constant="26" id="PYb-f9-tK5"/>
@@ -279,7 +279,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="0EF-sH-vXH" firstAttribute="centerY" secondItem="8P7-rE-RsF" secondAttribute="centerY" id="GHQ-HA-fDK"/>
                                                         <constraint firstItem="0EF-sH-vXH" firstAttribute="leading" secondItem="X0z-UT-6t5" secondAttribute="trailing" constant="8" id="KGT-D8-D8B"/>
@@ -317,11 +317,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="TsW-8o-vIy" firstAttribute="top" secondItem="ffX-By-yhC" secondAttribute="top" id="VNy-L7-HA7"/>
+                            <constraint firstItem="TsW-8o-vIy" firstAttribute="top" secondItem="cqp-pP-sxb" secondAttribute="top" id="VNy-L7-HA7"/>
                             <constraint firstAttribute="bottom" secondItem="TsW-8o-vIy" secondAttribute="bottom" id="WkF-AH-j2x"/>
                             <constraint firstItem="TsW-8o-vIy" firstAttribute="leading" secondItem="ffX-By-yhC" secondAttribute="leading" id="X7B-f5-KAg"/>
                             <constraint firstAttribute="trailing" secondItem="TsW-8o-vIy" secondAttribute="trailing" id="j9v-3H-fo2"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="cqp-pP-sxb"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="TsW-8o-vIy" id="P2k-pk-nHi"/>
