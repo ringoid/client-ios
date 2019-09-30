@@ -29,6 +29,8 @@ class VisualNotificaionCell: BaseTableViewCell
         }
     }
     
+    var onAnimationFinished: (()->())?
+    
     @IBOutlet fileprivate weak var containerView: UIView!
     @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var titleLabel: UILabel!
@@ -48,6 +50,10 @@ class VisualNotificaionCell: BaseTableViewCell
     {
         let animator = UIViewPropertyAnimator(duration: 1.0, curve: .linear) {
             self.containerView.alpha = 0.0
+        }
+        
+        animator.addCompletion { _ in
+            self.onAnimationFinished?()
         }
         
         animator.startAnimation()

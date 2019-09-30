@@ -38,15 +38,17 @@ class VisualNotificationsViewController: UIViewController
         self.viewModel?.items.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] updatedItems in
             guard let `self` = self else { return }
             
-            let diff = patch(from: self.items, to: updatedItems)
-            let indexPaths = diff.compactMap ({ item -> IndexPath? in
-                switch item {
-                case .insertion(let index, _): return IndexPath(row: index, section: 0)
-                default: return nil
-                }
-            })
+//            let diff = patch(from: self.items, to: updatedItems)
+//            let indexPaths = diff.compactMap ({ item -> IndexPath? in
+//                switch item {
+//                case .insertion(let index, _): return IndexPath(row: index, section: 0)
+//                default: return nil
+//                }
+//            })
             
-            self.items = updatedItems
+            
+            let indexPaths = (0..<updatedItems.count).map({ IndexPath(row: $0, section: 0) })
+            self.items.insert(contentsOf: updatedItems, at: 0)
             self.tableView.insertRows(at: indexPaths, with: .top)
         }).disposed(by: self.disposeBag)
     }
@@ -72,6 +74,14 @@ extension VisualNotificationsViewController: UITableViewDataSource, UITableViewD
         let item = self.items[indexPath.row]
         cell.item = item
         cell.startAnimation()
+        cell.onAnimationFinished = { [weak self] in
+            guard let `self` = self else { return }
+            guard let index = self.items.firstIndex(of: item) else { return }
+            
+            self.items.remove(at: index)
+            let indexPath = IndexPath(row: index, section: 0)
+            self.tableView.deleteRows(at: [indexPath], with: .none)
+        }
         
         return cell
     }

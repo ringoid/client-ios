@@ -55,9 +55,7 @@ class VisualNotificationsManager
                         photoUrl: self.db.lmmProfile(profileId)?.photos.first?.filepath().url()
                        )
                        
-                       var currentItems = self.items.value
-                       currentItems.insert(item, at: 0)
-                       self.items.accept(currentItems)
+                       self.items.accept([item])
                        
                        break
                                        
@@ -69,9 +67,7 @@ class VisualNotificationsManager
                          photoUrl: self.db.lmmProfile(profileId)?.photos.first?.filepath().url()
                         )
                         
-                        var currentItems = self.items.value
-                        currentItems.insert(item, at: 0)                        
-                        self.items.accept(currentItems)
+                        self.items.accept([item])
                     
                        break
         
