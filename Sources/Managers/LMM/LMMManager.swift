@@ -393,6 +393,11 @@ class LMMManager
         }
     }
     
+    func profile(_ id: String) -> LMMProfile?
+    {
+        return (self.likesYou.value + self.messages.value).filter({ $0.id == id }).first
+    }
+    
     func reset()
     {
         self.allLikesYouProfilesCount.accept(0)

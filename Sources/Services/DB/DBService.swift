@@ -184,13 +184,6 @@ class DBService
         return .just(Array(self.realm.objects(LMMProfile.self).filter(predicate)))
     }
     
-    func lmmProfile(_ id: String) -> LMMProfile?
-    {
-        let predicate = NSPredicate(format: "id = %@ AND isDeleted = false", id)
-        
-        return self.realm.objects(LMMProfile.self).filter(predicate).first
-    }
-    
     func blockProfile(_ id: String)
     {
         let blockedProfile = BlockedProfile()

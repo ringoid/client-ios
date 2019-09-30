@@ -40,6 +40,8 @@ class VisualNotificationsManager
                    guard !self.db.isBlocked(profileId) else { return }
             
                    guard ChatViewController.openedProfileId != profileId else { return }
+            
+                   let profile = self.lmm.profile(profileId)
                    
                    switch remoteFeed {
                    case .likesYou:
@@ -52,7 +54,7 @@ class VisualNotificationsManager
                         profileId: profileId,
                         text: "New match",
                         photoImage: nil,
-                        photoUrl: self.db.lmmProfile(profileId)?.photos.first?.filepath().url()
+                        photoUrl: profile?.photos.first?.filepath().url()
                        )
                        
                        self.items.accept([item])
@@ -64,7 +66,7 @@ class VisualNotificationsManager
                          profileId: profileId,
                          text: "New messages",
                          photoImage: nil,
-                         photoUrl: self.db.lmmProfile(profileId)?.photos.first?.filepath().url()
+                         photoUrl: profile?.photos.first?.filepath().url()
                         )
                         
                         self.items.accept([item])
