@@ -338,26 +338,28 @@ class LMMManager
         }
     }
     
-    func updateChat(_ profileId: String)
+    func updateChat(_ profileId: String) -> Observable<Void>
     {
-        self.actionsManager.sendQueue().subscribe(onNext: { [weak self] _ in
-            guard let `self` = self else { return }
+        return self.actionsManager.sendQueue().flatMap({ [weak self] _ -> Observable<Void> in
+            guard let `self` = self else { return .just(()) }
             
-            self.apiService.getChat(profileId,
+            return self.apiService.getChat(profileId,
                                     resolution: self.deviceService.photoResolution,
-                                    lastActionDate: self.actionsManager.lastActionDate.value).subscribe(onNext: { [weak self] chatUpdate, pullAfterInterval in
+                                    lastActionDate: self.actionsManager.lastActionDate.value).flatMap({ [weak self] (chatUpdate, pullAfterInterval) -> Observable<Void> in
                                         
                                         self?.updateLocalProfile(profileId, update: chatUpdate)
                                         
-                                        guard pullAfterInterval > 0 else { return }
+                                        guard pullAfterInterval > 0 else { return .just(())}
                                         
                                         let interval = Double(pullAfterInterval) / 1000.0
-                                        guard interval > 0.5 else { return }
+                                        guard interval > 0.5 else { return .just(()) }
                                         
                                         self?.chatUpdateInterval.accept(interval)
-                                    }).disposed(by: self.disposeBag)
+                                        
+                                        return .just(())
+                                    })
             
-        }).disposed(by: self.disposeBag)
+        })
     }
     
     func markAsTransitioned(_ profileId: String, in feed: LMMType)
@@ -626,7 +628,7 @@ class LMMManager
                 let isContainedInRead = self.messages.value.filter({ $0.isRead() }).map({ $0.id }).contains(profileId)
                 let isVisible = self.actionsManager.lmmViewingProfiles.value.contains(profileId)
                 if isContainedLocally {
-                    self.updateChat(profileId)
+                    self.updateChat(profileId).subscribe().disposed(by: self.disposeBag)
                     
                     if ChatViewController.openedProfileId == profileId { break }
                     if self.actionsManager.lmmViewingProfiles.value.contains(profileId) { break }

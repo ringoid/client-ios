@@ -31,54 +31,62 @@ class VisualNotificationsManager
     
     fileprivate func setupBindings()
     {
-        self.notifications.notificationData.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] userInfo in
-                   guard let `self` = self else { return }
+        self.notifications.notificationData.observeOn(MainScheduler.instance).subscribe(onNext:{ [weak self] userInfo in
+            self?.handleRemoteNotification(userInfo)
+        }).disposed(by: self.disposeBag)
+    }
+    
+    fileprivate func handleRemoteNotification(_ userInfo: [AnyHashable: Any])
+    {
+           guard let typeStr = userInfo["type"] as? String else { return }
+           guard let remoteFeed = RemoteFeedType(rawValue: typeStr) else { return }
+           guard let profileId = userInfo["oppositeUserId"] as? String else { return }
+           guard !self.db.isBlocked(profileId) else { return }
+    
+           guard ChatViewController.openedProfileId != profileId else { return }
+                
+            guard let profile = self.lmm.profile(profileId) else {
+                self.lmm.updateChat(profileId).observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+                    self?.handleRemoteNotification(userInfo)
+                }).disposed(by: self.disposeBag)
+                
+                return
+            }
                    
-                   guard let typeStr = userInfo["type"] as? String else { return }
-                   guard let remoteFeed = RemoteFeedType(rawValue: typeStr) else { return }
-                   guard let profileId = userInfo["oppositeUserId"] as? String else { return }
-                   guard !self.db.isBlocked(profileId) else { return }
+           switch remoteFeed {
+           case .likesYou:
+               break
+               
+           case .matches:
+               guard !self.lmm.messages.value.map({ $0.id }).contains(profileId) else { return }
+               
+               let item = VisualNotificationInfo(
+                profileId: profileId,
+                name: "No name yet",
+                text: "New match",
+                photoImage: nil,
+                photoUrl: profile.photos.first?.filepath().url()
+               )
+               
+               self.items.accept([item])
+               
+               break
+                               
+           case .messages:
+                let item = VisualNotificationInfo(
+                 profileId: profileId,
+                 name: "No name yet",
+                 text: "New messages",
+                 photoImage: nil,
+                 photoUrl: profile.photos.first?.filepath().url()
+                )
+                
+                self.items.accept([item])
             
-                   guard ChatViewController.openedProfileId != profileId else { return }
-            
-                   let profile = self.lmm.profile(profileId)
-                   
-                   switch remoteFeed {
-                   case .likesYou:
-                       break
-                       
-                   case .matches:
-                       guard !self.lmm.messages.value.map({ $0.id }).contains(profileId) else { return }
-                       
-                       let item = VisualNotificationInfo(
-                        profileId: profileId,
-                        name: "No name yet",
-                        text: "New match",
-                        photoImage: nil,
-                        photoUrl: profile?.photos.first?.filepath().url()
-                       )
-                       
-                       self.items.accept([item])
-                       
-                       break
-                                       
-                   case .messages:
-                        let item = VisualNotificationInfo(
-                         profileId: profileId,
-                         name: "No name yet",
-                         text: "New messages",
-                         photoImage: nil,
-                         photoUrl: profile?.photos.first?.filepath().url()
-                        )
-                        
-                        self.items.accept([item])
-                    
-                       break
-        
-                   default: return
-                   }
-                   
-               }).disposed(by: self.disposeBag)
+               break
+
+           default: return
+           }
     }
 }
 

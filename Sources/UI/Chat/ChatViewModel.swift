@@ -49,7 +49,7 @@ class ChatViewModel
         self.input = input
         
         self.setupBindings()
-        self.input.lmmManager.updateChat(self.input.profile.id)
+        self.input.lmmManager.updateChat(self.input.profile.id).subscribe().disposed(by: self.disposeBag)
     }
     
     func send(_ text: String)
@@ -70,7 +70,7 @@ class ChatViewModel
     
     func updateContent()
     {
-        self.input.lmmManager.updateChat(self.input.profile.id)
+        self.input.lmmManager.updateChat(self.input.profile.id).subscribe().disposed(by: self.disposeBag)
     }
     
     // MARK: -
