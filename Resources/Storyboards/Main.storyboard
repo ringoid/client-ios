@@ -79,7 +79,7 @@
                                 </subviews>
                             </stackView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_bar_no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="WgY-Bd-4Qd">
-                                <rect key="frame" x="336.5" y="636" width="3" height="10"/>
+                                <rect key="frame" x="335" y="636" width="6" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBS-em-p9g" customClass="TouchThroughView" customModule="Ringoid" customModuleProvider="target">
@@ -102,7 +102,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_banner_bell" translatesAutoresizingMaskIntoConstraints="NO" id="lab-jh-AS7">
-                                        <rect key="frame" x="16" y="32" width="32" height="32"/>
+                                        <rect key="frame" x="16" y="16" width="32" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="x6X-c9-dzW"/>
                                         </constraints>
@@ -275,8 +275,8 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EF-sH-vXH">
-                                                            <rect key="frame" x="88" y="28.5" width="239" height="18"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New message" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EF-sH-vXH">
+                                                            <rect key="frame" x="88" y="28.5" width="195" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -287,6 +287,13 @@
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed_chat_unread" translatesAutoresizingMaskIntoConstraints="NO" id="6VF-TN-8p1">
+                                                            <rect key="frame" x="291" y="21" width="36" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="9fy-sn-Vgi"/>
+                                                                <constraint firstAttribute="width" constant="36" id="bfj-Zr-9kl"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.74117647058823533" green="1" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -295,8 +302,10 @@
                                                         <constraint firstItem="l9u-hz-Xql" firstAttribute="leading" secondItem="X0z-UT-6t5" secondAttribute="trailing" constant="16" id="MZm-MT-YWe"/>
                                                         <constraint firstItem="l9u-hz-Xql" firstAttribute="top" secondItem="X0z-UT-6t5" secondAttribute="top" id="Maq-Zb-lN7"/>
                                                         <constraint firstAttribute="height" constant="72" id="MbC-dR-s4W"/>
-                                                        <constraint firstAttribute="trailing" secondItem="0EF-sH-vXH" secondAttribute="trailing" constant="16" id="n63-gt-UZi"/>
+                                                        <constraint firstItem="6VF-TN-8p1" firstAttribute="leading" secondItem="0EF-sH-vXH" secondAttribute="trailing" constant="8" id="Ujg-52-bCo"/>
+                                                        <constraint firstAttribute="trailing" secondItem="6VF-TN-8p1" secondAttribute="trailing" constant="16" id="gXx-Vj-X7U"/>
                                                         <constraint firstItem="X0z-UT-6t5" firstAttribute="leading" secondItem="8P7-rE-RsF" secondAttribute="leading" constant="16" id="vha-DM-k9n"/>
+                                                        <constraint firstItem="6VF-TN-8p1" firstAttribute="centerY" secondItem="8P7-rE-RsF" secondAttribute="centerY" id="xcU-H7-d07"/>
                                                         <constraint firstItem="X0z-UT-6t5" firstAttribute="centerY" secondItem="8P7-rE-RsF" secondAttribute="centerY" id="yeB-1e-1HY"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -343,11 +352,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o8T-ES-cdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="487.19999999999999" y="734.03298350824593"/>
+            <point key="canvasLocation" x="487.19999999999999" y="732.68365817091455"/>
         </scene>
     </scenes>
     <resources>
         <image name="chat_close" width="26" height="26"/>
+        <image name="feed_chat_unread" width="36" height="30"/>
         <image name="main_banner_bell" width="32" height="32"/>
         <image name="main_bar_like" width="29" height="27"/>
         <image name="main_bar_messages" width="29" height="22"/>

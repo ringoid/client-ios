@@ -85,7 +85,7 @@ class VisualNotificationsManager
                 let item = VisualNotificationInfo(
                  profileId: profileId,
                  name: title,
-                 text: "New messages",
+                 text: (userInfo["text"] as? String) ?? "New message",
                  photoImage: nil,
                  photoUrl: profile.photos.first?.filepath().url()
                 )
