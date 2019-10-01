@@ -809,7 +809,7 @@ class LMMManager
         self.allMessagesProfilesCount.accept(storedAllMessagesProfilesCount)
     }
     
-    fileprivate func updateLocalProfile(_ id: String, update: ApiChatUpdate)
+    fileprivate func updateLocalProfile(_ id: String, update: ApiLMMProfile)
     {
         var localOrderPosition: Int = 0
         let updatedMessages = update.messages.map({ message -> Message in
