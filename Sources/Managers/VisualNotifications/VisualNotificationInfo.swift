@@ -8,8 +8,15 @@
 
 import UIKit
 
+enum VisualNotificationInfoType
+{
+    case message;
+    case match;
+}
+
 struct VisualNotificationInfo
 {
+    let type: VisualNotificationInfoType
     let profileId: String
     let name: String
     let text: String

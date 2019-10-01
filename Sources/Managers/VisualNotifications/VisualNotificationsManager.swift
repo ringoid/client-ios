@@ -70,6 +70,7 @@ class VisualNotificationsManager
                guard !self.lmm.messages.value.map({ $0.id }).contains(profileId) else { return }
                
                let item = VisualNotificationInfo(
+                type: .match,
                 profileId: profileId,
                 name: title,
                 text: "New match",
@@ -83,6 +84,7 @@ class VisualNotificationsManager
                                
            case .messages:
                 let item = VisualNotificationInfo(
+                 type: .message,
                  profileId: profileId,
                  name: title,
                  text: (userInfo["text"] as? String) ?? "New message",

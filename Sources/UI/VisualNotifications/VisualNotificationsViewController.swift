@@ -65,9 +65,10 @@ extension VisualNotificationsViewController: UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "visual_notification_cell") as! VisualNotificaionCell
-        
         let item = self.items[indexPath.row]
+        let identifier = item.type == .match ? "visual_notification_match_cell" : "visual_notification_cell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! VisualNotificaionCell
+        
         cell.item = item
         cell.startAnimation()
         cell.onAnimationFinished = { [weak self] in
