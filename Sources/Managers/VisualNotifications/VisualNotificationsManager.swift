@@ -52,6 +52,14 @@ class VisualNotificationsManager
                 
                 return
             }
+        
+        var title: String = ""
+        if let name = profile.name, name != "unknown" {
+            title += name
+        } else if let genderStr = profile.gender, let gender = Sex(rawValue: genderStr) {
+            let genderStr = gender == .male ? "common_sex_male".localized() : "common_sex_female".localized()
+            title += genderStr
+        }
                    
            switch remoteFeed {
            case .likesYou:
@@ -62,7 +70,7 @@ class VisualNotificationsManager
                
                let item = VisualNotificationInfo(
                 profileId: profileId,
-                name: "No name yet",
+                name: title,
                 text: "New match",
                 photoImage: nil,
                 photoUrl: profile.photos.first?.filepath().url()
@@ -75,7 +83,7 @@ class VisualNotificationsManager
            case .messages:
                 let item = VisualNotificationInfo(
                  profileId: profileId,
-                 name: "No name yet",
+                 name: title,
                  text: "New messages",
                  photoImage: nil,
                  photoUrl: profile.photos.first?.filepath().url()
