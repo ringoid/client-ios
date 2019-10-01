@@ -46,10 +46,11 @@ class VisualNotificationsManager
            guard ChatViewController.openedProfileId != profileId else { return }
                 
             guard let profile = self.lmm.profile(profileId) else {
-                self.lmm.updateChat(profileId).observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
-                    self?.handleRemoteNotification(userInfo)
-                }).disposed(by: self.disposeBag)
-                
+                // updateChat not storing entire profile
+//                self.lmm.updateChat(profileId).observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+//                    self?.handleRemoteNotification(userInfo)
+//                }).disposed(by: self.disposeBag)
+//
                 return
             }
         
