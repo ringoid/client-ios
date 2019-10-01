@@ -37,9 +37,14 @@ class VisualNotificationsViewController: UIViewController
     {
         self.viewModel?.items.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] updatedItems in
             guard let `self` = self else { return }
+            
+            let localIds = self.items.map({ $0.profileId })
+            let filteredItems = updatedItems.filter({ !localIds.contains($0.profileId) })
+            
+            guard !filteredItems.isEmpty else { return }
 
-            let indexPaths = (0..<updatedItems.count).map({ IndexPath(row: $0, section: 0) })
-            self.items.insert(contentsOf: updatedItems, at: 0)
+            let indexPaths = (0..<filteredItems.count).map({ IndexPath(row: $0, section: 0) })
+            self.items.insert(contentsOf: filteredItems, at: 0)
             self.tableView.insertRows(at: indexPaths, with: .top)
         }).disposed(by: self.disposeBag)
     }
