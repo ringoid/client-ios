@@ -48,6 +48,21 @@ class VisualNotificationsViewController: UIViewController
             self.tableView.insertRows(at: indexPaths, with: .top)
         }).disposed(by: self.disposeBag)
     }
+    
+    fileprivate func startTemporaryHideAnimation()
+    {
+        let animator = UIViewPropertyAnimator(duration: 0.125, curve: .linear) {
+            self.tableView.alpha = 0.0
+        }
+        
+        animator.addCompletion { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
+                self.tableView.alpha = 1.0
+            }
+        }
+        
+        animator.startAnimation()
+    }
 }
 
 // MARK: - UITableViewDataSource & Delegate
@@ -90,11 +105,10 @@ extension VisualNotificationsViewController: UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        self.startTemporaryHideAnimation()
+        
         let index = indexPath.row
         let item = self.items[index]
         self.viewModel?.openChat(item.profileId)
-        
-        self.items.remove(at: index)
-        self.tableView.deleteRows(at: [indexPath], with: .none)
     }
 }
