@@ -355,7 +355,11 @@ class LMMManager
                                             self.updateLocalProfile(profileId, update: chatUpdateProfile)
                                         } else {
                                             let messages = createProfiles([chatUpdateProfile], type: .messages)
-                                            self.db.add(messages).subscribe().disposed(by: self.disposeBag)
+                                            let oldMessages = self.messages.value
+                                            self.db.add(messages).subscribe(onSuccess: { [weak self] _ in
+                                                self?.db.updateOrder(oldMessages, silently: false)
+                                                self?.db.forceUpdateLMM()
+                                            }).disposed(by: self.disposeBag)
                                         }
              
                                         guard pullAfterInterval > 0 else { return .just(())}
