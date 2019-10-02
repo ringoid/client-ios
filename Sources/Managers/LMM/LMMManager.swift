@@ -264,6 +264,7 @@ class LMMManager
     
     fileprivate var isFiltersUpdateDelayed: Bool = false
     fileprivate var isFiltersUpdating: Bool = false
+    
     func updateFilterCounters(_ from: SourceFeedType)
     {
         guard !self.isFiltersUpdating else {

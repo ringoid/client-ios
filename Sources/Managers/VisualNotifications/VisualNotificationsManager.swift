@@ -40,6 +40,7 @@ class VisualNotificationsManager
     {
            guard let typeStr = userInfo["type"] as? String else { return }
            guard let remoteFeed = RemoteFeedType(rawValue: typeStr) else { return }
+           guard remoteFeed != .likesYou else { return }
            guard let profileId = userInfo["oppositeUserId"] as? String else { return }
            guard !self.db.isBlocked(profileId) else { return }
     
