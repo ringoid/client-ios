@@ -47,10 +47,10 @@ class VisualNotificationsManager
                 
             guard let profile = self.lmm.profile(profileId) else {
                 // updateChat not storing entire profile
-//                self.lmm.updateChat(profileId).observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
-//                    self?.handleRemoteNotification(userInfo)
-//                }).disposed(by: self.disposeBag)
-//
+                self.lmm.updateChat(profileId).observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+                    self?.handleRemoteNotification(userInfo)
+                }).disposed(by: self.disposeBag)
+
                 return
             }
         

@@ -227,7 +227,7 @@ class LMMManager
                 self?.tmpAllLikesYouProfilesCount.accept(result.allLikesYouProfilesNum)
                 self?.tmpAllMessagesProfilesCount.accept(result.allMessagesProfilesNum)
             })
-        }).asObservable().delay(0.05, scheduler: MainScheduler.instance).do(
+            }).delay(RxTimeInterval.milliseconds(50), scheduler: MainScheduler.instance).do(
             onNext: { [weak self] _ in
                 self?.isFetching.accept(false)
         },
@@ -345,16 +345,24 @@ class LMMManager
             
             return self.apiService.getChat(profileId,
                                     resolution: self.deviceService.photoResolution,
-                                    lastActionDate: self.actionsManager.lastActionDate.value).flatMap({ [weak self] (chatUpdate, pullAfterInterval) -> Observable<Void> in
+                                    lastActionDate: self.actionsManager.lastActionDate.value).flatMap({ [weak self] (chatUpdateProfile, pullAfterInterval) -> Observable<Void> in
                                         
-                                        self?.updateLocalProfile(profileId, update: chatUpdate)
+                                        guard let `self` = self else { return .just(()) }
                                         
+                                        // If local profile exists - update fields, else - create new one
+                                        if self.messages.value.map({ $0.id }).contains(chatUpdateProfile.id) {
+                                            self.updateLocalProfile(profileId, update: chatUpdateProfile)
+                                        } else {
+                                            let messages = createProfiles([chatUpdateProfile], type: .messages)
+                                            self.db.add(messages).subscribe().disposed(by: self.disposeBag)
+                                        }
+             
                                         guard pullAfterInterval > 0 else { return .just(())}
                                         
                                         let interval = Double(pullAfterInterval) / 1000.0
                                         guard interval > 0.5 else { return .just(()) }
                                         
-                                        self?.chatUpdateInterval.accept(interval)
+                                        self.chatUpdateInterval.accept(interval)
                                         
                                         return .just(())
                                     })
