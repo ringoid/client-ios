@@ -149,6 +149,8 @@ class ProfileFieldsConfiguration
     
     func leftColums(_ profile: Profile) -> [ProfileFileRow]
     {
+        guard !profile.isInvalidated else { return [] }
+        
         if let genderStr = profile.gender, let gender = Sex(rawValue: genderStr) {
             switch gender {
             case .male: return self.leftColumsMale(profile)
@@ -328,6 +330,8 @@ class ProfileFieldsConfiguration
     
     func rightColums(_ profile: Profile) -> [ProfileFileRow]
     {
+        guard !profile.isInvalidated else { return [] }
+        
         var rows: [ProfileFileRow] = []
         
         if let title = profile.whereLive?.trimContent(), title != "unknown", !title.isEmpty {

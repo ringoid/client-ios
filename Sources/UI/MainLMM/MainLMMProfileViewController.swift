@@ -821,6 +821,7 @@ class MainLMMProfileViewController: UIViewController
     
     fileprivate func applyTotalLikes()
     {
+        guard !self.input.profile.isInvalidated else { return }
         guard self.input.feedType == .likesYou else {
             self.totalLikesLabel.isHidden = true
             

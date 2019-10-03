@@ -322,8 +322,9 @@ class DBService
             } else {
                 try? self.realm.write {
                     self.realm.add(objectsToAdd)
-                    self.checkObjectsForUpdates(objectsToAdd)
                 }
+                
+                self.checkObjectsForUpdates(objectsToAdd)
 
                 single(.success(()))
             }
