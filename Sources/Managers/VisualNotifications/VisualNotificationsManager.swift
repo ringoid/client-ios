@@ -69,14 +69,14 @@ class VisualNotificationsManager
                
            case .matches:
                guard !self.lmm.messages.value.map({ $0.id }).contains(profileId) else { return }
-               
+
                let item = VisualNotificationInfo(
                 type: .match,
                 profileId: profileId,
                 name: title,
                 text: "New match",
                 photoImage: nil,
-                photoUrl: profile.photos.first?.filepath().url()
+                photoUrl: profile.photos.first?.thumbnailFilepath().url()
                )
                
                self.items.accept([item])
@@ -90,7 +90,7 @@ class VisualNotificationsManager
                  name: title,
                  text: (userInfo["text"] as? String) ?? "New message",
                  photoImage: nil,
-                 photoUrl: profile.photos.first?.filepath().url()
+                 photoUrl: profile.photos.first?.thumbnailFilepath().url()
                 )
                 
                 self.items.accept([item])
