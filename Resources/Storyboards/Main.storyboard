@@ -79,7 +79,7 @@
                                 </subviews>
                             </stackView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_bar_no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="WgY-Bd-4Qd">
-                                <rect key="frame" x="335" y="636" width="6" height="20"/>
+                                <rect key="frame" x="336.5" y="636" width="3" height="10"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBS-em-p9g" customClass="TouchThroughView" customModule="Ringoid" customModuleProvider="target">
@@ -102,7 +102,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_banner_bell" translatesAutoresizingMaskIntoConstraints="NO" id="lab-jh-AS7">
-                                        <rect key="frame" x="16" y="16" width="32" height="64"/>
+                                        <rect key="frame" x="16" y="32" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="x6X-c9-dzW"/>
                                         </constraints>
@@ -252,6 +252,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="TsW-8o-vIy" customClass="VisualNotificationsTableView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="343" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="visual_notification_cell" id="twE-Qe-qyy" customClass="VisualNotificaionCell" customModule="Ringoid" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="343" height="80"/>
@@ -411,6 +412,9 @@
                                 <connections>
                                     <outlet property="dataSource" destination="4Ky-pM-rdy" id="xIs-4d-Xad"/>
                                     <outlet property="delegate" destination="4Ky-pM-rdy" id="Elw-dO-QXH"/>
+                                    <outletCollection property="gestureRecognizers" destination="fd4-2p-uLN" appends="YES" id="FP5-ja-T5J"/>
+                                    <outletCollection property="gestureRecognizers" destination="k5l-GM-SZs" appends="YES" id="xEc-BN-KN1"/>
+                                    <outletCollection property="gestureRecognizers" destination="Wk0-Mi-cg7" appends="YES" id="len-uF-1ZJ"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -428,6 +432,21 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o8T-ES-cdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="up" id="fd4-2p-uLN">
+                    <connections>
+                        <action selector="swipeUpAction" destination="4Ky-pM-rdy" id="NbZ-LF-rhs"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="k5l-GM-SZs">
+                    <connections>
+                        <action selector="swipeLeftAction" destination="4Ky-pM-rdy" id="MWh-QH-E1z"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="Wk0-Mi-cg7">
+                    <connections>
+                        <action selector="swipeRightAction" destination="4Ky-pM-rdy" id="Lnu-rW-bNI"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="487.19999999999999" y="732.68365817091455"/>
         </scene>

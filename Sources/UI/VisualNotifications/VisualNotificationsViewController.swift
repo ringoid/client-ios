@@ -31,6 +31,23 @@ class VisualNotificationsViewController: UIViewController
         self.setupBindings()
     }
     
+    // IBAction: -
+    
+    @IBAction func swipeUpAction()
+    {
+        self.startTemporaryHideAnimation()
+    }
+
+    @IBAction func swipeLeftAction()
+    {
+        self.startTemporaryHideAnimation()
+    }
+    
+    @IBAction func swipeRightAction()
+    {
+        self.startTemporaryHideAnimation()
+    }
+    
     // MARK: -
     
     fileprivate func setupBindings()
