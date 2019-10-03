@@ -114,28 +114,27 @@ class NewFacesViewModel
     
     fileprivate func setupBindings()
     {
-        
         // New faces
-        self.newFacesManager.profiles.subscribe(onNext: { [weak self] _ in
+        self.newFacesManager.profiles.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             self?.updateProfiles()
         }).disposed(by: self.disposeBag)
         
         // LMHIS
-        self.lmmManager.likesYou.subscribe(onNext: { [weak self] _ in
+        self.lmmManager.likesYou.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             self?.updateProfiles()
         }).disposed(by: self.disposeBag)
 
-        self.lmmManager.messages.subscribe(onNext: { [weak self] _ in
+        self.lmmManager.messages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             self?.updateProfiles()
         }).disposed(by: self.disposeBag)
         
         
-        self.lmmManager.inbox.subscribe(onNext: { [weak self] _ in
+        self.lmmManager.inbox.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             self?.updateProfiles()
         }).disposed(by: self.disposeBag)
         
         
-        self.lmmManager.sent.subscribe(onNext: { [weak self] _ in
+        self.lmmManager.sent.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
             self?.updateProfiles()
         }).disposed(by: self.disposeBag)
     }

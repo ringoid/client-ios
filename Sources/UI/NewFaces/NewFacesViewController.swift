@@ -234,7 +234,7 @@ class NewFacesViewController: BaseViewController
     fileprivate func setupBindings()
     {
         self.viewModel = NewFacesViewModel(self.input)
-        self.viewModel?.profiles.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] updatedProfiles in
+        self.viewModel?.profiles.subscribe(onNext: { [weak self] updatedProfiles in
             guard let `self` = self else { return }
             
             self.updateFeed()
@@ -307,7 +307,7 @@ class NewFacesViewController: BaseViewController
         if isEmpty && self.currentActivityState != .fetching {
             if self.currentActivityState == .contentAvailable {
                 self.toggleActivity(.initial)
-            } else if self.currentActivityState != .initial{
+            } else if self.currentActivityState != .initial {
                 self.toggleActivity(.empty)
             }
         }
