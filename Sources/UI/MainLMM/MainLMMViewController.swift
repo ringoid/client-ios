@@ -277,7 +277,7 @@ class MainLMMViewController: BaseViewController
     fileprivate func updateBindings()
     {
         self.feedDisposeBag = DisposeBag()
-        self.profiles()?.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+        self.profiles()?.subscribe(onNext: { [weak self] _ in
             if let type = self?.type.value, type == .inbox || type == .sent {
                 self?.updateFeed(true)
                 

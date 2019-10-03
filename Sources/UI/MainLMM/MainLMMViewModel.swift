@@ -119,18 +119,19 @@ class MainLMMViewModel
     
     fileprivate func setupBindings()
     {
-        self.lmmManager.likesYou.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+        self.lmmManager.likesYou.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
             self?.likesYou.accept(profiles)
         }).disposed(by: self.disposeBag)
-   self.lmmManager.messages.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+        
+   self.lmmManager.messages.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
             self?.messages.accept(profiles)
         }).disposed(by: self.disposeBag)
         
-        self.lmmManager.inbox.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+        self.lmmManager.inbox.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
             self?.inbox.accept(profiles)
         }).disposed(by: self.disposeBag)
         
-        self.lmmManager.sent.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
+        self.lmmManager.sent.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] profiles in
             self?.sent.accept(profiles)
         }).disposed(by: self.disposeBag)
     }
