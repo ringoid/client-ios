@@ -68,8 +68,6 @@ class VisualNotificationsManager
                break
                
            case .matches:
-               guard !self.lmm.messages.value.map({ $0.id }).contains(profileId) else { return }
-
                let item = VisualNotificationInfo(
                 type: .match,
                 profileId: profileId,
