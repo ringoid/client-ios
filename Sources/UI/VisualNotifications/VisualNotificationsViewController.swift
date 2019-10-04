@@ -27,26 +27,14 @@ class VisualNotificationsViewController: UIViewController
         
         super.viewDidLoad()
         
+        self.tableView.estimatedSectionHeaderHeight = 0.0
+        self.tableView.estimatedSectionFooterHeight = 0.0
+        
         self.viewModel = VisualNotificationsViewModel(self.input)
         self.setupBindings()
     }
     
     // IBAction: -
-    
-    @IBAction func swipeUpAction()
-    {
-        self.startTemporaryHideAnimation()
-    }
-
-    @IBAction func swipeLeftAction()
-    {
-        self.startTemporaryHideAnimation()
-    }
-    
-    @IBAction func swipeRightAction()
-    {
-        self.startTemporaryHideAnimation()
-    }
     
     // MARK: -
     

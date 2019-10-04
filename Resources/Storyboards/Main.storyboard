@@ -249,7 +249,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="343" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="TsW-8o-vIy" customClass="VisualNotificationsTableView" customModule="Ringoid" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsW-8o-vIy" customClass="VisualNotificationsTableView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="343" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
@@ -412,15 +412,12 @@
                                 <connections>
                                     <outlet property="dataSource" destination="4Ky-pM-rdy" id="xIs-4d-Xad"/>
                                     <outlet property="delegate" destination="4Ky-pM-rdy" id="Elw-dO-QXH"/>
-                                    <outletCollection property="gestureRecognizers" destination="fd4-2p-uLN" appends="YES" id="FP5-ja-T5J"/>
-                                    <outletCollection property="gestureRecognizers" destination="k5l-GM-SZs" appends="YES" id="xEc-BN-KN1"/>
-                                    <outletCollection property="gestureRecognizers" destination="Wk0-Mi-cg7" appends="YES" id="len-uF-1ZJ"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="TsW-8o-vIy" firstAttribute="top" secondItem="cqp-pP-sxb" secondAttribute="top" id="VNy-L7-HA7"/>
+                            <constraint firstItem="TsW-8o-vIy" firstAttribute="top" secondItem="cqp-pP-sxb" secondAttribute="top" id="PlE-xo-BCX"/>
                             <constraint firstAttribute="bottom" secondItem="TsW-8o-vIy" secondAttribute="bottom" id="WkF-AH-j2x"/>
                             <constraint firstItem="TsW-8o-vIy" firstAttribute="leading" secondItem="ffX-By-yhC" secondAttribute="leading" id="X7B-f5-KAg"/>
                             <constraint firstAttribute="trailing" secondItem="TsW-8o-vIy" secondAttribute="trailing" id="j9v-3H-fo2"/>
@@ -432,21 +429,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o8T-ES-cdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="up" id="fd4-2p-uLN">
-                    <connections>
-                        <action selector="swipeUpAction" destination="4Ky-pM-rdy" id="NbZ-LF-rhs"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="k5l-GM-SZs">
-                    <connections>
-                        <action selector="swipeLeftAction" destination="4Ky-pM-rdy" id="MWh-QH-E1z"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" id="Wk0-Mi-cg7">
-                    <connections>
-                        <action selector="swipeRightAction" destination="4Ky-pM-rdy" id="Lnu-rW-bNI"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="487.19999999999999" y="732.68365817091455"/>
         </scene>
