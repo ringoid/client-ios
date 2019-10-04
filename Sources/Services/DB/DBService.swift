@@ -382,8 +382,8 @@ class DBService
             } else {
                 try? self.realm.write {
                     objects.forEach({ $0.isDeleted = true })
-                     self.checkObjectsForUpdates(objects)
                 }
+                self.checkObjectsForUpdates(objects)
 
                 single(.success(()))
             }
