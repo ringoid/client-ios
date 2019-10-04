@@ -289,9 +289,9 @@ class DBService
                 profile.messages.removeAll()
                 profile.messages.append(objectsIn: mergedMessages)
                 self.updateOrder(Array(profile.messages), silently: true)
-
-                self.checkObjectsForUpdates([profile])
             }
+            
+            self.checkObjectsForUpdates([profile])
         }
     }
     

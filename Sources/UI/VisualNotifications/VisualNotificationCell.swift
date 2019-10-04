@@ -23,6 +23,7 @@ class VisualNotificaionCell: BaseTableViewCell
             }
             
             if let url = self.item.photoUrl {
+                self.photoView.image = nil
                 ImageService.shared.load(url, thumbnailUrl: nil, to: self.photoView)
                 
                 return
