@@ -116,4 +116,30 @@ extension VisualNotificationsViewController: UITableViewDataSource, UITableViewD
         let item = self.items[index]
         self.viewModel?.openChat(item.profileId)
     }
+    
+    /*
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        
+        let index = indexPath.row
+        self.items.remove(at: index)
+        
+        tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let action = UIContextualAction(style: .normal, title: nil) { [weak self] (_, _, _) in
+            let index = indexPath.row
+            self?.items.remove(at: index)
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        action.backgroundColor = .clear
+        
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        configuration.performsFirstActionWithFullSwipe = true
+        
+        return configuration
+    }
+ */
 }

@@ -297,6 +297,7 @@
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.74117647058823533" green="1" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstItem="0EF-sH-vXH" firstAttribute="top" secondItem="l9u-hz-Xql" secondAttribute="bottom" id="Fjb-jB-sHQ"/>
                                                         <constraint firstItem="0EF-sH-vXH" firstAttribute="leading" secondItem="X0z-UT-6t5" secondAttribute="trailing" constant="16" id="KGT-D8-D8B"/>

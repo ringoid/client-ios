@@ -38,6 +38,14 @@ class VisualNotificaionCell: BaseTableViewCell
     @IBOutlet fileprivate weak var messageLabel: UILabel!
     @IBOutlet fileprivate weak var nameLabel: UILabel!
     
+    override func awakeFromNib()
+    {
+        super.awakeFromNib()
+        
+        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
+        self.containerView.addGestureRecognizer(recognizer)
+    }
+    
     func startAnimation()
     {
         self.containerView.alpha = 1.0
@@ -45,6 +53,26 @@ class VisualNotificaionCell: BaseTableViewCell
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
             self.hideContainer()
         }
+    }
+    
+    fileprivate var prevTranslation: CGFloat = 0.0
+    
+    @objc fileprivate func panAction(_ recognizer: UIPanGestureRecognizer)
+    {
+        let dx = recognizer.translation(in: self.contentView).x
+        
+        defer {
+            self.prevTranslation = dx
+        }
+        
+        guard recognizer.state != .began else { return }
+                
+        let center = self.containerView.center
+        
+        self.containerView.center = CGPoint(
+            x: center.x + (dx - self.prevTranslation),
+            y: center.y
+        )
     }
     
     // MARK: -
