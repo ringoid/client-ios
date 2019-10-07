@@ -83,7 +83,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBS-em-p9g" customClass="TouchThroughView" customModule="Ringoid" customModuleProvider="target">
-                                <rect key="frame" x="16" y="0.0" width="343" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
                                     <segue destination="4Ky-pM-rdy" kind="embed" identifier="embed_visual_notifications" id="y5f-Dj-1en"/>
                                 </connections>
@@ -177,12 +177,12 @@
                             <constraint firstItem="WgY-Bd-4Qd" firstAttribute="centerX" secondItem="IC7-wg-nDT" secondAttribute="centerX" constant="10" id="EW9-pa-34W"/>
                             <constraint firstItem="htN-cB-51n" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="FCs-AF-JJv"/>
                             <constraint firstAttribute="trailing" secondItem="htN-cB-51n" secondAttribute="trailing" id="FhK-dC-Yle"/>
-                            <constraint firstAttribute="trailing" secondItem="tBS-em-p9g" secondAttribute="trailing" constant="16" id="FtW-hh-3eE"/>
+                            <constraint firstAttribute="trailing" secondItem="tBS-em-p9g" secondAttribute="trailing" id="FtW-hh-3eE"/>
                             <constraint firstAttribute="bottom" secondItem="tBS-em-p9g" secondAttribute="bottom" id="HeA-yV-GSb"/>
                             <constraint firstItem="E8b-9J-Vw4" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="J9K-us-tve"/>
                             <constraint firstItem="A7E-GF-7xU" firstAttribute="top" secondItem="PZo-jV-0xV" secondAttribute="top" constant="120" id="JYU-le-UnZ"/>
                             <constraint firstItem="NUg-31-Hnn" firstAttribute="top" secondItem="QYd-HC-afs" secondAttribute="top" constant="26" id="PYb-f9-tK5"/>
-                            <constraint firstItem="tBS-em-p9g" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" constant="16" id="QDu-cb-YRs"/>
+                            <constraint firstItem="tBS-em-p9g" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="QDu-cb-YRs"/>
                             <constraint firstAttribute="bottom" secondItem="ZFd-I1-dCK" secondAttribute="bottom" id="Qjc-t6-IL0"/>
                             <constraint firstAttribute="bottom" secondItem="htN-cB-51n" secondAttribute="bottom" id="Qps-4C-BS6"/>
                             <constraint firstItem="A7E-GF-7xU" firstAttribute="leading" secondItem="PZo-jV-0xV" secondAttribute="leading" id="Tst-8I-GYi"/>
@@ -246,23 +246,23 @@
             <objects>
                 <viewController id="4Ky-pM-rdy" customClass="VisualNotificationsViewController" customModule="Ringoid" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ffX-By-yhC" customClass="TouchThroughView" customModule="Ringoid" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsW-8o-vIy" customClass="VisualNotificationsTableView" customModule="Ringoid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="343" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="visual_notification_cell" id="twE-Qe-qyy" customClass="VisualNotificaionCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="343" height="80"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="twE-Qe-qyy" id="ZY8-cW-6JG">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8P7-rE-RsF">
-                                                    <rect key="frame" x="0.0" y="4" width="343" height="72"/>
+                                                    <rect key="frame" x="16" y="4" width="343" height="72"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X0z-UT-6t5">
                                                             <rect key="frame" x="16" y="8" width="56" height="56"/>
@@ -319,9 +319,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="8P7-rE-RsF" firstAttribute="leading" secondItem="ZY8-cW-6JG" secondAttribute="leading" id="RpJ-0c-06y"/>
+                                                <constraint firstItem="8P7-rE-RsF" firstAttribute="leading" secondItem="ZY8-cW-6JG" secondAttribute="leading" constant="16" id="RpJ-0c-06y"/>
                                                 <constraint firstItem="8P7-rE-RsF" firstAttribute="centerY" secondItem="ZY8-cW-6JG" secondAttribute="centerY" id="VEe-gY-6Qy"/>
-                                                <constraint firstAttribute="trailing" secondItem="8P7-rE-RsF" secondAttribute="trailing" id="zx8-h8-NfR"/>
+                                                <constraint firstAttribute="trailing" secondItem="8P7-rE-RsF" secondAttribute="trailing" constant="16" id="zx8-h8-NfR"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -333,14 +333,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="visual_notification_match_cell" id="qd2-vW-Ody" customClass="VisualNotificaionCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="135.5" width="343" height="80"/>
+                                        <rect key="frame" x="0.0" y="135.5" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qd2-vW-Ody" id="Jgi-KR-euG">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctB-d7-pto">
-                                                    <rect key="frame" x="0.0" y="4" width="343" height="72"/>
+                                                    <rect key="frame" x="16" y="4" width="343" height="72"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cqb-3z-3bt">
                                                             <rect key="frame" x="16" y="8" width="56" height="56"/>
@@ -396,8 +396,8 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="ctB-d7-pto" firstAttribute="leading" secondItem="Jgi-KR-euG" secondAttribute="leading" id="Jo6-sr-oTF"/>
-                                                <constraint firstAttribute="trailing" secondItem="ctB-d7-pto" secondAttribute="trailing" id="jPo-Gh-STD"/>
+                                                <constraint firstItem="ctB-d7-pto" firstAttribute="leading" secondItem="Jgi-KR-euG" secondAttribute="leading" constant="16" id="Jo6-sr-oTF"/>
+                                                <constraint firstAttribute="trailing" secondItem="ctB-d7-pto" secondAttribute="trailing" constant="16" id="jPo-Gh-STD"/>
                                                 <constraint firstItem="ctB-d7-pto" firstAttribute="centerY" secondItem="Jgi-KR-euG" secondAttribute="centerY" id="wIo-av-FRk"/>
                                             </constraints>
                                         </tableViewCellContentView>
