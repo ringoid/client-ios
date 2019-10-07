@@ -20,6 +20,7 @@ class VisualNotificationsViewController: UIViewController
     fileprivate var items: [VisualNotificationInfo] = []
     fileprivate var delayedItems: [VisualNotificationInfo] = []
     fileprivate var delayModeState: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    fileprivate var delayTimer: Timer?
     
     @IBOutlet fileprivate var tableView: VisualNotificationsTableView!
     
@@ -33,12 +34,8 @@ class VisualNotificationsViewController: UIViewController
         self.tableView.estimatedSectionFooterHeight = 0.0
         
         self.tableView.onTap = { [weak self] in
-            self?.tableView.visibleCells.forEach({ cell in
-                (cell as? VisualNotificaionCell)?.stopHidingTimer()
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
-//                    (cell as? VisualNotificaionCell)?.startHidingTimer()
-//                }
-            })
+            self?.delayModeState.accept(true)
+            self?.updateDelayTimer()
         }
         
         self.viewModel = VisualNotificationsViewModel(self.input)
@@ -128,6 +125,30 @@ class VisualNotificationsViewController: UIViewController
         }
         
         animator.startAnimation()
+    }
+    
+    fileprivate var lastUpdateDate: Date? = nil
+    fileprivate func updateDelayTimer()
+    {
+        if let lastDate = self.lastUpdateDate, Date().timeIntervalSince(lastDate) < 1.0 { return }
+        
+        self.tableView.visibleCells.forEach({ cell in
+            (cell as? VisualNotificaionCell)?.stopHidingTimer()
+        })
+        
+        self.lastUpdateDate = Date()
+        self.delayTimer?.invalidate()
+        self.delayTimer = nil
+        
+        let timer = Timer(timeInterval: 2.0, repeats: false) { [weak self] _ in
+            guard let `self` = self else { return }
+            
+            self.tableView.visibleCells.forEach({ cell in
+                (cell as? VisualNotificaionCell)?.startHidingTimer()
+                self.delayModeState.accept(self.items.count > 5 )
+            })
+        }
+        RunLoop.main.add(timer, forMode: .common)
     }
 }
 
