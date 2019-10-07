@@ -119,8 +119,8 @@ class VisualNotificationsViewController: UIViewController
             self.tableView.reloadData()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
-                self.tableView.alpha = 1.0
                 self.delayModeState.accept(false)
+                self.tableView.alpha = 1.0
             }
         }
         
