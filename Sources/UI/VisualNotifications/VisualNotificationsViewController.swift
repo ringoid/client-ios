@@ -70,6 +70,9 @@ class VisualNotificationsViewController: UIViewController
         }
         
         animator.addCompletion { _ in
+            self.items.removeAll()
+            self.tableView.reloadData()
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
                 self.tableView.alpha = 1.0
             }
