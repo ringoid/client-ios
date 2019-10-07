@@ -205,8 +205,8 @@ class DBService
         } else {
             try? self.realm.write {
                 lmmProfile.notSeen = !isSeen
-                self.checkObjectsForUpdates([lmmProfile])
             }
+            self.checkObjectsForUpdates([lmmProfile])
         }
     }
         
@@ -218,8 +218,8 @@ class DBService
         } else {
             try? self.realm.write {
                 profile.notSeen = !isSeen
-                self.checkObjectsForUpdates([profile])
             }
+            self.checkObjectsForUpdates([profile])
         }
     }
     
