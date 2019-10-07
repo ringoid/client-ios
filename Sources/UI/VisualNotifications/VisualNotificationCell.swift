@@ -31,6 +31,7 @@ class VisualNotificaionCell: BaseTableViewCell
         }
     }
     
+    var onSelected: (()->())?
     var onAnimationFinished: (()->())?
     var onDeletionAnimationFinished: (() -> ())?
     
@@ -48,8 +49,12 @@ class VisualNotificaionCell: BaseTableViewCell
         self.containerView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
         self.containerView.layer.borderWidth = 1.0
         
-        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
-        self.containerView.addGestureRecognizer(recognizer)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapAction))
+        
+        let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
+        panRecognizer.require(toFail: tapRecognizer)
+        self.containerView.addGestureRecognizer(tapRecognizer)
+        self.containerView.addGestureRecognizer(panRecognizer)
     }
     
     func startHidingTimer()
@@ -125,6 +130,11 @@ class VisualNotificaionCell: BaseTableViewCell
             x: center.x + (dx - self.prevTranslation),
             y: center.y
         )
+    }
+    
+    @objc fileprivate func tapAction()
+    {
+        self.onSelected?()
     }
     
     // MARK: -

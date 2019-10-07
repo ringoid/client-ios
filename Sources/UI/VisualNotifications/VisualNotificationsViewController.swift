@@ -173,6 +173,15 @@ extension VisualNotificationsViewController: UITableViewDataSource, UITableViewD
         
         cell.item = item
         cell.startHidingTimer()
+        cell.onSelected = { [weak self] in
+            guard let `self` = self else { return }
+            
+            self.startTemporaryHideAnimation()
+            
+            let index = indexPath.row
+            let item = self.items[index]
+            self.viewModel?.openChat(item.profileId)
+        }
         cell.onAnimationFinished = { [weak self] in
             guard let `self` = self else { return }
             guard let index = self.items.firstIndex(of: item) else { return }
@@ -200,14 +209,14 @@ extension VisualNotificationsViewController: UITableViewDataSource, UITableViewD
         return 80.0
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-        self.startTemporaryHideAnimation()
-        
-        let index = indexPath.row
-        let item = self.items[index]
-        self.viewModel?.openChat(item.profileId)
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+//    {
+//        self.startTemporaryHideAnimation()
+//
+//        let index = indexPath.row
+//        let item = self.items[index]
+//        self.viewModel?.openChat(item.profileId)
+//    }
     
     /*
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
