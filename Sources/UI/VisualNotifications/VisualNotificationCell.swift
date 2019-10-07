@@ -45,6 +45,9 @@ class VisualNotificaionCell: BaseTableViewCell
     {
         super.awakeFromNib()
         
+        self.containerView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+        self.containerView.layer.borderWidth = 1.0
+        
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(panAction(_:)))
         self.containerView.addGestureRecognizer(recognizer)
     }

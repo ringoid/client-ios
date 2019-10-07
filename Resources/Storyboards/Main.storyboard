@@ -296,7 +296,7 @@
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.74117647058823533" green="1" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstItem="0EF-sH-vXH" firstAttribute="top" secondItem="l9u-hz-Xql" secondAttribute="bottom" id="Fjb-jB-sHQ"/>
@@ -374,7 +374,7 @@
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.74117647060000003" green="0.55145012842465757" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="oSA-Uy-2wR" firstAttribute="leading" secondItem="Cqb-3z-3bt" secondAttribute="trailing" constant="16" id="DZI-z3-0ck"/>
                                                         <constraint firstAttribute="height" constant="72" id="KBB-7U-fDz"/>
