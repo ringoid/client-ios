@@ -72,7 +72,7 @@ class VisualNotificationsManager
                 type: .match,
                 profileId: profileId,
                 name: title,
-                text: "New match",
+                text: "visual_notifications_new_match".localized(),
                 photoImage: nil,
                 photoUrl: profile.photos.first?.thumbnailFilepath().url()
                )

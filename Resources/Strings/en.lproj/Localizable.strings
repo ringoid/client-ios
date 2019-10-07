@@ -211,3 +211,5 @@
 "rate_us_title" = "Do you enjoy Ringoid?";
 "rate_us_feedback" = "Please suggest improvements";
 "rate_us_review" = "Review";
+
+"visual_notifications_new_match" = "New Match";
