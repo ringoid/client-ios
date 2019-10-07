@@ -10,6 +10,8 @@ import UIKit
 
 class VisualNotificationsTableView: UITableView
 {
+    var onTap: (()->())?
+    
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView?
     {
         let hittedView = super.hitTest(point, with: event)
@@ -18,7 +20,11 @@ class VisualNotificationsTableView: UITableView
         guard let rowHeight = self.delegate?.tableView?(self, heightForRowAt: IndexPath(row: 0, section: 0)) else { return nil }
         let height = CGFloat(numberOfRows) * rowHeight
         
-        if point.y < height { return hittedView }
+        if point.y < height {
+            self.onTap?()
+            
+            return hittedView
+        }
         
         return nil
     }

@@ -34,6 +34,8 @@ class VisualNotificaionCell: BaseTableViewCell
     var onAnimationFinished: (()->())?
     var onDeletionAnimationFinished: (() -> ())?
     
+    fileprivate var hidingTimer: Timer?
+    
     @IBOutlet fileprivate weak var containerView: UIView!
     @IBOutlet fileprivate weak var photoView: UIImageView!
     @IBOutlet fileprivate weak var messageLabel: UILabel!
@@ -47,13 +49,31 @@ class VisualNotificaionCell: BaseTableViewCell
         self.containerView.addGestureRecognizer(recognizer)
     }
     
-    func startAnimation()
+    func startHidingTimer()
     {
         self.containerView.alpha = 1.0
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            self.hideContainer()
+        self.hidingTimer?.invalidate()
+        self.hidingTimer = nil
+        
+        let timer = Timer(timeInterval: 5.0, repeats: false) { [weak self] _ in
+            self?.hidingTimer = nil
+            self?.hideContainer()
         }
+        RunLoop.main.add(timer, forMode: .common)
+        
+        self.hidingTimer = timer
+    }
+    
+    func stopHidingTimer()
+    {
+        self.hidingTimer?.invalidate()
+        self.hidingTimer = nil
+        
+        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear) {
+            self.containerView.alpha = 1.0
+        }
+        animator.startAnimation()        
     }
     
     fileprivate var prevTranslation: CGFloat = 0.0
@@ -73,7 +93,7 @@ class VisualNotificaionCell: BaseTableViewCell
             let normal = dx / abs(dx)
             
             if abs(dx) < 95.0 {
-                let animator = UIViewPropertyAnimator(duration: 0.2, dampingRatio: 0.95) {
+                let animator = UIViewPropertyAnimator(duration: 0.2, dampingRatio: 0.7) {
                     self.containerView.center = CGPoint(
                         x: self.bounds.width / 2.0,
                         y: center.y

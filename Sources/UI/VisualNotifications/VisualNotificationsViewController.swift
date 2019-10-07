@@ -19,7 +19,7 @@ class VisualNotificationsViewController: UIViewController
     fileprivate let disposeBag: DisposeBag = DisposeBag()
     fileprivate var items: [VisualNotificationInfo] = []
     
-    @IBOutlet fileprivate var tableView: UITableView!
+    @IBOutlet fileprivate var tableView: VisualNotificationsTableView!
     
     override func viewDidLoad()
     {
@@ -29,6 +29,15 @@ class VisualNotificationsViewController: UIViewController
         
         self.tableView.estimatedSectionHeaderHeight = 0.0
         self.tableView.estimatedSectionFooterHeight = 0.0
+        
+        self.tableView.onTap = { [weak self] in
+            self?.tableView.visibleCells.forEach({ cell in
+                (cell as? VisualNotificaionCell)?.stopHidingTimer()
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
+//                    (cell as? VisualNotificaionCell)?.startHidingTimer()
+//                }
+            })
+        }
         
         self.viewModel = VisualNotificationsViewModel(self.input)
         self.setupBindings()
@@ -90,7 +99,7 @@ extension VisualNotificationsViewController: UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! VisualNotificaionCell
         
         cell.item = item
-        cell.startAnimation()
+        cell.startHidingTimer()
         cell.onAnimationFinished = { [weak self] in
             guard let `self` = self else { return }
             guard let index = self.items.firstIndex(of: item) else { return }
