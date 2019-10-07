@@ -99,6 +99,14 @@ extension VisualNotificationsViewController: UITableViewDataSource, UITableViewD
             let indexPath = IndexPath(row: index, section: 0)
             self.tableView.deleteRows(at: [indexPath], with: .none)
         }
+        cell.onDeletionAnimationFinished = { [weak self] in
+            guard let `self` = self else { return }
+                       guard let index = self.items.firstIndex(of: item) else { return }
+                       
+                       self.items.remove(at: index)
+                       let indexPath = IndexPath(row: index, section: 0)
+                       self.tableView.deleteRows(at: [indexPath], with: .fade)
+        }
         
         return cell
     }

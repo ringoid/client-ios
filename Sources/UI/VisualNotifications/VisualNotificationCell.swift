@@ -32,6 +32,7 @@ class VisualNotificaionCell: BaseTableViewCell
     }
     
     var onAnimationFinished: (()->())?
+    var onDeletionAnimationFinished: (() -> ())?
     
     @IBOutlet fileprivate weak var containerView: UIView!
     @IBOutlet fileprivate weak var photoView: UIImageView!
@@ -66,6 +67,34 @@ class VisualNotificaionCell: BaseTableViewCell
         }
         
         guard recognizer.state != .began else { return }
+        
+        if recognizer.state == .ended || recognizer.state == .cancelled {
+            let center = self.containerView.center
+            let normal = dx / abs(dx)
+            
+            if abs(dx) < 95.0 {
+                let animator = UIViewPropertyAnimator(duration: 0.2, dampingRatio: 0.95) {
+                    self.containerView.center = CGPoint(
+                        x: self.bounds.width / 2.0,
+                        y: center.y
+                    )
+                }
+                animator.startAnimation()
+            } else {
+                let animator = UIViewPropertyAnimator(duration: 0.2, curve: .linear) {
+                    self.containerView.center = CGPoint(
+                        x: self.bounds.width / 2.0 + (self.containerView.bounds.width + 100.0) * normal,
+                        y: center.y
+                    )
+                }
+                animator.addCompletion { _ in
+                    self.onDeletionAnimationFinished?()
+                }
+                animator.startAnimation()
+            }
+            
+            return
+        }
                 
         let center = self.containerView.center
         
