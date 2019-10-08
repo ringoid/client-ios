@@ -31,7 +31,6 @@ class VisualNotificationsViewController: UIViewController
         super.viewDidLoad()
 
         self.tableView.onTap = { [weak self] in
-            self?.delayModeState.accept(true)
             self?.updateDelayTimer()
         }
         
@@ -133,6 +132,8 @@ class VisualNotificationsViewController: UIViewController
             (cell as? VisualNotificaionCell)?.stopHidingTimer()
         })
         
+        self.delayModeState.accept(true)
+        
         self.lastUpdateDate = Date()
         self.delayTimer?.invalidate()
         self.delayTimer = nil
@@ -142,7 +143,7 @@ class VisualNotificationsViewController: UIViewController
             
             self.tableView.visibleCells.forEach({ cell in
                 (cell as? VisualNotificaionCell)?.startHidingTimer()
-                self.delayModeState.accept(self.items.count > 5 )
+                self.delayModeState.accept(false)
             })
         }
         RunLoop.main.add(timer, forMode: .common)
