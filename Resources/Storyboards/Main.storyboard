@@ -249,13 +249,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsW-8o-vIy" customClass="VisualNotificationsTableView" customModule="Ringoid" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" scrollEnabled="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="1" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsW-8o-vIy" customClass="VisualNotificationsTableView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="visual_notification_cell" id="twE-Qe-qyy" customClass="VisualNotificaionCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="twE-Qe-qyy" id="ZY8-cW-6JG">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -333,7 +333,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="visual_notification_match_cell" id="qd2-vW-Ody" customClass="VisualNotificaionCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="135.5" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="108" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qd2-vW-Ody" id="Jgi-KR-euG">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -418,10 +418,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="TsW-8o-vIy" firstAttribute="top" secondItem="cqp-pP-sxb" secondAttribute="top" id="PlE-xo-BCX"/>
                             <constraint firstAttribute="bottom" secondItem="TsW-8o-vIy" secondAttribute="bottom" id="WkF-AH-j2x"/>
                             <constraint firstItem="TsW-8o-vIy" firstAttribute="leading" secondItem="ffX-By-yhC" secondAttribute="leading" id="X7B-f5-KAg"/>
                             <constraint firstAttribute="trailing" secondItem="TsW-8o-vIy" secondAttribute="trailing" id="j9v-3H-fo2"/>
+                            <constraint firstItem="TsW-8o-vIy" firstAttribute="top" secondItem="cqp-pP-sxb" secondAttribute="top" id="nP9-Vt-fNS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cqp-pP-sxb"/>
                     </view>

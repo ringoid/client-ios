@@ -29,10 +29,7 @@ class VisualNotificationsViewController: UIViewController
         assert(self.input != nil)
         
         super.viewDidLoad()
-        
-        self.tableView.estimatedSectionHeaderHeight = 0.0
-        self.tableView.estimatedSectionFooterHeight = 0.0
-        
+
         self.tableView.onTap = { [weak self] in
             self?.delayModeState.accept(true)
             self?.updateDelayTimer()
@@ -209,38 +206,13 @@ extension VisualNotificationsViewController: UITableViewDataSource, UITableViewD
         return 80.0
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-//    {
-//        self.startTemporaryHideAnimation()
-//
-//        let index = indexPath.row
-//        let item = self.items[index]
-//        self.viewModel?.openChat(item.profileId)
-//    }
-    
-    /*
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-        
-        let index = indexPath.row
-        self.items.remove(at: index)
-        
-        tableView.deleteRows(at: [indexPath], with: .fade)
-    }
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
-        let action = UIContextualAction(style: .normal, title: nil) { [weak self] (_, _, _) in
-            let index = indexPath.row
-            self?.items.remove(at: index)
-            
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-        action.backgroundColor = .clear
-        
-        let configuration = UISwipeActionsConfiguration(actions: [action])
-        configuration.performsFirstActionWithFullSwipe = true
-        
-        return configuration
+        return nil
     }
- */
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
+    {
+        return 0.0
+    }
 }
