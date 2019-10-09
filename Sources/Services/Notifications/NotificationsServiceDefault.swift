@@ -62,6 +62,8 @@ class NotificationsServiceDefault: NSObject, NotificationService
     
     func handle(notificationDict: [AnyHashable : Any])
     {
+        guard UIApplication.shared.applicationState == .active else { return }
+        
         self.notificationDataObserver?.onNext(notificationDict)
     }
     
