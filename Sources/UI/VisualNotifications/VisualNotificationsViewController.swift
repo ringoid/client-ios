@@ -143,8 +143,9 @@ class VisualNotificationsViewController: UIViewController
             
             self.tableView.visibleCells.forEach({ cell in
                 (cell as? VisualNotificaionCell)?.startHidingTimer()
-                self.delayModeState.accept(false)
             })
+            
+            self.delayModeState.accept(false)
         }
         RunLoop.main.add(timer, forMode: .common)
     }
