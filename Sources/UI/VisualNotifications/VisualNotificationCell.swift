@@ -31,6 +31,7 @@ class VisualNotificaionCell: BaseTableViewCell
         }
     }
     
+    var onPan: (()->())?
     var onSelected: (()->())?
     var onAnimationFinished: (()->())?
     var onDeletionAnimationFinished: (() -> ())?
@@ -91,6 +92,7 @@ class VisualNotificaionCell: BaseTableViewCell
         let dx = recognizer.translation(in: self.contentView).x
         
         defer {
+            self.onPan?()
             self.prevTranslation = dx
         }
         

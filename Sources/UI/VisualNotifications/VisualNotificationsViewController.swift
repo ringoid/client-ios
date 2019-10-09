@@ -30,10 +30,6 @@ class VisualNotificationsViewController: UIViewController
         
         super.viewDidLoad()
 
-        self.tableView.onTap = { [weak self] in
-            self?.updateDelayTimer()
-        }
-        
         self.viewModel = VisualNotificationsViewModel(self.input)
         self.setupBindings()
     }
@@ -172,6 +168,9 @@ extension VisualNotificationsViewController: UITableViewDataSource, UITableViewD
         
         cell.item = item
         cell.startHidingTimer()
+        cell.onPan = { [weak self] in
+            self?.updateDelayTimer()
+        }
         cell.onSelected = { [weak self] in
             guard let `self` = self else { return }
             
