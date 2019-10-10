@@ -190,6 +190,8 @@ class LMMManager
             self.allLikesYouProfilesCount.accept(self.tmpAllLikesYouProfilesCount.value)
             self.allMessagesProfilesCount.accept(self.tmpAllMessagesProfilesCount.value)
             
+            self.waitingToBeReadMessagesProfiles = Set(messages.filter({ $0.messages.count != 0 && !$0.isRead() }).map({ $0.id }) )
+            
             self.isFetching.accept(false)
             return self.db.add(localLikesYou + messages).asObservable().do(onNext: { [weak self] _ in
                 self?.updateProfilesPrevState(true)
@@ -221,6 +223,8 @@ class LMMManager
                     self?.tmpFilteredLikesYouProfilesCount.accept(localLikesYou.count)
                     self?.tmpFilteredMessagesProfilesCount.accept(messages.count)
                 }
+                
+                self?.waitingToBeReadMessagesProfiles = Set(messages.filter({ $0.messages.count != 0 && !$0.isRead() }).map({ $0.id }) )
                 
                 self?.allLikesYouProfilesCount.accept(result.allLikesYouProfilesNum)
                 self?.allMessagesProfilesCount.accept(result.allMessagesProfilesNum)
