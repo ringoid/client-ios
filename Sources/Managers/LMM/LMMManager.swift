@@ -71,7 +71,7 @@ class LMMManager
     fileprivate var likesYouNotificationProfiles: Set<String> = []
     fileprivate var matchesNotificationProfiles: Set<String> = []
     fileprivate var messagesNotificationProfiles: Set<String> = []
-    fileprivate var processedNotificationsProfiles: Set<String> = []
+    fileprivate var waitingToBeReadMessagesProfiles: Set<String> = []
     
     // Filtered content cache
     fileprivate var filteredLikesYouCache: [ApiLMMProfile]? = nil
@@ -394,7 +394,7 @@ class LMMManager
             .subscribe().disposed(by: self.disposeBag)
         self.storage.store(self.messagesNotificationProfiles, key: "messagesNotificationProfiles")
             .subscribe().disposed(by: self.disposeBag)
-        self.storage.store(self.processedNotificationsProfiles, key: "processedNotificationsProfiles")
+        self.storage.store(self.waitingToBeReadMessagesProfiles, key: "processedNotificationsProfiles")
             .subscribe().disposed(by: self.disposeBag)
         
         // Updating & storing chats cache
@@ -452,7 +452,7 @@ class LMMManager
         self.prevNotSeenMatches.removeAll()
         self.prevNotReadMessages.removeAll()
         
-        self.processedNotificationsProfiles.removeAll()
+        self.waitingToBeReadMessagesProfiles.removeAll()
         
         self.likesYou.accept([])
         self.messages.accept([])
@@ -466,19 +466,19 @@ class LMMManager
     }
     
     // MARK: - Notifications
-    func isMessageNotificationAlreadyProcessed(_ profileId: String) -> Bool
+    func isMessageProfileWaitingToBeRead(_ profileId: String) -> Bool
     {
-        return self.processedNotificationsProfiles.contains(profileId)
+        return self.waitingToBeReadMessagesProfiles.contains(profileId)
     }
     
-    func markNotificationAsProcessed(_ profileId: String)
+    func markProfileAsWaitingToBeRead(_ profileId: String)
     {
-        self.processedNotificationsProfiles.insert(profileId)
+        self.waitingToBeReadMessagesProfiles.insert(profileId)
     }
     
-    func removeNotificationFromProcessed(_ profileId: String)
+    func removeProfileFromWaitingToBeRead(_ profileId: String)
     {
-        self.processedNotificationsProfiles.remove(profileId)
+        self.waitingToBeReadMessagesProfiles.remove(profileId)
         self.messagesNotificationProfiles.remove(profileId)
     }
     
@@ -800,7 +800,7 @@ class LMMManager
         }).disposed(by: self.disposeBag)
         
         self.storage.object("processedNotificationsProfiles").subscribe(onSuccess: { obj in
-            self.processedNotificationsProfiles = Set<String>.create(obj) ?? []
+            self.waitingToBeReadMessagesProfiles = Set<String>.create(obj) ?? []
         }).disposed(by: self.disposeBag)
         
         let interval = UserDefaults.standard.double(forKey: "chat_update_interval")

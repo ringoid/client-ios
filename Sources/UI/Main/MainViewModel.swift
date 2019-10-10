@@ -115,12 +115,12 @@ class MainViewModel
     
     func isMessageProcessed(_ profileId: String) -> Bool
     {
-        return self.input.lmmManager.isMessageNotificationAlreadyProcessed(profileId)
+        return self.input.lmmManager.isMessageProfileWaitingToBeRead(profileId)
     }
     
     func markMessageAsProcessed(_ profileId: String)
     {
-        self.input.lmmManager.markNotificationAsProcessed(profileId)
+        self.input.lmmManager.markProfileAsWaitingToBeRead(profileId)
     }
     
     func isBlocked(_ profileId: String) -> Bool

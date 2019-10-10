@@ -43,7 +43,7 @@ class VisualNotificationsManager
            guard remoteFeed != .likesYou else { return }
            guard let profileId = userInfo["oppositeUserId"] as? String else { return }
            guard !self.db.isBlocked(profileId) else { return }
-           guard !self.lmm.isMessageNotificationAlreadyProcessed(profileId) else { return }
+           guard !self.lmm.isMessageProfileWaitingToBeRead(profileId) else { return }
            guard ChatViewController.openedProfileId != profileId else { return }
                 
             guard let profile = self.lmm.profile(profileId) else {
