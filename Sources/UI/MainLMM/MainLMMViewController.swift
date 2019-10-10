@@ -694,9 +694,11 @@ class MainLMMViewController: BaseViewController
               }, onBlock: {
                   // TODO: think about blocking
           })
-    
+        
           self.chatContainerView.embed(vc, to: self)
           self.chatContainerView.isHidden = false
+        
+        UIManager.shared.chatModeEnabled.accept(true)
       }
     
     fileprivate func hideExternalChat(_ profile: LMMProfile, photo: Photo)
@@ -707,6 +709,9 @@ class MainLMMViewController: BaseViewController
             self.input.actionsManager.stopViewChatAction(actionProfile, photo: actionPhoto, sourceType: self.type.value.sourceType())
             self.input.actionsManager.startViewAction(actionProfile, photo: actionPhoto, sourceType: self.type.value.sourceType())
         }
+        
+        UIManager.shared.chatModeEnabled.accept(false)
+        
         self.chatContainerView.isHidden = true
         self.chatContainerView.remove()
 
