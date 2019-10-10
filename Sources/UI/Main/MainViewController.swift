@@ -652,6 +652,7 @@ class MainViewController: BaseViewController
             
             self.buttonsStackView.isHidden = state
             self.profileIndicatorView.alpha = state ? 0.0 : 1.0
+            self.likesYouIndicatorView.alpha = state ? 0.0 : 1.0
             self.bottomShadowView.isHidden = state
             
             if state  {
@@ -676,6 +677,7 @@ class MainViewController: BaseViewController
         UIManager.shared.blockModeEnabled.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] state in
             self?.buttonsStackView.isHidden = state
             self?.profileIndicatorView.alpha = state ? 0.0 : 1.0
+            self?.likesYouIndicatorView.alpha = state ? 0.0 : 1.0
             self?.bottomShadowView.isHidden = state
         }).disposed(by: self.disposeBag)
         
