@@ -207,7 +207,12 @@ class MainViewController: BaseViewController
         
         if let prevState = self.prevState, prevState == to { return }
         
-        self.prevState = to
+        switch to {
+        case .chat(_): break
+        default:
+            self.prevState = to
+            break
+        }
         
         ModalUIManager.shared.hide(animated: false)
         
