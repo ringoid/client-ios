@@ -208,7 +208,10 @@ class MainViewController: BaseViewController
         if let prevState = self.prevState, prevState == to { return }
         
         switch to {
-        case .chat(_): break
+        case .chat(_):
+            self.prevState = .chats
+            break
+            
         default:
             self.prevState = to
             break
