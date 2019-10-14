@@ -132,6 +132,13 @@ discover users nearby</string>
                                     <constraint firstAttribute="trailing" secondItem="eNb-ZP-bBP" secondAttribute="trailing" id="lRt-af-CPq"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fn7-u3-twZ" userLabel="Top Panel Line View">
+                                <rect key="frame" x="0.0" y="84" width="375" height="1"/>
+                                <color key="backgroundColor" white="0.67000000000000004" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="DRJ-Jt-Nvz"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RcH-VU-hkW">
                                 <rect key="frame" x="16" y="517" width="84" height="84"/>
                                 <constraints>
@@ -166,11 +173,13 @@ discover users nearby</string>
                         <constraints>
                             <constraint firstItem="Dzb-Wx-JQu" firstAttribute="bottom" secondItem="RcH-VU-hkW" secondAttribute="bottom" constant="66" id="0ND-j5-wxd"/>
                             <constraint firstItem="CGR-G7-fOR" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="2o9-jA-DjX"/>
+                            <constraint firstAttribute="trailing" secondItem="Fn7-u3-twZ" secondAttribute="trailing" id="7LM-7S-WUS"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="7aY-ua-nbS"/>
                             <constraint firstItem="Kt8-il-Lh0" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="DIr-zl-DwV"/>
                             <constraint firstItem="V9x-Tk-Mmn" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="DOQ-LY-jyo" userLabel="TopBarOffset"/>
                             <constraint firstItem="j9E-Qp-6Yt" firstAttribute="centerX" secondItem="Qe2-wI-l1c" secondAttribute="centerX" id="FG0-zT-miq"/>
                             <constraint firstItem="RcH-VU-hkW" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" constant="16" id="M0s-yz-w5X"/>
+                            <constraint firstItem="Fn7-u3-twZ" firstAttribute="top" secondItem="V9x-Tk-Mmn" secondAttribute="bottom" id="SMo-7i-fJn"/>
                             <constraint firstItem="j9E-Qp-6Yt" firstAttribute="centerY" secondItem="Qe2-wI-l1c" secondAttribute="centerY" id="T7G-iL-6n6"/>
                             <constraint firstAttribute="bottom" secondItem="f5P-fA-3ZX" secondAttribute="bottom" id="TVP-3o-yBY"/>
                             <constraint firstItem="Dzb-Wx-JQu" firstAttribute="trailing" secondItem="f5P-fA-3ZX" secondAttribute="trailing" id="UYa-cj-LJ4"/>
@@ -180,6 +189,7 @@ discover users nearby</string>
                             <constraint firstItem="V9x-Tk-Mmn" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" id="c5b-cm-k8j"/>
                             <constraint firstItem="V9x-Tk-Mmn" firstAttribute="trailing" secondItem="Dzb-Wx-JQu" secondAttribute="trailing" id="cKL-eN-vCX"/>
                             <constraint firstItem="Owz-cZ-1Sc" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="eOj-9V-78m"/>
+                            <constraint firstItem="Fn7-u3-twZ" firstAttribute="leading" secondItem="Qe2-wI-l1c" secondAttribute="leading" id="iXz-r2-xhv"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="top" secondItem="Qe2-wI-l1c" secondAttribute="top" id="k2s-xp-RvI"/>
                             <constraint firstItem="f5P-fA-3ZX" firstAttribute="leading" secondItem="Dzb-Wx-JQu" secondAttribute="leading" id="nm8-TI-5VR"/>
                             <constraint firstAttribute="trailing" secondItem="Owz-cZ-1Sc" secondAttribute="trailing" id="sVe-sm-wMe"/>
@@ -201,6 +211,7 @@ discover users nearby</string>
                         <outlet property="tableView" destination="Owz-cZ-1Sc" id="KNv-5u-zds"/>
                         <outlet property="tapBarHeightConstraint" destination="JrX-dP-RaM" id="THQ-yo-FbA"/>
                         <outlet property="topBarOffsetConstraint" destination="DOQ-LY-jyo" id="fuF-ks-ek0"/>
+                        <outlet property="topPanelLineHeightConstraint" destination="DRJ-Jt-Nvz" id="CZc-hS-eNN"/>
                         <outlet property="topPanelView" destination="V9x-Tk-Mmn" id="lAP-gB-TKG"/>
                     </connections>
                 </viewController>
@@ -256,20 +267,20 @@ discover users nearby</string>
                                 <rect key="frame" x="187.5" y="667" width="0.0" height="0.0"/>
                             </pageControl>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProfileID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXW-7Y-3ph">
-                                <rect key="frame" x="16" y="323" width="70" height="21"/>
+                                <rect key="frame" x="16" y="323" width="69" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="1" height="1"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bby-nO-FSI">
-                                <rect key="frame" x="36" y="15.5" width="50" height="21"/>
+                                <rect key="frame" x="36" y="15.5" width="49" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="1" height="1"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="mUh-fA-frq">
                                 <rect key="frame" x="16" y="612" width="15" height="15"/>
@@ -287,7 +298,7 @@ discover users nearby</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="1" height="1"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="hF7-La-xF3">
                                 <rect key="frame" x="228" y="612" width="15" height="15"/>
@@ -302,7 +313,7 @@ discover users nearby</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="1" height="1"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="Ne3-kc-nB2">
                                 <rect key="frame" x="228" y="587" width="15" height="15"/>
@@ -320,7 +331,7 @@ discover users nearby</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="1" height="1"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="hpB-3V-fnF">
                                 <rect key="frame" x="16" y="587" width="15" height="15"/>
@@ -335,15 +346,15 @@ discover users nearby</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="1" height="1"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afrodita, 19" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgt-rd-QRL">
-                                <rect key="frame" x="16" y="547" width="102" height="24"/>
+                                <rect key="frame" x="16" y="548" width="101" height="23"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.23309075342465754" colorSpace="custom" customColorSpace="sRGB"/>
-                                <size key="shadowOffset" width="1" height="1"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About me" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEy-yV-NWA">
                                 <rect key="frame" x="16" y="575" width="343" height="56"/>
@@ -355,15 +366,15 @@ discover users nearby</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="1" height="1"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fn-el-Q9A">
-                                <rect key="frame" x="339" y="166" width="12" height="21.5"/>
+                                <rect key="frame" x="339.5" y="166" width="11" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="1" height="1"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjV-mO-k6V" userLabel="LikeButton">
                                 <rect key="frame" x="299" y="118" width="76" height="64"/>

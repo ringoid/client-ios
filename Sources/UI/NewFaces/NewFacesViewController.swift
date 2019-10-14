@@ -52,12 +52,15 @@ class NewFacesViewController: BaseViewController
     @IBOutlet fileprivate weak var feedBottomBtn: UIButton!
     @IBOutlet fileprivate weak var feedBottomLabel: UILabel!
     @IBOutlet fileprivate weak var topPanelView: UIView!
+    @IBOutlet fileprivate weak var topPanelLineHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
         assert(self.input != nil)
         
         super.viewDidLoad()
+        
+        self.topPanelLineHeightConstraint.constant = 0.5
         
         self.toggleActivity(.initial)
         
@@ -109,6 +112,10 @@ class NewFacesViewController: BaseViewController
         self.view.backgroundColor = BackgroundColor().uiColor()
         self.blockContainerView.backgroundColor = BackgroundColor().uiColor()
         self.topPanelView.backgroundColor = BackgroundColor().uiColor()
+        
+        self.feedTitleLabel.textColor = ContentColor().uiColor()
+        self.feedBottomLabel.textColor = ContentColor().uiColor()
+        self.emptyFeedLabel.textColor = ContentColor().uiColor()
     }
     
     override func updateLocale()

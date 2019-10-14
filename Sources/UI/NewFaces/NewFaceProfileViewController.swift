@@ -17,7 +17,7 @@ import Nuke
     let titleLabel: UILabel
 }
 
-class NewFaceProfileViewController: UIViewController
+class NewFaceProfileViewController: BaseViewController
 {
     var input: NewFaceProfileVMInput!
     
@@ -160,6 +160,19 @@ class NewFaceProfileViewController: UIViewController
             self.pagesVC?.delegate = self
             self.pagesVC?.dataSource = self
         }
+    }
+    
+    override func updateTheme()
+    {
+        self.pagesControl.tintColor = ContentColor().uiColor()
+        self.statusLabel.textColor = ContentColor().uiColor()
+        self.nameLabel.textColor = ContentColor().uiColor()
+        self.aboutLabel.textColor = ContentColor().uiColor()
+        self.totalLikesLabel.textColor = ContentColor().uiColor()
+        self.leftFieldLabel1.textColor = ContentColor().uiColor()
+        self.leftFieldLabel2.textColor = ContentColor().uiColor()
+        self.rightFieldLabel1.textColor = ContentColor().uiColor()        
+        self.rightFieldLabel2.textColor = ContentColor().uiColor()
     }
     
     func preheatSecondPhoto()
