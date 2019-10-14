@@ -48,7 +48,6 @@ class NewFaceProfileViewController: BaseViewController
     @IBOutlet fileprivate weak var statusLabel: UILabel!
     @IBOutlet fileprivate weak var statusInfoLabel: UILabel!
     @IBOutlet fileprivate weak var nameLabel: UILabel!
-    @IBOutlet fileprivate weak var nameConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutLabel: UILabel!
     @IBOutlet fileprivate weak var leftColumnConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
@@ -510,8 +509,7 @@ class NewFaceProfileViewController: BaseViewController
                 height = height < 64.0 ? height : 64.0
                 
                 self.aboutLabel.text = aboutText
-                self.aboutLabel.isHidden = false
-                self.nameConstraint.constant = height + 36.0
+                self.aboutLabel.isHidden = false                
                 self.aboutHeightConstraint.constant = height + 4.0
                 self.view.layoutIfNeeded()
             } else {
@@ -546,8 +544,6 @@ class NewFaceProfileViewController: BaseViewController
         var rightColumnMaxWidth: CGFloat = 0.0
         
         defer {
-            self.nameConstraint.constant = nameOffset
-            
             let rightColumnWidth = rightColumnMaxWidth < rightFieldMaxWidth ? ( rightColumnMaxWidth + 4.0) : (rightFieldMaxWidth + 4.0)
             self.rightColumnConstraint.constant = rightColumnWidth
             

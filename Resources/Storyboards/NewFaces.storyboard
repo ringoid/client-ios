@@ -275,8 +275,8 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Online" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bby-nO-FSI">
-                                <rect key="frame" x="36" y="15.5" width="49" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="642" width="41.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -349,7 +349,7 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afrodita, 19" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgt-rd-QRL">
-                                <rect key="frame" x="16" y="548" width="101" height="23"/>
+                                <rect key="frame" x="36" y="16" width="101" height="23"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -402,22 +402,24 @@ discover users nearby</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="jgt-rd-QRL" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="1TV-pF-1rd"/>
-                            <constraint firstItem="DEy-yV-NWA" firstAttribute="top" secondItem="jgt-rd-QRL" secondAttribute="bottom" constant="4" id="2v2-oc-7cA"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="hF7-La-xF3" secondAttribute="trailing" constant="8" id="5NP-6E-3NK"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="hF7-La-xF3" secondAttribute="top" id="ANk-co-dkG"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="centerY" secondItem="mUh-fA-frq" secondAttribute="centerY" id="Bn5-Xc-X65"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="top" secondItem="mUh-fA-frq" secondAttribute="top" id="CD0-AL-1vp"/>
                             <constraint firstItem="9Fn-el-Q9A" firstAttribute="top" secondItem="xjV-mO-k6V" secondAttribute="bottom" constant="-16" id="CHR-uX-CAI"/>
                             <constraint firstItem="DEy-yV-NWA" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="DH3-yd-MhX"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="DEy-yV-NWA" secondAttribute="bottom" constant="36" id="DSM-yl-Ef1"/>
                             <constraint firstItem="Ne3-kc-nB2" firstAttribute="centerY" secondItem="5TG-AM-TBD" secondAttribute="centerY" id="Dof-qO-HE6"/>
                             <constraint firstAttribute="trailing" secondItem="Sxp-7c-isg" secondAttribute="trailing" constant="8" id="EbU-Gn-KJO"/>
+                            <constraint firstItem="jgt-rd-QRL" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="topMargin" constant="16" id="Glg-u7-OSv"/>
                             <constraint firstAttribute="trailing" secondItem="DEy-yV-NWA" secondAttribute="trailing" constant="16" id="Gw8-O6-8Bt"/>
                             <constraint firstAttribute="bottom" secondItem="ahE-Zb-Two" secondAttribute="bottom" id="LF8-et-HfT"/>
                             <constraint firstAttribute="trailing" secondItem="X1t-jW-NWk" secondAttribute="trailing" id="Le3-5c-RWL"/>
+                            <constraint firstItem="jgt-rd-QRL" firstAttribute="leading" secondItem="HGV-Wh-HTU" secondAttribute="trailing" constant="8" id="MJp-ca-Tuz"/>
                             <constraint firstItem="ahE-Zb-Two" firstAttribute="centerX" secondItem="gCQ-GT-2id" secondAttribute="centerX" id="Mk2-w0-p53"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="bottom" secondItem="mUh-fA-frq" secondAttribute="bottom" id="QNh-Ou-Hn7"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="top" secondItem="Ne3-kc-nB2" secondAttribute="top" id="Rp3-YS-NIT"/>
+                            <constraint firstAttribute="bottom" secondItem="bby-nO-FSI" secondAttribute="bottom" constant="8" id="V9U-AJ-Vc6"/>
                             <constraint firstItem="jkx-2O-t4k" firstAttribute="centerY" secondItem="gCQ-GT-2id" secondAttribute="centerY" id="VPZ-5A-FoV"/>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="WHJ-8A-QCL"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="top" secondItem="UGd-FX-LHF" secondAttribute="bottom" constant="10" id="WWM-Rn-t9O"/>
@@ -426,13 +428,12 @@ discover users nearby</string>
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="-12" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
                             <constraint firstAttribute="trailing" secondItem="xjV-mO-k6V" secondAttribute="trailing" id="Yvo-8E-AMH"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="jgt-rd-QRL" secondAttribute="bottom" constant="96" id="ZMz-PX-Szg" userLabel="name bottom"/>
+                            <constraint firstItem="bby-nO-FSI" firstAttribute="leading" secondItem="QNT-if-MPg" secondAttribute="leading" constant="16" id="aTI-QI-suS"/>
                             <constraint firstItem="jkx-2O-t4k" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="bSV-7V-iVS"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="centerY" secondItem="HqK-UA-iee" secondAttribute="centerY" id="cwa-AK-ROd"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="leading" secondItem="Ne3-kc-nB2" secondAttribute="trailing" constant="8" id="dYN-r8-BGt"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="5TG-AM-TBD" secondAttribute="leading" id="egi-7A-clp"/>
                             <constraint firstItem="HGV-Wh-HTU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="fz3-iX-AyN"/>
-                            <constraint firstItem="bby-nO-FSI" firstAttribute="leading" secondItem="HGV-Wh-HTU" secondAttribute="trailing" constant="8" id="gP0-Dm-LGE"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="gkm-cI-CQH"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="bottom" secondItem="hF7-La-xF3" secondAttribute="bottom" id="iNT-kD-Lsn"/>
                             <constraint firstItem="UGd-FX-LHF" firstAttribute="bottom" secondItem="hpB-3V-fnF" secondAttribute="bottom" id="iyQ-pa-B7q"/>
@@ -441,7 +442,6 @@ discover users nearby</string>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="bottom" secondItem="Ne3-kc-nB2" secondAttribute="bottom" id="kKy-mu-RU6"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="48" id="ms1-Iv-Xza"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="5TG-AM-TBD" secondAttribute="bottom" constant="10" id="nz5-gG-NAZ"/>
-                            <constraint firstItem="bby-nO-FSI" firstAttribute="centerY" secondItem="HGV-Wh-HTU" secondAttribute="centerY" id="qne-Zl-Aoo"/>
                             <constraint firstItem="hF7-La-xF3" firstAttribute="centerY" secondItem="Sxp-7c-isg" secondAttribute="centerY" id="qsT-A0-2nD"/>
                             <constraint firstItem="9Fn-el-Q9A" firstAttribute="centerX" secondItem="xjV-mO-k6V" secondAttribute="centerX" constant="8" id="tPc-HW-If4"/>
                             <constraint firstItem="xjV-mO-k6V" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="118" id="u02-xu-UZL"/>
@@ -464,7 +464,6 @@ discover users nearby</string>
                         <outlet property="leftFieldLabel1" destination="HqK-UA-iee" id="8o7-EW-XrV"/>
                         <outlet property="leftFieldLabel2" destination="UGd-FX-LHF" id="Dst-Qt-NKd"/>
                         <outlet property="likeBtn" destination="xjV-mO-k6V" id="zWG-kH-QCR"/>
-                        <outlet property="nameConstraint" destination="ZMz-PX-Szg" id="Rdv-UB-LIG"/>
                         <outlet property="nameLabel" destination="jgt-rd-QRL" id="b6f-js-hAK"/>
                         <outlet property="optionsBtn" destination="X1t-jW-NWk" id="LoZ-fG-SZb"/>
                         <outlet property="pagesControl" destination="ahE-Zb-Two" id="5Uz-7h-eYN"/>
