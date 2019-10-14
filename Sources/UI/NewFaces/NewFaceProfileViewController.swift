@@ -164,14 +164,19 @@ class NewFaceProfileViewController: BaseViewController
     override func updateTheme()
     {
         self.pagesControl.tintColor = ContentColor().uiColor()
-        self.statusLabel.textColor = ContentColor().uiColor()
+        self.statusLabel.textColor = SecondContentColor().uiColor()
         self.nameLabel.textColor = ContentColor().uiColor()
         self.aboutLabel.textColor = ContentColor().uiColor()
         self.totalLikesLabel.textColor = ContentColor().uiColor()
         self.leftFieldLabel1.textColor = ContentColor().uiColor()
         self.leftFieldLabel2.textColor = ContentColor().uiColor()
-        self.rightFieldLabel1.textColor = ContentColor().uiColor()        
+        self.rightFieldLabel1.textColor = ContentColor().uiColor()
         self.rightFieldLabel2.textColor = ContentColor().uiColor()
+        
+        self.leftFieldIcon1.tintColor = ContentColor().uiColor()
+        self.leftFieldIcon2.tintColor = ContentColor().uiColor()
+        self.rightFieldIcon1.tintColor = ContentColor().uiColor()
+        self.rightFieldIcon2.tintColor = ContentColor().uiColor()
     }
     
     func preheatSecondPhoto()
@@ -509,7 +514,7 @@ class NewFaceProfileViewController: BaseViewController
                 height = height < 64.0 ? height : 64.0
                 
                 self.aboutLabel.text = aboutText
-                self.aboutLabel.isHidden = false                
+                self.aboutLabel.isHidden = false
                 self.aboutHeightConstraint.constant = height + 4.0
                 self.view.layoutIfNeeded()
             } else {
@@ -582,7 +587,7 @@ class NewFaceProfileViewController: BaseViewController
             
             if let row = leftRow {
                 if let icon = row.icon {
-                    leftControls.iconView.image = UIImage(named: icon)
+                    leftControls.iconView.image = UIImage(named: icon)?.withRenderingMode(.alwaysTemplate)
                 } else {
                     leftControls.iconView.image = nil
                 }
@@ -610,7 +615,7 @@ class NewFaceProfileViewController: BaseViewController
             
             if let row = rightRow {
                 if let icon = row.icon {
-                    rightControls.iconView.image = UIImage(named: icon)
+                    rightControls.iconView.image = UIImage(named: icon)?.withRenderingMode(.alwaysTemplate)
                 } else {
                     rightControls.iconView.image = nil
                 }

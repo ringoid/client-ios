@@ -127,6 +127,11 @@ class MainViewController: BaseViewController
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
         self.bottomBarBackground.backgroundColor = BackgroundColor().uiColor()
+        
+        self.searchBtn.tintColor = ContentColor().uiColor()
+        self.likeBtn.tintColor = ContentColor().uiColor()
+        self.chatsBtn.tintColor = ContentColor().uiColor()
+        self.profileBtn.tintColor = ContentColor().uiColor()
     }
     
     override func updateLocale()
@@ -226,26 +231,26 @@ class MainViewController: BaseViewController
         
         switch to {
         case .search:
-            self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
-            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
-            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search_selected")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.embedNewFaces()
             break
             
         case .likes:
-            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
-            self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
-            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
-            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like_selected")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.embedLikes()
             break
             
         case .chats:
-            self.chatsBtn.setImage(UIImage(named: "main_bar_messages_selected"), for: .normal)
-            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
-            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages_selected")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.embedChats()
             break
             
@@ -258,58 +263,58 @@ class MainViewController: BaseViewController
             break
             
         case .profileAndPick:
-            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
-            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
-            self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.embedUserProfileAndPick()
             break
             
         case .profileAndFetch:
-            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
-            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
-            self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.embedUserProfileAndFetch()
             break
             
         case .profileAndAsk:
-            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
-            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
-            self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.embedUserProfileAndAsk()
             break
             
         case .searchAndFetch:
-            self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
-            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
-            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search_selected")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.embedNewFacesAndFetch()
             break
             
         case .searchAndFetchFirstTime:
-            self.searchBtn.setImage(UIImage(named: "main_bar_search_selected"), for: .normal)
-            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
-            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search_selected")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.embedNewFacesAndFetchFirstTime()
             break
             
         case .likeAndFetch:
-            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
-            self.likeBtn.setImage(UIImage(named: "main_bar_like_selected"), for: .normal)
-            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
-            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like_selected")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.embedMainLMMAndFetch()
             break
             
         case .chat(let profileId):
-            self.chatsBtn.setImage(UIImage(named: "main_bar_messages_selected"), for: .normal)
-            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
-            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.profileBtn.setImage(UIImage(named: "main_bar_profile"), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages_selected")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.embedChat(profileId)
             break
         }
