@@ -23,21 +23,20 @@
                                     <segue destination="hP9-lJ-Ep8" kind="embed" identifier="embed_container" id="mtd-Aw-7vH"/>
                                 </connections>
                             </containerView>
-                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E8b-9J-Vw4" userLabel="BottomBarView" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="595" width="375" height="72"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htN-cB-51n" customClass="MainEffectsView" customModule="Ringoid" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEm-FK-tON" userLabel="BottomLineView">
+                                <rect key="frame" x="0.0" y="606" width="375" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.24529109589041095" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="fff-M0-ybU"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TgD-HM-jFO" userLabel="BottomPanelBackground">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QYd-HC-afs">
                                 <rect key="frame" x="0.0" y="607" width="375" height="60"/>
@@ -77,6 +76,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_bar_no_photo" translatesAutoresizingMaskIntoConstraints="NO" id="WgY-Bd-4Qd">
                                 <rect key="frame" x="336.5" y="636" width="3" height="10"/>
@@ -170,39 +170,43 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="tBS-em-p9g" firstAttribute="top" secondItem="GM2-8q-nY9" secondAttribute="top" id="2LA-Z5-Jkg"/>
+                            <constraint firstItem="TgD-HM-jFO" firstAttribute="top" secondItem="uEm-FK-tON" secondAttribute="bottom" id="4M6-uL-PvS"/>
                             <constraint firstItem="NUg-31-Hnn" firstAttribute="centerY" secondItem="1xc-oL-Jti" secondAttribute="centerY" id="5sm-hZ-gvH"/>
                             <constraint firstAttribute="bottom" secondItem="QYd-HC-afs" secondAttribute="bottom" id="9Yo-yT-drm"/>
                             <constraint firstAttribute="trailing" secondItem="ZFd-I1-dCK" secondAttribute="trailing" id="CEJ-uj-wFU"/>
                             <constraint firstAttribute="trailing" secondItem="QYd-HC-afs" secondAttribute="trailing" id="DVv-Ea-hMC"/>
                             <constraint firstItem="WgY-Bd-4Qd" firstAttribute="centerX" secondItem="IC7-wg-nDT" secondAttribute="centerX" constant="10" id="EW9-pa-34W"/>
+                            <constraint firstItem="QYd-HC-afs" firstAttribute="top" secondItem="TgD-HM-jFO" secondAttribute="top" id="Eim-oa-Hx3"/>
                             <constraint firstItem="htN-cB-51n" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="FCs-AF-JJv"/>
                             <constraint firstAttribute="trailing" secondItem="htN-cB-51n" secondAttribute="trailing" id="FhK-dC-Yle"/>
                             <constraint firstAttribute="trailing" secondItem="tBS-em-p9g" secondAttribute="trailing" id="FtW-hh-3eE"/>
                             <constraint firstAttribute="bottom" secondItem="tBS-em-p9g" secondAttribute="bottom" id="HeA-yV-GSb"/>
-                            <constraint firstItem="E8b-9J-Vw4" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="J9K-us-tve"/>
                             <constraint firstItem="A7E-GF-7xU" firstAttribute="top" secondItem="PZo-jV-0xV" secondAttribute="top" constant="120" id="JYU-le-UnZ"/>
+                            <constraint firstAttribute="bottom" secondItem="TgD-HM-jFO" secondAttribute="bottom" id="LOY-iH-3GM"/>
+                            <constraint firstItem="uEm-FK-tON" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="Mez-z1-d3j"/>
                             <constraint firstItem="NUg-31-Hnn" firstAttribute="top" secondItem="QYd-HC-afs" secondAttribute="top" constant="26" id="PYb-f9-tK5"/>
                             <constraint firstItem="tBS-em-p9g" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="QDu-cb-YRs"/>
                             <constraint firstAttribute="bottom" secondItem="ZFd-I1-dCK" secondAttribute="bottom" id="Qjc-t6-IL0"/>
                             <constraint firstAttribute="bottom" secondItem="htN-cB-51n" secondAttribute="bottom" id="Qps-4C-BS6"/>
                             <constraint firstItem="A7E-GF-7xU" firstAttribute="leading" secondItem="PZo-jV-0xV" secondAttribute="leading" id="Tst-8I-GYi"/>
-                            <constraint firstAttribute="bottom" secondItem="E8b-9J-Vw4" secondAttribute="bottom" id="U9q-bB-TTW"/>
                             <constraint firstItem="1xc-oL-Jti" firstAttribute="centerX" secondItem="wuk-66-Oh7" secondAttribute="centerX" constant="12" id="UFs-Kb-M3y"/>
                             <constraint firstItem="WgY-Bd-4Qd" firstAttribute="top" secondItem="IC7-wg-nDT" secondAttribute="top" constant="29" id="Uqk-zw-kTg"/>
                             <constraint firstItem="ZFd-I1-dCK" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="ZhW-CE-RaR"/>
                             <constraint firstItem="QYd-HC-afs" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="b5h-B3-qAm"/>
                             <constraint firstItem="NUg-31-Hnn" firstAttribute="centerX" secondItem="cD4-SP-HxY" secondAttribute="centerX" constant="13" id="bNP-o6-CT8"/>
-                            <constraint firstAttribute="trailing" secondItem="E8b-9J-Vw4" secondAttribute="trailing" id="hcZ-sj-eTO"/>
+                            <constraint firstAttribute="trailing" secondItem="uEm-FK-tON" secondAttribute="trailing" id="gLG-vM-vnH"/>
                             <constraint firstItem="PZo-jV-0xV" firstAttribute="bottom" secondItem="QYd-HC-afs" secondAttribute="top" constant="60" id="i4t-Gf-cAe"/>
                             <constraint firstItem="A7E-GF-7xU" firstAttribute="trailing" secondItem="PZo-jV-0xV" secondAttribute="trailing" id="jC2-ly-w3h"/>
-                            <constraint firstItem="PZo-jV-0xV" firstAttribute="bottom" secondItem="E8b-9J-Vw4" secondAttribute="top" constant="72" id="jS5-2i-i9y"/>
                             <constraint firstItem="htN-cB-51n" firstAttribute="top" secondItem="GM2-8q-nY9" secondAttribute="top" id="jZm-uA-obf"/>
+                            <constraint firstAttribute="trailing" secondItem="TgD-HM-jFO" secondAttribute="trailing" id="nqR-Bz-bgd"/>
+                            <constraint firstItem="TgD-HM-jFO" firstAttribute="leading" secondItem="GM2-8q-nY9" secondAttribute="leading" id="wDH-Ba-jNK"/>
                             <constraint firstItem="ZFd-I1-dCK" firstAttribute="top" secondItem="GM2-8q-nY9" secondAttribute="top" id="yMd-wt-oZo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PZo-jV-0xV"/>
                     </view>
                     <connections>
-                        <outlet property="bottomShadowView" destination="E8b-9J-Vw4" id="aOM-N5-sbu"/>
+                        <outlet property="bottomBarBackground" destination="TgD-HM-jFO" id="wZe-1O-Biw"/>
+                        <outlet property="bottomBarLineHeightConstraint" destination="fff-M0-ybU" id="kka-H7-SZT"/>
                         <outlet property="buttonsStackView" destination="QYd-HC-afs" id="6DN-vF-3cQ"/>
                         <outlet property="chatIndicatorView" destination="1xc-oL-Jti" id="MpX-CM-YK4"/>
                         <outlet property="chatsBtn" destination="wuk-66-Oh7" id="9Do-ET-DNs"/>

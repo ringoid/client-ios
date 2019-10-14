@@ -51,6 +51,7 @@ class NewFacesViewController: BaseViewController
     @IBOutlet fileprivate weak var feedTitleBtn: UIButton!
     @IBOutlet fileprivate weak var feedBottomBtn: UIButton!
     @IBOutlet fileprivate weak var feedBottomLabel: UILabel!
+    @IBOutlet fileprivate weak var topPanelView: UIView!
     
     override func viewDidLoad()
     {
@@ -63,7 +64,9 @@ class NewFacesViewController: BaseViewController
         self.tableView.estimatedSectionHeaderHeight = 0.0
         self.tableView.estimatedSectionFooterHeight = 0.0
         
-        let rowHeight = UIScreen.main.bounds.width * AppConfig.photoRatio
+        let headerHeight = MainLMMProfileViewController.profileHeaderHeight
+        let footerHeight = MainLMMProfileViewController.profileFooterHeight
+        let rowHeight = UIScreen.main.bounds.width * AppConfig.photoRatio + headerHeight + footerHeight
         self.tableView.rowHeight = rowHeight
         self.tableView.estimatedRowHeight = rowHeight
         self.tableView.contentInset = UIEdgeInsets(
@@ -105,6 +108,7 @@ class NewFacesViewController: BaseViewController
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
         self.blockContainerView.backgroundColor = BackgroundColor().uiColor()
+        self.topPanelView.backgroundColor = BackgroundColor().uiColor()
     }
     
     override func updateLocale()

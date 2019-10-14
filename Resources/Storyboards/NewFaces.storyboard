@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m48-Io-6eu">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m48-Io-6eu">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,11 +27,11 @@ discover users nearby</string>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Kt8-il-Lh0">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
                             </activityIndicatorView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="358" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owz-cZ-1Sc">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="400" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owz-cZ-1Sc">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="2qj-wE-4hh">
-                                    <rect key="frame" x="0.0" y="359" width="375" height="80"/>
+                                    <rect key="frame" x="0.0" y="456" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KI0-kj-TBA">
@@ -61,14 +59,14 @@ discover users nearby</string>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="new_faces_cell" id="PAB-o3-bWg" customClass="NewFacesCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1" width="375" height="358"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="400"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PAB-o3-bWg" id="mzS-Ei-i2k">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="358"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWH-RX-sVo" customClass="ContainerView" customModule="Ringoid" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="359"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="401"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                             </subviews>
@@ -203,6 +201,7 @@ discover users nearby</string>
                         <outlet property="tableView" destination="Owz-cZ-1Sc" id="KNv-5u-zds"/>
                         <outlet property="tapBarHeightConstraint" destination="JrX-dP-RaM" id="THQ-yo-FbA"/>
                         <outlet property="topBarOffsetConstraint" destination="DOQ-LY-jyo" id="fuF-ks-ek0"/>
+                        <outlet property="topPanelView" destination="V9x-Tk-Mmn" id="lAP-gB-TKG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="htw-q5-Nbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -218,27 +217,15 @@ discover users nearby</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jbu-JW-RgU">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="48" width="375" height="500"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Jbu-JW-RgU" secondAttribute="height" multiplier="3:4" id="ugi-Ee-dOh"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="a3d-Xx-hZB" kind="embed" identifier="embed_pages" id="H5Q-fa-BBJ"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D9J-Io-shh" customClass="VerticalGradientView" customModule="Ringoid" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="537" width="375" height="130"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="qJV-gp-KqM"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HGV-Wh-HTU">
                                 <rect key="frame" x="16" y="20" width="12" height="12"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -418,7 +405,6 @@ discover users nearby</string>
                             <constraint firstAttribute="bottom" secondItem="ahE-Zb-Two" secondAttribute="bottom" id="LF8-et-HfT"/>
                             <constraint firstAttribute="trailing" secondItem="X1t-jW-NWk" secondAttribute="trailing" id="Le3-5c-RWL"/>
                             <constraint firstItem="ahE-Zb-Two" firstAttribute="centerX" secondItem="gCQ-GT-2id" secondAttribute="centerX" id="Mk2-w0-p53"/>
-                            <constraint firstAttribute="bottom" secondItem="D9J-Io-shh" secondAttribute="bottom" id="NyM-X6-uFx"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="bottom" secondItem="mUh-fA-frq" secondAttribute="bottom" id="QNh-Ou-Hn7"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="top" secondItem="Ne3-kc-nB2" secondAttribute="top" id="Rp3-YS-NIT"/>
                             <constraint firstItem="jkx-2O-t4k" firstAttribute="centerY" secondItem="gCQ-GT-2id" secondAttribute="centerY" id="VPZ-5A-FoV"/>
@@ -431,21 +417,18 @@ discover users nearby</string>
                             <constraint firstAttribute="trailing" secondItem="xjV-mO-k6V" secondAttribute="trailing" id="Yvo-8E-AMH"/>
                             <constraint firstAttribute="bottomMargin" secondItem="jgt-rd-QRL" secondAttribute="bottom" constant="96" id="ZMz-PX-Szg" userLabel="name bottom"/>
                             <constraint firstItem="jkx-2O-t4k" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="bSV-7V-iVS"/>
-                            <constraint firstAttribute="trailing" secondItem="D9J-Io-shh" secondAttribute="trailing" id="bTP-h8-Ebf"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="centerY" secondItem="HqK-UA-iee" secondAttribute="centerY" id="cwa-AK-ROd"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="leading" secondItem="Ne3-kc-nB2" secondAttribute="trailing" constant="8" id="dYN-r8-BGt"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="5TG-AM-TBD" secondAttribute="leading" id="egi-7A-clp"/>
                             <constraint firstItem="HGV-Wh-HTU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="fz3-iX-AyN"/>
                             <constraint firstItem="bby-nO-FSI" firstAttribute="leading" secondItem="HGV-Wh-HTU" secondAttribute="trailing" constant="8" id="gP0-Dm-LGE"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="gkm-cI-CQH"/>
-                            <constraint firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" id="hMK-Ge-ajI"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="bottom" secondItem="hF7-La-xF3" secondAttribute="bottom" id="iNT-kD-Lsn"/>
                             <constraint firstItem="UGd-FX-LHF" firstAttribute="bottom" secondItem="hpB-3V-fnF" secondAttribute="bottom" id="iyQ-pa-B7q"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="trailing" secondItem="5TG-AM-TBD" secondAttribute="trailing" id="jEg-QL-jPD"/>
                             <constraint firstAttribute="bottom" secondItem="mUh-fA-frq" secondAttribute="bottom" constant="40" id="jpd-3w-6cq"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="bottom" secondItem="Ne3-kc-nB2" secondAttribute="bottom" id="kKy-mu-RU6"/>
-                            <constraint firstItem="D9J-Io-shh" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="lyB-sX-35n"/>
-                            <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="ms1-Iv-Xza"/>
+                            <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="48" id="ms1-Iv-Xza"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="5TG-AM-TBD" secondAttribute="bottom" constant="10" id="nz5-gG-NAZ"/>
                             <constraint firstItem="bby-nO-FSI" firstAttribute="centerY" secondItem="HGV-Wh-HTU" secondAttribute="centerY" id="qne-Zl-Aoo"/>
                             <constraint firstItem="hF7-La-xF3" firstAttribute="centerY" secondItem="Sxp-7c-isg" secondAttribute="centerY" id="qsT-A0-2nD"/>

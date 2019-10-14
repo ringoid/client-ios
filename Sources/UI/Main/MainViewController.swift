@@ -50,7 +50,6 @@ class MainViewController: BaseViewController
     @IBOutlet fileprivate weak var profileIndicatorView: UIView!
     @IBOutlet fileprivate weak var effectsView: MainEffectsView!
     @IBOutlet fileprivate weak var buttonsStackView: UIView!
-    @IBOutlet fileprivate weak var bottomShadowView: UIView!
     
     @IBOutlet fileprivate weak var likesYouIndicatorView: UIView!
     @IBOutlet fileprivate weak var chatIndicatorView: UIView!
@@ -58,6 +57,9 @@ class MainViewController: BaseViewController
     @IBOutlet fileprivate weak var notificationsBannerView: UIView!
     @IBOutlet fileprivate weak var notificationsBannerLabel: UILabel!
     @IBOutlet fileprivate weak var notificationsBannerSubLabel: UILabel!
+    
+    @IBOutlet fileprivate weak var bottomBarBackground: UIView!
+    @IBOutlet fileprivate weak var bottomBarLineHeightConstraint: NSLayoutConstraint!
 
     
     static func create() -> MainViewController
@@ -72,6 +74,8 @@ class MainViewController: BaseViewController
         super.viewDidLoad()
         
         GlobalAnimationManager.shared.animationView = self.effectsView
+        
+        self.bottomBarLineHeightConstraint.constant = 0.5
         
         self.setupBindings()
         
@@ -122,6 +126,7 @@ class MainViewController: BaseViewController
     override func updateTheme()
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
+        self.bottomBarBackground.backgroundColor = BackgroundColor().uiColor()
     }
     
     override func updateLocale()
@@ -656,7 +661,6 @@ class MainViewController: BaseViewController
             self.buttonsStackView.isHidden = state
             self.profileIndicatorView.alpha = state ? 0.0 : 1.0
             self.likesYouIndicatorView.alpha = state ? 0.0 : 1.0
-            self.bottomShadowView.isHidden = state
             
             if state  {
                 self.notificationsBannerView.isHidden = true
@@ -681,7 +685,6 @@ class MainViewController: BaseViewController
             self?.buttonsStackView.isHidden = state
             self?.profileIndicatorView.alpha = state ? 0.0 : 1.0
             self?.likesYouIndicatorView.alpha = state ? 0.0 : 1.0
-            self?.bottomShadowView.isHidden = state
         }).disposed(by: self.disposeBag)
         
         self.input.notifications.responses.asObservable().observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] response in
