@@ -38,8 +38,13 @@ class NewFacesFilterViewController: BaseViewController
         
         super.viewDidLoad()
         
-        self.viewModel = NewFacesFilterViewModel(self.input)
+        self.rangeSlider.handleImage = UIImage(named: "feed_slider_handle")?.withRenderingMode(.alwaysTemplate)
         
+        self.viewModel = NewFacesFilterViewModel(self.input)
+                
+        let height = self.view.safeAreaInsets.top + 245.0
+        self.filtersAreaOffsetConstraint.constant = -height
+
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(onCloseAction))
         self.view.addGestureRecognizer(recognizer)
         
@@ -72,7 +77,7 @@ class NewFacesFilterViewController: BaseViewController
         self.ageLabel.text = ageText
         
         // Distance
-        self.distanceSlider.setThumbImage(UIImage(named: "feed_slider_handle"), for: .normal)
+        self.distanceSlider.setThumbImage(UIImage(named: "feed_slider_handle")?.withRenderingMode(.alwaysTemplate), for: .normal)
         self.distanceSlider.value = Float(self.viewModel.maxDistance.value ?? 350)
         
         if let maxDistance = self.viewModel.maxDistance.value {
@@ -87,6 +92,8 @@ class NewFacesFilterViewController: BaseViewController
             .layerMinXMaxYCorner,
             .layerMaxXMaxYCorner
         ]
+        self.filtersView.layer.borderWidth = 0.5
+        self.filtersView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.25).cgColor
     }
     
     override func viewWillLayoutSubviews()
@@ -97,6 +104,16 @@ class NewFacesFilterViewController: BaseViewController
         self.filtersAreaHeightConstraint.constant = height
     }
     
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+            
+        self.filtersAreaOffsetConstraint.constant = 0.0
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutSubviews()
+        }        
+    }
+    
     override func updateLocale()
     {
         self.ageTitleLabel.text = "filter_age".localized()
@@ -104,7 +121,24 @@ class NewFacesFilterViewController: BaseViewController
         self.discoverBtn.setTitle("filter_discover".localized(), for: .normal)
     }
     
-    override func updateTheme() {}
+    override func updateTheme()
+    {
+        self.filtersView.backgroundColor = BackgroundColor().uiColor()
+        self.ageLabel.textColor = ContentColor().uiColor()
+        self.maxDistanceTitleLabel.textColor = ContentColor().uiColor()
+        self.discoverBtn.setTitleColor(ContentColor().uiColor(), for: .normal)
+        self.distanceLabel.tintColor = SecondContentColor().uiColor()
+        
+        self.rangeSlider.tintColor = SecondContentColor().uiColor()
+        self.rangeSlider.minLabelColor = SecondContentColor().uiColor()
+        self.rangeSlider.maxLabelColor = SecondContentColor().uiColor()
+        self.rangeSlider.colorBetweenHandles = ContentColor().uiColor()
+        self.rangeSlider.handleColor = ContentColor().uiColor()
+        self.rangeSlider.refresh()
+        
+        self.distanceSlider.tintColor = ContentColor().uiColor()
+        self.distanceSlider.minimumTrackTintColor = ContentColor().uiColor()
+    }
     
     // MARK: - Actionss
     

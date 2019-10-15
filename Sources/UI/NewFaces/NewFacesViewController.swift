@@ -61,7 +61,7 @@ class NewFacesViewController: BaseViewController
         
         super.viewDidLoad()
         
-        self.filterBtn.setImage(UIImage(named: "feed_filter_btn")?.withRenderingMode(.alwaysTemplate), for: .normal)        
+        self.filterBtn.setImage(UIImage(named: "feed_filter_btn")?.withRenderingMode(.alwaysTemplate), for: .normal)
         
         self.topPanelLineHeightConstraint.constant = 0.5
         
@@ -536,10 +536,10 @@ class NewFacesViewController: BaseViewController
             if isUpdated { self?.reload(true) }
         }
         vc.onClose = {
-            ModalUIManager.shared.hide(animated: false)
+            ModalUIManager.shared.hide(animated: true)
         }
         
-        ModalUIManager.shared.show(vc, animated: false)
+        ModalUIManager.shared.show(vc, animated: true)
     }
     
     fileprivate func showTopBar(_ animated: Bool)

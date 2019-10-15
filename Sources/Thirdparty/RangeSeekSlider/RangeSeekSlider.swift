@@ -167,10 +167,15 @@ open class RangeSeekSlider: UIControl {
             handleFrame.size = image.size
             
             leftHandle.frame = handleFrame
-            leftHandle.contents = image.cgImage
+            //leftHandle.contents = image.cgImage
+            let maskLayer = CALayer()
+            maskLayer.frame = handleFrame
+            maskLayer.contents = image.cgImage
+            leftHandle.mask = maskLayer
 
             rightHandle.frame = handleFrame
-            rightHandle.contents = image.cgImage
+            //rightHandle.contents = image.cgImage
+            rightHandle.mask = maskLayer
         }
     }
 
@@ -517,12 +522,13 @@ open class RangeSeekSlider: UIControl {
             sliderLineBetweenHandles.backgroundColor = colorBetweenHandles?.cgColor ?? tintCGColor
             sliderLine.backgroundColor = tintCGColor
 
-            let color: CGColor
-            if let _ = handleImage {
-                color = UIColor.clear.cgColor
-            } else {
-                color = handleColor?.cgColor ?? tintCGColor
-            }
+//            let color: CGColor
+//            if let _ = handleImage {
+//                color = UIColor.clear.cgColor
+//            } else {
+//                color = handleColor?.cgColor ?? tintCGColor
+//            }
+            let color: CGColor = handleColor?.cgColor ?? tintCGColor
             leftHandle.backgroundColor = color
             leftHandle.borderColor = handleBorderColor.map { $0.cgColor }
             rightHandle.backgroundColor = color
@@ -619,7 +625,7 @@ open class RangeSeekSlider: UIControl {
         }
     }
 
-    fileprivate func refresh() {
+    func refresh() {
         if enableStep && step > 0.0 {
             selectedMinValue = CGFloat(roundf(Float(selectedMinValue / step))) * step
             if let previousStepMinValue = previousStepMinValue, previousStepMinValue != selectedMinValue {
