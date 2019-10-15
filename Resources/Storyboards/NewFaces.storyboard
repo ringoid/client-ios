@@ -364,6 +364,15 @@ discover users nearby</string>
                                 <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.23309075342465754" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_marker" translatesAutoresizingMaskIntoConstraints="NO" id="PuY-pA-2A6" userLabel="LocationIcon">
+                                <rect key="frame" x="133" y="20" width="15" height="15"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icO-V0-7Ym">
+                                <rect key="frame" x="152" y="17" width="61" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About me" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEy-yV-NWA">
                                 <rect key="frame" x="16" y="516" width="343" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -412,6 +421,7 @@ discover users nearby</string>
                             <constraint firstItem="xjV-mO-k6V" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="1N4-BE-Y5z"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="hF7-La-xF3" secondAttribute="trailing" constant="8" id="5NP-6E-3NK"/>
                             <constraint firstItem="9Fn-el-Q9A" firstAttribute="centerY" secondItem="xjV-mO-k6V" secondAttribute="centerY" id="7Tj-Wf-Xrc"/>
+                            <constraint firstItem="PuY-pA-2A6" firstAttribute="leading" secondItem="jgt-rd-QRL" secondAttribute="trailing" constant="16" id="7oS-XX-uWq"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="hF7-La-xF3" secondAttribute="top" id="ANk-co-dkG"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="centerY" secondItem="mUh-fA-frq" secondAttribute="centerY" id="Bn5-Xc-X65"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="top" secondItem="mUh-fA-frq" secondAttribute="top" id="CD0-AL-1vp"/>
@@ -434,6 +444,7 @@ discover users nearby</string>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="width" secondItem="UGd-FX-LHF" secondAttribute="width" id="XRt-63-qqY"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
                             <constraint firstItem="bby-nO-FSI" firstAttribute="leading" secondItem="HGV-Wh-HTU" secondAttribute="trailing" constant="8" id="ZcM-Cl-PyP"/>
+                            <constraint firstItem="icO-V0-7Ym" firstAttribute="leading" secondItem="PuY-pA-2A6" secondAttribute="trailing" constant="4" id="adE-40-VSZ"/>
                             <constraint firstItem="jkx-2O-t4k" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="bSV-7V-iVS"/>
                             <constraint firstItem="jgt-rd-QRL" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="baT-60-Fqh"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="centerY" secondItem="HqK-UA-iee" secondAttribute="centerY" id="cwa-AK-ROd"/>
@@ -450,9 +461,11 @@ discover users nearby</string>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="5TG-AM-TBD" secondAttribute="bottom" constant="10" id="nz5-gG-NAZ"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" constant="-16" id="ook-WJ-GS6"/>
                             <constraint firstItem="hF7-La-xF3" firstAttribute="centerY" secondItem="Sxp-7c-isg" secondAttribute="centerY" id="qsT-A0-2nD"/>
+                            <constraint firstItem="icO-V0-7Ym" firstAttribute="centerY" secondItem="PuY-pA-2A6" secondAttribute="centerY" id="r1d-d8-AbE"/>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="centerY" secondItem="gCQ-GT-2id" secondAttribute="centerY" id="ugI-UP-NV8"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="leading" secondItem="UGd-FX-LHF" secondAttribute="leading" id="unC-2d-8Tg"/>
                             <constraint firstItem="HGV-Wh-HTU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="56" id="vEn-VW-j7M"/>
+                            <constraint firstItem="PuY-pA-2A6" firstAttribute="centerY" secondItem="jgt-rd-QRL" secondAttribute="centerY" id="wsL-cF-mbh"/>
                             <constraint firstAttribute="trailing" secondItem="Jbu-JW-RgU" secondAttribute="trailing" id="x67-KR-aFy"/>
                             <constraint firstItem="UGd-FX-LHF" firstAttribute="leading" secondItem="hpB-3V-fnF" secondAttribute="trailing" constant="8" id="xFJ-Pd-Mt1"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="leading" secondItem="mUh-fA-frq" secondAttribute="trailing" constant="8" id="xeE-rt-HGB"/>
@@ -471,6 +484,8 @@ discover users nearby</string>
                         <outlet property="leftFieldLabel1" destination="HqK-UA-iee" id="8o7-EW-XrV"/>
                         <outlet property="leftFieldLabel2" destination="UGd-FX-LHF" id="Dst-Qt-NKd"/>
                         <outlet property="likeBtn" destination="xjV-mO-k6V" id="zWG-kH-QCR"/>
+                        <outlet property="locationIconView" destination="PuY-pA-2A6" id="Nqa-tL-T4Z"/>
+                        <outlet property="locationLabel" destination="icO-V0-7Ym" id="xn3-zs-UfZ"/>
                         <outlet property="nameLabel" destination="jgt-rd-QRL" id="b6f-js-hAK"/>
                         <outlet property="optionsBtn" destination="X1t-jW-NWk" id="LoZ-fG-SZb"/>
                         <outlet property="pagesControl" destination="ahE-Zb-Two" id="5Uz-7h-eYN"/>
@@ -725,5 +740,6 @@ discover users nearby</string>
         <image name="feed_scroll_top" width="65" height="65"/>
         <image name="feed_slider_handle" width="12.5" height="22"/>
         <image name="profile_fields_children" width="15" height="15"/>
+        <image name="profile_fields_marker" width="15" height="15"/>
     </resources>
 </document>

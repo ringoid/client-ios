@@ -53,7 +53,7 @@ class NewFacesViewController: BaseViewController
     @IBOutlet fileprivate weak var feedBottomLabel: UILabel!
     @IBOutlet fileprivate weak var topPanelView: UIView!
     @IBOutlet fileprivate weak var topPanelLineHeightConstraint: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var filterBtn: UIButton!
+    @IBOutlet fileprivate weak var filterBtn: UIButton!    
     
     override func viewDidLoad()
     {
@@ -61,7 +61,7 @@ class NewFacesViewController: BaseViewController
         
         super.viewDidLoad()
         
-        self.filterBtn.setImage(UIImage(named: "feed_filter_btn")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.filterBtn.setImage(UIImage(named: "feed_filter_btn")?.withRenderingMode(.alwaysTemplate), for: .normal)        
         
         self.topPanelLineHeightConstraint.constant = 0.5
         

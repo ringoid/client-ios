@@ -54,6 +54,8 @@ class NewFaceProfileViewController: BaseViewController
     @IBOutlet fileprivate weak var aboutHeightConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var likeBtn: UIButton!
     @IBOutlet fileprivate weak var totalLikesLabel: UILabel!
+    @IBOutlet fileprivate weak var locationIconView: UIImageView!
+    @IBOutlet fileprivate weak var locationLabel: UILabel!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -109,6 +111,7 @@ class NewFaceProfileViewController: BaseViewController
         
         self.likeBtn.setImage(UIImage(named: "main_bar_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
         self.optionsBtn.setImage(UIImage(named: "feed_options")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.locationIconView.image = UIImage(named: "profile_fields_marker")?.withRenderingMode(.alwaysTemplate)
         
         self.setupFieldsControls()
         self.setupBindings()
@@ -151,6 +154,7 @@ class NewFaceProfileViewController: BaseViewController
         
         self.applyStatuses()
         self.applyName()
+        self.applyLocation()
         self.applyTotalLikes()
         self.applyStatusInfo()
     }
@@ -171,6 +175,8 @@ class NewFaceProfileViewController: BaseViewController
         self.statusLabel.textColor = SecondContentColor().uiColor()
         self.nameLabel.textColor = ContentColor().uiColor()
         self.totalLikesLabel.textColor = ContentColor().uiColor()
+        self.locationIconView.tintColor = ContentColor().uiColor()
+        self.locationLabel.textColor = ContentColor().uiColor()
         
         /*
          self.aboutLabel.textColor = ContentColor().uiColor()
@@ -482,6 +488,18 @@ class NewFaceProfileViewController: BaseViewController
             self.statusInfoLabel.text = statusText
         } else {
             self.statusInfoLabel.text = nil
+        }
+    }
+    
+    fileprivate func applyLocation()
+    {
+        if let location = self.input.profile.whereLive, location != "unknown" {
+            self.locationLabel.text = location
+            self.locationLabel.isHidden = false
+            self.locationIconView.isHidden = false
+        } else {
+            self.locationLabel.isHidden = true
+            self.locationIconView.isHidden = true
         }
     }
     

@@ -334,19 +334,19 @@ class ProfileFieldsConfiguration
         
         var rows: [ProfileFileRow] = []
         
-        if let title = profile.whereLive?.trimContent(), title != "unknown", !title.isEmpty {
-            rows.append(ProfileFileRow(
-                title: title,
-                icon: "profile_fields_marker"
-            ))
-        }
-        
-        if let title = profile.distanceText?.trimContent(), title != "unknown", !title.isEmpty {
-            rows.append(ProfileFileRow(
-                title: title,
-                icon: "common_location"
-            ))
-        }
+//        if let title = profile.whereLive?.trimContent(), title != "unknown", !title.isEmpty {
+//            rows.append(ProfileFileRow(
+//                title: title,
+//                icon: "profile_fields_marker"
+//            ))
+//        }
+//        
+//        if let title = profile.distanceText?.trimContent(), title != "unknown", !title.isEmpty {
+//            rows.append(ProfileFileRow(
+//                title: title,
+//                icon: "common_location"
+//            ))
+//        }
         
         if let value = profile.height.value, value != 0 {
             let index = heightIndex(value)
