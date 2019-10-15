@@ -170,8 +170,11 @@ class NewFaceProfileViewController: BaseViewController
         self.pagesControl.currentPageIndicatorTintColor = ContentColor().uiColor()
         self.statusLabel.textColor = SecondContentColor().uiColor()
         self.nameLabel.textColor = ContentColor().uiColor()
-        self.aboutLabel.textColor = ContentColor().uiColor()
         self.totalLikesLabel.textColor = ContentColor().uiColor()
+        
+        /*
+         self.aboutLabel.textColor = ContentColor().uiColor()
+         
         self.leftFieldLabel1.textColor = ContentColor().uiColor()
         self.leftFieldLabel2.textColor = ContentColor().uiColor()
         self.rightFieldLabel1.textColor = ContentColor().uiColor()
@@ -181,6 +184,7 @@ class NewFaceProfileViewController: BaseViewController
         self.leftFieldIcon2.tintColor = ContentColor().uiColor()
         self.rightFieldIcon1.tintColor = ContentColor().uiColor()
         self.rightFieldIcon2.tintColor = ContentColor().uiColor()
+ */
         
         self.likeBtn.tintColor = ContentColor().uiColor()
         self.optionsBtn.tintColor = ContentColor().uiColor()

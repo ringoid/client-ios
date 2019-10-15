@@ -252,8 +252,9 @@ discover users nearby</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1t-jW-NWk">
-                                <rect key="frame" x="299" y="0.0" width="76" height="88"/>
+                                <rect key="frame" x="299" y="-0.5" width="76" height="56"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="7rP-7B-Qw9"/>
                                     <constraint firstAttribute="width" constant="76" id="R9H-dW-1yd"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -282,14 +283,16 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="mUh-fA-frq">
-                                <rect key="frame" x="16" y="612" width="15" height="15"/>
+                                <rect key="frame" x="16" y="557" width="15" height="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="2MV-rt-5XK"/>
                                     <constraint firstAttribute="height" constant="15" id="Op0-ej-B2M"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqK-UA-iee">
-                                <rect key="frame" x="39" y="612" width="140" height="15"/>
+                                <rect key="frame" x="39" y="557" width="140" height="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="XrK-En-WMf"/>
                                 </constraints>
@@ -297,32 +300,36 @@ discover users nearby</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="hF7-La-xF3">
-                                <rect key="frame" x="228" y="612" width="15" height="15"/>
+                                <rect key="frame" x="228" y="557" width="15" height="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="1bd-Mv-PMv"/>
                                     <constraint firstAttribute="height" constant="15" id="3SU-Gu-h2C"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxp-7c-isg">
-                                <rect key="frame" x="251" y="612" width="116" height="15"/>
+                                <rect key="frame" x="251" y="557" width="116" height="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="Ne3-kc-nB2">
-                                <rect key="frame" x="228" y="587" width="15" height="15"/>
+                                <rect key="frame" x="228" y="532" width="15" height="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="KWK-ZF-P4t"/>
                                     <constraint firstAttribute="height" constant="15" id="P84-2j-OAX"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TG-AM-TBD">
-                                <rect key="frame" x="251" y="587" width="116" height="15"/>
+                                <rect key="frame" x="251" y="532" width="116" height="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="116" id="g5t-CM-O8l"/>
                                 </constraints>
@@ -330,22 +337,24 @@ discover users nearby</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_children" translatesAutoresizingMaskIntoConstraints="NO" id="hpB-3V-fnF">
-                                <rect key="frame" x="16" y="587" width="15" height="15"/>
+                                <rect key="frame" x="16" y="532" width="15" height="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="GlU-bH-4eW"/>
                                     <constraint firstAttribute="height" constant="15" id="WOa-B5-zjE"/>
                                 </constraints>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGd-FX-LHF">
-                                <rect key="frame" x="39" y="587" width="140" height="15"/>
+                                <rect key="frame" x="39" y="532" width="140" height="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Afrodita, 19" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgt-rd-QRL">
                                 <rect key="frame" x="16" y="16" width="101" height="23"/>
@@ -356,7 +365,7 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About me" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEy-yV-NWA">
-                                <rect key="frame" x="16" y="575" width="343" height="56"/>
+                                <rect key="frame" x="16" y="516" width="343" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="gkf-JW-gIn"/>
@@ -365,7 +374,7 @@ discover users nearby</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjV-mO-k6V" userLabel="LikeButton">
                                 <rect key="frame" x="0.0" y="580" width="64" height="64"/>
@@ -407,7 +416,6 @@ discover users nearby</string>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="centerY" secondItem="mUh-fA-frq" secondAttribute="centerY" id="Bn5-Xc-X65"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="top" secondItem="mUh-fA-frq" secondAttribute="top" id="CD0-AL-1vp"/>
                             <constraint firstItem="DEy-yV-NWA" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="DH3-yd-MhX"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="DEy-yV-NWA" secondAttribute="bottom" constant="36" id="DSM-yl-Ef1"/>
                             <constraint firstItem="Ne3-kc-nB2" firstAttribute="centerY" secondItem="5TG-AM-TBD" secondAttribute="centerY" id="Dof-qO-HE6"/>
                             <constraint firstAttribute="trailing" secondItem="Sxp-7c-isg" secondAttribute="trailing" constant="8" id="EbU-Gn-KJO"/>
                             <constraint firstItem="jgt-rd-QRL" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="topMargin" constant="16" id="Glg-u7-OSv"/>
@@ -424,7 +432,6 @@ discover users nearby</string>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="top" secondItem="UGd-FX-LHF" secondAttribute="bottom" constant="10" id="WWM-Rn-t9O"/>
                             <constraint firstItem="hpB-3V-fnF" firstAttribute="centerY" secondItem="UGd-FX-LHF" secondAttribute="centerY" id="XI4-5X-8P5"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="width" secondItem="UGd-FX-LHF" secondAttribute="width" id="XRt-63-qqY"/>
-                            <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
                             <constraint firstItem="bby-nO-FSI" firstAttribute="leading" secondItem="HGV-Wh-HTU" secondAttribute="trailing" constant="8" id="ZcM-Cl-PyP"/>
                             <constraint firstItem="jkx-2O-t4k" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="bSV-7V-iVS"/>
@@ -432,16 +439,16 @@ discover users nearby</string>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="centerY" secondItem="HqK-UA-iee" secondAttribute="centerY" id="cwa-AK-ROd"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="leading" secondItem="Ne3-kc-nB2" secondAttribute="trailing" constant="8" id="dYN-r8-BGt"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="5TG-AM-TBD" secondAttribute="leading" id="egi-7A-clp"/>
-                            <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="X1t-jW-NWk" secondAttribute="bottom" id="es4-TP-BpW"/>
                             <constraint firstItem="HGV-Wh-HTU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="fz3-iX-AyN"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="gkm-cI-CQH"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="bottom" secondItem="hF7-La-xF3" secondAttribute="bottom" id="iNT-kD-Lsn"/>
                             <constraint firstItem="UGd-FX-LHF" firstAttribute="bottom" secondItem="hpB-3V-fnF" secondAttribute="bottom" id="iyQ-pa-B7q"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="trailing" secondItem="5TG-AM-TBD" secondAttribute="trailing" id="jEg-QL-jPD"/>
-                            <constraint firstAttribute="bottom" secondItem="mUh-fA-frq" secondAttribute="bottom" constant="40" id="jpd-3w-6cq"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="bottom" secondItem="Ne3-kc-nB2" secondAttribute="bottom" id="kKy-mu-RU6"/>
+                            <constraint firstItem="X1t-jW-NWk" firstAttribute="centerY" secondItem="jgt-rd-QRL" secondAttribute="centerY" id="kN6-lS-ZXA"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="88" id="ms1-Iv-Xza"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="5TG-AM-TBD" secondAttribute="bottom" constant="10" id="nz5-gG-NAZ"/>
+                            <constraint firstItem="mUh-fA-frq" firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" constant="-16" id="ook-WJ-GS6"/>
                             <constraint firstItem="hF7-La-xF3" firstAttribute="centerY" secondItem="Sxp-7c-isg" secondAttribute="centerY" id="qsT-A0-2nD"/>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="centerY" secondItem="gCQ-GT-2id" secondAttribute="centerY" id="ugI-UP-NV8"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="leading" secondItem="UGd-FX-LHF" secondAttribute="leading" id="unC-2d-8Tg"/>
@@ -451,6 +458,7 @@ discover users nearby</string>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="leading" secondItem="mUh-fA-frq" secondAttribute="trailing" constant="8" id="xeE-rt-HGB"/>
                             <constraint firstItem="xjV-mO-k6V" firstAttribute="top" secondItem="Jbu-JW-RgU" secondAttribute="bottom" constant="-8" id="zBE-tf-gRy"/>
                             <constraint firstItem="UGd-FX-LHF" firstAttribute="top" secondItem="hpB-3V-fnF" secondAttribute="top" id="zHg-5N-07g"/>
+                            <constraint firstItem="DEy-yV-NWA" firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" constant="-16" id="ziR-sH-dF0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QNT-if-MPg"/>
                     </view>
