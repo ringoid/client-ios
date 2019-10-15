@@ -107,7 +107,7 @@ class NewFaceProfileViewController: BaseViewController
         
         super.viewDidLoad()
         
-        self.likeBtn.setImage(UIImage(named: "feed_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.likeBtn.setImage(UIImage(named: "main_bar_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
         self.optionsBtn.setImage(UIImage(named: "feed_options")?.withRenderingMode(.alwaysTemplate), for: .normal)
         
         self.setupFieldsControls()

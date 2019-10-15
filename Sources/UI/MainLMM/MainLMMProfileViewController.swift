@@ -15,7 +15,7 @@ class MainLMMProfileViewController: UIViewController
 {
     var input: MainLMMProfileVMInput!
     
-    static let profileHeaderHeight: CGFloat = 48.0
+    static let profileHeaderHeight: CGFloat = 88.0
     static let profileFooterHeight: CGFloat = 128.0
     
     var topVisibleBorderDistance: CGFloat = 0.0

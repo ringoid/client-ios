@@ -124,10 +124,10 @@ class NewFacesFilterViewController: BaseViewController
     override func updateTheme()
     {
         self.filtersView.backgroundColor = BackgroundColor().uiColor()
-        self.ageLabel.textColor = ContentColor().uiColor()
-        self.maxDistanceTitleLabel.textColor = ContentColor().uiColor()
+        self.ageLabel.textColor = SecondContentColor().uiColor()
+        self.maxDistanceTitleLabel.textColor = SecondContentColor().uiColor()
         self.discoverBtn.setTitleColor(ContentColor().uiColor(), for: .normal)
-        self.distanceLabel.tintColor = SecondContentColor().uiColor()
+        self.distanceLabel.tintColor = ContentColor().uiColor()
         
         self.rangeSlider.tintColor = SecondContentColor().uiColor()
         self.rangeSlider.minLabelColor = SecondContentColor().uiColor()

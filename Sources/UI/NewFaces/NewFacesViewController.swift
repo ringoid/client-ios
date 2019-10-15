@@ -690,7 +690,7 @@ extension NewFacesViewController: UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView)
     {
         let offset = scrollView.contentOffset.y
-        self.updateVisibleCellsBorders(offset)
+        //self.updateVisibleCellsBorders(offset)
         
         // Bottom new page trigger
         let bottomOffset = scrollView.contentSize.height - scrollView.bounds.height - scrollView.contentInset.bottom - scrollView.contentInset.top - offset - 64.0
