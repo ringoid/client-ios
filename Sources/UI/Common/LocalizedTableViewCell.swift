@@ -30,7 +30,7 @@ class BaseTableViewCell: UITableViewCell
     
     func updateTheme()
     {
-        
+        self.tintColor = SecondContentColor().uiColor()
     }
     
     // MARK: -

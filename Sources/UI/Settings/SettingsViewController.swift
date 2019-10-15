@@ -86,12 +86,15 @@ class SettingsViewController: BaseViewController
     @IBOutlet fileprivate weak var titleLabel: UILabel!
     @IBOutlet fileprivate weak var tableView: UITableView!
     @IBOutlet fileprivate weak var backBtn: UIButton!
+    @IBOutlet fileprivate weak var topBarLineHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad()
     {
         assert(input != nil )
         
         super.viewDidLoad()
+        
+        self.topBarLineHeightConstraint.constant = 0.5
         
         self.tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.tableView.bounds.width, height: 1.0))
         
