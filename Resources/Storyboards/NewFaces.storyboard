@@ -252,12 +252,11 @@ discover users nearby</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1t-jW-NWk">
-                                <rect key="frame" x="299" y="-0.5" width="76" height="56"/>
+                                <rect key="frame" x="319" y="-0.5" width="56" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="7rP-7B-Qw9"/>
-                                    <constraint firstAttribute="width" constant="76" id="R9H-dW-1yd"/>
+                                    <constraint firstAttribute="width" constant="56" id="R9H-dW-1yd"/>
                                 </constraints>
-                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="feed_options"/>
                                 <connections>
                                     <action selector="onBlock" destination="gBk-mi-2xQ" eventType="touchUpInside" id="zg5-YE-ePs"/>
@@ -365,11 +364,24 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_marker" translatesAutoresizingMaskIntoConstraints="NO" id="PuY-pA-2A6" userLabel="LocationIcon">
-                                <rect key="frame" x="133" y="20" width="15" height="15"/>
+                                <rect key="frame" x="141" y="20" width="15" height="15"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icO-V0-7Ym">
-                                <rect key="frame" x="152" y="17" width="61" height="21"/>
+                                <rect key="frame" x="160" y="17" width="61" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_location" translatesAutoresizingMaskIntoConstraints="NO" id="XN3-ij-Io1">
+                                <rect key="frame" x="229" y="20" width="15" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="NtJ-v3-dIP"/>
+                                    <constraint firstAttribute="width" constant="15" id="waL-hb-Mmh"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="130 km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bg-4H-qBH">
+                                <rect key="frame" x="248" y="19" width="47" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -421,7 +433,7 @@ discover users nearby</string>
                             <constraint firstItem="xjV-mO-k6V" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="1N4-BE-Y5z"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="hF7-La-xF3" secondAttribute="trailing" constant="8" id="5NP-6E-3NK"/>
                             <constraint firstItem="9Fn-el-Q9A" firstAttribute="centerY" secondItem="xjV-mO-k6V" secondAttribute="centerY" id="7Tj-Wf-Xrc"/>
-                            <constraint firstItem="PuY-pA-2A6" firstAttribute="leading" secondItem="jgt-rd-QRL" secondAttribute="trailing" constant="16" id="7oS-XX-uWq"/>
+                            <constraint firstItem="PuY-pA-2A6" firstAttribute="leading" secondItem="jgt-rd-QRL" secondAttribute="trailing" constant="24" id="8g1-cN-ntp"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="hF7-La-xF3" secondAttribute="top" id="ANk-co-dkG"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="centerY" secondItem="mUh-fA-frq" secondAttribute="centerY" id="Bn5-Xc-X65"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="top" secondItem="mUh-fA-frq" secondAttribute="top" id="CD0-AL-1vp"/>
@@ -430,11 +442,14 @@ discover users nearby</string>
                             <constraint firstAttribute="trailing" secondItem="Sxp-7c-isg" secondAttribute="trailing" constant="8" id="EbU-Gn-KJO"/>
                             <constraint firstItem="jgt-rd-QRL" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="topMargin" constant="16" id="Glg-u7-OSv"/>
                             <constraint firstAttribute="trailing" secondItem="DEy-yV-NWA" secondAttribute="trailing" constant="16" id="Gw8-O6-8Bt"/>
+                            <constraint firstItem="XN3-ij-Io1" firstAttribute="centerY" secondItem="icO-V0-7Ym" secondAttribute="centerY" id="IH6-md-ng4"/>
                             <constraint firstItem="9Fn-el-Q9A" firstAttribute="leading" secondItem="xjV-mO-k6V" secondAttribute="trailing" constant="-16" id="KsM-BN-eBH"/>
                             <constraint firstAttribute="trailing" secondItem="X1t-jW-NWk" secondAttribute="trailing" id="Le3-5c-RWL"/>
                             <constraint firstItem="ahE-Zb-Two" firstAttribute="centerX" secondItem="gCQ-GT-2id" secondAttribute="centerX" id="Mk2-w0-p53"/>
                             <constraint firstItem="bby-nO-FSI" firstAttribute="centerY" secondItem="HGV-Wh-HTU" secondAttribute="centerY" id="N7Y-Ci-Eqf"/>
                             <constraint firstItem="ahE-Zb-Two" firstAttribute="centerY" secondItem="xjV-mO-k6V" secondAttribute="centerY" id="O0n-QU-DA9"/>
+                            <constraint firstItem="9bg-4H-qBH" firstAttribute="centerY" secondItem="XN3-ij-Io1" secondAttribute="centerY" id="Otw-pr-omS"/>
+                            <constraint firstItem="X1t-jW-NWk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9bg-4H-qBH" secondAttribute="trailing" constant="24" id="PTR-aZ-T6l"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="bottom" secondItem="mUh-fA-frq" secondAttribute="bottom" id="QNh-Ou-Hn7"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="top" secondItem="Ne3-kc-nB2" secondAttribute="top" id="Rp3-YS-NIT"/>
                             <constraint firstItem="jkx-2O-t4k" firstAttribute="centerY" secondItem="gCQ-GT-2id" secondAttribute="centerY" id="VPZ-5A-FoV"/>
@@ -452,6 +467,7 @@ discover users nearby</string>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="5TG-AM-TBD" secondAttribute="leading" id="egi-7A-clp"/>
                             <constraint firstItem="HGV-Wh-HTU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="fz3-iX-AyN"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="gkm-cI-CQH"/>
+                            <constraint firstItem="9bg-4H-qBH" firstAttribute="leading" secondItem="XN3-ij-Io1" secondAttribute="trailing" constant="4" id="hUv-Ar-ETW"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="bottom" secondItem="hF7-La-xF3" secondAttribute="bottom" id="iNT-kD-Lsn"/>
                             <constraint firstItem="UGd-FX-LHF" firstAttribute="bottom" secondItem="hpB-3V-fnF" secondAttribute="bottom" id="iyQ-pa-B7q"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="trailing" secondItem="5TG-AM-TBD" secondAttribute="trailing" id="jEg-QL-jPD"/>
@@ -460,6 +476,7 @@ discover users nearby</string>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="88" id="ms1-Iv-Xza"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="5TG-AM-TBD" secondAttribute="bottom" constant="10" id="nz5-gG-NAZ"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" constant="-16" id="ook-WJ-GS6"/>
+                            <constraint firstItem="XN3-ij-Io1" firstAttribute="leading" secondItem="icO-V0-7Ym" secondAttribute="trailing" constant="8" id="otk-h4-xmB"/>
                             <constraint firstItem="hF7-La-xF3" firstAttribute="centerY" secondItem="Sxp-7c-isg" secondAttribute="centerY" id="qsT-A0-2nD"/>
                             <constraint firstItem="icO-V0-7Ym" firstAttribute="centerY" secondItem="PuY-pA-2A6" secondAttribute="centerY" id="r1d-d8-AbE"/>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="centerY" secondItem="gCQ-GT-2id" secondAttribute="centerY" id="ugI-UP-NV8"/>
@@ -478,6 +495,8 @@ discover users nearby</string>
                     <connections>
                         <outlet property="aboutHeightConstraint" destination="gkf-JW-gIn" id="ZTZ-35-etM"/>
                         <outlet property="aboutLabel" destination="DEy-yV-NWA" id="TMy-zX-d0I"/>
+                        <outlet property="distanceIconView" destination="XN3-ij-Io1" id="ZWT-BX-Pr6"/>
+                        <outlet property="distanceLabel" destination="9bg-4H-qBH" id="vBl-Xe-KwL"/>
                         <outlet property="leftColumnConstraint" destination="XrK-En-WMf" id="mqN-pF-lHT"/>
                         <outlet property="leftFieldIcon1" destination="mUh-fA-frq" id="ZHg-m3-vHG"/>
                         <outlet property="leftFieldIcon2" destination="hpB-3V-fnF" id="sm3-ni-SEd"/>
@@ -733,6 +752,7 @@ discover users nearby</string>
         </scene>
     </scenes>
     <resources>
+        <image name="common_location" width="28" height="28"/>
         <image name="feed_filter_btn" width="22" height="22"/>
         <image name="feed_like" width="36" height="33"/>
         <image name="feed_like_selected" width="36" height="33"/>

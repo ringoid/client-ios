@@ -56,6 +56,8 @@ class NewFaceProfileViewController: BaseViewController
     @IBOutlet fileprivate weak var totalLikesLabel: UILabel!
     @IBOutlet fileprivate weak var locationIconView: UIImageView!
     @IBOutlet fileprivate weak var locationLabel: UILabel!
+    @IBOutlet fileprivate weak var distanceIconView: UIImageView!
+    @IBOutlet fileprivate weak var distanceLabel: UILabel!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -112,6 +114,7 @@ class NewFaceProfileViewController: BaseViewController
         self.likeBtn.setImage(UIImage(named: "main_bar_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
         self.optionsBtn.setImage(UIImage(named: "feed_options")?.withRenderingMode(.alwaysTemplate), for: .normal)
         self.locationIconView.image = UIImage(named: "profile_fields_marker")?.withRenderingMode(.alwaysTemplate)
+        self.distanceIconView.image = UIImage(named: "common_location")?.withRenderingMode(.alwaysTemplate)
         
         self.setupFieldsControls()
         self.setupBindings()
@@ -177,6 +180,8 @@ class NewFaceProfileViewController: BaseViewController
         self.totalLikesLabel.textColor = ContentColor().uiColor()
         self.locationIconView.tintColor = ContentColor().uiColor()
         self.locationLabel.textColor = ContentColor().uiColor()
+        self.distanceIconView.tintColor = ContentColor().uiColor()
+        self.distanceLabel.textColor = ContentColor().uiColor()
         
         /*
          self.aboutLabel.textColor = ContentColor().uiColor()
@@ -500,6 +505,15 @@ class NewFaceProfileViewController: BaseViewController
         } else {
             self.locationLabel.isHidden = true
             self.locationIconView.isHidden = true
+        }
+        
+        if let distance = self.input.profile.distanceText, distance != "unknown" {
+            self.distanceLabel.text = distance
+            self.distanceLabel.isHidden = false
+            self.distanceIconView.isHidden = false
+        } else {
+            self.distanceLabel.isHidden = true
+            self.distanceIconView.isHidden = true
         }
     }
     
