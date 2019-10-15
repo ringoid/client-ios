@@ -44,7 +44,7 @@ class SecondContentColor: ThemeColor
     {
         switch ThemeManager.shared.theme.value {
         case .dark: return UIColor(red: 186.0 / 255.0, green: 186.0 / 255.0, blue: 186.0 / 255.0, alpha: 1.0)
-        case .light: return UIColor(red: 21.0 / 255.0, green: 25.0 / 255.0, blue: 29.0 / 255.0, alpha: 1.0)
+        case .light: return UIColor(red: 155.0 / 255.0, green: 155.0 / 255.0, blue: 155.0 / 255.0, alpha: 1.0)
         }
     }
 }

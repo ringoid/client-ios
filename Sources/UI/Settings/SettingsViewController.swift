@@ -40,11 +40,12 @@ fileprivate enum SettingsOptionType: Int
     case filter = 0
     case profile = 1
     case push = 2
-    case language = 3
-    case legal = 4
-    case support = 5
-    case suggest = 6
-    case delete = 7
+    case theme = 3
+    case language = 4
+    case legal = 5
+    case support = 6
+    case suggest = 7
+    case delete = 8
 }
 
 #endif
@@ -70,6 +71,7 @@ class SettingsViewController: BaseViewController
         SettingsOption(cellIdentifier: "filter_cell", height: 56.0),
         SettingsOption(cellIdentifier: "profile_cell", height: 56.0),
         SettingsOption(cellIdentifier: "push_cell", height: 56.0),
+        SettingsOption(cellIdentifier: "theme_cell", height: 56.0),
         SettingsOption(cellIdentifier: "language_cell", height: 56.0),
         SettingsOption(cellIdentifier: "legal_cell", height: 56.0),
         SettingsOption(cellIdentifier: "support_cell", height: 56.0),
@@ -219,10 +221,9 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate
         case .push:
             self.performSegue(withIdentifier: SegueIds.pushes, sender: nil)
             break
-            
-            #if STAGE
+                        
         case .theme: return
-            #endif
+            
         case .language:
             self.performSegue(withIdentifier: SegueIds.locale, sender: nil)
             break

@@ -27,11 +27,11 @@ discover users nearby</string>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Kt8-il-Lh0">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
                             </activityIndicatorView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="400" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owz-cZ-1Sc">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="444" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Owz-cZ-1Sc">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="2qj-wE-4hh">
-                                    <rect key="frame" x="0.0" y="456" width="375" height="80"/>
+                                    <rect key="frame" x="0.0" y="500" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KI0-kj-TBA">
@@ -59,14 +59,14 @@ discover users nearby</string>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="new_faces_cell" id="PAB-o3-bWg" customClass="NewFacesCell" customModule="Ringoid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="400"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="444"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PAB-o3-bWg" id="mzS-Ei-i2k">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="400"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="444"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWH-RX-sVo" customClass="ContainerView" customModule="Ringoid" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="401"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="445"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                             </subviews>
@@ -207,6 +207,7 @@ discover users nearby</string>
                         <outlet property="feedBottomLabel" destination="KI0-kj-TBA" id="saE-P8-p8R"/>
                         <outlet property="feedTitleBtn" destination="j9E-Qp-6Yt" id="Pty-0t-XWz"/>
                         <outlet property="feedTitleLabel" destination="isk-qO-AwF" id="vAP-BQ-ZbC"/>
+                        <outlet property="filterBtn" destination="eNb-ZP-bBP" id="PJI-Xj-TGK"/>
                         <outlet property="scrollTopBtn" destination="RcH-VU-hkW" id="A6d-nd-dJD"/>
                         <outlet property="tableView" destination="Owz-cZ-1Sc" id="KNv-5u-zds"/>
                         <outlet property="tapBarHeightConstraint" destination="JrX-dP-RaM" id="THQ-yo-FbA"/>
@@ -251,20 +252,18 @@ discover users nearby</string>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1t-jW-NWk">
-                                <rect key="frame" x="299" y="-12" width="76" height="60"/>
+                                <rect key="frame" x="299" y="0.0" width="76" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="QjX-Vu-hve"/>
                                     <constraint firstAttribute="width" constant="76" id="R9H-dW-1yd"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="feed_options"/>
                                 <connections>
                                     <action selector="onBlock" destination="gBk-mi-2xQ" eventType="touchUpInside" id="zg5-YE-ePs"/>
                                 </connections>
                             </button>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="ahE-Zb-Two">
-                                <rect key="frame" x="187.5" y="667" width="0.0" height="0.0"/>
+                                <rect key="frame" x="187.5" y="572" width="0.0" height="0.0"/>
                             </pageControl>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProfileID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXW-7Y-3ph">
                                 <rect key="frame" x="16" y="323" width="69" height="21"/>
@@ -368,21 +367,12 @@ discover users nearby</string>
                                 <color key="shadowColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fn-el-Q9A">
-                                <rect key="frame" x="339.5" y="166" width="11" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjV-mO-k6V" userLabel="LikeButton">
-                                <rect key="frame" x="299" y="118" width="76" height="64"/>
+                                <rect key="frame" x="0.0" y="540" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="gEO-rG-9EG"/>
-                                    <constraint firstAttribute="width" constant="76" id="hDL-z7-Bs7"/>
+                                    <constraint firstAttribute="width" constant="64" id="hDL-z7-Bs7"/>
                                 </constraints>
-                                <inset key="imageEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="feed_like"/>
                                 <connections>
                                     <action selector="onLikeWithSender:" destination="gBk-mi-2xQ" eventType="touchUpInside" id="hb9-oT-0HX"/>
@@ -399,24 +389,34 @@ discover users nearby</string>
                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fn-el-Q9A">
+                                <rect key="frame" x="56" y="559.5" width="13" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="xjV-mO-k6V" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="1N4-BE-Y5z"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="hF7-La-xF3" secondAttribute="trailing" constant="8" id="5NP-6E-3NK"/>
+                            <constraint firstItem="9Fn-el-Q9A" firstAttribute="centerY" secondItem="xjV-mO-k6V" secondAttribute="centerY" id="7Tj-Wf-Xrc"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="hF7-La-xF3" secondAttribute="top" id="ANk-co-dkG"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="centerY" secondItem="mUh-fA-frq" secondAttribute="centerY" id="Bn5-Xc-X65"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="top" secondItem="mUh-fA-frq" secondAttribute="top" id="CD0-AL-1vp"/>
-                            <constraint firstItem="9Fn-el-Q9A" firstAttribute="top" secondItem="xjV-mO-k6V" secondAttribute="bottom" constant="-16" id="CHR-uX-CAI"/>
                             <constraint firstItem="DEy-yV-NWA" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="DH3-yd-MhX"/>
                             <constraint firstAttribute="bottomMargin" secondItem="DEy-yV-NWA" secondAttribute="bottom" constant="36" id="DSM-yl-Ef1"/>
                             <constraint firstItem="Ne3-kc-nB2" firstAttribute="centerY" secondItem="5TG-AM-TBD" secondAttribute="centerY" id="Dof-qO-HE6"/>
                             <constraint firstAttribute="trailing" secondItem="Sxp-7c-isg" secondAttribute="trailing" constant="8" id="EbU-Gn-KJO"/>
                             <constraint firstItem="jgt-rd-QRL" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="topMargin" constant="16" id="Glg-u7-OSv"/>
                             <constraint firstAttribute="trailing" secondItem="DEy-yV-NWA" secondAttribute="trailing" constant="16" id="Gw8-O6-8Bt"/>
-                            <constraint firstAttribute="bottom" secondItem="ahE-Zb-Two" secondAttribute="bottom" id="LF8-et-HfT"/>
+                            <constraint firstItem="9Fn-el-Q9A" firstAttribute="leading" secondItem="xjV-mO-k6V" secondAttribute="trailing" constant="-8" id="KsM-BN-eBH"/>
                             <constraint firstAttribute="trailing" secondItem="X1t-jW-NWk" secondAttribute="trailing" id="Le3-5c-RWL"/>
                             <constraint firstItem="jgt-rd-QRL" firstAttribute="leading" secondItem="HGV-Wh-HTU" secondAttribute="trailing" constant="8" id="MJp-ca-Tuz"/>
                             <constraint firstItem="ahE-Zb-Two" firstAttribute="centerX" secondItem="gCQ-GT-2id" secondAttribute="centerX" id="Mk2-w0-p53"/>
+                            <constraint firstItem="ahE-Zb-Two" firstAttribute="centerY" secondItem="xjV-mO-k6V" secondAttribute="centerY" id="O0n-QU-DA9"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="bottom" secondItem="mUh-fA-frq" secondAttribute="bottom" id="QNh-Ou-Hn7"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="top" secondItem="Ne3-kc-nB2" secondAttribute="top" id="Rp3-YS-NIT"/>
                             <constraint firstAttribute="bottom" secondItem="bby-nO-FSI" secondAttribute="bottom" constant="8" id="V9U-AJ-Vc6"/>
@@ -425,14 +425,14 @@ discover users nearby</string>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="top" secondItem="UGd-FX-LHF" secondAttribute="bottom" constant="10" id="WWM-Rn-t9O"/>
                             <constraint firstItem="hpB-3V-fnF" firstAttribute="centerY" secondItem="UGd-FX-LHF" secondAttribute="centerY" id="XI4-5X-8P5"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="width" secondItem="UGd-FX-LHF" secondAttribute="width" id="XRt-63-qqY"/>
-                            <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="-12" id="XwE-WK-GfB"/>
+                            <constraint firstItem="X1t-jW-NWk" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" id="XwE-WK-GfB"/>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="YUW-zb-zKV"/>
-                            <constraint firstAttribute="trailing" secondItem="xjV-mO-k6V" secondAttribute="trailing" id="Yvo-8E-AMH"/>
                             <constraint firstItem="bby-nO-FSI" firstAttribute="leading" secondItem="QNT-if-MPg" secondAttribute="leading" constant="16" id="aTI-QI-suS"/>
                             <constraint firstItem="jkx-2O-t4k" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="bSV-7V-iVS"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="centerY" secondItem="HqK-UA-iee" secondAttribute="centerY" id="cwa-AK-ROd"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="leading" secondItem="Ne3-kc-nB2" secondAttribute="trailing" constant="8" id="dYN-r8-BGt"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="5TG-AM-TBD" secondAttribute="leading" id="egi-7A-clp"/>
+                            <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="X1t-jW-NWk" secondAttribute="bottom" id="es4-TP-BpW"/>
                             <constraint firstItem="HGV-Wh-HTU" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="fz3-iX-AyN"/>
                             <constraint firstItem="mUh-fA-frq" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="gkm-cI-CQH"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="bottom" secondItem="hF7-La-xF3" secondAttribute="bottom" id="iNT-kD-Lsn"/>
@@ -443,14 +443,13 @@ discover users nearby</string>
                             <constraint firstItem="Jbu-JW-RgU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="48" id="ms1-Iv-Xza"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="5TG-AM-TBD" secondAttribute="bottom" constant="10" id="nz5-gG-NAZ"/>
                             <constraint firstItem="hF7-La-xF3" firstAttribute="centerY" secondItem="Sxp-7c-isg" secondAttribute="centerY" id="qsT-A0-2nD"/>
-                            <constraint firstItem="9Fn-el-Q9A" firstAttribute="centerX" secondItem="xjV-mO-k6V" secondAttribute="centerX" constant="8" id="tPc-HW-If4"/>
-                            <constraint firstItem="xjV-mO-k6V" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="118" id="u02-xu-UZL"/>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="centerY" secondItem="gCQ-GT-2id" secondAttribute="centerY" id="ugI-UP-NV8"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="leading" secondItem="UGd-FX-LHF" secondAttribute="leading" id="unC-2d-8Tg"/>
                             <constraint firstItem="HGV-Wh-HTU" firstAttribute="top" secondItem="gCQ-GT-2id" secondAttribute="top" constant="20" id="vEn-VW-j7M"/>
                             <constraint firstAttribute="trailing" secondItem="Jbu-JW-RgU" secondAttribute="trailing" id="x67-KR-aFy"/>
                             <constraint firstItem="UGd-FX-LHF" firstAttribute="leading" secondItem="hpB-3V-fnF" secondAttribute="trailing" constant="8" id="xFJ-Pd-Mt1"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="leading" secondItem="mUh-fA-frq" secondAttribute="trailing" constant="8" id="xeE-rt-HGB"/>
+                            <constraint firstItem="xjV-mO-k6V" firstAttribute="top" secondItem="Jbu-JW-RgU" secondAttribute="bottom" constant="-8" id="zBE-tf-gRy"/>
                             <constraint firstItem="UGd-FX-LHF" firstAttribute="top" secondItem="hpB-3V-fnF" secondAttribute="top" id="zHg-5N-07g"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QNT-if-MPg"/>

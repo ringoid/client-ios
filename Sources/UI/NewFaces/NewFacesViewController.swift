@@ -53,12 +53,15 @@ class NewFacesViewController: BaseViewController
     @IBOutlet fileprivate weak var feedBottomLabel: UILabel!
     @IBOutlet fileprivate weak var topPanelView: UIView!
     @IBOutlet fileprivate weak var topPanelLineHeightConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var filterBtn: UIButton!
     
     override func viewDidLoad()
     {
         assert(self.input != nil)
         
         super.viewDidLoad()
+        
+        self.filterBtn.setImage(UIImage(named: "feed_filter_btn")?.withRenderingMode(.alwaysTemplate), for: .normal)        
         
         self.topPanelLineHeightConstraint.constant = 0.5
         
@@ -116,6 +119,7 @@ class NewFacesViewController: BaseViewController
         self.feedTitleLabel.textColor = ContentColor().uiColor()
         self.feedBottomLabel.textColor = ContentColor().uiColor()
         self.emptyFeedLabel.textColor = ContentColor().uiColor()
+        self.filterBtn.tintColor = ContentColor().uiColor()
     }
     
     override func updateLocale()

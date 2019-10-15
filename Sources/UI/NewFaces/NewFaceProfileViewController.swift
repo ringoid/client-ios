@@ -107,6 +107,9 @@ class NewFaceProfileViewController: BaseViewController
         
         super.viewDidLoad()
         
+        self.likeBtn.setImage(UIImage(named: "feed_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.optionsBtn.setImage(UIImage(named: "feed_options")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        
         self.setupFieldsControls()
         self.setupBindings()
         //self.setupPreheaterTimer()
@@ -163,7 +166,8 @@ class NewFaceProfileViewController: BaseViewController
     
     override func updateTheme()
     {
-        self.pagesControl.tintColor = ContentColor().uiColor()
+        self.pagesControl.pageIndicatorTintColor = SecondContentColor().uiColor()
+        self.pagesControl.currentPageIndicatorTintColor = ContentColor().uiColor()
         self.statusLabel.textColor = SecondContentColor().uiColor()
         self.nameLabel.textColor = ContentColor().uiColor()
         self.aboutLabel.textColor = ContentColor().uiColor()
@@ -177,6 +181,9 @@ class NewFaceProfileViewController: BaseViewController
         self.leftFieldIcon2.tintColor = ContentColor().uiColor()
         self.rightFieldIcon1.tintColor = ContentColor().uiColor()
         self.rightFieldIcon2.tintColor = ContentColor().uiColor()
+        
+        self.likeBtn.tintColor = ContentColor().uiColor()
+        self.optionsBtn.tintColor = ContentColor().uiColor()
     }
     
     func preheatSecondPhoto()
