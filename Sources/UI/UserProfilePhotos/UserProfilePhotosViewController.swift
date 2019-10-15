@@ -53,7 +53,8 @@ class UserProfilePhotosViewController: BaseViewController
     @IBOutlet fileprivate weak var pencilIconView: UIImageView!
     @IBOutlet fileprivate weak var addPhotoCenterBtn: UIButton!
     @IBOutlet fileprivate weak var statusInfoCenterConstraing: NSLayoutConstraint!
-    @IBOutlet fileprivate weak var pencilBtn: UIButton!    
+    @IBOutlet fileprivate weak var pencilBtn: UIButton!
+    @IBOutlet fileprivate weak var tobBarLineHeightConstraint: NSLayoutConstraint!
     
     // Profile fields
     @IBOutlet fileprivate weak var leftFieldIcon1: UIImageView!
@@ -72,8 +73,12 @@ class UserProfilePhotosViewController: BaseViewController
         
         super.viewDidLoad()
         
+        self.setupColorMasks()
+        
         self.fieldsBottomConstraint.constant = self.photoHeight + 20.0
-        self.setupFieldsControls()        
+        self.setupFieldsControls()
+        
+        self.tobBarLineHeightConstraint.constant = 0.5
         
         let height = UIScreen.main.bounds.width * AppConfig.photoRatio
         self.containerTableView.rowHeight = height
@@ -134,6 +139,12 @@ class UserProfilePhotosViewController: BaseViewController
     override func updateTheme()
     {
         self.view.backgroundColor = BackgroundColor().uiColor()
+        
+        self.optionsBtn.tintColor = ContentColor().uiColor()
+        self.addBtn.tintColor = ContentColor().uiColor()
+        
+        self.titleLabel.textColor = ContentColor().uiColor()
+        self.emptyFeedLabel.textColor = ContentColor().uiColor()
     }
     
     override func updateLocale()
@@ -304,6 +315,12 @@ class UserProfilePhotosViewController: BaseViewController
     }
     
     // MARK: -
+    
+    fileprivate func setupColorMasks()
+    {
+        self.optionsBtn.setImage(UIImage(named: "profile_settings")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.addBtn.setImage(UIImage(named: "profile_photo_add")?.withRenderingMode(.alwaysTemplate), for: .normal)
+    }
     
     fileprivate func setupBindings()
     {

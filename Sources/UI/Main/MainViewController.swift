@@ -255,10 +255,10 @@ class MainViewController: BaseViewController
             break
             
         case .profile:
-            self.searchBtn.setImage(UIImage(named: "main_bar_search"), for: .normal)
-            self.likeBtn.setImage(UIImage(named: "main_bar_like"), for: .normal)
-            self.chatsBtn.setImage(UIImage(named: "main_bar_messages"), for: .normal)
-            self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected"), for: .normal)
+            self.searchBtn.setImage(UIImage(named: "main_bar_search")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeBtn.setImage(UIImage(named: "main_bar_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.chatsBtn.setImage(UIImage(named: "main_bar_messages")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.profileBtn.setImage(UIImage(named: "main_bar_profile_selected")?.withRenderingMode(.alwaysTemplate), for: .normal)
             self.embedUserProfile()
             break
             
