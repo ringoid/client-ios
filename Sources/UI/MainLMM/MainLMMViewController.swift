@@ -80,7 +80,9 @@ class MainLMMViewController: BaseViewController
         self.tableView.estimatedSectionHeaderHeight = 0.0
         self.tableView.estimatedSectionFooterHeight = 0.0
         
-        let cellHeight = UIScreen.main.bounds.width * AppConfig.photoRatio
+        let headerHeight = MainLMMProfileViewController.profileHeaderHeight
+        let footerHeight = MainLMMProfileViewController.profileFooterHeight
+        let cellHeight = UIScreen.main.bounds.width * AppConfig.photoRatio + headerHeight + footerHeight
         self.tableView.rowHeight = cellHeight
         self.tableView.estimatedRowHeight = cellHeight
         self.tableView.contentInset = UIEdgeInsets(

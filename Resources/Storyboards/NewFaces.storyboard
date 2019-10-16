@@ -364,23 +364,23 @@ discover users nearby</string>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_fields_marker" translatesAutoresizingMaskIntoConstraints="NO" id="PuY-pA-2A6" userLabel="LocationIcon">
-                                <rect key="frame" x="141" y="20" width="15" height="15"/>
+                                <rect key="frame" x="125" y="20" width="15" height="15"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icO-V0-7Ym">
-                                <rect key="frame" x="160" y="17" width="61" height="21"/>
+                                <rect key="frame" x="144" y="17" width="61" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_location" translatesAutoresizingMaskIntoConstraints="NO" id="XN3-ij-Io1">
-                                <rect key="frame" x="229" y="20" width="15" height="15"/>
+                                <rect key="frame" x="213" y="20" width="15" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="NtJ-v3-dIP"/>
                                     <constraint firstAttribute="width" constant="15" id="waL-hb-Mmh"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="130 km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bg-4H-qBH">
-                                <rect key="frame" x="248" y="19" width="47" height="17"/>
+                                <rect key="frame" x="232" y="19" width="47" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -433,7 +433,7 @@ discover users nearby</string>
                             <constraint firstItem="xjV-mO-k6V" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" id="1N4-BE-Y5z"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="leading" secondItem="hF7-La-xF3" secondAttribute="trailing" constant="8" id="5NP-6E-3NK"/>
                             <constraint firstItem="9Fn-el-Q9A" firstAttribute="centerY" secondItem="xjV-mO-k6V" secondAttribute="centerY" id="7Tj-Wf-Xrc"/>
-                            <constraint firstItem="PuY-pA-2A6" firstAttribute="leading" secondItem="jgt-rd-QRL" secondAttribute="trailing" constant="24" id="8g1-cN-ntp"/>
+                            <constraint firstItem="PuY-pA-2A6" firstAttribute="leading" secondItem="jgt-rd-QRL" secondAttribute="trailing" constant="8" symbolic="YES" id="8g1-cN-ntp"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="top" secondItem="hF7-La-xF3" secondAttribute="top" id="ANk-co-dkG"/>
                             <constraint firstItem="Sxp-7c-isg" firstAttribute="centerY" secondItem="mUh-fA-frq" secondAttribute="centerY" id="Bn5-Xc-X65"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="top" secondItem="mUh-fA-frq" secondAttribute="top" id="CD0-AL-1vp"/>
@@ -451,6 +451,7 @@ discover users nearby</string>
                             <constraint firstItem="9bg-4H-qBH" firstAttribute="centerY" secondItem="XN3-ij-Io1" secondAttribute="centerY" id="Otw-pr-omS"/>
                             <constraint firstItem="X1t-jW-NWk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9bg-4H-qBH" secondAttribute="trailing" constant="24" id="PTR-aZ-T6l"/>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="bottom" secondItem="mUh-fA-frq" secondAttribute="bottom" id="QNh-Ou-Hn7"/>
+                            <constraint firstItem="DEy-yV-NWA" firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" constant="-16" id="RK0-Q2-k2b"/>
                             <constraint firstItem="5TG-AM-TBD" firstAttribute="top" secondItem="Ne3-kc-nB2" secondAttribute="top" id="Rp3-YS-NIT"/>
                             <constraint firstItem="jkx-2O-t4k" firstAttribute="centerY" secondItem="gCQ-GT-2id" secondAttribute="centerY" id="VPZ-5A-FoV"/>
                             <constraint firstItem="DXW-7Y-3ph" firstAttribute="leading" secondItem="gCQ-GT-2id" secondAttribute="leading" constant="16" id="WHJ-8A-QCL"/>
@@ -488,7 +489,6 @@ discover users nearby</string>
                             <constraint firstItem="HqK-UA-iee" firstAttribute="leading" secondItem="mUh-fA-frq" secondAttribute="trailing" constant="8" id="xeE-rt-HGB"/>
                             <constraint firstItem="xjV-mO-k6V" firstAttribute="top" secondItem="Jbu-JW-RgU" secondAttribute="bottom" constant="-8" id="zBE-tf-gRy"/>
                             <constraint firstItem="UGd-FX-LHF" firstAttribute="top" secondItem="hpB-3V-fnF" secondAttribute="top" id="zHg-5N-07g"/>
-                            <constraint firstItem="DEy-yV-NWA" firstAttribute="bottom" secondItem="Jbu-JW-RgU" secondAttribute="bottom" constant="-16" id="ziR-sH-dF0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QNT-if-MPg"/>
                     </view>

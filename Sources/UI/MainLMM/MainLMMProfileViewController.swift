@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import Nuke
 
-class MainLMMProfileViewController: UIViewController
+class MainLMMProfileViewController: BaseViewController
 {
     var input: MainLMMProfileVMInput!
     
@@ -49,7 +49,7 @@ class MainLMMProfileViewController: UIViewController
     
     @IBOutlet fileprivate weak var messageBtn: UIButton!
     @IBOutlet fileprivate weak var optionsBtn: UIButton!
-    @IBOutlet fileprivate weak var messageBtnTopConstraint: NSLayoutConstraint!
+
     @IBOutlet fileprivate weak var profileIdLabel: UILabel!
     @IBOutlet fileprivate weak var seenLabel: UILabel!
     @IBOutlet fileprivate weak var pagesControl: UIPageControl!
@@ -57,7 +57,6 @@ class MainLMMProfileViewController: UIViewController
     @IBOutlet fileprivate weak var statusLabel: UILabel!
     @IBOutlet fileprivate weak var statusInfoLabel: UILabel!
     @IBOutlet fileprivate weak var nameLabel: UILabel!
-    @IBOutlet fileprivate weak var nameConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var aboutLabel: UILabel!
     @IBOutlet fileprivate weak var leftColumnConstraint: NSLayoutConstraint!
     @IBOutlet fileprivate weak var rightColumnConstraint: NSLayoutConstraint!
@@ -120,6 +119,11 @@ class MainLMMProfileViewController: UIViewController
         
         super.viewDidLoad()
         
+        self.likeBtn.setImage(UIImage(named: "main_bar_like")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.optionsBtn.setImage(UIImage(named: "feed_options")?.withRenderingMode(.alwaysTemplate), for: .normal)
+//        self.locationIconView.image = UIImage(named: "profile_fields_marker")?.withRenderingMode(.alwaysTemplate)
+//        self.distanceIconView.image = UIImage(named: "common_location")?.withRenderingMode(.alwaysTemplate)
+        
         self.setupFieldsControls()
         
         // TODO: Move logic inside view model
@@ -128,9 +132,7 @@ class MainLMMProfileViewController: UIViewController
         self.preheatSecondPhoto()
         
         guard !self.input.profile.isInvalidated else { return }
-        
-        self.updateMessageBtnOffset()
-        
+
         let input = NewFaceProfileVMInput(
             profile: self.input.profile,
             sourceType: self.input.feedType.sourceType(),
@@ -194,6 +196,36 @@ class MainLMMProfileViewController: UIViewController
             self.pagesVC?.dataSource = self
         }
     }
+    
+    override func updateTheme()
+       {
+           self.pagesControl.pageIndicatorTintColor = SecondContentColor().uiColor()
+           self.pagesControl.currentPageIndicatorTintColor = ContentColor().uiColor()
+           self.statusLabel.textColor = SecondContentColor().uiColor()
+           self.nameLabel.textColor = ContentColor().uiColor()
+           self.totalLikesLabel.textColor = ContentColor().uiColor()
+//           self.locationIconView.tintColor = ContentColor().uiColor()
+//           self.locationLabel.textColor = ContentColor().uiColor()
+//           self.distanceIconView.tintColor = ContentColor().uiColor()
+//           self.distanceLabel.textColor = ContentColor().uiColor()
+           
+           /*
+            self.aboutLabel.textColor = ContentColor().uiColor()
+            
+           self.leftFieldLabel1.textColor = ContentColor().uiColor()
+           self.leftFieldLabel2.textColor = ContentColor().uiColor()
+           self.rightFieldLabel1.textColor = ContentColor().uiColor()
+           self.rightFieldLabel2.textColor = ContentColor().uiColor()
+           
+           self.leftFieldIcon1.tintColor = ContentColor().uiColor()
+           self.leftFieldIcon2.tintColor = ContentColor().uiColor()
+           self.rightFieldIcon1.tintColor = ContentColor().uiColor()
+           self.rightFieldIcon2.tintColor = ContentColor().uiColor()
+    */
+           
+           self.likeBtn.tintColor = ContentColor().uiColor()
+           self.optionsBtn.tintColor = ContentColor().uiColor()
+       }
     
     func showNotChatControls()
     {
@@ -436,12 +468,7 @@ class MainLMMProfileViewController: UIViewController
         
         self.present(alertVC, animated: true, completion: nil)
     }
-    
-    fileprivate func updateMessageBtnOffset()
-    {
-        self.messageBtnTopConstraint.constant = self.input.feedType != .likesYou ? 138.0 : 228.0
-    }
-    
+
     fileprivate func handleTopBorderDistanceChange(_ value: CGFloat)
     {
         // Options button interaction area special case
@@ -680,7 +707,6 @@ class MainLMMProfileViewController: UIViewController
                 
                 self.aboutLabel.text = aboutText
                 self.aboutLabel.isHidden = false
-                self.nameConstraint.constant = height + 36.0
                 self.aboutHeightConstraint.constant = height
                 self.view.layoutIfNeeded()
             } else {
@@ -715,8 +741,6 @@ class MainLMMProfileViewController: UIViewController
         var rightColumnMaxWidth: CGFloat = 0.0
         
         defer {
-            self.nameConstraint.constant = nameOffset
-            
             let rightColumnWidth = rightColumnMaxWidth < rightFieldMaxWidth ? ( rightColumnMaxWidth + 4.0) : (rightFieldMaxWidth + 4.0)
             self.rightColumnConstraint.constant = rightColumnWidth
             
